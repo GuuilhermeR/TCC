@@ -33,6 +33,7 @@ Partial Class frmTelaLogin
         '
         'txtUsuario
         '
+        Me.txtUsuario.AutoSize = True
         Me.txtUsuario.Conexao = Nothing
         Me.txtUsuario.ConnectionString = Nothing
         Me.txtUsuario.FieldFilter = Nothing
@@ -45,7 +46,7 @@ Partial Class frmTelaLogin
         Me.txtUsuario.NameExibition = "Usuário:"
         Me.txtUsuario.OrderManual = Nothing
         Me.txtUsuario.OthersFilters = Nothing
-        Me.txtUsuario.Size = New System.Drawing.Size(308, 21)
+        Me.txtUsuario.Size = New System.Drawing.Size(308, 24)
         Me.txtUsuario.SizeTextBox = 200
         Me.txtUsuario.SQLSelectFind = Nothing
         Me.txtUsuario.TabIndex = 1
@@ -59,6 +60,7 @@ Partial Class frmTelaLogin
         '
         'txtSenha
         '
+        Me.txtSenha.AutoSize = True
         Me.txtSenha.Conexao = Nothing
         Me.txtSenha.ConnectionString = Nothing
         Me.txtSenha.FieldFilter = Nothing
@@ -71,7 +73,7 @@ Partial Class frmTelaLogin
         Me.txtSenha.NameExibition = "Senha:"
         Me.txtSenha.OrderManual = Nothing
         Me.txtSenha.OthersFilters = Nothing
-        Me.txtSenha.Size = New System.Drawing.Size(308, 21)
+        Me.txtSenha.Size = New System.Drawing.Size(308, 24)
         Me.txtSenha.SizeTextBox = 200
         Me.txtSenha.SQLSelectFind = Nothing
         Me.txtSenha.TabIndex = 3

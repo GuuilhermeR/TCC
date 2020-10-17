@@ -82,6 +82,18 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmCalculadoraNutricional.Designer.vb">
+      <DependentUpon>frmCalculadoraNutricional.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmCalculadoraNutricional.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMenuPrincipal.Designer.vb">
+      <DependentUpon>frmMenuPrincipal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMenuPrincipal.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmTelaLogin.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +119,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmCalculadoraNutricional.resx">
+      <DependentUpon>frmCalculadoraNutricional.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMenuPrincipal.resx">
+      <DependentUpon>frmMenuPrincipal.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmTelaLogin.resx">
       <DependentUpon>frmTelaLogin.vb</DependentUpon>
     </EmbeddedResource>

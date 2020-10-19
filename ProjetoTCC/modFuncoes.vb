@@ -400,9 +400,6 @@ Public Module modFuncoes
                 strDestinoAcesso = Conect.PRGACCESS
 
                 strSystemName = Conect.SYSTEMNAME
-                If codEmpresa = 0 Then
-                    codEmpresa = Conect.COMPANY
-                End If
                 strSystemDescription = Conect.SYSTEMDESCRIPTION
                 strPassMerisa = Conect.PASS
                 strConnSMPBD = Conect.SMPBD

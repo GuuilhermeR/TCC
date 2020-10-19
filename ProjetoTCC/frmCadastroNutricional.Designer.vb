@@ -38,6 +38,7 @@ Partial Class frmCadastroNutricional
         '
         'txtGramas
         '
+        Me.txtGramas.AutoSize = True
         Me.txtGramas.Conexao = Nothing
         Me.txtGramas.ConnectionString = Nothing
         Me.txtGramas.FieldFilter = Nothing
@@ -50,7 +51,7 @@ Partial Class frmCadastroNutricional
         Me.txtGramas.NameExibition = "Gramas:"
         Me.txtGramas.OrderManual = Nothing
         Me.txtGramas.OthersFilters = Nothing
-        Me.txtGramas.Size = New System.Drawing.Size(200, 21)
+        Me.txtGramas.Size = New System.Drawing.Size(200, 24)
         Me.txtGramas.SizeTextBox = 0
         Me.txtGramas.SQLSelectFind = Nothing
         Me.txtGramas.TabIndex = 1
@@ -62,6 +63,7 @@ Partial Class frmCadastroNutricional
         '
         'txtQtde
         '
+        Me.txtQtde.AutoSize = True
         Me.txtQtde.Conexao = Nothing
         Me.txtQtde.ConnectionString = Nothing
         Me.txtQtde.FieldFilter = Nothing
@@ -74,7 +76,7 @@ Partial Class frmCadastroNutricional
         Me.txtQtde.NameExibition = "Quantidade:"
         Me.txtQtde.OrderManual = Nothing
         Me.txtQtde.OthersFilters = Nothing
-        Me.txtQtde.Size = New System.Drawing.Size(200, 21)
+        Me.txtQtde.Size = New System.Drawing.Size(200, 24)
         Me.txtQtde.SizeTextBox = 0
         Me.txtQtde.SQLSelectFind = Nothing
         Me.txtQtde.TabIndex = 3
@@ -86,6 +88,7 @@ Partial Class frmCadastroNutricional
         '
         'txtKcal
         '
+        Me.txtKcal.AutoSize = True
         Me.txtKcal.Conexao = Nothing
         Me.txtKcal.ConnectionString = Nothing
         Me.txtKcal.FieldFilter = Nothing
@@ -98,7 +101,7 @@ Partial Class frmCadastroNutricional
         Me.txtKcal.NameExibition = "Kcal:"
         Me.txtKcal.OrderManual = Nothing
         Me.txtKcal.OthersFilters = Nothing
-        Me.txtKcal.Size = New System.Drawing.Size(200, 21)
+        Me.txtKcal.Size = New System.Drawing.Size(200, 24)
         Me.txtKcal.SizeTextBox = 0
         Me.txtKcal.SQLSelectFind = Nothing
         Me.txtKcal.TabIndex = 4
@@ -110,6 +113,7 @@ Partial Class frmCadastroNutricional
         '
         'TextBoxNumberWithLabel1
         '
+        Me.TextBoxNumberWithLabel1.AutoSize = True
         Me.TextBoxNumberWithLabel1.Conexao = Nothing
         Me.TextBoxNumberWithLabel1.ConnectionString = Nothing
         Me.TextBoxNumberWithLabel1.FieldFilter = Nothing
@@ -122,7 +126,7 @@ Partial Class frmCadastroNutricional
         Me.TextBoxNumberWithLabel1.NameExibition = "Lipídio (g):"
         Me.TextBoxNumberWithLabel1.OrderManual = Nothing
         Me.TextBoxNumberWithLabel1.OthersFilters = Nothing
-        Me.TextBoxNumberWithLabel1.Size = New System.Drawing.Size(200, 21)
+        Me.TextBoxNumberWithLabel1.Size = New System.Drawing.Size(200, 24)
         Me.TextBoxNumberWithLabel1.SizeTextBox = 0
         Me.TextBoxNumberWithLabel1.SQLSelectFind = Nothing
         Me.TextBoxNumberWithLabel1.TabIndex = 7
@@ -134,6 +138,7 @@ Partial Class frmCadastroNutricional
         '
         'TextBoxNumberWithLabel2
         '
+        Me.TextBoxNumberWithLabel2.AutoSize = True
         Me.TextBoxNumberWithLabel2.Conexao = Nothing
         Me.TextBoxNumberWithLabel2.ConnectionString = Nothing
         Me.TextBoxNumberWithLabel2.FieldFilter = Nothing
@@ -146,7 +151,7 @@ Partial Class frmCadastroNutricional
         Me.TextBoxNumberWithLabel2.NameExibition = "Carboidrato (g):"
         Me.TextBoxNumberWithLabel2.OrderManual = Nothing
         Me.TextBoxNumberWithLabel2.OthersFilters = Nothing
-        Me.TextBoxNumberWithLabel2.Size = New System.Drawing.Size(200, 21)
+        Me.TextBoxNumberWithLabel2.Size = New System.Drawing.Size(200, 24)
         Me.TextBoxNumberWithLabel2.SizeTextBox = 0
         Me.TextBoxNumberWithLabel2.SQLSelectFind = Nothing
         Me.TextBoxNumberWithLabel2.TabIndex = 6
@@ -158,6 +163,7 @@ Partial Class frmCadastroNutricional
         '
         'TextBoxNumberWithLabel3
         '
+        Me.TextBoxNumberWithLabel3.AutoSize = True
         Me.TextBoxNumberWithLabel3.Conexao = Nothing
         Me.TextBoxNumberWithLabel3.ConnectionString = Nothing
         Me.TextBoxNumberWithLabel3.FieldFilter = Nothing
@@ -170,7 +176,7 @@ Partial Class frmCadastroNutricional
         Me.TextBoxNumberWithLabel3.NameExibition = "Proteína (g):"
         Me.TextBoxNumberWithLabel3.OrderManual = Nothing
         Me.TextBoxNumberWithLabel3.OthersFilters = Nothing
-        Me.TextBoxNumberWithLabel3.Size = New System.Drawing.Size(200, 21)
+        Me.TextBoxNumberWithLabel3.Size = New System.Drawing.Size(200, 24)
         Me.TextBoxNumberWithLabel3.SizeTextBox = 0
         Me.TextBoxNumberWithLabel3.SQLSelectFind = Nothing
         Me.TextBoxNumberWithLabel3.TabIndex = 5
@@ -182,6 +188,7 @@ Partial Class frmCadastroNutricional
         '
         'txtAlimento
         '
+        Me.txtAlimento.AutoSize = True
         Me.txtAlimento.Conexao = Nothing
         Me.txtAlimento.ConnectionString = Nothing
         Me.txtAlimento.FieldFilter = Nothing
@@ -194,7 +201,7 @@ Partial Class frmCadastroNutricional
         Me.txtAlimento.NameExibition = "Alimento:"
         Me.txtAlimento.OrderManual = Nothing
         Me.txtAlimento.OthersFilters = Nothing
-        Me.txtAlimento.Size = New System.Drawing.Size(213, 21)
+        Me.txtAlimento.Size = New System.Drawing.Size(213, 24)
         Me.txtAlimento.SizeTextBox = 0
         Me.txtAlimento.SQLSelectFind = Nothing
         Me.txtAlimento.TabIndex = 8
@@ -220,6 +227,7 @@ Partial Class frmCadastroNutricional
         '
         'txtVitC
         '
+        Me.txtVitC.AutoSize = True
         Me.txtVitC.Conexao = Nothing
         Me.txtVitC.ConnectionString = Nothing
         Me.txtVitC.FieldFilter = Nothing
@@ -232,7 +240,7 @@ Partial Class frmCadastroNutricional
         Me.txtVitC.NameExibition = "Vit. C (mg):"
         Me.txtVitC.OrderManual = Nothing
         Me.txtVitC.OthersFilters = Nothing
-        Me.txtVitC.Size = New System.Drawing.Size(200, 21)
+        Me.txtVitC.Size = New System.Drawing.Size(200, 24)
         Me.txtVitC.SizeTextBox = 0
         Me.txtVitC.SQLSelectFind = Nothing
         Me.txtVitC.TabIndex = 10
@@ -244,6 +252,7 @@ Partial Class frmCadastroNutricional
         '
         'txtFerro
         '
+        Me.txtFerro.AutoSize = True
         Me.txtFerro.Conexao = Nothing
         Me.txtFerro.ConnectionString = Nothing
         Me.txtFerro.FieldFilter = Nothing
@@ -256,7 +265,7 @@ Partial Class frmCadastroNutricional
         Me.txtFerro.NameExibition = "Ferro (mg):"
         Me.txtFerro.OrderManual = Nothing
         Me.txtFerro.OthersFilters = Nothing
-        Me.txtFerro.Size = New System.Drawing.Size(200, 21)
+        Me.txtFerro.Size = New System.Drawing.Size(200, 24)
         Me.txtFerro.SizeTextBox = 0
         Me.txtFerro.SQLSelectFind = Nothing
         Me.txtFerro.TabIndex = 9
@@ -268,6 +277,7 @@ Partial Class frmCadastroNutricional
         '
         'txtCa
         '
+        Me.txtCa.AutoSize = True
         Me.txtCa.Conexao = Nothing
         Me.txtCa.ConnectionString = Nothing
         Me.txtCa.FieldFilter = Nothing
@@ -280,7 +290,7 @@ Partial Class frmCadastroNutricional
         Me.txtCa.NameExibition = "Cálcio (mg):"
         Me.txtCa.OrderManual = Nothing
         Me.txtCa.OthersFilters = Nothing
-        Me.txtCa.Size = New System.Drawing.Size(200, 21)
+        Me.txtCa.Size = New System.Drawing.Size(200, 24)
         Me.txtCa.SizeTextBox = 0
         Me.txtCa.SQLSelectFind = Nothing
         Me.txtCa.TabIndex = 8
@@ -321,6 +331,7 @@ Partial Class frmCadastroNutricional
         Me.Controls.SetChildIndex(Me.btnSalvar, 0)
         Me.Controls.SetChildIndex(Me.txtVitC, 0)
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 

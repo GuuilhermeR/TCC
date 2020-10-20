@@ -1,6 +1,4 @@
-﻿Imports System.Data.SQLite
-
-Public Class frmTelaLogin
+﻿Public Class frmTelaLogin
     Private Sub frmTelaLogin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         fINIConexao()

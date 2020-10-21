@@ -4037,7 +4037,7 @@ Public Module modFuncoes
         Dim strSQL As String = Nothing
         If conexaoPadrao.ActiveConnection <> MvtConnection.DataBase.ORACLE _
             AndAlso conexaoPadrao.ActiveConnection <> MvtConnection.DataBase.ORACLECLIENT Then
-            strSQL = "SELECT DISTINCT GETDATE() AS Data FROM Mvt_Acesso.UsuarioEmpresa"
+            'strSQL = "SELECT DISTINCT GETDATE() AS Data FROM Mvt_Acesso.UsuarioEmpresa"
         Else
             strSQL = "SELECT DISTINCT SYSDATE AS Data FROM Mvt_Acesso.UsuarioEmpresa"
         End If
@@ -7523,7 +7523,7 @@ Public Enum Genero
 End Enum
 
 Public Class MvtUsuario
-    Property Usuario As String
+    Property Usuario As String = Nothing
     Property Nome As String
     Property Email As String
     Property CodGrupo As Integer

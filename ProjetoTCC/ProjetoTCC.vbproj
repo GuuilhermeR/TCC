@@ -57,10 +57,6 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="MvtConnection, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\MovtechFontes\MvtComponentsNew\MovtechDLL2015\MvtConnection.dll</HintPath>
-    </Reference>
     <Reference Include="MvtUtils">
       <HintPath>..\..\..\..\..\MovtechFontes\MovtechDLL\MvtUtils.dll</HintPath>
     </Reference>
@@ -174,6 +170,12 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\MovtechFontes\mvtcomponents\MvtConnection\MvtConnection\MvtConnection.vbproj">
+      <Project>{6cb3d26a-4a62-4555-b01c-24e8a95370eb}</Project>
+      <Name>MvtConnection</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

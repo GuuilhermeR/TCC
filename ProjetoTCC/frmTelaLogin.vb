@@ -1,7 +1,8 @@
 ﻿Public Class frmTelaLogin
     Private Sub frmTelaLogin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        'fINIConexao()
+        fINIConexao()
+        MvtConnection.Conect.ConectAtual.UsuarioLogado = Nothing
 
         Me.txtSenha.TextBoxValue.PasswordChar = "*"
 

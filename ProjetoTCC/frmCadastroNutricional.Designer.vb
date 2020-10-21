@@ -26,14 +26,15 @@ Partial Class frmCadastroNutricional
         Me.txtGramas = New MvtWindowsForms.TextBoxNumberWithLabel()
         Me.txtQtde = New MvtWindowsForms.TextBoxNumberWithLabel()
         Me.txtKcal = New MvtWindowsForms.TextBoxNumberWithLabel()
-        Me.TextBoxNumberWithLabel1 = New MvtWindowsForms.TextBoxNumberWithLabel()
-        Me.TextBoxNumberWithLabel2 = New MvtWindowsForms.TextBoxNumberWithLabel()
-        Me.TextBoxNumberWithLabel3 = New MvtWindowsForms.TextBoxNumberWithLabel()
-        Me.txtAlimento = New MvtWindowsForms.TextBoxStringWithLabel()
+        Me.txtLipidio = New MvtWindowsForms.TextBoxNumberWithLabel()
+        Me.txtCarboidrato = New MvtWindowsForms.TextBoxNumberWithLabel()
+        Me.txtProteina = New MvtWindowsForms.TextBoxNumberWithLabel()
         Me.btnSalvar = New MvtWindowsForms.ButtonSave()
         Me.txtVitC = New MvtWindowsForms.TextBoxNumberWithLabel()
         Me.txtFerro = New MvtWindowsForms.TextBoxNumberWithLabel()
-        Me.txtCa = New MvtWindowsForms.TextBoxNumberWithLabel()
+        Me.txtCalcio = New MvtWindowsForms.TextBoxNumberWithLabel()
+        Me.btnConsultar = New MvtWindowsForms.ButtonFind()
+        Me.txtAlimento = New MvtWindowsForms.TextBoxStringWithLabel()
         Me.SuspendLayout()
         '
         'txtGramas
@@ -111,112 +112,86 @@ Partial Class frmCadastroNutricional
         Me.txtKcal.ValueReturn = Nothing
         Me.txtKcal.ZIniciar = True
         '
-        'TextBoxNumberWithLabel1
+        'txtLipidio
         '
-        Me.TextBoxNumberWithLabel1.AutoSize = True
-        Me.TextBoxNumberWithLabel1.Conexao = Nothing
-        Me.TextBoxNumberWithLabel1.ConnectionString = Nothing
-        Me.TextBoxNumberWithLabel1.FieldFilter = Nothing
-        Me.TextBoxNumberWithLabel1.FieldFind = Nothing
-        Me.TextBoxNumberWithLabel1.FieldReturn = Nothing
-        Me.TextBoxNumberWithLabel1.FormatCustom = Nothing
-        Me.TextBoxNumberWithLabel1.KeepValue = False
-        Me.TextBoxNumberWithLabel1.Location = New System.Drawing.Point(242, 92)
-        Me.TextBoxNumberWithLabel1.Name = "TextBoxNumberWithLabel1"
-        Me.TextBoxNumberWithLabel1.NameExibition = "Lipídio (g):"
-        Me.TextBoxNumberWithLabel1.OrderManual = Nothing
-        Me.TextBoxNumberWithLabel1.OthersFilters = Nothing
-        Me.TextBoxNumberWithLabel1.Size = New System.Drawing.Size(200, 24)
-        Me.TextBoxNumberWithLabel1.SizeTextBox = 0
-        Me.TextBoxNumberWithLabel1.SQLSelectFind = Nothing
-        Me.TextBoxNumberWithLabel1.TabIndex = 7
-        Me.TextBoxNumberWithLabel1.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.TextBoxNumberWithLabel1.ToolTipHelp = Nothing
-        Me.TextBoxNumberWithLabel1.UseF3 = False
-        Me.TextBoxNumberWithLabel1.ValueReturn = Nothing
-        Me.TextBoxNumberWithLabel1.ZIniciar = True
+        Me.txtLipidio.AutoSize = True
+        Me.txtLipidio.Conexao = Nothing
+        Me.txtLipidio.ConnectionString = Nothing
+        Me.txtLipidio.FieldFilter = Nothing
+        Me.txtLipidio.FieldFind = Nothing
+        Me.txtLipidio.FieldReturn = Nothing
+        Me.txtLipidio.FormatCustom = Nothing
+        Me.txtLipidio.KeepValue = False
+        Me.txtLipidio.Location = New System.Drawing.Point(243, 114)
+        Me.txtLipidio.Name = "txtLipidio"
+        Me.txtLipidio.NameExibition = "Lipídio (g):"
+        Me.txtLipidio.OrderManual = Nothing
+        Me.txtLipidio.OthersFilters = Nothing
+        Me.txtLipidio.Size = New System.Drawing.Size(200, 24)
+        Me.txtLipidio.SizeTextBox = 0
+        Me.txtLipidio.SQLSelectFind = Nothing
+        Me.txtLipidio.TabIndex = 7
+        Me.txtLipidio.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.txtLipidio.ToolTipHelp = Nothing
+        Me.txtLipidio.UseF3 = False
+        Me.txtLipidio.ValueReturn = Nothing
+        Me.txtLipidio.ZIniciar = True
         '
-        'TextBoxNumberWithLabel2
+        'txtCarboidrato
         '
-        Me.TextBoxNumberWithLabel2.AutoSize = True
-        Me.TextBoxNumberWithLabel2.Conexao = Nothing
-        Me.TextBoxNumberWithLabel2.ConnectionString = Nothing
-        Me.TextBoxNumberWithLabel2.FieldFilter = Nothing
-        Me.TextBoxNumberWithLabel2.FieldFind = Nothing
-        Me.TextBoxNumberWithLabel2.FieldReturn = Nothing
-        Me.TextBoxNumberWithLabel2.FormatCustom = Nothing
-        Me.TextBoxNumberWithLabel2.KeepValue = False
-        Me.TextBoxNumberWithLabel2.Location = New System.Drawing.Point(242, 65)
-        Me.TextBoxNumberWithLabel2.Name = "TextBoxNumberWithLabel2"
-        Me.TextBoxNumberWithLabel2.NameExibition = "Carboidrato (g):"
-        Me.TextBoxNumberWithLabel2.OrderManual = Nothing
-        Me.TextBoxNumberWithLabel2.OthersFilters = Nothing
-        Me.TextBoxNumberWithLabel2.Size = New System.Drawing.Size(200, 24)
-        Me.TextBoxNumberWithLabel2.SizeTextBox = 0
-        Me.TextBoxNumberWithLabel2.SQLSelectFind = Nothing
-        Me.TextBoxNumberWithLabel2.TabIndex = 6
-        Me.TextBoxNumberWithLabel2.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.TextBoxNumberWithLabel2.ToolTipHelp = Nothing
-        Me.TextBoxNumberWithLabel2.UseF3 = False
-        Me.TextBoxNumberWithLabel2.ValueReturn = Nothing
-        Me.TextBoxNumberWithLabel2.ZIniciar = True
+        Me.txtCarboidrato.AutoSize = True
+        Me.txtCarboidrato.Conexao = Nothing
+        Me.txtCarboidrato.ConnectionString = Nothing
+        Me.txtCarboidrato.FieldFilter = Nothing
+        Me.txtCarboidrato.FieldFind = Nothing
+        Me.txtCarboidrato.FieldReturn = Nothing
+        Me.txtCarboidrato.FormatCustom = Nothing
+        Me.txtCarboidrato.KeepValue = False
+        Me.txtCarboidrato.Location = New System.Drawing.Point(243, 87)
+        Me.txtCarboidrato.Name = "txtCarboidrato"
+        Me.txtCarboidrato.NameExibition = "Carboidrato (g):"
+        Me.txtCarboidrato.OrderManual = Nothing
+        Me.txtCarboidrato.OthersFilters = Nothing
+        Me.txtCarboidrato.Size = New System.Drawing.Size(200, 24)
+        Me.txtCarboidrato.SizeTextBox = 0
+        Me.txtCarboidrato.SQLSelectFind = Nothing
+        Me.txtCarboidrato.TabIndex = 6
+        Me.txtCarboidrato.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.txtCarboidrato.ToolTipHelp = Nothing
+        Me.txtCarboidrato.UseF3 = False
+        Me.txtCarboidrato.ValueReturn = Nothing
+        Me.txtCarboidrato.ZIniciar = True
         '
-        'TextBoxNumberWithLabel3
+        'txtProteina
         '
-        Me.TextBoxNumberWithLabel3.AutoSize = True
-        Me.TextBoxNumberWithLabel3.Conexao = Nothing
-        Me.TextBoxNumberWithLabel3.ConnectionString = Nothing
-        Me.TextBoxNumberWithLabel3.FieldFilter = Nothing
-        Me.TextBoxNumberWithLabel3.FieldFind = Nothing
-        Me.TextBoxNumberWithLabel3.FieldReturn = Nothing
-        Me.TextBoxNumberWithLabel3.FormatCustom = Nothing
-        Me.TextBoxNumberWithLabel3.KeepValue = False
-        Me.TextBoxNumberWithLabel3.Location = New System.Drawing.Point(242, 38)
-        Me.TextBoxNumberWithLabel3.Name = "TextBoxNumberWithLabel3"
-        Me.TextBoxNumberWithLabel3.NameExibition = "Proteína (g):"
-        Me.TextBoxNumberWithLabel3.OrderManual = Nothing
-        Me.TextBoxNumberWithLabel3.OthersFilters = Nothing
-        Me.TextBoxNumberWithLabel3.Size = New System.Drawing.Size(200, 24)
-        Me.TextBoxNumberWithLabel3.SizeTextBox = 0
-        Me.TextBoxNumberWithLabel3.SQLSelectFind = Nothing
-        Me.TextBoxNumberWithLabel3.TabIndex = 5
-        Me.TextBoxNumberWithLabel3.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.TextBoxNumberWithLabel3.ToolTipHelp = Nothing
-        Me.TextBoxNumberWithLabel3.UseF3 = False
-        Me.TextBoxNumberWithLabel3.ValueReturn = Nothing
-        Me.TextBoxNumberWithLabel3.ZIniciar = True
-        '
-        'txtAlimento
-        '
-        Me.txtAlimento.AutoSize = True
-        Me.txtAlimento.Conexao = Nothing
-        Me.txtAlimento.ConnectionString = Nothing
-        Me.txtAlimento.FieldFilter = Nothing
-        Me.txtAlimento.FieldFind = Nothing
-        Me.txtAlimento.FieldReturn = Nothing
-        Me.txtAlimento.KeepValue = False
-        Me.txtAlimento.LCaseText = False
-        Me.txtAlimento.Location = New System.Drawing.Point(12, 12)
-        Me.txtAlimento.Name = "txtAlimento"
-        Me.txtAlimento.NameExibition = "Alimento:"
-        Me.txtAlimento.OrderManual = Nothing
-        Me.txtAlimento.OthersFilters = Nothing
-        Me.txtAlimento.Size = New System.Drawing.Size(213, 24)
-        Me.txtAlimento.SizeTextBox = 0
-        Me.txtAlimento.SQLSelectFind = Nothing
-        Me.txtAlimento.TabIndex = 8
-        Me.txtAlimento.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.txtAlimento.ToolTipHelp = Nothing
-        Me.txtAlimento.UCaseFirstCharText = False
-        Me.txtAlimento.UCaseText = False
-        Me.txtAlimento.UseF3 = False
-        Me.txtAlimento.ValueReturn = Nothing
-        Me.txtAlimento.ZIniciar = True
+        Me.txtProteina.AutoSize = True
+        Me.txtProteina.Conexao = Nothing
+        Me.txtProteina.ConnectionString = Nothing
+        Me.txtProteina.FieldFilter = Nothing
+        Me.txtProteina.FieldFind = Nothing
+        Me.txtProteina.FieldReturn = Nothing
+        Me.txtProteina.FormatCustom = Nothing
+        Me.txtProteina.KeepValue = False
+        Me.txtProteina.Location = New System.Drawing.Point(243, 60)
+        Me.txtProteina.Name = "txtProteina"
+        Me.txtProteina.NameExibition = "Proteína (g):"
+        Me.txtProteina.OrderManual = Nothing
+        Me.txtProteina.OthersFilters = Nothing
+        Me.txtProteina.Size = New System.Drawing.Size(200, 24)
+        Me.txtProteina.SizeTextBox = 0
+        Me.txtProteina.SQLSelectFind = Nothing
+        Me.txtProteina.TabIndex = 5
+        Me.txtProteina.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.txtProteina.ToolTipHelp = Nothing
+        Me.txtProteina.UseF3 = False
+        Me.txtProteina.ValueReturn = Nothing
+        Me.txtProteina.ZIniciar = True
         '
         'btnSalvar
         '
+        Me.btnSalvar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnSalvar.Image = CType(resources.GetObject("btnSalvar.Image"), System.Drawing.Image)
-        Me.btnSalvar.Location = New System.Drawing.Point(370, 206)
+        Me.btnSalvar.Location = New System.Drawing.Point(343, 248)
         Me.btnSalvar.Name = "btnSalvar"
         Me.btnSalvar.Size = New System.Drawing.Size(100, 31)
         Me.btnSalvar.TabIndex = 9
@@ -235,7 +210,7 @@ Partial Class frmCadastroNutricional
         Me.txtVitC.FieldReturn = Nothing
         Me.txtVitC.FormatCustom = Nothing
         Me.txtVitC.KeepValue = False
-        Me.txtVitC.Location = New System.Drawing.Point(242, 173)
+        Me.txtVitC.Location = New System.Drawing.Point(243, 195)
         Me.txtVitC.Name = "txtVitC"
         Me.txtVitC.NameExibition = "Vit. C (mg):"
         Me.txtVitC.OrderManual = Nothing
@@ -260,7 +235,7 @@ Partial Class frmCadastroNutricional
         Me.txtFerro.FieldReturn = Nothing
         Me.txtFerro.FormatCustom = Nothing
         Me.txtFerro.KeepValue = False
-        Me.txtFerro.Location = New System.Drawing.Point(242, 146)
+        Me.txtFerro.Location = New System.Drawing.Point(243, 168)
         Me.txtFerro.Name = "txtFerro"
         Me.txtFerro.NameExibition = "Ferro (mg):"
         Me.txtFerro.OrderManual = Nothing
@@ -275,45 +250,87 @@ Partial Class frmCadastroNutricional
         Me.txtFerro.ValueReturn = Nothing
         Me.txtFerro.ZIniciar = True
         '
-        'txtCa
+        'txtCalcio
         '
-        Me.txtCa.AutoSize = True
-        Me.txtCa.Conexao = Nothing
-        Me.txtCa.ConnectionString = Nothing
-        Me.txtCa.FieldFilter = Nothing
-        Me.txtCa.FieldFind = Nothing
-        Me.txtCa.FieldReturn = Nothing
-        Me.txtCa.FormatCustom = Nothing
-        Me.txtCa.KeepValue = False
-        Me.txtCa.Location = New System.Drawing.Point(242, 119)
-        Me.txtCa.Name = "txtCa"
-        Me.txtCa.NameExibition = "Cálcio (mg):"
-        Me.txtCa.OrderManual = Nothing
-        Me.txtCa.OthersFilters = Nothing
-        Me.txtCa.Size = New System.Drawing.Size(200, 24)
-        Me.txtCa.SizeTextBox = 0
-        Me.txtCa.SQLSelectFind = Nothing
-        Me.txtCa.TabIndex = 8
-        Me.txtCa.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.txtCa.ToolTipHelp = Nothing
-        Me.txtCa.UseF3 = False
-        Me.txtCa.ValueReturn = Nothing
-        Me.txtCa.ZIniciar = True
+        Me.txtCalcio.AutoSize = True
+        Me.txtCalcio.Conexao = Nothing
+        Me.txtCalcio.ConnectionString = Nothing
+        Me.txtCalcio.FieldFilter = Nothing
+        Me.txtCalcio.FieldFind = Nothing
+        Me.txtCalcio.FieldReturn = Nothing
+        Me.txtCalcio.FormatCustom = Nothing
+        Me.txtCalcio.KeepValue = False
+        Me.txtCalcio.Location = New System.Drawing.Point(243, 141)
+        Me.txtCalcio.Name = "txtCalcio"
+        Me.txtCalcio.NameExibition = "Cálcio (mg):"
+        Me.txtCalcio.OrderManual = Nothing
+        Me.txtCalcio.OthersFilters = Nothing
+        Me.txtCalcio.Size = New System.Drawing.Size(200, 24)
+        Me.txtCalcio.SizeTextBox = 0
+        Me.txtCalcio.SQLSelectFind = Nothing
+        Me.txtCalcio.TabIndex = 8
+        Me.txtCalcio.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.txtCalcio.ToolTipHelp = Nothing
+        Me.txtCalcio.UseF3 = False
+        Me.txtCalcio.ValueReturn = Nothing
+        Me.txtCalcio.ZIniciar = True
+        '
+        'btnConsultar
+        '
+        Me.btnConsultar.Image = CType(resources.GetObject("btnConsultar.Image"), System.Drawing.Image)
+        Me.btnConsultar.Location = New System.Drawing.Point(1, 248)
+        Me.btnConsultar.Name = "btnConsultar"
+        Me.btnConsultar.Size = New System.Drawing.Size(100, 31)
+        Me.btnConsultar.TabIndex = 11
+        Me.btnConsultar.Text = "ButtonFind1"
+        Me.btnConsultar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnConsultar.ToolTipHelp = Nothing
+        Me.btnConsultar.UseVisualStyleBackColor = True
+        Me.btnConsultar.Visible = False
+        Me.btnConsultar.WaitText = "Aguarde... " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Estamos salvando as informações..."
+        '
+        'txtAlimento
+        '
+        Me.txtAlimento.AutoSize = True
+        Me.txtAlimento.Conexao = Nothing
+        Me.txtAlimento.ConnectionString = Nothing
+        Me.txtAlimento.FieldFilter = Nothing
+        Me.txtAlimento.FieldFind = Nothing
+        Me.txtAlimento.FieldReturn = Nothing
+        Me.txtAlimento.KeepValue = False
+        Me.txtAlimento.LCaseText = False
+        Me.txtAlimento.Location = New System.Drawing.Point(12, 12)
+        Me.txtAlimento.Name = "txtAlimento"
+        Me.txtAlimento.NameExibition = "Alimento:"
+        Me.txtAlimento.OrderManual = Nothing
+        Me.txtAlimento.OthersFilters = Nothing
+        Me.txtAlimento.Size = New System.Drawing.Size(353, 24)
+        Me.txtAlimento.SizeTextBox = 250
+        Me.txtAlimento.SQLSelectFind = Nothing
+        Me.txtAlimento.TabIndex = 8
+        Me.txtAlimento.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.txtAlimento.ToolTipHelp = Nothing
+        Me.txtAlimento.UCaseFirstCharText = False
+        Me.txtAlimento.UCaseText = False
+        Me.txtAlimento.UseF3 = False
+        Me.txtAlimento.ValueReturn = Nothing
+        Me.txtAlimento.ZIniciar = True
         '
         'frmCadastroNutricional
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
-        Me.ClientSize = New System.Drawing.Size(482, 249)
+        Me.ClientSize = New System.Drawing.Size(455, 291)
+        Me.Controls.Add(Me.btnConsultar)
         Me.Controls.Add(Me.txtVitC)
         Me.Controls.Add(Me.btnSalvar)
         Me.Controls.Add(Me.txtFerro)
-        Me.Controls.Add(Me.txtCa)
+        Me.Controls.Add(Me.txtCalcio)
         Me.Controls.Add(Me.txtAlimento)
-        Me.Controls.Add(Me.TextBoxNumberWithLabel1)
-        Me.Controls.Add(Me.TextBoxNumberWithLabel2)
+        Me.Controls.Add(Me.txtLipidio)
+        Me.Controls.Add(Me.txtCarboidrato)
         Me.Controls.Add(Me.txtKcal)
-        Me.Controls.Add(Me.TextBoxNumberWithLabel3)
+        Me.Controls.Add(Me.txtProteina)
         Me.Controls.Add(Me.txtQtde)
         Me.Controls.Add(Me.txtGramas)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -321,15 +338,16 @@ Partial Class frmCadastroNutricional
         Me.Text = "Cadastro Nutricional"
         Me.Controls.SetChildIndex(Me.txtGramas, 0)
         Me.Controls.SetChildIndex(Me.txtQtde, 0)
-        Me.Controls.SetChildIndex(Me.TextBoxNumberWithLabel3, 0)
+        Me.Controls.SetChildIndex(Me.txtProteina, 0)
         Me.Controls.SetChildIndex(Me.txtKcal, 0)
-        Me.Controls.SetChildIndex(Me.TextBoxNumberWithLabel2, 0)
-        Me.Controls.SetChildIndex(Me.TextBoxNumberWithLabel1, 0)
+        Me.Controls.SetChildIndex(Me.txtCarboidrato, 0)
+        Me.Controls.SetChildIndex(Me.txtLipidio, 0)
         Me.Controls.SetChildIndex(Me.txtAlimento, 0)
-        Me.Controls.SetChildIndex(Me.txtCa, 0)
+        Me.Controls.SetChildIndex(Me.txtCalcio, 0)
         Me.Controls.SetChildIndex(Me.txtFerro, 0)
         Me.Controls.SetChildIndex(Me.btnSalvar, 0)
         Me.Controls.SetChildIndex(Me.txtVitC, 0)
+        Me.Controls.SetChildIndex(Me.btnConsultar, 0)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -338,12 +356,13 @@ Partial Class frmCadastroNutricional
     Friend WithEvents txtGramas As MvtWindowsForms.TextBoxNumberWithLabel
     Friend WithEvents txtQtde As MvtWindowsForms.TextBoxNumberWithLabel
     Friend WithEvents txtKcal As MvtWindowsForms.TextBoxNumberWithLabel
-    Friend WithEvents TextBoxNumberWithLabel1 As MvtWindowsForms.TextBoxNumberWithLabel
-    Friend WithEvents TextBoxNumberWithLabel2 As MvtWindowsForms.TextBoxNumberWithLabel
-    Friend WithEvents TextBoxNumberWithLabel3 As MvtWindowsForms.TextBoxNumberWithLabel
-    Friend WithEvents txtAlimento As MvtWindowsForms.TextBoxStringWithLabel
+    Friend WithEvents txtLipidio As MvtWindowsForms.TextBoxNumberWithLabel
+    Friend WithEvents txtCarboidrato As MvtWindowsForms.TextBoxNumberWithLabel
+    Friend WithEvents txtProteina As MvtWindowsForms.TextBoxNumberWithLabel
     Friend WithEvents btnSalvar As MvtWindowsForms.ButtonSave
     Friend WithEvents txtVitC As MvtWindowsForms.TextBoxNumberWithLabel
     Friend WithEvents txtFerro As MvtWindowsForms.TextBoxNumberWithLabel
-    Friend WithEvents txtCa As MvtWindowsForms.TextBoxNumberWithLabel
+    Friend WithEvents txtCalcio As MvtWindowsForms.TextBoxNumberWithLabel
+    Friend WithEvents btnConsultar As MvtWindowsForms.ButtonFind
+    Friend WithEvents txtAlimento As MvtWindowsForms.TextBoxStringWithLabel
 End Class

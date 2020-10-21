@@ -655,7 +655,7 @@ Public Module modFuncoes
                 MvtConnection.Conect.ConectAtual = Conect
             End If
         End If
-        ChecaVersaoNova()
+        'ChecaVersaoNova()
     End Sub
 
     Function fINIUsuario(ByVal conexao As MvtConnection.MvtConnection, ByVal programa As String)

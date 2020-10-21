@@ -43,7 +43,7 @@ Partial Class frmConsultaMedidasCaseiras
         Me.dtgMedidasCaseiras.Name = "dtgMedidasCaseiras"
         Me.dtgMedidasCaseiras.RowHeadersWidth = 20
         Me.dtgMedidasCaseiras.Size = New System.Drawing.Size(879, 430)
-        Me.dtgMedidasCaseiras.TabIndex = 1
+        Me.dtgMedidasCaseiras.TabIndex = 2
         Me.dtgMedidasCaseiras.ValidateFormattedColumns = False
         '
         'btnConsultar
@@ -53,7 +53,7 @@ Partial Class frmConsultaMedidasCaseiras
         Me.btnConsultar.Location = New System.Drawing.Point(791, 68)
         Me.btnConsultar.Name = "btnConsultar"
         Me.btnConsultar.Size = New System.Drawing.Size(100, 31)
-        Me.btnConsultar.TabIndex = 10
+        Me.btnConsultar.TabIndex = 1
         Me.btnConsultar.Text = "Consultar"
         Me.btnConsultar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnConsultar.ToolTipHelp = Nothing
@@ -67,13 +67,14 @@ Partial Class frmConsultaMedidasCaseiras
         Me.gbxImprimir.MinimumSize = New System.Drawing.Size(100, 50)
         Me.gbxImprimir.Name = "gbxImprimir"
         Me.gbxImprimir.Size = New System.Drawing.Size(100, 50)
-        Me.gbxImprimir.TabIndex = 11
+        Me.gbxImprimir.TabIndex = 3
         Me.gbxImprimir.TabStop = False
         Me.gbxImprimir.Tag = "Imprimir"
         Me.gbxImprimir.Text = "Imprimir"
         '
         'txtAlimento
         '
+        Me.txtAlimento.AutoSize = True
         Me.txtAlimento.Conexao = Nothing
         Me.txtAlimento.ConnectionString = Nothing
         Me.txtAlimento.FieldFilter = "Alimento"
@@ -86,10 +87,10 @@ Partial Class frmConsultaMedidasCaseiras
         Me.txtAlimento.NameExibition = "Alimento:"
         Me.txtAlimento.OrderManual = Nothing
         Me.txtAlimento.OthersFilters = Nothing
-        Me.txtAlimento.Size = New System.Drawing.Size(200, 21)
+        Me.txtAlimento.Size = New System.Drawing.Size(204, 24)
         Me.txtAlimento.SizeTextBox = 0
         Me.txtAlimento.SQLSelectFind = "SELECT * FROM Alimento"
-        Me.txtAlimento.TabIndex = 12
+        Me.txtAlimento.TabIndex = 0
         Me.txtAlimento.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.txtAlimento.ToolTipHelp = Nothing
         Me.txtAlimento.UseF3 = True
@@ -114,6 +115,7 @@ Partial Class frmConsultaMedidasCaseiras
         Me.Controls.SetChildIndex(Me.txtAlimento, 0)
         CType(Me.dtgMedidasCaseiras, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 

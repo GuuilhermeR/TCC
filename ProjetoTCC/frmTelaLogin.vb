@@ -15,10 +15,8 @@
 
     Private Sub btnLogar_Click(sender As Object, e As EventArgs) Handles btnLogar.Click
 
-#If DEBUG Then
-        Me.Hide()
-        frmMenuPrincipal.Show()
-#Else
+        Me.lblAvisoLoginIncorreto.Visible = False
+
         If IsNullOrEmpty(Me.txtSenha.Text) AndAlso IsNullOrEmpty(Me.txtUsuario.Text) Then
             MsgBox("Favor preencher os campos")
             Exit Sub
@@ -31,14 +29,13 @@
         If dr.Read Then
             If Me.txtUsuario.Text = dr("usuario") AndAlso Me.txtSenha.Text = dr("senha") Then
                 Me.Hide()
-                frmMenuPrincipal.Show()
-            Else
-                MsgBox("Senha Errada")
+                Using frmMenuPrincipal As New frmMenuPrincipal
+                    frmMenuPrincipal.ShowDialog()
+                End Using
             End If
+        Else
+            Me.lblAvisoLoginIncorreto.Visible = True
         End If
-#End If
-
-
 
     End Sub
 End Class

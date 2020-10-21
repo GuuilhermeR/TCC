@@ -19,20 +19,20 @@
 
             transaction.BeginTransaction()
 
-            Dim q As MvtConnection.Query.QueryTableBuilder = conexaoPadrao.NewQuery("InfosAlimentosNutricionais", False)
+            conexaoPadrao.NewTable("InfosAlimentosNutricionais", False)
 
-            q.AddKey("codAlimento", Me.txtAlimento.ValueSQL)
-            q.AddField("gramas", Me.txtGramas.ValueSQL)
-            q.AddField("qtde", Me.txtQtde.ValueSQL)
-            q.AddField("kcal", Me.txtKcal.ValueSQL)
-            q.AddField("proteina", Me.txtProteina.ValueSQL)
-            q.AddField("carboidrato", Me.txtCarboidrato.ValueSQL)
-            q.AddField("lipidio", Me.txtLipidio.ValueSQL)
-            q.AddField("calcio", Me.txtCalcio.ValueSQL)
-            q.AddField("ferro", Me.txtFerro.ValueSQL)
-            q.AddField("VitC", Me.txtVitC.ValueSQL)
+            conexaoPadrao.InsertField("codAlimento", Me.txtAlimento.ValueSQL)
+            conexaoPadrao.InsertField("gramas", Me.txtGramas.ValueSQL)
+            conexaoPadrao.InsertField("qtde", Me.txtQtde.ValueSQL)
+            conexaoPadrao.InsertField("kcal", Me.txtKcal.ValueSQL)
+            conexaoPadrao.InsertField("proteina", Me.txtProteina.ValueSQL)
+            conexaoPadrao.InsertField("carboidrato", Me.txtCarboidrato.ValueSQL)
+            conexaoPadrao.InsertField("lipidio", Me.txtLipidio.ValueSQL)
+            conexaoPadrao.InsertField("calcio", Me.txtCalcio.ValueSQL)
+            conexaoPadrao.InsertField("ferro", Me.txtFerro.ValueSQL)
+            conexaoPadrao.InsertField("VitC", Me.txtVitC.ValueSQL)
 
-            Dim res As MvtConnection.Query.QueryCommandResult = q.Save(conexaoPadrao)
+            Dim erro As String = conexaoPadrao.ExecuteInsertUpDate(True)
 
             transaction.CommitTransaction()
 

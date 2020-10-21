@@ -97,6 +97,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmCadastrarAlimentos.Designer.vb">
+      <DependentUpon>frmCadastrarAlimentos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmCadastrarAlimentos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmCadastroNutricional.Designer.vb">
       <DependentUpon>frmCadastroNutricional.vb</DependentUpon>
     </Compile>
@@ -140,6 +146,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmCadastrarAlimentos.resx">
+      <DependentUpon>frmCadastrarAlimentos.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCadastroNutricional.resx">
       <DependentUpon>frmCadastroNutricional.vb</DependentUpon>
     </EmbeddedResource>

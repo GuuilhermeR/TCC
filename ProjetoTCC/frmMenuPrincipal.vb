@@ -8,5 +8,9 @@
 
     Private Sub btnConsultar_Click(sender As Object, e As EventArgs) Handles btnConsultar.Click
 
+        Using frmConsultaMedidasCaseiras As New frmConsultaMedidasCaseiras
+            frmConsultaMedidasCaseiras.ShowDialog()
+        End Using
+
     End Sub
 End Class

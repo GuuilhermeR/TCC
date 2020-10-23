@@ -125,6 +125,16 @@
         kp2ttjZhP8wQkjXDAMwQsjTDANQQ8jTDAEWahxJgYAAAoGFFw0X9ppkAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="btnConsultarAlimento.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAOxJREFUOE+lklsRwjAQRSsBCTgoQ4uGEH5AQJMiAQk4QAISkFAJSEACEiAn3fRF
+        mw5wZjKd3ezd3k2SxEj35SLT9rJWxT3TxSNX9pYpcyYvJdM4wSHX9sWiAWL/lXizK1dS+gmbtdhUqSqX
+        kvb4xqp44mjSCX+jwVAcCO4YR1J9/Ka2VwlHYQyWhC2N/a05SWoU79KNImELc0XtCZwPTSTsM3dIweXk
+        mNgPBcMmxOE6Rw/Zj0AD54IiihmHHI+KnOSPImnpdkdAUROzXFPi0UfUFfOVtAer0ZcXE8/ylxj8ff4q
+        hvpdm0rCL0mSNxJmkajH+s91AAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAUAEBAAAAEAIABoBAAAVgAAACAgAAABACAAqBAAAL4EAAAwMAAAAQAgAKglAABmFQAAQEAAAAEA

@@ -89,7 +89,7 @@ Partial Class frmConsultaMedidasCaseiras
         Me.txtAlimento.OthersFilters = Nothing
         Me.txtAlimento.Size = New System.Drawing.Size(204, 24)
         Me.txtAlimento.SizeTextBox = 0
-        Me.txtAlimento.SQLSelectFind = "SELECT * FROM Alimento"
+        Me.txtAlimento.SQLSelectFind = "SELECT codAlimento, Alimento FROM Alimento"
         Me.txtAlimento.TabIndex = 0
         Me.txtAlimento.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.txtAlimento.ToolTipHelp = Nothing

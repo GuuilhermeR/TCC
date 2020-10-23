@@ -13,4 +13,10 @@
         End Using
 
     End Sub
+
+    Private Sub btnCadastrarAlimento_Click(sender As Object, e As EventArgs) Handles btnCadastrarAlimento.Click
+        Using frmCadastrarAlimentos As New frmCadastrarAlimentos
+            frmCadastrarAlimentos.ShowDialog()
+        End Using
+    End Sub
 End Class

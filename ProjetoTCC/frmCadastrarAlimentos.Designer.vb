@@ -27,11 +27,13 @@ Partial Class frmCadastrarAlimentos
         Me.txtAlimento = New MvtWindowsForms.TextBoxStringWithLabel()
         Me.dtgAlimentosCadastrados = New MvtWindowsForms.MvtDataGridView()
         Me.btnCadastrarAlimento = New MvtWindowsForms.ButtonSave()
+        Me.btnConsultarAlimento = New MvtWindowsForms.ButtonFind()
         CType(Me.dtgAlimentosCadastrados, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'txtAlimento
         '
+        Me.txtAlimento.AutoSize = True
         Me.txtAlimento.Conexao = Nothing
         Me.txtAlimento.ConnectionString = Nothing
         Me.txtAlimento.FieldFilter = Nothing
@@ -44,7 +46,7 @@ Partial Class frmCadastrarAlimentos
         Me.txtAlimento.NameExibition = "Alimento"
         Me.txtAlimento.OrderManual = Nothing
         Me.txtAlimento.OthersFilters = Nothing
-        Me.txtAlimento.Size = New System.Drawing.Size(200, 21)
+        Me.txtAlimento.Size = New System.Drawing.Size(200, 24)
         Me.txtAlimento.SizeTextBox = 0
         Me.txtAlimento.SQLSelectFind = Nothing
         Me.txtAlimento.TabIndex = 1
@@ -75,7 +77,7 @@ Partial Class frmCadastrarAlimentos
         '
         Me.btnCadastrarAlimento.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnCadastrarAlimento.Image = CType(resources.GetObject("btnCadastrarAlimento.Image"), System.Drawing.Image)
-        Me.btnCadastrarAlimento.Location = New System.Drawing.Point(358, 12)
+        Me.btnCadastrarAlimento.Location = New System.Drawing.Point(252, 12)
         Me.btnCadastrarAlimento.Name = "btnCadastrarAlimento"
         Me.btnCadastrarAlimento.Size = New System.Drawing.Size(100, 31)
         Me.btnCadastrarAlimento.TabIndex = 3
@@ -84,11 +86,25 @@ Partial Class frmCadastrarAlimentos
         Me.btnCadastrarAlimento.ToolTipHelp = Nothing
         Me.btnCadastrarAlimento.UseVisualStyleBackColor = True
         '
+        'btnConsultarAlimento
+        '
+        Me.btnConsultarAlimento.Image = CType(resources.GetObject("btnConsultarAlimento.Image"), System.Drawing.Image)
+        Me.btnConsultarAlimento.Location = New System.Drawing.Point(358, 12)
+        Me.btnConsultarAlimento.Name = "btnConsultarAlimento"
+        Me.btnConsultarAlimento.Size = New System.Drawing.Size(100, 31)
+        Me.btnConsultarAlimento.TabIndex = 4
+        Me.btnConsultarAlimento.Text = "Consultar"
+        Me.btnConsultarAlimento.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnConsultarAlimento.ToolTipHelp = Nothing
+        Me.btnConsultarAlimento.UseVisualStyleBackColor = True
+        Me.btnConsultarAlimento.WaitText = "Aguarde... " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Carregando dados..."
+        '
         'frmCadastrarAlimentos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
         Me.ClientSize = New System.Drawing.Size(470, 296)
+        Me.Controls.Add(Me.btnConsultarAlimento)
         Me.Controls.Add(Me.btnCadastrarAlimento)
         Me.Controls.Add(Me.dtgAlimentosCadastrados)
         Me.Controls.Add(Me.txtAlimento)
@@ -98,12 +114,15 @@ Partial Class frmCadastrarAlimentos
         Me.Controls.SetChildIndex(Me.txtAlimento, 0)
         Me.Controls.SetChildIndex(Me.dtgAlimentosCadastrados, 0)
         Me.Controls.SetChildIndex(Me.btnCadastrarAlimento, 0)
+        Me.Controls.SetChildIndex(Me.btnConsultarAlimento, 0)
         CType(Me.dtgAlimentosCadastrados, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents txtAlimento As MvtWindowsForms.TextBoxStringWithLabel
     Friend WithEvents dtgAlimentosCadastrados As MvtWindowsForms.MvtDataGridView
     Friend WithEvents btnCadastrarAlimento As MvtWindowsForms.ButtonSave
+    Friend WithEvents btnConsultarAlimento As MvtWindowsForms.ButtonFind
 End Class

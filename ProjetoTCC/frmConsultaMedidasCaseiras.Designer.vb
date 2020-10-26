@@ -27,7 +27,8 @@ Partial Class frmConsultaMedidasCaseiras
         Me.dtgMedidasCaseiras = New MvtWindowsForms.MvtDataGridView()
         Me.btnConsultar = New MvtWindowsForms.ButtonFind()
         Me.gbxImprimir = New MvtWindowsForms.MvtDataGridViewPrinter()
-        Me.txtAlimento = New MvtWindowsForms.TextBoxNumberWithLabel()
+        Me.txtCodAlimento = New MvtWindowsForms.TextBoxNumberWithLabel()
+        Me.btnRecalcular = New MvtWindowsForms.ButtonConfig()
         CType(Me.dtgMedidasCaseiras, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -42,7 +43,7 @@ Partial Class frmConsultaMedidasCaseiras
         Me.dtgMedidasCaseiras.Location = New System.Drawing.Point(12, 105)
         Me.dtgMedidasCaseiras.Name = "dtgMedidasCaseiras"
         Me.dtgMedidasCaseiras.RowHeadersWidth = 20
-        Me.dtgMedidasCaseiras.Size = New System.Drawing.Size(879, 430)
+        Me.dtgMedidasCaseiras.Size = New System.Drawing.Size(877, 420)
         Me.dtgMedidasCaseiras.TabIndex = 2
         Me.dtgMedidasCaseiras.ValidateFormattedColumns = False
         '
@@ -50,7 +51,7 @@ Partial Class frmConsultaMedidasCaseiras
         '
         Me.btnConsultar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnConsultar.Image = CType(resources.GetObject("btnConsultar.Image"), System.Drawing.Image)
-        Me.btnConsultar.Location = New System.Drawing.Point(791, 68)
+        Me.btnConsultar.Location = New System.Drawing.Point(789, 68)
         Me.btnConsultar.Name = "btnConsultar"
         Me.btnConsultar.Size = New System.Drawing.Size(100, 31)
         Me.btnConsultar.TabIndex = 1
@@ -63,7 +64,7 @@ Partial Class frmConsultaMedidasCaseiras
         'gbxImprimir
         '
         Me.gbxImprimir.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.gbxImprimir.Location = New System.Drawing.Point(791, 12)
+        Me.gbxImprimir.Location = New System.Drawing.Point(789, 12)
         Me.gbxImprimir.MinimumSize = New System.Drawing.Size(100, 50)
         Me.gbxImprimir.Name = "gbxImprimir"
         Me.gbxImprimir.Size = New System.Drawing.Size(100, 50)
@@ -72,37 +73,51 @@ Partial Class frmConsultaMedidasCaseiras
         Me.gbxImprimir.Tag = "Imprimir"
         Me.gbxImprimir.Text = "Imprimir"
         '
-        'txtAlimento
+        'txtCodAlimento
         '
-        Me.txtAlimento.AutoSize = True
-        Me.txtAlimento.Conexao = Nothing
-        Me.txtAlimento.ConnectionString = Nothing
-        Me.txtAlimento.FieldFilter = "Alimento"
-        Me.txtAlimento.FieldFind = "Alimento"
-        Me.txtAlimento.FieldReturn = "codAlimento"
-        Me.txtAlimento.FormatCustom = Nothing
-        Me.txtAlimento.KeepValue = False
-        Me.txtAlimento.Location = New System.Drawing.Point(12, 12)
-        Me.txtAlimento.Name = "txtAlimento"
-        Me.txtAlimento.NameExibition = "Alimento:"
-        Me.txtAlimento.OrderManual = Nothing
-        Me.txtAlimento.OthersFilters = Nothing
-        Me.txtAlimento.Size = New System.Drawing.Size(204, 24)
-        Me.txtAlimento.SizeTextBox = 0
-        Me.txtAlimento.SQLSelectFind = "SELECT codAlimento, Alimento FROM Alimento"
-        Me.txtAlimento.TabIndex = 0
-        Me.txtAlimento.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.txtAlimento.ToolTipHelp = Nothing
-        Me.txtAlimento.UseF3 = True
-        Me.txtAlimento.ValueReturn = Nothing
-        Me.txtAlimento.ZIniciar = True
+        Me.txtCodAlimento.AutoSize = True
+        Me.txtCodAlimento.Conexao = Nothing
+        Me.txtCodAlimento.ConnectionString = Nothing
+        Me.txtCodAlimento.FieldFilter = "Alimento"
+        Me.txtCodAlimento.FieldFind = "Alimento"
+        Me.txtCodAlimento.FieldReturn = "codAlimento"
+        Me.txtCodAlimento.FormatCustom = Nothing
+        Me.txtCodAlimento.KeepValue = False
+        Me.txtCodAlimento.Location = New System.Drawing.Point(12, 12)
+        Me.txtCodAlimento.Name = "txtCodAlimento"
+        Me.txtCodAlimento.NameExibition = "Alimento:"
+        Me.txtCodAlimento.OrderManual = Nothing
+        Me.txtCodAlimento.OthersFilters = Nothing
+        Me.txtCodAlimento.Size = New System.Drawing.Size(204, 24)
+        Me.txtCodAlimento.SizeTextBox = 0
+        Me.txtCodAlimento.SQLSelectFind = "SELECT codAlimento, Alimento FROM InfosAlimentosNutricionais"
+        Me.txtCodAlimento.TabIndex = 0
+        Me.txtCodAlimento.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.txtCodAlimento.ToolTipHelp = Nothing
+        Me.txtCodAlimento.UseF3 = True
+        Me.txtCodAlimento.ValueReturn = Nothing
+        Me.txtCodAlimento.ZIniciar = True
+        '
+        'btnRecalcular
+        '
+        Me.btnRecalcular.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnRecalcular.Image = CType(resources.GetObject("btnRecalcular.Image"), System.Drawing.Image)
+        Me.btnRecalcular.Location = New System.Drawing.Point(789, 531)
+        Me.btnRecalcular.Name = "btnRecalcular"
+        Me.btnRecalcular.Size = New System.Drawing.Size(100, 31)
+        Me.btnRecalcular.TabIndex = 4
+        Me.btnRecalcular.Text = "Recalcular"
+        Me.btnRecalcular.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnRecalcular.ToolTipHelp = Nothing
+        Me.btnRecalcular.UseVisualStyleBackColor = True
         '
         'frmConsultaMedidasCaseiras
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
-        Me.ClientSize = New System.Drawing.Size(903, 547)
-        Me.Controls.Add(Me.txtAlimento)
+        Me.ClientSize = New System.Drawing.Size(901, 574)
+        Me.Controls.Add(Me.btnRecalcular)
+        Me.Controls.Add(Me.txtCodAlimento)
         Me.Controls.Add(Me.gbxImprimir)
         Me.Controls.Add(Me.btnConsultar)
         Me.Controls.Add(Me.dtgMedidasCaseiras)
@@ -112,7 +127,8 @@ Partial Class frmConsultaMedidasCaseiras
         Me.Controls.SetChildIndex(Me.dtgMedidasCaseiras, 0)
         Me.Controls.SetChildIndex(Me.btnConsultar, 0)
         Me.Controls.SetChildIndex(Me.gbxImprimir, 0)
-        Me.Controls.SetChildIndex(Me.txtAlimento, 0)
+        Me.Controls.SetChildIndex(Me.txtCodAlimento, 0)
+        Me.Controls.SetChildIndex(Me.btnRecalcular, 0)
         CType(Me.dtgMedidasCaseiras, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -122,5 +138,6 @@ Partial Class frmConsultaMedidasCaseiras
     Friend WithEvents dtgMedidasCaseiras As MvtWindowsForms.MvtDataGridView
     Friend WithEvents btnConsultar As MvtWindowsForms.ButtonFind
     Friend WithEvents gbxImprimir As MvtWindowsForms.MvtDataGridViewPrinter
-    Friend WithEvents txtAlimento As MvtWindowsForms.TextBoxNumberWithLabel
+    Friend WithEvents txtCodAlimento As MvtWindowsForms.TextBoxNumberWithLabel
+    Friend WithEvents btnRecalcular As MvtWindowsForms.ButtonConfig
 End Class

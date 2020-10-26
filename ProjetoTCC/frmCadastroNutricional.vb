@@ -1,7 +1,7 @@
 ﻿Public Class frmCadastroNutricional
 
     Private Sub frmCalculadoraNutricional_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.txtAlimento.Conexao = conexaoPadrao
+        Me.txtCodAlimento.Conexao = conexaoPadrao
     End Sub
 
     Private Sub VerificarAlimentoCadastrado()
@@ -19,9 +19,9 @@
 
             transaction.BeginTransaction()
 
-            conexaoPadrao.NewTable("InfosAlimentosNutricionais", False)
+            conexaoPadrao.NewTable("InfosAlimentosNutricionais", Not IsNullOrEmpty(Me.txtCodAlimento.Text))
 
-            conexaoPadrao.InsertField("codAlimento", Me.txtAlimento.ValueSQL)
+            conexaoPadrao.InsertField("Alimento", Me.txtAlimento.ValueSQL)
             conexaoPadrao.InsertField("gramas", Me.txtGramas.ValueSQL)
             conexaoPadrao.InsertField("qtde", Me.txtQtde.ValueSQL)
             conexaoPadrao.InsertField("kcal", Me.txtKcal.ValueSQL)
@@ -42,6 +42,43 @@
         Catch ex As Exception
 
             MsgBox("Ocorreu um erro ao salvar." & ex.Message & "!", MsgBoxStyle.Exclamation, "MOV.TECH")
+
+            transaction.RollbackTransaction()
+
+        End Try
+
+        btnConsultar.HideWait(True)
+
+    End Sub
+
+    Private Sub txtCodAlimento_Leave(sender As Object, e As EventArgs) Handles txtCodAlimento.Leave
+        Me.txtAlimento.Text = Me.txtCodAlimento.LabelName.Text
+        Me.txtCodAlimento.LabelName.Visible = False
+    End Sub
+
+    Private Sub btnDeletar_Click(sender As Object, e As EventArgs) Handles btnDeletar.Click
+
+        btnConsultar.ShowWait(True)
+
+        Dim transaction As MvtConnection.Helpers.TransactionHelper = MvtConnection.Helpers.TransactionHelper.Create(conexaoPadrao)
+
+        Try
+
+            transaction.BeginTransaction()
+
+            conexaoPadrao.NewTable("InfosAlimentosNutricionais", True)
+
+            conexaoPadrao.InsertKey("codAlimento", Me.txtCodAlimento.Text)
+
+            Dim erro As String = conexaoPadrao.ExecuteDelete(True)
+
+            transaction.CommitTransaction()
+
+            mMensagemAviso("O alimento foi excluído com sucesso.")
+
+        Catch ex As Exception
+
+            mMensagemAviso("Ocorreu um erro ao excluir.")
 
             transaction.RollbackTransaction()
 

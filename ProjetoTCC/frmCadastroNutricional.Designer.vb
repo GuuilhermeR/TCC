@@ -34,7 +34,9 @@ Partial Class frmCadastroNutricional
         Me.txtFerro = New MvtWindowsForms.TextBoxNumberWithLabel()
         Me.txtCalcio = New MvtWindowsForms.TextBoxNumberWithLabel()
         Me.btnConsultar = New MvtWindowsForms.ButtonFind()
-        Me.txtAlimento = New MvtWindowsForms.TextBoxNumberWithLabel()
+        Me.txtAlimento = New MvtWindowsForms.TextBoxStringWithLabel()
+        Me.txtCodAlimento = New MvtWindowsForms.TextBoxNumberWithLabel()
+        Me.btnDeletar = New MvtWindowsForms.ButtonDelete()
         Me.SuspendLayout()
         '
         'txtGramas
@@ -47,7 +49,7 @@ Partial Class frmCadastroNutricional
         Me.txtGramas.FieldReturn = Nothing
         Me.txtGramas.FormatCustom = Nothing
         Me.txtGramas.KeepValue = False
-        Me.txtGramas.Location = New System.Drawing.Point(12, 101)
+        Me.txtGramas.Location = New System.Drawing.Point(12, 110)
         Me.txtGramas.Name = "txtGramas"
         Me.txtGramas.NameExibition = "Gramas:"
         Me.txtGramas.OrderManual = Nothing
@@ -72,7 +74,7 @@ Partial Class frmCadastroNutricional
         Me.txtQtde.FieldReturn = Nothing
         Me.txtQtde.FormatCustom = Nothing
         Me.txtQtde.KeepValue = False
-        Me.txtQtde.Location = New System.Drawing.Point(12, 128)
+        Me.txtQtde.Location = New System.Drawing.Point(12, 137)
         Me.txtQtde.Name = "txtQtde"
         Me.txtQtde.NameExibition = "Quantidade:"
         Me.txtQtde.OrderManual = Nothing
@@ -97,7 +99,7 @@ Partial Class frmCadastroNutricional
         Me.txtKcal.FieldReturn = Nothing
         Me.txtKcal.FormatCustom = Nothing
         Me.txtKcal.KeepValue = False
-        Me.txtKcal.Location = New System.Drawing.Point(12, 155)
+        Me.txtKcal.Location = New System.Drawing.Point(12, 164)
         Me.txtKcal.Name = "txtKcal"
         Me.txtKcal.NameExibition = "Kcal:"
         Me.txtKcal.OrderManual = Nothing
@@ -122,7 +124,7 @@ Partial Class frmCadastroNutricional
         Me.txtLipidio.FieldReturn = Nothing
         Me.txtLipidio.FormatCustom = Nothing
         Me.txtLipidio.KeepValue = False
-        Me.txtLipidio.Location = New System.Drawing.Point(243, 114)
+        Me.txtLipidio.Location = New System.Drawing.Point(243, 123)
         Me.txtLipidio.Name = "txtLipidio"
         Me.txtLipidio.NameExibition = "Lipídio (g):"
         Me.txtLipidio.OrderManual = Nothing
@@ -147,7 +149,7 @@ Partial Class frmCadastroNutricional
         Me.txtCarboidrato.FieldReturn = Nothing
         Me.txtCarboidrato.FormatCustom = Nothing
         Me.txtCarboidrato.KeepValue = False
-        Me.txtCarboidrato.Location = New System.Drawing.Point(243, 87)
+        Me.txtCarboidrato.Location = New System.Drawing.Point(243, 96)
         Me.txtCarboidrato.Name = "txtCarboidrato"
         Me.txtCarboidrato.NameExibition = "Carboidrato (g):"
         Me.txtCarboidrato.OrderManual = Nothing
@@ -172,7 +174,7 @@ Partial Class frmCadastroNutricional
         Me.txtProteina.FieldReturn = Nothing
         Me.txtProteina.FormatCustom = Nothing
         Me.txtProteina.KeepValue = False
-        Me.txtProteina.Location = New System.Drawing.Point(243, 60)
+        Me.txtProteina.Location = New System.Drawing.Point(243, 69)
         Me.txtProteina.Name = "txtProteina"
         Me.txtProteina.NameExibition = "Proteína (g):"
         Me.txtProteina.OrderManual = Nothing
@@ -191,7 +193,7 @@ Partial Class frmCadastroNutricional
         '
         Me.btnSalvar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnSalvar.Image = CType(resources.GetObject("btnSalvar.Image"), System.Drawing.Image)
-        Me.btnSalvar.Location = New System.Drawing.Point(343, 248)
+        Me.btnSalvar.Location = New System.Drawing.Point(237, 248)
         Me.btnSalvar.Name = "btnSalvar"
         Me.btnSalvar.Size = New System.Drawing.Size(100, 31)
         Me.btnSalvar.TabIndex = 10
@@ -210,7 +212,7 @@ Partial Class frmCadastroNutricional
         Me.txtVitC.FieldReturn = Nothing
         Me.txtVitC.FormatCustom = Nothing
         Me.txtVitC.KeepValue = False
-        Me.txtVitC.Location = New System.Drawing.Point(243, 195)
+        Me.txtVitC.Location = New System.Drawing.Point(243, 204)
         Me.txtVitC.Name = "txtVitC"
         Me.txtVitC.NameExibition = "Vit. C (mg):"
         Me.txtVitC.OrderManual = Nothing
@@ -235,7 +237,7 @@ Partial Class frmCadastroNutricional
         Me.txtFerro.FieldReturn = Nothing
         Me.txtFerro.FormatCustom = Nothing
         Me.txtFerro.KeepValue = False
-        Me.txtFerro.Location = New System.Drawing.Point(243, 168)
+        Me.txtFerro.Location = New System.Drawing.Point(243, 177)
         Me.txtFerro.Name = "txtFerro"
         Me.txtFerro.NameExibition = "Ferro (mg):"
         Me.txtFerro.OrderManual = Nothing
@@ -260,7 +262,7 @@ Partial Class frmCadastroNutricional
         Me.txtCalcio.FieldReturn = Nothing
         Me.txtCalcio.FormatCustom = Nothing
         Me.txtCalcio.KeepValue = False
-        Me.txtCalcio.Location = New System.Drawing.Point(243, 141)
+        Me.txtCalcio.Location = New System.Drawing.Point(243, 150)
         Me.txtCalcio.Name = "txtCalcio"
         Me.txtCalcio.NameExibition = "Cálcio (mg):"
         Me.txtCalcio.OrderManual = Nothing
@@ -291,34 +293,73 @@ Partial Class frmCadastroNutricional
         '
         'txtAlimento
         '
-        Me.txtAlimento.AutoSize = True
         Me.txtAlimento.Conexao = Nothing
         Me.txtAlimento.ConnectionString = Nothing
-        Me.txtAlimento.FieldFilter = "Alimento"
-        Me.txtAlimento.FieldFind = "Alimento"
-        Me.txtAlimento.FieldReturn = "codAlimento"
-        Me.txtAlimento.FormatCustom = Nothing
+        Me.txtAlimento.FieldFilter = Nothing
+        Me.txtAlimento.FieldFind = Nothing
+        Me.txtAlimento.FieldReturn = Nothing
         Me.txtAlimento.KeepValue = False
-        Me.txtAlimento.Location = New System.Drawing.Point(12, 12)
+        Me.txtAlimento.LCaseText = False
+        Me.txtAlimento.Location = New System.Drawing.Point(12, 33)
         Me.txtAlimento.Name = "txtAlimento"
-        Me.txtAlimento.NameExibition = "Alimento:"
+        Me.txtAlimento.NameExibition = "Alimento"
         Me.txtAlimento.OrderManual = Nothing
         Me.txtAlimento.OthersFilters = Nothing
-        Me.txtAlimento.Size = New System.Drawing.Size(204, 24)
-        Me.txtAlimento.SizeTextBox = 0
-        Me.txtAlimento.SQLSelectFind = "SELECT * FROM Alimento"
-        Me.txtAlimento.TabIndex = 0
+        Me.txtAlimento.Size = New System.Drawing.Size(368, 21)
+        Me.txtAlimento.SizeTextBox = 220
+        Me.txtAlimento.SQLSelectFind = Nothing
+        Me.txtAlimento.TabIndex = 12
         Me.txtAlimento.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.txtAlimento.ToolTipHelp = Nothing
-        Me.txtAlimento.UseF3 = True
+        Me.txtAlimento.UCaseFirstCharText = False
+        Me.txtAlimento.UCaseText = False
+        Me.txtAlimento.UseF3 = False
         Me.txtAlimento.ValueReturn = Nothing
         Me.txtAlimento.ZIniciar = True
+        '
+        'txtCodAlimento
+        '
+        Me.txtCodAlimento.Conexao = Nothing
+        Me.txtCodAlimento.ConnectionString = Nothing
+        Me.txtCodAlimento.FieldFilter = "codAlimento, Alimento"
+        Me.txtCodAlimento.FieldFind = "codAlimento, Alimento"
+        Me.txtCodAlimento.FieldReturn = "codAlimento"
+        Me.txtCodAlimento.FormatCustom = Nothing
+        Me.txtCodAlimento.KeepValue = False
+        Me.txtCodAlimento.Location = New System.Drawing.Point(12, 6)
+        Me.txtCodAlimento.Name = "txtCodAlimento"
+        Me.txtCodAlimento.NameExibition = "Código Alimento"
+        Me.txtCodAlimento.OrderManual = Nothing
+        Me.txtCodAlimento.OthersFilters = Nothing
+        Me.txtCodAlimento.Size = New System.Drawing.Size(216, 21)
+        Me.txtCodAlimento.SizeTextBox = 0
+        Me.txtCodAlimento.SQLSelectFind = "SELECT codAlimento, Alimento FROM InfosAlimentosNutricionais"
+        Me.txtCodAlimento.TabIndex = 13
+        Me.txtCodAlimento.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.txtCodAlimento.ToolTipHelp = Nothing
+        Me.txtCodAlimento.UseF3 = True
+        Me.txtCodAlimento.ValueReturn = Nothing
+        Me.txtCodAlimento.ZIniciar = True
+        '
+        'btnDeletar
+        '
+        Me.btnDeletar.Image = CType(resources.GetObject("btnDeletar.Image"), System.Drawing.Image)
+        Me.btnDeletar.Location = New System.Drawing.Point(343, 248)
+        Me.btnDeletar.Name = "btnDeletar"
+        Me.btnDeletar.Size = New System.Drawing.Size(100, 31)
+        Me.btnDeletar.TabIndex = 14
+        Me.btnDeletar.Text = "Excluir"
+        Me.btnDeletar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnDeletar.ToolTipHelp = Nothing
+        Me.btnDeletar.UseVisualStyleBackColor = True
         '
         'frmCadastroNutricional
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
         Me.ClientSize = New System.Drawing.Size(455, 291)
+        Me.Controls.Add(Me.btnDeletar)
+        Me.Controls.Add(Me.txtCodAlimento)
         Me.Controls.Add(Me.txtAlimento)
         Me.Controls.Add(Me.btnConsultar)
         Me.Controls.Add(Me.txtVitC)
@@ -346,6 +387,8 @@ Partial Class frmCadastroNutricional
         Me.Controls.SetChildIndex(Me.txtVitC, 0)
         Me.Controls.SetChildIndex(Me.btnConsultar, 0)
         Me.Controls.SetChildIndex(Me.txtAlimento, 0)
+        Me.Controls.SetChildIndex(Me.txtCodAlimento, 0)
+        Me.Controls.SetChildIndex(Me.btnDeletar, 0)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -362,5 +405,7 @@ Partial Class frmCadastroNutricional
     Friend WithEvents txtFerro As MvtWindowsForms.TextBoxNumberWithLabel
     Friend WithEvents txtCalcio As MvtWindowsForms.TextBoxNumberWithLabel
     Friend WithEvents btnConsultar As MvtWindowsForms.ButtonFind
-    Friend WithEvents txtAlimento As MvtWindowsForms.TextBoxNumberWithLabel
+    Friend WithEvents txtAlimento As MvtWindowsForms.TextBoxStringWithLabel
+    Friend WithEvents txtCodAlimento As MvtWindowsForms.TextBoxNumberWithLabel
+    Friend WithEvents btnDeletar As MvtWindowsForms.ButtonDelete
 End Class

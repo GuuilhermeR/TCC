@@ -128,6 +128,17 @@
         hvpdm0rCL0mSNxJmkajH+s91AAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="btnRecalcular.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAUpJREFUOE91
+        UsFRxDAMTAl0AB0c4PDnl/g+3BvihBIogQ5SAiVQwpVACZRwJYB2JTnWwWkmE1lerbSSu0u2e1qu+jz/
+        4INv4csG0G5YbuzYpeHl0QngW5g4czdjtXH+7Mdyuh+mVySkPH84Ae5ATlLBpLF8WaqaEpRTTWCSAvtc
+        jiFudw/75dbS1VKeDg5AdZAC5ECJrQ3BG5NaA9CSV/ha3QjFZ8xI2lmx/apZWqMcazvl8o3PfeBVajnW
+        wXoVgqyS+yADxkn0Ls4kEOBSOxBfKrGC2NaRzAnbanJUAgcoIEty/fhXX7q42z9fsxshgYQ4CzkocF65
+        c2u7EkmRNJR3nl1/a2drXD0G3VpZNsAB4n46MMmN1e0yfNSr0mJctvVnldAKoDwSPtl22kKETvDMcQbW
+        N1QNgZY1StpaJu48+T8DyAlCu8G67hf2jxFItaYWyQAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAUAEBAAAAEAIABoBAAAVgAAACAgAAABACAAqBAAAL4EAAAwMAAAAQAgAKglAABmFQAAQEAAAAEA

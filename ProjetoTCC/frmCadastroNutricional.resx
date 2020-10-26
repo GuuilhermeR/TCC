@@ -135,6 +135,14 @@
         hvpdm0rCL0mSNxJmkajH+s91AAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="btnDeletar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAABGdBTUEAALGPC/xhBQAAAHVJREFUOE+9
+        ktENgDAIBd8IjuQo3dgRHMENrJBABCGCP17SlAKXpg34hQksEt6cwEGFVY4BrlHPFmQu0JqZLNJO+5CU
+        J5NLSbFyW1JU/iQx5qb0zSlGGhy3ZCtJyr1ZUp5MUl7l6iNYoh4ekjAAcZwedHoKgAs5o1SI8dW/VAAA
+        AABJRU5ErkJggg==
+</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAUAEBAAAAEAIABoBAAAVgAAACAgAAABACAAqBAAAL4EAAAwMAAAAQAgAKglAABmFQAAQEAAAAEA

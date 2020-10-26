@@ -1,6 +1,6 @@
 ﻿Public Class frmMenuPrincipal
 
-    Private Sub btnCalculos_Click(sender As Object, e As EventArgs) Handles btnCalculos.Click
+    Private Sub btnCalculos_Click(sender As Object, e As EventArgs) Handles btnCadastroNutricional.Click
 
         frmCadastroNutricional.Show()
 
@@ -12,11 +12,5 @@
             frmConsultaMedidasCaseiras.ShowDialog()
         End Using
 
-    End Sub
-
-    Private Sub btnCadastrarAlimento_Click(sender As Object, e As EventArgs) Handles btnCadastrarAlimento.Click
-        Using frmCadastrarAlimentos As New frmCadastrarAlimentos
-            frmCadastrarAlimentos.ShowDialog()
-        End Using
     End Sub
 End Class

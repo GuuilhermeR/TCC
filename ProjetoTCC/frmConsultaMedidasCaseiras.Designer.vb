@@ -68,7 +68,7 @@ Partial Class frmConsultaMedidasCaseiras
         Me.gbxImprimir.MinimumSize = New System.Drawing.Size(100, 50)
         Me.gbxImprimir.Name = "gbxImprimir"
         Me.gbxImprimir.Size = New System.Drawing.Size(100, 50)
-        Me.gbxImprimir.TabIndex = 3
+        Me.gbxImprimir.TabIndex = 4
         Me.gbxImprimir.TabStop = False
         Me.gbxImprimir.Tag = "Imprimir"
         Me.gbxImprimir.Text = "Imprimir"
@@ -105,7 +105,7 @@ Partial Class frmConsultaMedidasCaseiras
         Me.btnRecalcular.Location = New System.Drawing.Point(789, 531)
         Me.btnRecalcular.Name = "btnRecalcular"
         Me.btnRecalcular.Size = New System.Drawing.Size(100, 31)
-        Me.btnRecalcular.TabIndex = 4
+        Me.btnRecalcular.TabIndex = 3
         Me.btnRecalcular.Text = "Recalcular"
         Me.btnRecalcular.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnRecalcular.ToolTipHelp = Nothing

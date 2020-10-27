@@ -57,7 +57,7 @@ Partial Class frmCadastroNutricional
         Me.txtGramas.Size = New System.Drawing.Size(200, 24)
         Me.txtGramas.SizeTextBox = 0
         Me.txtGramas.SQLSelectFind = Nothing
-        Me.txtGramas.TabIndex = 1
+        Me.txtGramas.TabIndex = 2
         Me.txtGramas.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.txtGramas.ToolTipHelp = Nothing
         Me.txtGramas.UseF3 = False
@@ -82,7 +82,7 @@ Partial Class frmCadastroNutricional
         Me.txtQtde.Size = New System.Drawing.Size(200, 24)
         Me.txtQtde.SizeTextBox = 0
         Me.txtQtde.SQLSelectFind = Nothing
-        Me.txtQtde.TabIndex = 2
+        Me.txtQtde.TabIndex = 3
         Me.txtQtde.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.txtQtde.ToolTipHelp = Nothing
         Me.txtQtde.UseF3 = False
@@ -107,7 +107,7 @@ Partial Class frmCadastroNutricional
         Me.txtKcal.Size = New System.Drawing.Size(200, 24)
         Me.txtKcal.SizeTextBox = 0
         Me.txtKcal.SQLSelectFind = Nothing
-        Me.txtKcal.TabIndex = 3
+        Me.txtKcal.TabIndex = 4
         Me.txtKcal.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.txtKcal.ToolTipHelp = Nothing
         Me.txtKcal.UseF3 = False
@@ -132,7 +132,7 @@ Partial Class frmCadastroNutricional
         Me.txtLipidio.Size = New System.Drawing.Size(200, 24)
         Me.txtLipidio.SizeTextBox = 0
         Me.txtLipidio.SQLSelectFind = Nothing
-        Me.txtLipidio.TabIndex = 6
+        Me.txtLipidio.TabIndex = 7
         Me.txtLipidio.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.txtLipidio.ToolTipHelp = Nothing
         Me.txtLipidio.UseF3 = False
@@ -157,7 +157,7 @@ Partial Class frmCadastroNutricional
         Me.txtCarboidrato.Size = New System.Drawing.Size(200, 24)
         Me.txtCarboidrato.SizeTextBox = 0
         Me.txtCarboidrato.SQLSelectFind = Nothing
-        Me.txtCarboidrato.TabIndex = 5
+        Me.txtCarboidrato.TabIndex = 6
         Me.txtCarboidrato.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.txtCarboidrato.ToolTipHelp = Nothing
         Me.txtCarboidrato.UseF3 = False
@@ -182,7 +182,7 @@ Partial Class frmCadastroNutricional
         Me.txtProteina.Size = New System.Drawing.Size(200, 24)
         Me.txtProteina.SizeTextBox = 0
         Me.txtProteina.SQLSelectFind = Nothing
-        Me.txtProteina.TabIndex = 4
+        Me.txtProteina.TabIndex = 5
         Me.txtProteina.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.txtProteina.ToolTipHelp = Nothing
         Me.txtProteina.UseF3 = False
@@ -196,7 +196,7 @@ Partial Class frmCadastroNutricional
         Me.btnSalvar.Location = New System.Drawing.Point(237, 248)
         Me.btnSalvar.Name = "btnSalvar"
         Me.btnSalvar.Size = New System.Drawing.Size(100, 31)
-        Me.btnSalvar.TabIndex = 10
+        Me.btnSalvar.TabIndex = 11
         Me.btnSalvar.Text = "Salvar"
         Me.btnSalvar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnSalvar.ToolTipHelp = Nothing
@@ -220,7 +220,7 @@ Partial Class frmCadastroNutricional
         Me.txtVitC.Size = New System.Drawing.Size(200, 24)
         Me.txtVitC.SizeTextBox = 0
         Me.txtVitC.SQLSelectFind = Nothing
-        Me.txtVitC.TabIndex = 9
+        Me.txtVitC.TabIndex = 10
         Me.txtVitC.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.txtVitC.ToolTipHelp = Nothing
         Me.txtVitC.UseF3 = False
@@ -245,7 +245,7 @@ Partial Class frmCadastroNutricional
         Me.txtFerro.Size = New System.Drawing.Size(200, 24)
         Me.txtFerro.SizeTextBox = 0
         Me.txtFerro.SQLSelectFind = Nothing
-        Me.txtFerro.TabIndex = 8
+        Me.txtFerro.TabIndex = 9
         Me.txtFerro.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.txtFerro.ToolTipHelp = Nothing
         Me.txtFerro.UseF3 = False
@@ -270,7 +270,7 @@ Partial Class frmCadastroNutricional
         Me.txtCalcio.Size = New System.Drawing.Size(200, 24)
         Me.txtCalcio.SizeTextBox = 0
         Me.txtCalcio.SQLSelectFind = Nothing
-        Me.txtCalcio.TabIndex = 7
+        Me.txtCalcio.TabIndex = 8
         Me.txtCalcio.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.txtCalcio.ToolTipHelp = Nothing
         Me.txtCalcio.UseF3 = False
@@ -293,6 +293,7 @@ Partial Class frmCadastroNutricional
         '
         'txtAlimento
         '
+        Me.txtAlimento.AutoSize = True
         Me.txtAlimento.Conexao = Nothing
         Me.txtAlimento.ConnectionString = Nothing
         Me.txtAlimento.FieldFilter = Nothing
@@ -305,10 +306,10 @@ Partial Class frmCadastroNutricional
         Me.txtAlimento.NameExibition = "Alimento"
         Me.txtAlimento.OrderManual = Nothing
         Me.txtAlimento.OthersFilters = Nothing
-        Me.txtAlimento.Size = New System.Drawing.Size(368, 21)
+        Me.txtAlimento.Size = New System.Drawing.Size(368, 24)
         Me.txtAlimento.SizeTextBox = 220
         Me.txtAlimento.SQLSelectFind = Nothing
-        Me.txtAlimento.TabIndex = 12
+        Me.txtAlimento.TabIndex = 1
         Me.txtAlimento.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.txtAlimento.ToolTipHelp = Nothing
         Me.txtAlimento.UCaseFirstCharText = False
@@ -319,6 +320,7 @@ Partial Class frmCadastroNutricional
         '
         'txtCodAlimento
         '
+        Me.txtCodAlimento.AutoSize = True
         Me.txtCodAlimento.Conexao = Nothing
         Me.txtCodAlimento.ConnectionString = Nothing
         Me.txtCodAlimento.FieldFilter = "codAlimento, Alimento"
@@ -331,10 +333,10 @@ Partial Class frmCadastroNutricional
         Me.txtCodAlimento.NameExibition = "Código Alimento"
         Me.txtCodAlimento.OrderManual = Nothing
         Me.txtCodAlimento.OthersFilters = Nothing
-        Me.txtCodAlimento.Size = New System.Drawing.Size(216, 21)
+        Me.txtCodAlimento.Size = New System.Drawing.Size(216, 24)
         Me.txtCodAlimento.SizeTextBox = 0
         Me.txtCodAlimento.SQLSelectFind = "SELECT codAlimento, Alimento FROM InfosAlimentosNutricionais"
-        Me.txtCodAlimento.TabIndex = 13
+        Me.txtCodAlimento.TabIndex = 0
         Me.txtCodAlimento.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.txtCodAlimento.ToolTipHelp = Nothing
         Me.txtCodAlimento.UseF3 = True
@@ -347,7 +349,7 @@ Partial Class frmCadastroNutricional
         Me.btnDeletar.Location = New System.Drawing.Point(343, 248)
         Me.btnDeletar.Name = "btnDeletar"
         Me.btnDeletar.Size = New System.Drawing.Size(100, 31)
-        Me.btnDeletar.TabIndex = 14
+        Me.btnDeletar.TabIndex = 12
         Me.btnDeletar.Text = "Excluir"
         Me.btnDeletar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnDeletar.ToolTipHelp = Nothing

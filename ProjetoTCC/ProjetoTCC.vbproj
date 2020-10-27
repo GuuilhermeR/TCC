@@ -103,6 +103,12 @@
     <Compile Include="frmCadastroNutricional.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmConfiguracoes.Designer.vb">
+      <DependentUpon>frmConfiguracoes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmConfiguracoes.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmConsultaMedidasCaseiras.Designer.vb">
       <DependentUpon>frmConsultaMedidasCaseiras.vb</DependentUpon>
     </Compile>
@@ -142,6 +148,9 @@
   <ItemGroup>
     <EmbeddedResource Include="frmCadastroNutricional.resx">
       <DependentUpon>frmCadastroNutricional.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmConfiguracoes.resx">
+      <DependentUpon>frmConfiguracoes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmConsultaMedidasCaseiras.resx">
       <DependentUpon>frmConsultaMedidasCaseiras.vb</DependentUpon>

@@ -68,6 +68,22 @@
                 somaTotalCaloria = ProteinaKcal + CarboidratoKcal + LipidioKcal
                 row.Cells("KCal").Value = somaTotalCaloria.ToString("N2")
 
+                Dim calcio As Double
+                calcio = (row.Cells("Cálcio").Value * row.Cells("Quantidade").Value)
+                row.Cells("Cálcio").Value = calcio.ToString("N2")
+
+                Dim ferro As Double
+                ferro = (row.Cells("Ferro").Value * row.Cells("Quantidade").Value)
+                row.Cells("Cálcio").Value = ferro.ToString("N2")
+
+                Dim VitaminaC As Double
+                VitaminaC = (row.Cells("VitaminaC").Value * row.Cells("Quantidade").Value)
+                row.Cells("VitaminaC").Value = VitaminaC.ToString("N2")
+
+                Dim gramas As Double
+                gramas = (row.Cells("gramas").Value * row.Cells("Quantidade").Value)
+                row.Cells("gramas").Value = gramas.ToString("N2")
+
             End If
 
         Next

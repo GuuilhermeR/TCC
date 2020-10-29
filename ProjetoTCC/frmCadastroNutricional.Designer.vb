@@ -23,7 +23,6 @@ Partial Class frmCadastroNutricional
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCadastroNutricional))
-        Me.txtGramas = New MvtWindowsForms.TextBoxNumberWithLabel()
         Me.txtQtde = New MvtWindowsForms.TextBoxNumberWithLabel()
         Me.txtKcal = New MvtWindowsForms.TextBoxNumberWithLabel()
         Me.txtLipidio = New MvtWindowsForms.TextBoxNumberWithLabel()
@@ -39,31 +38,6 @@ Partial Class frmCadastroNutricional
         Me.btnDeletar = New MvtWindowsForms.ButtonDelete()
         Me.SuspendLayout()
         '
-        'txtGramas
-        '
-        Me.txtGramas.AutoSize = True
-        Me.txtGramas.Conexao = Nothing
-        Me.txtGramas.ConnectionString = Nothing
-        Me.txtGramas.FieldFilter = Nothing
-        Me.txtGramas.FieldFind = Nothing
-        Me.txtGramas.FieldReturn = Nothing
-        Me.txtGramas.FormatCustom = Nothing
-        Me.txtGramas.KeepValue = False
-        Me.txtGramas.Location = New System.Drawing.Point(12, 110)
-        Me.txtGramas.Name = "txtGramas"
-        Me.txtGramas.NameExibition = "Gramas:"
-        Me.txtGramas.OrderManual = Nothing
-        Me.txtGramas.OthersFilters = Nothing
-        Me.txtGramas.Size = New System.Drawing.Size(200, 24)
-        Me.txtGramas.SizeTextBox = 0
-        Me.txtGramas.SQLSelectFind = Nothing
-        Me.txtGramas.TabIndex = 2
-        Me.txtGramas.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.txtGramas.ToolTipHelp = Nothing
-        Me.txtGramas.UseF3 = False
-        Me.txtGramas.ValueReturn = Nothing
-        Me.txtGramas.ZIniciar = True
-        '
         'txtQtde
         '
         Me.txtQtde.AutoSize = True
@@ -74,7 +48,7 @@ Partial Class frmCadastroNutricional
         Me.txtQtde.FieldReturn = Nothing
         Me.txtQtde.FormatCustom = Nothing
         Me.txtQtde.KeepValue = False
-        Me.txtQtde.Location = New System.Drawing.Point(12, 137)
+        Me.txtQtde.Location = New System.Drawing.Point(12, 123)
         Me.txtQtde.Name = "txtQtde"
         Me.txtQtde.NameExibition = "Quantidade:"
         Me.txtQtde.OrderManual = Nothing
@@ -99,7 +73,7 @@ Partial Class frmCadastroNutricional
         Me.txtKcal.FieldReturn = Nothing
         Me.txtKcal.FormatCustom = Nothing
         Me.txtKcal.KeepValue = False
-        Me.txtKcal.Location = New System.Drawing.Point(12, 164)
+        Me.txtKcal.Location = New System.Drawing.Point(12, 150)
         Me.txtKcal.Name = "txtKcal"
         Me.txtKcal.NameExibition = "Kcal:"
         Me.txtKcal.OrderManual = Nothing
@@ -323,8 +297,8 @@ Partial Class frmCadastroNutricional
         Me.txtCodAlimento.AutoSize = True
         Me.txtCodAlimento.Conexao = Nothing
         Me.txtCodAlimento.ConnectionString = Nothing
-        Me.txtCodAlimento.FieldFilter = "codAlimento, Alimento"
-        Me.txtCodAlimento.FieldFind = "codAlimento, Alimento"
+        Me.txtCodAlimento.FieldFilter = "Alimento"
+        Me.txtCodAlimento.FieldFind = "Alimento"
         Me.txtCodAlimento.FieldReturn = "codAlimento"
         Me.txtCodAlimento.FormatCustom = Nothing
         Me.txtCodAlimento.KeepValue = False
@@ -373,11 +347,9 @@ Partial Class frmCadastroNutricional
         Me.Controls.Add(Me.txtKcal)
         Me.Controls.Add(Me.txtProteina)
         Me.Controls.Add(Me.txtQtde)
-        Me.Controls.Add(Me.txtGramas)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmCadastroNutricional"
         Me.Text = "Cadastro Nutricional"
-        Me.Controls.SetChildIndex(Me.txtGramas, 0)
         Me.Controls.SetChildIndex(Me.txtQtde, 0)
         Me.Controls.SetChildIndex(Me.txtProteina, 0)
         Me.Controls.SetChildIndex(Me.txtKcal, 0)
@@ -395,8 +367,6 @@ Partial Class frmCadastroNutricional
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents txtGramas As MvtWindowsForms.TextBoxNumberWithLabel
     Friend WithEvents txtQtde As MvtWindowsForms.TextBoxNumberWithLabel
     Friend WithEvents txtKcal As MvtWindowsForms.TextBoxNumberWithLabel
     Friend WithEvents txtLipidio As MvtWindowsForms.TextBoxNumberWithLabel

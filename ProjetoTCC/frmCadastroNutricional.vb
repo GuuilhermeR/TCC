@@ -23,7 +23,6 @@
             conexaoPadrao.NewTable("InfosAlimentosNutricionais", Not IsNullOrEmpty(Me.txtCodAlimento.Text))
 
             conexaoPadrao.InsertField("Alimento", Me.txtAlimento.ValueSQL)
-            conexaoPadrao.InsertField("gramas", Me.txtGramas.ValueSQL)
             conexaoPadrao.InsertField("qtde", Me.txtQtde.ValueSQL)
             conexaoPadrao.InsertField("kcal", Me.txtKcal.ValueSQL)
             conexaoPadrao.InsertField("proteina", Me.txtProteina.ValueSQL)
@@ -38,6 +37,7 @@
             transaction.CommitTransaction()
             btnConsultar.HideWait(True)
             MsgBox("Seus dados foram salvos.", MsgBoxStyle.Exclamation, "MOV.TECH")
+            limparCampos()
 
         Catch ex As Exception
             btnConsultar.HideWait(True)
@@ -54,12 +54,12 @@
 
         If String.IsNullOrEmpty(Me.txtCodAlimento.Text) Then
             limparCampos()
+            Exit Sub
         End If
 
         Dim strSQL As String = String.Empty
 
         strSQL = $"SELECT Alimento 
-                          , gramas
                           , qtde
                           , kcal
                           , proteina
@@ -69,14 +69,13 @@
                           , ferro
                           , vitC 
                   FROM InfosAlimentosNutricionais 
-                        WHERE codAlimento = {Me.txtCodAlimento.Text}" & Chr(13) & Chr(10)
+                  WHERE codAlimento = {Me.txtCodAlimento.Text}" & Chr(13) & Chr(10)
 
         Using dr As IDataReader = conexaoPadrao.ReturnDataReader(strSQL)
 
             While dr.Read
 
                 Me.txtAlimento.Text = dr("Alimento")
-                Me.txtGramas.Text = dr("gramas")
                 Me.txtQtde.Text = dr("qtde")
                 Me.txtKcal.Text = dr("kcal")
                 Me.txtProteina.Text = dr("proteina")
@@ -95,7 +94,6 @@
     Private Sub limparCampos()
 
         Me.txtAlimento.Text = ""
-        Me.txtGramas.Text = ""
         Me.txtQtde.Text = ""
         Me.txtKcal.Text = ""
         Me.txtProteina.Text = ""
@@ -125,17 +123,17 @@
 
             transaction.CommitTransaction()
 
+            btnConsultar.HideWait(True)
             mMensagemAviso("O alimento foi excluído com sucesso.")
 
         Catch ex As Exception
-
+            btnConsultar.HideWait(True)
             mMensagemAviso("Ocorreu um erro ao excluir.")
 
             transaction.RollbackTransaction()
 
         End Try
-
-        btnConsultar.HideWait(True)
+        limparCampos()
 
     End Sub
 End Class

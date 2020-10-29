@@ -11,9 +11,9 @@
 
         btnConsultar.ShowWait(True)
 
+
         Dim strSQL As String = $"SELECT Alimento AS Alimento,
                                 qtde AS Quantidade, 
-                                gramas AS Gramas, 
                                 kcal AS KCal, 
                                 proteina AS Proteína, 
                                 carboidrato AS Carboidrato, 
@@ -21,7 +21,11 @@
                                 calcio AS Cálcio, 
                                 ferro AS Ferro, 
                                 vitC AS VitaminaC
-                                FROM InfosAlimentosNutricionais"
+                                FROM InfosAlimentosNutricionais" & Chr(13) & Chr(10)
+
+        If Not String.IsNullOrEmpty(Me.txtCodAlimento.Text) Then
+            strSQL &= $"WHERE codAlimento = {Me.txtCodAlimento.Text}"
+        End If
 
         conexaoPadrao.FillDataGridView(strSQL, dtgMedidasCaseiras, "", "N2", "N1", True, True, False, True)
         Me.dtgMedidasCaseiras.Columns("Alimento").ReadOnly = True
@@ -32,7 +36,6 @@
         Me.dtgMedidasCaseiras.Columns("Cálcio").ReadOnly = True
         Me.dtgMedidasCaseiras.Columns("Ferro").ReadOnly = True
         Me.dtgMedidasCaseiras.Columns("VitaminaC").ReadOnly = True
-        Me.dtgMedidasCaseiras.Columns("Gramas").ReadOnly = True
         btnConsultar.HideWait(True)
 
     End Sub
@@ -80,10 +83,13 @@
                 VitaminaC = (row.Cells("VitaminaC").Value * row.Cells("Quantidade").Value)
                 row.Cells("VitaminaC").Value = VitaminaC.ToString("N2")
 
-                Dim gramas As Double
-                gramas = (row.Cells("gramas").Value * row.Cells("Quantidade").Value)
-                row.Cells("gramas").Value = gramas.ToString("N2")
+            End If
 
+        Next
+        For Each rows As DataGridViewRow In Me.dtgMedidasCaseiras.Rows
+
+            If rows.DefaultCellStyle.ForeColor = Color.Red Then
+                rows.DefaultCellStyle.ForeColor = Color.Green
             End If
 
         Next

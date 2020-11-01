@@ -73,9 +73,20 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property closewindowapplication_cerca_ventan_2874() As System.Drawing.Bitmap
+        Friend ReadOnly Property kisspng_computer_icons_meal_food_meal_icon_5b3cb405517002_9542126315307049013336_removebg_preview() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("closewindowapplication_cerca_ventan_2874", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("kisspng-computer-icons-meal-food-meal-icon-5b3cb405517002.9542126315307049013336-"& _ 
+                        "removebg-preview", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property tools__3_() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("tools (3)", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

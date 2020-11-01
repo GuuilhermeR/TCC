@@ -34,4 +34,5 @@
         'Me.DoubleBuffered = True
         'Me.MaximizedBounds = Screen.PrimaryScreen.WorkingArea
     End Sub
+
 End Class

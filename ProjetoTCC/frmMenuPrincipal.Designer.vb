@@ -24,12 +24,13 @@ Partial Class frmMenuPrincipal
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMenuPrincipal))
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.btnCadastrarPaciente = New System.Windows.Forms.Button()
         Me.btnConsultarAlimentos = New System.Windows.Forms.Button()
         Me.btnCadastrarAlimento = New System.Windows.Forms.Button()
+        Me.btnCadastroCardapio = New System.Windows.Forms.Button()
+        Me.btnConfig = New System.Windows.Forms.Button()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.btnCadastroCardapio = New System.Windows.Forms.Button()
-        Me.btnCadastrarPaciente = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -40,6 +41,7 @@ Partial Class frmMenuPrincipal
         Me.Panel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Panel1.BackColor = System.Drawing.Color.Chartreuse
+        Me.Panel1.Controls.Add(Me.btnConfig)
         Me.Panel1.Controls.Add(Me.btnCadastrarPaciente)
         Me.Panel1.Controls.Add(Me.btnConsultarAlimentos)
         Me.Panel1.Controls.Add(Me.btnCadastrarAlimento)
@@ -51,37 +53,79 @@ Partial Class frmMenuPrincipal
         Me.Panel1.Size = New System.Drawing.Size(234, 544)
         Me.Panel1.TabIndex = 5
         '
+        'btnCadastrarPaciente
+        '
+        Me.btnCadastrarPaciente.BackColor = System.Drawing.Color.Chartreuse
+        Me.btnCadastrarPaciente.FlatAppearance.BorderSize = 0
+        Me.btnCadastrarPaciente.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCadastrarPaciente.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCadastrarPaciente.ForeColor = System.Drawing.Color.Black
+        Me.btnCadastrarPaciente.Location = New System.Drawing.Point(12, 189)
+        Me.btnCadastrarPaciente.Name = "btnCadastrarPaciente"
+        Me.btnCadastrarPaciente.Size = New System.Drawing.Size(208, 41)
+        Me.btnCadastrarPaciente.TabIndex = 5
+        Me.btnCadastrarPaciente.Text = "Cadastro de Paciente"
+        Me.btnCadastrarPaciente.UseVisualStyleBackColor = True
+        '
         'btnConsultarAlimentos
         '
         Me.btnConsultarAlimentos.BackColor = System.Drawing.Color.Chartreuse
         Me.btnConsultarAlimentos.FlatAppearance.BorderSize = 0
         Me.btnConsultarAlimentos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnConsultarAlimentos.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnConsultarAlimentos.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnConsultarAlimentos.ForeColor = System.Drawing.Color.Black
         Me.btnConsultarAlimentos.Location = New System.Drawing.Point(12, 283)
         Me.btnConsultarAlimentos.Name = "btnConsultarAlimentos"
         Me.btnConsultarAlimentos.Size = New System.Drawing.Size(208, 41)
         Me.btnConsultarAlimentos.TabIndex = 3
         Me.btnConsultarAlimentos.Text = "Consultar Alimentos"
-        Me.btnConsultarAlimentos.UseVisualStyleBackColor = False
+        Me.btnConsultarAlimentos.UseVisualStyleBackColor = True
         '
         'btnCadastrarAlimento
         '
         Me.btnCadastrarAlimento.BackColor = System.Drawing.Color.Chartreuse
         Me.btnCadastrarAlimento.FlatAppearance.BorderSize = 0
         Me.btnCadastrarAlimento.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnCadastrarAlimento.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCadastrarAlimento.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCadastrarAlimento.ForeColor = System.Drawing.Color.Black
         Me.btnCadastrarAlimento.Location = New System.Drawing.Point(12, 142)
         Me.btnCadastrarAlimento.Name = "btnCadastrarAlimento"
         Me.btnCadastrarAlimento.Size = New System.Drawing.Size(208, 41)
         Me.btnCadastrarAlimento.TabIndex = 2
         Me.btnCadastrarAlimento.Text = "Cadastrar Alimento"
-        Me.btnCadastrarAlimento.UseVisualStyleBackColor = False
+        Me.btnCadastrarAlimento.UseVisualStyleBackColor = True
+        '
+        'btnCadastroCardapio
+        '
+        Me.btnCadastroCardapio.BackColor = System.Drawing.Color.Chartreuse
+        Me.btnCadastroCardapio.FlatAppearance.BorderSize = 0
+        Me.btnCadastroCardapio.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCadastroCardapio.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCadastroCardapio.ForeColor = System.Drawing.Color.Black
+        Me.btnCadastroCardapio.Location = New System.Drawing.Point(12, 236)
+        Me.btnCadastroCardapio.Name = "btnCadastroCardapio"
+        Me.btnCadastroCardapio.Size = New System.Drawing.Size(208, 41)
+        Me.btnCadastroCardapio.TabIndex = 4
+        Me.btnCadastroCardapio.Text = "Cardápio"
+        Me.btnCadastroCardapio.UseVisualStyleBackColor = True
+        '
+        'btnConfig
+        '
+        Me.btnConfig.BackColor = System.Drawing.Color.Chartreuse
+        Me.btnConfig.FlatAppearance.BorderSize = 0
+        Me.btnConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnConfig.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnConfig.ForeColor = System.Drawing.Color.Black
+        Me.btnConfig.Location = New System.Drawing.Point(12, 491)
+        Me.btnConfig.Name = "btnConfig"
+        Me.btnConfig.Size = New System.Drawing.Size(208, 41)
+        Me.btnConfig.TabIndex = 6
+        Me.btnConfig.Text = "Ajustes"
+        Me.btnConfig.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnConfig.UseVisualStyleBackColor = True
         '
         'PictureBox2
         '
-        Me.PictureBox2.Image = Global.ProjetoTCC.My.Resources.Resources._5_Icon_Branco
         Me.PictureBox2.Location = New System.Drawing.Point(58, 12)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(110, 109)
@@ -97,34 +141,6 @@ Partial Class frmMenuPrincipal
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
         '
-        'btnCadastroCardapio
-        '
-        Me.btnCadastroCardapio.BackColor = System.Drawing.Color.Chartreuse
-        Me.btnCadastroCardapio.FlatAppearance.BorderSize = 0
-        Me.btnCadastroCardapio.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnCadastroCardapio.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnCadastroCardapio.ForeColor = System.Drawing.Color.Black
-        Me.btnCadastroCardapio.Location = New System.Drawing.Point(12, 236)
-        Me.btnCadastroCardapio.Name = "btnCadastroCardapio"
-        Me.btnCadastroCardapio.Size = New System.Drawing.Size(208, 41)
-        Me.btnCadastroCardapio.TabIndex = 4
-        Me.btnCadastroCardapio.Text = "Cardápio"
-        Me.btnCadastroCardapio.UseVisualStyleBackColor = False
-        '
-        'btnCadastrarPaciente
-        '
-        Me.btnCadastrarPaciente.BackColor = System.Drawing.Color.Chartreuse
-        Me.btnCadastrarPaciente.FlatAppearance.BorderSize = 0
-        Me.btnCadastrarPaciente.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnCadastrarPaciente.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnCadastrarPaciente.ForeColor = System.Drawing.Color.Black
-        Me.btnCadastrarPaciente.Location = New System.Drawing.Point(12, 189)
-        Me.btnCadastrarPaciente.Name = "btnCadastrarPaciente"
-        Me.btnCadastrarPaciente.Size = New System.Drawing.Size(208, 41)
-        Me.btnCadastrarPaciente.TabIndex = 5
-        Me.btnCadastrarPaciente.Text = "Cadastro de Paciente"
-        Me.btnCadastrarPaciente.UseVisualStyleBackColor = False
-        '
         'frmMenuPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
@@ -132,6 +148,7 @@ Partial Class frmMenuPrincipal
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(856, 544)
         Me.Controls.Add(Me.Panel1)
+        Me.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmMenuPrincipal"
         Me.Text = "Menu Principal"
@@ -150,4 +167,5 @@ Partial Class frmMenuPrincipal
     Friend WithEvents btnConsultarAlimentos As Button
     Friend WithEvents btnCadastrarPaciente As Button
     Friend WithEvents btnCadastroCardapio As Button
+    Friend WithEvents btnConfig As Button
 End Class

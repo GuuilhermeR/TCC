@@ -11,7 +11,6 @@
 
         btnConsultar.ShowWait(True)
 
-
         Dim strSQL As String = $"SELECT Alimento AS Alimento,
                                 qtde AS Quantidade, 
                                 kcal AS KCal, 

@@ -29,9 +29,9 @@
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
-        Me.Text = ""
-        Me.ControlBox = False
-        Me.DoubleBuffered = True
-        Me.MaximizedBounds = Screen.PrimaryScreen.WorkingArea
+        ' Me.Text = ""
+        'Me.ControlBox = False
+        'Me.DoubleBuffered = True
+        'Me.MaximizedBounds = Screen.PrimaryScreen.WorkingArea
     End Sub
 End Class

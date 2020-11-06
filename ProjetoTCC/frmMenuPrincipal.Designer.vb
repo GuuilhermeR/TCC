@@ -1,6 +1,6 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmMenuPrincipal
-    Inherits MvtWindowsForms.MvtForm
+    Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()>
@@ -24,11 +24,11 @@ Partial Class frmMenuPrincipal
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMenuPrincipal))
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.btnConfig = New System.Windows.Forms.Button()
         Me.btnCadastrarPaciente = New System.Windows.Forms.Button()
         Me.btnConsultarAlimentos = New System.Windows.Forms.Button()
         Me.btnCadastrarAlimento = New System.Windows.Forms.Button()
         Me.btnCadastroCardapio = New System.Windows.Forms.Button()
-        Me.btnConfig = New System.Windows.Forms.Button()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel1.SuspendLayout()
@@ -52,6 +52,21 @@ Partial Class frmMenuPrincipal
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(234, 544)
         Me.Panel1.TabIndex = 5
+        '
+        'btnConfig
+        '
+        Me.btnConfig.BackColor = System.Drawing.Color.Chartreuse
+        Me.btnConfig.FlatAppearance.BorderSize = 0
+        Me.btnConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnConfig.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnConfig.ForeColor = System.Drawing.Color.Black
+        Me.btnConfig.Location = New System.Drawing.Point(12, 491)
+        Me.btnConfig.Name = "btnConfig"
+        Me.btnConfig.Size = New System.Drawing.Size(208, 41)
+        Me.btnConfig.TabIndex = 6
+        Me.btnConfig.Text = "Ajustes"
+        Me.btnConfig.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnConfig.UseVisualStyleBackColor = True
         '
         'btnCadastrarPaciente
         '
@@ -109,23 +124,9 @@ Partial Class frmMenuPrincipal
         Me.btnCadastroCardapio.Text = "Cardápio"
         Me.btnCadastroCardapio.UseVisualStyleBackColor = True
         '
-        'btnConfig
-        '
-        Me.btnConfig.BackColor = System.Drawing.Color.Chartreuse
-        Me.btnConfig.FlatAppearance.BorderSize = 0
-        Me.btnConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnConfig.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnConfig.ForeColor = System.Drawing.Color.Black
-        Me.btnConfig.Location = New System.Drawing.Point(12, 491)
-        Me.btnConfig.Name = "btnConfig"
-        Me.btnConfig.Size = New System.Drawing.Size(208, 41)
-        Me.btnConfig.TabIndex = 6
-        Me.btnConfig.Text = "Ajustes"
-        Me.btnConfig.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnConfig.UseVisualStyleBackColor = True
-        '
         'PictureBox2
         '
+        Me.PictureBox2.Image = Global.ProjetoTCC.My.Resources.Resources._5_Icon_Branco
         Me.PictureBox2.Location = New System.Drawing.Point(58, 12)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(110, 109)
@@ -152,7 +153,6 @@ Partial Class frmMenuPrincipal
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmMenuPrincipal"
         Me.Text = "Menu Principal"
-        Me.Controls.SetChildIndex(Me.Panel1, 0)
         Me.Panel1.ResumeLayout(False)
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()

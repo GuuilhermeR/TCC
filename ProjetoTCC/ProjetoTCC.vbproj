@@ -63,12 +63,6 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="MvtUtils">
-      <HintPath>..\..\..\..\..\MovtechFontes\MovtechDLL\MvtUtils.dll</HintPath>
-    </Reference>
-    <Reference Include="MvtWindowsForms">
-      <HintPath>..\..\..\..\..\MovtechFontes\MvtComponentsNew\MovtechDLL2015\MvtWindowsForms.dll</HintPath>
-    </Reference>
     <Reference Include="SQLite.Designer, Version=1.0.96.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\MovtechFontes\MovtechDLL\SQLite.Designer.dll</HintPath>
@@ -104,12 +98,11 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BancoDados\DBAcesso.vb" />
     <Compile Include="frmCadastroNutricional.Designer.vb">
       <DependentUpon>frmCadastroNutricional.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmCadastroNutricional.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="frmCadastroNutricional.vb" />
     <Compile Include="frmConfiguracoes.Designer.vb">
       <DependentUpon>frmConfiguracoes.vb</DependentUpon>
     </Compile>
@@ -128,14 +121,11 @@
     <Compile Include="frmMenuPrincipal.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmTelaLogin.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="frmTelaLogin.vb" />
     <Compile Include="frmTelaLogin.Designer.vb">
       <DependentUpon>frmTelaLogin.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="modFuncoes.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -196,12 +186,6 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\MovtechFontes\mvtcomponents\MvtConnection\MvtConnection\MvtConnection.vbproj">
-      <Project>{6cb3d26a-4a62-4555-b01c-24e8a95370eb}</Project>
-      <Name>MvtConnection</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="5-Icon-Branco.ico" />

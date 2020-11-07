@@ -51,7 +51,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>5-Icon-Branco.ico</ApplicationIcon>
+    <ApplicationIcon>iconTCC-removebg-preview %281%29.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
@@ -172,6 +172,8 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="iconTCC-removebg-preview %281%29.ico" />
+    <None Include="Resources\iconTCC-removebg-preview %281%29 - Copia.png" />
     <None Include="Resources\kisspng-computer-icons-meal-food-meal-icon-5b3cb405517002.9542126315307049013336-removebg-preview.png" />
     <None Include="Resources\tools %283%29.png" />
     <None Include="Resources\5-Icon-Branco.png" />
@@ -188,7 +190,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="5-Icon-Branco.ico" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />

@@ -1,4 +1,9 @@
-﻿Public Class frmConsultaMedidasCaseiras
+﻿Imports System.Data.SQLite
+Imports System.IO
+Public Class frmConsultaMedidasCaseiras
+
+    Public objBanco As New DBAcesso
+    Public objConexao As New SQLiteConnection((objBanco.Conexao).ToString)
 
     Dim quantidadeSalva As Double
     Dim verificarHouveAlteracao As Double
@@ -7,100 +12,129 @@
 
     End Sub
 
-    Private Sub btnConsultar_Click(sender As Object, e As EventArgs)
+    Private Sub btnRecalcular_Click_1(sender As Object, e As EventArgs) Handles btnRecalcular.Click
 
+        For Each row As DataGridViewRow In Me.dtgConsultaAlimentos.Rows
 
-        'Dim strSQL As String = $"SELECT Alimento AS Alimento,
-        '                        qtde AS Quantidade, 
-        '                        kcal AS KCal, 
-        '                        proteina AS Proteína, 
-        '                        carboidrato AS Carboidrato, 
-        '                        lipidio AS Lipídio, 
-        '                        calcio AS Cálcio, 
-        '                        ferro AS Ferro, 
-        '                        vitC AS VitaminaC
-        '                        FROM InfosAlimentosNutricionais" & Chr(13) & Chr(10)
+            If row.DefaultCellStyle.ForeColor = Color.Red Then
 
-        'If Not String.IsNullOrEmpty(Me.txtCodAlimento.Text) Then
-        '    strSQL &= $"WHERE codAlimento = {Me.txtCodAlimento.Text}"
-        'End If
+                Dim ProteinaGramas As Double
+                Dim ProteinaKcal As Double
 
-        'conexaoPadrao.FillDataGridView(strSQL, dtgMedidasCaseiras, "", "N2", "N1", True, True, False, True)
-        'Me.dtgMedidasCaseiras.Columns("Alimento").ReadOnly = True
-        'Me.dtgMedidasCaseiras.Columns("kcal").ReadOnly = True
-        'Me.dtgMedidasCaseiras.Columns("Proteína").ReadOnly = True
-        'Me.dtgMedidasCaseiras.Columns("Carboidrato").ReadOnly = True
-        'Me.dtgMedidasCaseiras.Columns("Lipídio").ReadOnly = True
-        'Me.dtgMedidasCaseiras.Columns("Cálcio").ReadOnly = True
-        'Me.dtgMedidasCaseiras.Columns("Ferro").ReadOnly = True
-        'Me.dtgMedidasCaseiras.Columns("VitaminaC").ReadOnly = True
+                ProteinaGramas = (row.Cells("qtde").Value * row.Cells("proteina").Value) / (quantidadeSalva)
+                ProteinaKcal = ProteinaGramas * 4
+                row.Cells("proteina").Value = ProteinaGramas.ToString("N2")
 
-    End Sub
+                Dim CarboidratoGramas As Double
+                Dim CarboidratoKcal As Double
 
-    Private Sub btnRecalcular_Click(sender As Object, e As EventArgs)
+                CarboidratoGramas = (row.Cells("qtde").Value * row.Cells("carboidrato").Value) / (quantidadeSalva)
+                CarboidratoKcal = CarboidratoGramas * 4
+                row.Cells("carboidrato").Value = CarboidratoGramas.ToString("N2")
 
-        'For Each row As DataGridViewRow In Me.dtgMedidasCaseiras.Rows
+                Dim LipidioGramas As Double
+                Dim LipidioKcal As Double
 
-        '    If row.DefaultCellStyle.ForeColor = Color.Red Then
+                LipidioGramas = (row.Cells("qtde").Value * row.Cells("lipidio").Value) / (quantidadeSalva)
+                LipidioKcal = LipidioGramas * 9
+                row.Cells("lipidio").Value = LipidioGramas.ToString("N2")
 
-        '        Dim ProteinaGramas As Double
-        '        Dim ProteinaKcal As Double
+                Dim somaTotalCaloria As Double
+                somaTotalCaloria = ProteinaKcal + CarboidratoKcal + LipidioKcal
+                row.Cells("kcal").Value = somaTotalCaloria.ToString("N2")
 
-        '        ProteinaGramas = (row.Cells("Quantidade").Value * row.Cells("Proteína").Value) / (quantidadeSalva)
-        '        ProteinaKcal = ProteinaGramas * 4
-        '        row.Cells("Proteína").Value = ProteinaGramas.ToString("N2")
+                Dim calcio As Double
+                calcio = (row.Cells("calcio").Value * row.Cells("qtde").Value)
+                row.Cells("calcio").Value = calcio.ToString("N2")
 
-        '        Dim CarboidratoGramas As Double
-        '        Dim CarboidratoKcal As Double
+                Dim ferro As Double
+                ferro = (row.Cells("ferro").Value * row.Cells("qtde").Value)
+                row.Cells("ferro").Value = ferro.ToString("N2")
 
-        '        CarboidratoGramas = (row.Cells("Quantidade").Value * row.Cells("Carboidrato").Value) / (quantidadeSalva)
-        '        CarboidratoKcal = CarboidratoGramas * 4
-        '        row.Cells("Carboidrato").Value = CarboidratoGramas.ToString("N2")
+                Dim VitaminaC As Double
+                VitaminaC = (row.Cells("vitC").Value * row.Cells("qtde").Value)
+                row.Cells("vitC").Value = VitaminaC.ToString("N2")
 
-        '        Dim LipidioGramas As Double
-        '        Dim LipidioKcal As Double
+            End If
 
-        '        LipidioGramas = (row.Cells("Quantidade").Value * row.Cells("Lipídio").Value) / (quantidadeSalva)
-        '        LipidioKcal = LipidioGramas * 9
-        '        row.Cells("Lipídio").Value = LipidioGramas.ToString("N2")
+        Next
+        For Each rows As DataGridViewRow In Me.dtgConsultaAlimentos.Rows
 
-        '        Dim somaTotalCaloria As Double
-        '        somaTotalCaloria = ProteinaKcal + CarboidratoKcal + LipidioKcal
-        '        row.Cells("KCal").Value = somaTotalCaloria.ToString("N2")
+            If rows.DefaultCellStyle.ForeColor = Color.Red Then
+                rows.DefaultCellStyle.ForeColor = Color.Green
+            End If
 
-        '        Dim calcio As Double
-        '        calcio = (row.Cells("Cálcio").Value * row.Cells("Quantidade").Value)
-        '        row.Cells("Cálcio").Value = calcio.ToString("N2")
-
-        '        Dim ferro As Double
-        '        ferro = (row.Cells("Ferro").Value * row.Cells("Quantidade").Value)
-        '        row.Cells("Cálcio").Value = ferro.ToString("N2")
-
-        '        Dim VitaminaC As Double
-        '        VitaminaC = (row.Cells("VitaminaC").Value * row.Cells("Quantidade").Value)
-        '        row.Cells("VitaminaC").Value = VitaminaC.ToString("N2")
-
-        '    End If
-
-        'Next
-        'For Each rows As DataGridViewRow In Me.dtgMedidasCaseiras.Rows
-
-        '    If rows.DefaultCellStyle.ForeColor = Color.Red Then
-        '        rows.DefaultCellStyle.ForeColor = Color.Green
-        '    End If
-
-        'Next
+        Next
 
     End Sub
 
-    'Private Sub dtgMedidasCaseiras_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles dtgMedidasCaseiras.CellEndEdit
-    '    If Not verificarHouveAlteracao = Me.dtgMedidasCaseiras.CurrentCell.Value Then
-    '        Me.dtgMedidasCaseiras.CurrentRow.DefaultCellStyle.ForeColor = Color.Red
-    '    End If
-    'End Sub
+    Private Sub btnConsultar_Click_1(sender As Object, e As EventArgs) Handles btnConsultar.Click
 
-    'Private Sub dtgMedidasCaseiras_CellBeginEdit(sender As Object, e As DataGridViewCellCancelEventArgs) Handles dtgMedidasCaseiras.CellBeginEdit
-    '    quantidadeSalva = Me.dtgMedidasCaseiras.CurrentRow.Cells("Quantidade").Value
-    '    verificarHouveAlteracao = Me.dtgMedidasCaseiras.CurrentCell.Value
-    'End Sub
+        If objConexao.State = ConnectionState.Closed Then
+            objConexao.Open()
+        End If
+
+        Dim strSQL As String = $"SELECT Alimento AS Alimento,
+                                qtde AS Quantidade, 
+                                kcal AS KCal, 
+                                proteina AS Proteína, 
+                                carboidrato AS Carboidrato, 
+                                lipidio AS Lipídio, 
+                                calcio AS Cálcio, 
+                                ferro AS Ferro, 
+                                vitC AS VitaminaC
+                                FROM InfosAlimentosNutricionais" & Chr(13) & Chr(10)
+
+        If (Me.txtAlimento.Text) <> "" Then
+            strSQL &= $"WHERE codAlimento LIKE '%{Me.txtAlimento.Text}%'"
+        End If
+
+        Using cmd As New SQLiteCommand(strSQL, objConexao)
+            Using dr As SQLiteDataReader = cmd.ExecuteReader
+                criarColunasGrid()
+                While dr.Read
+
+                    Me.dtgConsultaAlimentos.Rows.Add(dr.Item("Alimento"), dr.Item("Quantidade"), dr.Item("KCal"),
+                                                     dr.Item("Proteína"), dr.Item("Carboidrato"), dr.Item("Lipídio"),
+                                                     dr.Item("Cálcio"), dr.Item("Ferro"), dr.Item("VitaminaC"))
+
+                End While
+
+            End Using
+        End Using
+
+        objConexao.Close()
+
+    End Sub
+
+    Private Sub criarColunasGrid()
+
+        If Me.dtgConsultaAlimentos.Rows.Count = 0 Then
+
+            Me.dtgConsultaAlimentos.Columns.Add("alimento", "Alimento")
+            Me.dtgConsultaAlimentos.Columns.Add("qtde", "Quantidade")
+            Me.dtgConsultaAlimentos.Columns.Add("kcal", "KCal")
+            Me.dtgConsultaAlimentos.Columns.Add("proteina", "Proteína")
+            Me.dtgConsultaAlimentos.Columns.Add("carboidrato", "Carboidrato")
+            Me.dtgConsultaAlimentos.Columns.Add("lipidio", "Lipídio")
+            Me.dtgConsultaAlimentos.Columns.Add("calcio", "Cálcio")
+            Me.dtgConsultaAlimentos.Columns.Add("ferro", "Ferro")
+            Me.dtgConsultaAlimentos.Columns.Add("vitC", "Vitamina C")
+
+        End If
+
+    End Sub
+
+    Private Sub dtgConsultaAlimentos_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles dtgConsultaAlimentos.CellEndEdit
+        If Not verificarHouveAlteracao = Me.dtgConsultaAlimentos.CurrentCell.Value Then
+            Me.dtgConsultaAlimentos.CurrentRow.DefaultCellStyle.ForeColor = Color.Red
+        End If
+    End Sub
+
+    Private Sub dtgConsultaAlimentos_CellBeginEdit(sender As Object, e As DataGridViewCellCancelEventArgs) Handles dtgConsultaAlimentos.CellBeginEdit
+        If e.ColumnIndex > 0 Then
+            quantidadeSalva = Me.dtgConsultaAlimentos.CurrentRow.Cells("qtde").Value
+            verificarHouveAlteracao = Me.dtgConsultaAlimentos.CurrentCell.Value
+        End If
+    End Sub
 End Class

@@ -25,9 +25,6 @@ Partial Class frmCadastroNutricional
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCadastroNutricional))
         Me.SuspendLayout()
 
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Name = "frmCadastroNutricional"
-        Me.Text = "Cadastro Nutricional"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

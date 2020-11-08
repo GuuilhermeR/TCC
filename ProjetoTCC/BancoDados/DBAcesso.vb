@@ -1,58 +1,53 @@
-﻿Imports System.Data.SqlClient
+﻿Imports System.Data.SQLite
 Public Class DBAcesso
+    Private objConexao As SQLiteConnection
+    Dim stringConexao As String = "Data Source=BancoDadosTCC.DB; Version=3;"
 
-    Public Class mdlAcesso
-        Private objConexao As SqlClient.SqlConnection
-        Dim stringConexao As String = "Data Source=BancoDadosTCC.DB;VERSION=3;ReadOnly=False;"
+    Public Sub Conectar()
+        Try
+            objConexao = New SQLiteConnection(stringConexao)
+            objConexao.Open()
 
-        Public Sub Conectar()
-            Try
-                objConexao = New SqlClient.SqlConnection(stringConexao)
-                objConexao.Open()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
-            Catch ex As Exception
-                Throw ex
-            End Try
-        End Sub
-
-        Public Function Conexao()
-            Return stringConexao
-        End Function
+    Public Function Conexao()
+        Return stringConexao
+    End Function
 
 
-        Public Sub Fechar()
-            Try
-                If Not IsNothing(objConexao) Then
-                    If objConexao.State = ConnectionState.Open Then
-                        objConexao.Close()
-                    End If
-
+    Public Sub Fechar()
+        Try
+            If Not IsNothing(objConexao) Then
+                If objConexao.State = ConnectionState.Open Then
+                    objConexao.Close()
                 End If
-            Catch ex As Exception
-                Throw ex
-            End Try
-        End Sub
 
-        Public Function ExecuteQuery(ByVal Command As String) As DataSet
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
-
-            Dim ds As New DataSet
-            Dim objDataAdapter As New SqlClient.SqlDataAdapter
-            Dim objCommand As New SqlClient.SqlCommand
-            Try
-                objCommand = objConexao.CreateCommand
-                objCommand.CommandText = Command
-                objDataAdapter = New SqlClient.SqlDataAdapter(objCommand)
-                objDataAdapter.Fill(ds)
-            Catch ex As Exception
-                Throw ex
-            End Try
-
-            Return ds
-
-        End Function
+    'Public Function ExecuteQuery(ByVal Command As String) As DataSet
 
 
-    End Class
+    '    Dim ds As New DataSet
+    '    Dim objDataAdapter As New SqlClient.SqlDataAdapter
+    '    Dim objCommand As New SqlClient.SqlCommand
+    '    Try
+    '        objCommand = objConexao.CreateCommand
+    '        objCommand.CommandText = Command
+    '        objDataAdapter = New SqlClient.SqlDataAdapter(objCommand)
+    '        objDataAdapter.Fill(ds)
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+
+    '    Return ds
+
+    'End Function
 
 End Class

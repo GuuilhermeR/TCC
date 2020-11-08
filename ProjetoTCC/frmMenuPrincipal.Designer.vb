@@ -89,7 +89,7 @@ Partial Class frmMenuPrincipal
         Me.btnConsultarAlimentos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnConsultarAlimentos.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnConsultarAlimentos.ForeColor = System.Drawing.Color.Black
-        Me.btnConsultarAlimentos.Location = New System.Drawing.Point(12, 283)
+        Me.btnConsultarAlimentos.Location = New System.Drawing.Point(12, 236)
         Me.btnConsultarAlimentos.Name = "btnConsultarAlimentos"
         Me.btnConsultarAlimentos.Size = New System.Drawing.Size(208, 41)
         Me.btnConsultarAlimentos.TabIndex = 3
@@ -117,7 +117,7 @@ Partial Class frmMenuPrincipal
         Me.btnCadastroCardapio.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCadastroCardapio.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCadastroCardapio.ForeColor = System.Drawing.Color.Black
-        Me.btnCadastroCardapio.Location = New System.Drawing.Point(12, 236)
+        Me.btnCadastroCardapio.Location = New System.Drawing.Point(12, 283)
         Me.btnCadastroCardapio.Name = "btnCadastroCardapio"
         Me.btnCadastroCardapio.Size = New System.Drawing.Size(208, 41)
         Me.btnCadastroCardapio.TabIndex = 4

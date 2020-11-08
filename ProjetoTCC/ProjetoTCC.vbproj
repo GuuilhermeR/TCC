@@ -173,6 +173,7 @@
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="iconTCC-removebg-preview %281%29.ico" />
+    <None Include="Resources\calculadora.png" />
     <None Include="Resources\iconTCC-removebg-preview %281%29 - Copia.png" />
     <None Include="Resources\kisspng-computer-icons-meal-food-meal-icon-5b3cb405517002.9542126315307049013336-removebg-preview.png" />
     <None Include="Resources\tools %283%29.png" />
@@ -193,6 +194,9 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DAO\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

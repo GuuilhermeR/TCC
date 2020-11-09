@@ -40,7 +40,7 @@ Partial Class frmMenuPrincipal
         '
         Me.Panel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Panel1.BackColor = System.Drawing.Color.Red
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.Panel1.Controls.Add(Me.btnConfig)
         Me.Panel1.Controls.Add(Me.btnCadastrarPaciente)
         Me.Panel1.Controls.Add(Me.btnConsultarAlimentos)
@@ -55,7 +55,7 @@ Partial Class frmMenuPrincipal
         '
         'btnConfig
         '
-        Me.btnConfig.BackColor = System.Drawing.Color.Red
+        Me.btnConfig.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.btnConfig.FlatAppearance.BorderSize = 0
         Me.btnConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnConfig.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -70,7 +70,7 @@ Partial Class frmMenuPrincipal
         '
         'btnCadastrarPaciente
         '
-        Me.btnCadastrarPaciente.BackColor = System.Drawing.Color.Red
+        Me.btnCadastrarPaciente.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.btnCadastrarPaciente.FlatAppearance.BorderSize = 0
         Me.btnCadastrarPaciente.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCadastrarPaciente.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -84,7 +84,7 @@ Partial Class frmMenuPrincipal
         '
         'btnConsultarAlimentos
         '
-        Me.btnConsultarAlimentos.BackColor = System.Drawing.Color.Red
+        Me.btnConsultarAlimentos.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.btnConsultarAlimentos.FlatAppearance.BorderSize = 0
         Me.btnConsultarAlimentos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnConsultarAlimentos.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -98,7 +98,7 @@ Partial Class frmMenuPrincipal
         '
         'btnCadastrarAlimento
         '
-        Me.btnCadastrarAlimento.BackColor = System.Drawing.Color.Red
+        Me.btnCadastrarAlimento.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.btnCadastrarAlimento.FlatAppearance.BorderSize = 0
         Me.btnCadastrarAlimento.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCadastrarAlimento.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -112,7 +112,7 @@ Partial Class frmMenuPrincipal
         '
         'btnCadastroCardapio
         '
-        Me.btnCadastroCardapio.BackColor = System.Drawing.Color.Red
+        Me.btnCadastroCardapio.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.btnCadastroCardapio.FlatAppearance.BorderSize = 0
         Me.btnCadastroCardapio.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCadastroCardapio.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))

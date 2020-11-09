@@ -8,8 +8,8 @@
     End Sub
 
     Private Sub btnCadastrarAlimento_Click(sender As Object, e As EventArgs) Handles btnCadastrarAlimento.Click
-        Using frmCadastroNutricional As New frmCadastroNutricional
-            frmCadastroNutricional.ShowDialog()
+        Using frmCadastroAlimento As New frmCadastroAlimento
+            frmCadastroAlimento.ShowDialog()
         End Using
     End Sub
 

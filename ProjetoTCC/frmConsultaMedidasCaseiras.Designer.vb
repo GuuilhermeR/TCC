@@ -26,8 +26,9 @@ Partial Class frmConsultaMedidasCaseiras
         Me.dtgConsultaAlimentos = New System.Windows.Forms.DataGridView()
         Me.lblAlimento = New System.Windows.Forms.Label()
         Me.txtAlimento = New System.Windows.Forms.TextBox()
-        Me.btnConsultar = New System.Windows.Forms.Button()
         Me.btnRecalcular = New System.Windows.Forms.Button()
+        Me.btnProcurarAlimento = New System.Windows.Forms.Button()
+        Me.btnConsultar = New System.Windows.Forms.Button()
         CType(Me.dtgConsultaAlimentos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -57,27 +58,39 @@ Partial Class frmConsultaMedidasCaseiras
         Me.txtAlimento.Size = New System.Drawing.Size(262, 20)
         Me.txtAlimento.TabIndex = 3
         '
-        'btnConsultar
-        '
-        Me.btnConsultar.Location = New System.Drawing.Point(764, 106)
-        Me.btnConsultar.Name = "btnConsultar"
-        Me.btnConsultar.Size = New System.Drawing.Size(86, 31)
-        Me.btnConsultar.TabIndex = 4
-        Me.btnConsultar.Text = "Consultar"
-        Me.btnConsultar.UseVisualStyleBackColor = True
-        '
         'btnRecalcular
         '
-        Me.btnRecalcular.Location = New System.Drawing.Point(764, 480)
+        Me.btnRecalcular.Location = New System.Drawing.Point(746, 480)
         Me.btnRecalcular.Name = "btnRecalcular"
-        Me.btnRecalcular.Size = New System.Drawing.Size(86, 31)
+        Me.btnRecalcular.Size = New System.Drawing.Size(104, 31)
         Me.btnRecalcular.TabIndex = 1
         Me.btnRecalcular.Text = "Recalcular"
         Me.btnRecalcular.UseVisualStyleBackColor = True
         '
+        'btnProcurarAlimento
+        '
+        Me.btnProcurarAlimento.Image = Global.ProjetoTCC.My.Resources.Resources.consultar
+        Me.btnProcurarAlimento.Location = New System.Drawing.Point(336, 15)
+        Me.btnProcurarAlimento.Name = "btnProcurarAlimento"
+        Me.btnProcurarAlimento.Size = New System.Drawing.Size(30, 23)
+        Me.btnProcurarAlimento.TabIndex = 25
+        Me.btnProcurarAlimento.UseVisualStyleBackColor = True
+        '
+        'btnConsultar
+        '
+        Me.btnConsultar.Image = Global.ProjetoTCC.My.Resources.Resources.consultar1
+        Me.btnConsultar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnConsultar.Location = New System.Drawing.Point(746, 106)
+        Me.btnConsultar.Name = "btnConsultar"
+        Me.btnConsultar.Size = New System.Drawing.Size(104, 31)
+        Me.btnConsultar.TabIndex = 4
+        Me.btnConsultar.Text = "Consultar"
+        Me.btnConsultar.UseVisualStyleBackColor = True
+        '
         'frmConsultaMedidasCaseiras
         '
         Me.ClientSize = New System.Drawing.Size(862, 523)
+        Me.Controls.Add(Me.btnProcurarAlimento)
         Me.Controls.Add(Me.btnConsultar)
         Me.Controls.Add(Me.txtAlimento)
         Me.Controls.Add(Me.lblAlimento)
@@ -97,4 +110,5 @@ Partial Class frmConsultaMedidasCaseiras
     Friend WithEvents lblAlimento As Label
     Friend WithEvents txtAlimento As TextBox
     Friend WithEvents btnConsultar As Button
+    Friend WithEvents btnProcurarAlimento As Button
 End Class

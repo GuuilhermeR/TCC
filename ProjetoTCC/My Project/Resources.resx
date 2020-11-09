@@ -118,19 +118,31 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="mvtSaveGreen-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mvtSaveGreen-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="consultar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\consultar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="5-Icon-Branco" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\5-Icon-Branco.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconTCC-removebg-preview (1) - Copia" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\iconTCC-removebg-preview (1) - Copia.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tools (3)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tools (3).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="kisspng-computer-icons-meal-food-meal-icon-5b3cb405517002.9542126315307049013336-removebg-preview" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\kisspng-computer-icons-meal-food-meal-icon-5b3cb405517002.9542126315307049013336-removebg-preview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="tools (3)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tools (3).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="calculadora" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\calculadora.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DeleteRed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DeleteRed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconTCC-removebg-preview (1) - Copia" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\iconTCC-removebg-preview (1) - Copia.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="consultar1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\consultar1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -99,10 +99,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BancoDados\DBAcesso.vb" />
-    <Compile Include="frmCadastroNutricional.Designer.vb">
-      <DependentUpon>frmCadastroNutricional.vb</DependentUpon>
+    <Compile Include="frmCadastroAlimento.Designer.vb">
+      <DependentUpon>frmCadastroAlimento.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmCadastroNutricional.vb" />
+    <Compile Include="frmCadastroAlimento.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmConfiguracoes.Designer.vb">
       <DependentUpon>frmConfiguracoes.vb</DependentUpon>
     </Compile>
@@ -144,8 +146,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="frmCadastroNutricional.resx">
-      <DependentUpon>frmCadastroNutricional.vb</DependentUpon>
+    <EmbeddedResource Include="frmCadastroAlimento.resx">
+      <DependentUpon>frmCadastroAlimento.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmConfiguracoes.resx">
       <DependentUpon>frmConfiguracoes.vb</DependentUpon>
@@ -173,6 +175,10 @@
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="iconTCC-removebg-preview %281%29.ico" />
+    <None Include="Resources\consultar1.png" />
+    <None Include="Resources\consultar.png" />
+    <None Include="Resources\DeleteRed.png" />
+    <None Include="Resources\mvtSaveGreen-16.png" />
     <None Include="Resources\calculadora.png" />
     <None Include="Resources\iconTCC-removebg-preview %281%29 - Copia.png" />
     <None Include="Resources\kisspng-computer-icons-meal-food-meal-icon-5b3cb405517002.9542126315307049013336-removebg-preview.png" />

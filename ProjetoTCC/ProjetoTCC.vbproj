@@ -117,6 +117,12 @@
     <Compile Include="frmConsultaMedidasCaseiras.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmConsultarAlimentosExistentes.Designer.vb">
+      <DependentUpon>frmConsultarAlimentosExistentes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmConsultarAlimentosExistentes.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmMenuPrincipal.Designer.vb">
       <DependentUpon>frmMenuPrincipal.vb</DependentUpon>
     </Compile>
@@ -154,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmConsultaMedidasCaseiras.resx">
       <DependentUpon>frmConsultaMedidasCaseiras.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmConsultarAlimentosExistentes.resx">
+      <DependentUpon>frmConsultarAlimentosExistentes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMenuPrincipal.resx">
       <DependentUpon>frmMenuPrincipal.vb</DependentUpon>

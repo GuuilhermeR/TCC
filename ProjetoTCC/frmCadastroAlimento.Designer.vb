@@ -27,23 +27,23 @@ Partial Class frmCadastroAlimento
         Me.txtCodAlimento = New System.Windows.Forms.TextBox()
         Me.txtAlimento = New System.Windows.Forms.TextBox()
         Me.lblAlimento = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.txtMedidaCaseira = New System.Windows.Forms.TextBox()
         Me.lblMedidaCaseira = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.txtKCal = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.txtQtde = New System.Windows.Forms.TextBox()
         Me.lblQuantidade = New System.Windows.Forms.Label()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.txtProteina = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
+        Me.txtLipidio = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.TextBox6 = New System.Windows.Forms.TextBox()
+        Me.txtCarboidrato = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.TextBox7 = New System.Windows.Forms.TextBox()
+        Me.txtCalcio = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.TextBox8 = New System.Windows.Forms.TextBox()
+        Me.txtVitC = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.TextBox9 = New System.Windows.Forms.TextBox()
+        Me.txtFerro = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.btnExcluir = New System.Windows.Forms.Button()
         Me.btnSalvar = New System.Windows.Forms.Button()
@@ -82,12 +82,12 @@ Partial Class frmCadastroAlimento
         Me.lblAlimento.TabIndex = 3
         Me.lblAlimento.Text = "Alimento:"
         '
-        'TextBox1
+        'txtMedidaCaseira
         '
-        Me.TextBox1.Location = New System.Drawing.Point(108, 196)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(79, 20)
-        Me.TextBox1.TabIndex = 6
+        Me.txtMedidaCaseira.Location = New System.Drawing.Point(108, 196)
+        Me.txtMedidaCaseira.Name = "txtMedidaCaseira"
+        Me.txtMedidaCaseira.Size = New System.Drawing.Size(79, 20)
+        Me.txtMedidaCaseira.TabIndex = 6
         '
         'lblMedidaCaseira
         '
@@ -98,12 +98,12 @@ Partial Class frmCadastroAlimento
         Me.lblMedidaCaseira.TabIndex = 5
         Me.lblMedidaCaseira.Text = "Medida Caseira:"
         '
-        'TextBox2
+        'txtKCal
         '
-        Me.TextBox2.Location = New System.Drawing.Point(108, 232)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(79, 20)
-        Me.TextBox2.TabIndex = 8
+        Me.txtKCal.Location = New System.Drawing.Point(108, 232)
+        Me.txtKCal.Name = "txtKCal"
+        Me.txtKCal.Size = New System.Drawing.Size(79, 20)
+        Me.txtKCal.TabIndex = 8
         '
         'Label2
         '
@@ -114,12 +114,12 @@ Partial Class frmCadastroAlimento
         Me.Label2.TabIndex = 7
         Me.Label2.Text = "KCal:"
         '
-        'TextBox3
+        'txtQtde
         '
-        Me.TextBox3.Location = New System.Drawing.Point(108, 161)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(79, 20)
-        Me.TextBox3.TabIndex = 10
+        Me.txtQtde.Location = New System.Drawing.Point(108, 161)
+        Me.txtQtde.Name = "txtQtde"
+        Me.txtQtde.Size = New System.Drawing.Size(79, 20)
+        Me.txtQtde.TabIndex = 10
         '
         'lblQuantidade
         '
@@ -130,12 +130,12 @@ Partial Class frmCadastroAlimento
         Me.lblQuantidade.TabIndex = 9
         Me.lblQuantidade.Text = "Quantidade"
         '
-        'TextBox4
+        'txtProteina
         '
-        Me.TextBox4.Location = New System.Drawing.Point(424, 116)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(79, 20)
-        Me.TextBox4.TabIndex = 16
+        Me.txtProteina.Location = New System.Drawing.Point(424, 116)
+        Me.txtProteina.Name = "txtProteina"
+        Me.txtProteina.Size = New System.Drawing.Size(79, 20)
+        Me.txtProteina.TabIndex = 16
         '
         'Label4
         '
@@ -146,12 +146,12 @@ Partial Class frmCadastroAlimento
         Me.Label4.TabIndex = 15
         Me.Label4.Text = "Proteína (g):"
         '
-        'TextBox5
+        'txtLipidio
         '
-        Me.TextBox5.Location = New System.Drawing.Point(424, 187)
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(79, 20)
-        Me.TextBox5.TabIndex = 14
+        Me.txtLipidio.Location = New System.Drawing.Point(424, 187)
+        Me.txtLipidio.Name = "txtLipidio"
+        Me.txtLipidio.Size = New System.Drawing.Size(79, 20)
+        Me.txtLipidio.TabIndex = 14
         '
         'Label5
         '
@@ -162,12 +162,12 @@ Partial Class frmCadastroAlimento
         Me.Label5.TabIndex = 13
         Me.Label5.Text = "Lipídio (g):"
         '
-        'TextBox6
+        'txtCarboidrato
         '
-        Me.TextBox6.Location = New System.Drawing.Point(424, 151)
-        Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.Size = New System.Drawing.Size(79, 20)
-        Me.TextBox6.TabIndex = 12
+        Me.txtCarboidrato.Location = New System.Drawing.Point(424, 151)
+        Me.txtCarboidrato.Name = "txtCarboidrato"
+        Me.txtCarboidrato.Size = New System.Drawing.Size(79, 20)
+        Me.txtCarboidrato.TabIndex = 12
         '
         'Label6
         '
@@ -178,12 +178,12 @@ Partial Class frmCadastroAlimento
         Me.Label6.TabIndex = 11
         Me.Label6.Text = "Carboidrato (g):"
         '
-        'TextBox7
+        'txtCalcio
         '
-        Me.TextBox7.Location = New System.Drawing.Point(424, 219)
-        Me.TextBox7.Name = "TextBox7"
-        Me.TextBox7.Size = New System.Drawing.Size(79, 20)
-        Me.TextBox7.TabIndex = 22
+        Me.txtCalcio.Location = New System.Drawing.Point(424, 219)
+        Me.txtCalcio.Name = "txtCalcio"
+        Me.txtCalcio.Size = New System.Drawing.Size(79, 20)
+        Me.txtCalcio.TabIndex = 22
         '
         'Label7
         '
@@ -194,12 +194,12 @@ Partial Class frmCadastroAlimento
         Me.Label7.TabIndex = 21
         Me.Label7.Text = "Cálcio (mg):"
         '
-        'TextBox8
+        'txtVitC
         '
-        Me.TextBox8.Location = New System.Drawing.Point(424, 290)
-        Me.TextBox8.Name = "TextBox8"
-        Me.TextBox8.Size = New System.Drawing.Size(79, 20)
-        Me.TextBox8.TabIndex = 20
+        Me.txtVitC.Location = New System.Drawing.Point(424, 290)
+        Me.txtVitC.Name = "txtVitC"
+        Me.txtVitC.Size = New System.Drawing.Size(79, 20)
+        Me.txtVitC.TabIndex = 20
         '
         'Label8
         '
@@ -210,12 +210,12 @@ Partial Class frmCadastroAlimento
         Me.Label8.TabIndex = 19
         Me.Label8.Text = "Vitamina C:"
         '
-        'TextBox9
+        'txtFerro
         '
-        Me.TextBox9.Location = New System.Drawing.Point(424, 254)
-        Me.TextBox9.Name = "TextBox9"
-        Me.TextBox9.Size = New System.Drawing.Size(79, 20)
-        Me.TextBox9.TabIndex = 18
+        Me.txtFerro.Location = New System.Drawing.Point(424, 254)
+        Me.txtFerro.Name = "txtFerro"
+        Me.txtFerro.Size = New System.Drawing.Size(79, 20)
+        Me.txtFerro.TabIndex = 18
         '
         'Label9
         '
@@ -266,23 +266,23 @@ Partial Class frmCadastroAlimento
         Me.ClientSize = New System.Drawing.Size(586, 393)
         Me.Controls.Add(Me.btnExcluir)
         Me.Controls.Add(Me.btnSalvar)
-        Me.Controls.Add(Me.TextBox7)
+        Me.Controls.Add(Me.txtCalcio)
         Me.Controls.Add(Me.Label7)
-        Me.Controls.Add(Me.TextBox8)
+        Me.Controls.Add(Me.txtVitC)
         Me.Controls.Add(Me.Label8)
-        Me.Controls.Add(Me.TextBox9)
+        Me.Controls.Add(Me.txtFerro)
         Me.Controls.Add(Me.Label9)
-        Me.Controls.Add(Me.TextBox4)
+        Me.Controls.Add(Me.txtProteina)
         Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.TextBox5)
+        Me.Controls.Add(Me.txtLipidio)
         Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.TextBox6)
+        Me.Controls.Add(Me.txtCarboidrato)
         Me.Controls.Add(Me.Label6)
-        Me.Controls.Add(Me.TextBox3)
+        Me.Controls.Add(Me.txtQtde)
         Me.Controls.Add(Me.lblQuantidade)
-        Me.Controls.Add(Me.TextBox2)
+        Me.Controls.Add(Me.txtKCal)
         Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.txtMedidaCaseira)
         Me.Controls.Add(Me.lblMedidaCaseira)
         Me.Controls.Add(Me.txtAlimento)
         Me.Controls.Add(Me.lblAlimento)
@@ -302,23 +302,23 @@ Partial Class frmCadastroAlimento
     Friend WithEvents btnProcurarAlimento As Button
     Friend WithEvents txtAlimento As TextBox
     Friend WithEvents lblAlimento As Label
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents txtMedidaCaseira As TextBox
     Friend WithEvents lblMedidaCaseira As Label
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents txtKCal As TextBox
     Friend WithEvents Label2 As Label
-    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents txtQtde As TextBox
     Friend WithEvents lblQuantidade As Label
-    Friend WithEvents TextBox4 As TextBox
+    Friend WithEvents txtProteina As TextBox
     Friend WithEvents Label4 As Label
-    Friend WithEvents TextBox5 As TextBox
+    Friend WithEvents txtLipidio As TextBox
     Friend WithEvents Label5 As Label
-    Friend WithEvents TextBox6 As TextBox
+    Friend WithEvents txtCarboidrato As TextBox
     Friend WithEvents Label6 As Label
-    Friend WithEvents TextBox7 As TextBox
+    Friend WithEvents txtCalcio As TextBox
     Friend WithEvents Label7 As Label
-    Friend WithEvents TextBox8 As TextBox
+    Friend WithEvents txtVitC As TextBox
     Friend WithEvents Label8 As Label
-    Friend WithEvents TextBox9 As TextBox
+    Friend WithEvents txtFerro As TextBox
     Friend WithEvents Label9 As Label
     Friend WithEvents btnSalvar As Button
     Friend WithEvents btnExcluir As Button

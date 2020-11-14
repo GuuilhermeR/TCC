@@ -2,21 +2,31 @@
 
 
     Private Sub btnConfiguracao_Click(sender As Object, e As EventArgs)
-        Using frmConfiguracoes As New frmConfiguracoes
-            frmConfiguracoes.ShowDialog()
-        End Using
+        abrirFormFilho(frmConfiguracoes)
     End Sub
 
     Private Sub btnCadastrarAlimento_Click(sender As Object, e As EventArgs) Handles btnCadastrarAlimento.Click
-        Using frmCadastroAlimento As New frmCadastroAlimento
-            frmCadastroAlimento.ShowDialog()
-        End Using
+        abrirFormFilho(frmCadastroAlimento)
+    End Sub
+
+    Private currentForm As Form = Nothing
+
+    Private Sub abrirFormFilho(childForm As Form)
+
+        If currentForm IsNot Nothing Then currentForm.Close()
+        currentForm = childForm
+        childForm.TopLevel = False
+        childForm.FormBorderStyle = FormBorderStyle.None
+        childForm.Dock = DockStyle.Fill
+        PainelFilho.Controls.Add(childForm)
+        PainelFilho.Tag = childForm
+        childForm.BringToFront()
+        childForm.Show()
+
     End Sub
 
     Private Sub btnConsultarAlimentos_Click(sender As Object, e As EventArgs) Handles btnConsultarAlimentos.Click
-        Using frmConsultaMedidasCaseiras As New frmConsultaMedidasCaseiras
-            frmConsultaMedidasCaseiras.ShowDialog()
-        End Using
+        abrirFormFilho(frmConfiguracoes)
     End Sub
 
     Private Sub frmMenuPrincipal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -35,4 +45,7 @@
         'Me.MaximizedBounds = Screen.PrimaryScreen.WorkingArea
     End Sub
 
+    Private Sub PainelFilho_Paint(sender As Object, e As PaintEventArgs) Handles PainelFilho.Paint
+
+    End Sub
 End Class

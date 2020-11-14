@@ -31,6 +31,7 @@ Partial Class frmMenuPrincipal
         Me.btnCadastroCardapio = New System.Windows.Forms.Button()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.PainelFilho = New System.Windows.Forms.Panel()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -40,7 +41,7 @@ Partial Class frmMenuPrincipal
         '
         Me.Panel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Panel1.BackColor = System.Drawing.Color.Black
+        Me.Panel1.BackColor = System.Drawing.Color.SpringGreen
         Me.Panel1.Controls.Add(Me.btnConfig)
         Me.Panel1.Controls.Add(Me.btnCadastrarPaciente)
         Me.Panel1.Controls.Add(Me.btnConsultarAlimentos)
@@ -55,7 +56,7 @@ Partial Class frmMenuPrincipal
         '
         'btnConfig
         '
-        Me.btnConfig.BackColor = System.Drawing.Color.Crimson
+        Me.btnConfig.BackColor = System.Drawing.Color.MediumSeaGreen
         Me.btnConfig.FlatAppearance.BorderSize = 0
         Me.btnConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnConfig.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -70,7 +71,7 @@ Partial Class frmMenuPrincipal
         '
         'btnCadastrarPaciente
         '
-        Me.btnCadastrarPaciente.BackColor = System.Drawing.Color.Crimson
+        Me.btnCadastrarPaciente.BackColor = System.Drawing.Color.MediumSeaGreen
         Me.btnCadastrarPaciente.FlatAppearance.BorderSize = 0
         Me.btnCadastrarPaciente.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCadastrarPaciente.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -84,7 +85,7 @@ Partial Class frmMenuPrincipal
         '
         'btnConsultarAlimentos
         '
-        Me.btnConsultarAlimentos.BackColor = System.Drawing.Color.Crimson
+        Me.btnConsultarAlimentos.BackColor = System.Drawing.Color.MediumSeaGreen
         Me.btnConsultarAlimentos.FlatAppearance.BorderSize = 0
         Me.btnConsultarAlimentos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnConsultarAlimentos.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -98,7 +99,7 @@ Partial Class frmMenuPrincipal
         '
         'btnCadastrarAlimento
         '
-        Me.btnCadastrarAlimento.BackColor = System.Drawing.Color.Crimson
+        Me.btnCadastrarAlimento.BackColor = System.Drawing.Color.MediumSeaGreen
         Me.btnCadastrarAlimento.FlatAppearance.BorderSize = 0
         Me.btnCadastrarAlimento.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCadastrarAlimento.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -112,7 +113,7 @@ Partial Class frmMenuPrincipal
         '
         'btnCadastroCardapio
         '
-        Me.btnCadastroCardapio.BackColor = System.Drawing.Color.Crimson
+        Me.btnCadastroCardapio.BackColor = System.Drawing.Color.MediumSeaGreen
         Me.btnCadastroCardapio.FlatAppearance.BorderSize = 0
         Me.btnCadastroCardapio.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCadastroCardapio.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -138,9 +139,16 @@ Partial Class frmMenuPrincipal
         '
         Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(231, 136)
+        Me.PictureBox1.Size = New System.Drawing.Size(234, 136)
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
+        '
+        'PainelFilho
+        '
+        Me.PainelFilho.Location = New System.Drawing.Point(240, 0)
+        Me.PainelFilho.Name = "PainelFilho"
+        Me.PainelFilho.Size = New System.Drawing.Size(619, 544)
+        Me.PainelFilho.TabIndex = 6
         '
         'frmMenuPrincipal
         '
@@ -148,6 +156,7 @@ Partial Class frmMenuPrincipal
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(856, 544)
+        Me.Controls.Add(Me.PainelFilho)
         Me.Controls.Add(Me.Panel1)
         Me.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -162,10 +171,11 @@ Partial Class frmMenuPrincipal
 
     Friend WithEvents Panel1 As Panel
     Friend WithEvents PictureBox2 As PictureBox
-    Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents btnCadastrarAlimento As Button
     Friend WithEvents btnConsultarAlimentos As Button
     Friend WithEvents btnCadastrarPaciente As Button
     Friend WithEvents btnCadastroCardapio As Button
     Friend WithEvents btnConfig As Button
+    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents PainelFilho As Panel
 End Class

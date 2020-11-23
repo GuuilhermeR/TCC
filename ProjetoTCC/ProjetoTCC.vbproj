@@ -99,10 +99,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BancoDados\DBAcesso.vb" />
-    <Compile Include="Form1.designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="frmMenuNovo.designer.vb">
+      <DependentUpon>frmMenuNovo.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form1.vb">
+    <Compile Include="frmMenuNovo.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmCadastroAlimento.Designer.vb">
@@ -158,8 +158,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <EmbeddedResource Include="frmMenuNovo.resx">
+      <DependentUpon>frmMenuNovo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCadastroAlimento.resx">
       <DependentUpon>frmCadastroAlimento.vb</DependentUpon>

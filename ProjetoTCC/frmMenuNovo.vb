@@ -1,4 +1,4 @@
-﻿Public Class Form1
+﻿Public Class frmMenuNovo
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         hideSubmenu()
@@ -8,7 +8,6 @@
 
         PanelMediaSubmenu.Visible = False
         PanelPlaylistSubmenu.Visible = False
-        PanelToolsSubmenu.Visible = False
 
     End Sub
 
@@ -31,17 +30,10 @@
         showSubmenu(PanelPlaylistSubmenu)
     End Sub
 
-    Private Sub btnTools_Click(sender As Object, e As EventArgs) Handles btnTools.Click
-        showSubmenu(PanelToolsSubmenu)
-    End Sub
-
 #Region "Buttons Submenu"
     Private Sub button2_Click(sender As Object, e As EventArgs) Handles btnCadastrarAlimento.Click
+        openChildForm(New frmCadastroAlimento())
 
-        openChildForm(New Form2())
-        '...
-        'your codes
-        '...
         hideSubmenu()
 
     End Sub
@@ -60,7 +52,7 @@
         hideSubmenu()
     End Sub
 
-    Private Sub button5_Click(sender As Object, e As EventArgs) Handles button5.Click
+    Private Sub button5_Click(sender As Object, e As EventArgs)
         '...
         'your codes
         '...
@@ -68,7 +60,7 @@
     End Sub
 
     Private Sub button8_Click(sender As Object, e As EventArgs) Handles button8.Click
-        openChildForm(New Form3())
+        '  openChildForm(New Form3())
         '...
         'your codes
         '...
@@ -89,28 +81,28 @@
         hideSubmenu()
     End Sub
 
-    Private Sub button1_Click(sender As Object, e As EventArgs) Handles button1.Click
+    Private Sub button1_Click(sender As Object, e As EventArgs)
         '...
         'your codes
         '...
         hideSubmenu()
     End Sub
 
-    Private Sub button13_Click(sender As Object, e As EventArgs) Handles button13.Click
+    Private Sub button13_Click(sender As Object, e As EventArgs)
         '...
         'your codes
         '...
         hideSubmenu()
     End Sub
 
-    Private Sub button12_Click(sender As Object, e As EventArgs) Handles button12.Click
+    Private Sub button12_Click(sender As Object, e As EventArgs)
         '...
         'your codes
         '...
         hideSubmenu()
     End Sub
 
-    Private Sub button10_Click(sender As Object, e As EventArgs) Handles button10.Click
+    Private Sub button10_Click(sender As Object, e As EventArgs)
         '...
         'your codes
         '...
@@ -118,14 +110,14 @@
     End Sub
 #End Region
 
-    Private Sub btnEqualizer_Click(sender As Object, e As EventArgs) Handles btnEqualizer.Click
+    Private Sub btnEqualizer_Click(sender As Object, e As EventArgs)
         '...
         'your codes
         '...
         hideSubmenu()
     End Sub
 
-    Private Sub btnHelp_Click(sender As Object, e As EventArgs) Handles btnHelp.Click
+    Private Sub btnHelp_Click(sender As Object, e As EventArgs)
         '...
         'your codes
         '...
@@ -157,5 +149,11 @@
 
     Private Sub PanelSideMenu_Paint(sender As Object, e As PaintEventArgs) Handles PanelSideMenu.Paint
 
+    End Sub
+
+    Private Sub btnConfigurações_Click(sender As Object, e As EventArgs) Handles btnConfigurações.Click
+        openChildForm(New frmConfiguracoes())
+
+        hideSubmenu()
     End Sub
 End Class

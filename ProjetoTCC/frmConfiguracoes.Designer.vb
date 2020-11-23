@@ -29,6 +29,7 @@ Partial Class frmConfiguracoes
         '
         'btnApagarConta
         '
+        Me.btnApagarConta.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnApagarConta.Location = New System.Drawing.Point(12, 12)
         Me.btnApagarConta.Name = "btnApagarConta"
         Me.btnApagarConta.Size = New System.Drawing.Size(279, 33)
@@ -38,6 +39,7 @@ Partial Class frmConfiguracoes
         '
         'btnApagarDados
         '
+        Me.btnApagarDados.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnApagarDados.Location = New System.Drawing.Point(12, 51)
         Me.btnApagarDados.Name = "btnApagarDados"
         Me.btnApagarDados.Size = New System.Drawing.Size(279, 33)
@@ -55,8 +57,6 @@ Partial Class frmConfiguracoes
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmConfiguracoes"
         Me.Text = "Configurações"
-        Me.Controls.SetChildIndex(Me.btnApagarConta, 0)
-        Me.Controls.SetChildIndex(Me.btnApagarDados, 0)
         Me.ResumeLayout(False)
 
     End Sub

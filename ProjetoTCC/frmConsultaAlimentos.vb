@@ -1,6 +1,6 @@
 ﻿Imports System.Data.SQLite
 Imports System.IO
-Public Class frmConsultaMedidasCaseiras
+Public Class frmConsultaAlimentos
 
     Public objBanco As New DBAcesso
     Public objConexao As New SQLiteConnection((objBanco.Conexao).ToString)

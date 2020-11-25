@@ -33,94 +33,56 @@
 #Region "Buttons Submenu"
     Private Sub button2_Click(sender As Object, e As EventArgs) Handles btnCadastrarAlimento.Click
         openChildForm(New frmCadastroAlimento())
-
         hideSubmenu()
-
     End Sub
 
     Private Sub button3_Click(sender As Object, e As EventArgs) Handles btnCardapio.Click
-        '...
-        'your codes
-        '...
         hideSubmenu()
     End Sub
 
     Private Sub button4_Click(sender As Object, e As EventArgs) Handles btnCadPaciente.Click
-        '...
-        'your codes
-        '...
         hideSubmenu()
     End Sub
 
     Private Sub button5_Click(sender As Object, e As EventArgs)
-        '...
-        'your codes
-        '...
         hideSubmenu()
     End Sub
 
     Private Sub button8_Click(sender As Object, e As EventArgs) Handles button8.Click
-        '  openChildForm(New Form3())
-        '...
-        'your codes
-        '...
+        openChildForm(New frmConsultaAlimentos())
         hideSubmenu()
     End Sub
 
     Private Sub button7_Click(sender As Object, e As EventArgs) Handles btnConsCardápio.Click
-        '...
-        'your codes
-        '...
         hideSubmenu()
     End Sub
 
     Private Sub button6_Click(sender As Object, e As EventArgs) Handles btnPaciente.Click
-        '...
-        'your codes
-        '...
         hideSubmenu()
     End Sub
 
     Private Sub button1_Click(sender As Object, e As EventArgs)
-        '...
-        'your codes
-        '...
         hideSubmenu()
     End Sub
 
     Private Sub button13_Click(sender As Object, e As EventArgs)
-        '...
-        'your codes
-        '...
         hideSubmenu()
     End Sub
 
     Private Sub button12_Click(sender As Object, e As EventArgs)
-        '...
-        'your codes
-        '...
         hideSubmenu()
     End Sub
 
     Private Sub button10_Click(sender As Object, e As EventArgs)
-        '...
-        'your codes
-        '...
         hideSubmenu()
     End Sub
 #End Region
 
     Private Sub btnEqualizer_Click(sender As Object, e As EventArgs)
-        '...
-        'your codes
-        '...
         hideSubmenu()
     End Sub
 
     Private Sub btnHelp_Click(sender As Object, e As EventArgs)
-        '...
-        'your codes
-        '...
         hideSubmenu()
     End Sub
 

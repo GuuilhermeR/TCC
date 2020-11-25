@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class frmConsultaMedidasCaseiras
+Partial Class frmConsultaAlimentos
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,7 +22,7 @@ Partial Class frmConsultaMedidasCaseiras
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmConsultaMedidasCaseiras))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmConsultaAlimentos))
         Me.dtgConsultaAlimentos = New System.Windows.Forms.DataGridView()
         Me.lblAlimento = New System.Windows.Forms.Label()
         Me.txtAlimento = New System.Windows.Forms.TextBox()
@@ -34,7 +34,6 @@ Partial Class frmConsultaMedidasCaseiras
         '
         'dtgConsultaAlimentos
         '
-        Me.dtgConsultaAlimentos.AllowUserToAddRows = False
         Me.dtgConsultaAlimentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dtgConsultaAlimentos.GridColor = System.Drawing.SystemColors.Control
         Me.dtgConsultaAlimentos.Location = New System.Drawing.Point(12, 143)
@@ -87,7 +86,7 @@ Partial Class frmConsultaMedidasCaseiras
         Me.btnConsultar.Text = "Consultar"
         Me.btnConsultar.UseVisualStyleBackColor = True
         '
-        'frmConsultaMedidasCaseiras
+        'frmConsultaAlimentos
         '
         Me.ClientSize = New System.Drawing.Size(862, 523)
         Me.Controls.Add(Me.btnProcurarAlimento)
@@ -97,8 +96,8 @@ Partial Class frmConsultaMedidasCaseiras
         Me.Controls.Add(Me.btnRecalcular)
         Me.Controls.Add(Me.dtgConsultaAlimentos)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Name = "frmConsultaMedidasCaseiras"
-        Me.Text = "Consulta Medias Caseiras"
+        Me.Name = "frmConsultaAlimentos"
+        Me.Text = "Consulta Alimentos"
         CType(Me.dtgConsultaAlimentos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

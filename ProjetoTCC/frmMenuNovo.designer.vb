@@ -29,17 +29,17 @@ Partial Class frmMenuNovo
         Me.pictureBox1 = New System.Windows.Forms.PictureBox()
         Me.btnCadastrar = New System.Windows.Forms.Button()
         Me.PanelMediaSubmenu = New System.Windows.Forms.Panel()
-        Me.btnCadastrarAlimento = New System.Windows.Forms.Button()
-        Me.btnCardapio = New System.Windows.Forms.Button()
         Me.btnCadPaciente = New System.Windows.Forms.Button()
-        Me.btnConsultar = New System.Windows.Forms.Button()
+        Me.btnCardapio = New System.Windows.Forms.Button()
+        Me.btnCadastrarAlimento = New System.Windows.Forms.Button()
         Me.PanelPlaylistSubmenu = New System.Windows.Forms.Panel()
-        Me.button8 = New System.Windows.Forms.Button()
-        Me.btnConsCardápio = New System.Windows.Forms.Button()
         Me.btnPaciente = New System.Windows.Forms.Button()
+        Me.btnConsCardápio = New System.Windows.Forms.Button()
+        Me.button8 = New System.Windows.Forms.Button()
         Me.btnExit = New System.Windows.Forms.Button()
         Me.PanelSideMenu = New System.Windows.Forms.Panel()
         Me.btnConfigurações = New System.Windows.Forms.Button()
+        Me.btnConsultar = New System.Windows.Forms.Button()
         Me.PanelChildForm.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelLogo.SuspendLayout()
@@ -56,15 +56,18 @@ Partial Class frmMenuNovo
         Me.PanelChildForm.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelChildForm.Location = New System.Drawing.Point(250, 0)
         Me.PanelChildForm.Name = "PanelChildForm"
-        Me.PanelChildForm.Size = New System.Drawing.Size(684, 561)
+        Me.PanelChildForm.Size = New System.Drawing.Size(878, 859)
         Me.PanelChildForm.TabIndex = 3
         '
         'PictureBox2
         '
+        Me.PictureBox2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PictureBox2.Image = Global.ProjetoTCC.My.Resources.Resources.iconTCC_removebg_preview__1____Copia
-        Me.PictureBox2.Location = New System.Drawing.Point(155, 137)
+        Me.PictureBox2.Location = New System.Drawing.Point(265, 293)
         Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(384, 307)
+        Me.PictureBox2.Size = New System.Drawing.Size(368, 227)
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox2.TabIndex = 1
         Me.PictureBox2.TabStop = False
@@ -81,7 +84,6 @@ Partial Class frmMenuNovo
         '
         'pictureBox1
         '
-        Me.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pictureBox1.Image = Global.ProjetoTCC.My.Resources.Resources.iconTCC_removebg_preview__1____Copia
         Me.pictureBox1.Location = New System.Drawing.Point(0, 0)
         Me.pictureBox1.Name = "pictureBox1"
@@ -98,12 +100,13 @@ Partial Class frmMenuNovo
         Me.btnCadastrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(32, Byte), Integer))
         Me.btnCadastrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(22, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.btnCadastrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCadastrar.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.btnCadastrar.ForeColor = System.Drawing.Color.Black
         Me.btnCadastrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnCadastrar.Location = New System.Drawing.Point(0, 92)
         Me.btnCadastrar.Name = "btnCadastrar"
         Me.btnCadastrar.Padding = New System.Windows.Forms.Padding(5, 0, 0, 0)
-        Me.btnCadastrar.Size = New System.Drawing.Size(250, 45)
+        Me.btnCadastrar.Size = New System.Drawing.Size(250, 57)
         Me.btnCadastrar.TabIndex = 1
         Me.btnCadastrar.Text = "  Cadastrar"
         Me.btnCadastrar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -117,46 +120,10 @@ Partial Class frmMenuNovo
         Me.PanelMediaSubmenu.Controls.Add(Me.btnCardapio)
         Me.PanelMediaSubmenu.Controls.Add(Me.btnCadastrarAlimento)
         Me.PanelMediaSubmenu.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelMediaSubmenu.Location = New System.Drawing.Point(0, 137)
+        Me.PanelMediaSubmenu.Location = New System.Drawing.Point(0, 149)
         Me.PanelMediaSubmenu.Name = "PanelMediaSubmenu"
         Me.PanelMediaSubmenu.Size = New System.Drawing.Size(250, 165)
         Me.PanelMediaSubmenu.TabIndex = 2
-        '
-        'btnCadastrarAlimento
-        '
-        Me.btnCadastrarAlimento.BackColor = System.Drawing.Color.LimeGreen
-        Me.btnCadastrarAlimento.Dock = System.Windows.Forms.DockStyle.Top
-        Me.btnCadastrarAlimento.FlatAppearance.BorderSize = 0
-        Me.btnCadastrarAlimento.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(46, Byte), Integer))
-        Me.btnCadastrarAlimento.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(46, Byte), Integer))
-        Me.btnCadastrarAlimento.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnCadastrarAlimento.ForeColor = System.Drawing.Color.Black
-        Me.btnCadastrarAlimento.Location = New System.Drawing.Point(0, 0)
-        Me.btnCadastrarAlimento.Name = "btnCadastrarAlimento"
-        Me.btnCadastrarAlimento.Padding = New System.Windows.Forms.Padding(35, 0, 0, 0)
-        Me.btnCadastrarAlimento.Size = New System.Drawing.Size(250, 40)
-        Me.btnCadastrarAlimento.TabIndex = 0
-        Me.btnCadastrarAlimento.Text = "Alimentos"
-        Me.btnCadastrarAlimento.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnCadastrarAlimento.UseVisualStyleBackColor = False
-        '
-        'btnCardapio
-        '
-        Me.btnCardapio.BackColor = System.Drawing.Color.LimeGreen
-        Me.btnCardapio.Dock = System.Windows.Forms.DockStyle.Top
-        Me.btnCardapio.FlatAppearance.BorderSize = 0
-        Me.btnCardapio.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(46, Byte), Integer))
-        Me.btnCardapio.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(46, Byte), Integer))
-        Me.btnCardapio.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnCardapio.ForeColor = System.Drawing.Color.Black
-        Me.btnCardapio.Location = New System.Drawing.Point(0, 40)
-        Me.btnCardapio.Name = "btnCardapio"
-        Me.btnCardapio.Padding = New System.Windows.Forms.Padding(35, 0, 0, 0)
-        Me.btnCardapio.Size = New System.Drawing.Size(250, 40)
-        Me.btnCardapio.TabIndex = 1
-        Me.btnCardapio.Text = "Cardápio"
-        Me.btnCardapio.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnCardapio.UseVisualStyleBackColor = False
         '
         'btnCadPaciente
         '
@@ -176,25 +143,41 @@ Partial Class frmMenuNovo
         Me.btnCadPaciente.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnCadPaciente.UseVisualStyleBackColor = False
         '
-        'btnConsultar
+        'btnCardapio
         '
-        Me.btnConsultar.BackColor = System.Drawing.Color.Green
-        Me.btnConsultar.Dock = System.Windows.Forms.DockStyle.Top
-        Me.btnConsultar.FlatAppearance.BorderSize = 0
-        Me.btnConsultar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(32, Byte), Integer))
-        Me.btnConsultar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(22, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.btnConsultar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnConsultar.ForeColor = System.Drawing.Color.Black
-        Me.btnConsultar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnConsultar.Location = New System.Drawing.Point(0, 302)
-        Me.btnConsultar.Name = "btnConsultar"
-        Me.btnConsultar.Padding = New System.Windows.Forms.Padding(5, 0, 0, 0)
-        Me.btnConsultar.Size = New System.Drawing.Size(250, 45)
-        Me.btnConsultar.TabIndex = 3
-        Me.btnConsultar.Text = "  Consultar"
-        Me.btnConsultar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnConsultar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnConsultar.UseVisualStyleBackColor = False
+        Me.btnCardapio.BackColor = System.Drawing.Color.LimeGreen
+        Me.btnCardapio.Dock = System.Windows.Forms.DockStyle.Top
+        Me.btnCardapio.FlatAppearance.BorderSize = 0
+        Me.btnCardapio.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.btnCardapio.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.btnCardapio.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCardapio.ForeColor = System.Drawing.Color.Black
+        Me.btnCardapio.Location = New System.Drawing.Point(0, 40)
+        Me.btnCardapio.Name = "btnCardapio"
+        Me.btnCardapio.Padding = New System.Windows.Forms.Padding(35, 0, 0, 0)
+        Me.btnCardapio.Size = New System.Drawing.Size(250, 40)
+        Me.btnCardapio.TabIndex = 1
+        Me.btnCardapio.Text = "Cardápio"
+        Me.btnCardapio.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnCardapio.UseVisualStyleBackColor = False
+        '
+        'btnCadastrarAlimento
+        '
+        Me.btnCadastrarAlimento.BackColor = System.Drawing.Color.LimeGreen
+        Me.btnCadastrarAlimento.Dock = System.Windows.Forms.DockStyle.Top
+        Me.btnCadastrarAlimento.FlatAppearance.BorderSize = 0
+        Me.btnCadastrarAlimento.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.btnCadastrarAlimento.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.btnCadastrarAlimento.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCadastrarAlimento.ForeColor = System.Drawing.Color.Black
+        Me.btnCadastrarAlimento.Location = New System.Drawing.Point(0, 0)
+        Me.btnCadastrarAlimento.Name = "btnCadastrarAlimento"
+        Me.btnCadastrarAlimento.Padding = New System.Windows.Forms.Padding(35, 0, 0, 0)
+        Me.btnCadastrarAlimento.Size = New System.Drawing.Size(250, 40)
+        Me.btnCadastrarAlimento.TabIndex = 0
+        Me.btnCadastrarAlimento.Text = "Alimentos"
+        Me.btnCadastrarAlimento.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnCadastrarAlimento.UseVisualStyleBackColor = False
         '
         'PanelPlaylistSubmenu
         '
@@ -203,46 +186,10 @@ Partial Class frmMenuNovo
         Me.PanelPlaylistSubmenu.Controls.Add(Me.btnConsCardápio)
         Me.PanelPlaylistSubmenu.Controls.Add(Me.button8)
         Me.PanelPlaylistSubmenu.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelPlaylistSubmenu.Location = New System.Drawing.Point(0, 347)
+        Me.PanelPlaylistSubmenu.Location = New System.Drawing.Point(0, 379)
         Me.PanelPlaylistSubmenu.Name = "PanelPlaylistSubmenu"
         Me.PanelPlaylistSubmenu.Size = New System.Drawing.Size(250, 119)
         Me.PanelPlaylistSubmenu.TabIndex = 4
-        '
-        'button8
-        '
-        Me.button8.BackColor = System.Drawing.Color.LimeGreen
-        Me.button8.Dock = System.Windows.Forms.DockStyle.Top
-        Me.button8.FlatAppearance.BorderSize = 0
-        Me.button8.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(46, Byte), Integer))
-        Me.button8.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(46, Byte), Integer))
-        Me.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.button8.ForeColor = System.Drawing.Color.Black
-        Me.button8.Location = New System.Drawing.Point(0, 0)
-        Me.button8.Name = "button8"
-        Me.button8.Padding = New System.Windows.Forms.Padding(35, 0, 0, 0)
-        Me.button8.Size = New System.Drawing.Size(250, 40)
-        Me.button8.TabIndex = 0
-        Me.button8.Text = "Alimentos"
-        Me.button8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.button8.UseVisualStyleBackColor = False
-        '
-        'btnConsCardápio
-        '
-        Me.btnConsCardápio.BackColor = System.Drawing.Color.LimeGreen
-        Me.btnConsCardápio.Dock = System.Windows.Forms.DockStyle.Top
-        Me.btnConsCardápio.FlatAppearance.BorderSize = 0
-        Me.btnConsCardápio.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(46, Byte), Integer))
-        Me.btnConsCardápio.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(46, Byte), Integer))
-        Me.btnConsCardápio.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnConsCardápio.ForeColor = System.Drawing.Color.Black
-        Me.btnConsCardápio.Location = New System.Drawing.Point(0, 40)
-        Me.btnConsCardápio.Name = "btnConsCardápio"
-        Me.btnConsCardápio.Padding = New System.Windows.Forms.Padding(35, 0, 0, 0)
-        Me.btnConsCardápio.Size = New System.Drawing.Size(250, 40)
-        Me.btnConsCardápio.TabIndex = 1
-        Me.btnConsCardápio.Text = "Cardápio"
-        Me.btnConsCardápio.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnConsCardápio.UseVisualStyleBackColor = False
         '
         'btnPaciente
         '
@@ -262,6 +209,42 @@ Partial Class frmMenuNovo
         Me.btnPaciente.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnPaciente.UseVisualStyleBackColor = False
         '
+        'btnConsCardápio
+        '
+        Me.btnConsCardápio.BackColor = System.Drawing.Color.LimeGreen
+        Me.btnConsCardápio.Dock = System.Windows.Forms.DockStyle.Top
+        Me.btnConsCardápio.FlatAppearance.BorderSize = 0
+        Me.btnConsCardápio.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.btnConsCardápio.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.btnConsCardápio.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnConsCardápio.ForeColor = System.Drawing.Color.Black
+        Me.btnConsCardápio.Location = New System.Drawing.Point(0, 40)
+        Me.btnConsCardápio.Name = "btnConsCardápio"
+        Me.btnConsCardápio.Padding = New System.Windows.Forms.Padding(35, 0, 0, 0)
+        Me.btnConsCardápio.Size = New System.Drawing.Size(250, 40)
+        Me.btnConsCardápio.TabIndex = 1
+        Me.btnConsCardápio.Text = "Cardápio"
+        Me.btnConsCardápio.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnConsCardápio.UseVisualStyleBackColor = False
+        '
+        'button8
+        '
+        Me.button8.BackColor = System.Drawing.Color.LimeGreen
+        Me.button8.Dock = System.Windows.Forms.DockStyle.Top
+        Me.button8.FlatAppearance.BorderSize = 0
+        Me.button8.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.button8.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.button8.ForeColor = System.Drawing.Color.Black
+        Me.button8.Location = New System.Drawing.Point(0, 0)
+        Me.button8.Name = "button8"
+        Me.button8.Padding = New System.Windows.Forms.Padding(35, 0, 0, 0)
+        Me.button8.Size = New System.Drawing.Size(250, 40)
+        Me.button8.TabIndex = 0
+        Me.button8.Text = "Alimentos"
+        Me.button8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.button8.UseVisualStyleBackColor = False
+        '
         'btnExit
         '
         Me.btnExit.BackColor = System.Drawing.Color.Green
@@ -270,10 +253,11 @@ Partial Class frmMenuNovo
         Me.btnExit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(32, Byte), Integer))
         Me.btnExit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(22, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnExit.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.btnExit.ForeColor = System.Drawing.Color.Black
         Me.btnExit.Image = CType(resources.GetObject("btnExit.Image"), System.Drawing.Image)
         Me.btnExit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnExit.Location = New System.Drawing.Point(0, 516)
+        Me.btnExit.Location = New System.Drawing.Point(0, 814)
         Me.btnExit.Name = "btnExit"
         Me.btnExit.Padding = New System.Windows.Forms.Padding(5, 0, 0, 0)
         Me.btnExit.Size = New System.Drawing.Size(250, 45)
@@ -297,7 +281,7 @@ Partial Class frmMenuNovo
         Me.PanelSideMenu.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelSideMenu.Location = New System.Drawing.Point(0, 0)
         Me.PanelSideMenu.Name = "PanelSideMenu"
-        Me.PanelSideMenu.Size = New System.Drawing.Size(250, 561)
+        Me.PanelSideMenu.Size = New System.Drawing.Size(250, 859)
         Me.PanelSideMenu.TabIndex = 0
         '
         'btnConfigurações
@@ -308,9 +292,10 @@ Partial Class frmMenuNovo
         Me.btnConfigurações.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(32, Byte), Integer))
         Me.btnConfigurações.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(22, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.btnConfigurações.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnConfigurações.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.btnConfigurações.ForeColor = System.Drawing.Color.Black
         Me.btnConfigurações.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnConfigurações.Location = New System.Drawing.Point(0, 471)
+        Me.btnConfigurações.Location = New System.Drawing.Point(0, 769)
         Me.btnConfigurações.Name = "btnConfigurações"
         Me.btnConfigurações.Padding = New System.Windows.Forms.Padding(5, 0, 0, 0)
         Me.btnConfigurações.Size = New System.Drawing.Size(250, 45)
@@ -320,11 +305,32 @@ Partial Class frmMenuNovo
         Me.btnConfigurações.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnConfigurações.UseVisualStyleBackColor = False
         '
+        'btnConsultar
+        '
+        Me.btnConsultar.BackColor = System.Drawing.Color.Green
+        Me.btnConsultar.Dock = System.Windows.Forms.DockStyle.Top
+        Me.btnConsultar.FlatAppearance.BorderSize = 0
+        Me.btnConsultar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(21, Byte), Integer), CType(CType(32, Byte), Integer))
+        Me.btnConsultar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(22, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.btnConsultar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnConsultar.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.btnConsultar.ForeColor = System.Drawing.Color.Black
+        Me.btnConsultar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnConsultar.Location = New System.Drawing.Point(0, 314)
+        Me.btnConsultar.Name = "btnConsultar"
+        Me.btnConsultar.Padding = New System.Windows.Forms.Padding(5, 0, 0, 0)
+        Me.btnConsultar.Size = New System.Drawing.Size(250, 65)
+        Me.btnConsultar.TabIndex = 3
+        Me.btnConsultar.Text = "  Consultar"
+        Me.btnConsultar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnConsultar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnConsultar.UseVisualStyleBackColor = False
+        '
         'frmMenuNovo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(934, 561)
+        Me.ClientSize = New System.Drawing.Size(1128, 859)
         Me.Controls.Add(Me.PanelChildForm)
         Me.Controls.Add(Me.PanelSideMenu)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -353,7 +359,6 @@ Partial Class frmMenuNovo
     Private WithEvents btnCadPaciente As Button
     Private WithEvents btnCardapio As Button
     Private WithEvents btnCadastrarAlimento As Button
-    Private WithEvents btnConsultar As Button
     Private WithEvents PanelPlaylistSubmenu As Panel
     Private WithEvents btnPaciente As Button
     Private WithEvents btnConsCardápio As Button
@@ -361,4 +366,5 @@ Partial Class frmMenuNovo
     Private WithEvents btnExit As Button
     Private WithEvents PanelSideMenu As Panel
     Private WithEvents btnConfigurações As Button
+    Private WithEvents btnConsultar As Button
 End Class

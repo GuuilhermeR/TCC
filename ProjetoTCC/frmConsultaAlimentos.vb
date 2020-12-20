@@ -1,5 +1,6 @@
 ﻿Imports System.Data.SQLite
 Imports System.IO
+
 Public Class frmConsultaAlimentos
 
     Public objBanco As New DBAcesso

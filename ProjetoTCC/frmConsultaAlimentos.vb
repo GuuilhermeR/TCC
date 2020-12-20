@@ -9,7 +9,7 @@ Public Class frmConsultaAlimentos
     Dim verificarHouveAlteracao As Double
 
     Private Sub frmConsultaMedidasCaseiras_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        'teste
     End Sub
 
     Private Sub btnRecalcular_Click_1(sender As Object, e As EventArgs) Handles btnRecalcular.Click

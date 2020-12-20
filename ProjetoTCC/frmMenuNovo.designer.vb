@@ -56,18 +56,16 @@ Partial Class frmMenuNovo
         Me.PanelChildForm.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelChildForm.Location = New System.Drawing.Point(250, 0)
         Me.PanelChildForm.Name = "PanelChildForm"
-        Me.PanelChildForm.Size = New System.Drawing.Size(878, 859)
+        Me.PanelChildForm.Size = New System.Drawing.Size(878, 749)
         Me.PanelChildForm.TabIndex = 3
         '
         'PictureBox2
         '
-        Me.PictureBox2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PictureBox2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PictureBox2.Image = Global.ProjetoTCC.My.Resources.Resources.iconTCC_removebg_preview__1____Copia
-        Me.PictureBox2.Location = New System.Drawing.Point(265, 293)
+        Me.PictureBox2.Location = New System.Drawing.Point(0, 0)
         Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(368, 227)
+        Me.PictureBox2.Size = New System.Drawing.Size(878, 749)
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox2.TabIndex = 1
         Me.PictureBox2.TabStop = False
@@ -257,7 +255,7 @@ Partial Class frmMenuNovo
         Me.btnExit.ForeColor = System.Drawing.Color.Black
         Me.btnExit.Image = CType(resources.GetObject("btnExit.Image"), System.Drawing.Image)
         Me.btnExit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnExit.Location = New System.Drawing.Point(0, 814)
+        Me.btnExit.Location = New System.Drawing.Point(0, 704)
         Me.btnExit.Name = "btnExit"
         Me.btnExit.Padding = New System.Windows.Forms.Padding(5, 0, 0, 0)
         Me.btnExit.Size = New System.Drawing.Size(250, 45)
@@ -281,7 +279,7 @@ Partial Class frmMenuNovo
         Me.PanelSideMenu.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelSideMenu.Location = New System.Drawing.Point(0, 0)
         Me.PanelSideMenu.Name = "PanelSideMenu"
-        Me.PanelSideMenu.Size = New System.Drawing.Size(250, 859)
+        Me.PanelSideMenu.Size = New System.Drawing.Size(250, 749)
         Me.PanelSideMenu.TabIndex = 0
         '
         'btnConfigurações
@@ -295,7 +293,7 @@ Partial Class frmMenuNovo
         Me.btnConfigurações.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.btnConfigurações.ForeColor = System.Drawing.Color.Black
         Me.btnConfigurações.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnConfigurações.Location = New System.Drawing.Point(0, 769)
+        Me.btnConfigurações.Location = New System.Drawing.Point(0, 659)
         Me.btnConfigurações.Name = "btnConfigurações"
         Me.btnConfigurações.Padding = New System.Windows.Forms.Padding(5, 0, 0, 0)
         Me.btnConfigurações.Size = New System.Drawing.Size(250, 45)
@@ -330,7 +328,7 @@ Partial Class frmMenuNovo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1128, 859)
+        Me.ClientSize = New System.Drawing.Size(1128, 749)
         Me.Controls.Add(Me.PanelChildForm)
         Me.Controls.Add(Me.PanelSideMenu)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))

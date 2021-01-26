@@ -2,50 +2,35 @@
 
 
     Private Sub btnConfiguracao_Click(sender As Object, e As EventArgs)
-        abrirFormFilho(frmConfiguracoes)
+        Using frmConfiguracoes As New frmConfiguracoes()
+            frmConfiguracoes.Show()
+        End Using
     End Sub
 
     Private Sub btnCadastrarAlimento_Click(sender As Object, e As EventArgs) Handles btnCadastrarAlimento.Click
-        abrirFormFilho(frmCadastroAlimento)
-    End Sub
-
-    Private currentForm As Form = Nothing
-
-    Private Sub abrirFormFilho(childForm As Form)
-
-        If currentForm IsNot Nothing Then currentForm.Close()
-        currentForm = childForm
-        childForm.TopLevel = False
-        childForm.FormBorderStyle = FormBorderStyle.None
-        childForm.Dock = DockStyle.Fill
-        PainelFilho.Controls.Add(childForm)
-        PainelFilho.Tag = childForm
-        childForm.BringToFront()
-        childForm.Show()
-
+        Using frmCadastroAlimento As New frmCadastroAlimento()
+            frmCadastroAlimento.Show()
+        End Using
     End Sub
 
     Private Sub btnConsultarAlimentos_Click(sender As Object, e As EventArgs) Handles btnConsultarAlimentos.Click
-        abrirFormFilho(frmConfiguracoes)
+        Using frmConfiguracoes As New frmConfiguracoes()
+            frmConfiguracoes.Show()
+        End Using
     End Sub
 
     Private Sub frmMenuPrincipal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
 
-    Public Sub New()
-
-        ' This call is required by the designer.
-        InitializeComponent()
-
-        ' Add any initialization after the InitializeComponent() call.
-        ' Me.Text = ""
-        'Me.ControlBox = False
-        'Me.DoubleBuffered = True
-        'Me.MaximizedBounds = Screen.PrimaryScreen.WorkingArea
+    Private Sub btnOcultar_Click(sender As Object, e As EventArgs) Handles btnOcultar.Click
+        pnlBotoes.Hide()
+        btnMostrar.Show()
+        btnOcultar.Hide()
     End Sub
-
-    Private Sub PainelFilho_Paint(sender As Object, e As PaintEventArgs) Handles PainelFilho.Paint
-
+    Private Sub btnMostrar_Click(sender As Object, e As EventArgs) Handles btnMostrar.Click
+        pnlBotoes.Show()
+        btnMostrar.Hide()
+        btnOcultar.Show()
     End Sub
 End Class

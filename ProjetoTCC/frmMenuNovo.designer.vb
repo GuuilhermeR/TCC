@@ -24,7 +24,6 @@ Partial Class frmMenuNovo
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMenuNovo))
         Me.PanelChildForm = New System.Windows.Forms.Panel()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.panelLogo = New System.Windows.Forms.Panel()
         Me.pictureBox1 = New System.Windows.Forms.PictureBox()
         Me.btnCadastrar = New System.Windows.Forms.Button()
@@ -40,8 +39,6 @@ Partial Class frmMenuNovo
         Me.PanelSideMenu = New System.Windows.Forms.Panel()
         Me.btnConfigurações = New System.Windows.Forms.Button()
         Me.btnConsultar = New System.Windows.Forms.Button()
-        Me.PanelChildForm.SuspendLayout()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelLogo.SuspendLayout()
         CType(Me.pictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelMediaSubmenu.SuspendLayout()
@@ -52,23 +49,11 @@ Partial Class frmMenuNovo
         'PanelChildForm
         '
         Me.PanelChildForm.BackColor = System.Drawing.Color.Transparent
-        Me.PanelChildForm.Controls.Add(Me.PictureBox2)
         Me.PanelChildForm.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelChildForm.Location = New System.Drawing.Point(250, 0)
         Me.PanelChildForm.Name = "PanelChildForm"
         Me.PanelChildForm.Size = New System.Drawing.Size(878, 749)
         Me.PanelChildForm.TabIndex = 3
-        '
-        'PictureBox2
-        '
-        Me.PictureBox2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PictureBox2.Image = Global.ProjetoTCC.My.Resources.Resources.iconTCC_removebg_preview__1____Copia
-        Me.PictureBox2.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(878, 749)
-        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox2.TabIndex = 1
-        Me.PictureBox2.TabStop = False
         '
         'panelLogo
         '
@@ -338,8 +323,6 @@ Partial Class frmMenuNovo
         Me.Name = "frmMenuNovo"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Menu Principal"
-        Me.PanelChildForm.ResumeLayout(False)
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panelLogo.ResumeLayout(False)
         CType(Me.pictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelMediaSubmenu.ResumeLayout(False)
@@ -349,7 +332,6 @@ Partial Class frmMenuNovo
 
     End Sub
     Friend WithEvents PanelChildForm As Panel
-    Private WithEvents PictureBox2 As PictureBox
     Private WithEvents panelLogo As Panel
     Private WithEvents pictureBox1 As PictureBox
     Private WithEvents btnCadastrar As Button

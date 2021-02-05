@@ -7,6 +7,7 @@ Public Class frmTelaLogin
     End Sub
 
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
+        Dim usuario As New UsuarioDAO
 
         If String.IsNullOrEmpty(Me.txtLogin.Text) Then
             MsgBox("O campo de login não deve ficar em branco!")
@@ -18,14 +19,13 @@ Public Class frmTelaLogin
             Exit Sub
         End If
 
-        If Not verificarUsuarioLogado() Then
+        If Not usuario.verificarUsuarioLogado() Then
             Me.lblLoginErrado.Visible = True
             Exit Sub
         End If
 
         Me.lblLoginErrado.Visible = False
 
-        Dim usuario As New UsuarioDAO
         usuario.usuario = Me.txtLogin.Text
         usuario.senha = Me.txtSenha.Text
 
@@ -35,24 +35,7 @@ Public Class frmTelaLogin
 
     End Sub
 
-    Private Function verificarUsuarioLogado()
 
-        Dim strSQL As String = String.Empty
-        Dim usuarioOK As Boolean = False
-
-        strSQL = $"SELECT count(1) AS existe FROM Login WHERE usuario = '{Me.txtLogin.Text}' AND senha = '{Me.txtSenha.Text}'"
-
-        Dim cmd = New SQLiteCommand(strSQL, objConexao)
-        objConexao.Open()
-        Dim dr = cmd.ExecuteReader()
-
-        If dr.Read Then
-            usuarioOK = dr("existe") > 0
-        End If
-        objConexao.Close()
-
-        Return usuarioOK
-    End Function
 
     Private Sub txtSenha_Enter(sender As Object, e As EventArgs) Handles txtSenha.Enter
         Me.txtSenha.Text = ""

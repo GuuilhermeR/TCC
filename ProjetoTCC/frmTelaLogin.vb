@@ -1,41 +1,61 @@
-﻿'Public Class frmTelaLogin
-'    Private Sub frmTelaLogin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+﻿Imports System.Data.SQLite
+Public Class frmTelaLogin
+    Public objBanco As New DBAcesso
+    Public objConexao As New SQLiteConnection((objBanco.Conexao).ToString)
+    Private Sub frmTelaLogin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-'        fINIConexao()
-'        MvtConnection.Conect.ConectAtual.UsuarioLogado = Nothing
+    End Sub
 
-'        Me.txtSenha.TextBoxValue.PasswordChar = "*"
+    Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
 
+        If String.IsNullOrEmpty(Me.txtLogin.Text) Then
+            MsgBox("O campo de login não deve ficar em branco!")
+            Exit Sub
+        End If
 
-'    End Sub
+        If String.IsNullOrEmpty(Me.txtSenha.Text) Then
+            MsgBox("O campo de senha não deve ficar em branco!")
+            Exit Sub
+        End If
 
-'    Private Sub txtRecuperarSenha_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles txtRecuperarSenha.LinkClicked
+        If Not verificarUsuarioLogado() Then
+            Me.lblLoginErrado.Visible = True
+            Exit Sub
+        End If
 
-'    End Sub
+        Me.lblLoginErrado.Visible = False
 
-'    Private Sub btnLogar_Click(sender As Object, e As EventArgs) 
+        Dim usuario As New UsuarioDAO
+        usuario.usuario = Me.txtLogin.Text
+        usuario.senha = Me.txtSenha.Text
 
-'        Me.lblAvisoLoginIncorreto.Visible = False
+        Dim menu As New frmMenuPrincipal()
+        menu.Show()
+        Me.Hide()
 
-'        If IsNullOrEmpty(Me.txtSenha.Text) AndAlso IsNullOrEmpty(Me.txtUsuario.Text) Then
-'            MsgBox("Favor preencher os campos")
-'            Exit Sub
-'        End If
+    End Sub
 
-'        Dim strSQL As String = $"SELECT * FROM Login WHERE usuario = '{Me.txtUsuario.Text}' AND senha = '{Me.txtSenha.Text}'"
+    Private Function verificarUsuarioLogado()
 
-'        Dim dr As IDataReader = conexaoPadrao.ReturnDataReader(strSQL)
+        Dim strSQL As String = String.Empty
+        Dim usuarioOK As Boolean = False
 
-'        If dr.Read Then
-'            If Me.txtUsuario.Text = dr("usuario") AndAlso Me.txtSenha.Text = dr("senha") Then
-'                Me.Hide()
-'                Using frmMenuPrincipal As New frmMenuPrincipal
-'                    frmMenuPrincipal.ShowDialog()
-'                End Using
-'            End If
-'        Else
-'            Me.lblAvisoLoginIncorreto.Visible = True
-'        End If
+        strSQL = $"SELECT count(1) AS existe FROM Login WHERE usuario = '{Me.txtLogin.Text}' AND senha = '{Me.txtSenha.Text}'"
 
-'    End Sub
-'End Class
+        Dim cmd = New SQLiteCommand(strSQL, objConexao)
+        objConexao.Open()
+        Dim dr = cmd.ExecuteReader()
+
+        If dr.Read Then
+            usuarioOK = dr("existe") > 0
+        End If
+        objConexao.Close()
+
+        Return usuarioOK
+    End Function
+
+    Private Sub txtSenha_Enter(sender As Object, e As EventArgs) Handles txtSenha.Enter
+        Me.txtSenha.Text = ""
+        Me.txtSenha.PasswordChar = "*"
+    End Sub
+End Class

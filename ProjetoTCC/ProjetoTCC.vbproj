@@ -88,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BancoDados\DBAcesso.vb" />
+    <Compile Include="DAO\UsuarioDAO.vb" />
     <Compile Include="frmMenuNovo.designer.vb">
       <DependentUpon>frmMenuNovo.vb</DependentUpon>
     </Compile>
@@ -124,7 +125,9 @@
     <Compile Include="frmMenuPrincipal.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmTelaLogin.vb" />
+    <Compile Include="frmTelaLogin.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmTelaLogin.Designer.vb">
       <DependentUpon>frmTelaLogin.vb</DependentUpon>
       <SubType>Form</SubType>
@@ -200,9 +203,7 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DAO\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <PackageReference Include="EntityFramework">
       <Version>6.3.0</Version>

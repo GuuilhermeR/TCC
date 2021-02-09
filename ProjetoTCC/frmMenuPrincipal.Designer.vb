@@ -38,6 +38,7 @@ Partial Class frmMenuPrincipal
         Me.pbxLogoGrande = New System.Windows.Forms.PictureBox()
         Me.btnMostrar = New System.Windows.Forms.Button()
         Me.lblNomeApp = New System.Windows.Forms.Label()
+        Me.lblUsuario = New System.Windows.Forms.Label()
         Me.pnlBotoes.SuspendLayout()
         CType(Me.pbLogo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pnlLogo, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -246,12 +247,24 @@ Partial Class frmMenuPrincipal
         Me.lblNomeApp.TabIndex = 7
         Me.lblNomeApp.Text = "NutrApp"
         '
+        'lblUsuario
+        '
+        Me.lblUsuario.AutoSize = True
+        Me.lblUsuario.Dock = System.Windows.Forms.DockStyle.Right
+        Me.lblUsuario.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.lblUsuario.Location = New System.Drawing.Point(890, 0)
+        Me.lblUsuario.Name = "lblUsuario"
+        Me.lblUsuario.Size = New System.Drawing.Size(48, 19)
+        Me.lblUsuario.TabIndex = 9
+        Me.lblUsuario.Text = "Label1"
+        '
         'frmMenuPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
         Me.BackColor = System.Drawing.SystemColors.Control
         Me.ClientSize = New System.Drawing.Size(938, 624)
+        Me.Controls.Add(Me.lblUsuario)
         Me.Controls.Add(Me.lblNomeApp)
         Me.Controls.Add(Me.pbxLogoGrande)
         Me.Controls.Add(Me.pnlBotoes)
@@ -284,4 +297,5 @@ Partial Class frmMenuPrincipal
     Friend WithEvents btnAgenda As Button
     Friend WithEvents btnDeslogar As Button
     Friend WithEvents lblNomeApp As Label
+    Friend WithEvents lblUsuario As Label
 End Class

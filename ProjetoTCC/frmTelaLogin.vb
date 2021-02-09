@@ -2,12 +2,10 @@
 Public Class frmTelaLogin
     Public objBanco As New DBAcesso
     Public objConexao As New SQLiteConnection((objBanco.Conexao).ToString)
-    Private Sub frmTelaLogin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
+    Public usuario As New UsuarioDAO
 
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
-        Dim usuario As New UsuarioDAO
+
 
         If String.IsNullOrEmpty(Me.txtLogin.Text) Then
             MsgBox("O campo de login não deve ficar em branco!")
@@ -26,8 +24,9 @@ Public Class frmTelaLogin
 
         Me.lblLoginErrado.Visible = False
 
-        usuario.usuario = Me.txtLogin.Text
-        usuario.senha = Me.txtSenha.Text
+        usuario.setUsuario(Me.txtLogin.Text)
+        usuario.setUsuarioSenha(Me.txtSenha.Text)
+        usuario.setNomeUsuario(Me.txtLogin.Text)
 
         Dim menu As New frmMenuPrincipal()
         menu.Show()
@@ -35,10 +34,12 @@ Public Class frmTelaLogin
 
     End Sub
 
-
-
     Private Sub txtSenha_Enter(sender As Object, e As EventArgs) Handles txtSenha.Enter
         Me.txtSenha.Text = ""
         Me.txtSenha.PasswordChar = "*"
+    End Sub
+
+    Private Sub txtLogin_Leave(sender As Object, e As EventArgs) Handles txtLogin.Leave
+        Me.txtLogin.Text = LCase(Me.txtLogin.Text)
     End Sub
 End Class

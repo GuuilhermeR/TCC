@@ -1,4 +1,5 @@
-﻿Public Class frmMenuPrincipal
+﻿
+Public Class frmMenuPrincipal
 
 
     Private Sub btnConfiguracao_Click(sender As Object, e As EventArgs)
@@ -17,6 +18,8 @@
     End Sub
 
     Private Sub frmMenuPrincipal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Me.lblUsuario.Text = $"Seja bem vindo(a) ao sistema {frmTelaLogin.usuario.getNomeUsuario}"
 
     End Sub
 

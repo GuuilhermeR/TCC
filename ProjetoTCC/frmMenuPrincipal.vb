@@ -7,12 +7,12 @@ Public Class frmMenuPrincipal
         frmConfiguracoes.Show()
     End Sub
 
-    Private Sub btnCadastrarAlimento_Click(sender As Object, e As EventArgs) Handles btnCadastrarAlimento.Click
+    Private Sub btnCadastrarAlimento_Click(sender As Object, e As EventArgs) Handles btnCadAlimento.Click
         Dim frmCadastroAlimento As New frmCadastroAlimento()
         frmCadastroAlimento.Show()
     End Sub
 
-    Private Sub btnConsultarAlimentos_Click(sender As Object, e As EventArgs) Handles btnConsultarAlimentos.Click
+    Private Sub btnConsultarAlimentos_Click(sender As Object, e As EventArgs) Handles btnConAlimentos.Click
         Dim frmConfiguracoes As New frmConfiguracoes()
         frmConfiguracoes.Show()
     End Sub
@@ -39,7 +39,7 @@ Public Class frmMenuPrincipal
         Me.lblNomeApp.Location = New Point(462, 470)
     End Sub
 
-    Private Sub btnCadastrarPaciente_Click(sender As Object, e As EventArgs) Handles btnCadastrarPaciente.Click
+    Private Sub btnCadastrarPaciente_Click(sender As Object, e As EventArgs) Handles btnCadPaciente.Click
 
     End Sub
 End Class

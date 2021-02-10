@@ -89,6 +89,12 @@
   <ItemGroup>
     <Compile Include="BancoDados\DBAcesso.vb" />
     <Compile Include="DAO\UsuarioDAO.vb" />
+    <Compile Include="frmCadPaciente.Designer.vb">
+      <DependentUpon>frmCadPaciente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmCadPaciente.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmMenuNovo.designer.vb">
       <DependentUpon>frmMenuNovo.vb</DependentUpon>
     </Compile>
@@ -150,6 +156,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmCadPaciente.resx">
+      <DependentUpon>frmCadPaciente.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMenuNovo.resx">
       <DependentUpon>frmMenuNovo.vb</DependentUpon>
     </EmbeddedResource>
@@ -207,6 +216,9 @@
   <ItemGroup>
     <PackageReference Include="EntityFramework">
       <Version>6.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="Google.Apis.Calendar.v3">
+      <Version>1.50.0.2224</Version>
     </PackageReference>
     <PackageReference Include="System.Data.SQLite.Core">
       <Version>1.0.113.7</Version>

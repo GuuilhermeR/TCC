@@ -23,7 +23,6 @@ Partial Class frmTelaLogin
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmTelaLogin))
-        Me.pbxLogoGrande = New System.Windows.Forms.PictureBox()
         Me.txtLogin = New System.Windows.Forms.TextBox()
         Me.txtSenha = New System.Windows.Forms.TextBox()
         Me.lblUsuário = New System.Windows.Forms.Label()
@@ -31,18 +30,9 @@ Partial Class frmTelaLogin
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.btnLogin = New System.Windows.Forms.Button()
         Me.lblLoginErrado = New System.Windows.Forms.Label()
+        Me.pbxLogoGrande = New System.Windows.Forms.PictureBox()
         CType(Me.pbxLogoGrande, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'pbxLogoGrande
-        '
-        Me.pbxLogoGrande.Image = Global.ProjetoTCC.My.Resources.Resources.iconTCC_removebg_preview__1____Copia
-        Me.pbxLogoGrande.Location = New System.Drawing.Point(12, 12)
-        Me.pbxLogoGrande.Name = "pbxLogoGrande"
-        Me.pbxLogoGrande.Size = New System.Drawing.Size(343, 167)
-        Me.pbxLogoGrande.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.pbxLogoGrande.TabIndex = 7
-        Me.pbxLogoGrande.TabStop = False
         '
         'txtLogin
         '
@@ -105,6 +95,16 @@ Partial Class frmTelaLogin
         Me.lblLoginErrado.TabIndex = 4
         Me.lblLoginErrado.Text = "Usuário/Senha incorreto"
         Me.lblLoginErrado.Visible = False
+        '
+        'pbxLogoGrande
+        '
+        Me.pbxLogoGrande.Image = Global.ProjetoTCC.My.Resources.Resources.iconTCC_removebg_preview__1____Copia
+        Me.pbxLogoGrande.Location = New System.Drawing.Point(12, 12)
+        Me.pbxLogoGrande.Name = "pbxLogoGrande"
+        Me.pbxLogoGrande.Size = New System.Drawing.Size(343, 167)
+        Me.pbxLogoGrande.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbxLogoGrande.TabIndex = 7
+        Me.pbxLogoGrande.TabStop = False
         '
         'frmTelaLogin
         '

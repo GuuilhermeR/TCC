@@ -30,19 +30,19 @@ Partial Class frmCadPaciente
         Me.lblCPF = New System.Windows.Forms.Label()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.lblDataNascimento = New System.Windows.Forms.Label()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.txtEndereco = New System.Windows.Forms.TextBox()
         Me.lblEndereco = New System.Windows.Forms.Label()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
+        Me.txtBairro = New System.Windows.Forms.TextBox()
         Me.lblBairro = New System.Windows.Forms.Label()
-        Me.TextBox6 = New System.Windows.Forms.TextBox()
+        Me.txtCEP = New System.Windows.Forms.TextBox()
         Me.lblCEP = New System.Windows.Forms.Label()
-        Me.TextBox7 = New System.Windows.Forms.TextBox()
+        Me.txtMunicipio = New System.Windows.Forms.TextBox()
         Me.lblMunicipio = New System.Windows.Forms.Label()
         Me.TextBox8 = New System.Windows.Forms.TextBox()
         Me.lblTelefone = New System.Windows.Forms.Label()
         Me.TextBox9 = New System.Windows.Forms.TextBox()
         Me.lblCelular = New System.Windows.Forms.Label()
-        Me.TextBox10 = New System.Windows.Forms.TextBox()
+        Me.txtUF = New System.Windows.Forms.TextBox()
         Me.lblUF = New System.Windows.Forms.Label()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -103,12 +103,12 @@ Partial Class frmCadPaciente
         Me.lblDataNascimento.TabIndex = 5
         Me.lblDataNascimento.Text = "Data de nascimento:"
         '
-        'TextBox4
+        'txtEndereco
         '
-        Me.TextBox4.Location = New System.Drawing.Point(266, 187)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(460, 20)
-        Me.TextBox4.TabIndex = 8
+        Me.txtEndereco.Location = New System.Drawing.Point(266, 187)
+        Me.txtEndereco.Name = "txtEndereco"
+        Me.txtEndereco.Size = New System.Drawing.Size(460, 20)
+        Me.txtEndereco.TabIndex = 8
         '
         'lblEndereco
         '
@@ -119,12 +119,12 @@ Partial Class frmCadPaciente
         Me.lblEndereco.TabIndex = 7
         Me.lblEndereco.Text = "Endereço:"
         '
-        'TextBox5
+        'txtBairro
         '
-        Me.TextBox5.Location = New System.Drawing.Point(52, 237)
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(265, 20)
-        Me.TextBox5.TabIndex = 10
+        Me.txtBairro.Location = New System.Drawing.Point(52, 237)
+        Me.txtBairro.Name = "txtBairro"
+        Me.txtBairro.Size = New System.Drawing.Size(265, 20)
+        Me.txtBairro.TabIndex = 10
         '
         'lblBairro
         '
@@ -135,12 +135,12 @@ Partial Class frmCadPaciente
         Me.lblBairro.TabIndex = 9
         Me.lblBairro.Text = "Bairro:"
         '
-        'TextBox6
+        'txtCEP
         '
-        Me.TextBox6.Location = New System.Drawing.Point(52, 187)
-        Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.Size = New System.Drawing.Size(124, 20)
-        Me.TextBox6.TabIndex = 12
+        Me.txtCEP.Location = New System.Drawing.Point(52, 187)
+        Me.txtCEP.Name = "txtCEP"
+        Me.txtCEP.Size = New System.Drawing.Size(124, 20)
+        Me.txtCEP.TabIndex = 12
         '
         'lblCEP
         '
@@ -151,12 +151,12 @@ Partial Class frmCadPaciente
         Me.lblCEP.TabIndex = 11
         Me.lblCEP.Text = "CEP:"
         '
-        'TextBox7
+        'txtMunicipio
         '
-        Me.TextBox7.Location = New System.Drawing.Point(398, 237)
-        Me.TextBox7.Name = "TextBox7"
-        Me.TextBox7.Size = New System.Drawing.Size(180, 20)
-        Me.TextBox7.TabIndex = 14
+        Me.txtMunicipio.Location = New System.Drawing.Point(398, 237)
+        Me.txtMunicipio.Name = "txtMunicipio"
+        Me.txtMunicipio.Size = New System.Drawing.Size(180, 20)
+        Me.txtMunicipio.TabIndex = 14
         '
         'lblMunicipio
         '
@@ -185,7 +185,7 @@ Partial Class frmCadPaciente
         '
         'TextBox9
         '
-        Me.TextBox9.Location = New System.Drawing.Point(323, 292)
+        Me.TextBox9.Location = New System.Drawing.Point(323, 289)
         Me.TextBox9.Name = "TextBox9"
         Me.TextBox9.Size = New System.Drawing.Size(180, 20)
         Me.TextBox9.TabIndex = 18
@@ -193,23 +193,23 @@ Partial Class frmCadPaciente
         'lblCelular
         '
         Me.lblCelular.AutoSize = True
-        Me.lblCelular.Location = New System.Drawing.Point(275, 295)
+        Me.lblCelular.Location = New System.Drawing.Point(275, 292)
         Me.lblCelular.Name = "lblCelular"
         Me.lblCelular.Size = New System.Drawing.Size(42, 13)
         Me.lblCelular.TabIndex = 17
         Me.lblCelular.Text = "Celular:"
         '
-        'TextBox10
+        'txtUF
         '
-        Me.TextBox10.Location = New System.Drawing.Point(666, 240)
-        Me.TextBox10.Name = "TextBox10"
-        Me.TextBox10.Size = New System.Drawing.Size(60, 20)
-        Me.TextBox10.TabIndex = 20
+        Me.txtUF.Location = New System.Drawing.Point(666, 237)
+        Me.txtUF.Name = "txtUF"
+        Me.txtUF.Size = New System.Drawing.Size(60, 20)
+        Me.txtUF.TabIndex = 20
         '
         'lblUF
         '
         Me.lblUF.AutoSize = True
-        Me.lblUF.Location = New System.Drawing.Point(636, 243)
+        Me.lblUF.Location = New System.Drawing.Point(636, 240)
         Me.lblUF.Name = "lblUF"
         Me.lblUF.Size = New System.Drawing.Size(24, 13)
         Me.lblUF.TabIndex = 19
@@ -219,20 +219,20 @@ Partial Class frmCadPaciente
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(799, 568)
-        Me.Controls.Add(Me.TextBox10)
+        Me.ClientSize = New System.Drawing.Size(748, 568)
+        Me.Controls.Add(Me.txtUF)
         Me.Controls.Add(Me.lblUF)
         Me.Controls.Add(Me.TextBox9)
         Me.Controls.Add(Me.lblCelular)
         Me.Controls.Add(Me.TextBox8)
         Me.Controls.Add(Me.lblTelefone)
-        Me.Controls.Add(Me.TextBox7)
+        Me.Controls.Add(Me.txtMunicipio)
         Me.Controls.Add(Me.lblMunicipio)
-        Me.Controls.Add(Me.TextBox6)
+        Me.Controls.Add(Me.txtCEP)
         Me.Controls.Add(Me.lblCEP)
-        Me.Controls.Add(Me.TextBox5)
+        Me.Controls.Add(Me.txtBairro)
         Me.Controls.Add(Me.lblBairro)
-        Me.Controls.Add(Me.TextBox4)
+        Me.Controls.Add(Me.txtEndereco)
         Me.Controls.Add(Me.lblEndereco)
         Me.Controls.Add(Me.TextBox3)
         Me.Controls.Add(Me.lblDataNascimento)
@@ -257,18 +257,18 @@ Partial Class frmCadPaciente
     Friend WithEvents lblCPF As Label
     Friend WithEvents TextBox3 As TextBox
     Friend WithEvents lblDataNascimento As Label
-    Friend WithEvents TextBox4 As TextBox
+    Friend WithEvents txtEndereco As TextBox
     Friend WithEvents lblEndereco As Label
-    Friend WithEvents TextBox5 As TextBox
+    Friend WithEvents txtBairro As TextBox
     Friend WithEvents lblBairro As Label
-    Friend WithEvents TextBox6 As TextBox
+    Friend WithEvents txtCEP As TextBox
     Friend WithEvents lblCEP As Label
-    Friend WithEvents TextBox7 As TextBox
+    Friend WithEvents txtMunicipio As TextBox
     Friend WithEvents lblMunicipio As Label
     Friend WithEvents TextBox8 As TextBox
     Friend WithEvents lblTelefone As Label
     Friend WithEvents TextBox9 As TextBox
     Friend WithEvents lblCelular As Label
-    Friend WithEvents TextBox10 As TextBox
+    Friend WithEvents txtUF As TextBox
     Friend WithEvents lblUF As Label
 End Class

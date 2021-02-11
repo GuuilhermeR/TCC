@@ -40,6 +40,7 @@ Public Class frmMenuPrincipal
     End Sub
 
     Private Sub btnCadastrarPaciente_Click(sender As Object, e As EventArgs) Handles btnCadPaciente.Click
-
+        Dim frmCadPaciente As New frmCadPaciente()
+        frmCadPaciente.Show()
     End Sub
 End Class

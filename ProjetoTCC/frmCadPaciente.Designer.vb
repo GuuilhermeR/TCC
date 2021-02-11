@@ -44,6 +44,8 @@ Partial Class frmCadPaciente
         Me.lblCelular = New System.Windows.Forms.Label()
         Me.txtUF = New System.Windows.Forms.TextBox()
         Me.lblUF = New System.Windows.Forms.Label()
+        Me.txtComplemento = New System.Windows.Forms.TextBox()
+        Me.lblComplemento = New System.Windows.Forms.Label()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -123,7 +125,7 @@ Partial Class frmCadPaciente
         '
         Me.txtBairro.Location = New System.Drawing.Point(52, 237)
         Me.txtBairro.Name = "txtBairro"
-        Me.txtBairro.Size = New System.Drawing.Size(265, 20)
+        Me.txtBairro.Size = New System.Drawing.Size(315, 20)
         Me.txtBairro.TabIndex = 10
         '
         'lblBairro
@@ -153,7 +155,7 @@ Partial Class frmCadPaciente
         '
         'txtMunicipio
         '
-        Me.txtMunicipio.Location = New System.Drawing.Point(398, 237)
+        Me.txtMunicipio.Location = New System.Drawing.Point(438, 237)
         Me.txtMunicipio.Name = "txtMunicipio"
         Me.txtMunicipio.Size = New System.Drawing.Size(180, 20)
         Me.txtMunicipio.TabIndex = 14
@@ -161,7 +163,7 @@ Partial Class frmCadPaciente
         'lblMunicipio
         '
         Me.lblMunicipio.AutoSize = True
-        Me.lblMunicipio.Location = New System.Drawing.Point(335, 240)
+        Me.lblMunicipio.Location = New System.Drawing.Point(375, 240)
         Me.lblMunicipio.Name = "lblMunicipio"
         Me.lblMunicipio.Size = New System.Drawing.Size(57, 13)
         Me.lblMunicipio.TabIndex = 13
@@ -169,7 +171,7 @@ Partial Class frmCadPaciente
         '
         'TextBox8
         '
-        Me.TextBox8.Location = New System.Drawing.Point(67, 289)
+        Me.TextBox8.Location = New System.Drawing.Point(67, 323)
         Me.TextBox8.Name = "TextBox8"
         Me.TextBox8.Size = New System.Drawing.Size(180, 20)
         Me.TextBox8.TabIndex = 16
@@ -177,7 +179,7 @@ Partial Class frmCadPaciente
         'lblTelefone
         '
         Me.lblTelefone.AutoSize = True
-        Me.lblTelefone.Location = New System.Drawing.Point(9, 292)
+        Me.lblTelefone.Location = New System.Drawing.Point(9, 326)
         Me.lblTelefone.Name = "lblTelefone"
         Me.lblTelefone.Size = New System.Drawing.Size(52, 13)
         Me.lblTelefone.TabIndex = 15
@@ -185,7 +187,7 @@ Partial Class frmCadPaciente
         '
         'TextBox9
         '
-        Me.TextBox9.Location = New System.Drawing.Point(323, 289)
+        Me.TextBox9.Location = New System.Drawing.Point(323, 323)
         Me.TextBox9.Name = "TextBox9"
         Me.TextBox9.Size = New System.Drawing.Size(180, 20)
         Me.TextBox9.TabIndex = 18
@@ -193,7 +195,7 @@ Partial Class frmCadPaciente
         'lblCelular
         '
         Me.lblCelular.AutoSize = True
-        Me.lblCelular.Location = New System.Drawing.Point(275, 292)
+        Me.lblCelular.Location = New System.Drawing.Point(275, 326)
         Me.lblCelular.Name = "lblCelular"
         Me.lblCelular.Size = New System.Drawing.Size(42, 13)
         Me.lblCelular.TabIndex = 17
@@ -215,11 +217,29 @@ Partial Class frmCadPaciente
         Me.lblUF.TabIndex = 19
         Me.lblUF.Text = "UF:"
         '
+        'txtComplemento
+        '
+        Me.txtComplemento.Location = New System.Drawing.Point(92, 285)
+        Me.txtComplemento.Name = "txtComplemento"
+        Me.txtComplemento.Size = New System.Drawing.Size(315, 20)
+        Me.txtComplemento.TabIndex = 22
+        '
+        'lblComplemento
+        '
+        Me.lblComplemento.AutoSize = True
+        Me.lblComplemento.Location = New System.Drawing.Point(9, 288)
+        Me.lblComplemento.Name = "lblComplemento"
+        Me.lblComplemento.Size = New System.Drawing.Size(74, 13)
+        Me.lblComplemento.TabIndex = 21
+        Me.lblComplemento.Text = "Complemento:"
+        '
         'frmCadPaciente
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(748, 568)
+        Me.Controls.Add(Me.txtComplemento)
+        Me.Controls.Add(Me.lblComplemento)
         Me.Controls.Add(Me.txtUF)
         Me.Controls.Add(Me.lblUF)
         Me.Controls.Add(Me.TextBox9)
@@ -271,4 +291,6 @@ Partial Class frmCadPaciente
     Friend WithEvents lblCelular As Label
     Friend WithEvents txtUF As TextBox
     Friend WithEvents lblUF As Label
+    Friend WithEvents txtComplemento As TextBox
+    Friend WithEvents lblComplemento As Label
 End Class

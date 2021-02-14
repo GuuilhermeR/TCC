@@ -43,4 +43,8 @@ Public Class frmMenuPrincipal
         Dim frmCadPaciente As New frmCadPaciente()
         frmCadPaciente.Show()
     End Sub
+
+    Private Sub frmMenuPrincipal_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        Application.Exit
+    End Sub
 End Class

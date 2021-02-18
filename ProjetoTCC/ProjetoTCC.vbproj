@@ -138,6 +138,12 @@
     <Compile Include="frmMenuPrincipal.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmPaciente.Designer.vb">
+      <DependentUpon>frmPaciente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmPaciente.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmTelaLogin.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -184,6 +190,9 @@
     <EmbeddedResource Include="frmMenuPrincipal.resx">
       <DependentUpon>frmMenuPrincipal.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmPaciente.resx">
+      <DependentUpon>frmPaciente.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmTelaLogin.resx">
       <DependentUpon>frmTelaLogin.vb</DependentUpon>
     </EmbeddedResource>
@@ -195,6 +204,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\default-user.png" />
     <None Include="Connected Services\BuscaCEP\configuration91.svcinfo" />
     <None Include="Connected Services\BuscaCEP\configuration.svcinfo" />
     <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.atualizaPagamentoNaEntregaResponse.datasource">

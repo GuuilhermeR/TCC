@@ -27,22 +27,23 @@ Partial Class frmMenuPrincipal
         Me.btnDeslogar = New System.Windows.Forms.Button()
         Me.btnFinanceiro = New System.Windows.Forms.Button()
         Me.btnAgenda = New System.Windows.Forms.Button()
-        Me.btnOcultar = New System.Windows.Forms.Button()
         Me.btnConfig = New System.Windows.Forms.Button()
         Me.btnCadPaciente = New System.Windows.Forms.Button()
         Me.btnConAlimentos = New System.Windows.Forms.Button()
         Me.btnCadAlimento = New System.Windows.Forms.Button()
-        Me.pbLogo = New System.Windows.Forms.PictureBox()
         Me.btnCadCardapio = New System.Windows.Forms.Button()
-        Me.pnlLogo = New System.Windows.Forms.PictureBox()
-        Me.pbxLogoGrande = New System.Windows.Forms.PictureBox()
-        Me.btnMostrar = New System.Windows.Forms.Button()
         Me.lblNomeApp = New System.Windows.Forms.Label()
         Me.lblUsuario = New System.Windows.Forms.Label()
+        Me.pbxLogoGrande = New System.Windows.Forms.PictureBox()
+        Me.btnOcultar = New System.Windows.Forms.Button()
+        Me.pbLogo = New System.Windows.Forms.PictureBox()
+        Me.pnlLogo = New System.Windows.Forms.PictureBox()
+        Me.btnMostrar = New System.Windows.Forms.Button()
+        Me.BtnPacientes = New System.Windows.Forms.Button()
         Me.pnlBotoes.SuspendLayout()
+        CType(Me.pbxLogoGrande, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbLogo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pnlLogo, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.pbxLogoGrande, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'pnlBotoes
@@ -50,6 +51,7 @@ Partial Class frmMenuPrincipal
         Me.pnlBotoes.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.pnlBotoes.BackColor = System.Drawing.Color.SpringGreen
+        Me.pnlBotoes.Controls.Add(Me.BtnPacientes)
         Me.pnlBotoes.Controls.Add(Me.btnDeslogar)
         Me.pnlBotoes.Controls.Add(Me.btnFinanceiro)
         Me.pnlBotoes.Controls.Add(Me.btnAgenda)
@@ -88,7 +90,7 @@ Partial Class frmMenuPrincipal
         Me.btnFinanceiro.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnFinanceiro.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnFinanceiro.ForeColor = System.Drawing.Color.Black
-        Me.btnFinanceiro.Location = New System.Drawing.Point(12, 381)
+        Me.btnFinanceiro.Location = New System.Drawing.Point(12, 428)
         Me.btnFinanceiro.Name = "btnFinanceiro"
         Me.btnFinanceiro.Size = New System.Drawing.Size(208, 41)
         Me.btnFinanceiro.TabIndex = 9
@@ -102,26 +104,12 @@ Partial Class frmMenuPrincipal
         Me.btnAgenda.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAgenda.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAgenda.ForeColor = System.Drawing.Color.Black
-        Me.btnAgenda.Location = New System.Drawing.Point(12, 334)
+        Me.btnAgenda.Location = New System.Drawing.Point(12, 381)
         Me.btnAgenda.Name = "btnAgenda"
         Me.btnAgenda.Size = New System.Drawing.Size(208, 41)
         Me.btnAgenda.TabIndex = 8
         Me.btnAgenda.Text = "Agenda"
         Me.btnAgenda.UseVisualStyleBackColor = False
-        '
-        'btnOcultar
-        '
-        Me.btnOcultar.BackColor = System.Drawing.Color.Transparent
-        Me.btnOcultar.FlatAppearance.BorderSize = 0
-        Me.btnOcultar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnOcultar.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnOcultar.ForeColor = System.Drawing.Color.Black
-        Me.btnOcultar.Image = Global.ProjetoTCC.My.Resources.Resources.baixados_removebg_preview__1_
-        Me.btnOcultar.Location = New System.Drawing.Point(3, 0)
-        Me.btnOcultar.Name = "btnOcultar"
-        Me.btnOcultar.Size = New System.Drawing.Size(40, 40)
-        Me.btnOcultar.TabIndex = 7
-        Me.btnOcultar.UseVisualStyleBackColor = False
         '
         'btnConfig
         '
@@ -180,16 +168,6 @@ Partial Class frmMenuPrincipal
         Me.btnCadAlimento.Text = "Cadastrar Alimento"
         Me.btnCadAlimento.UseVisualStyleBackColor = False
         '
-        'pbLogo
-        '
-        Me.pbLogo.Image = Global.ProjetoTCC.My.Resources.Resources.iconTCC_removebg_preview__1____Copia
-        Me.pbLogo.Location = New System.Drawing.Point(41, 18)
-        Me.pbLogo.Name = "pbLogo"
-        Me.pbLogo.Size = New System.Drawing.Size(144, 109)
-        Me.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.pbLogo.TabIndex = 1
-        Me.pbLogo.TabStop = False
-        '
         'btnCadCardapio
         '
         Me.btnCadCardapio.BackColor = System.Drawing.Color.MediumSeaGreen
@@ -197,45 +175,12 @@ Partial Class frmMenuPrincipal
         Me.btnCadCardapio.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCadCardapio.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCadCardapio.ForeColor = System.Drawing.Color.Black
-        Me.btnCadCardapio.Location = New System.Drawing.Point(12, 287)
+        Me.btnCadCardapio.Location = New System.Drawing.Point(12, 334)
         Me.btnCadCardapio.Name = "btnCadCardapio"
         Me.btnCadCardapio.Size = New System.Drawing.Size(208, 41)
         Me.btnCadCardapio.TabIndex = 4
         Me.btnCadCardapio.Text = "Cardápio"
         Me.btnCadCardapio.UseVisualStyleBackColor = False
-        '
-        'pnlLogo
-        '
-        Me.pnlLogo.Location = New System.Drawing.Point(4, 4)
-        Me.pnlLogo.Name = "pnlLogo"
-        Me.pnlLogo.Size = New System.Drawing.Size(228, 136)
-        Me.pnlLogo.TabIndex = 0
-        Me.pnlLogo.TabStop = False
-        '
-        'pbxLogoGrande
-        '
-        Me.pbxLogoGrande.Image = Global.ProjetoTCC.My.Resources.Resources.iconTCC_removebg_preview__1____Copia
-        Me.pbxLogoGrande.Location = New System.Drawing.Point(385, 120)
-        Me.pbxLogoGrande.Name = "pbxLogoGrande"
-        Me.pbxLogoGrande.Size = New System.Drawing.Size(332, 308)
-        Me.pbxLogoGrande.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.pbxLogoGrande.TabIndex = 6
-        Me.pbxLogoGrande.TabStop = False
-        '
-        'btnMostrar
-        '
-        Me.btnMostrar.BackColor = System.Drawing.Color.Transparent
-        Me.btnMostrar.FlatAppearance.BorderSize = 0
-        Me.btnMostrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnMostrar.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnMostrar.ForeColor = System.Drawing.Color.Black
-        Me.btnMostrar.Image = Global.ProjetoTCC.My.Resources.Resources.baixados_removebg_preview__1_
-        Me.btnMostrar.Location = New System.Drawing.Point(12, 8)
-        Me.btnMostrar.Name = "btnMostrar"
-        Me.btnMostrar.Size = New System.Drawing.Size(40, 40)
-        Me.btnMostrar.TabIndex = 8
-        Me.btnMostrar.UseVisualStyleBackColor = False
-        Me.btnMostrar.Visible = False
         '
         'lblNomeApp
         '
@@ -258,6 +203,77 @@ Partial Class frmMenuPrincipal
         Me.lblUsuario.TabIndex = 9
         Me.lblUsuario.Text = "Label1"
         '
+        'pbxLogoGrande
+        '
+        Me.pbxLogoGrande.Image = Global.ProjetoTCC.My.Resources.Resources.iconTCC_removebg_preview__1____Copia
+        Me.pbxLogoGrande.Location = New System.Drawing.Point(385, 120)
+        Me.pbxLogoGrande.Name = "pbxLogoGrande"
+        Me.pbxLogoGrande.Size = New System.Drawing.Size(332, 308)
+        Me.pbxLogoGrande.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbxLogoGrande.TabIndex = 6
+        Me.pbxLogoGrande.TabStop = False
+        '
+        'btnOcultar
+        '
+        Me.btnOcultar.BackColor = System.Drawing.Color.Transparent
+        Me.btnOcultar.FlatAppearance.BorderSize = 0
+        Me.btnOcultar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnOcultar.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnOcultar.ForeColor = System.Drawing.Color.Black
+        Me.btnOcultar.Image = Global.ProjetoTCC.My.Resources.Resources.baixados_removebg_preview__1_
+        Me.btnOcultar.Location = New System.Drawing.Point(3, 0)
+        Me.btnOcultar.Name = "btnOcultar"
+        Me.btnOcultar.Size = New System.Drawing.Size(40, 40)
+        Me.btnOcultar.TabIndex = 7
+        Me.btnOcultar.UseVisualStyleBackColor = False
+        '
+        'pbLogo
+        '
+        Me.pbLogo.Image = Global.ProjetoTCC.My.Resources.Resources.iconTCC_removebg_preview__1____Copia
+        Me.pbLogo.Location = New System.Drawing.Point(41, 18)
+        Me.pbLogo.Name = "pbLogo"
+        Me.pbLogo.Size = New System.Drawing.Size(144, 109)
+        Me.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbLogo.TabIndex = 1
+        Me.pbLogo.TabStop = False
+        '
+        'pnlLogo
+        '
+        Me.pnlLogo.Location = New System.Drawing.Point(4, 4)
+        Me.pnlLogo.Name = "pnlLogo"
+        Me.pnlLogo.Size = New System.Drawing.Size(228, 136)
+        Me.pnlLogo.TabIndex = 0
+        Me.pnlLogo.TabStop = False
+        '
+        'btnMostrar
+        '
+        Me.btnMostrar.BackColor = System.Drawing.Color.Transparent
+        Me.btnMostrar.FlatAppearance.BorderSize = 0
+        Me.btnMostrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnMostrar.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnMostrar.ForeColor = System.Drawing.Color.Black
+        Me.btnMostrar.Image = Global.ProjetoTCC.My.Resources.Resources.baixados_removebg_preview__1_
+        Me.btnMostrar.Location = New System.Drawing.Point(12, 8)
+        Me.btnMostrar.Name = "btnMostrar"
+        Me.btnMostrar.Size = New System.Drawing.Size(40, 40)
+        Me.btnMostrar.TabIndex = 8
+        Me.btnMostrar.UseVisualStyleBackColor = False
+        Me.btnMostrar.Visible = False
+        '
+        'BtnPacientes
+        '
+        Me.BtnPacientes.BackColor = System.Drawing.Color.MediumSeaGreen
+        Me.BtnPacientes.FlatAppearance.BorderSize = 0
+        Me.BtnPacientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnPacientes.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnPacientes.ForeColor = System.Drawing.Color.Black
+        Me.BtnPacientes.Location = New System.Drawing.Point(12, 287)
+        Me.BtnPacientes.Name = "BtnPacientes"
+        Me.BtnPacientes.Size = New System.Drawing.Size(208, 41)
+        Me.BtnPacientes.TabIndex = 10
+        Me.BtnPacientes.Text = "Pacientes"
+        Me.BtnPacientes.UseVisualStyleBackColor = False
+        '
         'frmMenuPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
@@ -274,9 +290,9 @@ Partial Class frmMenuPrincipal
         Me.Name = "frmMenuPrincipal"
         Me.Text = "Menu Principal"
         Me.pnlBotoes.ResumeLayout(False)
+        CType(Me.pbxLogoGrande, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbLogo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pnlLogo, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.pbxLogoGrande, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -298,4 +314,5 @@ Partial Class frmMenuPrincipal
     Friend WithEvents btnDeslogar As Button
     Friend WithEvents lblNomeApp As Label
     Friend WithEvents lblUsuario As Label
+    Friend WithEvents BtnPacientes As Button
 End Class

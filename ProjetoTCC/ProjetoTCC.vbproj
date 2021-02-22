@@ -95,11 +95,24 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="DAO\PacienteDAO.vb" />
     <Compile Include="DAO\UsuarioDAO.vb" />
-    <Compile Include="frmCadPaciente.Designer.vb">
-      <DependentUpon>frmCadPaciente.vb</DependentUpon>
+    <Compile Include="frmAgenda.Designer.vb">
+      <DependentUpon>frmAgenda.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmCadPaciente.vb">
+    <Compile Include="frmAgenda.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCardapio.Designer.vb">
+      <DependentUpon>frmCardapio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmCardapio.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPaciente.Designer.vb">
+      <DependentUpon>frmPaciente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmPaciente.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmMenuNovo.designer.vb">
@@ -138,12 +151,6 @@
     <Compile Include="frmMenuPrincipal.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPaciente.Designer.vb">
-      <DependentUpon>frmPaciente.vb</DependentUpon>
-    </Compile>
-    <Compile Include="frmPaciente.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="frmTelaLogin.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -169,8 +176,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="frmCadPaciente.resx">
-      <DependentUpon>frmCadPaciente.vb</DependentUpon>
+    <EmbeddedResource Include="frmAgenda.resx">
+      <DependentUpon>frmAgenda.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPaciente.resx">
+      <DependentUpon>frmPaciente.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMenuNovo.resx">
       <DependentUpon>frmMenuNovo.vb</DependentUpon>
@@ -189,9 +199,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMenuPrincipal.resx">
       <DependentUpon>frmMenuPrincipal.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmPaciente.resx">
-      <DependentUpon>frmPaciente.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTelaLogin.resx">
       <DependentUpon>frmTelaLogin.vb</DependentUpon>

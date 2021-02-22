@@ -19,9 +19,7 @@ Public Class UsuarioDAO
             Using cmd As New SQLiteCommand(strSQL, objConexao)
                 Using dr As SQLiteDataReader = cmd.ExecuteReader
                     While dr.Read
-
                         Me.nome = dr("Nome")
-
                     End While
 
                 End Using

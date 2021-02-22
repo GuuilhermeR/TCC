@@ -1,18 +1,12 @@
 ﻿
 Public Class frmMenuPrincipal
 
-
-    Private Sub btnConfiguracao_Click(sender As Object, e As EventArgs)
-        Dim frmConfiguracoes As New frmConfiguracoes()
-        frmConfiguracoes.Show()
-    End Sub
-
     Private Sub btnCadastrarAlimento_Click(sender As Object, e As EventArgs) Handles btnCadAlimento.Click
         Dim frmCadastroAlimento As New frmCadastroAlimento()
         frmCadastroAlimento.Show()
     End Sub
 
-    Private Sub btnConsultarAlimentos_Click(sender As Object, e As EventArgs) Handles btnConAlimentos.Click
+    Private Sub btnConsultarAlimentos_Click(sender As Object, e As EventArgs)
         Dim frmConfiguracoes As New frmConfiguracoes()
         frmConfiguracoes.Show()
     End Sub
@@ -39,12 +33,26 @@ Public Class frmMenuPrincipal
         Me.lblNomeApp.Location = New Point(462, 470)
     End Sub
 
-    Private Sub btnCadastrarPaciente_Click(sender As Object, e As EventArgs) Handles btnCadPaciente.Click
-        Dim frmCadPaciente As New frmCadPaciente()
+    Private Sub btnCadastrarPaciente_Click(sender As Object, e As EventArgs)
+        Dim frmCadPaciente As New frmPaciente()
         frmCadPaciente.Show()
     End Sub
 
     Private Sub frmMenuPrincipal_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        Application.Exit
+        Application.Exit()
+    End Sub
+
+    Private Sub btnDeslogar_Click(sender As Object, e As EventArgs) Handles btnDeslogar.Click
+        Application.Exit()
+    End Sub
+
+    Private Sub BtnPacientes_Click(sender As Object, e As EventArgs) Handles BtnPacientes.Click
+        Dim frmPaciente As New frmPaciente()
+        frmPaciente.Show()
+    End Sub
+
+    Private Sub btnConfig_Click(sender As Object, e As EventArgs) Handles btnConfig.Click
+        Dim frmConfiguracoes As New frmConfiguracoes()
+        frmConfiguracoes.Show()
     End Sub
 End Class

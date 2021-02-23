@@ -1,6 +1,6 @@
 ﻿Imports System.Data.SQLite
 
-Public Class frmCadastroAlimento
+Public Class frmAlimento
     Public objBanco As New DBAcesso
     Public objConexao As New SQLiteConnection((objBanco.Conexao).ToString)
 
@@ -8,11 +8,11 @@ Public Class frmCadastroAlimento
 
     End Sub
 
-    Private Sub btnProcurarAlimento_Click(sender As Object, e As EventArgs) Handles btnProcurarAlimento.Click
+    Private Sub btnProcurarAlimento_Click(sender As Object, e As EventArgs)
 
     End Sub
 
-    Private Sub btnSalvar_Click(sender As Object, e As EventArgs) Handles btnSalvar.Click
+    Private Sub btnSalvar_Click(sender As Object, e As EventArgs)
         objConexao.Open()
 
         Dim strSQL As String = String.Empty
@@ -20,23 +20,17 @@ Public Class frmCadastroAlimento
         Try
 
             If Me.txtCodAlimento.Text <> "" Then
-                strSQL = $"UPDATE InfosAlimentosNutricionais SET Alimento= @Alimento, qtde = @qtde, kcal = @kcal, proteina = @proteina, carboidrato = @carboidrato, lipidio = @lipidio, calcio = @calcio, ferro = @ferro, vitC = @vitC WHERE codAlimento = {Me.txtCodAlimento.Text}"
+                strSQL = $"UPDATE InfosAlimentosNutricionais 
+                            SET Alimento= {Me.txtAlimento.Text}, qtde = {Me.txtQtde.Text}, kcal ={Me.txtKCal.Text}, proteina ={Me.txtProteina.Text}, carboidrato = {Me.txtCarboidrato.Text}, 
+                            lipidio = {Me.txtLipidio.Text}, calcio = {Me.txtCalcio.Text}, ferro = {Me.txtFerro.Text}, vitC = {Me.txtVitC.Text}
+                            WHERE codAlimento = {Me.txtCodAlimento.Text}"
             Else
-                strSQL = "INSERT INTO InfosAlimentosNutricionais (Alimento, qtde, kcal, proteina, carboidrato, lipidio, calcio, ferro, vitC, medidaCaseira) values (@Alimento, @qtde, @kcal, @proteina, @Carboidrato, @lipidio, @calcio, @ferro, @vitC, @medidaCaseira)"
+                strSQL = $"INSERT INTO InfosAlimentosNutricionais (Alimento, qtde, kcal, proteina, carboidrato, lipidio, calcio, ferro, vitC, medidaCaseira) 
+                            values ({Me.txtAlimento.Text}, {Me.txtQtde.Text}, {Me.txtKCal.Text}, {Me.txtProteina.Text}, {Me.txtCarboidrato.Text}, {Me.txtLipidio.Text}, {Me.txtCalcio.Text},
+                            {Me.txtFerro.Text}, {Me.txtVitC.Text}, {Me.txtMedidaCaseira.Text})"
             End If
 
             Dim cmd As New SQLiteCommand(strSQL, objConexao)
-
-            cmd.Parameters.Add(New SQLiteParameter("@Alimento", Me.txtAlimento.Text))
-            cmd.Parameters.Add(New SQLiteParameter("@qtde", Me.txtQtde.Text))
-            cmd.Parameters.Add(New SQLiteParameter("@kcal", Me.txtKCal.Text))
-            cmd.Parameters.Add(New SQLiteParameter("@proteina", Me.txtProteina.Text))
-            cmd.Parameters.Add(New SQLiteParameter("@carboidrato", Me.txtCarboidrato.Text))
-            cmd.Parameters.Add(New SQLiteParameter("@lipidio", Me.txtLipidio.Text))
-            cmd.Parameters.Add(New SQLiteParameter("@calcio", Me.txtCalcio.Text))
-            cmd.Parameters.Add(New SQLiteParameter("@ferro", Me.txtFerro.Text))
-            cmd.Parameters.Add(New SQLiteParameter("@vitC", Me.txtVitC.Text))
-            cmd.Parameters.Add(New SQLiteParameter("@medidaCaseira", Me.txtMedidaCaseira.Text))
 
             cmd.ExecuteNonQuery()
             MsgBox("Seus dados foram salvos", vbInformation, "Atenção!")
@@ -51,20 +45,20 @@ Public Class frmCadastroAlimento
     End Sub
 
     Private Sub limparCampos()
-        Me.txtAlimento.Clear()
-        Me.txtCalcio.Clear()
-        Me.txtCarboidrato.Clear()
-        Me.txtCodAlimento.Clear()
-        Me.txtFerro.Clear()
-        Me.txtKCal.Clear()
-        Me.txtLipidio.Clear()
-        Me.txtMedidaCaseira.Clear()
-        Me.txtProteina.Clear()
-        Me.txtQtde.Clear()
-        Me.txtVitC.Clear()
+        Me.txtAlimento.Text = ""
+        Me.txtCalcio.Text = ""
+        Me.txtCarboidrato.Text = ""
+        Me.txtCodAlimento.Text = ""
+        Me.txtFerro.Text = ""
+        Me.txtKCal.Text = ""
+        Me.txtLipidio.Text = ""
+        Me.txtMedidaCaseira.Text = ""
+        Me.txtProteina.Text = ""
+        Me.txtQtde.Text = ""
+        Me.txtVitC.Text = ""
     End Sub
 
-    Private Sub btnExcluir_Click(sender As Object, e As EventArgs) Handles btnExcluir.Click
+    Private Sub btnExcluir_Click(sender As Object, e As EventArgs)
         objConexao.Open()
 
         Dim strSQL As String = String.Empty
@@ -75,18 +69,8 @@ Public Class frmCadastroAlimento
 
             Dim cmd As New SQLiteCommand(strSQL, objConexao)
 
-            cmd.Parameters.Add(New SQLiteParameter("@Alimento", Me.txtAlimento.Text))
-            cmd.Parameters.Add(New SQLiteParameter("@qtde", Me.txtQtde.Text))
-            cmd.Parameters.Add(New SQLiteParameter("@kcal", Me.txtKCal.Text))
-            cmd.Parameters.Add(New SQLiteParameter("@proteina", Me.txtProteina.Text))
-            cmd.Parameters.Add(New SQLiteParameter("@carboidrato", Me.txtCarboidrato.Text))
-            cmd.Parameters.Add(New SQLiteParameter("@lipidio", Me.txtLipidio.Text))
-            cmd.Parameters.Add(New SQLiteParameter("@calcio", Me.txtCalcio.Text))
-            cmd.Parameters.Add(New SQLiteParameter("@ferro", Me.txtFerro.Text))
-            cmd.Parameters.Add(New SQLiteParameter("@vitC", Me.txtVitC.Text))
-            cmd.Parameters.Add(New SQLiteParameter("@medidaCaseira", Me.txtMedidaCaseira.Text))
-
             cmd.ExecuteNonQuery()
+
             MsgBox("Alimento excluído", vbInformation, "Atenção!")
             limparCampos()
         Catch ex As Exception

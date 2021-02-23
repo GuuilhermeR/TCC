@@ -14,14 +14,14 @@ Public Class PacienteDAO
 
         Dim codPaciente As Integer
 
-        strSQL = $"SELECT MAX(codigo) FROM Paciente"
+        strSQL = $"SELECT MAX(codigo) As Codigo FROM Paciente"
 
         Dim cmd = New SQLiteCommand(strSQL, objConexao)
         objConexao.Open()
         Dim dr = cmd.ExecuteReader()
 
         If dr.Read Then
-            codPaciente = dr("codigo")
+            codPaciente = dr("Codigo")
         End If
         objConexao.Close()
 
@@ -86,14 +86,16 @@ Public Class PacienteDAO
 
         Dim strSQL As String = String.Empty
 
-        strSQL = "SELECT codigo, nome FROM Paciente"
+        strSQL = "SELECT codigo, nome, cpf, dtNasc, email, peso, altura, cep, telefone, celular FROM Paciente"
 
         Dim cmd = New SQLiteCommand(strSQL, objConexao)
         objConexao.Open()
         Dim dr = cmd.ExecuteReader()
 
         While dr.Read
-            dtgDados.Rows.Add(dr.Item("codigo"), dr.Item("nome"))
+            dtgDados.Rows.Add(dr.Item("codigo"), dr.Item("nome"), dr.Item("cpf"), dr.Item("dtNasc"),
+                              dr.Item("email"), dr.Item("peso"), dr.Item("altura"), dr.Item("cep"),
+                              dr.Item("telefone"), dr.Item("celular"))
         End While
         objConexao.Close()
     End Sub

@@ -32,7 +32,7 @@
 
 #Region "Buttons Submenu"
     Private Sub button2_Click(sender As Object, e As EventArgs) Handles btnCadastrarAlimento.Click
-        openChildForm(New frmCadastroAlimento())
+        openChildForm(New frmAlimento())
         hideSubmenu()
     End Sub
 

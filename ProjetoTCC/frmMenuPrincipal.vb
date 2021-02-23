@@ -2,7 +2,7 @@
 Public Class frmMenuPrincipal
 
     Private Sub btnCadastrarAlimento_Click(sender As Object, e As EventArgs) Handles btnCadAlimento.Click
-        Dim frmCadastroAlimento As New frmCadastroAlimento()
+        Dim frmCadastroAlimento As New frmAlimento()
         frmCadastroAlimento.Show()
     End Sub
 

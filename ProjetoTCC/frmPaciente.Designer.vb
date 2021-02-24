@@ -25,7 +25,6 @@ Partial Class frmPaciente
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPaciente))
         Me.tbPaciente = New System.Windows.Forms.TabControl()
         Me.tbCadastro = New System.Windows.Forms.TabPage()
-        Me.tbConsulta = New System.Windows.Forms.TabPage()
         Me.btnProcurarPaciente = New System.Windows.Forms.Button()
         Me.txtCodPaciente = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -64,13 +63,14 @@ Partial Class frmPaciente
         Me.txtNome = New System.Windows.Forms.TextBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.lblNome = New System.Windows.Forms.Label()
-        Me.dtgConsultaPacientes = New System.Windows.Forms.DataGridView()
-        Me.lblNomePaciente = New System.Windows.Forms.Label()
+        Me.tbConsulta = New System.Windows.Forms.TabPage()
         Me.txtNomePaciente = New System.Windows.Forms.TextBox()
+        Me.lblNomePaciente = New System.Windows.Forms.Label()
+        Me.dtgConsultaPacientes = New System.Windows.Forms.DataGridView()
         Me.tbPaciente.SuspendLayout()
         Me.tbCadastro.SuspendLayout()
-        Me.tbConsulta.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.tbConsulta.SuspendLayout()
         CType(Me.dtgConsultaPacientes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -131,19 +131,6 @@ Partial Class frmPaciente
         Me.tbCadastro.TabIndex = 0
         Me.tbCadastro.Text = "Cadastro"
         Me.tbCadastro.UseVisualStyleBackColor = True
-        '
-        'tbConsulta
-        '
-        Me.tbConsulta.Controls.Add(Me.txtNomePaciente)
-        Me.tbConsulta.Controls.Add(Me.lblNomePaciente)
-        Me.tbConsulta.Controls.Add(Me.dtgConsultaPacientes)
-        Me.tbConsulta.Location = New System.Drawing.Point(4, 22)
-        Me.tbConsulta.Name = "tbConsulta"
-        Me.tbConsulta.Padding = New System.Windows.Forms.Padding(3)
-        Me.tbConsulta.Size = New System.Drawing.Size(790, 491)
-        Me.tbConsulta.TabIndex = 1
-        Me.tbConsulta.Text = "Consulta"
-        Me.tbConsulta.UseVisualStyleBackColor = True
         '
         'btnProcurarPaciente
         '
@@ -467,13 +454,25 @@ Partial Class frmPaciente
         Me.lblNome.TabIndex = 243
         Me.lblNome.Text = "Nome Completo:"
         '
-        'dtgConsultaPacientes
+        'tbConsulta
         '
-        Me.dtgConsultaPacientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dtgConsultaPacientes.Location = New System.Drawing.Point(6, 38)
-        Me.dtgConsultaPacientes.Name = "dtgConsultaPacientes"
-        Me.dtgConsultaPacientes.Size = New System.Drawing.Size(777, 452)
-        Me.dtgConsultaPacientes.TabIndex = 0
+        Me.tbConsulta.Controls.Add(Me.txtNomePaciente)
+        Me.tbConsulta.Controls.Add(Me.lblNomePaciente)
+        Me.tbConsulta.Controls.Add(Me.dtgConsultaPacientes)
+        Me.tbConsulta.Location = New System.Drawing.Point(4, 22)
+        Me.tbConsulta.Name = "tbConsulta"
+        Me.tbConsulta.Padding = New System.Windows.Forms.Padding(3)
+        Me.tbConsulta.Size = New System.Drawing.Size(790, 491)
+        Me.tbConsulta.TabIndex = 1
+        Me.tbConsulta.Text = "Consulta"
+        Me.tbConsulta.UseVisualStyleBackColor = True
+        '
+        'txtNomePaciente
+        '
+        Me.txtNomePaciente.Location = New System.Drawing.Point(50, 12)
+        Me.txtNomePaciente.Name = "txtNomePaciente"
+        Me.txtNomePaciente.Size = New System.Drawing.Size(734, 20)
+        Me.txtNomePaciente.TabIndex = 2
         '
         'lblNomePaciente
         '
@@ -484,12 +483,13 @@ Partial Class frmPaciente
         Me.lblNomePaciente.TabIndex = 1
         Me.lblNomePaciente.Text = "Nome:"
         '
-        'txtNomePaciente
+        'dtgConsultaPacientes
         '
-        Me.txtNomePaciente.Location = New System.Drawing.Point(50, 12)
-        Me.txtNomePaciente.Name = "txtNomePaciente"
-        Me.txtNomePaciente.Size = New System.Drawing.Size(734, 20)
-        Me.txtNomePaciente.TabIndex = 2
+        Me.dtgConsultaPacientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dtgConsultaPacientes.Location = New System.Drawing.Point(6, 38)
+        Me.dtgConsultaPacientes.Name = "dtgConsultaPacientes"
+        Me.dtgConsultaPacientes.Size = New System.Drawing.Size(777, 452)
+        Me.dtgConsultaPacientes.TabIndex = 0
         '
         'frmPaciente
         '
@@ -503,9 +503,9 @@ Partial Class frmPaciente
         Me.tbPaciente.ResumeLayout(False)
         Me.tbCadastro.ResumeLayout(False)
         Me.tbCadastro.PerformLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tbConsulta.ResumeLayout(False)
         Me.tbConsulta.PerformLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtgConsultaPacientes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 

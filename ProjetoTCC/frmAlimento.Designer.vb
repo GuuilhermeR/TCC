@@ -25,7 +25,6 @@ Partial Class frmAlimento
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmAlimento))
         Me.tbAlimento = New System.Windows.Forms.TabControl()
         Me.tbCadastro = New System.Windows.Forms.TabPage()
-        Me.tbConsulta = New System.Windows.Forms.TabPage()
         Me.btnExcluir = New System.Windows.Forms.Button()
         Me.btnSalvar = New System.Windows.Forms.Button()
         Me.txtCalcio = New System.Windows.Forms.TextBox()
@@ -51,13 +50,14 @@ Partial Class frmAlimento
         Me.btnProcurarAlimento = New System.Windows.Forms.Button()
         Me.txtCodAlimento = New System.Windows.Forms.TextBox()
         Me.lblCodAlimento = New System.Windows.Forms.Label()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.txtAlimentoFiltro = New System.Windows.Forms.TextBox()
+        Me.tbConsulta = New System.Windows.Forms.TabPage()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.txtAlimentoFiltro = New System.Windows.Forms.TextBox()
+        Me.dtgConAlimento = New System.Windows.Forms.DataGridView()
         Me.tbAlimento.SuspendLayout()
         Me.tbCadastro.SuspendLayout()
         Me.tbConsulta.SuspendLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dtgConAlimento, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tbAlimento
@@ -107,19 +107,6 @@ Partial Class frmAlimento
         Me.tbCadastro.TabIndex = 0
         Me.tbCadastro.Text = "Cadastro"
         Me.tbCadastro.UseVisualStyleBackColor = True
-        '
-        'tbConsulta
-        '
-        Me.tbConsulta.Controls.Add(Me.Label1)
-        Me.tbConsulta.Controls.Add(Me.txtAlimentoFiltro)
-        Me.tbConsulta.Controls.Add(Me.DataGridView1)
-        Me.tbConsulta.Location = New System.Drawing.Point(4, 22)
-        Me.tbConsulta.Name = "tbConsulta"
-        Me.tbConsulta.Padding = New System.Windows.Forms.Padding(3)
-        Me.tbConsulta.Size = New System.Drawing.Size(673, 386)
-        Me.tbConsulta.TabIndex = 1
-        Me.tbConsulta.Text = "Consulta"
-        Me.tbConsulta.UseVisualStyleBackColor = True
         '
         'btnExcluir
         '
@@ -330,20 +317,18 @@ Partial Class frmAlimento
         Me.lblCodAlimento.TabIndex = 25
         Me.lblCodAlimento.Text = "Cód. Alimento:"
         '
-        'DataGridView1
+        'tbConsulta
         '
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(6, 32)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(661, 348)
-        Me.DataGridView1.TabIndex = 0
-        '
-        'txtAlimentoFiltro
-        '
-        Me.txtAlimentoFiltro.Location = New System.Drawing.Point(64, 6)
-        Me.txtAlimentoFiltro.Name = "txtAlimentoFiltro"
-        Me.txtAlimentoFiltro.Size = New System.Drawing.Size(603, 20)
-        Me.txtAlimentoFiltro.TabIndex = 1
+        Me.tbConsulta.Controls.Add(Me.Label1)
+        Me.tbConsulta.Controls.Add(Me.txtAlimentoFiltro)
+        Me.tbConsulta.Controls.Add(Me.dtgConAlimento)
+        Me.tbConsulta.Location = New System.Drawing.Point(4, 22)
+        Me.tbConsulta.Name = "tbConsulta"
+        Me.tbConsulta.Padding = New System.Windows.Forms.Padding(3)
+        Me.tbConsulta.Size = New System.Drawing.Size(673, 386)
+        Me.tbConsulta.TabIndex = 1
+        Me.tbConsulta.Text = "Consulta"
+        Me.tbConsulta.UseVisualStyleBackColor = True
         '
         'Label1
         '
@@ -353,6 +338,21 @@ Partial Class frmAlimento
         Me.Label1.Size = New System.Drawing.Size(50, 13)
         Me.Label1.TabIndex = 2
         Me.Label1.Text = "Alimento:"
+        '
+        'txtAlimentoFiltro
+        '
+        Me.txtAlimentoFiltro.Location = New System.Drawing.Point(64, 6)
+        Me.txtAlimentoFiltro.Name = "txtAlimentoFiltro"
+        Me.txtAlimentoFiltro.Size = New System.Drawing.Size(603, 20)
+        Me.txtAlimentoFiltro.TabIndex = 1
+        '
+        'dtgConAlimento
+        '
+        Me.dtgConAlimento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dtgConAlimento.Location = New System.Drawing.Point(6, 32)
+        Me.dtgConAlimento.Name = "dtgConAlimento"
+        Me.dtgConAlimento.Size = New System.Drawing.Size(661, 348)
+        Me.dtgConAlimento.TabIndex = 0
         '
         'frmAlimento
         '
@@ -368,7 +368,7 @@ Partial Class frmAlimento
         Me.tbCadastro.PerformLayout()
         Me.tbConsulta.ResumeLayout(False)
         Me.tbConsulta.PerformLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dtgConAlimento, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -401,7 +401,7 @@ Partial Class frmAlimento
     Friend WithEvents txtCodAlimento As TextBox
     Friend WithEvents lblCodAlimento As Label
     Friend WithEvents tbConsulta As TabPage
-    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents dtgConAlimento As DataGridView
     Friend WithEvents Label1 As Label
     Friend WithEvents txtAlimentoFiltro As TextBox
 End Class

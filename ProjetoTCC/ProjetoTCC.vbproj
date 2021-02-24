@@ -95,6 +95,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="DAO\AlimentoDAO.vb" />
     <Compile Include="DAO\PacienteDAO.vb" />
     <Compile Include="DAO\UsuarioDAO.vb" />
     <Compile Include="frmAgenda.Designer.vb">
@@ -121,10 +122,10 @@
     <Compile Include="frmMenuNovo.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCadastroAlimento.Designer.vb">
-      <DependentUpon>frmCadastroAlimento.vb</DependentUpon>
+    <Compile Include="frmAlimento.Designer.vb">
+      <DependentUpon>frmAlimento.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmCadastroAlimento.vb">
+    <Compile Include="frmAlimento.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmConfiguracoes.Designer.vb">
@@ -137,12 +138,6 @@
       <DependentUpon>frmConsultaAlimentos.vb</DependentUpon>
     </Compile>
     <Compile Include="frmConsultaAlimentos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmConsultarAlimentosExistentes.Designer.vb">
-      <DependentUpon>frmConsultarAlimentosExistentes.vb</DependentUpon>
-    </Compile>
-    <Compile Include="frmConsultarAlimentosExistentes.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmMenuPrincipal.Designer.vb">
@@ -185,17 +180,14 @@
     <EmbeddedResource Include="frmMenuNovo.resx">
       <DependentUpon>frmMenuNovo.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCadastroAlimento.resx">
-      <DependentUpon>frmCadastroAlimento.vb</DependentUpon>
+    <EmbeddedResource Include="frmAlimento.resx">
+      <DependentUpon>frmAlimento.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmConfiguracoes.resx">
       <DependentUpon>frmConfiguracoes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmConsultaAlimentos.resx">
       <DependentUpon>frmConsultaAlimentos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmConsultarAlimentosExistentes.resx">
-      <DependentUpon>frmConsultarAlimentosExistentes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMenuPrincipal.resx">
       <DependentUpon>frmMenuPrincipal.vb</DependentUpon>

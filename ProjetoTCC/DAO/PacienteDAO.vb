@@ -4,8 +4,6 @@ Public Class PacienteDAO
     Public objBanco As New DBAcesso
     Public objConexao As New SQLiteConnection((objBanco.Conexao).ToString)
 
-    Public listaPacientes As Dictionary(Of Integer, String)
-
     Private Function retornaUltimoCodPaciente() As Integer
 
         objConexao.Open()
@@ -29,7 +27,7 @@ Public Class PacienteDAO
 
     End Function
 
-    Public Sub Salvar(codPaciente As Integer, nomeCompleto As String, cpf As Integer, dtNasc As Date, email As String, peso As Double, altura As Double, cep As Integer, telefone As Integer, celular As Integer)
+    Public Sub Salvar(codPaciente As Integer, nomeCompleto As String, cpf As Integer, dtNasc As Date, email As String, peso As Double, altura As Double, cep As Integer, num As Integer, telefone As Integer, celular As Integer)
 
         objConexao.Open()
 
@@ -39,10 +37,10 @@ Public Class PacienteDAO
 
             If codPaciente <> "" Then
                 strSQL = $"UPDATE Paciente SET nome= '{nomeCompleto}', cpf = {cpf}, dtNasc = '{dtNasc.ToString("dd/MM/yyyy")}', 
-                            email = '{email}', peso = {peso}, altura = {altura}, cep ={cep}, telefone = {telefone}, celular = {celular} WHERE codigo = {codPaciente}"
+                            email = '{email}', peso = {peso}, altura = {altura}, cep ={cep}, numero = {num}, telefone = {telefone}, celular = {celular} WHERE codigo = {codPaciente}"
             Else
-                strSQL = $"INSERT INTO Paciente (nome, cpf, dtNasc, email, peso, altura, cep, telefone, celular) 
-                            values ('{nomeCompleto}', {cpf}, '{dtNasc.ToString("dd/MM/yyyy")}', '{email}', {peso}, {altura}, {cep}, {telefone}, {celular})"
+                strSQL = $"INSERT INTO Paciente (nome, cpf, dtNasc, email, peso, altura, cep, numero, telefone, celular) 
+                            values ('{nomeCompleto}', {cpf}, '{dtNasc.ToString("dd/MM/yyyy")}', '{email}', {peso}, {altura}, {cep}, {num}, {telefone}, {celular})"
             End If
 
             Dim cmd As New SQLiteCommand(strSQL, objConexao)
@@ -59,7 +57,7 @@ Public Class PacienteDAO
 
     End Sub
 
-    Public Sub Deletar(codPaciente As Integer, nomeCompleto As String, cpf As Integer, dtNasc As Date, email As String, peso As Double, altura As Double, cep As Integer, telefone As Integer, celular As Integer)
+    Public Sub Deletar(codPaciente As Integer)
 
         objConexao.Open()
 
@@ -87,6 +85,9 @@ Public Class PacienteDAO
         Dim strSQL As String = String.Empty
 
         strSQL = "SELECT codigo, nome, cpf, dtNasc, email, peso, altura, cep, telefone, celular FROM Paciente"
+        If frmPaciente.txtNomePaciente.Text <> Nothing Then
+            strSQL &= $"WHERE nome LIKE '%{frmPaciente.txtNomePaciente.Text}%'"
+        End If
 
         Dim cmd = New SQLiteCommand(strSQL, objConexao)
         objConexao.Open()
@@ -98,29 +99,6 @@ Public Class PacienteDAO
                               dr.Item("telefone"), dr.Item("celular"))
         End While
         objConexao.Close()
-    End Sub
-
-    Public Sub BuscarPeloNome(nomePaciente As String, dtgDados As DataGridView)
-
-        If nomePaciente Is Nothing Then
-            MsgBox("Favor inserir o filtro de nome do Paciente.")
-            Exit Sub
-        End If
-
-        Dim strSQL As String = String.Empty
-
-        strSQL = "SELECT codigo, nome FROM Paciente"
-        strSQL &= $"WHERE nome LIKE '%{nomePaciente}%'"
-
-        Dim cmd = New SQLiteCommand(strSQL, objConexao)
-        objConexao.Open()
-        Dim dr = cmd.ExecuteReader()
-
-        While dr.Read
-            dtgDados.Rows.Add(dr.Item("codigo"), dr.Item("nome"))
-        End While
-        objConexao.Close()
-
     End Sub
 
 End Class

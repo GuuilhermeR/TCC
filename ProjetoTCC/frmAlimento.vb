@@ -3,6 +3,7 @@
 Public Class frmAlimento
     Public objBanco As New DBAcesso
     Public objConexao As New SQLiteConnection((objBanco.Conexao).ToString)
+    Public alimento As New AlimentoDAO
 
     Private Sub frmCadastroAlimento_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -59,24 +60,19 @@ Public Class frmAlimento
     End Sub
 
     Private Sub btnExcluir_Click(sender As Object, e As EventArgs)
-        objConexao.Open()
+        If Me.txtCodAlimento.Text <> Nothing Then
+            alimento.Deletar(Me.txtCodAlimento.Text)
+        Else
+            MsgBox("Não é possível excluir sem antes informar o código.")
+        End If
+    End Sub
 
-        Dim strSQL As String = String.Empty
+    Private Sub txtAlimentoFiltro_Leave(sender As Object, e As EventArgs) Handles txtAlimentoFiltro.Leave
+        'ao sair consultar alimento
 
-        Try
+    End Sub
 
-            strSQL = $"DELETE FROM InfosAlimentosNutricionais WHERE codAlimento = {Me.txtCodAlimento.Text}"
-
-            Dim cmd As New SQLiteCommand(strSQL, objConexao)
-
-            cmd.ExecuteNonQuery()
-
-            MsgBox("Alimento excluído", vbInformation, "Atenção!")
-            limparCampos()
-        Catch ex As Exception
-            MsgBox("Ocorreu um erro ao excluir o Alimento.", vbYes, "Alerta")
-        End Try
-
-        objConexao.Close()
+    Private Sub tbConsulta_Click(sender As Object, e As EventArgs) Handles tbConsulta.Click
+        alimento.Buscar(dtgConAlimento)
     End Sub
 End Class

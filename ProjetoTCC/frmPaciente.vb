@@ -49,20 +49,14 @@
 
     End Sub
 
-    Private Sub txtCEP_Leave(sender As Object, e As EventArgs)
-        buscarEndCep(Me.txtCEP.Text)
-    End Sub
-
     Private Sub tbConsulta_Enter(sender As Object, e As EventArgs) Handles tbConsulta.Enter
-        ' paciente.Buscar(dtgConsultaPacientes)
+        paciente.Buscar(dtgConsultaPacientes)
     End Sub
 
     Private Sub txtNomePaciente_Leave(sender As Object, e As EventArgs) Handles txtNomePaciente.Leave
-        If Me.txtNomePaciente.Text <> "" Then
-            paciente.BuscarPeloNome(Me.txtNomePaciente.Text, dtgConsultaPacientes)
-        Else
-            paciente.Buscar(dtgConsultaPacientes)
-        End If
+
+        paciente.Buscar(dtgConsultaPacientes)
+
     End Sub
 
     Private Sub btnProcurarPaciente_Click(sender As Object, e As EventArgs) Handles btnProcurarPaciente.Click
@@ -115,6 +109,19 @@
     End Sub
 
     Private Sub btnSalvar_Click(sender As Object, e As EventArgs) Handles btnSalvar.Click
+        paciente.Salvar(Me.txtCodPaciente.Text, Me.txtNomePaciente.Text, Me.txtCEP.Text, Me.txtNumero.Text, Me.txtDtNasc.Text,
+                        Me.txtEmail.Text, Me.txtPeso.Text, Me.txtAltura.Text, Me.txtCEP.Text, Me.txtTelefone.Text, Me.txtCelular.Text)
+    End Sub
 
+    Private Sub txtCEP_Leave(sender As Object, e As EventArgs) Handles txtCEP.Leave
+        buscarEndCep(Me.txtCEP.Text)
+    End Sub
+
+    Private Sub btnExcluir_Click(sender As Object, e As EventArgs) Handles btnExcluir.Click
+        If Me.txtCodPaciente.Text <> Nothing Then
+            paciente.Deletar(Me.txtCodPaciente.Text)
+        Else
+            MsgBox("Não é possível excluir sem antes informar o código.")
+        End If
     End Sub
 End Class

@@ -55,4 +55,9 @@ Public Class frmMenuPrincipal
         Dim frmConfiguracoes As New frmConfiguracoes()
         frmConfiguracoes.Show()
     End Sub
+
+    Private Sub btnAgenda_Click(sender As Object, e As EventArgs) Handles btnAgenda.Click
+        Dim frmAgenda As New frmAgenda()
+        frmAgenda.Show()
+    End Sub
 End Class

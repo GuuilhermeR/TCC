@@ -42,4 +42,12 @@ Public Class frmTelaLogin
     Private Sub txtLogin_Leave(sender As Object, e As EventArgs) Handles txtLogin.Leave
         Me.txtLogin.Text = LCase(Me.txtLogin.Text)
     End Sub
+
+    Private Sub frmTelaLogin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+#If DEBUG Then
+        Me.txtLogin.Text = "guilherme"
+        Me.txtSenha.Text = "gui123"
+        btnLogin_Click(sender, e)
+#End If
+    End Sub
 End Class

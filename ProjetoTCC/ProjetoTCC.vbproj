@@ -104,6 +104,12 @@
     <Compile Include="frmAgenda.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmBuscarPaciente.Designer.vb">
+      <DependentUpon>frmBuscarPaciente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmBuscarPaciente.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmCardapio.Designer.vb">
       <DependentUpon>frmCardapio.vb</DependentUpon>
     </Compile>
@@ -173,6 +179,12 @@
   <ItemGroup>
     <EmbeddedResource Include="frmAgenda.resx">
       <DependentUpon>frmAgenda.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBuscarPaciente.resx">
+      <DependentUpon>frmBuscarPaciente.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCardapio.resx">
+      <DependentUpon>frmCardapio.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPaciente.resx">
       <DependentUpon>frmPaciente.vb</DependentUpon>

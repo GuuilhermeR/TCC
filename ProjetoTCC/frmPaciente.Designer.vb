@@ -485,6 +485,7 @@ Partial Class frmPaciente
         '
         'dtgConsultaPacientes
         '
+        Me.dtgConsultaPacientes.BackgroundColor = System.Drawing.Color.White
         Me.dtgConsultaPacientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dtgConsultaPacientes.Location = New System.Drawing.Point(6, 38)
         Me.dtgConsultaPacientes.Name = "dtgConsultaPacientes"

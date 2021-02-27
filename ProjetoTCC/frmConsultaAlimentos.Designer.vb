@@ -34,6 +34,7 @@ Partial Class frmConsultaAlimentos
         '
         'dtgConsultaAlimentos
         '
+        Me.dtgConsultaAlimentos.BackgroundColor = System.Drawing.SystemColors.Control
         Me.dtgConsultaAlimentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dtgConsultaAlimentos.GridColor = System.Drawing.SystemColors.Control
         Me.dtgConsultaAlimentos.Location = New System.Drawing.Point(12, 143)

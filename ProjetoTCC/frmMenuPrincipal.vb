@@ -60,4 +60,9 @@ Public Class frmMenuPrincipal
         Dim frmAgenda As New frmAgenda()
         frmAgenda.Show()
     End Sub
+
+    Private Sub btnCadCardapio_Click(sender As Object, e As EventArgs) Handles btnCadCardapio.Click
+        Dim frmCardapio As New frmCardapio()
+        frmCardapio.Show()
+    End Sub
 End Class

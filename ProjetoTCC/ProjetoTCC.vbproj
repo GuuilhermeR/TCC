@@ -56,6 +56,9 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MvtWindowsForms">
+      <HintPath>..\..\..\..\..\MovtechFontes\MvtComponentsNew\MovtechDLL2015\MvtWindowsForms.dll</HintPath>
+    </Reference>
     <Reference Include="SQLite.Designer">
       <HintPath>..\..\..\..\..\MovtechFontes\MovtechDLL\SQLite.Designer.dll</HintPath>
     </Reference>
@@ -98,6 +101,12 @@
     <Compile Include="DAO\AlimentoDAO.vb" />
     <Compile Include="DAO\PacienteDAO.vb" />
     <Compile Include="DAO\UsuarioDAO.vb" />
+    <Compile Include="frmAdicionarRefeicao.Designer.vb">
+      <DependentUpon>frmAdicionarRefeicao.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmAdicionarRefeicao.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmAgenda.Designer.vb">
       <DependentUpon>frmAgenda.vb</DependentUpon>
     </Compile>
@@ -152,6 +161,12 @@
     <Compile Include="frmMenuPrincipal.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmPlanilhaCardapio.Designer.vb">
+      <DependentUpon>frmPlanilhaCardapio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmPlanilhaCardapio.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmTelaLogin.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -177,6 +192,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmAdicionarRefeicao.resx">
+      <DependentUpon>frmAdicionarRefeicao.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAgenda.resx">
       <DependentUpon>frmAgenda.vb</DependentUpon>
     </EmbeddedResource>
@@ -203,6 +221,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMenuPrincipal.resx">
       <DependentUpon>frmMenuPrincipal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPlanilhaCardapio.resx">
+      <DependentUpon>frmPlanilhaCardapio.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTelaLogin.resx">
       <DependentUpon>frmTelaLogin.vb</DependentUpon>

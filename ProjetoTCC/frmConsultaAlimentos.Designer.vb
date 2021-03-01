@@ -37,9 +37,9 @@ Partial Class frmConsultaAlimentos
         Me.dtgConsultaAlimentos.BackgroundColor = System.Drawing.SystemColors.Control
         Me.dtgConsultaAlimentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dtgConsultaAlimentos.GridColor = System.Drawing.SystemColors.Control
-        Me.dtgConsultaAlimentos.Location = New System.Drawing.Point(12, 143)
+        Me.dtgConsultaAlimentos.Location = New System.Drawing.Point(12, 80)
         Me.dtgConsultaAlimentos.Name = "dtgConsultaAlimentos"
-        Me.dtgConsultaAlimentos.Size = New System.Drawing.Size(838, 331)
+        Me.dtgConsultaAlimentos.Size = New System.Drawing.Size(838, 394)
         Me.dtgConsultaAlimentos.TabIndex = 0
         '
         'lblAlimento
@@ -80,7 +80,7 @@ Partial Class frmConsultaAlimentos
         '
         Me.btnConsultar.Image = Global.ProjetoTCC.My.Resources.Resources.consultar1
         Me.btnConsultar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnConsultar.Location = New System.Drawing.Point(746, 106)
+        Me.btnConsultar.Location = New System.Drawing.Point(746, 43)
         Me.btnConsultar.Name = "btnConsultar"
         Me.btnConsultar.Size = New System.Drawing.Size(104, 31)
         Me.btnConsultar.TabIndex = 4

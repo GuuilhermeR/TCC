@@ -62,7 +62,7 @@ Public Class frmMenuPrincipal
     End Sub
 
     Private Sub btnCadCardapio_Click(sender As Object, e As EventArgs) Handles btnCadCardapio.Click
-        Dim frmCardapio As New frmCardapio()
-        frmCardapio.Show()
+        Dim frmPlanilhaCardapio As New frmPlanilhaCardapio()
+        frmPlanilhaCardapio.Show()
     End Sub
 End Class

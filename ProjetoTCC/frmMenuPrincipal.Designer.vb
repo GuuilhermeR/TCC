@@ -200,11 +200,11 @@ Partial Class frmMenuPrincipal
         '
         Me.lblNomeApp.AutoSize = True
         Me.lblNomeApp.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 24.0!, System.Drawing.FontStyle.Bold)
-        Me.lblNomeApp.Location = New System.Drawing.Point(462, 470)
+        Me.lblNomeApp.Location = New System.Drawing.Point(444, 465)
         Me.lblNomeApp.Name = "lblNomeApp"
-        Me.lblNomeApp.Size = New System.Drawing.Size(147, 45)
+        Me.lblNomeApp.Size = New System.Drawing.Size(211, 45)
         Me.lblNomeApp.TabIndex = 7
-        Me.lblNomeApp.Text = "NutrApp"
+        Me.lblNomeApp.Text = "NutreasyApp"
         '
         'lblUsuario
         '

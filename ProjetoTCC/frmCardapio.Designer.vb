@@ -36,9 +36,10 @@ Partial Class frmCardapio
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.btnProcurarAlimento = New System.Windows.Forms.Button()
         Me.dtgTotalizador = New System.Windows.Forms.DataGridView()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.btnSalvar = New System.Windows.Forms.Button()
+        Me.btnProcurarAlimento = New System.Windows.Forms.Button()
         CType(Me.dtgCardápio, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtgTotalizador, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -56,7 +57,7 @@ Partial Class frmCardapio
         '
         Me.TextBox1.Location = New System.Drawing.Point(70, 19)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(41, 20)
         Me.TextBox1.TabIndex = 1
         '
         'dtgCardápio
@@ -73,7 +74,7 @@ Partial Class frmCardapio
         '
         'TextBox2
         '
-        Me.TextBox2.Location = New System.Drawing.Point(276, 19)
+        Me.TextBox2.Location = New System.Drawing.Point(424, 19)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.ReadOnly = True
         Me.TextBox2.Size = New System.Drawing.Size(49, 20)
@@ -82,7 +83,7 @@ Partial Class frmCardapio
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(233, 22)
+        Me.Label2.Location = New System.Drawing.Point(381, 22)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(37, 13)
         Me.Label2.TabIndex = 3
@@ -90,7 +91,7 @@ Partial Class frmCardapio
         '
         'TextBox3
         '
-        Me.TextBox3.Location = New System.Drawing.Point(396, 19)
+        Me.TextBox3.Location = New System.Drawing.Point(540, 19)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.ReadOnly = True
         Me.TextBox3.Size = New System.Drawing.Size(59, 20)
@@ -99,7 +100,7 @@ Partial Class frmCardapio
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(356, 22)
+        Me.Label3.Location = New System.Drawing.Point(500, 22)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(34, 13)
         Me.Label3.TabIndex = 5
@@ -107,7 +108,7 @@ Partial Class frmCardapio
         '
         'TextBox4
         '
-        Me.TextBox4.Location = New System.Drawing.Point(734, 19)
+        Me.TextBox4.Location = New System.Drawing.Point(873, 19)
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.ReadOnly = True
         Me.TextBox4.Size = New System.Drawing.Size(100, 20)
@@ -116,7 +117,7 @@ Partial Class frmCardapio
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(699, 22)
+        Me.Label4.Location = New System.Drawing.Point(838, 22)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(29, 13)
         Me.Label4.TabIndex = 7
@@ -124,7 +125,7 @@ Partial Class frmCardapio
         '
         'TextBox5
         '
-        Me.TextBox5.Location = New System.Drawing.Point(566, 19)
+        Me.TextBox5.Location = New System.Drawing.Point(710, 19)
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.ReadOnly = True
         Me.TextBox5.Size = New System.Drawing.Size(74, 20)
@@ -133,7 +134,7 @@ Partial Class frmCardapio
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(508, 22)
+        Me.Label5.Location = New System.Drawing.Point(652, 22)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(49, 13)
         Me.Label5.TabIndex = 9
@@ -142,7 +143,7 @@ Partial Class frmCardapio
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(461, 22)
+        Me.Label6.Location = New System.Drawing.Point(605, 22)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(20, 13)
         Me.Label6.TabIndex = 11
@@ -151,20 +152,11 @@ Partial Class frmCardapio
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(646, 22)
+        Me.Label7.Location = New System.Drawing.Point(790, 22)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(21, 13)
         Me.Label7.TabIndex = 12
         Me.Label7.Text = "cm"
-        '
-        'btnProcurarAlimento
-        '
-        Me.btnProcurarAlimento.Image = Global.ProjetoTCC.My.Resources.Resources.consultar
-        Me.btnProcurarAlimento.Location = New System.Drawing.Point(176, 17)
-        Me.btnProcurarAlimento.Name = "btnProcurarAlimento"
-        Me.btnProcurarAlimento.Size = New System.Drawing.Size(30, 23)
-        Me.btnProcurarAlimento.TabIndex = 26
-        Me.btnProcurarAlimento.UseVisualStyleBackColor = True
         '
         'dtgTotalizador
         '
@@ -176,6 +168,15 @@ Partial Class frmCardapio
         Me.dtgTotalizador.Name = "dtgTotalizador"
         Me.dtgTotalizador.Size = New System.Drawing.Size(961, 113)
         Me.dtgTotalizador.TabIndex = 27
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(12, 9)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(15, 10)
+        Me.Button1.TabIndex = 50
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'btnSalvar
         '
@@ -189,11 +190,21 @@ Partial Class frmCardapio
         Me.btnSalvar.Text = "Salvar"
         Me.btnSalvar.UseVisualStyleBackColor = True
         '
+        'btnProcurarAlimento
+        '
+        Me.btnProcurarAlimento.Image = Global.ProjetoTCC.My.Resources.Resources.consultar
+        Me.btnProcurarAlimento.Location = New System.Drawing.Point(117, 17)
+        Me.btnProcurarAlimento.Name = "btnProcurarAlimento"
+        Me.btnProcurarAlimento.Size = New System.Drawing.Size(30, 23)
+        Me.btnProcurarAlimento.TabIndex = 26
+        Me.btnProcurarAlimento.UseVisualStyleBackColor = True
+        '
         'frmCardapio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(985, 575)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.btnSalvar)
         Me.Controls.Add(Me.dtgTotalizador)
         Me.Controls.Add(Me.btnProcurarAlimento)
@@ -236,4 +247,5 @@ Partial Class frmCardapio
     Friend WithEvents btnProcurarAlimento As Button
     Friend WithEvents dtgTotalizador As DataGridView
     Friend WithEvents btnSalvar As Button
+    Friend WithEvents Button1 As Button
 End Class

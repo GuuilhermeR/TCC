@@ -66,12 +66,11 @@ Public Class frmAlimento
     End Sub
 
     Private Sub txtAlimentoFiltro_Leave(sender As Object, e As EventArgs) Handles txtAlimentoFiltro.Leave
-        'ao sair consultar alimento
-
+        alimento.Buscar(dtgConAlimento, Me.txtAlimento.Text)
     End Sub
 
     Private Sub tbConsulta_Click(sender As Object, e As EventArgs) Handles tbConsulta.Click
-        alimento.Buscar(dtgConAlimento)
+        alimento.Buscar(Me.dtgConAlimento, Nothing)
     End Sub
 
     Private Sub btnBuscarPlanilha_Click(sender As Object, e As EventArgs) Handles btnBuscarPlanilha.Click
@@ -97,5 +96,9 @@ Public Class frmAlimento
     Private Sub cbxNomePlanilha_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxNomePlanilha.SelectedIndexChanged
         Dim dt As DataTable = tables(cbxNomePlanilha.SelectedItem.ToString())
         dtgDados.DataSource = dt
+    End Sub
+
+    Private Sub btnImportar_Click(sender As Object, e As EventArgs) Handles btnImportar.Click
+
     End Sub
 End Class

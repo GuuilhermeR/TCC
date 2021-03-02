@@ -237,6 +237,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\2355300-removebg-preview %283%29.png" />
     <None Include="Resources\default-user.png" />
     <None Include="Connected Services\BuscaCEP\configuration91.svcinfo" />
     <None Include="Connected Services\BuscaCEP\configuration.svcinfo" />

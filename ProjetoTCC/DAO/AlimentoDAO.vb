@@ -80,13 +80,13 @@ Public Class AlimentoDAO
 
     End Sub
 
-    Public Sub Buscar(dtgDados As DataGridView)
+    Public Sub Buscar(dtgDados As DataGridView, nomeAlimento As String)
 
         Dim strSQL As String = String.Empty
 
         strSQL = "SELECT codigo, nome, cpf, medidaCaseira, kCal, proteina, carboidrato, lipidio, calcio, ferro, vitC FROM Alimento"
-        If frmAlimento.txtAlimento.Text <> Nothing Then
-            strSQL &= $"WHERE nome LIKE '%{frmAlimento.txtAlimento.Text}%'"
+        If nomeAlimento <> Nothing Then
+            strSQL &= $"WHERE nome LIKE '%{nomeAlimento}%'"
         End If
 
         Dim cmd = New SQLiteCommand(strSQL, objConexao)

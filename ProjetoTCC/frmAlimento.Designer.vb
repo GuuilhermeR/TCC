@@ -25,8 +25,6 @@ Partial Class frmAlimento
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmAlimento))
         Me.tbAlimento = New System.Windows.Forms.TabControl()
         Me.tbCadastro = New System.Windows.Forms.TabPage()
-        Me.btnExcluir = New System.Windows.Forms.Button()
-        Me.btnSalvar = New System.Windows.Forms.Button()
         Me.txtCalcio = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.txtVitC = New System.Windows.Forms.TextBox()
@@ -47,7 +45,6 @@ Partial Class frmAlimento
         Me.lblMedidaCaseira = New System.Windows.Forms.Label()
         Me.txtAlimento = New System.Windows.Forms.TextBox()
         Me.lblAlimento = New System.Windows.Forms.Label()
-        Me.btnProcurarAlimento = New System.Windows.Forms.Button()
         Me.txtCodAlimento = New System.Windows.Forms.TextBox()
         Me.lblCodAlimento = New System.Windows.Forms.Label()
         Me.tbConsulta = New System.Windows.Forms.TabPage()
@@ -56,13 +53,16 @@ Partial Class frmAlimento
         Me.dtgConAlimento = New System.Windows.Forms.DataGridView()
         Me.tbImportarPlanilha = New System.Windows.Forms.TabPage()
         Me.cbxNomePlanilha = New System.Windows.Forms.ComboBox()
-        Me.btnImportar = New System.Windows.Forms.Button()
         Me.dtgDados = New System.Windows.Forms.DataGridView()
-        Me.btnBuscarPlanilha = New System.Windows.Forms.Button()
         Me.txtCaminhoArquivoExcel = New System.Windows.Forms.TextBox()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.lblCaminho = New System.Windows.Forms.Label()
         Me.ofd1 = New System.Windows.Forms.OpenFileDialog()
+        Me.btnExcluir = New System.Windows.Forms.Button()
+        Me.btnSalvar = New System.Windows.Forms.Button()
+        Me.btnProcurarAlimento = New System.Windows.Forms.Button()
+        Me.btnImportar = New System.Windows.Forms.Button()
+        Me.btnBuscarPlanilha = New System.Windows.Forms.Button()
         Me.tbAlimento.SuspendLayout()
         Me.tbCadastro.SuspendLayout()
         Me.tbConsulta.SuspendLayout()
@@ -119,30 +119,6 @@ Partial Class frmAlimento
         Me.tbCadastro.TabIndex = 0
         Me.tbCadastro.Text = "Cadastro"
         Me.tbCadastro.UseVisualStyleBackColor = True
-        '
-        'btnExcluir
-        '
-        Me.btnExcluir.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnExcluir.Image = Global.ProjetoTCC.My.Resources.Resources.DeleteRed
-        Me.btnExcluir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnExcluir.Location = New System.Drawing.Point(692, 462)
-        Me.btnExcluir.Name = "btnExcluir"
-        Me.btnExcluir.Size = New System.Drawing.Size(89, 30)
-        Me.btnExcluir.TabIndex = 49
-        Me.btnExcluir.Text = "Excluir"
-        Me.btnExcluir.UseVisualStyleBackColor = True
-        '
-        'btnSalvar
-        '
-        Me.btnSalvar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnSalvar.Image = Global.ProjetoTCC.My.Resources.Resources.mvtSaveGreen_16
-        Me.btnSalvar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnSalvar.Location = New System.Drawing.Point(597, 462)
-        Me.btnSalvar.Name = "btnSalvar"
-        Me.btnSalvar.Size = New System.Drawing.Size(89, 30)
-        Me.btnSalvar.TabIndex = 48
-        Me.btnSalvar.Text = "Salvar"
-        Me.btnSalvar.UseVisualStyleBackColor = True
         '
         'txtCalcio
         '
@@ -304,15 +280,6 @@ Partial Class frmAlimento
         Me.lblAlimento.TabIndex = 28
         Me.lblAlimento.Text = "Alimento:"
         '
-        'btnProcurarAlimento
-        '
-        Me.btnProcurarAlimento.Image = Global.ProjetoTCC.My.Resources.Resources.consultar
-        Me.btnProcurarAlimento.Location = New System.Drawing.Point(192, 25)
-        Me.btnProcurarAlimento.Name = "btnProcurarAlimento"
-        Me.btnProcurarAlimento.Size = New System.Drawing.Size(30, 23)
-        Me.btnProcurarAlimento.TabIndex = 27
-        Me.btnProcurarAlimento.UseVisualStyleBackColor = True
-        '
         'txtCodAlimento
         '
         Me.txtCodAlimento.Location = New System.Drawing.Point(107, 27)
@@ -395,15 +362,6 @@ Partial Class frmAlimento
         Me.cbxNomePlanilha.Size = New System.Drawing.Size(315, 21)
         Me.cbxNomePlanilha.TabIndex = 270
         '
-        'btnImportar
-        '
-        Me.btnImportar.Location = New System.Drawing.Point(658, 462)
-        Me.btnImportar.Name = "btnImportar"
-        Me.btnImportar.Size = New System.Drawing.Size(123, 30)
-        Me.btnImportar.TabIndex = 269
-        Me.btnImportar.Text = "Importar"
-        Me.btnImportar.UseVisualStyleBackColor = True
-        '
         'dtgDados
         '
         Me.dtgDados.AllowUserToAddRows = False
@@ -413,15 +371,6 @@ Partial Class frmAlimento
         Me.dtgDados.Name = "dtgDados"
         Me.dtgDados.Size = New System.Drawing.Size(772, 377)
         Me.dtgDados.TabIndex = 268
-        '
-        'btnBuscarPlanilha
-        '
-        Me.btnBuscarPlanilha.Image = Global.ProjetoTCC.My.Resources.Resources.consultar
-        Me.btnBuscarPlanilha.Location = New System.Drawing.Point(751, 389)
-        Me.btnBuscarPlanilha.Name = "btnBuscarPlanilha"
-        Me.btnBuscarPlanilha.Size = New System.Drawing.Size(30, 23)
-        Me.btnBuscarPlanilha.TabIndex = 266
-        Me.btnBuscarPlanilha.UseVisualStyleBackColor = True
         '
         'txtCaminhoArquivoExcel
         '
@@ -451,6 +400,57 @@ Partial Class frmAlimento
         'ofd1
         '
         Me.ofd1.FileName = "ofd1"
+        '
+        'btnExcluir
+        '
+        Me.btnExcluir.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnExcluir.Image = Global.ProjetoTCC.My.Resources.Resources.DeleteRed
+        Me.btnExcluir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnExcluir.Location = New System.Drawing.Point(692, 462)
+        Me.btnExcluir.Name = "btnExcluir"
+        Me.btnExcluir.Size = New System.Drawing.Size(89, 30)
+        Me.btnExcluir.TabIndex = 49
+        Me.btnExcluir.Text = "Excluir"
+        Me.btnExcluir.UseVisualStyleBackColor = True
+        '
+        'btnSalvar
+        '
+        Me.btnSalvar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnSalvar.Image = Global.ProjetoTCC.My.Resources.Resources.mvtSaveGreen_16
+        Me.btnSalvar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnSalvar.Location = New System.Drawing.Point(597, 462)
+        Me.btnSalvar.Name = "btnSalvar"
+        Me.btnSalvar.Size = New System.Drawing.Size(89, 30)
+        Me.btnSalvar.TabIndex = 48
+        Me.btnSalvar.Text = "Salvar"
+        Me.btnSalvar.UseVisualStyleBackColor = True
+        '
+        'btnProcurarAlimento
+        '
+        Me.btnProcurarAlimento.Image = Global.ProjetoTCC.My.Resources.Resources.consultar
+        Me.btnProcurarAlimento.Location = New System.Drawing.Point(192, 25)
+        Me.btnProcurarAlimento.Name = "btnProcurarAlimento"
+        Me.btnProcurarAlimento.Size = New System.Drawing.Size(30, 23)
+        Me.btnProcurarAlimento.TabIndex = 27
+        Me.btnProcurarAlimento.UseVisualStyleBackColor = True
+        '
+        'btnImportar
+        '
+        Me.btnImportar.Location = New System.Drawing.Point(697, 462)
+        Me.btnImportar.Name = "btnImportar"
+        Me.btnImportar.Size = New System.Drawing.Size(84, 30)
+        Me.btnImportar.TabIndex = 269
+        Me.btnImportar.Text = "Importar"
+        Me.btnImportar.UseVisualStyleBackColor = True
+        '
+        'btnBuscarPlanilha
+        '
+        Me.btnBuscarPlanilha.Image = Global.ProjetoTCC.My.Resources.Resources.consultar
+        Me.btnBuscarPlanilha.Location = New System.Drawing.Point(751, 390)
+        Me.btnBuscarPlanilha.Name = "btnBuscarPlanilha"
+        Me.btnBuscarPlanilha.Size = New System.Drawing.Size(30, 23)
+        Me.btnBuscarPlanilha.TabIndex = 266
+        Me.btnBuscarPlanilha.UseVisualStyleBackColor = True
         '
         'frmAlimento
         '

@@ -406,6 +406,7 @@ Partial Class frmAlimento
         '
         'dtgDados
         '
+        Me.dtgDados.AllowUserToAddRows = False
         Me.dtgDados.BackgroundColor = System.Drawing.Color.White
         Me.dtgDados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dtgDados.Location = New System.Drawing.Point(9, 6)

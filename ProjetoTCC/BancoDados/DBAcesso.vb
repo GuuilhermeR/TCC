@@ -7,7 +7,6 @@ Public Class DBAcesso
         Try
             objConexao = New SQLiteConnection(stringConexao)
             objConexao.Open()
-
         Catch ex As Exception
             Throw ex
         End Try

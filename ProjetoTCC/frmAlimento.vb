@@ -1,10 +1,12 @@
-﻿Imports System.Data.SQLite
+﻿Imports System.Data.OleDb
+Imports System.Data.SQLite
 Imports System.Security
 
 Public Class frmAlimento
     Public objBanco As New DBAcesso
     Public objConexao As New SQLiteConnection((objBanco.Conexao).ToString)
     Public alimento As New AlimentoDAO
+    Public importarPlanilha As New importPlanilhaExcel
 
     Private Sub frmCadastroAlimento_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -102,6 +104,43 @@ Public Class frmAlimento
                     MessageBox.Show(("Não é possível exibir o arquivo : " & arquivo.Substring(arquivo.LastIndexOf("\"c))))
                 End Try
             Next
+        End If
+    End Sub
+
+    Private Sub btnImportar_Click(sender As Object, e As EventArgs) Handles btnImportar.Click
+        If String.IsNullOrWhiteSpace(txtCaminhoArquivoExcel.Text) Then
+            MessageBox.Show("Infome o caminho da planilha.", "Caminho da Planilha", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Exit Sub
+        End If
+        If String.IsNullOrWhiteSpace(Me.cbxNomePlanilha.Text) Then
+            MessageBox.Show("Selecione o nome da planilha.", "Nome da Planilha", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Exit Sub
+        End If
+
+        Dim caminhoArquivoExcel As String = txtCaminhoArquivoExcel.Text
+        Dim nomePlanilhaExcel As String = cbxNomePlanilha.Text & "$"
+        Dim conexaoOleDb As OleDbConnection = Nothing
+        Dim ds As DataSet
+        Dim cmd As OleDbDataAdapter
+
+        Try
+            conexaoOleDb = New OleDbConnection("provider=Microsoft.Jet.OLEDB.4.0;Data Source= " & caminhoArquivoExcel & ";Extended Properties=Excel 8.0;")
+            cmd = New OleDbDataAdapter("Select * from [" & nomePlanilhaExcel & "]", conexaoOleDb)
+            cmd.TableMappings.Add("Table", "tabelaExcel")
+            ds = New DataSet
+            cmd.Fill(ds)
+            dtgDados.DataSource = ds.Tables(0)
+        Catch ex As Exception
+            MessageBox.Show("Ocorreu um erro ao importar a planilha.", Chr(10) & ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            objConexao.Close()
+        End Try
+
+    End Sub
+
+    Private Sub txtCaminhoArquivoExcel_Leave(sender As Object, e As EventArgs) Handles txtCaminhoArquivoExcel.Leave
+        If Me.txtCaminhoArquivoExcel.Text <> "" Then
+            importarPlanilha.BuscarPlanilha(Me.txtCaminhoArquivoExcel.Text, Me.cbxNomePlanilha.Text)
         End If
     End Sub
 End Class

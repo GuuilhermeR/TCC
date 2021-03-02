@@ -55,13 +55,14 @@ Partial Class frmAlimento
         Me.txtAlimentoFiltro = New System.Windows.Forms.TextBox()
         Me.dtgConAlimento = New System.Windows.Forms.DataGridView()
         Me.tbImportarPlanilha = New System.Windows.Forms.TabPage()
-        Me.lblCaminho = New System.Windows.Forms.Label()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.txtCaminhoArquivoExcel = New System.Windows.Forms.TextBox()
-        Me.btnBuscarPlanilha = New System.Windows.Forms.Button()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.ofd1 = New System.Windows.Forms.OpenFileDialog()
+        Me.btnImportar = New System.Windows.Forms.Button()
         Me.dtgDados = New System.Windows.Forms.DataGridView()
+        Me.btnBuscarPlanilha = New System.Windows.Forms.Button()
+        Me.txtCaminhoArquivoExcel = New System.Windows.Forms.TextBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.lblCaminho = New System.Windows.Forms.Label()
+        Me.ofd1 = New System.Windows.Forms.OpenFileDialog()
+        Me.cbxNomePlanilha = New System.Windows.Forms.ComboBox()
         Me.tbAlimento.SuspendLayout()
         Me.tbCadastro.SuspendLayout()
         Me.tbConsulta.SuspendLayout()
@@ -362,6 +363,7 @@ Partial Class frmAlimento
         Me.dtgConAlimento.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dtgConAlimento.BackgroundColor = System.Drawing.Color.White
         Me.dtgConAlimento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dtgConAlimento.Location = New System.Drawing.Point(6, 32)
         Me.dtgConAlimento.Name = "dtgConAlimento"
@@ -370,8 +372,9 @@ Partial Class frmAlimento
         '
         'tbImportarPlanilha
         '
+        Me.tbImportarPlanilha.Controls.Add(Me.cbxNomePlanilha)
+        Me.tbImportarPlanilha.Controls.Add(Me.btnImportar)
         Me.tbImportarPlanilha.Controls.Add(Me.dtgDados)
-        Me.tbImportarPlanilha.Controls.Add(Me.TextBox2)
         Me.tbImportarPlanilha.Controls.Add(Me.btnBuscarPlanilha)
         Me.tbImportarPlanilha.Controls.Add(Me.txtCaminhoArquivoExcel)
         Me.tbImportarPlanilha.Controls.Add(Me.Label10)
@@ -384,30 +387,23 @@ Partial Class frmAlimento
         Me.tbImportarPlanilha.Text = "Importar"
         Me.tbImportarPlanilha.UseVisualStyleBackColor = True
         '
-        'lblCaminho
+        'btnImportar
         '
-        Me.lblCaminho.AutoSize = True
-        Me.lblCaminho.Location = New System.Drawing.Point(6, 393)
-        Me.lblCaminho.Name = "lblCaminho"
-        Me.lblCaminho.Size = New System.Drawing.Size(104, 13)
-        Me.lblCaminho.TabIndex = 0
-        Me.lblCaminho.Text = "Caminho do arquivo:"
+        Me.btnImportar.Location = New System.Drawing.Point(658, 462)
+        Me.btnImportar.Name = "btnImportar"
+        Me.btnImportar.Size = New System.Drawing.Size(123, 30)
+        Me.btnImportar.TabIndex = 269
+        Me.btnImportar.Text = "Importar"
+        Me.btnImportar.UseVisualStyleBackColor = True
         '
-        'Label10
+        'dtgDados
         '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(6, 444)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(92, 13)
-        Me.Label10.TabIndex = 1
-        Me.Label10.Text = "Nome da planilha:"
-        '
-        'txtCaminhoArquivoExcel
-        '
-        Me.txtCaminhoArquivoExcel.Location = New System.Drawing.Point(116, 391)
-        Me.txtCaminhoArquivoExcel.Name = "txtCaminhoArquivoExcel"
-        Me.txtCaminhoArquivoExcel.Size = New System.Drawing.Size(629, 20)
-        Me.txtCaminhoArquivoExcel.TabIndex = 2
+        Me.dtgDados.BackgroundColor = System.Drawing.Color.White
+        Me.dtgDados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dtgDados.Location = New System.Drawing.Point(9, 6)
+        Me.dtgDados.Name = "dtgDados"
+        Me.dtgDados.Size = New System.Drawing.Size(772, 377)
+        Me.dtgDados.TabIndex = 268
         '
         'btnBuscarPlanilha
         '
@@ -418,25 +414,42 @@ Partial Class frmAlimento
         Me.btnBuscarPlanilha.TabIndex = 266
         Me.btnBuscarPlanilha.UseVisualStyleBackColor = True
         '
-        'TextBox2
+        'txtCaminhoArquivoExcel
         '
-        Me.TextBox2.Location = New System.Drawing.Point(116, 444)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(629, 20)
-        Me.TextBox2.TabIndex = 267
+        Me.txtCaminhoArquivoExcel.Location = New System.Drawing.Point(116, 391)
+        Me.txtCaminhoArquivoExcel.Name = "txtCaminhoArquivoExcel"
+        Me.txtCaminhoArquivoExcel.Size = New System.Drawing.Size(629, 20)
+        Me.txtCaminhoArquivoExcel.TabIndex = 2
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(6, 427)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(92, 13)
+        Me.Label10.TabIndex = 1
+        Me.Label10.Text = "Nome da planilha:"
+        '
+        'lblCaminho
+        '
+        Me.lblCaminho.AutoSize = True
+        Me.lblCaminho.Location = New System.Drawing.Point(6, 393)
+        Me.lblCaminho.Name = "lblCaminho"
+        Me.lblCaminho.Size = New System.Drawing.Size(104, 13)
+        Me.lblCaminho.TabIndex = 0
+        Me.lblCaminho.Text = "Caminho do arquivo:"
         '
         'ofd1
         '
         Me.ofd1.FileName = "ofd1"
         '
-        'dtgDados
+        'cbxNomePlanilha
         '
-        Me.dtgDados.BackgroundColor = System.Drawing.Color.White
-        Me.dtgDados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dtgDados.Location = New System.Drawing.Point(9, 6)
-        Me.dtgDados.Name = "dtgDados"
-        Me.dtgDados.Size = New System.Drawing.Size(772, 377)
-        Me.dtgDados.TabIndex = 268
+        Me.cbxNomePlanilha.FormattingEnabled = True
+        Me.cbxNomePlanilha.Location = New System.Drawing.Point(116, 427)
+        Me.cbxNomePlanilha.Name = "cbxNomePlanilha"
+        Me.cbxNomePlanilha.Size = New System.Drawing.Size(444, 21)
+        Me.cbxNomePlanilha.TabIndex = 270
         '
         'frmAlimento
         '
@@ -495,8 +508,9 @@ Partial Class frmAlimento
     Friend WithEvents txtCaminhoArquivoExcel As TextBox
     Friend WithEvents Label10 As Label
     Friend WithEvents lblCaminho As Label
-    Friend WithEvents TextBox2 As TextBox
     Friend WithEvents btnBuscarPlanilha As Button
     Friend WithEvents ofd1 As OpenFileDialog
     Friend WithEvents dtgDados As DataGridView
+    Friend WithEvents btnImportar As Button
+    Friend WithEvents cbxNomePlanilha As ComboBox
 End Class

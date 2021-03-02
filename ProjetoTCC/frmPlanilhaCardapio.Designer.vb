@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmPlanilhaCardapio
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,17 +20,17 @@ Partial Class frmPlanilhaCardapio
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPlanilhaCardapio))
         Me.txtCodPaciente = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.txtDescricao = New System.Windows.Forms.TextBox()
         Me.lblDescricao = New System.Windows.Forms.Label()
-        Me.dtgRefeicoes = New System.Windows.Forms.DataGridView()
         Me.btnSalvar = New System.Windows.Forms.Button()
         Me.btnAdicionar = New MvtWindowsForms.ButtonInserir()
         Me.btnProcurarPaciente = New System.Windows.Forms.Button()
+        Me.dtgRefeicoes = New System.Windows.Forms.DataGridView()
         CType(Me.dtgRefeicoes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -68,24 +68,12 @@ Partial Class frmPlanilhaCardapio
         Me.lblDescricao.TabIndex = 267
         Me.lblDescricao.Text = "Descrição:"
         '
-        'dtgRefeicoes
-        '
-        Me.dtgRefeicoes.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.dtgRefeicoes.BackgroundColor = System.Drawing.Color.White
-        Me.dtgRefeicoes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dtgRefeicoes.Location = New System.Drawing.Point(12, 136)
-        Me.dtgRefeicoes.Name = "dtgRefeicoes"
-        Me.dtgRefeicoes.Size = New System.Drawing.Size(865, 469)
-        Me.dtgRefeicoes.TabIndex = 268
-        '
         'btnSalvar
         '
         Me.btnSalvar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnSalvar.Image = Global.ProjetoTCC.My.Resources.Resources.mvtSaveGreen_16
         Me.btnSalvar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnSalvar.Location = New System.Drawing.Point(788, 611)
+        Me.btnSalvar.Location = New System.Drawing.Point(788, 478)
         Me.btnSalvar.Name = "btnSalvar"
         Me.btnSalvar.Size = New System.Drawing.Size(89, 30)
         Me.btnSalvar.TabIndex = 270
@@ -95,7 +83,7 @@ Partial Class frmPlanilhaCardapio
         'btnAdicionar
         '
         Me.btnAdicionar.Image = CType(resources.GetObject("btnAdicionar.Image"), System.Drawing.Image)
-        Me.btnAdicionar.Location = New System.Drawing.Point(777, 100)
+        Me.btnAdicionar.Location = New System.Drawing.Point(777, 102)
         Me.btnAdicionar.MaximumSize = New System.Drawing.Size(100, 30)
         Me.btnAdicionar.MinimumSize = New System.Drawing.Size(100, 30)
         Me.btnAdicionar.Name = "btnAdicionar"
@@ -115,14 +103,26 @@ Partial Class frmPlanilhaCardapio
         Me.btnProcurarPaciente.TabIndex = 265
         Me.btnProcurarPaciente.UseVisualStyleBackColor = True
         '
+        'dtgRefeicoes
+        '
+        Me.dtgRefeicoes.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dtgRefeicoes.BackgroundColor = System.Drawing.Color.White
+        Me.dtgRefeicoes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dtgRefeicoes.Location = New System.Drawing.Point(12, 138)
+        Me.dtgRefeicoes.Name = "dtgRefeicoes"
+        Me.dtgRefeicoes.Size = New System.Drawing.Size(865, 334)
+        Me.dtgRefeicoes.TabIndex = 274
+        '
         'frmPlanilhaCardapio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(889, 653)
+        Me.ClientSize = New System.Drawing.Size(889, 520)
+        Me.Controls.Add(Me.dtgRefeicoes)
         Me.Controls.Add(Me.btnSalvar)
         Me.Controls.Add(Me.btnAdicionar)
-        Me.Controls.Add(Me.dtgRefeicoes)
         Me.Controls.Add(Me.txtDescricao)
         Me.Controls.Add(Me.lblDescricao)
         Me.Controls.Add(Me.btnProcurarPaciente)
@@ -142,7 +142,7 @@ Partial Class frmPlanilhaCardapio
     Friend WithEvents Label6 As Label
     Friend WithEvents txtDescricao As TextBox
     Friend WithEvents lblDescricao As Label
-    Friend WithEvents dtgRefeicoes As DataGridView
     Friend WithEvents btnAdicionar As MvtWindowsForms.ButtonInserir
     Friend WithEvents btnSalvar As Button
+    Friend WithEvents dtgRefeicoes As DataGridView
 End Class

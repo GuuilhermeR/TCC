@@ -114,7 +114,7 @@ Partial Class frmMenuPrincipal
         Me.btnAgenda.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAgenda.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAgenda.ForeColor = System.Drawing.Color.Black
-        Me.btnAgenda.Location = New System.Drawing.Point(12, 193)
+        Me.btnAgenda.Location = New System.Drawing.Point(12, 146)
         Me.btnAgenda.Name = "btnAgenda"
         Me.btnAgenda.Size = New System.Drawing.Size(208, 41)
         Me.btnAgenda.TabIndex = 8
@@ -157,7 +157,7 @@ Partial Class frmMenuPrincipal
         Me.btnCadAlimento.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCadAlimento.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCadAlimento.ForeColor = System.Drawing.Color.Black
-        Me.btnCadAlimento.Location = New System.Drawing.Point(12, 146)
+        Me.btnCadAlimento.Location = New System.Drawing.Point(12, 193)
         Me.btnCadAlimento.Name = "btnCadAlimento"
         Me.btnCadAlimento.Size = New System.Drawing.Size(208, 41)
         Me.btnCadAlimento.TabIndex = 2
@@ -198,13 +198,16 @@ Partial Class frmMenuPrincipal
         '
         'lblNomeApp
         '
+        Me.lblNomeApp.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblNomeApp.AutoSize = True
         Me.lblNomeApp.Font = New System.Drawing.Font("Yu Gothic UI Semibold", 24.0!, System.Drawing.FontStyle.Bold)
-        Me.lblNomeApp.Location = New System.Drawing.Point(444, 465)
+        Me.lblNomeApp.Location = New System.Drawing.Point(467, 465)
         Me.lblNomeApp.Name = "lblNomeApp"
-        Me.lblNomeApp.Size = New System.Drawing.Size(211, 45)
+        Me.lblNomeApp.Size = New System.Drawing.Size(152, 45)
         Me.lblNomeApp.TabIndex = 7
-        Me.lblNomeApp.Text = "NutreasyApp"
+        Me.lblNomeApp.Text = "Nutreasy"
         '
         'lblUsuario
         '
@@ -219,6 +222,9 @@ Partial Class frmMenuPrincipal
         '
         'pbxLogoGrande
         '
+        Me.pbxLogoGrande.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pbxLogoGrande.Image = Global.ProjetoTCC.My.Resources.Resources.iconTCC_removebg_preview__1____Copia
         Me.pbxLogoGrande.Location = New System.Drawing.Point(385, 120)
         Me.pbxLogoGrande.Name = "pbxLogoGrande"

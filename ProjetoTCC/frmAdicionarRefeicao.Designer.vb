@@ -69,15 +69,15 @@ Partial Class frmAdicionarRefeição
         '
         'txtAlimento
         '
-        Me.txtAlimento.Location = New System.Drawing.Point(69, 84)
+        Me.txtAlimento.Location = New System.Drawing.Point(69, 74)
         Me.txtAlimento.Name = "txtAlimento"
-        Me.txtAlimento.Size = New System.Drawing.Size(59, 20)
+        Me.txtAlimento.Size = New System.Drawing.Size(370, 20)
         Me.txtAlimento.TabIndex = 6
         '
         'lblAlimento
         '
         Me.lblAlimento.AutoSize = True
-        Me.lblAlimento.Location = New System.Drawing.Point(13, 87)
+        Me.lblAlimento.Location = New System.Drawing.Point(13, 77)
         Me.lblAlimento.Name = "lblAlimento"
         Me.lblAlimento.Size = New System.Drawing.Size(50, 13)
         Me.lblAlimento.TabIndex = 5
@@ -86,7 +86,7 @@ Partial Class frmAdicionarRefeição
         'btnProcurarPaciente
         '
         Me.btnProcurarPaciente.Image = Global.ProjetoTCC.My.Resources.Resources.consultar
-        Me.btnProcurarPaciente.Location = New System.Drawing.Point(134, 82)
+        Me.btnProcurarPaciente.Location = New System.Drawing.Point(445, 72)
         Me.btnProcurarPaciente.Name = "btnProcurarPaciente"
         Me.btnProcurarPaciente.Size = New System.Drawing.Size(30, 23)
         Me.btnProcurarPaciente.TabIndex = 266
@@ -109,7 +109,7 @@ Partial Class frmAdicionarRefeição
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(319, 84)
+        Me.TextBox1.Location = New System.Drawing.Point(127, 120)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(72, 20)
         Me.TextBox1.TabIndex = 269
@@ -117,7 +117,7 @@ Partial Class frmAdicionarRefeição
         'lblObs
         '
         Me.lblObs.AutoSize = True
-        Me.lblObs.Location = New System.Drawing.Point(205, 87)
+        Me.lblObs.Location = New System.Drawing.Point(13, 123)
         Me.lblObs.Name = "lblObs"
         Me.lblObs.Size = New System.Drawing.Size(108, 13)
         Me.lblObs.TabIndex = 268

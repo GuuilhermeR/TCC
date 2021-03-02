@@ -23,8 +23,8 @@ Public Class frmMenuPrincipal
         btnOcultar.Hide()
         Me.pbxLogoGrande.Location = New Point(295, 120)
         Me.lblNomeApp.Location = New Point(375, 470)
-
     End Sub
+
     Private Sub btnMostrar_Click(sender As Object, e As EventArgs) Handles btnMostrar.Click
         pnlBotoes.Show()
         btnMostrar.Hide()

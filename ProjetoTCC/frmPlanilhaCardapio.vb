@@ -4,8 +4,10 @@ Public Class frmPlanilhaCardapio
     Public objBanco As New DBAcesso
     Public objConexao As New SQLiteConnection((objBanco.Conexao).ToString)
     Private Sub btnProcurarPaciente_Click(sender As Object, e As EventArgs) Handles btnProcurarPaciente.Click
+
         Dim frmBuscaPaciente As New frmBuscarPaciente
         frmBuscarPaciente.Show()
+
     End Sub
 
     Private Sub frmPlanilhaCardapio_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -24,6 +26,15 @@ Public Class frmPlanilhaCardapio
             Me.dtgRefeicoes.Columns.Add("hora", "Horário")
 
         End If
+
+    End Sub
+
+    Private Sub CalcularTotalizador()
+
+        'Total Kcal -> De proteína, carboidrato e lipídio.
+        'Kcal total na refeição -> Soma dos 3 ^
+        'Kcal estipulado e índice de adequação
+        '% de Prot,carb e lip.
 
     End Sub
 

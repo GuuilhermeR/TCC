@@ -55,6 +55,7 @@ Partial Class frmAlimento
         Me.txtAlimentoFiltro = New System.Windows.Forms.TextBox()
         Me.dtgConAlimento = New System.Windows.Forms.DataGridView()
         Me.tbImportarPlanilha = New System.Windows.Forms.TabPage()
+        Me.cbxNomePlanilha = New System.Windows.Forms.ComboBox()
         Me.btnImportar = New System.Windows.Forms.Button()
         Me.dtgDados = New System.Windows.Forms.DataGridView()
         Me.btnBuscarPlanilha = New System.Windows.Forms.Button()
@@ -62,7 +63,6 @@ Partial Class frmAlimento
         Me.Label10 = New System.Windows.Forms.Label()
         Me.lblCaminho = New System.Windows.Forms.Label()
         Me.ofd1 = New System.Windows.Forms.OpenFileDialog()
-        Me.cbxNomePlanilha = New System.Windows.Forms.ComboBox()
         Me.tbAlimento.SuspendLayout()
         Me.tbCadastro.SuspendLayout()
         Me.tbConsulta.SuspendLayout()
@@ -387,6 +387,14 @@ Partial Class frmAlimento
         Me.tbImportarPlanilha.Text = "Importar"
         Me.tbImportarPlanilha.UseVisualStyleBackColor = True
         '
+        'cbxNomePlanilha
+        '
+        Me.cbxNomePlanilha.FormattingEnabled = True
+        Me.cbxNomePlanilha.Location = New System.Drawing.Point(116, 427)
+        Me.cbxNomePlanilha.Name = "cbxNomePlanilha"
+        Me.cbxNomePlanilha.Size = New System.Drawing.Size(315, 21)
+        Me.cbxNomePlanilha.TabIndex = 270
+        '
         'btnImportar
         '
         Me.btnImportar.Location = New System.Drawing.Point(658, 462)
@@ -442,14 +450,6 @@ Partial Class frmAlimento
         'ofd1
         '
         Me.ofd1.FileName = "ofd1"
-        '
-        'cbxNomePlanilha
-        '
-        Me.cbxNomePlanilha.FormattingEnabled = True
-        Me.cbxNomePlanilha.Location = New System.Drawing.Point(116, 427)
-        Me.cbxNomePlanilha.Name = "cbxNomePlanilha"
-        Me.cbxNomePlanilha.Size = New System.Drawing.Size(444, 21)
-        Me.cbxNomePlanilha.TabIndex = 270
         '
         'frmAlimento
         '

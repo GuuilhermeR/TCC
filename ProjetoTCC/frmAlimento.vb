@@ -1,12 +1,14 @@
 ﻿Imports System.Data.OleDb
 Imports System.Data.SQLite
+Imports System.IO
 Imports System.Security
+Imports ExcelDataReader
 
 Public Class frmAlimento
     Public objBanco As New DBAcesso
     Public objConexao As New SQLiteConnection((objBanco.Conexao).ToString)
     Public alimento As New AlimentoDAO
-    Public importarPlanilha As New importPlanilhaExcel
+
 
     Private Sub frmCadastroAlimento_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -80,31 +82,23 @@ Public Class frmAlimento
     End Sub
 
     Private Sub btnBuscarPlanilha_Click(sender As Object, e As EventArgs) Handles btnBuscarPlanilha.Click
-        Me.ofd1.Multiselect = False
-        Me.ofd1.Title = "Selecionar Arquivos"
-        ofd1.InitialDirectory = "C:\dados"
-        ofd1.Filter = "Excel (*.xls;*.xlsx)|*.xls;*.xlsx|" & "All files (*.*)|*.*"
-        ofd1.CheckFileExists = True
-        ofd1.CheckPathExists = True
-        ofd1.FilterIndex = 2
-        ofd1.RestoreDirectory = True
-        ofd1.ReadOnlyChecked = True
-        ofd1.ShowReadOnly = True
-        Dim dr As DialogResult = Me.ofd1.ShowDialog()
-        If dr = System.Windows.Forms.DialogResult.OK Then
-            ' Le os arquivos selecionados
-            For Each arquivo As String In ofd1.FileNames
-                txtCaminhoArquivoExcel.Text += arquivo & vbNewLine
-                Try
-                    ' Aqui fica o que deve ser executado com os arquivos selecionados.
-                Catch ex As SecurityException
-                    MessageBox.Show((("Erro de segurança." & vbLf & vbLf & "Mensagem : ") + ex.Message & vbLf & vbLf & "Detalhes:" & vbLf & vbLf) + ex.StackTrace)
-                Catch ex As Exception
-                    ' Não pode carregar o arquivo (problemas de permissão)
-                    MessageBox.Show(("Não é possível exibir o arquivo : " & arquivo.Substring(arquivo.LastIndexOf("\"c))))
-                End Try
-            Next
-        End If
+        Using ofd1 As New OpenFileDialog() With {.Filter = "Excel 97-2003 Workbook |*.xls|Excel Workbook|*.xlsx"}
+            If ofd1.ShowDialog = DialogResult.OK Then
+                Me.txtCaminhoArquivoExcel.Text = ofd1.FileName
+                Using stream = File.Open(ofd1.FileName, FileMode.Open, FileAccess.Read)
+                    Using reader As IExcelDataReader = ExcelReaderFactory.CreateReader(stream)
+                        Dim result As DataSet = reader.AsDataSet(New ExcelDataSetConfiguration() _
+                            With {.ConfigureDataTable = Function(__) New ExcelDataTableConfiguration() With {.UseHeaderRow = True}})
+                        tables = result.Tables
+                        cbxNomePlanilha.Items.Clear()
+                        For Each planilhas As DataTable In tables
+                            cbxNomePlanilha.Items.Add(planilhas.TableName)
+                        Next
+                    End Using
+                End Using
+            End If
+
+        End Using
     End Sub
 
     Private Sub btnImportar_Click(sender As Object, e As EventArgs) Handles btnImportar.Click

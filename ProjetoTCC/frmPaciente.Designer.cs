@@ -37,500 +37,501 @@ namespace ProjetoTCC
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPaciente));
-            tbPaciente = new TabControl();
-            tbCadastro = new TabPage();
-            _btnProcurarPaciente = new Button();
-            _btnProcurarPaciente.Click += new EventHandler(btnProcurarPaciente_Click);
-            txtCodPaciente = new TextBox();
-            Label6 = new Label();
-            txtPeso = new TextBox();
-            Label5 = new Label();
-            Label4 = new Label();
-            txtAltura = new TextBox();
-            Label3 = new Label();
-            Label2 = new Label();
-            _btnExcluir = new Button();
-            _btnExcluir.Click += new EventHandler(btnExcluir_Click);
-            _btnSalvar = new Button();
-            _btnSalvar.Click += new EventHandler(btnSalvar_Click);
-            txtNumero = new TextBox();
-            lblNum = new Label();
-            txtEmail = new TextBox();
-            Label1 = new Label();
-            txtComplemento = new TextBox();
-            lblComplemento = new Label();
-            txtUF = new TextBox();
-            lblUF = new Label();
-            txtCelular = new TextBox();
-            lblCelular = new Label();
-            txtTelefone = new TextBox();
-            lblTelefone = new Label();
-            txtMunicipio = new TextBox();
-            lblMunicipio = new Label();
-            _txtCEP = new TextBox();
-            _txtCEP.Leave += new EventHandler(txtCEP_Leave);
-            lblCEP = new Label();
-            txtBairro = new TextBox();
-            lblBairro = new Label();
-            txtEndereco = new TextBox();
-            lblEndereco = new Label();
-            txtDtNasc = new TextBox();
-            lblDataNascimento = new Label();
-            txtCPF = new TextBox();
-            lblCPF = new Label();
-            txtNome = new TextBox();
-            PictureBox1 = new PictureBox();
-            lblNome = new Label();
-            _tbConsulta = new TabPage();
-            _tbConsulta.Enter += new EventHandler(tbConsulta_Enter);
-            _txtNomePaciente = new TextBox();
-            _txtNomePaciente.Leave += new EventHandler(txtNomePaciente_Leave);
-            lblNomePaciente = new Label();
-            _dtgConsultaPacientes = new DataGridView();
-            _dtgConsultaPacientes.CellDoubleClick += new DataGridViewCellEventHandler(dtgConsultaPacientes_CellDoubleClick);
-            tbPaciente.SuspendLayout();
-            tbCadastro.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)PictureBox1).BeginInit();
-            _tbConsulta.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)_dtgConsultaPacientes).BeginInit();
-            SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPaciente));
+            this.tbPaciente = new System.Windows.Forms.TabControl();
+            this.tbCadastro = new System.Windows.Forms.TabPage();
+            this._btnProcurarPaciente = new System.Windows.Forms.Button();
+            this.txtCodPaciente = new System.Windows.Forms.TextBox();
+            this.Label6 = new System.Windows.Forms.Label();
+            this.txtPeso = new System.Windows.Forms.TextBox();
+            this.Label5 = new System.Windows.Forms.Label();
+            this.Label4 = new System.Windows.Forms.Label();
+            this.txtAltura = new System.Windows.Forms.TextBox();
+            this.Label3 = new System.Windows.Forms.Label();
+            this.Label2 = new System.Windows.Forms.Label();
+            this._btnExcluir = new System.Windows.Forms.Button();
+            this._btnSalvar = new System.Windows.Forms.Button();
+            this.txtNumero = new System.Windows.Forms.TextBox();
+            this.lblNum = new System.Windows.Forms.Label();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.Label1 = new System.Windows.Forms.Label();
+            this.txtComplemento = new System.Windows.Forms.TextBox();
+            this.lblComplemento = new System.Windows.Forms.Label();
+            this.txtUF = new System.Windows.Forms.TextBox();
+            this.lblUF = new System.Windows.Forms.Label();
+            this.txtCelular = new System.Windows.Forms.TextBox();
+            this.lblCelular = new System.Windows.Forms.Label();
+            this.txtTelefone = new System.Windows.Forms.TextBox();
+            this.lblTelefone = new System.Windows.Forms.Label();
+            this.txtMunicipio = new System.Windows.Forms.TextBox();
+            this.lblMunicipio = new System.Windows.Forms.Label();
+            this._txtCEP = new System.Windows.Forms.TextBox();
+            this.lblCEP = new System.Windows.Forms.Label();
+            this.txtBairro = new System.Windows.Forms.TextBox();
+            this.lblBairro = new System.Windows.Forms.Label();
+            this.txtEndereco = new System.Windows.Forms.TextBox();
+            this.lblEndereco = new System.Windows.Forms.Label();
+            this.txtDtNasc = new System.Windows.Forms.TextBox();
+            this.lblDataNascimento = new System.Windows.Forms.Label();
+            this.txtCPF = new System.Windows.Forms.TextBox();
+            this.lblCPF = new System.Windows.Forms.Label();
+            this.txtNome = new System.Windows.Forms.TextBox();
+            this.PictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblNome = new System.Windows.Forms.Label();
+            this._tbConsulta = new System.Windows.Forms.TabPage();
+            this._txtNomePaciente = new System.Windows.Forms.TextBox();
+            this.lblNomePaciente = new System.Windows.Forms.Label();
+            this._dtgConsultaPacientes = new System.Windows.Forms.DataGridView();
+            this.tbPaciente.SuspendLayout();
+            this.tbCadastro.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
+            this._tbConsulta.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._dtgConsultaPacientes)).BeginInit();
+            this.SuspendLayout();
             // 
             // tbPaciente
             // 
-            tbPaciente.Controls.Add(tbCadastro);
-            tbPaciente.Controls.Add(_tbConsulta);
-            tbPaciente.Location = new Point(2, 3);
-            tbPaciente.Name = "tbPaciente";
-            tbPaciente.SelectedIndex = 0;
-            tbPaciente.Size = new Size(798, 517);
-            tbPaciente.TabIndex = 0;
+            this.tbPaciente.Controls.Add(this.tbCadastro);
+            this.tbPaciente.Controls.Add(this._tbConsulta);
+            this.tbPaciente.Location = new System.Drawing.Point(2, 3);
+            this.tbPaciente.Name = "tbPaciente";
+            this.tbPaciente.SelectedIndex = 0;
+            this.tbPaciente.Size = new System.Drawing.Size(798, 517);
+            this.tbPaciente.TabIndex = 0;
             // 
             // tbCadastro
             // 
-            tbCadastro.Controls.Add(_btnProcurarPaciente);
-            tbCadastro.Controls.Add(txtCodPaciente);
-            tbCadastro.Controls.Add(Label6);
-            tbCadastro.Controls.Add(txtPeso);
-            tbCadastro.Controls.Add(Label5);
-            tbCadastro.Controls.Add(Label4);
-            tbCadastro.Controls.Add(txtAltura);
-            tbCadastro.Controls.Add(Label3);
-            tbCadastro.Controls.Add(Label2);
-            tbCadastro.Controls.Add(_btnExcluir);
-            tbCadastro.Controls.Add(_btnSalvar);
-            tbCadastro.Controls.Add(txtNumero);
-            tbCadastro.Controls.Add(lblNum);
-            tbCadastro.Controls.Add(txtEmail);
-            tbCadastro.Controls.Add(Label1);
-            tbCadastro.Controls.Add(txtComplemento);
-            tbCadastro.Controls.Add(lblComplemento);
-            tbCadastro.Controls.Add(txtUF);
-            tbCadastro.Controls.Add(lblUF);
-            tbCadastro.Controls.Add(txtCelular);
-            tbCadastro.Controls.Add(lblCelular);
-            tbCadastro.Controls.Add(txtTelefone);
-            tbCadastro.Controls.Add(lblTelefone);
-            tbCadastro.Controls.Add(txtMunicipio);
-            tbCadastro.Controls.Add(lblMunicipio);
-            tbCadastro.Controls.Add(_txtCEP);
-            tbCadastro.Controls.Add(lblCEP);
-            tbCadastro.Controls.Add(txtBairro);
-            tbCadastro.Controls.Add(lblBairro);
-            tbCadastro.Controls.Add(txtEndereco);
-            tbCadastro.Controls.Add(lblEndereco);
-            tbCadastro.Controls.Add(txtDtNasc);
-            tbCadastro.Controls.Add(lblDataNascimento);
-            tbCadastro.Controls.Add(txtCPF);
-            tbCadastro.Controls.Add(lblCPF);
-            tbCadastro.Controls.Add(txtNome);
-            tbCadastro.Controls.Add(PictureBox1);
-            tbCadastro.Controls.Add(lblNome);
-            tbCadastro.Location = new Point(4, 22);
-            tbCadastro.Name = "tbCadastro";
-            tbCadastro.Padding = new Padding(3);
-            tbCadastro.Size = new Size(790, 491);
-            tbCadastro.TabIndex = 0;
-            tbCadastro.Text = "Cadastro";
-            tbCadastro.UseVisualStyleBackColor = true;
+            this.tbCadastro.Controls.Add(this._btnProcurarPaciente);
+            this.tbCadastro.Controls.Add(this.txtCodPaciente);
+            this.tbCadastro.Controls.Add(this.Label6);
+            this.tbCadastro.Controls.Add(this.txtPeso);
+            this.tbCadastro.Controls.Add(this.Label5);
+            this.tbCadastro.Controls.Add(this.Label4);
+            this.tbCadastro.Controls.Add(this.txtAltura);
+            this.tbCadastro.Controls.Add(this.Label3);
+            this.tbCadastro.Controls.Add(this.Label2);
+            this.tbCadastro.Controls.Add(this._btnExcluir);
+            this.tbCadastro.Controls.Add(this._btnSalvar);
+            this.tbCadastro.Controls.Add(this.txtNumero);
+            this.tbCadastro.Controls.Add(this.lblNum);
+            this.tbCadastro.Controls.Add(this.txtEmail);
+            this.tbCadastro.Controls.Add(this.Label1);
+            this.tbCadastro.Controls.Add(this.txtComplemento);
+            this.tbCadastro.Controls.Add(this.lblComplemento);
+            this.tbCadastro.Controls.Add(this.txtUF);
+            this.tbCadastro.Controls.Add(this.lblUF);
+            this.tbCadastro.Controls.Add(this.txtCelular);
+            this.tbCadastro.Controls.Add(this.lblCelular);
+            this.tbCadastro.Controls.Add(this.txtTelefone);
+            this.tbCadastro.Controls.Add(this.lblTelefone);
+            this.tbCadastro.Controls.Add(this.txtMunicipio);
+            this.tbCadastro.Controls.Add(this.lblMunicipio);
+            this.tbCadastro.Controls.Add(this._txtCEP);
+            this.tbCadastro.Controls.Add(this.lblCEP);
+            this.tbCadastro.Controls.Add(this.txtBairro);
+            this.tbCadastro.Controls.Add(this.lblBairro);
+            this.tbCadastro.Controls.Add(this.txtEndereco);
+            this.tbCadastro.Controls.Add(this.lblEndereco);
+            this.tbCadastro.Controls.Add(this.txtDtNasc);
+            this.tbCadastro.Controls.Add(this.lblDataNascimento);
+            this.tbCadastro.Controls.Add(this.txtCPF);
+            this.tbCadastro.Controls.Add(this.lblCPF);
+            this.tbCadastro.Controls.Add(this.txtNome);
+            this.tbCadastro.Controls.Add(this.PictureBox1);
+            this.tbCadastro.Controls.Add(this.lblNome);
+            this.tbCadastro.Location = new System.Drawing.Point(4, 22);
+            this.tbCadastro.Name = "tbCadastro";
+            this.tbCadastro.Padding = new System.Windows.Forms.Padding(3);
+            this.tbCadastro.Size = new System.Drawing.Size(790, 491);
+            this.tbCadastro.TabIndex = 0;
+            this.tbCadastro.Text = "Cadastro";
+            this.tbCadastro.UseVisualStyleBackColor = true;
             // 
-            // btnProcurarPaciente
+            // _btnProcurarPaciente
             // 
-            _btnProcurarPaciente.Image = My.Resources.Resources.consultar;
-            _btnProcurarPaciente.Location = new Point(388, 13);
-            _btnProcurarPaciente.Name = "_btnProcurarPaciente";
-            _btnProcurarPaciente.Size = new Size(30, 23);
-            _btnProcurarPaciente.TabIndex = 262;
-            _btnProcurarPaciente.UseVisualStyleBackColor = true;
+            this._btnProcurarPaciente.Image = global::ProjetoTCC.My.Resources.Resources.consultar;
+            this._btnProcurarPaciente.Location = new System.Drawing.Point(388, 13);
+            this._btnProcurarPaciente.Name = "_btnProcurarPaciente";
+            this._btnProcurarPaciente.Size = new System.Drawing.Size(30, 23);
+            this._btnProcurarPaciente.TabIndex = 262;
+            this._btnProcurarPaciente.UseVisualStyleBackColor = true;
+            this._btnProcurarPaciente.Click += new System.EventHandler(this.btnProcurarPaciente_Click);
             // 
             // txtCodPaciente
             // 
-            txtCodPaciente.Enabled = false;
-            txtCodPaciente.Location = new Point(324, 15);
-            txtCodPaciente.Name = "txtCodPaciente";
-            txtCodPaciente.Size = new Size(58, 20);
-            txtCodPaciente.TabIndex = 225;
+            this.txtCodPaciente.Enabled = false;
+            this.txtCodPaciente.Location = new System.Drawing.Point(324, 15);
+            this.txtCodPaciente.Name = "txtCodPaciente";
+            this.txtCodPaciente.Size = new System.Drawing.Size(58, 20);
+            this.txtCodPaciente.TabIndex = 225;
             // 
             // Label6
             // 
-            Label6.AutoSize = true;
-            Label6.Location = new Point(213, 18);
-            Label6.Name = "Label6";
-            Label6.Size = new Size(88, 13);
-            Label6.TabIndex = 261;
-            Label6.Text = "Código Paciente:";
+            this.Label6.AutoSize = true;
+            this.Label6.Location = new System.Drawing.Point(213, 18);
+            this.Label6.Name = "Label6";
+            this.Label6.Size = new System.Drawing.Size(88, 13);
+            this.Label6.TabIndex = 261;
+            this.Label6.Text = "Código Paciente:";
             // 
             // txtPeso
             // 
-            txtPeso.Location = new Point(253, 190);
-            txtPeso.Name = "txtPeso";
-            txtPeso.Size = new Size(60, 20);
-            txtPeso.TabIndex = 230;
+            this.txtPeso.Location = new System.Drawing.Point(253, 190);
+            this.txtPeso.Name = "txtPeso";
+            this.txtPeso.Size = new System.Drawing.Size(60, 20);
+            this.txtPeso.TabIndex = 230;
             // 
             // Label5
             // 
-            Label5.AutoSize = true;
-            Label5.Location = new Point(471, 193);
-            Label5.Name = "Label5";
-            Label5.Size = new Size(21, 13);
-            Label5.TabIndex = 260;
-            Label5.Text = "cm";
+            this.Label5.AutoSize = true;
+            this.Label5.Location = new System.Drawing.Point(471, 193);
+            this.Label5.Name = "Label5";
+            this.Label5.Size = new System.Drawing.Size(21, 13);
+            this.Label5.TabIndex = 260;
+            this.Label5.Text = "cm";
             // 
             // Label4
             // 
-            Label4.AutoSize = true;
-            Label4.Location = new Point(319, 193);
-            Label4.Name = "Label4";
-            Label4.Size = new Size(20, 13);
-            Label4.TabIndex = 259;
-            Label4.Text = "Kg";
+            this.Label4.AutoSize = true;
+            this.Label4.Location = new System.Drawing.Point(319, 193);
+            this.Label4.Name = "Label4";
+            this.Label4.Size = new System.Drawing.Size(20, 13);
+            this.Label4.TabIndex = 259;
+            this.Label4.Text = "Kg";
             // 
             // txtAltura
             // 
-            txtAltura.Location = new Point(405, 190);
-            txtAltura.Name = "txtAltura";
-            txtAltura.Size = new Size(60, 20);
-            txtAltura.TabIndex = 231;
+            this.txtAltura.Location = new System.Drawing.Point(405, 190);
+            this.txtAltura.Name = "txtAltura";
+            this.txtAltura.Size = new System.Drawing.Size(60, 20);
+            this.txtAltura.TabIndex = 231;
             // 
             // Label3
             // 
-            Label3.AutoSize = true;
-            Label3.Location = new Point(362, 193);
-            Label3.Name = "Label3";
-            Label3.Size = new Size(37, 13);
-            Label3.TabIndex = 258;
-            Label3.Text = "Altura:";
+            this.Label3.AutoSize = true;
+            this.Label3.Location = new System.Drawing.Point(362, 193);
+            this.Label3.Name = "Label3";
+            this.Label3.Size = new System.Drawing.Size(37, 13);
+            this.Label3.TabIndex = 258;
+            this.Label3.Text = "Altura:";
             // 
             // Label2
             // 
-            Label2.AutoSize = true;
-            Label2.Location = new Point(213, 193);
-            Label2.Name = "Label2";
-            Label2.Size = new Size(34, 13);
-            Label2.TabIndex = 257;
-            Label2.Text = "Peso:";
+            this.Label2.AutoSize = true;
+            this.Label2.Location = new System.Drawing.Point(213, 193);
+            this.Label2.Name = "Label2";
+            this.Label2.Size = new System.Drawing.Size(34, 13);
+            this.Label2.TabIndex = 257;
+            this.Label2.Text = "Peso:";
             // 
-            // btnExcluir
+            // _btnExcluir
             // 
-            _btnExcluir.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            _btnExcluir.Image = My.Resources.Resources.DeleteRed;
-            _btnExcluir.ImageAlign = ContentAlignment.MiddleLeft;
-            _btnExcluir.Location = new Point(695, 459);
-            _btnExcluir.Name = "_btnExcluir";
-            _btnExcluir.Size = new Size(89, 30);
-            _btnExcluir.TabIndex = 242;
-            _btnExcluir.Text = "Excluir";
-            _btnExcluir.UseVisualStyleBackColor = true;
+            this._btnExcluir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this._btnExcluir.Image = global::ProjetoTCC.My.Resources.Resources.DeleteRed;
+            this._btnExcluir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._btnExcluir.Location = new System.Drawing.Point(694, 455);
+            this._btnExcluir.Name = "_btnExcluir";
+            this._btnExcluir.Size = new System.Drawing.Size(89, 30);
+            this._btnExcluir.TabIndex = 242;
+            this._btnExcluir.Text = "Excluir";
+            this._btnExcluir.UseVisualStyleBackColor = true;
+            this._btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
-            // btnSalvar
+            // _btnSalvar
             // 
-            _btnSalvar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            _btnSalvar.Image = My.Resources.Resources.mvtSaveGreen_16;
-            _btnSalvar.ImageAlign = ContentAlignment.MiddleLeft;
-            _btnSalvar.Location = new Point(600, 459);
-            _btnSalvar.Name = "_btnSalvar";
-            _btnSalvar.Size = new Size(89, 30);
-            _btnSalvar.TabIndex = 241;
-            _btnSalvar.Text = "Salvar";
-            _btnSalvar.UseVisualStyleBackColor = true;
+            this._btnSalvar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this._btnSalvar.Image = global::ProjetoTCC.My.Resources.Resources.mvtSaveGreen_16;
+            this._btnSalvar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._btnSalvar.Location = new System.Drawing.Point(599, 455);
+            this._btnSalvar.Name = "_btnSalvar";
+            this._btnSalvar.Size = new System.Drawing.Size(89, 30);
+            this._btnSalvar.TabIndex = 241;
+            this._btnSalvar.Text = "Salvar";
+            this._btnSalvar.UseVisualStyleBackColor = true;
+            this._btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // txtNumero
             // 
-            txtNumero.Location = new Point(675, 246);
-            txtNumero.Name = "txtNumero";
-            txtNumero.Size = new Size(60, 20);
-            txtNumero.TabIndex = 234;
+            this.txtNumero.Location = new System.Drawing.Point(675, 246);
+            this.txtNumero.Name = "txtNumero";
+            this.txtNumero.Size = new System.Drawing.Size(60, 20);
+            this.txtNumero.TabIndex = 234;
             // 
             // lblNum
             // 
-            lblNum.AutoSize = true;
-            lblNum.Location = new Point(645, 249);
-            lblNum.Name = "lblNum";
-            lblNum.Size = new Size(22, 13);
-            lblNum.TabIndex = 256;
-            lblNum.Text = "Nº:";
+            this.lblNum.AutoSize = true;
+            this.lblNum.Location = new System.Drawing.Point(645, 249);
+            this.lblNum.Name = "lblNum";
+            this.lblNum.Size = new System.Drawing.Size(22, 13);
+            this.lblNum.TabIndex = 256;
+            this.lblNum.Text = "Nº:";
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(324, 153);
-            txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(222, 20);
-            txtEmail.TabIndex = 229;
+            this.txtEmail.Location = new System.Drawing.Point(324, 153);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(222, 20);
+            this.txtEmail.TabIndex = 229;
             // 
             // Label1
             // 
-            Label1.AutoSize = true;
-            Label1.Location = new Point(213, 156);
-            Label1.Name = "Label1";
-            Label1.Size = new Size(38, 13);
-            Label1.TabIndex = 255;
-            Label1.Text = "E-mail:";
+            this.Label1.AutoSize = true;
+            this.Label1.Location = new System.Drawing.Point(213, 156);
+            this.Label1.Name = "Label1";
+            this.Label1.Size = new System.Drawing.Size(38, 13);
+            this.Label1.TabIndex = 255;
+            this.Label1.Text = "E-mail:";
             // 
             // txtComplemento
             // 
-            txtComplemento.Location = new Point(101, 344);
-            txtComplemento.Name = "txtComplemento";
-            txtComplemento.Size = new Size(634, 20);
-            txtComplemento.TabIndex = 238;
+            this.txtComplemento.Location = new System.Drawing.Point(101, 344);
+            this.txtComplemento.Name = "txtComplemento";
+            this.txtComplemento.Size = new System.Drawing.Size(634, 20);
+            this.txtComplemento.TabIndex = 238;
             // 
             // lblComplemento
             // 
-            lblComplemento.AutoSize = true;
-            lblComplemento.Location = new Point(18, 347);
-            lblComplemento.Name = "lblComplemento";
-            lblComplemento.Size = new Size(74, 13);
-            lblComplemento.TabIndex = 254;
-            lblComplemento.Text = "Complemento:";
+            this.lblComplemento.AutoSize = true;
+            this.lblComplemento.Location = new System.Drawing.Point(18, 347);
+            this.lblComplemento.Name = "lblComplemento";
+            this.lblComplemento.Size = new System.Drawing.Size(74, 13);
+            this.lblComplemento.TabIndex = 254;
+            this.lblComplemento.Text = "Complemento:";
             // 
             // txtUF
             // 
-            txtUF.Enabled = false;
-            txtUF.Location = new Point(675, 296);
-            txtUF.Name = "txtUF";
-            txtUF.Size = new Size(60, 20);
-            txtUF.TabIndex = 237;
+            this.txtUF.Enabled = false;
+            this.txtUF.Location = new System.Drawing.Point(675, 296);
+            this.txtUF.Name = "txtUF";
+            this.txtUF.Size = new System.Drawing.Size(60, 20);
+            this.txtUF.TabIndex = 237;
             // 
             // lblUF
             // 
-            lblUF.AutoSize = true;
-            lblUF.Location = new Point(645, 299);
-            lblUF.Name = "lblUF";
-            lblUF.Size = new Size(24, 13);
-            lblUF.TabIndex = 253;
-            lblUF.Text = "UF:";
+            this.lblUF.AutoSize = true;
+            this.lblUF.Location = new System.Drawing.Point(645, 299);
+            this.lblUF.Name = "lblUF";
+            this.lblUF.Size = new System.Drawing.Size(24, 13);
+            this.lblUF.TabIndex = 253;
+            this.lblUF.Text = "UF:";
             // 
             // txtCelular
             // 
-            txtCelular.Location = new Point(332, 393);
-            txtCelular.Name = "txtCelular";
-            txtCelular.Size = new Size(180, 20);
-            txtCelular.TabIndex = 240;
+            this.txtCelular.Location = new System.Drawing.Point(332, 393);
+            this.txtCelular.Name = "txtCelular";
+            this.txtCelular.Size = new System.Drawing.Size(180, 20);
+            this.txtCelular.TabIndex = 240;
             // 
             // lblCelular
             // 
-            lblCelular.AutoSize = true;
-            lblCelular.Location = new Point(284, 396);
-            lblCelular.Name = "lblCelular";
-            lblCelular.Size = new Size(42, 13);
-            lblCelular.TabIndex = 252;
-            lblCelular.Text = "Celular:";
+            this.lblCelular.AutoSize = true;
+            this.lblCelular.Location = new System.Drawing.Point(284, 396);
+            this.lblCelular.Name = "lblCelular";
+            this.lblCelular.Size = new System.Drawing.Size(42, 13);
+            this.lblCelular.TabIndex = 252;
+            this.lblCelular.Text = "Celular:";
             // 
             // txtTelefone
             // 
-            txtTelefone.Location = new Point(76, 393);
-            txtTelefone.Name = "txtTelefone";
-            txtTelefone.Size = new Size(180, 20);
-            txtTelefone.TabIndex = 239;
+            this.txtTelefone.Location = new System.Drawing.Point(76, 393);
+            this.txtTelefone.Name = "txtTelefone";
+            this.txtTelefone.Size = new System.Drawing.Size(180, 20);
+            this.txtTelefone.TabIndex = 239;
             // 
             // lblTelefone
             // 
-            lblTelefone.AutoSize = true;
-            lblTelefone.Location = new Point(18, 396);
-            lblTelefone.Name = "lblTelefone";
-            lblTelefone.Size = new Size(52, 13);
-            lblTelefone.TabIndex = 251;
-            lblTelefone.Text = "Telefone:";
+            this.lblTelefone.AutoSize = true;
+            this.lblTelefone.Location = new System.Drawing.Point(18, 396);
+            this.lblTelefone.Name = "lblTelefone";
+            this.lblTelefone.Size = new System.Drawing.Size(52, 13);
+            this.lblTelefone.TabIndex = 251;
+            this.lblTelefone.Text = "Telefone:";
             // 
             // txtMunicipio
             // 
-            txtMunicipio.Enabled = false;
-            txtMunicipio.Location = new Point(447, 296);
-            txtMunicipio.Name = "txtMunicipio";
-            txtMunicipio.Size = new Size(180, 20);
-            txtMunicipio.TabIndex = 236;
+            this.txtMunicipio.Enabled = false;
+            this.txtMunicipio.Location = new System.Drawing.Point(447, 296);
+            this.txtMunicipio.Name = "txtMunicipio";
+            this.txtMunicipio.Size = new System.Drawing.Size(180, 20);
+            this.txtMunicipio.TabIndex = 236;
             // 
             // lblMunicipio
             // 
-            lblMunicipio.AutoSize = true;
-            lblMunicipio.Location = new Point(384, 299);
-            lblMunicipio.Name = "lblMunicipio";
-            lblMunicipio.Size = new Size(57, 13);
-            lblMunicipio.TabIndex = 250;
-            lblMunicipio.Text = "Município:";
+            this.lblMunicipio.AutoSize = true;
+            this.lblMunicipio.Location = new System.Drawing.Point(384, 299);
+            this.lblMunicipio.Name = "lblMunicipio";
+            this.lblMunicipio.Size = new System.Drawing.Size(57, 13);
+            this.lblMunicipio.TabIndex = 250;
+            this.lblMunicipio.Text = "Município:";
             // 
-            // txtCEP
+            // _txtCEP
             // 
-            _txtCEP.Location = new Point(61, 246);
-            _txtCEP.Name = "_txtCEP";
-            _txtCEP.Size = new Size(124, 20);
-            _txtCEP.TabIndex = 232;
+            this._txtCEP.Location = new System.Drawing.Point(61, 246);
+            this._txtCEP.Name = "_txtCEP";
+            this._txtCEP.Size = new System.Drawing.Size(124, 20);
+            this._txtCEP.TabIndex = 232;
+            this._txtCEP.Leave += new System.EventHandler(this.txtCEP_Leave);
             // 
             // lblCEP
             // 
-            lblCEP.AutoSize = true;
-            lblCEP.Location = new Point(18, 249);
-            lblCEP.Name = "lblCEP";
-            lblCEP.Size = new Size(31, 13);
-            lblCEP.TabIndex = 249;
-            lblCEP.Text = "CEP:";
+            this.lblCEP.AutoSize = true;
+            this.lblCEP.Location = new System.Drawing.Point(18, 249);
+            this.lblCEP.Name = "lblCEP";
+            this.lblCEP.Size = new System.Drawing.Size(31, 13);
+            this.lblCEP.TabIndex = 249;
+            this.lblCEP.Text = "CEP:";
             // 
             // txtBairro
             // 
-            txtBairro.Enabled = false;
-            txtBairro.Location = new Point(61, 296);
-            txtBairro.Name = "txtBairro";
-            txtBairro.Size = new Size(315, 20);
-            txtBairro.TabIndex = 235;
+            this.txtBairro.Enabled = false;
+            this.txtBairro.Location = new System.Drawing.Point(61, 296);
+            this.txtBairro.Name = "txtBairro";
+            this.txtBairro.Size = new System.Drawing.Size(315, 20);
+            this.txtBairro.TabIndex = 235;
             // 
             // lblBairro
             // 
-            lblBairro.AutoSize = true;
-            lblBairro.Location = new Point(18, 299);
-            lblBairro.Name = "lblBairro";
-            lblBairro.Size = new Size(37, 13);
-            lblBairro.TabIndex = 248;
-            lblBairro.Text = "Bairro:";
+            this.lblBairro.AutoSize = true;
+            this.lblBairro.Location = new System.Drawing.Point(18, 299);
+            this.lblBairro.Name = "lblBairro";
+            this.lblBairro.Size = new System.Drawing.Size(37, 13);
+            this.lblBairro.TabIndex = 248;
+            this.lblBairro.Text = "Bairro:";
             // 
             // txtEndereco
             // 
-            txtEndereco.Enabled = false;
-            txtEndereco.Location = new Point(275, 246);
-            txtEndereco.Name = "txtEndereco";
-            txtEndereco.Size = new Size(352, 20);
-            txtEndereco.TabIndex = 233;
+            this.txtEndereco.Enabled = false;
+            this.txtEndereco.Location = new System.Drawing.Point(275, 246);
+            this.txtEndereco.Name = "txtEndereco";
+            this.txtEndereco.Size = new System.Drawing.Size(352, 20);
+            this.txtEndereco.TabIndex = 233;
             // 
             // lblEndereco
             // 
-            lblEndereco.AutoSize = true;
-            lblEndereco.Location = new Point(213, 249);
-            lblEndereco.Name = "lblEndereco";
-            lblEndereco.Size = new Size(56, 13);
-            lblEndereco.TabIndex = 247;
-            lblEndereco.Text = "Endereço:";
+            this.lblEndereco.AutoSize = true;
+            this.lblEndereco.Location = new System.Drawing.Point(213, 249);
+            this.lblEndereco.Name = "lblEndereco";
+            this.lblEndereco.Size = new System.Drawing.Size(56, 13);
+            this.lblEndereco.TabIndex = 247;
+            this.lblEndereco.Text = "Endereço:";
             // 
             // txtDtNasc
             // 
-            txtDtNasc.Location = new Point(324, 118);
-            txtDtNasc.Name = "txtDtNasc";
-            txtDtNasc.Size = new Size(100, 20);
-            txtDtNasc.TabIndex = 228;
+            this.txtDtNasc.Location = new System.Drawing.Point(324, 118);
+            this.txtDtNasc.Name = "txtDtNasc";
+            this.txtDtNasc.Size = new System.Drawing.Size(100, 20);
+            this.txtDtNasc.TabIndex = 228;
             // 
             // lblDataNascimento
             // 
-            lblDataNascimento.AutoSize = true;
-            lblDataNascimento.Location = new Point(213, 121);
-            lblDataNascimento.Name = "lblDataNascimento";
-            lblDataNascimento.Size = new Size(105, 13);
-            lblDataNascimento.TabIndex = 246;
-            lblDataNascimento.Text = "Data de nascimento:";
+            this.lblDataNascimento.AutoSize = true;
+            this.lblDataNascimento.Location = new System.Drawing.Point(213, 121);
+            this.lblDataNascimento.Name = "lblDataNascimento";
+            this.lblDataNascimento.Size = new System.Drawing.Size(105, 13);
+            this.lblDataNascimento.TabIndex = 246;
+            this.lblDataNascimento.Text = "Data de nascimento:";
             // 
             // txtCPF
             // 
-            txtCPF.Location = new Point(324, 82);
-            txtCPF.Name = "txtCPF";
-            txtCPF.Size = new Size(100, 20);
-            txtCPF.TabIndex = 227;
+            this.txtCPF.Location = new System.Drawing.Point(324, 82);
+            this.txtCPF.Name = "txtCPF";
+            this.txtCPF.Size = new System.Drawing.Size(100, 20);
+            this.txtCPF.TabIndex = 227;
             // 
             // lblCPF
             // 
-            lblCPF.AutoSize = true;
-            lblCPF.Location = new Point(213, 85);
-            lblCPF.Name = "lblCPF";
-            lblCPF.Size = new Size(30, 13);
-            lblCPF.TabIndex = 245;
-            lblCPF.Text = "CPF:";
+            this.lblCPF.AutoSize = true;
+            this.lblCPF.Location = new System.Drawing.Point(213, 85);
+            this.lblCPF.Name = "lblCPF";
+            this.lblCPF.Size = new System.Drawing.Size(30, 13);
+            this.lblCPF.TabIndex = 245;
+            this.lblCPF.Text = "CPF:";
             // 
             // txtNome
             // 
-            txtNome.Location = new Point(324, 46);
-            txtNome.Name = "txtNome";
-            txtNome.Size = new Size(328, 20);
-            txtNome.TabIndex = 226;
+            this.txtNome.Location = new System.Drawing.Point(324, 46);
+            this.txtNome.Name = "txtNome";
+            this.txtNome.Size = new System.Drawing.Size(328, 20);
+            this.txtNome.TabIndex = 226;
             // 
             // PictureBox1
             // 
-            PictureBox1.Image = My.Resources.Resources.default_user;
-            PictureBox1.Location = new Point(7, 2);
-            PictureBox1.Name = "PictureBox1";
-            PictureBox1.Size = new Size(195, 208);
-            PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            PictureBox1.TabIndex = 244;
-            PictureBox1.TabStop = false;
+            this.PictureBox1.Image = global::ProjetoTCC.My.Resources.Resources.default_user;
+            this.PictureBox1.Location = new System.Drawing.Point(7, 2);
+            this.PictureBox1.Name = "PictureBox1";
+            this.PictureBox1.Size = new System.Drawing.Size(195, 208);
+            this.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PictureBox1.TabIndex = 244;
+            this.PictureBox1.TabStop = false;
             // 
             // lblNome
             // 
-            lblNome.AutoSize = true;
-            lblNome.Location = new Point(213, 49);
-            lblNome.Name = "lblNome";
-            lblNome.Size = new Size(85, 13);
-            lblNome.TabIndex = 243;
-            lblNome.Text = "Nome Completo:";
+            this.lblNome.AutoSize = true;
+            this.lblNome.Location = new System.Drawing.Point(213, 49);
+            this.lblNome.Name = "lblNome";
+            this.lblNome.Size = new System.Drawing.Size(85, 13);
+            this.lblNome.TabIndex = 243;
+            this.lblNome.Text = "Nome Completo:";
             // 
-            // tbConsulta
+            // _tbConsulta
             // 
-            _tbConsulta.Controls.Add(_txtNomePaciente);
-            _tbConsulta.Controls.Add(lblNomePaciente);
-            _tbConsulta.Controls.Add(_dtgConsultaPacientes);
-            _tbConsulta.Location = new Point(4, 22);
-            _tbConsulta.Name = "_tbConsulta";
-            _tbConsulta.Padding = new Padding(3);
-            _tbConsulta.Size = new Size(790, 491);
-            _tbConsulta.TabIndex = 1;
-            _tbConsulta.Text = "Consulta";
-            _tbConsulta.UseVisualStyleBackColor = true;
+            this._tbConsulta.Controls.Add(this._txtNomePaciente);
+            this._tbConsulta.Controls.Add(this.lblNomePaciente);
+            this._tbConsulta.Controls.Add(this._dtgConsultaPacientes);
+            this._tbConsulta.Location = new System.Drawing.Point(4, 22);
+            this._tbConsulta.Name = "_tbConsulta";
+            this._tbConsulta.Padding = new System.Windows.Forms.Padding(3);
+            this._tbConsulta.Size = new System.Drawing.Size(790, 491);
+            this._tbConsulta.TabIndex = 1;
+            this._tbConsulta.Text = "Consulta";
+            this._tbConsulta.UseVisualStyleBackColor = true;
+            this._tbConsulta.Enter += new System.EventHandler(this.tbConsulta_Enter);
             // 
-            // txtNomePaciente
+            // _txtNomePaciente
             // 
-            _txtNomePaciente.Location = new Point(50, 12);
-            _txtNomePaciente.Name = "_txtNomePaciente";
-            _txtNomePaciente.Size = new Size(734, 20);
-            _txtNomePaciente.TabIndex = 2;
+            this._txtNomePaciente.Location = new System.Drawing.Point(50, 12);
+            this._txtNomePaciente.Name = "_txtNomePaciente";
+            this._txtNomePaciente.Size = new System.Drawing.Size(734, 20);
+            this._txtNomePaciente.TabIndex = 2;
+            this._txtNomePaciente.Leave += new System.EventHandler(this.txtNomePaciente_Leave);
             // 
             // lblNomePaciente
             // 
-            lblNomePaciente.AutoSize = true;
-            lblNomePaciente.Location = new Point(6, 15);
-            lblNomePaciente.Name = "lblNomePaciente";
-            lblNomePaciente.Size = new Size(38, 13);
-            lblNomePaciente.TabIndex = 1;
-            lblNomePaciente.Text = "Nome:";
+            this.lblNomePaciente.AutoSize = true;
+            this.lblNomePaciente.Location = new System.Drawing.Point(6, 15);
+            this.lblNomePaciente.Name = "lblNomePaciente";
+            this.lblNomePaciente.Size = new System.Drawing.Size(38, 13);
+            this.lblNomePaciente.TabIndex = 1;
+            this.lblNomePaciente.Text = "Nome:";
             // 
-            // dtgConsultaPacientes
+            // _dtgConsultaPacientes
             // 
-            _dtgConsultaPacientes.BackgroundColor = Color.White;
-            _dtgConsultaPacientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            _dtgConsultaPacientes.Location = new Point(6, 38);
-            _dtgConsultaPacientes.Name = "_dtgConsultaPacientes";
-            _dtgConsultaPacientes.Size = new Size(777, 452);
-            _dtgConsultaPacientes.TabIndex = 0;
+            this._dtgConsultaPacientes.BackgroundColor = System.Drawing.Color.White;
+            this._dtgConsultaPacientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this._dtgConsultaPacientes.Location = new System.Drawing.Point(6, 38);
+            this._dtgConsultaPacientes.Name = "_dtgConsultaPacientes";
+            this._dtgConsultaPacientes.Size = new System.Drawing.Size(777, 452);
+            this._dtgConsultaPacientes.TabIndex = 0;
+            this._dtgConsultaPacientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgConsultaPacientes_CellDoubleClick);
             // 
             // frmPaciente
             // 
-            AutoScaleDimensions = new SizeF(6.0f, 13.0f);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(801, 523);
-            Controls.Add(tbPaciente);
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "frmPaciente";
-            Text = "Pacientes";
-            tbPaciente.ResumeLayout(false);
-            tbCadastro.ResumeLayout(false);
-            tbCadastro.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)PictureBox1).EndInit();
-            _tbConsulta.ResumeLayout(false);
-            _tbConsulta.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)_dtgConsultaPacientes).EndInit();
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(801, 523);
+            this.Controls.Add(this.tbPaciente);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "frmPaciente";
+            this.Text = "Pacientes";
+            this.tbPaciente.ResumeLayout(false);
+            this.tbCadastro.ResumeLayout(false);
+            this.tbCadastro.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
+            this._tbConsulta.ResumeLayout(false);
+            this._tbConsulta.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._dtgConsultaPacientes)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         internal TabControl tbPaciente;

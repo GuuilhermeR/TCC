@@ -37,478 +37,484 @@ namespace ProjetoTCC
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAlimento));
-            tbAlimento = new TabControl();
-            tbCadastro = new TabPage();
-            btnExcluir = new Button();
-            btnSalvar = new Button();
-            txtCalcio = new TextBox();
-            Label7 = new Label();
-            txtVitC = new TextBox();
-            Label8 = new Label();
-            txtFerro = new TextBox();
-            Label9 = new Label();
-            txtProteina = new TextBox();
-            Label4 = new Label();
-            txtLipidio = new TextBox();
-            Label5 = new Label();
-            txtCarboidrato = new TextBox();
-            Label6 = new Label();
-            txtQtde = new TextBox();
-            lblQuantidade = new Label();
-            txtKCal = new TextBox();
-            Label2 = new Label();
-            txtMedidaCaseira = new TextBox();
-            lblMedidaCaseira = new Label();
-            txtAlimento = new TextBox();
-            lblAlimento = new Label();
-            btnProcurarAlimento = new Button();
-            txtCodAlimento = new TextBox();
-            lblCodAlimento = new Label();
-            _tbConsulta = new TabPage();
-            _tbConsulta.Click += new EventHandler(tbConsulta_Click);
-            Label1 = new Label();
-            _txtAlimentoFiltro = new TextBox();
-            _txtAlimentoFiltro.Leave += new EventHandler(txtAlimentoFiltro_Leave);
-            dtgConAlimento = new DataGridView();
-            tbImportarPlanilha = new TabPage();
-            _cbxNomePlanilha = new ComboBox();
-            _cbxNomePlanilha.SelectedIndexChanged += new EventHandler(cbxNomePlanilha_SelectedIndexChanged);
-            _btnImportar = new Button();
-            _btnImportar.Click += new EventHandler(btnImportar_Click);
-            dtgDados = new DataGridView();
-            _btnBuscarPlanilha = new Button();
-            _btnBuscarPlanilha.Click += new EventHandler(btnBuscarPlanilha_Click);
-            txtCaminhoArquivoExcel = new TextBox();
-            Label10 = new Label();
-            lblCaminho = new Label();
-            ofd1 = new OpenFileDialog();
-            txtNomeTabela = new TextBox();
-            lblNomeTabela = new Label();
-            tbAlimento.SuspendLayout();
-            tbCadastro.SuspendLayout();
-            _tbConsulta.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dtgConAlimento).BeginInit();
-            tbImportarPlanilha.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dtgDados).BeginInit();
-            SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAlimento));
+            this.tbAlimento = new System.Windows.Forms.TabControl();
+            this.tbCadastro = new System.Windows.Forms.TabPage();
+            this.btnExcluir = new System.Windows.Forms.Button();
+            this.btnSalvar = new System.Windows.Forms.Button();
+            this.txtCalcio = new System.Windows.Forms.TextBox();
+            this.Label7 = new System.Windows.Forms.Label();
+            this.txtVitC = new System.Windows.Forms.TextBox();
+            this.Label8 = new System.Windows.Forms.Label();
+            this.txtFerro = new System.Windows.Forms.TextBox();
+            this.Label9 = new System.Windows.Forms.Label();
+            this.txtProteina = new System.Windows.Forms.TextBox();
+            this.Label4 = new System.Windows.Forms.Label();
+            this.txtLipidio = new System.Windows.Forms.TextBox();
+            this.Label5 = new System.Windows.Forms.Label();
+            this.txtCarboidrato = new System.Windows.Forms.TextBox();
+            this.Label6 = new System.Windows.Forms.Label();
+            this.txtQtde = new System.Windows.Forms.TextBox();
+            this.lblQuantidade = new System.Windows.Forms.Label();
+            this.txtKCal = new System.Windows.Forms.TextBox();
+            this.Label2 = new System.Windows.Forms.Label();
+            this.txtMedidaCaseira = new System.Windows.Forms.TextBox();
+            this.lblMedidaCaseira = new System.Windows.Forms.Label();
+            this.txtAlimento = new System.Windows.Forms.TextBox();
+            this.lblAlimento = new System.Windows.Forms.Label();
+            this.btnProcurarAlimento = new System.Windows.Forms.Button();
+            this.txtCodAlimento = new System.Windows.Forms.TextBox();
+            this.lblCodAlimento = new System.Windows.Forms.Label();
+            this._tbConsulta = new System.Windows.Forms.TabPage();
+            this.Label1 = new System.Windows.Forms.Label();
+            this._txtAlimentoFiltro = new System.Windows.Forms.TextBox();
+            this.dtgConAlimento = new System.Windows.Forms.DataGridView();
+            this.tbImportarPlanilha = new System.Windows.Forms.TabPage();
+            this.txtNomeTabela = new System.Windows.Forms.TextBox();
+            this.lblNomeTabela = new System.Windows.Forms.Label();
+            this._cbxNomePlanilha = new System.Windows.Forms.ComboBox();
+            this._btnImportar = new System.Windows.Forms.Button();
+            this.dtgDados = new System.Windows.Forms.DataGridView();
+            this._btnBuscarPlanilha = new System.Windows.Forms.Button();
+            this.txtCaminhoArquivoExcel = new System.Windows.Forms.TextBox();
+            this.Label10 = new System.Windows.Forms.Label();
+            this.lblCaminho = new System.Windows.Forms.Label();
+            this.ofd1 = new System.Windows.Forms.OpenFileDialog();
+            this.tbAlimento.SuspendLayout();
+            this.tbCadastro.SuspendLayout();
+            this._tbConsulta.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgConAlimento)).BeginInit();
+            this.tbImportarPlanilha.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgDados)).BeginInit();
+            this.SuspendLayout();
             // 
             // tbAlimento
             // 
-            tbAlimento.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-
-            tbAlimento.Controls.Add(tbCadastro);
-            tbAlimento.Controls.Add(_tbConsulta);
-            tbAlimento.Controls.Add(tbImportarPlanilha);
-            tbAlimento.Location = new Point(3, 3);
-            tbAlimento.Name = "tbAlimento";
-            tbAlimento.SelectedIndex = 0;
-            tbAlimento.Size = new Size(795, 524);
-            tbAlimento.TabIndex = 0;
+            this.tbAlimento.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbAlimento.Controls.Add(this.tbCadastro);
+            this.tbAlimento.Controls.Add(this._tbConsulta);
+            this.tbAlimento.Controls.Add(this.tbImportarPlanilha);
+            this.tbAlimento.Location = new System.Drawing.Point(3, 3);
+            this.tbAlimento.Name = "tbAlimento";
+            this.tbAlimento.SelectedIndex = 0;
+            this.tbAlimento.Size = new System.Drawing.Size(795, 524);
+            this.tbAlimento.TabIndex = 0;
             // 
             // tbCadastro
             // 
-            tbCadastro.Controls.Add(btnExcluir);
-            tbCadastro.Controls.Add(btnSalvar);
-            tbCadastro.Controls.Add(txtCalcio);
-            tbCadastro.Controls.Add(Label7);
-            tbCadastro.Controls.Add(txtVitC);
-            tbCadastro.Controls.Add(Label8);
-            tbCadastro.Controls.Add(txtFerro);
-            tbCadastro.Controls.Add(Label9);
-            tbCadastro.Controls.Add(txtProteina);
-            tbCadastro.Controls.Add(Label4);
-            tbCadastro.Controls.Add(txtLipidio);
-            tbCadastro.Controls.Add(Label5);
-            tbCadastro.Controls.Add(txtCarboidrato);
-            tbCadastro.Controls.Add(Label6);
-            tbCadastro.Controls.Add(txtQtde);
-            tbCadastro.Controls.Add(lblQuantidade);
-            tbCadastro.Controls.Add(txtKCal);
-            tbCadastro.Controls.Add(Label2);
-            tbCadastro.Controls.Add(txtMedidaCaseira);
-            tbCadastro.Controls.Add(lblMedidaCaseira);
-            tbCadastro.Controls.Add(txtAlimento);
-            tbCadastro.Controls.Add(lblAlimento);
-            tbCadastro.Controls.Add(btnProcurarAlimento);
-            tbCadastro.Controls.Add(txtCodAlimento);
-            tbCadastro.Controls.Add(lblCodAlimento);
-            tbCadastro.Location = new Point(4, 22);
-            tbCadastro.Name = "tbCadastro";
-            tbCadastro.Padding = new Padding(3);
-            tbCadastro.Size = new Size(787, 498);
-            tbCadastro.TabIndex = 0;
-            tbCadastro.Text = "Cadastro";
-            tbCadastro.UseVisualStyleBackColor = true;
+            this.tbCadastro.Controls.Add(this.btnExcluir);
+            this.tbCadastro.Controls.Add(this.btnSalvar);
+            this.tbCadastro.Controls.Add(this.txtCalcio);
+            this.tbCadastro.Controls.Add(this.Label7);
+            this.tbCadastro.Controls.Add(this.txtVitC);
+            this.tbCadastro.Controls.Add(this.Label8);
+            this.tbCadastro.Controls.Add(this.txtFerro);
+            this.tbCadastro.Controls.Add(this.Label9);
+            this.tbCadastro.Controls.Add(this.txtProteina);
+            this.tbCadastro.Controls.Add(this.Label4);
+            this.tbCadastro.Controls.Add(this.txtLipidio);
+            this.tbCadastro.Controls.Add(this.Label5);
+            this.tbCadastro.Controls.Add(this.txtCarboidrato);
+            this.tbCadastro.Controls.Add(this.Label6);
+            this.tbCadastro.Controls.Add(this.txtQtde);
+            this.tbCadastro.Controls.Add(this.lblQuantidade);
+            this.tbCadastro.Controls.Add(this.txtKCal);
+            this.tbCadastro.Controls.Add(this.Label2);
+            this.tbCadastro.Controls.Add(this.txtMedidaCaseira);
+            this.tbCadastro.Controls.Add(this.lblMedidaCaseira);
+            this.tbCadastro.Controls.Add(this.txtAlimento);
+            this.tbCadastro.Controls.Add(this.lblAlimento);
+            this.tbCadastro.Controls.Add(this.btnProcurarAlimento);
+            this.tbCadastro.Controls.Add(this.txtCodAlimento);
+            this.tbCadastro.Controls.Add(this.lblCodAlimento);
+            this.tbCadastro.Location = new System.Drawing.Point(4, 22);
+            this.tbCadastro.Name = "tbCadastro";
+            this.tbCadastro.Padding = new System.Windows.Forms.Padding(3);
+            this.tbCadastro.Size = new System.Drawing.Size(787, 498);
+            this.tbCadastro.TabIndex = 0;
+            this.tbCadastro.Text = "Cadastro";
+            this.tbCadastro.UseVisualStyleBackColor = true;
             // 
             // btnExcluir
             // 
-            btnExcluir.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnExcluir.Image = My.Resources.Resources.DeleteRed;
-            btnExcluir.ImageAlign = ContentAlignment.MiddleLeft;
-            btnExcluir.Location = new Point(692, 462);
-            btnExcluir.Name = "btnExcluir";
-            btnExcluir.Size = new Size(89, 30);
-            btnExcluir.TabIndex = 49;
-            btnExcluir.Text = "Excluir";
-            btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExcluir.Image = global::ProjetoTCC.My.Resources.Resources.DeleteRed;
+            this.btnExcluir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExcluir.Location = new System.Drawing.Point(692, 462);
+            this.btnExcluir.Name = "btnExcluir";
+            this.btnExcluir.Size = new System.Drawing.Size(89, 30);
+            this.btnExcluir.TabIndex = 49;
+            this.btnExcluir.Text = "Excluir";
+            this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // btnSalvar
             // 
-            btnSalvar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnSalvar.Image = My.Resources.Resources.mvtSaveGreen_16;
-            btnSalvar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSalvar.Location = new Point(597, 462);
-            btnSalvar.Name = "btnSalvar";
-            btnSalvar.Size = new Size(89, 30);
-            btnSalvar.TabIndex = 48;
-            btnSalvar.Text = "Salvar";
-            btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSalvar.Image = global::ProjetoTCC.My.Resources.Resources.mvtSaveGreen_16;
+            this.btnSalvar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSalvar.Location = new System.Drawing.Point(597, 462);
+            this.btnSalvar.Name = "btnSalvar";
+            this.btnSalvar.Size = new System.Drawing.Size(89, 30);
+            this.btnSalvar.TabIndex = 48;
+            this.btnSalvar.Text = "Salvar";
+            this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // txtCalcio
             // 
-            txtCalcio.Location = new Point(546, 246);
-            txtCalcio.Name = "txtCalcio";
-            txtCalcio.Size = new Size(79, 20);
-            txtCalcio.TabIndex = 47;
+            this.txtCalcio.Location = new System.Drawing.Point(546, 246);
+            this.txtCalcio.Name = "txtCalcio";
+            this.txtCalcio.Size = new System.Drawing.Size(79, 20);
+            this.txtCalcio.TabIndex = 47;
             // 
             // Label7
             // 
-            Label7.AutoSize = true;
-            Label7.Location = new Point(450, 249);
-            Label7.Name = "Label7";
-            Label7.Size = new Size(62, 13);
-            Label7.TabIndex = 46;
-            Label7.Text = "Cálcio (mg):";
+            this.Label7.AutoSize = true;
+            this.Label7.Location = new System.Drawing.Point(450, 249);
+            this.Label7.Name = "Label7";
+            this.Label7.Size = new System.Drawing.Size(62, 13);
+            this.Label7.TabIndex = 46;
+            this.Label7.Text = "Cálcio (mg):";
             // 
             // txtVitC
             // 
-            txtVitC.Location = new Point(546, 317);
-            txtVitC.Name = "txtVitC";
-            txtVitC.Size = new Size(79, 20);
-            txtVitC.TabIndex = 45;
+            this.txtVitC.Location = new System.Drawing.Point(546, 317);
+            this.txtVitC.Name = "txtVitC";
+            this.txtVitC.Size = new System.Drawing.Size(79, 20);
+            this.txtVitC.TabIndex = 45;
             // 
             // Label8
             // 
-            Label8.AutoSize = true;
-            Label8.Location = new Point(450, 320);
-            Label8.Name = "Label8";
-            Label8.Size = new Size(60, 13);
-            Label8.TabIndex = 44;
-            Label8.Text = "Vitamina C:";
+            this.Label8.AutoSize = true;
+            this.Label8.Location = new System.Drawing.Point(450, 320);
+            this.Label8.Name = "Label8";
+            this.Label8.Size = new System.Drawing.Size(60, 13);
+            this.Label8.TabIndex = 44;
+            this.Label8.Text = "Vitamina C:";
             // 
             // txtFerro
             // 
-            txtFerro.Location = new Point(546, 281);
-            txtFerro.Name = "txtFerro";
-            txtFerro.Size = new Size(79, 20);
-            txtFerro.TabIndex = 43;
+            this.txtFerro.Location = new System.Drawing.Point(546, 281);
+            this.txtFerro.Name = "txtFerro";
+            this.txtFerro.Size = new System.Drawing.Size(79, 20);
+            this.txtFerro.TabIndex = 43;
             // 
             // Label9
             // 
-            Label9.AutoSize = true;
-            Label9.Location = new Point(450, 284);
-            Label9.Name = "Label9";
-            Label9.Size = new Size(57, 13);
-            Label9.TabIndex = 42;
-            Label9.Text = "Ferro (mg):";
+            this.Label9.AutoSize = true;
+            this.Label9.Location = new System.Drawing.Point(450, 284);
+            this.Label9.Name = "Label9";
+            this.Label9.Size = new System.Drawing.Size(57, 13);
+            this.Label9.TabIndex = 42;
+            this.Label9.Text = "Ferro (mg):";
             // 
             // txtProteina
             // 
-            txtProteina.Location = new Point(546, 143);
-            txtProteina.Name = "txtProteina";
-            txtProteina.Size = new Size(79, 20);
-            txtProteina.TabIndex = 41;
+            this.txtProteina.Location = new System.Drawing.Point(546, 143);
+            this.txtProteina.Name = "txtProteina";
+            this.txtProteina.Size = new System.Drawing.Size(79, 20);
+            this.txtProteina.TabIndex = 41;
             // 
             // Label4
             // 
-            Label4.AutoSize = true;
-            Label4.Location = new Point(450, 146);
-            Label4.Name = "Label4";
-            Label4.Size = new Size(66, 13);
-            Label4.TabIndex = 40;
-            Label4.Text = "Proteína (g):";
+            this.Label4.AutoSize = true;
+            this.Label4.Location = new System.Drawing.Point(450, 146);
+            this.Label4.Name = "Label4";
+            this.Label4.Size = new System.Drawing.Size(66, 13);
+            this.Label4.TabIndex = 40;
+            this.Label4.Text = "Proteína (g):";
             // 
             // txtLipidio
             // 
-            txtLipidio.Location = new Point(546, 214);
-            txtLipidio.Name = "txtLipidio";
-            txtLipidio.Size = new Size(79, 20);
-            txtLipidio.TabIndex = 39;
+            this.txtLipidio.Location = new System.Drawing.Point(546, 214);
+            this.txtLipidio.Name = "txtLipidio";
+            this.txtLipidio.Size = new System.Drawing.Size(79, 20);
+            this.txtLipidio.TabIndex = 39;
             // 
             // Label5
             // 
-            Label5.AutoSize = true;
-            Label5.Location = new Point(450, 217);
-            Label5.Name = "Label5";
-            Label5.Size = new Size(57, 13);
-            Label5.TabIndex = 38;
-            Label5.Text = "Lipídio (g):";
+            this.Label5.AutoSize = true;
+            this.Label5.Location = new System.Drawing.Point(450, 217);
+            this.Label5.Name = "Label5";
+            this.Label5.Size = new System.Drawing.Size(57, 13);
+            this.Label5.TabIndex = 38;
+            this.Label5.Text = "Lipídio (g):";
             // 
             // txtCarboidrato
             // 
-            txtCarboidrato.Location = new Point(546, 178);
-            txtCarboidrato.Name = "txtCarboidrato";
-            txtCarboidrato.Size = new Size(79, 20);
-            txtCarboidrato.TabIndex = 37;
+            this.txtCarboidrato.Location = new System.Drawing.Point(546, 178);
+            this.txtCarboidrato.Name = "txtCarboidrato";
+            this.txtCarboidrato.Size = new System.Drawing.Size(79, 20);
+            this.txtCarboidrato.TabIndex = 37;
             // 
             // Label6
             // 
-            Label6.AutoSize = true;
-            Label6.Location = new Point(450, 181);
-            Label6.Name = "Label6";
-            Label6.Size = new Size(79, 13);
-            Label6.TabIndex = 36;
-            Label6.Text = "Carboidrato (g):";
+            this.Label6.AutoSize = true;
+            this.Label6.Location = new System.Drawing.Point(450, 181);
+            this.Label6.Name = "Label6";
+            this.Label6.Size = new System.Drawing.Size(79, 13);
+            this.Label6.TabIndex = 36;
+            this.Label6.Text = "Carboidrato (g):";
             // 
             // txtQtde
             // 
-            txtQtde.Location = new Point(139, 175);
-            txtQtde.Name = "txtQtde";
-            txtQtde.Size = new Size(79, 20);
-            txtQtde.TabIndex = 35;
+            this.txtQtde.Location = new System.Drawing.Point(139, 175);
+            this.txtQtde.Name = "txtQtde";
+            this.txtQtde.Size = new System.Drawing.Size(79, 20);
+            this.txtQtde.TabIndex = 35;
             // 
             // lblQuantidade
             // 
-            lblQuantidade.AutoSize = true;
-            lblQuantidade.Location = new Point(43, 178);
-            lblQuantidade.Name = "lblQuantidade";
-            lblQuantidade.Size = new Size(62, 13);
-            lblQuantidade.TabIndex = 34;
-            lblQuantidade.Text = "Quantidade";
+            this.lblQuantidade.AutoSize = true;
+            this.lblQuantidade.Location = new System.Drawing.Point(43, 178);
+            this.lblQuantidade.Name = "lblQuantidade";
+            this.lblQuantidade.Size = new System.Drawing.Size(62, 13);
+            this.lblQuantidade.TabIndex = 34;
+            this.lblQuantidade.Text = "Quantidade";
             // 
             // txtKCal
             // 
-            txtKCal.Location = new Point(139, 246);
-            txtKCal.Name = "txtKCal";
-            txtKCal.Size = new Size(79, 20);
-            txtKCal.TabIndex = 33;
+            this.txtKCal.Location = new System.Drawing.Point(139, 246);
+            this.txtKCal.Name = "txtKCal";
+            this.txtKCal.Size = new System.Drawing.Size(79, 20);
+            this.txtKCal.TabIndex = 33;
             // 
             // Label2
             // 
-            Label2.AutoSize = true;
-            Label2.Location = new Point(43, 249);
-            Label2.Name = "Label2";
-            Label2.Size = new Size(32, 13);
-            Label2.TabIndex = 32;
-            Label2.Text = "KCal:";
+            this.Label2.AutoSize = true;
+            this.Label2.Location = new System.Drawing.Point(43, 249);
+            this.Label2.Name = "Label2";
+            this.Label2.Size = new System.Drawing.Size(32, 13);
+            this.Label2.TabIndex = 32;
+            this.Label2.Text = "KCal:";
             // 
             // txtMedidaCaseira
             // 
-            txtMedidaCaseira.Location = new Point(139, 210);
-            txtMedidaCaseira.Name = "txtMedidaCaseira";
-            txtMedidaCaseira.Size = new Size(79, 20);
-            txtMedidaCaseira.TabIndex = 31;
+            this.txtMedidaCaseira.Location = new System.Drawing.Point(139, 210);
+            this.txtMedidaCaseira.Name = "txtMedidaCaseira";
+            this.txtMedidaCaseira.Size = new System.Drawing.Size(79, 20);
+            this.txtMedidaCaseira.TabIndex = 31;
             // 
             // lblMedidaCaseira
             // 
-            lblMedidaCaseira.AutoSize = true;
-            lblMedidaCaseira.Location = new Point(43, 213);
-            lblMedidaCaseira.Name = "lblMedidaCaseira";
-            lblMedidaCaseira.Size = new Size(83, 13);
-            lblMedidaCaseira.TabIndex = 30;
-            lblMedidaCaseira.Text = "Medida Caseira:";
+            this.lblMedidaCaseira.AutoSize = true;
+            this.lblMedidaCaseira.Location = new System.Drawing.Point(43, 213);
+            this.lblMedidaCaseira.Name = "lblMedidaCaseira";
+            this.lblMedidaCaseira.Size = new System.Drawing.Size(83, 13);
+            this.lblMedidaCaseira.TabIndex = 30;
+            this.lblMedidaCaseira.Text = "Medida Caseira:";
             // 
             // txtAlimento
             // 
-            txtAlimento.Location = new Point(106, 72);
-            txtAlimento.Name = "txtAlimento";
-            txtAlimento.Size = new Size(242, 20);
-            txtAlimento.TabIndex = 29;
+            this.txtAlimento.Location = new System.Drawing.Point(106, 72);
+            this.txtAlimento.Name = "txtAlimento";
+            this.txtAlimento.Size = new System.Drawing.Size(242, 20);
+            this.txtAlimento.TabIndex = 29;
             // 
             // lblAlimento
             // 
-            lblAlimento.AutoSize = true;
-            lblAlimento.Location = new Point(26, 75);
-            lblAlimento.Name = "lblAlimento";
-            lblAlimento.Size = new Size(50, 13);
-            lblAlimento.TabIndex = 28;
-            lblAlimento.Text = "Alimento:";
+            this.lblAlimento.AutoSize = true;
+            this.lblAlimento.Location = new System.Drawing.Point(26, 75);
+            this.lblAlimento.Name = "lblAlimento";
+            this.lblAlimento.Size = new System.Drawing.Size(50, 13);
+            this.lblAlimento.TabIndex = 28;
+            this.lblAlimento.Text = "Alimento:";
             // 
             // btnProcurarAlimento
             // 
-            btnProcurarAlimento.Image = My.Resources.Resources.consultar;
-            btnProcurarAlimento.Location = new Point(192, 25);
-            btnProcurarAlimento.Name = "btnProcurarAlimento";
-            btnProcurarAlimento.Size = new Size(30, 23);
-            btnProcurarAlimento.TabIndex = 27;
-            btnProcurarAlimento.UseVisualStyleBackColor = true;
+            this.btnProcurarAlimento.Image = global::ProjetoTCC.My.Resources.Resources.consultar;
+            this.btnProcurarAlimento.Location = new System.Drawing.Point(192, 25);
+            this.btnProcurarAlimento.Name = "btnProcurarAlimento";
+            this.btnProcurarAlimento.Size = new System.Drawing.Size(30, 23);
+            this.btnProcurarAlimento.TabIndex = 27;
+            this.btnProcurarAlimento.UseVisualStyleBackColor = true;
+            this.btnProcurarAlimento.Click += new System.EventHandler(this.btnProcurarAlimento_Click);
             // 
             // txtCodAlimento
             // 
-            txtCodAlimento.Location = new Point(107, 27);
-            txtCodAlimento.Name = "txtCodAlimento";
-            txtCodAlimento.Size = new Size(79, 20);
-            txtCodAlimento.TabIndex = 26;
+            this.txtCodAlimento.Location = new System.Drawing.Point(107, 27);
+            this.txtCodAlimento.Name = "txtCodAlimento";
+            this.txtCodAlimento.Size = new System.Drawing.Size(79, 20);
+            this.txtCodAlimento.TabIndex = 26;
             // 
             // lblCodAlimento
             // 
-            lblCodAlimento.AutoSize = true;
-            lblCodAlimento.Location = new Point(26, 30);
-            lblCodAlimento.Name = "lblCodAlimento";
-            lblCodAlimento.Size = new Size(75, 13);
-            lblCodAlimento.TabIndex = 25;
-            lblCodAlimento.Text = "Cód. Alimento:";
+            this.lblCodAlimento.AutoSize = true;
+            this.lblCodAlimento.Location = new System.Drawing.Point(26, 30);
+            this.lblCodAlimento.Name = "lblCodAlimento";
+            this.lblCodAlimento.Size = new System.Drawing.Size(75, 13);
+            this.lblCodAlimento.TabIndex = 25;
+            this.lblCodAlimento.Text = "Cód. Alimento:";
             // 
-            // tbConsulta
+            // _tbConsulta
             // 
-            _tbConsulta.Controls.Add(Label1);
-            _tbConsulta.Controls.Add(_txtAlimentoFiltro);
-            _tbConsulta.Controls.Add(dtgConAlimento);
-            _tbConsulta.Location = new Point(4, 22);
-            _tbConsulta.Name = "_tbConsulta";
-            _tbConsulta.Padding = new Padding(3);
-            _tbConsulta.Size = new Size(787, 498);
-            _tbConsulta.TabIndex = 1;
-            _tbConsulta.Text = "Consulta";
-            _tbConsulta.UseVisualStyleBackColor = true;
+            this._tbConsulta.Controls.Add(this.Label1);
+            this._tbConsulta.Controls.Add(this._txtAlimentoFiltro);
+            this._tbConsulta.Controls.Add(this.dtgConAlimento);
+            this._tbConsulta.Location = new System.Drawing.Point(4, 22);
+            this._tbConsulta.Name = "_tbConsulta";
+            this._tbConsulta.Padding = new System.Windows.Forms.Padding(3);
+            this._tbConsulta.Size = new System.Drawing.Size(787, 498);
+            this._tbConsulta.TabIndex = 1;
+            this._tbConsulta.Text = "Consulta";
+            this._tbConsulta.UseVisualStyleBackColor = true;
+            this._tbConsulta.Click += new System.EventHandler(this.tbConsulta_Click);
             // 
             // Label1
             // 
-            Label1.AutoSize = true;
-            Label1.Location = new Point(6, 9);
-            Label1.Name = "Label1";
-            Label1.Size = new Size(50, 13);
-            Label1.TabIndex = 2;
-            Label1.Text = "Alimento:";
+            this.Label1.AutoSize = true;
+            this.Label1.Location = new System.Drawing.Point(6, 9);
+            this.Label1.Name = "Label1";
+            this.Label1.Size = new System.Drawing.Size(50, 13);
+            this.Label1.TabIndex = 2;
+            this.Label1.Text = "Alimento:";
             // 
-            // txtAlimentoFiltro
+            // _txtAlimentoFiltro
             // 
-            _txtAlimentoFiltro.Location = new Point(64, 6);
-            _txtAlimentoFiltro.Name = "_txtAlimentoFiltro";
-            _txtAlimentoFiltro.Size = new Size(717, 20);
-            _txtAlimentoFiltro.TabIndex = 1;
+            this._txtAlimentoFiltro.Location = new System.Drawing.Point(64, 6);
+            this._txtAlimentoFiltro.Name = "_txtAlimentoFiltro";
+            this._txtAlimentoFiltro.Size = new System.Drawing.Size(717, 20);
+            this._txtAlimentoFiltro.TabIndex = 1;
+            this._txtAlimentoFiltro.Leave += new System.EventHandler(this.txtAlimentoFiltro_Leave);
             // 
             // dtgConAlimento
             // 
-            dtgConAlimento.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-
-            dtgConAlimento.BackgroundColor = Color.White;
-            dtgConAlimento.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgConAlimento.Location = new Point(6, 32);
-            dtgConAlimento.Name = "dtgConAlimento";
-            dtgConAlimento.Size = new Size(775, 460);
-            dtgConAlimento.TabIndex = 0;
+            this.dtgConAlimento.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtgConAlimento.BackgroundColor = System.Drawing.Color.White;
+            this.dtgConAlimento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgConAlimento.Location = new System.Drawing.Point(6, 32);
+            this.dtgConAlimento.Name = "dtgConAlimento";
+            this.dtgConAlimento.Size = new System.Drawing.Size(775, 460);
+            this.dtgConAlimento.TabIndex = 0;
             // 
             // tbImportarPlanilha
             // 
-            tbImportarPlanilha.Controls.Add(txtNomeTabela);
-            tbImportarPlanilha.Controls.Add(lblNomeTabela);
-            tbImportarPlanilha.Controls.Add(_cbxNomePlanilha);
-            tbImportarPlanilha.Controls.Add(_btnImportar);
-            tbImportarPlanilha.Controls.Add(dtgDados);
-            tbImportarPlanilha.Controls.Add(_btnBuscarPlanilha);
-            tbImportarPlanilha.Controls.Add(txtCaminhoArquivoExcel);
-            tbImportarPlanilha.Controls.Add(Label10);
-            tbImportarPlanilha.Controls.Add(lblCaminho);
-            tbImportarPlanilha.Location = new Point(4, 22);
-            tbImportarPlanilha.Name = "tbImportarPlanilha";
-            tbImportarPlanilha.Padding = new Padding(3);
-            tbImportarPlanilha.Size = new Size(787, 498);
-            tbImportarPlanilha.TabIndex = 2;
-            tbImportarPlanilha.Text = "Importar";
-            tbImportarPlanilha.UseVisualStyleBackColor = true;
-            // 
-            // cbxNomePlanilha
-            // 
-            _cbxNomePlanilha.FormattingEnabled = true;
-            _cbxNomePlanilha.Location = new Point(116, 459);
-            _cbxNomePlanilha.Name = "_cbxNomePlanilha";
-            _cbxNomePlanilha.Size = new Size(315, 21);
-            _cbxNomePlanilha.TabIndex = 270;
-            // 
-            // btnImportar
-            // 
-            _btnImportar.Location = new Point(697, 462);
-            _btnImportar.Name = "_btnImportar";
-            _btnImportar.Size = new Size(84, 30);
-            _btnImportar.TabIndex = 269;
-            _btnImportar.Text = "Importar";
-            _btnImportar.UseVisualStyleBackColor = true;
-            // 
-            // dtgDados
-            // 
-            dtgDados.AllowUserToAddRows = false;
-            dtgDados.BackgroundColor = Color.White;
-            dtgDados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgDados.Location = new Point(9, 6);
-            dtgDados.Name = "dtgDados";
-            dtgDados.Size = new Size(772, 377);
-            dtgDados.TabIndex = 268;
-            // 
-            // btnBuscarPlanilha
-            // 
-            _btnBuscarPlanilha.Image = My.Resources.Resources.consultar;
-            _btnBuscarPlanilha.Location = new Point(751, 390);
-            _btnBuscarPlanilha.Name = "_btnBuscarPlanilha";
-            _btnBuscarPlanilha.Size = new Size(30, 23);
-            _btnBuscarPlanilha.TabIndex = 266;
-            _btnBuscarPlanilha.UseVisualStyleBackColor = true;
-            // 
-            // txtCaminhoArquivoExcel
-            // 
-            txtCaminhoArquivoExcel.Location = new Point(116, 391);
-            txtCaminhoArquivoExcel.Name = "txtCaminhoArquivoExcel";
-            txtCaminhoArquivoExcel.Size = new Size(629, 20);
-            txtCaminhoArquivoExcel.TabIndex = 2;
-            // 
-            // Label10
-            // 
-            Label10.AutoSize = true;
-            Label10.Location = new Point(6, 462);
-            Label10.Name = "Label10";
-            Label10.Size = new Size(92, 13);
-            Label10.TabIndex = 1;
-            Label10.Text = "Nome da planilha:";
-            // 
-            // lblCaminho
-            // 
-            lblCaminho.AutoSize = true;
-            lblCaminho.Location = new Point(6, 393);
-            lblCaminho.Name = "lblCaminho";
-            lblCaminho.Size = new Size(104, 13);
-            lblCaminho.TabIndex = 0;
-            lblCaminho.Text = "Caminho do arquivo:";
-            // 
-            // ofd1
-            // 
-            ofd1.FileName = "ofd1";
+            this.tbImportarPlanilha.Controls.Add(this.txtNomeTabela);
+            this.tbImportarPlanilha.Controls.Add(this.lblNomeTabela);
+            this.tbImportarPlanilha.Controls.Add(this._cbxNomePlanilha);
+            this.tbImportarPlanilha.Controls.Add(this._btnImportar);
+            this.tbImportarPlanilha.Controls.Add(this.dtgDados);
+            this.tbImportarPlanilha.Controls.Add(this._btnBuscarPlanilha);
+            this.tbImportarPlanilha.Controls.Add(this.txtCaminhoArquivoExcel);
+            this.tbImportarPlanilha.Controls.Add(this.Label10);
+            this.tbImportarPlanilha.Controls.Add(this.lblCaminho);
+            this.tbImportarPlanilha.Location = new System.Drawing.Point(4, 22);
+            this.tbImportarPlanilha.Name = "tbImportarPlanilha";
+            this.tbImportarPlanilha.Padding = new System.Windows.Forms.Padding(3);
+            this.tbImportarPlanilha.Size = new System.Drawing.Size(787, 498);
+            this.tbImportarPlanilha.TabIndex = 2;
+            this.tbImportarPlanilha.Text = "Importar";
+            this.tbImportarPlanilha.UseVisualStyleBackColor = true;
             // 
             // txtNomeTabela
             // 
-            txtNomeTabela.Location = new Point(116, 425);
-            txtNomeTabela.Name = "txtNomeTabela";
-            txtNomeTabela.Size = new Size(503, 20);
-            txtNomeTabela.TabIndex = 272;
+            this.txtNomeTabela.Location = new System.Drawing.Point(116, 452);
+            this.txtNomeTabela.Name = "txtNomeTabela";
+            this.txtNomeTabela.Size = new System.Drawing.Size(503, 20);
+            this.txtNomeTabela.TabIndex = 272;
             // 
             // lblNomeTabela
             // 
-            lblNomeTabela.AutoSize = true;
-            lblNomeTabela.Location = new Point(6, 427);
-            lblNomeTabela.Name = "lblNomeTabela";
-            lblNomeTabela.Size = new Size(74, 13);
-            lblNomeTabela.TabIndex = 271;
-            lblNomeTabela.Text = "Nome Tabela:";
+            this.lblNomeTabela.AutoSize = true;
+            this.lblNomeTabela.Location = new System.Drawing.Point(6, 454);
+            this.lblNomeTabela.Name = "lblNomeTabela";
+            this.lblNomeTabela.Size = new System.Drawing.Size(74, 13);
+            this.lblNomeTabela.TabIndex = 271;
+            this.lblNomeTabela.Text = "Nome Tabela:";
+            // 
+            // _cbxNomePlanilha
+            // 
+            this._cbxNomePlanilha.FormattingEnabled = true;
+            this._cbxNomePlanilha.Location = new System.Drawing.Point(116, 420);
+            this._cbxNomePlanilha.Name = "_cbxNomePlanilha";
+            this._cbxNomePlanilha.Size = new System.Drawing.Size(503, 21);
+            this._cbxNomePlanilha.TabIndex = 270;
+            this._cbxNomePlanilha.SelectedIndexChanged += new System.EventHandler(this.cbxNomePlanilha_SelectedIndexChanged);
+            // 
+            // _btnImportar
+            // 
+            this._btnImportar.Location = new System.Drawing.Point(697, 462);
+            this._btnImportar.Name = "_btnImportar";
+            this._btnImportar.Size = new System.Drawing.Size(84, 30);
+            this._btnImportar.TabIndex = 269;
+            this._btnImportar.Text = "Importar";
+            this._btnImportar.UseVisualStyleBackColor = true;
+            this._btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
+            // 
+            // dtgDados
+            // 
+            this.dtgDados.AllowUserToAddRows = false;
+            this.dtgDados.BackgroundColor = System.Drawing.Color.White;
+            this.dtgDados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgDados.Location = new System.Drawing.Point(9, 6);
+            this.dtgDados.Name = "dtgDados";
+            this.dtgDados.Size = new System.Drawing.Size(772, 377);
+            this.dtgDados.TabIndex = 268;
+            // 
+            // _btnBuscarPlanilha
+            // 
+            this._btnBuscarPlanilha.Image = global::ProjetoTCC.My.Resources.Resources.consultar;
+            this._btnBuscarPlanilha.Location = new System.Drawing.Point(751, 390);
+            this._btnBuscarPlanilha.Name = "_btnBuscarPlanilha";
+            this._btnBuscarPlanilha.Size = new System.Drawing.Size(30, 23);
+            this._btnBuscarPlanilha.TabIndex = 266;
+            this._btnBuscarPlanilha.UseVisualStyleBackColor = true;
+            this._btnBuscarPlanilha.Click += new System.EventHandler(this.btnBuscarPlanilha_Click);
+            // 
+            // txtCaminhoArquivoExcel
+            // 
+            this.txtCaminhoArquivoExcel.Location = new System.Drawing.Point(116, 391);
+            this.txtCaminhoArquivoExcel.Name = "txtCaminhoArquivoExcel";
+            this.txtCaminhoArquivoExcel.Size = new System.Drawing.Size(629, 20);
+            this.txtCaminhoArquivoExcel.TabIndex = 2;
+            // 
+            // Label10
+            // 
+            this.Label10.AutoSize = true;
+            this.Label10.Location = new System.Drawing.Point(6, 423);
+            this.Label10.Name = "Label10";
+            this.Label10.Size = new System.Drawing.Size(92, 13);
+            this.Label10.TabIndex = 1;
+            this.Label10.Text = "Nome da planilha:";
+            // 
+            // lblCaminho
+            // 
+            this.lblCaminho.AutoSize = true;
+            this.lblCaminho.Location = new System.Drawing.Point(6, 393);
+            this.lblCaminho.Name = "lblCaminho";
+            this.lblCaminho.Size = new System.Drawing.Size(104, 13);
+            this.lblCaminho.TabIndex = 0;
+            this.lblCaminho.Text = "Caminho do arquivo:";
+            // 
+            // ofd1
+            // 
+            this.ofd1.FileName = "ofd1";
             // 
             // frmAlimento
             // 
-            AutoScaleDimensions = new SizeF(6.0f, 13.0f);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(802, 530);
-            Controls.Add(tbAlimento);
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "frmAlimento";
-            Text = "Alimento";
-            tbAlimento.ResumeLayout(false);
-            tbCadastro.ResumeLayout(false);
-            tbCadastro.PerformLayout();
-            _tbConsulta.ResumeLayout(false);
-            _tbConsulta.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dtgConAlimento).EndInit();
-            tbImportarPlanilha.ResumeLayout(false);
-            tbImportarPlanilha.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dtgDados).EndInit();
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(802, 530);
+            this.Controls.Add(this.tbAlimento);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "frmAlimento";
+            this.Text = "Alimento";
+            this.tbAlimento.ResumeLayout(false);
+            this.tbCadastro.ResumeLayout(false);
+            this.tbCadastro.PerformLayout();
+            this._tbConsulta.ResumeLayout(false);
+            this._tbConsulta.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgConAlimento)).EndInit();
+            this.tbImportarPlanilha.ResumeLayout(false);
+            this.tbImportarPlanilha.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgDados)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         internal TabControl tbAlimento;

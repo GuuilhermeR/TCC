@@ -34,7 +34,7 @@ namespace ProjetoTCC
             return codAlimento;
         }
 
-        public void Salvar(int codAlimento, string alimento, int qtd, string medidaCaseira, string kCal, double proteina, double carboidrato, int lipidio, int calcio, int ferro)
+        public void Salvar(int codAlimento, string alimento, decimal qtd, decimal medidaCaseira, decimal kCal, decimal proteina, decimal carboidrato, decimal lipidio, decimal calcio, decimal ferro)
         {
             objConexao.Open();
             string strSQL = string.Empty;

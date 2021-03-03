@@ -95,12 +95,17 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmBuscarAlimento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBuscarAlimento.Designer.cs">
+      <DependentUpon>frmBuscarAlimento.cs</DependentUpon>
+    </Compile>
     <Compile Include="My Project\MyNamespace.Dynamic.Designer.cs" />
     <Compile Include="My Project\MyNamespace.Static.1.Designer.cs" />
     <Compile Include="My Project\MyNamespace.Static.2.Designer.cs" />
     <Compile Include="My Project\MyNamespace.Static.3.Designer.cs" />
     <Compile Include="BancoDados\DBAcesso.cs" />
-    <Compile Include="BancoDados\importPlanilhaExcel.cs" />
     <Compile Include="Connected Services\BuscaCEP\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -205,6 +210,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAgenda.resx">
       <DependentUpon>frmAgenda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBuscarAlimento.resx">
+      <DependentUpon>frmBuscarAlimento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmBuscarPaciente.resx">
       <DependentUpon>frmBuscarPaciente.cs</DependentUpon>

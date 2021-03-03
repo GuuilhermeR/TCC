@@ -27,39 +27,6 @@ namespace ProjetoTCC
         public AlimentoDAO alimento = new AlimentoDAO();
         private DataTableCollection tables;
 
-        private void btnSalvar_Click(object sender, EventArgs e)
-        {
-            objConexao.Open();
-            string strSQL = string.Empty;
-            try
-            {
-                if (!string.IsNullOrEmpty(txtCodAlimento.Text))
-                {
-                    strSQL = $@"UPDATE InfosAlimentosNutricionais 
-                            SET Alimento= {txtAlimento.Text}, qtde = {txtQtde.Text}, kcal ={txtKCal.Text}, proteina ={txtProteina.Text}, carboidrato = {txtCarboidrato.Text}, 
-                            lipidio = {txtLipidio.Text}, calcio = {txtCalcio.Text}, ferro = {txtFerro.Text}, vitC = {txtVitC.Text}
-                            WHERE codAlimento = {txtCodAlimento.Text}";
-                }
-                else
-                {
-                    strSQL = $@"INSERT INTO InfosAlimentosNutricionais (Alimento, qtde, kcal, proteina, carboidrato, lipidio, calcio, ferro, vitC, medidaCaseira) 
-                            values ({txtAlimento.Text}, {txtQtde.Text}, {txtKCal.Text}, {txtProteina.Text}, {txtCarboidrato.Text}, {txtLipidio.Text}, {txtCalcio.Text},
-                            {txtFerro.Text}, {txtVitC.Text}, {txtMedidaCaseira.Text})";
-                }
-
-                var cmd = new SQLiteCommand(strSQL, objConexao);
-                cmd.ExecuteNonQuery();
-                Interaction.MsgBox("Seus dados foram salvos", Constants.vbInformation, "Atenção!");
-                limparCampos();
-            }
-            catch (Exception ex)
-            {
-                Interaction.MsgBox("Ocorreu um erro ao salvar o Alimento.", (MsgBoxStyle)Constants.vbYes, "Alerta");
-            }
-
-            objConexao.Close();
-        }
-
         private void limparCampos()
         {
             txtAlimento.Text = "";
@@ -75,21 +42,10 @@ namespace ProjetoTCC
             txtVitC.Text = "";
         }
 
-        private void btnExcluir_Click(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(txtCodAlimento.Text))
-            {
-                alimento.Deletar(Conversions.ToInteger(txtCodAlimento.Text));
-            }
-            else
-            {
-                Interaction.MsgBox("Não é possível excluir sem antes informar o código.");
-            }
-        }
-
         private void txtAlimentoFiltro_Leave(object sender, EventArgs e)
         {
-            alimento.Buscar(dtgConAlimento, txtAlimento.Text);
+            if (_txtAlimentoFiltro.Text != "")
+                alimento.Buscar(dtgConAlimento, _txtAlimentoFiltro.Text);
         }
 
         private void tbConsulta_Click(object sender, EventArgs e)
@@ -127,6 +83,65 @@ namespace ProjetoTCC
 
         private void btnImportar_Click(object sender, EventArgs e)
         {
+            if (Convert.ToBoolean(VerificarExisteTabela(txtNomeTabela.Text)) == false)
+                CadastrarNomeTabela(txtNomeTabela.Text);
+        }
+
+        private void CadastrarNomeTabela(string nomeTabela)
+        {
+            var strSQL = $@"INSERT INTO TabelasImportadas nomeTabela VALUES({nomeTabela}) ";
+            try
+            {
+                var cmd = new SQLiteCommand(strSQL, objConexao);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Interaction.MsgBox("Ocorreu um erro ao criar nome da tabela: " + Environment.NewLine + ex.Message);
+            }
+        }
+
+        private bool VerificarExisteTabela(string nomeTabela)
+        {
+            bool existe = false;
+
+            string strSQL = $@"SELECT COUNT(1) AS Existe FROM TabelasImportadas WHERE nomeTabela={nomeTabela}";
+
+            var cmd = new SQLiteCommand(strSQL, objConexao);
+
+            objConexao.Open();
+
+            var dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+                existe = Convert.ToBoolean(dr["Existe"]);
+
+            objConexao.Close();
+
+            return existe;
+        }
+
+        private void btnProcurarAlimento_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            alimento.Salvar(Convert.ToInt32(txtCodAlimento.Text), txtAlimento.Text, Convert.ToDecimal(txtQtde.Text), Convert.ToDecimal(txtMedidaCaseira.Text), Convert.ToDecimal(txtKCal.Text), Convert.ToDecimal(txtProteina.Text), Convert.ToDecimal(txtCarboidrato.Text) , Convert.ToDecimal(txtLipidio.Text), Convert.ToDecimal(txtCalcio.Text), Convert.ToDecimal(txtFerro.Text));
+            limparCampos();
+
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtCodAlimento.Text))
+            {
+                alimento.Deletar(Conversions.ToInteger(txtCodAlimento.Text));
+            }
+            else
+            {
+                Interaction.MsgBox("Não é possível excluir sem antes informar o código.");
+            }
         }
     }
 }

@@ -44,6 +44,7 @@ namespace ProjetoTCC
             usuario.setUsuario(txtLogin.Text);
             usuario.setUsuarioSenha(txtSenha.Text);
             usuario.setNomeUsuario(txtLogin.Text);
+
             var menu = new frmMenuPrincipal();
             menu.Show();
             Hide();

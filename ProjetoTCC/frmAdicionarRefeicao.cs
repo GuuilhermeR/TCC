@@ -12,7 +12,19 @@ namespace ProjetoTCC
 
         private void btnAdicionarRefeição_Click(object sender, EventArgs e)
         {
-            // Pegar código paciente, descrição da tela da PlanilhaCardapio e as infos dessa tela pra salvar no banco
+            // Pegar código paciente, descrição da refeição e as infos dessa tela pra salvar no banco
+        }
+
+        private void btnProcurarPaciente_Click(object sender, EventArgs e)
+        {
+            var buscarAlimento = new frmBuscarAlimento();
+            buscarAlimento.Show();
+            Hide();
+        }
+
+        private void frmAdicionarRefeição_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

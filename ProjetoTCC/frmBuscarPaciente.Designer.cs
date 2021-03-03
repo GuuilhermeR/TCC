@@ -35,58 +35,60 @@ namespace ProjetoTCC
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBuscarPaciente));
-            TextBox1 = new TextBox();
-            Button1 = new Button();
-            dtgCardápio = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dtgCardápio).BeginInit();
-            SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBuscarPaciente));
+            this.TextBox1 = new System.Windows.Forms.TextBox();
+            this.btnConsultar = new System.Windows.Forms.Button();
+            this.dtgCardápio = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgCardápio)).BeginInit();
+            this.SuspendLayout();
             // 
             // TextBox1
             // 
-            TextBox1.Location = new Point(12, 12);
-            TextBox1.Name = "TextBox1";
-            TextBox1.Size = new Size(397, 20);
-            TextBox1.TabIndex = 28;
+            this.TextBox1.Location = new System.Drawing.Point(12, 12);
+            this.TextBox1.Name = "TextBox1";
+            this.TextBox1.Size = new System.Drawing.Size(397, 20);
+            this.TextBox1.TabIndex = 28;
             // 
-            // Button1
+            // btnConsultar
             // 
-            Button1.Location = new Point(415, 10);
-            Button1.Name = "Button1";
-            Button1.Size = new Size(95, 23);
-            Button1.TabIndex = 29;
-            Button1.Text = "Button1";
-            Button1.UseVisualStyleBackColor = true;
+            this.btnConsultar.Location = new System.Drawing.Point(415, 10);
+            this.btnConsultar.Name = "btnConsultar";
+            this.btnConsultar.Size = new System.Drawing.Size(95, 23);
+            this.btnConsultar.TabIndex = 29;
+            this.btnConsultar.Text = "Consultar";
+            this.btnConsultar.UseVisualStyleBackColor = true;
             // 
             // dtgCardápio
             // 
-            dtgCardápio.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-
-            dtgCardápio.BackgroundColor = Color.White;
-            dtgCardápio.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgCardápio.Location = new Point(12, 39);
-            dtgCardápio.Name = "dtgCardápio";
-            dtgCardápio.Size = new Size(495, 399);
-            dtgCardápio.TabIndex = 30;
+            this.dtgCardápio.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtgCardápio.BackgroundColor = System.Drawing.Color.White;
+            this.dtgCardápio.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgCardápio.Location = new System.Drawing.Point(12, 39);
+            this.dtgCardápio.Name = "dtgCardápio";
+            this.dtgCardápio.Size = new System.Drawing.Size(495, 399);
+            this.dtgCardápio.TabIndex = 30;
             // 
             // frmBuscarPaciente
             // 
-            AutoScaleDimensions = new SizeF(6.0f, 13.0f);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(519, 450);
-            Controls.Add(dtgCardápio);
-            Controls.Add(Button1);
-            Controls.Add(TextBox1);
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "frmBuscarPaciente";
-            Text = "Buscar Pacientes";
-            ((System.ComponentModel.ISupportInitialize)dtgCardápio).EndInit();
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(519, 450);
+            this.Controls.Add(this.dtgCardápio);
+            this.Controls.Add(this.btnConsultar);
+            this.Controls.Add(this.TextBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "frmBuscarPaciente";
+            this.Text = "Buscar Pacientes";
+            ((System.ComponentModel.ISupportInitialize)(this.dtgCardápio)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         internal TextBox TextBox1;
-        internal Button Button1;
+        internal Button btnConsultar;
         internal DataGridView dtgCardápio;
     }
 }

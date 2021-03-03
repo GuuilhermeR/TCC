@@ -37,120 +37,123 @@ namespace ProjetoTCC
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPlanilhaCardapio));
-            txtCodPaciente = new TextBox();
-            Label6 = new Label();
-            txtDescricao = new TextBox();
-            lblDescricao = new Label();
-            btnSalvar = new Button();
-            _btnAdicionar = new MvtWindowsForms.ButtonInserir();
-            _btnAdicionar.Click += new EventHandler(btnAdicionar_Click);
-            _btnProcurarPaciente = new Button();
-            _btnProcurarPaciente.Click += new EventHandler(btnProcurarPaciente_Click);
-            dtgRefeicoes = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dtgRefeicoes).BeginInit();
-            SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPlanilhaCardapio));
+            this.txtCodPaciente = new System.Windows.Forms.TextBox();
+            this.Label6 = new System.Windows.Forms.Label();
+            this.txtDescricao = new System.Windows.Forms.TextBox();
+            this.lblDescricao = new System.Windows.Forms.Label();
+            this.btnSalvar = new System.Windows.Forms.Button();
+            this._btnAdicionar = new MvtWindowsForms.ButtonInserir();
+            this._btnProcurarPaciente = new System.Windows.Forms.Button();
+            this.dtgRefeicoes = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgRefeicoes)).BeginInit();
+            this.SuspendLayout();
             // 
             // txtCodPaciente
             // 
-            txtCodPaciente.Enabled = false;
-            txtCodPaciente.Location = new Point(106, 6);
-            txtCodPaciente.Name = "txtCodPaciente";
-            txtCodPaciente.Size = new Size(75, 20);
-            txtCodPaciente.TabIndex = 263;
+            this.txtCodPaciente.Enabled = false;
+            this.txtCodPaciente.Location = new System.Drawing.Point(135, 6);
+            this.txtCodPaciente.Name = "txtCodPaciente";
+            this.txtCodPaciente.Size = new System.Drawing.Size(75, 20);
+            this.txtCodPaciente.TabIndex = 263;
             // 
             // Label6
             // 
-            Label6.AutoSize = true;
-            Label6.Location = new Point(12, 9);
-            Label6.Name = "Label6";
-            Label6.Size = new Size(88, 13);
-            Label6.TabIndex = 264;
-            Label6.Text = "Código Paciente:";
+            this.Label6.AutoSize = true;
+            this.Label6.Location = new System.Drawing.Point(12, 9);
+            this.Label6.Name = "Label6";
+            this.Label6.Size = new System.Drawing.Size(88, 13);
+            this.Label6.TabIndex = 264;
+            this.Label6.Text = "Código Paciente:";
             // 
             // txtDescricao
             // 
-            txtDescricao.Location = new Point(106, 44);
-            txtDescricao.Multiline = true;
-            txtDescricao.Name = "txtDescricao";
-            txtDescricao.Size = new Size(362, 61);
-            txtDescricao.TabIndex = 266;
+            this.txtDescricao.Location = new System.Drawing.Point(135, 44);
+            this.txtDescricao.Multiline = true;
+            this.txtDescricao.Name = "txtDescricao";
+            this.txtDescricao.Size = new System.Drawing.Size(362, 61);
+            this.txtDescricao.TabIndex = 266;
             // 
             // lblDescricao
             // 
-            lblDescricao.AutoSize = true;
-            lblDescricao.Location = new Point(12, 47);
-            lblDescricao.Name = "lblDescricao";
-            lblDescricao.Size = new Size(58, 13);
-            lblDescricao.TabIndex = 267;
-            lblDescricao.Text = "Descrição:";
+            this.lblDescricao.AutoSize = true;
+            this.lblDescricao.Location = new System.Drawing.Point(12, 47);
+            this.lblDescricao.Name = "lblDescricao";
+            this.lblDescricao.Size = new System.Drawing.Size(117, 13);
+            this.lblDescricao.TabIndex = 267;
+            this.lblDescricao.Text = "Descrição do cardápio:";
             // 
             // btnSalvar
             // 
-            btnSalvar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnSalvar.Image = My.Resources.Resources.mvtSaveGreen_16;
-            btnSalvar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSalvar.Location = new Point(788, 478);
-            btnSalvar.Name = "btnSalvar";
-            btnSalvar.Size = new Size(89, 30);
-            btnSalvar.TabIndex = 270;
-            btnSalvar.Text = "Salvar";
-            btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSalvar.Image = global::ProjetoTCC.My.Resources.Resources.mvtSaveGreen_16;
+            this.btnSalvar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSalvar.Location = new System.Drawing.Point(788, 478);
+            this.btnSalvar.Name = "btnSalvar";
+            this.btnSalvar.Size = new System.Drawing.Size(89, 30);
+            this.btnSalvar.TabIndex = 270;
+            this.btnSalvar.Text = "Salvar";
+            this.btnSalvar.UseVisualStyleBackColor = true;
             // 
-            // btnAdicionar
+            // _btnAdicionar
             // 
-            _btnAdicionar.Image = (Image)resources.GetObject("btnAdicionar.Image");
-            _btnAdicionar.Location = new Point(777, 102);
-            _btnAdicionar.MaximumSize = new Size(100, 30);
-            _btnAdicionar.MinimumSize = new Size(100, 30);
-            _btnAdicionar.Name = "_btnAdicionar";
-            _btnAdicionar.Size = new Size(100, 30);
-            _btnAdicionar.TabIndex = 269;
-            _btnAdicionar.Text = "Adicionar";
-            _btnAdicionar.TextImageRelation = TextImageRelation.ImageBeforeText;
-            _btnAdicionar.ToolTipHelp = null;
-            _btnAdicionar.UseVisualStyleBackColor = true;
+            this._btnAdicionar.Image = ((System.Drawing.Image)(resources.GetObject("_btnAdicionar.Image")));
+            this._btnAdicionar.Location = new System.Drawing.Point(777, 102);
+            this._btnAdicionar.MaximumSize = new System.Drawing.Size(100, 30);
+            this._btnAdicionar.MinimumSize = new System.Drawing.Size(100, 30);
+            this._btnAdicionar.Name = "_btnAdicionar";
+            this._btnAdicionar.Size = new System.Drawing.Size(100, 30);
+            this._btnAdicionar.TabIndex = 269;
+            this._btnAdicionar.Text = "Adicionar";
+            this._btnAdicionar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this._btnAdicionar.ToolTipHelp = null;
+            this._btnAdicionar.UseVisualStyleBackColor = true;
+            this._btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
             // 
-            // btnProcurarPaciente
+            // _btnProcurarPaciente
             // 
-            _btnProcurarPaciente.Image = My.Resources.Resources.consultar;
-            _btnProcurarPaciente.Location = new Point(187, 4);
-            _btnProcurarPaciente.Name = "_btnProcurarPaciente";
-            _btnProcurarPaciente.Size = new Size(30, 23);
-            _btnProcurarPaciente.TabIndex = 265;
-            _btnProcurarPaciente.UseVisualStyleBackColor = true;
+            this._btnProcurarPaciente.Image = global::ProjetoTCC.My.Resources.Resources.consultar;
+            this._btnProcurarPaciente.Location = new System.Drawing.Point(216, 4);
+            this._btnProcurarPaciente.Name = "_btnProcurarPaciente";
+            this._btnProcurarPaciente.Size = new System.Drawing.Size(30, 23);
+            this._btnProcurarPaciente.TabIndex = 265;
+            this._btnProcurarPaciente.UseVisualStyleBackColor = true;
+            this._btnProcurarPaciente.Click += new System.EventHandler(this.btnProcurarPaciente_Click);
             // 
             // dtgRefeicoes
             // 
-            dtgRefeicoes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-
-            dtgRefeicoes.BackgroundColor = Color.White;
-            dtgRefeicoes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgRefeicoes.Location = new Point(12, 138);
-            dtgRefeicoes.Name = "dtgRefeicoes";
-            dtgRefeicoes.Size = new Size(865, 334);
-            dtgRefeicoes.TabIndex = 274;
+            this.dtgRefeicoes.AllowUserToAddRows = false;
+            this.dtgRefeicoes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtgRefeicoes.BackgroundColor = System.Drawing.Color.White;
+            this.dtgRefeicoes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgRefeicoes.Location = new System.Drawing.Point(12, 138);
+            this.dtgRefeicoes.Name = "dtgRefeicoes";
+            this.dtgRefeicoes.Size = new System.Drawing.Size(865, 334);
+            this.dtgRefeicoes.TabIndex = 274;
             // 
             // frmPlanilhaCardapio
             // 
-            AutoScaleDimensions = new SizeF(6.0f, 13.0f);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(889, 520);
-            Controls.Add(dtgRefeicoes);
-            Controls.Add(btnSalvar);
-            Controls.Add(_btnAdicionar);
-            Controls.Add(txtDescricao);
-            Controls.Add(lblDescricao);
-            Controls.Add(_btnProcurarPaciente);
-            Controls.Add(txtCodPaciente);
-            Controls.Add(Label6);
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "frmPlanilhaCardapio";
-            Text = "Cardápio";
-            ((System.ComponentModel.ISupportInitialize)dtgRefeicoes).EndInit();
-            Load += new EventHandler(frmPlanilhaCardapio_Load);
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(889, 520);
+            this.Controls.Add(this.dtgRefeicoes);
+            this.Controls.Add(this.btnSalvar);
+            this.Controls.Add(this._btnAdicionar);
+            this.Controls.Add(this.txtDescricao);
+            this.Controls.Add(this.lblDescricao);
+            this.Controls.Add(this._btnProcurarPaciente);
+            this.Controls.Add(this.txtCodPaciente);
+            this.Controls.Add(this.Label6);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "frmPlanilhaCardapio";
+            this.Text = "Cardápio";
+            this.Load += new System.EventHandler(this.frmPlanilhaCardapio_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dtgRefeicoes)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         private Button _btnProcurarPaciente;

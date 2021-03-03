@@ -34,7 +34,7 @@ namespace ProjetoTCC
                 return;
             }
 
-            if (txtLogin.Text != usuario.verificarUsuarioLogado(txtLogin.Text, txtSenha.Text))
+            if (Convert.ToBoolean(usuario.verificarUsuarioLogado(txtLogin.Text, txtSenha.Text))==false)
             {
                 lblLoginErrado.Visible = true;
                 return;

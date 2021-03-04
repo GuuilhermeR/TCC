@@ -75,12 +75,12 @@ namespace ProjetoTCC
         private void tbConsulta_Enter(object sender, EventArgs e)
         {
 
-            paciente.Buscar(dtgConsultaPacientes);
+            paciente.Buscar(dtgConsultaPacientes, txtNomePaciente.Text);
         }
 
         private void txtNomePaciente_Leave(object sender, EventArgs e)
         {
-            paciente.Buscar(dtgConsultaPacientes);
+            paciente.Buscar(dtgConsultaPacientes, txtNomePaciente.Text);
         }
 
         private void btnProcurarPaciente_Click(object sender, EventArgs e)

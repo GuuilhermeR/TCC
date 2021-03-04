@@ -4,13 +4,16 @@ namespace ProjetoTCC
 {
     public partial class frmConfiguracoes
     {
+
+        public UsuarioDAO usuario = new UsuarioDAO();
         public frmConfiguracoes()
         {
             InitializeComponent();
         }
 
-        private void btnApagarConta_Click(object sender, EventArgs e)
+        private void txtUsuario_Leave(object sender, EventArgs e)
         {
+            usuario.Buscar(txtUsuario.Text,dtgUsuarios);
         }
     }
 }

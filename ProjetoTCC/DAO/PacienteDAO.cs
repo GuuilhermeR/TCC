@@ -82,13 +82,13 @@ namespace ProjetoTCC
             objConexao.Close();
         }
 
-        public void Buscar(DataGridView dtgDados)
+        public void Buscar(DataGridView dtgDados, string nomePaciente)
         {
             string strSQL = string.Empty;
             strSQL = "SELECT codigo, nome, cpf, dtNasc, email, peso, altura, cep, telefone, celular FROM Paciente";
-            if (!string.IsNullOrEmpty(My.MyProject.Forms.frmPaciente.txtNomePaciente.Text))
+            if (!string.IsNullOrEmpty(nomePaciente.Text))
             {
-                strSQL += $"WHERE nome LIKE '%{My.MyProject.Forms.frmPaciente.txtNomePaciente.Text}%'";
+                strSQL += $"WHERE nome LIKE '%{nomePaciente.Text}%'";
             }
 
             var cmd = new SQLiteCommand(strSQL, objConexao);

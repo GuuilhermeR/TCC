@@ -1,5 +1,8 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Data.SQLite;
+using System.Windows.Forms;
+using Microsoft.VisualBasic;
 using Microsoft.VisualBasic.CompilerServices;
 
 namespace ProjetoTCC
@@ -81,5 +84,21 @@ namespace ProjetoTCC
             objConexao.Close();
             return usuarioOK;
         }
+
+        public void Buscar(string usuario, DataGridView dtgDados)
+        {
+            string strSQL = string.Empty;
+            var config = new frmConfiguracoes();
+            strSQL = $"SELECT * FROM Login WHERE usuario = '{usuario}'";
+            var cmd = new SQLiteCommand(strSQL, objConexao);
+            objConexao.Open();
+            var dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                dtgDados.Rows.Add(dr["usuario"], dr["nome"], dr["sexo"], dr["email"], dr["perfil"]);
+            }
+
+        }
+
     }
 }

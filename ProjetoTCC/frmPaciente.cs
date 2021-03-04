@@ -74,6 +74,7 @@ namespace ProjetoTCC
 
         private void tbConsulta_Enter(object sender, EventArgs e)
         {
+
             paciente.Buscar(dtgConsultaPacientes);
         }
 

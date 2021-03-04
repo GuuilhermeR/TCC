@@ -17,7 +17,7 @@ namespace ProjetoTCC
 
         private void frmBuscarAlimento_Load(object sender, EventArgs e)
         {
-            CarregarComboBoxTabelas();
+            //CarregarComboBoxTabelas();
         }
 
 

@@ -63,9 +63,9 @@ namespace ProjetoTCC
 
         private void frmTelaLogin_Load(object sender, EventArgs e)
         {
-            txtLogin.Text = "guilherme";
-            txtSenha.Text = "gui123";
-            btnLogin_Click(sender, e);
+            //txtLogin.Text = "guilherme";
+            //txtSenha.Text = "gui123";
+            //btnLogin_Click(sender, e);
         }
     }
 }

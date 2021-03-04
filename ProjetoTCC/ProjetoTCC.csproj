@@ -144,12 +144,6 @@
     <Compile Include="frmPaciente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMenuNovo.designer.cs">
-      <DependentUpon>frmMenuNovo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmMenuNovo.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="frmAlimento.Designer.cs">
       <DependentUpon>frmAlimento.cs</DependentUpon>
     </Compile>
@@ -222,9 +216,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPaciente.resx">
       <DependentUpon>frmPaciente.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmMenuNovo.resx">
-      <DependentUpon>frmMenuNovo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAlimento.resx">
       <DependentUpon>frmAlimento.cs</DependentUpon>

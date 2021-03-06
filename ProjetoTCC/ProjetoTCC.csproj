@@ -18,6 +18,7 @@
     </NuGetPackageImportStamp>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(ProjectDir)**\*.vb</DefaultItemExcludes>
     <LangVersion>latest</LangVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -465,6 +466,12 @@
     </PackageReference>
     <PackageReference Include="System.Data.SQLite.Core">
       <Version>1.0.113.7</Version>
+    </PackageReference>
+    <PackageReference Include="System.Data.SQLite.EF6">
+      <Version>1.0.113</Version>
+    </PackageReference>
+    <PackageReference Include="System.Data.SQLite.Linq">
+      <Version>1.0.113</Version>
     </PackageReference>
     <PackageReference Include="System.Memory">
       <Version>4.5.3</Version>

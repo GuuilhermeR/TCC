@@ -80,6 +80,7 @@ namespace ProjetoTCC
             this.Label10 = new System.Windows.Forms.Label();
             this.lblCaminho = new System.Windows.Forms.Label();
             this.ofd1 = new System.Windows.Forms.OpenFileDialog();
+            this.pbCarregando = new System.Windows.Forms.ProgressBar();
             this.tbAlimento.SuspendLayout();
             this.tbCadastro.SuspendLayout();
             this._tbConsulta.SuspendLayout();
@@ -99,7 +100,7 @@ namespace ProjetoTCC
             this.tbAlimento.Location = new System.Drawing.Point(3, 3);
             this.tbAlimento.Name = "tbAlimento";
             this.tbAlimento.SelectedIndex = 0;
-            this.tbAlimento.Size = new System.Drawing.Size(795, 524);
+            this.tbAlimento.Size = new System.Drawing.Size(810, 544);
             this.tbAlimento.TabIndex = 0;
             // 
             // tbCadastro
@@ -394,6 +395,7 @@ namespace ProjetoTCC
             // 
             // tbImportarPlanilha
             // 
+            this.tbImportarPlanilha.Controls.Add(this.pbCarregando);
             this.tbImportarPlanilha.Controls.Add(this.txtNomeTabela);
             this.tbImportarPlanilha.Controls.Add(this.lblNomeTabela);
             this.tbImportarPlanilha.Controls.Add(this._cbxNomePlanilha);
@@ -406,7 +408,7 @@ namespace ProjetoTCC
             this.tbImportarPlanilha.Location = new System.Drawing.Point(4, 22);
             this.tbImportarPlanilha.Name = "tbImportarPlanilha";
             this.tbImportarPlanilha.Padding = new System.Windows.Forms.Padding(3);
-            this.tbImportarPlanilha.Size = new System.Drawing.Size(787, 498);
+            this.tbImportarPlanilha.Size = new System.Drawing.Size(802, 518);
             this.tbImportarPlanilha.TabIndex = 2;
             this.tbImportarPlanilha.Text = "Importar";
             this.tbImportarPlanilha.UseVisualStyleBackColor = true;
@@ -438,7 +440,8 @@ namespace ProjetoTCC
             // 
             // _btnImportar
             // 
-            this._btnImportar.Location = new System.Drawing.Point(697, 462);
+            this._btnImportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this._btnImportar.Location = new System.Drawing.Point(712, 475);
             this._btnImportar.Name = "_btnImportar";
             this._btnImportar.Size = new System.Drawing.Size(84, 30);
             this._btnImportar.TabIndex = 269;
@@ -449,11 +452,14 @@ namespace ProjetoTCC
             // dtgDados
             // 
             this.dtgDados.AllowUserToAddRows = false;
+            this.dtgDados.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dtgDados.BackgroundColor = System.Drawing.Color.White;
             this.dtgDados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgDados.Location = new System.Drawing.Point(9, 6);
             this.dtgDados.Name = "dtgDados";
-            this.dtgDados.Size = new System.Drawing.Size(772, 377);
+            this.dtgDados.Size = new System.Drawing.Size(787, 379);
             this.dtgDados.TabIndex = 268;
             // 
             // _btnBuscarPlanilha
@@ -470,6 +476,7 @@ namespace ProjetoTCC
             // 
             this.txtCaminhoArquivoExcel.Location = new System.Drawing.Point(116, 391);
             this.txtCaminhoArquivoExcel.Name = "txtCaminhoArquivoExcel";
+            this.txtCaminhoArquivoExcel.ReadOnly = true;
             this.txtCaminhoArquivoExcel.Size = new System.Drawing.Size(629, 20);
             this.txtCaminhoArquivoExcel.TabIndex = 2;
             // 
@@ -495,11 +502,19 @@ namespace ProjetoTCC
             // 
             this.ofd1.FileName = "ofd1";
             // 
+            // pbCarregando
+            // 
+            this.pbCarregando.Location = new System.Drawing.Point(9, 482);
+            this.pbCarregando.Name = "pbCarregando";
+            this.pbCarregando.Size = new System.Drawing.Size(697, 23);
+            this.pbCarregando.TabIndex = 273;
+            this.pbCarregando.Visible = false;
+            // 
             // frmAlimento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(802, 530);
+            this.ClientSize = new System.Drawing.Size(817, 550);
             this.Controls.Add(this.tbAlimento);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmAlimento";
@@ -684,5 +699,6 @@ namespace ProjetoTCC
 
         internal TextBox txtNomeTabela;
         internal Label lblNomeTabela;
+        private ProgressBar pbCarregando;
     }
 }

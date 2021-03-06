@@ -170,29 +170,6 @@ namespace ProjetoTCC.My
             }
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public frmMenuNovo m_frmMenuNovo;
-
-            public frmMenuNovo frmMenuNovo
-            {
-                [DebuggerHidden]
-                get
-                {
-                    m_frmMenuNovo = Create__Instance__(m_frmMenuNovo);
-                    return m_frmMenuNovo;
-                }
-
-                [DebuggerHidden]
-                set
-                {
-                    if (ReferenceEquals(value, m_frmMenuNovo))
-                        return;
-                    if (value is object)
-                        throw new ArgumentException("Property can only be set to Nothing");
-                    Dispose__Instance__(ref m_frmMenuNovo);
-                }
-            }
-
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public frmMenuPrincipal m_frmMenuPrincipal;
 
             public frmMenuPrincipal frmMenuPrincipal

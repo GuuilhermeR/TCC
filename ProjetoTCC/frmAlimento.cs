@@ -83,22 +83,34 @@ namespace ProjetoTCC
 
         private void btnImportar_Click(object sender, EventArgs e)
         {
-            if (Convert.ToBoolean(VerificarExisteTabela(txtNomeTabela.Text)) == false)
-                CadastrarNomeTabela(txtNomeTabela.Text);
-        }
-
-        private void CadastrarNomeTabela(string nomeTabela)
-        {
-            var strSQL = $@"INSERT INTO TabelasImportadas nomeTabela VALUES({nomeTabela}) ";
+            objConexao.Open();
+            pbCarregando.Visible = true;
+            pbCarregando.Value = 0;
             try
             {
-                var cmd = new SQLiteCommand(strSQL, objConexao);
-                cmd.ExecuteNonQuery();
+                foreach (DataGridViewRow row in dtgDados.Rows)
+                {
+                    pbCarregando.PerformStep();
+                    var alimento = row.Cells["ALIMENTO"].Value;
+                    string proteina = row.Cells["Prot"].Value.ToString();
+                    string carboidrato = row.Cells["Carb"].Value.ToString();
+
+                    string strSQL = $@"INSERT INTO Alimento (Alimento, proteina, carboidrato, quantidade) 
+                                    VALUES ('{alimento}',{proteina.Replace(",", ".")},{carboidrato.Replace(",", ".")},{row.Cells["PL"].Value})";
+
+                    var cmd = new SQLiteCommand(strSQL, objConexao);
+                    cmd.ExecuteNonQuery();
+
+                };
+                Interaction.MsgBox("Os dados foram Salvos", MsgBoxStyle.OkOnly, "ERRO AO SALVAR");
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("Ocorreu um erro ao criar nome da tabela: " + Environment.NewLine + ex.Message);
+                Interaction.MsgBox("Ocorreu um erro:" + Environment.NewLine + ex.Message, MsgBoxStyle.Critical, "ERRO AO SALVAR");
             }
+            objConexao.Close();
+            pbCarregando.Value = 0;
+            pbCarregando.Visible=false;
         }
 
         private bool VerificarExisteTabela(string nomeTabela)

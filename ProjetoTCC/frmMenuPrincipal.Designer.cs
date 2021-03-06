@@ -37,260 +37,264 @@ namespace ProjetoTCC
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenuPrincipal));
-            pnlBotoes = new Panel();
-            _BtnPacientes = new Button();
-            _BtnPacientes.Click += new EventHandler(BtnPacientes_Click);
-            _btnDeslogar = new Button();
-            _btnDeslogar.Click += new EventHandler(btnDeslogar_Click);
-            btnFinanceiro = new Button();
-            _btnAgenda = new Button();
-            _btnAgenda.Click += new EventHandler(btnAgenda_Click);
-            _btnOcultar = new Button();
-            _btnOcultar.Click += new EventHandler(btnOcultar_Click);
-            _btnConfig = new Button();
-            _btnConfig.Click += new EventHandler(btnConfig_Click);
-            _btnCadAlimento = new Button();
-            _btnCadAlimento.Click += new EventHandler(btnCadastrarAlimento_Click);
-            pbLogo = new PictureBox();
-            _btnCadCardapio = new Button();
-            _btnCadCardapio.Click += new EventHandler(btnCadCardapio_Click);
-            pnlLogo = new PictureBox();
-            lblNomeApp = new Label();
-            lblUsuario = new Label();
-            pbxLogoGrande = new PictureBox();
-            _btnMostrar = new Button();
-            _btnMostrar.Click += new EventHandler(btnMostrar_Click);
-            pnlBotoes.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pbLogo).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pnlLogo).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pbxLogoGrande).BeginInit();
-            SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenuPrincipal));
+            this.pnlBotoes = new System.Windows.Forms.Panel();
+            this._BtnPacientes = new System.Windows.Forms.Button();
+            this._btnDeslogar = new System.Windows.Forms.Button();
+            this.btnFinanceiro = new System.Windows.Forms.Button();
+            this._btnAgenda = new System.Windows.Forms.Button();
+            this._btnOcultar = new System.Windows.Forms.Button();
+            this._btnConfig = new System.Windows.Forms.Button();
+            this._btnCadAlimento = new System.Windows.Forms.Button();
+            this.pbLogo = new System.Windows.Forms.PictureBox();
+            this._btnCadCardapio = new System.Windows.Forms.Button();
+            this.pnlLogo = new System.Windows.Forms.PictureBox();
+            this.lblNomeApp = new System.Windows.Forms.Label();
+            this.lblUsuario = new System.Windows.Forms.Label();
+            this.pbxLogoGrande = new System.Windows.Forms.PictureBox();
+            this._btnMostrar = new System.Windows.Forms.Button();
+            this.pnlBotoes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxLogoGrande)).BeginInit();
+            this.SuspendLayout();
             // 
             // pnlBotoes
             // 
-            pnlBotoes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            pnlBotoes.BackColor = Color.SpringGreen;
-            pnlBotoes.Controls.Add(_BtnPacientes);
-            pnlBotoes.Controls.Add(_btnDeslogar);
-            pnlBotoes.Controls.Add(btnFinanceiro);
-            pnlBotoes.Controls.Add(_btnAgenda);
-            pnlBotoes.Controls.Add(_btnOcultar);
-            pnlBotoes.Controls.Add(_btnConfig);
-            pnlBotoes.Controls.Add(_btnCadAlimento);
-            pnlBotoes.Controls.Add(pbLogo);
-            pnlBotoes.Controls.Add(_btnCadCardapio);
-            pnlBotoes.Controls.Add(pnlLogo);
-            pnlBotoes.Location = new Point(6, 5);
-            pnlBotoes.Name = "pnlBotoes";
-            pnlBotoes.Size = new Size(234, 616);
-            pnlBotoes.TabIndex = 5;
+            this.pnlBotoes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.pnlBotoes.BackColor = System.Drawing.Color.SpringGreen;
+            this.pnlBotoes.Controls.Add(this._BtnPacientes);
+            this.pnlBotoes.Controls.Add(this._btnDeslogar);
+            this.pnlBotoes.Controls.Add(this.btnFinanceiro);
+            this.pnlBotoes.Controls.Add(this._btnAgenda);
+            this.pnlBotoes.Controls.Add(this._btnOcultar);
+            this.pnlBotoes.Controls.Add(this._btnConfig);
+            this.pnlBotoes.Controls.Add(this._btnCadAlimento);
+            this.pnlBotoes.Controls.Add(this.pbLogo);
+            this.pnlBotoes.Controls.Add(this._btnCadCardapio);
+            this.pnlBotoes.Controls.Add(this.pnlLogo);
+            this.pnlBotoes.Location = new System.Drawing.Point(6, 5);
+            this.pnlBotoes.Name = "pnlBotoes";
+            this.pnlBotoes.Size = new System.Drawing.Size(234, 616);
+            this.pnlBotoes.TabIndex = 5;
             // 
-            // BtnPacientes
+            // _BtnPacientes
             // 
-            _BtnPacientes.BackColor = Color.MediumSeaGreen;
-            _BtnPacientes.FlatAppearance.BorderSize = 0;
-            _BtnPacientes.FlatStyle = FlatStyle.Flat;
-            _BtnPacientes.Font = new Font("Yu Gothic UI Semibold", 12.0f, FontStyle.Bold, GraphicsUnit.Point, Conversions.ToByte(0));
-            _BtnPacientes.ForeColor = Color.Black;
-            _BtnPacientes.Location = new Point(12, 334);
-            _BtnPacientes.Name = "_BtnPacientes";
-            _BtnPacientes.Size = new Size(208, 41);
-            _BtnPacientes.TabIndex = 10;
-            _BtnPacientes.Text = "Pacientes";
-            _BtnPacientes.UseVisualStyleBackColor = false;
+            this._BtnPacientes.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this._BtnPacientes.FlatAppearance.BorderSize = 0;
+            this._BtnPacientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._BtnPacientes.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._BtnPacientes.ForeColor = System.Drawing.Color.Black;
+            this._BtnPacientes.Location = new System.Drawing.Point(12, 334);
+            this._BtnPacientes.Name = "_BtnPacientes";
+            this._BtnPacientes.Size = new System.Drawing.Size(208, 41);
+            this._BtnPacientes.TabIndex = 10;
+            this._BtnPacientes.Text = "Pacientes";
+            this._BtnPacientes.UseVisualStyleBackColor = false;
+            this._BtnPacientes.Click += new System.EventHandler(this.BtnPacientes_Click);
             // 
-            // btnDeslogar
+            // _btnDeslogar
             // 
-            _btnDeslogar.BackColor = Color.MediumSeaGreen;
-            _btnDeslogar.FlatAppearance.BorderSize = 0;
-            _btnDeslogar.FlatStyle = FlatStyle.Flat;
-            _btnDeslogar.Font = new Font("Yu Gothic UI Semibold", 12.0f, FontStyle.Bold, GraphicsUnit.Point, Conversions.ToByte(0));
-            _btnDeslogar.ForeColor = Color.Black;
-            _btnDeslogar.Location = new Point(12, 566);
-            _btnDeslogar.Name = "_btnDeslogar";
-            _btnDeslogar.Size = new Size(208, 41);
-            _btnDeslogar.TabIndex = 10;
-            _btnDeslogar.Text = "Sair e fechar";
-            _btnDeslogar.TextImageRelation = TextImageRelation.ImageBeforeText;
-            _btnDeslogar.UseVisualStyleBackColor = false;
+            this._btnDeslogar.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this._btnDeslogar.FlatAppearance.BorderSize = 0;
+            this._btnDeslogar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._btnDeslogar.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._btnDeslogar.ForeColor = System.Drawing.Color.Black;
+            this._btnDeslogar.Location = new System.Drawing.Point(12, 566);
+            this._btnDeslogar.Name = "_btnDeslogar";
+            this._btnDeslogar.Size = new System.Drawing.Size(208, 41);
+            this._btnDeslogar.TabIndex = 10;
+            this._btnDeslogar.Text = "Sair e fechar";
+            this._btnDeslogar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this._btnDeslogar.UseVisualStyleBackColor = false;
+            this._btnDeslogar.Click += new System.EventHandler(this.btnDeslogar_Click);
             // 
             // btnFinanceiro
             // 
-            btnFinanceiro.BackColor = Color.MediumSeaGreen;
-            btnFinanceiro.FlatAppearance.BorderSize = 0;
-            btnFinanceiro.FlatStyle = FlatStyle.Flat;
-            btnFinanceiro.Font = new Font("Yu Gothic UI Semibold", 12.0f, FontStyle.Bold, GraphicsUnit.Point, Conversions.ToByte(0));
-            btnFinanceiro.ForeColor = Color.Black;
-            btnFinanceiro.Location = new Point(12, 287);
-            btnFinanceiro.Name = "btnFinanceiro";
-            btnFinanceiro.Size = new Size(208, 41);
-            btnFinanceiro.TabIndex = 9;
-            btnFinanceiro.Text = "Financeiro";
-            btnFinanceiro.UseVisualStyleBackColor = false;
+            this.btnFinanceiro.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnFinanceiro.FlatAppearance.BorderSize = 0;
+            this.btnFinanceiro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFinanceiro.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFinanceiro.ForeColor = System.Drawing.Color.Black;
+            this.btnFinanceiro.Location = new System.Drawing.Point(12, 287);
+            this.btnFinanceiro.Name = "btnFinanceiro";
+            this.btnFinanceiro.Size = new System.Drawing.Size(208, 41);
+            this.btnFinanceiro.TabIndex = 9;
+            this.btnFinanceiro.Text = "Financeiro";
+            this.btnFinanceiro.UseVisualStyleBackColor = false;
             // 
-            // btnAgenda
+            // _btnAgenda
             // 
-            _btnAgenda.BackColor = Color.MediumSeaGreen;
-            _btnAgenda.FlatAppearance.BorderSize = 0;
-            _btnAgenda.FlatStyle = FlatStyle.Flat;
-            _btnAgenda.Font = new Font("Yu Gothic UI Semibold", 12.0f, FontStyle.Bold, GraphicsUnit.Point, Conversions.ToByte(0));
-            _btnAgenda.ForeColor = Color.Black;
-            _btnAgenda.Location = new Point(12, 146);
-            _btnAgenda.Name = "_btnAgenda";
-            _btnAgenda.Size = new Size(208, 41);
-            _btnAgenda.TabIndex = 8;
-            _btnAgenda.Text = "Agenda";
-            _btnAgenda.UseVisualStyleBackColor = false;
+            this._btnAgenda.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this._btnAgenda.FlatAppearance.BorderSize = 0;
+            this._btnAgenda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._btnAgenda.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._btnAgenda.ForeColor = System.Drawing.Color.Black;
+            this._btnAgenda.Location = new System.Drawing.Point(12, 146);
+            this._btnAgenda.Name = "_btnAgenda";
+            this._btnAgenda.Size = new System.Drawing.Size(208, 41);
+            this._btnAgenda.TabIndex = 8;
+            this._btnAgenda.Text = "Agenda";
+            this._btnAgenda.UseVisualStyleBackColor = false;
+            this._btnAgenda.Click += new System.EventHandler(this.btnAgenda_Click);
             // 
-            // btnOcultar
+            // _btnOcultar
             // 
-            _btnOcultar.BackColor = Color.Transparent;
-            _btnOcultar.FlatAppearance.BorderSize = 0;
-            _btnOcultar.FlatStyle = FlatStyle.Flat;
-            _btnOcultar.Font = new Font("Yu Gothic UI Semibold", 12.0f, FontStyle.Bold, GraphicsUnit.Point, Conversions.ToByte(0));
-            _btnOcultar.ForeColor = Color.Black;
-            _btnOcultar.Image = My.Resources.Resources.baixados_removebg_preview__1_;
-            _btnOcultar.Location = new Point(3, 0);
-            _btnOcultar.Name = "_btnOcultar";
-            _btnOcultar.Size = new Size(40, 40);
-            _btnOcultar.TabIndex = 7;
-            _btnOcultar.UseVisualStyleBackColor = false;
+            this._btnOcultar.BackColor = System.Drawing.Color.Transparent;
+            this._btnOcultar.FlatAppearance.BorderSize = 0;
+            this._btnOcultar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._btnOcultar.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._btnOcultar.ForeColor = System.Drawing.Color.Black;
+            this._btnOcultar.Image = global::ProjetoTCC.My.Resources.Resources.baixados_removebg_preview__1_;
+            this._btnOcultar.Location = new System.Drawing.Point(3, 0);
+            this._btnOcultar.Name = "_btnOcultar";
+            this._btnOcultar.Size = new System.Drawing.Size(40, 40);
+            this._btnOcultar.TabIndex = 7;
+            this._btnOcultar.UseVisualStyleBackColor = false;
+            this._btnOcultar.Click += new System.EventHandler(this.btnOcultar_Click);
             // 
-            // btnConfig
+            // _btnConfig
             // 
-            _btnConfig.BackColor = Color.MediumSeaGreen;
-            _btnConfig.FlatAppearance.BorderSize = 0;
-            _btnConfig.FlatStyle = FlatStyle.Flat;
-            _btnConfig.Font = new Font("Yu Gothic UI Semibold", 12.0f, FontStyle.Bold, GraphicsUnit.Point, Conversions.ToByte(0));
-            _btnConfig.ForeColor = Color.Black;
-            _btnConfig.Location = new Point(12, 519);
-            _btnConfig.Name = "_btnConfig";
-            _btnConfig.Size = new Size(208, 41);
-            _btnConfig.TabIndex = 6;
-            _btnConfig.Text = "Configurações";
-            _btnConfig.TextImageRelation = TextImageRelation.ImageBeforeText;
-            _btnConfig.UseVisualStyleBackColor = false;
+            this._btnConfig.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this._btnConfig.FlatAppearance.BorderSize = 0;
+            this._btnConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._btnConfig.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._btnConfig.ForeColor = System.Drawing.Color.Black;
+            this._btnConfig.Location = new System.Drawing.Point(12, 519);
+            this._btnConfig.Name = "_btnConfig";
+            this._btnConfig.Size = new System.Drawing.Size(208, 41);
+            this._btnConfig.TabIndex = 6;
+            this._btnConfig.Text = "Configurações";
+            this._btnConfig.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this._btnConfig.UseVisualStyleBackColor = false;
+            this._btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
             // 
-            // btnCadAlimento
+            // _btnCadAlimento
             // 
-            _btnCadAlimento.BackColor = Color.MediumSeaGreen;
-            _btnCadAlimento.FlatAppearance.BorderSize = 0;
-            _btnCadAlimento.FlatStyle = FlatStyle.Flat;
-            _btnCadAlimento.Font = new Font("Yu Gothic UI Semibold", 12.0f, FontStyle.Bold, GraphicsUnit.Point, Conversions.ToByte(0));
-            _btnCadAlimento.ForeColor = Color.Black;
-            _btnCadAlimento.Location = new Point(12, 193);
-            _btnCadAlimento.Name = "_btnCadAlimento";
-            _btnCadAlimento.Size = new Size(208, 41);
-            _btnCadAlimento.TabIndex = 2;
-            _btnCadAlimento.Text = "Alimentos";
-            _btnCadAlimento.UseVisualStyleBackColor = false;
+            this._btnCadAlimento.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this._btnCadAlimento.FlatAppearance.BorderSize = 0;
+            this._btnCadAlimento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._btnCadAlimento.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._btnCadAlimento.ForeColor = System.Drawing.Color.Black;
+            this._btnCadAlimento.Location = new System.Drawing.Point(12, 193);
+            this._btnCadAlimento.Name = "_btnCadAlimento";
+            this._btnCadAlimento.Size = new System.Drawing.Size(208, 41);
+            this._btnCadAlimento.TabIndex = 2;
+            this._btnCadAlimento.Text = "Alimentos";
+            this._btnCadAlimento.UseVisualStyleBackColor = false;
+            this._btnCadAlimento.Click += new System.EventHandler(this.btnCadastrarAlimento_Click);
             // 
             // pbLogo
             // 
-            pbLogo.Image = My.Resources.Resources.iconTCC_removebg_preview__1____Copia;
-            pbLogo.Location = new Point(41, 18);
-            pbLogo.Name = "pbLogo";
-            pbLogo.Size = new Size(144, 109);
-            pbLogo.SizeMode = PictureBoxSizeMode.Zoom;
-            pbLogo.TabIndex = 1;
-            pbLogo.TabStop = false;
+            this.pbLogo.Image = global::ProjetoTCC.My.Resources.Resources.iconTCC_removebg_preview__1____Copia;
+            this.pbLogo.Location = new System.Drawing.Point(41, 18);
+            this.pbLogo.Name = "pbLogo";
+            this.pbLogo.Size = new System.Drawing.Size(144, 109);
+            this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbLogo.TabIndex = 1;
+            this.pbLogo.TabStop = false;
             // 
-            // btnCadCardapio
+            // _btnCadCardapio
             // 
-            _btnCadCardapio.BackColor = Color.MediumSeaGreen;
-            _btnCadCardapio.FlatAppearance.BorderSize = 0;
-            _btnCadCardapio.FlatStyle = FlatStyle.Flat;
-            _btnCadCardapio.Font = new Font("Yu Gothic UI Semibold", 12.0f, FontStyle.Bold, GraphicsUnit.Point, Conversions.ToByte(0));
-            _btnCadCardapio.ForeColor = Color.Black;
-            _btnCadCardapio.Location = new Point(12, 240);
-            _btnCadCardapio.Name = "_btnCadCardapio";
-            _btnCadCardapio.Size = new Size(208, 41);
-            _btnCadCardapio.TabIndex = 4;
-            _btnCadCardapio.Text = "Cardápio";
-            _btnCadCardapio.UseVisualStyleBackColor = false;
+            this._btnCadCardapio.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this._btnCadCardapio.FlatAppearance.BorderSize = 0;
+            this._btnCadCardapio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._btnCadCardapio.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._btnCadCardapio.ForeColor = System.Drawing.Color.Black;
+            this._btnCadCardapio.Location = new System.Drawing.Point(12, 240);
+            this._btnCadCardapio.Name = "_btnCadCardapio";
+            this._btnCadCardapio.Size = new System.Drawing.Size(208, 41);
+            this._btnCadCardapio.TabIndex = 4;
+            this._btnCadCardapio.Text = "Cardápio";
+            this._btnCadCardapio.UseVisualStyleBackColor = false;
+            this._btnCadCardapio.Click += new System.EventHandler(this.btnCadCardapio_Click);
             // 
             // pnlLogo
             // 
-            pnlLogo.Location = new Point(4, 4);
-            pnlLogo.Name = "pnlLogo";
-            pnlLogo.Size = new Size(228, 136);
-            pnlLogo.TabIndex = 0;
-            pnlLogo.TabStop = false;
+            this.pnlLogo.Location = new System.Drawing.Point(4, 4);
+            this.pnlLogo.Name = "pnlLogo";
+            this.pnlLogo.Size = new System.Drawing.Size(228, 136);
+            this.pnlLogo.TabIndex = 0;
+            this.pnlLogo.TabStop = false;
             // 
             // lblNomeApp
             // 
-            lblNomeApp.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-
-            lblNomeApp.AutoSize = true;
-            lblNomeApp.Font = new Font("Yu Gothic UI Semibold", 24.0f, FontStyle.Bold);
-            lblNomeApp.Location = new Point(467, 465);
-            lblNomeApp.Name = "lblNomeApp";
-            lblNomeApp.Size = new Size(152, 45);
-            lblNomeApp.TabIndex = 7;
-            lblNomeApp.Text = "Nutreasy";
+            this.lblNomeApp.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblNomeApp.AutoSize = true;
+            this.lblNomeApp.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 24F, System.Drawing.FontStyle.Bold);
+            this.lblNomeApp.Location = new System.Drawing.Point(467, 465);
+            this.lblNomeApp.Name = "lblNomeApp";
+            this.lblNomeApp.Size = new System.Drawing.Size(152, 45);
+            this.lblNomeApp.TabIndex = 7;
+            this.lblNomeApp.Text = "Nutreasy";
             // 
             // lblUsuario
             // 
-            lblUsuario.AutoSize = true;
-            lblUsuario.Dock = DockStyle.Right;
-            lblUsuario.Font = new Font("Yu Gothic UI Semibold", 10.0f, FontStyle.Bold);
-            lblUsuario.Location = new Point(890, 0);
-            lblUsuario.Name = "lblUsuario";
-            lblUsuario.Size = new Size(48, 19);
-            lblUsuario.TabIndex = 9;
-            lblUsuario.Text = "Label1";
+            this.lblUsuario.AutoSize = true;
+            this.lblUsuario.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lblUsuario.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.lblUsuario.Location = new System.Drawing.Point(890, 0);
+            this.lblUsuario.Name = "lblUsuario";
+            this.lblUsuario.Size = new System.Drawing.Size(48, 19);
+            this.lblUsuario.TabIndex = 9;
+            this.lblUsuario.Text = "Label1";
             // 
             // pbxLogoGrande
             // 
-            pbxLogoGrande.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-
-            pbxLogoGrande.Image = My.Resources.Resources.iconTCC_removebg_preview__1____Copia;
-            pbxLogoGrande.Location = new Point(385, 120);
-            pbxLogoGrande.Name = "pbxLogoGrande";
-            pbxLogoGrande.Size = new Size(332, 308);
-            pbxLogoGrande.SizeMode = PictureBoxSizeMode.Zoom;
-            pbxLogoGrande.TabIndex = 6;
-            pbxLogoGrande.TabStop = false;
+            this.pbxLogoGrande.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbxLogoGrande.Image = global::ProjetoTCC.My.Resources.Resources.iconTCC_removebg_preview__1____Copia;
+            this.pbxLogoGrande.Location = new System.Drawing.Point(385, 120);
+            this.pbxLogoGrande.Name = "pbxLogoGrande";
+            this.pbxLogoGrande.Size = new System.Drawing.Size(332, 308);
+            this.pbxLogoGrande.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbxLogoGrande.TabIndex = 6;
+            this.pbxLogoGrande.TabStop = false;
             // 
-            // btnMostrar
+            // _btnMostrar
             // 
-            _btnMostrar.BackColor = Color.Transparent;
-            _btnMostrar.FlatAppearance.BorderSize = 0;
-            _btnMostrar.FlatStyle = FlatStyle.Flat;
-            _btnMostrar.Font = new Font("Yu Gothic UI Semibold", 12.0f, FontStyle.Bold, GraphicsUnit.Point, Conversions.ToByte(0));
-            _btnMostrar.ForeColor = Color.Black;
-            _btnMostrar.Image = My.Resources.Resources.baixados_removebg_preview__1_;
-            _btnMostrar.Location = new Point(12, 8);
-            _btnMostrar.Name = "_btnMostrar";
-            _btnMostrar.Size = new Size(40, 40);
-            _btnMostrar.TabIndex = 8;
-            _btnMostrar.UseVisualStyleBackColor = false;
-            _btnMostrar.Visible = false;
+            this._btnMostrar.BackColor = System.Drawing.Color.Transparent;
+            this._btnMostrar.FlatAppearance.BorderSize = 0;
+            this._btnMostrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._btnMostrar.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._btnMostrar.ForeColor = System.Drawing.Color.Black;
+            this._btnMostrar.Image = global::ProjetoTCC.My.Resources.Resources.baixados_removebg_preview__1_;
+            this._btnMostrar.Location = new System.Drawing.Point(12, 8);
+            this._btnMostrar.Name = "_btnMostrar";
+            this._btnMostrar.Size = new System.Drawing.Size(40, 40);
+            this._btnMostrar.TabIndex = 8;
+            this._btnMostrar.UseVisualStyleBackColor = false;
+            this._btnMostrar.Visible = false;
+            this._btnMostrar.Click += new System.EventHandler(this.btnMostrar_Click);
             // 
             // frmMenuPrincipal
             // 
-            AutoScaleDimensions = new SizeF(96.0f, 96.0f);
-            AutoScaleMode = AutoScaleMode.Dpi;
-            BackColor = SystemColors.Control;
-            ClientSize = new Size(938, 624);
-            Controls.Add(lblUsuario);
-            Controls.Add(lblNomeApp);
-            Controls.Add(pbxLogoGrande);
-            Controls.Add(pnlBotoes);
-            Controls.Add(_btnMostrar);
-            Font = new Font("Yu Gothic UI Semibold", 12.0f, FontStyle.Bold, GraphicsUnit.Point, Conversions.ToByte(0));
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "frmMenuPrincipal";
-            Text = "Menu Principal";
-            pnlBotoes.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pbLogo).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pnlLogo).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pbxLogoGrande).EndInit();
-            Load += new EventHandler(frmMenuPrincipal_Load);
-            FormClosing += new FormClosingEventHandler(frmMenuPrincipal_FormClosing);
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(938, 624);
+            this.Controls.Add(this.lblUsuario);
+            this.Controls.Add(this.lblNomeApp);
+            this.Controls.Add(this.pbxLogoGrande);
+            this.Controls.Add(this.pnlBotoes);
+            this.Controls.Add(this._btnMostrar);
+            this.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "frmMenuPrincipal";
+            this.Text = "Menu Principal";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMenuPrincipal_FormClosing);
+            this.Load += new System.EventHandler(this.frmMenuPrincipal_Load);
+            this.pnlBotoes.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxLogoGrande)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         internal Panel pnlBotoes;

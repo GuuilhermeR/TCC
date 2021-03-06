@@ -86,9 +86,9 @@ namespace ProjetoTCC
         {
             string strSQL = string.Empty;
             strSQL = "SELECT codigo, nome, cpf, dtNasc, email, peso, altura, cep, telefone, celular FROM Paciente";
-            if (!string.IsNullOrEmpty(nomePaciente.Text))
+            if (!string.IsNullOrEmpty(nomePaciente.ToString()))
             {
-                strSQL += $"WHERE nome LIKE '%{nomePaciente.Text}%'";
+                strSQL += $"WHERE nome LIKE '%{nomePaciente.ToString()}%'";
             }
 
             var cmd = new SQLiteCommand(strSQL, objConexao);

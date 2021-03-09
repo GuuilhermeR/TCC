@@ -34,7 +34,7 @@ namespace ProjetoTCC
             return codAlimento;
         }
 
-        public void Salvar(int codAlimento, string alimento, decimal qtd, decimal medidaCaseira, decimal kCal, decimal proteina, decimal carboidrato, decimal lipidio, decimal calcio, decimal ferro)
+        public void Salvar(int codAlimento, string alimento, decimal qtd, decimal kCal, decimal proteina, decimal carboidrato, decimal lipidio, decimal calcio, decimal ferro, decimal vitB1, decimal vitB2, decimal vitC, decimal fibraTtl, string nomeTabela)
         {
             SQLiteTransaction trans = objConexao.BeginTransaction();
             objConexao.Open();
@@ -43,13 +43,14 @@ namespace ProjetoTCC
             {
                 if (codAlimento != Conversions.ToDouble(""))
                 {
-                    strSQL = $@"UPDATE Paciente SET nome= '{alimento}', qtd = {qtd}, medidaCaseira = '{medidaCaseira}', 
-                            kCal = '{kCal}', proteina = {proteina}, carboidrato = {carboidrato}, lipidio ={qtd}, calcio = {calcio}, ferro = {ferro} WHERE codigo = {codAlimento}";
+                    strSQL = $@"UPDATE Paciente SET descAlimento= '{alimento}', qtd = {qtd}, proteina = {proteina}, 
+                                carboidrato = {carboidrato}, lipidio ={lipidio}, calcio = {calcio}, ferro = {ferro}, vitB1 = {vitB1}
+                                ,vitB2 = {vitB2}, vitC = {vitC}, fibraTtl = {fibraTtl}, kcal = {kCal}, nomeTabela = '{nomeTabela}' WHERE codigo = {codAlimento}";
                 }
                 else
                 {
-                    strSQL = $@"INSERT INTO Paciente (nome, cpf, medidaCaseira, kCal, proteina, carboidrato, lipidio, calcio, ferro) 
-                            values ('{alimento}', {qtd}, '{medidaCaseira}', '{kCal}', {proteina}, {carboidrato}, {qtd}, {calcio}, {ferro})";
+                    strSQL = $@"INSERT INTO Paciente (nome, qtde, kCal, proteina, carboidrato, lipidio, calcio, ferro, vitB1, vitB2, vitC, fibraTtl, nometabela) 
+                            values ('{alimento}', {qtd}, '{kCal}', {proteina}, {carboidrato}, {lipidio}, {calcio}, {ferro}, {vitB1}, {vitB2}, {vitC}, {fibraTtl}, '{nomeTabela}')";
                 }
 
                 var cmd = new SQLiteCommand(strSQL, objConexao);

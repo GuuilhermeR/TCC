@@ -90,9 +90,9 @@ namespace ProjetoTCC
         {
             string strSQL = string.Empty;
             strSQL = "SELECT codigo, nome, cpf, medidaCaseira, kCal, proteina, carboidrato, lipidio, calcio, ferro, vitC FROM Alimento\n";
-            strSQL += $"WHERE nome LIKE '%{nomeAlimento}%'\n";
-            strSQL += $"AND nomeTabela = '{nomeTabela}'";
-
+            strSQL += $"WHERE nomeTabela = '{nomeTabela}' \n";
+            if (nomeAlimento != "")
+            strSQL += $"AND nome LIKE '%{nomeAlimento}%'";
 
             var cmd = new SQLiteCommand(strSQL, objConexao);
             objConexao.Open();

@@ -29,21 +29,6 @@ namespace ProjetoTCC
         public AlimentoDAO alimento = new AlimentoDAO();
         private DataTableCollection tables;
 
-        private void limparCampos()
-        {
-            txtAlimento.Text = "";
-            txtCalcio.Text = "";
-            txtCarboidrato.Text = "";
-            txtCodAlimento.Text = "";
-            txtFerro.Text = "";
-            txtKCal.Text = "";
-            txtLipidio.Text = "";
-            txtMedidaCaseira.Text = "";
-            txtProteina.Text = "";
-            txtQtde.Text = "";
-            txtVitC.Text = "";
-        }
-
         private void CarregarTabelas()
         {
             string strSQL = string.Empty;
@@ -124,47 +109,52 @@ namespace ProjetoTCC
             pbCarregando.Visible = true;
             pbCarregando.Value = 0;
 
-            SQLiteTransaction trans = objConexao.BeginTransaction();
+            SQLiteCommand cmd;
+            cmd = new SQLiteCommand();
 
             try
             {
-                foreach (DataGridViewRow row in dtgDados.Rows)
+                using (cmd = new SQLiteCommand(objConexao))
                 {
-                    pbCarregando.PerformStep();
-                    string alimento = row.Cells["ALIMENTO"].Value.ToString();
-                    if (alimento.Contains("'"))
+                    using (var transaction = objConexao.BeginTransaction())
                     {
-                        alimento.Replace("'", "''");
-                    }
-                    var qtde = row.Cells["PL"].Value.ToString();
-                    var proteina = row.Cells["Prot"].Value.ToString();
-                    var carboidrato = row.Cells["Carb"].Value.ToString();
-                    var lipidio = row.Cells["Lipidio"].Value.ToString();
-                    var Ca = row.Cells["Ca"].Value.ToString();
-                    var Fe = row.Cells["Fe"].Value.ToString();
-                    var B1 = row.Cells["B1"].Value.ToString();
-                    var B2 = row.Cells["B2"].Value.ToString();
-                    var vitC = row.Cells["C"].Value.ToString();
-                    var FibrTotal = row.Cells["FibrTot"].Value.ToString();
-                    
-                    string strSQL = $@"INSERT INTO Alimento (descAlimento, qtd, proteina, carboidrato, lipidio, calcio, ferro, vitB1, vitB2, vitC, fibraTtl, nomeTabela) 
+                        foreach (DataGridViewRow row in dtgDados.Rows)
+                        {
+                            pbCarregando.PerformStep();
+                            string alimento = row.Cells["ALIMENTO"].Value.ToString();
+                            if (alimento.Contains("'"))
+                            {
+                                alimento.Replace("'", "''");
+                            }
+                            var qtde = row.Cells["PL"].Value.ToString();
+                            var proteina = row.Cells["Prot"].Value.ToString();
+                            var carboidrato = row.Cells["Carb"].Value.ToString();
+                            var lipidio = row.Cells["Lipidio"].Value.ToString();
+                            var Ca = row.Cells["Ca"].Value.ToString();
+                            var Fe = row.Cells["Fe"].Value.ToString();
+                            var B1 = row.Cells["B1"].Value.ToString();
+                            var B2 = row.Cells["B2"].Value.ToString();
+                            var vitC = row.Cells["C"].Value.ToString();
+                            var FibrTotal = row.Cells["FibrTot"].Value.ToString();
+                            string strSQL = $@"INSERT INTO Alimento (descAlimento, qtd, proteina, carboidrato, lipidio, calcio, ferro, vitB1, vitB2, vitC, fibraTtl, nomeTabela) 
                                     VALUES ('{alimento}',{qtde.Replace(",", ".")},{proteina.Replace(",", ".")},{carboidrato.Replace(",", ".")},{lipidio.Replace(",", ".")},{Ca.Replace(",", ".")}
                                     ,{Fe.Replace(",", ".")},{B1.Replace(",", ".")},{B2.Replace(",", ".")},{vitC.Replace(",", ".")},{FibrTotal.Replace(",", ".")}, '{txtNomeTabela.Text}')";
+                        };
 
-                    var cmd = new SQLiteCommand(strSQL, objConexao);
-                    cmd.ExecuteNonQuery();
-                    trans.Commit();
-                };
-                Interaction.MsgBox("Os dados foram Salvos", MsgBoxStyle.OkOnly, "ERRO AO SALVAR");
+                        transaction.Commit();
+                        Interaction.MsgBox("Os dados foram Salvos", MsgBoxStyle.OkOnly, "ERRO AO SALVAR");
+                    }
+                }
             }
             catch (Exception ex)
             {
                 Interaction.MsgBox("Ocorreu um erro:" + Environment.NewLine + ex.Message, MsgBoxStyle.Critical, "ERRO AO SALVAR");
-                trans.Rollback();
-            }
+                
+            }         
+
             objConexao.Close();
             pbCarregando.Value = 0;
-            pbCarregando.Visible=false;
+            pbCarregando.Visible = false;
         }
 
         private bool VerificarExisteTabela(string nomeTabela)
@@ -187,34 +177,39 @@ namespace ProjetoTCC
             return existe;
         }
 
-        private void btnProcurarAlimento_Click(object sender, EventArgs e)
-        {
-
-        }
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            alimento.Salvar(Convert.ToInt32(txtCodAlimento.Text), txtAlimento.Text, Convert.ToDecimal(txtQtde.Text), Convert.ToDecimal(txtMedidaCaseira.Text), Convert.ToDecimal(txtKCal.Text), Convert.ToDecimal(txtProteina.Text), Convert.ToDecimal(txtCarboidrato.Text) , Convert.ToDecimal(txtLipidio.Text), Convert.ToDecimal(txtCalcio.Text), Convert.ToDecimal(txtFerro.Text));
-            limparCampos();
+            //alimento.Salvar();
 
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtCodAlimento.Text))
-            {
-                alimento.Deletar(Conversions.ToInteger(txtCodAlimento.Text));
-            }
-            else
-            {
-                Interaction.MsgBox("Não é possível excluir sem antes informar o código.");
-            }
+            //if (!string.IsNullOrEmpty(txtCodAlimento.Text))
+            //{
+            //    alimento.Deletar(Conversions.ToInteger(txtCodAlimento.Text));
+            //}
+            //else
+            //{
+            //    Interaction.MsgBox("Não é possível excluir sem antes informar o código.");
+            //}
         }
 
         private void _txtAlimentoFiltro_Leave(object sender, EventArgs e)
         {
-            if (cbxNomePlanilha.Text != "")
-                alimento.Buscar(dtgConAlimento, _txtAlimentoFiltro.Text, cbxNomePlanilha.Text);
-            
+            if (cbxTabela.Text != "")
+            {
+                if (_txtAlimentoFiltro.Text != "")
+                {
+                    alimento.Buscar(dtgConAlimento, _txtAlimentoFiltro.Text, cbxTabela.Text);
+                    return;
+                }
+                else
+                {
+                    alimento.Buscar(dtgConAlimento, "", cbxTabela.Text);
+                    return;
+                }                
+            }
         }
 
         private void _tbConsulta_Enter(object sender, EventArgs e)
@@ -224,12 +219,51 @@ namespace ProjetoTCC
 
         private void dtgConAlimento_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex>=0) {
-                if (e.ColumnIndex >= 0) {
+            if (e.RowIndex>=0 && e.ColumnIndex >= 0) {
+                
 
-                    
 
-                }
+            }
+        }
+
+        private void btnRecalcular_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dtgConAlimento.Rows)
+            {
+                double ProteinaGramas;
+                double ProteinaKcal;
+                ProteinaGramas = Conversions.ToDouble(Operators.DivideObject(Operators.MultiplyObject(row.Cells["qtde"].Value, row.Cells["proteina"].Value), row.Cells["qtde"].Value));
+                ProteinaKcal = ProteinaGramas * 4d;
+                row.Cells["proteina"].Value = ProteinaGramas.ToString("N2");
+
+                double CarboidratoGramas;
+                double CarboidratoKcal;
+                CarboidratoGramas = Conversions.ToDouble(Operators.DivideObject(Operators.MultiplyObject(row.Cells["qtde"].Value, row.Cells["carboidrato"].Value), row.Cells["qtde"].Value));
+                CarboidratoKcal = CarboidratoGramas * 4d;
+                row.Cells["carboidrato"].Value = CarboidratoGramas.ToString("N2");
+
+                double LipidioGramas;
+                double LipidioKcal;
+                LipidioGramas = Conversions.ToDouble(Operators.DivideObject(Operators.MultiplyObject(row.Cells["qtde"].Value, row.Cells["lipidio"].Value), row.Cells["qtde"].Value));
+                LipidioKcal = LipidioGramas * 9d;
+                row.Cells["lipidio"].Value = LipidioGramas.ToString("N2");
+
+                double somaTotalCaloria;
+                somaTotalCaloria = ProteinaKcal + CarboidratoKcal + LipidioKcal;
+
+                row.Cells["kcal"].Value = somaTotalCaloria.ToString("N2");
+
+                double calcio;
+                calcio = Conversions.ToDouble(Operators.MultiplyObject(row.Cells["calcio"].Value, row.Cells["qtde"].Value));
+                row.Cells["calcio"].Value = calcio.ToString("N2");
+
+                double ferro;
+                ferro = Conversions.ToDouble(Operators.MultiplyObject(row.Cells["ferro"].Value, row.Cells["qtde"].Value));
+                row.Cells["ferro"].Value = ferro.ToString("N2");
+
+                double VitaminaC;
+                VitaminaC = Conversions.ToDouble(Operators.MultiplyObject(row.Cells["vitC"].Value, row.Cells["qtde"].Value));
+                row.Cells["vitC"].Value = VitaminaC.ToString("N2");
             }
         }
     }

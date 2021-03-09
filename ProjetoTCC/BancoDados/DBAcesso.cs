@@ -8,7 +8,7 @@ namespace ProjetoTCC
     public class DBAcesso
     {
         private SQLiteConnection objConexao;
-        private string stringConexao = "Data Source=BancoDadosNutreasy.DB; Version=3;";
+        private string stringConexao = "Data Source=DBNutreasy.DB; Version=3;";
 
         public void Conectar()
         {

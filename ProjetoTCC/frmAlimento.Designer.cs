@@ -66,10 +66,13 @@ namespace ProjetoTCC
             this.txtCodAlimento = new System.Windows.Forms.TextBox();
             this.lblCodAlimento = new System.Windows.Forms.Label();
             this._tbConsulta = new System.Windows.Forms.TabPage();
-            this.Label1 = new System.Windows.Forms.Label();
+            this.cbxTabela = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this._txtAlimentoFiltro = new System.Windows.Forms.TextBox();
+            this.lblTabela = new System.Windows.Forms.Label();
             this.dtgConAlimento = new System.Windows.Forms.DataGridView();
             this.tbImportarPlanilha = new System.Windows.Forms.TabPage();
+            this.pbCarregando = new System.Windows.Forms.ProgressBar();
             this.txtNomeTabela = new System.Windows.Forms.TextBox();
             this.lblNomeTabela = new System.Windows.Forms.Label();
             this._cbxNomePlanilha = new System.Windows.Forms.ComboBox();
@@ -80,7 +83,6 @@ namespace ProjetoTCC
             this.Label10 = new System.Windows.Forms.Label();
             this.lblCaminho = new System.Windows.Forms.Label();
             this.ofd1 = new System.Windows.Forms.OpenFileDialog();
-            this.pbCarregando = new System.Windows.Forms.ProgressBar();
             this.tbAlimento.SuspendLayout();
             this.tbCadastro.SuspendLayout();
             this._tbConsulta.SuspendLayout();
@@ -133,7 +135,7 @@ namespace ProjetoTCC
             this.tbCadastro.Location = new System.Drawing.Point(4, 22);
             this.tbCadastro.Name = "tbCadastro";
             this.tbCadastro.Padding = new System.Windows.Forms.Padding(3);
-            this.tbCadastro.Size = new System.Drawing.Size(787, 498);
+            this.tbCadastro.Size = new System.Drawing.Size(802, 518);
             this.tbCadastro.TabIndex = 0;
             this.tbCadastro.Text = "Cadastro";
             this.tbCadastro.UseVisualStyleBackColor = true;
@@ -143,7 +145,7 @@ namespace ProjetoTCC
             this.btnExcluir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExcluir.Image = global::ProjetoTCC.My.Resources.Resources.DeleteRed;
             this.btnExcluir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExcluir.Location = new System.Drawing.Point(692, 462);
+            this.btnExcluir.Location = new System.Drawing.Point(707, 482);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(89, 30);
             this.btnExcluir.TabIndex = 49;
@@ -156,7 +158,7 @@ namespace ProjetoTCC
             this.btnSalvar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSalvar.Image = global::ProjetoTCC.My.Resources.Resources.mvtSaveGreen_16;
             this.btnSalvar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalvar.Location = new System.Drawing.Point(597, 462);
+            this.btnSalvar.Location = new System.Drawing.Point(612, 482);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(89, 30);
             this.btnSalvar.TabIndex = 48;
@@ -352,34 +354,53 @@ namespace ProjetoTCC
             // 
             // _tbConsulta
             // 
-            this._tbConsulta.Controls.Add(this.Label1);
+            this._tbConsulta.Controls.Add(this.cbxTabela);
+            this._tbConsulta.Controls.Add(this.label3);
             this._tbConsulta.Controls.Add(this._txtAlimentoFiltro);
+            this._tbConsulta.Controls.Add(this.lblTabela);
             this._tbConsulta.Controls.Add(this.dtgConAlimento);
             this._tbConsulta.Location = new System.Drawing.Point(4, 22);
             this._tbConsulta.Name = "_tbConsulta";
             this._tbConsulta.Padding = new System.Windows.Forms.Padding(3);
-            this._tbConsulta.Size = new System.Drawing.Size(787, 498);
+            this._tbConsulta.Size = new System.Drawing.Size(802, 518);
             this._tbConsulta.TabIndex = 1;
             this._tbConsulta.Text = "Consulta";
             this._tbConsulta.UseVisualStyleBackColor = true;
-            this._tbConsulta.Click += new System.EventHandler(this.tbConsulta_Click);
+            this._tbConsulta.Enter += new System.EventHandler(this._tbConsulta_Enter);
             // 
-            // Label1
+            // cbxTabela
             // 
-            this.Label1.AutoSize = true;
-            this.Label1.Location = new System.Drawing.Point(6, 9);
-            this.Label1.Name = "Label1";
-            this.Label1.Size = new System.Drawing.Size(50, 13);
-            this.Label1.TabIndex = 2;
-            this.Label1.Text = "Alimento:";
+            this.cbxTabela.FormattingEnabled = true;
+            this.cbxTabela.Location = new System.Drawing.Point(64, 6);
+            this.cbxTabela.Name = "cbxTabela";
+            this.cbxTabela.Size = new System.Drawing.Size(717, 21);
+            this.cbxTabela.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 41);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(50, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Alimento:";
             // 
             // _txtAlimentoFiltro
             // 
-            this._txtAlimentoFiltro.Location = new System.Drawing.Point(64, 6);
+            this._txtAlimentoFiltro.Location = new System.Drawing.Point(64, 38);
             this._txtAlimentoFiltro.Name = "_txtAlimentoFiltro";
             this._txtAlimentoFiltro.Size = new System.Drawing.Size(717, 20);
-            this._txtAlimentoFiltro.TabIndex = 1;
-            this._txtAlimentoFiltro.Leave += new System.EventHandler(this.txtAlimentoFiltro_Leave);
+            this._txtAlimentoFiltro.TabIndex = 3;
+            this._txtAlimentoFiltro.Leave += new System.EventHandler(this._txtAlimentoFiltro_Leave);
+            // 
+            // lblTabela
+            // 
+            this.lblTabela.AutoSize = true;
+            this.lblTabela.Location = new System.Drawing.Point(6, 9);
+            this.lblTabela.Name = "lblTabela";
+            this.lblTabela.Size = new System.Drawing.Size(43, 13);
+            this.lblTabela.TabIndex = 2;
+            this.lblTabela.Text = "Tabela:";
             // 
             // dtgConAlimento
             // 
@@ -388,9 +409,9 @@ namespace ProjetoTCC
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dtgConAlimento.BackgroundColor = System.Drawing.Color.White;
             this.dtgConAlimento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgConAlimento.Location = new System.Drawing.Point(6, 32);
+            this.dtgConAlimento.Location = new System.Drawing.Point(6, 64);
             this.dtgConAlimento.Name = "dtgConAlimento";
-            this.dtgConAlimento.Size = new System.Drawing.Size(775, 460);
+            this.dtgConAlimento.Size = new System.Drawing.Size(775, 428);
             this.dtgConAlimento.TabIndex = 0;
             // 
             // tbImportarPlanilha
@@ -412,6 +433,14 @@ namespace ProjetoTCC
             this.tbImportarPlanilha.TabIndex = 2;
             this.tbImportarPlanilha.Text = "Importar";
             this.tbImportarPlanilha.UseVisualStyleBackColor = true;
+            // 
+            // pbCarregando
+            // 
+            this.pbCarregando.Location = new System.Drawing.Point(9, 482);
+            this.pbCarregando.Name = "pbCarregando";
+            this.pbCarregando.Size = new System.Drawing.Size(697, 23);
+            this.pbCarregando.TabIndex = 273;
+            this.pbCarregando.Visible = false;
             // 
             // txtNomeTabela
             // 
@@ -502,14 +531,6 @@ namespace ProjetoTCC
             // 
             this.ofd1.FileName = "ofd1";
             // 
-            // pbCarregando
-            // 
-            this.pbCarregando.Location = new System.Drawing.Point(9, 482);
-            this.pbCarregando.Name = "pbCarregando";
-            this.pbCarregando.Size = new System.Drawing.Size(697, 23);
-            this.pbCarregando.TabIndex = 273;
-            this.pbCarregando.Visible = false;
-            // 
             // frmAlimento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -561,57 +582,10 @@ namespace ProjetoTCC
         internal Label lblCodAlimento;
         private TabPage _tbConsulta;
 
-        internal TabPage tbConsulta
-        {
-            [MethodImpl(MethodImplOptions.Synchronized)]
-            get
-            {
-                return _tbConsulta;
-            }
-
-            [MethodImpl(MethodImplOptions.Synchronized)]
-            set
-            {
-                if (_tbConsulta != null)
-                {
-                    _tbConsulta.Click -= tbConsulta_Click;
-                }
-
-                _tbConsulta = value;
-                if (_tbConsulta != null)
-                {
-                    _tbConsulta.Click += tbConsulta_Click;
-                }
-            }
-        }
-
         internal DataGridView dtgConAlimento;
-        internal Label Label1;
-        private TextBox _txtAlimentoFiltro;
+        internal Label lblTabela;
 
-        internal TextBox txtAlimentoFiltro
-        {
-            [MethodImpl(MethodImplOptions.Synchronized)]
-            get
-            {
-                return _txtAlimentoFiltro;
-            }
 
-            [MethodImpl(MethodImplOptions.Synchronized)]
-            set
-            {
-                if (_txtAlimentoFiltro != null)
-                {
-                    _txtAlimentoFiltro.Leave -= txtAlimentoFiltro_Leave;
-                }
-
-                _txtAlimentoFiltro = value;
-                if (_txtAlimentoFiltro != null)
-                {
-                    _txtAlimentoFiltro.Leave += txtAlimentoFiltro_Leave;
-                }
-            }
-        }
 
         internal TabPage tbImportarPlanilha;
         internal TextBox txtCaminhoArquivoExcel;
@@ -700,5 +674,8 @@ namespace ProjetoTCC
         internal TextBox txtNomeTabela;
         internal Label lblNomeTabela;
         private ProgressBar pbCarregando;
+        internal Label label3;
+        private TextBox _txtAlimentoFiltro;
+        private ComboBox cbxTabela;
     }
 }

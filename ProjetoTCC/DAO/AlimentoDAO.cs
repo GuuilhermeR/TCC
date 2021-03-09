@@ -36,6 +36,7 @@ namespace ProjetoTCC
 
         public void Salvar(int codAlimento, string alimento, decimal qtd, decimal medidaCaseira, decimal kCal, decimal proteina, decimal carboidrato, decimal lipidio, decimal calcio, decimal ferro)
         {
+            SQLiteTransaction trans = objConexao.BeginTransaction();
             objConexao.Open();
             string strSQL = string.Empty;
             try
@@ -53,11 +54,13 @@ namespace ProjetoTCC
 
                 var cmd = new SQLiteCommand(strSQL, objConexao);
                 cmd.ExecuteNonQuery();
+                trans.Commit();
                 Interaction.MsgBox("O Alimento foi salvo.", Constants.vbInformation, "Atenção!");
             }
             catch (Exception ex)
             {
                 Interaction.MsgBox("Ocorreu um erro ao salvar o Alimento." + '\n' + ex.Message, Constants.vbOKOnly, "Alerta");
+                trans.Commit();
             }
 
             objConexao.Close();
@@ -82,14 +85,13 @@ namespace ProjetoTCC
             objConexao.Close();
         }
 
-        public void Buscar(DataGridView dtgDados, string nomeAlimento)
+        public void Buscar(DataGridView dtgDados, string nomeAlimento, string nomeTabela)
         {
             string strSQL = string.Empty;
-            strSQL = "SELECT codigo, nome, cpf, medidaCaseira, kCal, proteina, carboidrato, lipidio, calcio, ferro, vitC FROM Alimento";
-            if (!string.IsNullOrEmpty(nomeAlimento))
-            {
-                strSQL += $"WHERE nome LIKE '%{nomeAlimento}%'";
-            }
+            strSQL = "SELECT codigo, nome, cpf, medidaCaseira, kCal, proteina, carboidrato, lipidio, calcio, ferro, vitC FROM Alimento\n";
+            strSQL += $"WHERE nome LIKE '%{nomeAlimento}%'\n";
+            strSQL += $"AND nomeTabela = '{nomeTabela}'";
+
 
             var cmd = new SQLiteCommand(strSQL, objConexao);
             objConexao.Open();

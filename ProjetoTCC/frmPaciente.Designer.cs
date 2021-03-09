@@ -43,6 +43,12 @@ namespace ProjetoTCC
             this._btnProcurarPaciente = new System.Windows.Forms.Button();
             this.txtCodPaciente = new System.Windows.Forms.TextBox();
             this.Label6 = new System.Windows.Forms.Label();
+            this.txtPeso = new System.Windows.Forms.TextBox();
+            this.Label5 = new System.Windows.Forms.Label();
+            this.Label4 = new System.Windows.Forms.Label();
+            this.txtAltura = new System.Windows.Forms.TextBox();
+            this.Label3 = new System.Windows.Forms.Label();
+            this.Label2 = new System.Windows.Forms.Label();
             this._btnExcluir = new System.Windows.Forms.Button();
             this._btnSalvar = new System.Windows.Forms.Button();
             this.txtNumero = new System.Windows.Forms.TextBox();
@@ -76,12 +82,7 @@ namespace ProjetoTCC
             this._txtNomePaciente = new System.Windows.Forms.TextBox();
             this.lblNomePaciente = new System.Windows.Forms.Label();
             this._dtgConsultaPacientes = new System.Windows.Forms.DataGridView();
-            this.Label2 = new System.Windows.Forms.Label();
-            this.Label3 = new System.Windows.Forms.Label();
-            this.txtAltura = new System.Windows.Forms.TextBox();
-            this.Label4 = new System.Windows.Forms.Label();
-            this.Label5 = new System.Windows.Forms.Label();
-            this.txtPeso = new System.Windows.Forms.TextBox();
+            this.tbAntropometricos = new System.Windows.Forms.TabPage();
             this.tbPaciente.SuspendLayout();
             this.tbCadastro.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
@@ -93,6 +94,7 @@ namespace ProjetoTCC
             // 
             this.tbPaciente.Controls.Add(this.tbCadastro);
             this.tbPaciente.Controls.Add(this._tbConsulta);
+            this.tbPaciente.Controls.Add(this.tbAntropometricos);
             this.tbPaciente.Location = new System.Drawing.Point(2, 3);
             this.tbPaciente.Name = "tbPaciente";
             this.tbPaciente.SelectedIndex = 0;
@@ -173,6 +175,56 @@ namespace ProjetoTCC
             this.Label6.Size = new System.Drawing.Size(88, 13);
             this.Label6.TabIndex = 261;
             this.Label6.Text = "Código Paciente:";
+            // 
+            // txtPeso
+            // 
+            this.txtPeso.Location = new System.Drawing.Point(253, 190);
+            this.txtPeso.Name = "txtPeso";
+            this.txtPeso.Size = new System.Drawing.Size(60, 20);
+            this.txtPeso.TabIndex = 230;
+            // 
+            // Label5
+            // 
+            this.Label5.AutoSize = true;
+            this.Label5.Location = new System.Drawing.Point(471, 193);
+            this.Label5.Name = "Label5";
+            this.Label5.Size = new System.Drawing.Size(21, 13);
+            this.Label5.TabIndex = 260;
+            this.Label5.Text = "cm";
+            // 
+            // Label4
+            // 
+            this.Label4.AutoSize = true;
+            this.Label4.Location = new System.Drawing.Point(319, 193);
+            this.Label4.Name = "Label4";
+            this.Label4.Size = new System.Drawing.Size(20, 13);
+            this.Label4.TabIndex = 259;
+            this.Label4.Text = "Kg";
+            // 
+            // txtAltura
+            // 
+            this.txtAltura.Location = new System.Drawing.Point(405, 190);
+            this.txtAltura.Name = "txtAltura";
+            this.txtAltura.Size = new System.Drawing.Size(60, 20);
+            this.txtAltura.TabIndex = 231;
+            // 
+            // Label3
+            // 
+            this.Label3.AutoSize = true;
+            this.Label3.Location = new System.Drawing.Point(362, 193);
+            this.Label3.Name = "Label3";
+            this.Label3.Size = new System.Drawing.Size(37, 13);
+            this.Label3.TabIndex = 258;
+            this.Label3.Text = "Altura:";
+            // 
+            // Label2
+            // 
+            this.Label2.AutoSize = true;
+            this.Label2.Location = new System.Drawing.Point(213, 193);
+            this.Label2.Name = "Label2";
+            this.Label2.Size = new System.Drawing.Size(34, 13);
+            this.Label2.TabIndex = 257;
+            this.Label2.Text = "Peso:";
             // 
             // _btnExcluir
             // 
@@ -464,55 +516,15 @@ namespace ProjetoTCC
             this._dtgConsultaPacientes.TabIndex = 0;
             this._dtgConsultaPacientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgConsultaPacientes_CellDoubleClick);
             // 
-            // Label2
+            // tbAntropometricos
             // 
-            this.Label2.AutoSize = true;
-            this.Label2.Location = new System.Drawing.Point(213, 193);
-            this.Label2.Name = "Label2";
-            this.Label2.Size = new System.Drawing.Size(34, 13);
-            this.Label2.TabIndex = 257;
-            this.Label2.Text = "Peso:";
-            // 
-            // Label3
-            // 
-            this.Label3.AutoSize = true;
-            this.Label3.Location = new System.Drawing.Point(362, 193);
-            this.Label3.Name = "Label3";
-            this.Label3.Size = new System.Drawing.Size(37, 13);
-            this.Label3.TabIndex = 258;
-            this.Label3.Text = "Altura:";
-            // 
-            // txtAltura
-            // 
-            this.txtAltura.Location = new System.Drawing.Point(405, 190);
-            this.txtAltura.Name = "txtAltura";
-            this.txtAltura.Size = new System.Drawing.Size(60, 20);
-            this.txtAltura.TabIndex = 231;
-            // 
-            // Label4
-            // 
-            this.Label4.AutoSize = true;
-            this.Label4.Location = new System.Drawing.Point(319, 193);
-            this.Label4.Name = "Label4";
-            this.Label4.Size = new System.Drawing.Size(20, 13);
-            this.Label4.TabIndex = 259;
-            this.Label4.Text = "Kg";
-            // 
-            // Label5
-            // 
-            this.Label5.AutoSize = true;
-            this.Label5.Location = new System.Drawing.Point(471, 193);
-            this.Label5.Name = "Label5";
-            this.Label5.Size = new System.Drawing.Size(21, 13);
-            this.Label5.TabIndex = 260;
-            this.Label5.Text = "cm";
-            // 
-            // txtPeso
-            // 
-            this.txtPeso.Location = new System.Drawing.Point(253, 190);
-            this.txtPeso.Name = "txtPeso";
-            this.txtPeso.Size = new System.Drawing.Size(60, 20);
-            this.txtPeso.TabIndex = 230;
+            this.tbAntropometricos.Location = new System.Drawing.Point(4, 22);
+            this.tbAntropometricos.Name = "tbAntropometricos";
+            this.tbAntropometricos.Padding = new System.Windows.Forms.Padding(3);
+            this.tbAntropometricos.Size = new System.Drawing.Size(790, 491);
+            this.tbAntropometricos.TabIndex = 2;
+            this.tbAntropometricos.Text = "Antropometria";
+            this.tbAntropometricos.UseVisualStyleBackColor = true;
             // 
             // frmPaciente
             // 
@@ -789,5 +801,6 @@ namespace ProjetoTCC
         internal TextBox txtAltura;
         internal Label Label3;
         internal Label Label2;
+        private TabPage tbAntropometricos;
     }
 }

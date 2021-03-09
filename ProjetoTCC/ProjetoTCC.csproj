@@ -96,6 +96,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\AgendaDAO.cs" />
     <Compile Include="frmBuscarAlimento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -475,6 +476,9 @@
     </PackageReference>
     <PackageReference Include="System.Memory">
       <Version>4.5.3</Version>
+    </PackageReference>
+    <PackageReference Include="Z.EntityFramework.Extensions">
+      <Version>5.1.22</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

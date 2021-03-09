@@ -413,6 +413,7 @@ namespace ProjetoTCC
             this.dtgConAlimento.Name = "dtgConAlimento";
             this.dtgConAlimento.Size = new System.Drawing.Size(775, 428);
             this.dtgConAlimento.TabIndex = 0;
+            this.dtgConAlimento.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgConAlimento_CellDoubleClick);
             // 
             // tbImportarPlanilha
             // 

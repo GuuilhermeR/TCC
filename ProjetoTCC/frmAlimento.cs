@@ -221,5 +221,16 @@ namespace ProjetoTCC
         {
             CarregarTabelas();
         }
+
+        private void dtgConAlimento_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex>=0) {
+                if (e.ColumnIndex >= 0) {
+
+                    
+
+                }
+            }
+        }
     }
 }

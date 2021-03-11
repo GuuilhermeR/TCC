@@ -89,13 +89,17 @@ namespace ProjetoTCC
         {
             string strSQL = string.Empty;
             var config = new frmConfiguracoes();
-            strSQL = $"SELECT * FROM Login WHERE usuario = '{usuario}'";
+            strSQL = $"SELECT * FROM Login\n";
+            if (usuario != "")
+            {
+                strSQL = $"WHERE usuario = '{usuario}'";
+            }
             var cmd = new SQLiteCommand(strSQL, objConexao);
             objConexao.Open();
             var dr = cmd.ExecuteReader();
             while (dr.Read())
             {
-                dtgDados.Rows.Add(dr["usuario"], dr["nome"], dr["sexo"], dr["email"], dr["perfil"]);
+                dtgDados.Rows.Add(dr["usuario"], dr["nome"], dr["email"], dr["tipoUsuario"], dr["situacao"]);
             }
 
         }

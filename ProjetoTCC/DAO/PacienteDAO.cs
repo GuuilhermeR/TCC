@@ -34,7 +34,7 @@ namespace ProjetoTCC
             return codPaciente;
         }
 
-        public void Salvar(double codPaciente, string nomeCompleto, string cpf, string dtNasc, string email, string peso, string altura, string cep, double num, string telefone, string celular, string endereco, string bairro, string municipio, string uf, string complemento)
+        public void Atualizar(double codPaciente, string nomeCompleto, string cpf, string dtNasc, string email, string peso, string altura, string cep, double num, string telefone, string celular, string endereco, string bairro, string municipio, string uf, string complemento)
         {
             objConexao.Open();
             string strSQL = string.Empty;
@@ -56,15 +56,14 @@ namespace ProjetoTCC
             objConexao.Close();
         }
 
-        public void Atualizar(string nomeCompleto, string cpf, string dtNasc, string email, string peso, string altura, string cep, double num, string telefone, string celular, string endereco, string bairro, string municipio, string uf, string complemento)
+        public void Salvar(string nomeCompleto, string cpf, string dtNasc, string email, string peso, string altura, string cep, double num, string telefone, string celular, string endereco, string bairro, string municipio, string uf, string complemento)
         {
             objConexao.Open();
             string strSQL = string.Empty;
             try
             {
-                strSQL = $@"UPDATE Paciente SET nome= '{nomeCompleto}', cpf = {cpf}, dtNasc = '{dtNasc}', 
-                            email = '{email}', peso = {peso}, altura = {altura}, cep ={cep}, endereco ='{endereco}', bairro ='{bairro}', municipio ='{municipio}', uf ='{uf}', complemento ='{complemento}',
-                            numero = {num}, telefone = {telefone}, celular = {celular} WHERE codigo = {codPaciente}";
+                strSQL = strSQL = $@"INSERT INTO Paciente (nome, cpf, dtNasc, email, peso, altura, cep, endereco, bairro, municipio, uf, numero, telefone, celular) 
+                            values ('{nomeCompleto}', {cpf}, '{dtNasc}', '{email}', {peso}, {altura}, {cep}, '{endereco}', '{bairro}', '{municipio}', '{uf}', {num}, {telefone}, {celular})";
 
                 var cmd = new SQLiteCommand(strSQL, objConexao);
                 cmd.ExecuteNonQuery();

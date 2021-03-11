@@ -39,6 +39,17 @@ namespace ProjetoTCC
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAlimento));
             this.tbAlimento = new System.Windows.Forms.TabControl();
+            this._tbConsulta = new System.Windows.Forms.TabPage();
+            this.btnRecalcular = new System.Windows.Forms.Button();
+            this.lblAlimentoFiltro = new System.Windows.Forms.Label();
+            this.lblTabelaSelecionada = new System.Windows.Forms.Label();
+            this.btnExcluir = new System.Windows.Forms.Button();
+            this.btnSalvar = new System.Windows.Forms.Button();
+            this.cbxTabela = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this._txtAlimentoFiltro = new System.Windows.Forms.TextBox();
+            this.lblTabela = new System.Windows.Forms.Label();
+            this.dtgConAlimento = new System.Windows.Forms.DataGridView();
             this.tbImportarPlanilha = new System.Windows.Forms.TabPage();
             this.pbCarregando = new System.Windows.Forms.ProgressBar();
             this.txtNomeTabela = new System.Windows.Forms.TextBox();
@@ -51,22 +62,11 @@ namespace ProjetoTCC
             this.Label10 = new System.Windows.Forms.Label();
             this.lblCaminho = new System.Windows.Forms.Label();
             this.ofd1 = new System.Windows.Forms.OpenFileDialog();
-            this.dtgConAlimento = new System.Windows.Forms.DataGridView();
-            this.lblTabela = new System.Windows.Forms.Label();
-            this._txtAlimentoFiltro = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cbxTabela = new System.Windows.Forms.ComboBox();
-            this._tbConsulta = new System.Windows.Forms.TabPage();
-            this.btnExcluir = new System.Windows.Forms.Button();
-            this.btnSalvar = new System.Windows.Forms.Button();
-            this.lblTabelaSelecionada = new System.Windows.Forms.Label();
-            this.lblAlimentoFiltro = new System.Windows.Forms.Label();
-            this.btnRecalcular = new System.Windows.Forms.Button();
             this.tbAlimento.SuspendLayout();
+            this._tbConsulta.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgConAlimento)).BeginInit();
             this.tbImportarPlanilha.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDados)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgConAlimento)).BeginInit();
-            this._tbConsulta.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbAlimento
@@ -81,6 +81,128 @@ namespace ProjetoTCC
             this.tbAlimento.SelectedIndex = 0;
             this.tbAlimento.Size = new System.Drawing.Size(810, 544);
             this.tbAlimento.TabIndex = 0;
+            // 
+            // _tbConsulta
+            // 
+            this._tbConsulta.Controls.Add(this.btnRecalcular);
+            this._tbConsulta.Controls.Add(this.lblAlimentoFiltro);
+            this._tbConsulta.Controls.Add(this.lblTabelaSelecionada);
+            this._tbConsulta.Controls.Add(this.btnExcluir);
+            this._tbConsulta.Controls.Add(this.btnSalvar);
+            this._tbConsulta.Controls.Add(this.cbxTabela);
+            this._tbConsulta.Controls.Add(this.label3);
+            this._tbConsulta.Controls.Add(this._txtAlimentoFiltro);
+            this._tbConsulta.Controls.Add(this.lblTabela);
+            this._tbConsulta.Controls.Add(this.dtgConAlimento);
+            this._tbConsulta.Location = new System.Drawing.Point(4, 22);
+            this._tbConsulta.Name = "_tbConsulta";
+            this._tbConsulta.Padding = new System.Windows.Forms.Padding(3);
+            this._tbConsulta.Size = new System.Drawing.Size(802, 518);
+            this._tbConsulta.TabIndex = 1;
+            this._tbConsulta.Text = "Cadastro/Consulta";
+            this._tbConsulta.UseVisualStyleBackColor = true;
+            this._tbConsulta.Enter += new System.EventHandler(this._tbConsulta_Enter);
+            // 
+            // btnRecalcular
+            // 
+            this.btnRecalcular.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRecalcular.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRecalcular.Location = new System.Drawing.Point(6, 482);
+            this.btnRecalcular.Name = "btnRecalcular";
+            this.btnRecalcular.Size = new System.Drawing.Size(89, 30);
+            this.btnRecalcular.TabIndex = 54;
+            this.btnRecalcular.Text = "Recalcular";
+            this.btnRecalcular.UseVisualStyleBackColor = true;
+            this.btnRecalcular.Click += new System.EventHandler(this.btnRecalcular_Click);
+            // 
+            // lblAlimentoFiltro
+            // 
+            this.lblAlimentoFiltro.AutoSize = true;
+            this.lblAlimentoFiltro.Location = new System.Drawing.Point(12, 41);
+            this.lblAlimentoFiltro.Name = "lblAlimentoFiltro";
+            this.lblAlimentoFiltro.Size = new System.Drawing.Size(50, 13);
+            this.lblAlimentoFiltro.TabIndex = 53;
+            this.lblAlimentoFiltro.Text = "Alimento:";
+            // 
+            // lblTabelaSelecionada
+            // 
+            this.lblTabelaSelecionada.AutoSize = true;
+            this.lblTabelaSelecionada.Location = new System.Drawing.Point(12, 9);
+            this.lblTabelaSelecionada.Name = "lblTabelaSelecionada";
+            this.lblTabelaSelecionada.Size = new System.Drawing.Size(43, 13);
+            this.lblTabelaSelecionada.TabIndex = 52;
+            this.lblTabelaSelecionada.Text = "Tabela:";
+            // 
+            // btnExcluir
+            // 
+            this.btnExcluir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExcluir.Image = global::ProjetoTCC.My.Resources.Resources.DeleteRed;
+            this.btnExcluir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExcluir.Location = new System.Drawing.Point(707, 482);
+            this.btnExcluir.Name = "btnExcluir";
+            this.btnExcluir.Size = new System.Drawing.Size(89, 30);
+            this.btnExcluir.TabIndex = 51;
+            this.btnExcluir.Text = "Excluir";
+            this.btnExcluir.UseVisualStyleBackColor = true;
+            // 
+            // btnSalvar
+            // 
+            this.btnSalvar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSalvar.Image = global::ProjetoTCC.My.Resources.Resources.mvtSaveGreen_16;
+            this.btnSalvar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSalvar.Location = new System.Drawing.Point(612, 482);
+            this.btnSalvar.Name = "btnSalvar";
+            this.btnSalvar.Size = new System.Drawing.Size(89, 30);
+            this.btnSalvar.TabIndex = 50;
+            this.btnSalvar.Text = "Salvar";
+            this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click_1);
+            // 
+            // cbxTabela
+            // 
+            this.cbxTabela.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxTabela.FormattingEnabled = true;
+            this.cbxTabela.Location = new System.Drawing.Point(64, 6);
+            this.cbxTabela.Name = "cbxTabela";
+            this.cbxTabela.Size = new System.Drawing.Size(732, 21);
+            this.cbxTabela.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 41);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(0, 13);
+            this.label3.TabIndex = 4;
+            // 
+            // _txtAlimentoFiltro
+            // 
+            this._txtAlimentoFiltro.Location = new System.Drawing.Point(64, 38);
+            this._txtAlimentoFiltro.Name = "_txtAlimentoFiltro";
+            this._txtAlimentoFiltro.Size = new System.Drawing.Size(732, 20);
+            this._txtAlimentoFiltro.TabIndex = 3;
+            this._txtAlimentoFiltro.Leave += new System.EventHandler(this._txtAlimentoFiltro_Leave);
+            // 
+            // lblTabela
+            // 
+            this.lblTabela.AutoSize = true;
+            this.lblTabela.Location = new System.Drawing.Point(6, 9);
+            this.lblTabela.Name = "lblTabela";
+            this.lblTabela.Size = new System.Drawing.Size(0, 13);
+            this.lblTabela.TabIndex = 2;
+            // 
+            // dtgConAlimento
+            // 
+            this.dtgConAlimento.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtgConAlimento.BackgroundColor = System.Drawing.Color.White;
+            this.dtgConAlimento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgConAlimento.Location = new System.Drawing.Point(6, 64);
+            this.dtgConAlimento.Name = "dtgConAlimento";
+            this.dtgConAlimento.Size = new System.Drawing.Size(790, 412);
+            this.dtgConAlimento.TabIndex = 0;
+            this.dtgConAlimento.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgConAlimento_CellDoubleClick);
             // 
             // tbImportarPlanilha
             // 
@@ -208,127 +330,6 @@ namespace ProjetoTCC
             // 
             this.ofd1.FileName = "ofd1";
             // 
-            // dtgConAlimento
-            // 
-            this.dtgConAlimento.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtgConAlimento.BackgroundColor = System.Drawing.Color.White;
-            this.dtgConAlimento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgConAlimento.Location = new System.Drawing.Point(6, 64);
-            this.dtgConAlimento.Name = "dtgConAlimento";
-            this.dtgConAlimento.Size = new System.Drawing.Size(790, 412);
-            this.dtgConAlimento.TabIndex = 0;
-            this.dtgConAlimento.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgConAlimento_CellDoubleClick);
-            // 
-            // lblTabela
-            // 
-            this.lblTabela.AutoSize = true;
-            this.lblTabela.Location = new System.Drawing.Point(6, 9);
-            this.lblTabela.Name = "lblTabela";
-            this.lblTabela.Size = new System.Drawing.Size(0, 13);
-            this.lblTabela.TabIndex = 2;
-            // 
-            // _txtAlimentoFiltro
-            // 
-            this._txtAlimentoFiltro.Location = new System.Drawing.Point(64, 38);
-            this._txtAlimentoFiltro.Name = "_txtAlimentoFiltro";
-            this._txtAlimentoFiltro.Size = new System.Drawing.Size(732, 20);
-            this._txtAlimentoFiltro.TabIndex = 3;
-            this._txtAlimentoFiltro.Leave += new System.EventHandler(this._txtAlimentoFiltro_Leave);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 41);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(0, 13);
-            this.label3.TabIndex = 4;
-            // 
-            // cbxTabela
-            // 
-            this.cbxTabela.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxTabela.FormattingEnabled = true;
-            this.cbxTabela.Location = new System.Drawing.Point(64, 6);
-            this.cbxTabela.Name = "cbxTabela";
-            this.cbxTabela.Size = new System.Drawing.Size(732, 21);
-            this.cbxTabela.TabIndex = 5;
-            // 
-            // _tbConsulta
-            // 
-            this._tbConsulta.Controls.Add(this.btnRecalcular);
-            this._tbConsulta.Controls.Add(this.lblAlimentoFiltro);
-            this._tbConsulta.Controls.Add(this.lblTabelaSelecionada);
-            this._tbConsulta.Controls.Add(this.btnExcluir);
-            this._tbConsulta.Controls.Add(this.btnSalvar);
-            this._tbConsulta.Controls.Add(this.cbxTabela);
-            this._tbConsulta.Controls.Add(this.label3);
-            this._tbConsulta.Controls.Add(this._txtAlimentoFiltro);
-            this._tbConsulta.Controls.Add(this.lblTabela);
-            this._tbConsulta.Controls.Add(this.dtgConAlimento);
-            this._tbConsulta.Location = new System.Drawing.Point(4, 22);
-            this._tbConsulta.Name = "_tbConsulta";
-            this._tbConsulta.Padding = new System.Windows.Forms.Padding(3);
-            this._tbConsulta.Size = new System.Drawing.Size(802, 518);
-            this._tbConsulta.TabIndex = 1;
-            this._tbConsulta.Text = "Cadastro/Consulta";
-            this._tbConsulta.UseVisualStyleBackColor = true;
-            this._tbConsulta.Enter += new System.EventHandler(this._tbConsulta_Enter);
-            // 
-            // btnExcluir
-            // 
-            this.btnExcluir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExcluir.Image = global::ProjetoTCC.My.Resources.Resources.DeleteRed;
-            this.btnExcluir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExcluir.Location = new System.Drawing.Point(707, 482);
-            this.btnExcluir.Name = "btnExcluir";
-            this.btnExcluir.Size = new System.Drawing.Size(89, 30);
-            this.btnExcluir.TabIndex = 51;
-            this.btnExcluir.Text = "Excluir";
-            this.btnExcluir.UseVisualStyleBackColor = true;
-            // 
-            // btnSalvar
-            // 
-            this.btnSalvar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSalvar.Image = global::ProjetoTCC.My.Resources.Resources.mvtSaveGreen_16;
-            this.btnSalvar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalvar.Location = new System.Drawing.Point(612, 482);
-            this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(89, 30);
-            this.btnSalvar.TabIndex = 50;
-            this.btnSalvar.Text = "Salvar";
-            this.btnSalvar.UseVisualStyleBackColor = true;
-            // 
-            // lblTabelaSelecionada
-            // 
-            this.lblTabelaSelecionada.AutoSize = true;
-            this.lblTabelaSelecionada.Location = new System.Drawing.Point(12, 9);
-            this.lblTabelaSelecionada.Name = "lblTabelaSelecionada";
-            this.lblTabelaSelecionada.Size = new System.Drawing.Size(43, 13);
-            this.lblTabelaSelecionada.TabIndex = 52;
-            this.lblTabelaSelecionada.Text = "Tabela:";
-            // 
-            // lblAlimentoFiltro
-            // 
-            this.lblAlimentoFiltro.AutoSize = true;
-            this.lblAlimentoFiltro.Location = new System.Drawing.Point(12, 41);
-            this.lblAlimentoFiltro.Name = "lblAlimentoFiltro";
-            this.lblAlimentoFiltro.Size = new System.Drawing.Size(50, 13);
-            this.lblAlimentoFiltro.TabIndex = 53;
-            this.lblAlimentoFiltro.Text = "Alimento:";
-            // 
-            // btnRecalcular
-            // 
-            this.btnRecalcular.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRecalcular.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRecalcular.Location = new System.Drawing.Point(6, 482);
-            this.btnRecalcular.Name = "btnRecalcular";
-            this.btnRecalcular.Size = new System.Drawing.Size(89, 30);
-            this.btnRecalcular.TabIndex = 54;
-            this.btnRecalcular.Text = "Recalcular";
-            this.btnRecalcular.UseVisualStyleBackColor = true;
-            this.btnRecalcular.Click += new System.EventHandler(this.btnRecalcular_Click);
-            // 
             // frmAlimento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -339,12 +340,12 @@ namespace ProjetoTCC
             this.Name = "frmAlimento";
             this.Text = "Alimento";
             this.tbAlimento.ResumeLayout(false);
+            this._tbConsulta.ResumeLayout(false);
+            this._tbConsulta.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgConAlimento)).EndInit();
             this.tbImportarPlanilha.ResumeLayout(false);
             this.tbImportarPlanilha.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDados)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgConAlimento)).EndInit();
-            this._tbConsulta.ResumeLayout(false);
-            this._tbConsulta.PerformLayout();
             this.ResumeLayout(false);
 
         }

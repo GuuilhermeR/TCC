@@ -198,12 +198,12 @@ namespace ProjetoTCC
         {
             if (txtCodPaciente.Text != "")
             {
-                paciente.Salvar(Convert.ToDouble(txtCodPaciente.Text), txtNome.Text, txtCPF.Text, txtDtNasc.Text, txtEmail.Text, txtPeso.Text, txtAltura.Text, txtCEP.Text,
+                paciente.Atualizar(Convert.ToDouble(txtCodPaciente.Text), txtNome.Text, txtCPF.Text, txtDtNasc.Text, txtEmail.Text, txtPeso.Text, txtAltura.Text, txtCEP.Text,
                                 Convert.ToDouble(txtNumero.Text), txtTelefone.Text, txtCelular.Text, txtEndereco.Text, txtBairro.Text, txtMunicipio.Text, txtUF.Text, txtComplemento.Text);
             }
             else
             {
-                paciente.Atualizar(txtNome.Text, txtCPF.Text, txtDtNasc.Text, txtEmail.Text, txtPeso.Text, txtAltura.Text, txtCEP.Text,Convert.ToDouble(txtNumero.Text), 
+                paciente.Salvar(txtNome.Text, txtCPF.Text, txtDtNasc.Text, txtEmail.Text, txtPeso.Text, txtAltura.Text, txtCEP.Text,Convert.ToDouble(txtNumero.Text), 
                                txtTelefone.Text, txtCelular.Text, txtEndereco.Text, txtBairro.Text, txtMunicipio.Text, txtUF.Text, txtComplemento.Text);
             }
            

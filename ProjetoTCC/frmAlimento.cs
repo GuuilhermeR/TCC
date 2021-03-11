@@ -13,6 +13,7 @@ namespace ProjetoTCC
 {
     public partial class frmAlimento
     {
+
         public frmAlimento()
         {
             objConexao = new SQLiteConnection(objBanco.Conexao().ToString());
@@ -142,7 +143,7 @@ namespace ProjetoTCC
                         };
 
                         transaction.Commit();
-                        Interaction.MsgBox("Os dados foram Salvos", MsgBoxStyle.OkOnly, "ERRO AO SALVAR");
+                        Interaction.MsgBox("Os dados foram Salvos", MsgBoxStyle.OkOnly, "SALVAR");
                     }
                 }
             }
@@ -265,6 +266,11 @@ namespace ProjetoTCC
                 VitaminaC = Conversions.ToDouble(Operators.MultiplyObject(row.Cells["vitC"].Value, row.Cells["qtde"].Value));
                 row.Cells["vitC"].Value = VitaminaC.ToString("N2");
             }
+        }
+
+        private void btnSalvar_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

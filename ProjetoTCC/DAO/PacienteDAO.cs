@@ -34,22 +34,37 @@ namespace ProjetoTCC
             return codPaciente;
         }
 
-        public void Salvar(int codPaciente, string nomeCompleto, int cpf, DateTime dtNasc, string email, double peso, double altura, int cep, int num, int telefone, int celular)
+        public void Salvar(double codPaciente, string nomeCompleto, string cpf, string dtNasc, string email, string peso, string altura, string cep, double num, string telefone, string celular, string endereco, string bairro, string municipio, string uf, string complemento)
         {
             objConexao.Open();
             string strSQL = string.Empty;
             try
             {
-                if (codPaciente != Conversions.ToDouble(""))
-                {
-                    strSQL = $@"UPDATE Paciente SET nome= '{nomeCompleto}', cpf = {cpf}, dtNasc = '{dtNasc.ToString("dd/MM/yyyy")}', 
-                            email = '{email}', peso = {peso}, altura = {altura}, cep ={cep}, numero = {num}, telefone = {telefone}, celular = {celular} WHERE codigo = {codPaciente}";
-                }
-                else
-                {
-                    strSQL = $@"INSERT INTO Paciente (nome, cpf, dtNasc, email, peso, altura, cep, numero, telefone, celular) 
-                            values ('{nomeCompleto}', {cpf}, '{dtNasc.ToString("dd/MM/yyyy")}', '{email}', {peso}, {altura}, {cep}, {num}, {telefone}, {celular})";
-                }
+                strSQL = $@"UPDATE Paciente SET nome= '{nomeCompleto}', cpf = {cpf}, dtNasc = '{dtNasc}', 
+                            email = '{email}', peso = {peso}, altura = {altura}, cep ={cep}, endereco ='{endereco}', bairro ='{bairro}', municipio ='{municipio}', uf ='{uf}', complemento ='{complemento}',
+                            numero = {num}, telefone = {telefone}, celular = {celular} WHERE codigo = {codPaciente}";
+
+                var cmd = new SQLiteCommand(strSQL, objConexao);
+                cmd.ExecuteNonQuery();
+                Interaction.MsgBox("O Paciente foi salvo.", Constants.vbInformation, "Atenção!");
+            }
+            catch (Exception ex)
+            {
+                Interaction.MsgBox("Ocorreu um erro ao salvar o Paciente." + '\n' + ex.Message, Constants.vbOKOnly, "Alerta");
+            }
+
+            objConexao.Close();
+        }
+
+        public void Atualizar(string nomeCompleto, string cpf, string dtNasc, string email, string peso, string altura, string cep, double num, string telefone, string celular, string endereco, string bairro, string municipio, string uf, string complemento)
+        {
+            objConexao.Open();
+            string strSQL = string.Empty;
+            try
+            {
+                strSQL = $@"UPDATE Paciente SET nome= '{nomeCompleto}', cpf = {cpf}, dtNasc = '{dtNasc}', 
+                            email = '{email}', peso = {peso}, altura = {altura}, cep ={cep}, endereco ='{endereco}', bairro ='{bairro}', municipio ='{municipio}', uf ='{uf}', complemento ='{complemento}',
+                            numero = {num}, telefone = {telefone}, celular = {celular} WHERE codigo = {codPaciente}";
 
                 var cmd = new SQLiteCommand(strSQL, objConexao);
                 cmd.ExecuteNonQuery();

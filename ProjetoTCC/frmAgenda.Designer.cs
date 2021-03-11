@@ -36,6 +36,7 @@ namespace ProjetoTCC
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAgenda));
             this.btnVoltar = new System.Windows.Forms.Button();
             this.btnAvançar = new System.Windows.Forms.Button();
@@ -59,7 +60,7 @@ namespace ProjetoTCC
             // 
             // btnAvançar
             // 
-            this.btnAvançar.Location = new System.Drawing.Point(425, 6);
+            this.btnAvançar.Location = new System.Drawing.Point(463, 6);
             this.btnAvançar.Name = "btnAvançar";
             this.btnAvançar.Size = new System.Drawing.Size(75, 23);
             this.btnAvançar.TabIndex = 2;
@@ -78,9 +79,17 @@ namespace ProjetoTCC
             this.dtgAgenda.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.horario,
             this.paciente});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgAgenda.DefaultCellStyle = dataGridViewCellStyle1;
             this.dtgAgenda.Location = new System.Drawing.Point(12, 35);
             this.dtgAgenda.Name = "dtgAgenda";
-            this.dtgAgenda.Size = new System.Drawing.Size(488, 577);
+            this.dtgAgenda.Size = new System.Drawing.Size(526, 533);
             this.dtgAgenda.TabIndex = 3;
             // 
             // horario
@@ -101,11 +110,12 @@ namespace ProjetoTCC
             this.lblData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblData.AutoSize = true;
-            this.lblData.Location = new System.Drawing.Point(226, 11);
+            this.lblData.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblData.Location = new System.Drawing.Point(202, 5);
             this.lblData.Name = "lblData";
-            this.lblData.Size = new System.Drawing.Size(28, 13);
+            this.lblData.Size = new System.Drawing.Size(128, 25);
             this.lblData.TabIndex = 4;
-            this.lblData.Text = "data";
+            this.lblData.Text = "dd/MM/yyyy";
             this.lblData.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // btnSalvar
@@ -113,7 +123,7 @@ namespace ProjetoTCC
             this.btnSalvar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSalvar.Image = global::ProjetoTCC.My.Resources.Resources.mvtSaveGreen_16;
             this.btnSalvar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalvar.Location = new System.Drawing.Point(411, 618);
+            this.btnSalvar.Location = new System.Drawing.Point(449, 574);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(89, 30);
             this.btnSalvar.TabIndex = 49;
@@ -124,7 +134,7 @@ namespace ProjetoTCC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(512, 660);
+            this.ClientSize = new System.Drawing.Size(550, 616);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.lblData);
             this.Controls.Add(this.dtgAgenda);

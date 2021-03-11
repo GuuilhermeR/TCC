@@ -1,7 +1,11 @@
-﻿using System;
-using System.Windows.Forms;
-using Microsoft.VisualBasic;
+﻿using Microsoft.VisualBasic;
 using Microsoft.VisualBasic.CompilerServices;
+using System;
+using System.IO;
+using System.Net;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
+using System.Web;
 
 namespace ProjetoTCC
 {
@@ -14,12 +18,12 @@ namespace ProjetoTCC
             _btnExcluir.Name = "btnExcluir";
             _btnSalvar.Name = "btnSalvar";
             _txtCEP.Name = "txtCEP";
-            _tbConsulta.Name = "tbConsulta";
+            tbConsulta.Name = "tbConsulta";
             _txtNomePaciente.Name = "txtNomePaciente";
             _dtgConsultaPacientes.Name = "dtgConsultaPacientes";
         }
 
-        public PacienteDAO paciente { get; set; }
+        public PacienteDAO paciente = new PacienteDAO();
 
 
         // CLASSIFICAÇÃO  	 MASCULINO  	 FEMININO  
@@ -52,30 +56,91 @@ namespace ProjetoTCC
             // End If
         }
 
-        private void buscarEndCep(int CEP)
+        private void buscarEndCep(string CEP)
         {
-            using (var WS = new BuscaCEP.AtendeClienteClient())
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create($@"https://viacep.com.br/ws/{CEP}/json/");
+            request.AllowAutoRedirect = false;
+            HttpWebResponse ChecaServidor = (HttpWebResponse)request.GetResponse();
+
+            if (ChecaServidor.StatusCode != HttpStatusCode.OK)
             {
-                try
+                MessageBox.Show("Servidor indisponível");
+                return;
+            }
+
+            using (Stream webStream = ChecaServidor.GetResponseStream())
+            {
+                if (webStream != null)
                 {
-                    var Resultado = WS.consultaCEP(CEP.ToString());
-                    txtEndereco.Text = Resultado.end;
-                    txtComplemento.Text = Resultado.complemento2;
-                    txtMunicipio.Text = Resultado.cidade;
-                    txtBairro.Text = Resultado.bairro;
-                    txtUF.Text = Resultado.uf;
-                }
-                catch (Exception Ex)
-                {
-                    MessageBox.Show(Ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    using (StreamReader responseReader = new StreamReader(webStream))
+                    {
+                        string response = responseReader.ReadToEnd();
+                        response = Regex.Replace(response, "[{},]", string.Empty);
+                        response = response.Replace("\"", "");
+
+                        String[] substrings = response.Split('\n');
+
+                        int cont = 0;
+                        foreach (var substring in substrings)
+                        {
+                            if (cont == 1)
+                            {
+                                string[] valor = substring.Split(":".ToCharArray());
+                                if (valor[0] == "  erro")
+                                {
+                                    MessageBox.Show("CEP não encontrado");
+                                    txtCEP.Focus();
+                                    return;
+                                }
+                            }
+
+                            //Logradouro
+                            if (cont == 2)
+                            {
+                                string[] valor = substring.Split(":".ToCharArray());
+                                txtEndereco.Text = valor[1];
+                            }
+
+                            //Complemento
+                            if (cont == 3)
+                            {
+                                string[] valor = substring.Split(":".ToCharArray());
+                                txtComplemento.Text = valor[1];
+                            }
+
+                            //Bairro
+                            if (cont == 4)
+                            {
+                                string[] valor = substring.Split(":".ToCharArray());
+                                txtBairro.Text = valor[1];
+                            }
+
+                            //Localidade (Cidade)
+                            if (cont == 5)
+                            {
+                                string[] valor = substring.Split(":".ToCharArray());
+                                txtMunicipio.Text = valor[1];
+                            }
+
+                            //Estado (UF)
+                            if (cont == 6)
+                            {
+                                string[] valor = substring.Split(":".ToCharArray());
+                                txtUF.Text = valor[1];
+                            }
+
+                            cont++;
+                        }
+                    }
                 }
             }
+
         }
 
         private void tbConsulta_Enter(object sender, EventArgs e)
         {
 
-            paciente.Buscar(dtgConsultaPacientes, txtNomePaciente.Text);
         }
 
         private void txtNomePaciente_Leave(object sender, EventArgs e)
@@ -85,7 +150,6 @@ namespace ProjetoTCC
 
         private void btnProcurarPaciente_Click(object sender, EventArgs e)
         {
-            tbPaciente.SelectedTab = tbConsulta;
         }
 
         private void dtgConsultaPacientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -105,7 +169,7 @@ namespace ProjetoTCC
                 txtComplemento.Text = Conversions.ToString(dtgConsultaPacientes.Rows[e.RowIndex].Cells[""].Value);
                 txtTelefone.Text = Conversions.ToString(dtgConsultaPacientes.Rows[e.RowIndex].Cells[""].Value);
                 txtCelular.Text = Conversions.ToString(dtgConsultaPacientes.Rows[e.RowIndex].Cells[""].Value);
-                buscarEndCep(Conversions.ToInteger(dtgConsultaPacientes.Rows[e.RowIndex].Cells[""].Value));
+                buscarEndCep(dtgConsultaPacientes.Rows[e.RowIndex].Cells[""].Value.ToString());
                 tbPaciente.SelectedTab = tbCadastro;
             }
         }
@@ -132,12 +196,24 @@ namespace ProjetoTCC
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            paciente.Salvar(Conversions.ToInteger(txtCodPaciente.Text), txtNomePaciente.Text, Conversions.ToInteger(txtCEP.Text), Conversions.ToDate(txtNumero.Text), txtDtNasc.Text, Conversions.ToDouble(txtEmail.Text), Conversions.ToDouble(txtPeso.Text), Conversions.ToInteger(txtAltura.Text), Conversions.ToInteger(txtCEP.Text), Conversions.ToInteger(txtTelefone.Text), Conversions.ToInteger(txtCelular.Text));
+            if (txtCodPaciente.Text != "")
+            {
+                paciente.Salvar(Convert.ToDouble(txtCodPaciente.Text), txtNome.Text, txtCPF.Text, txtDtNasc.Text, txtEmail.Text, txtPeso.Text, txtAltura.Text, txtCEP.Text,
+                                Convert.ToDouble(txtNumero.Text), txtTelefone.Text, txtCelular.Text, txtEndereco.Text, txtBairro.Text, txtMunicipio.Text, txtUF.Text, txtComplemento.Text);
+            }
+            else
+            {
+                paciente.Atualizar(txtNome.Text, txtCPF.Text, txtDtNasc.Text, txtEmail.Text, txtPeso.Text, txtAltura.Text, txtCEP.Text,Convert.ToDouble(txtNumero.Text), 
+                               txtTelefone.Text, txtCelular.Text, txtEndereco.Text, txtBairro.Text, txtMunicipio.Text, txtUF.Text, txtComplemento.Text);
+            }
+           
+            limparCamposCadPaciente();
+
         }
 
         private void txtCEP_Leave(object sender, EventArgs e)
         {
-            buscarEndCep(Conversions.ToInteger(txtCEP.Text));
+            buscarEndCep(txtCEP.Text);
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
@@ -145,6 +221,7 @@ namespace ProjetoTCC
             if (!string.IsNullOrEmpty(txtCodPaciente.Text))
             {
                 paciente.Deletar(Conversions.ToInteger(txtCodPaciente.Text));
+                limparCamposCadPaciente();
             }
             else
             {

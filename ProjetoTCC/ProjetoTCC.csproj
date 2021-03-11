@@ -75,6 +75,7 @@
     <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -108,11 +109,6 @@
     <Compile Include="My Project\MyNamespace.Static.2.Designer.cs" />
     <Compile Include="My Project\MyNamespace.Static.3.Designer.cs" />
     <Compile Include="BancoDados\DBAcesso.cs" />
-    <Compile Include="Connected Services\BuscaCEP\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="DAO\AlimentoDAO.cs" />
     <Compile Include="DAO\PacienteDAO.cs" />
     <Compile Include="DAO\UsuarioDAO.cs" />
@@ -250,179 +246,7 @@
     </None>
     <None Include="Resources\2355300-removebg-preview %283%29.png" />
     <None Include="Resources\default-user.png" />
-    <None Include="Connected Services\BuscaCEP\configuration91.svcinfo" />
-    <None Include="Connected Services\BuscaCEP\configuration.svcinfo" />
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.atualizaPagamentoNaEntregaResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.atualizaRemessaAgrupadaResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.bloquearObjetoResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.buscaClienteResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.buscaContratoResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.buscaDataAtualResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.buscaOpcoesResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.buscaPagamentoEntregaResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.buscaServicosAdicionaisAtivosResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.buscaServicosResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.buscaServicosValorDeclaradoResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.buscaServicosXServicosAdicionaisResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.buscaTarifaValeResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.calculaTarifaServicoResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.cancelarObjetoResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.cancelarPedidoScolResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.clienteERP.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.consultaCEPResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.contratoERP.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.dimensaoTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.embalagemLRSMaster.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.enderecoERP.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.fechaPlpResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.fechaPlpVariosServicosResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.geraDigitoVerificadorEtiquetasResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.getStatusCartaoPostagemResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.getStatusPLPResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.integrarUsuarioScolResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.mensagemParametrizadaTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.obterClienteAtualizacaoResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.obterEmbalagemLRSResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.obterMensagemParametrizadaResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.pesquisarDimensoesServicoResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.pesquisarEmbalagensPorServicoResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.pesquisarParametrosPorDescricaoResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.pesquisarServicosAdicionaisResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.retornoCancelamento.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.servicoAdicionalTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.servicoAdicionalXML.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.servicoERP.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.solicitaEtiquetasResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.solicitaPLPResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.solicitarPostagemScolResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.solicitaXmlPlpResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.statusCartao.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.statusPlp.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.tipoEmbalagem.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.valePostal.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.validaEtiquetaPLPResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.validaPlpResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.validarPostagemReversaResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.validarPostagemSimultaneaResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.verificaDisponibilidadeServicoResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.verificaModalTransporteResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\ProjetoTCC.BuscaCEP.VerificaSeTodosObjetosCanceladosResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\BuscaCEP\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="iconTCC-removebg-preview %281%29.ico" />
-    <None Include="Connected Services\BuscaCEP\AtendeClienteService.wsdl" />
     <None Include="Resources\baixados-removebg-preview %281%29.png" />
     <None Include="Resources\baixados-removebg-preview.png" />
     <None Include="App.config" />
@@ -450,20 +274,17 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="EntityFramework">
-      <Version>6.3.0</Version>
-    </PackageReference>
     <PackageReference Include="ExcelDataReader">
       <Version>3.6.0</Version>
     </PackageReference>
     <PackageReference Include="ExcelDataReader.DataSet">
       <Version>3.6.0</Version>
     </PackageReference>
-    <PackageReference Include="Google.Apis.Calendar.v3">
-      <Version>1.50.0.2224</Version>
+    <PackageReference Include="Microsoft.CSharp">
+      <Version>4.7.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Data.Sqlite.Core">
-      <Version>5.0.3</Version>
+      <Version>5.0.4</Version>
     </PackageReference>
     <PackageReference Include="System.Data.SQLite.Core">
       <Version>1.0.113.7</Version>
@@ -474,15 +295,9 @@
     <PackageReference Include="System.Data.SQLite.Linq">
       <Version>1.0.113</Version>
     </PackageReference>
-    <PackageReference Include="System.Memory">
-      <Version>4.5.3</Version>
-    </PackageReference>
     <PackageReference Include="Z.EntityFramework.Extensions">
-      <Version>5.1.22</Version>
+      <Version>5.1.23</Version>
     </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\BuscaCEP\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

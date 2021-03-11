@@ -78,7 +78,7 @@ namespace ProjetoTCC
             this.txtNome = new System.Windows.Forms.TextBox();
             this.PictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblNome = new System.Windows.Forms.Label();
-            this._tbConsulta = new System.Windows.Forms.TabPage();
+            this.tbConsulta = new System.Windows.Forms.TabPage();
             this._txtNomePaciente = new System.Windows.Forms.TextBox();
             this.lblNomePaciente = new System.Windows.Forms.Label();
             this._dtgConsultaPacientes = new System.Windows.Forms.DataGridView();
@@ -86,14 +86,14 @@ namespace ProjetoTCC
             this.tbPaciente.SuspendLayout();
             this.tbCadastro.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
-            this._tbConsulta.SuspendLayout();
+            this.tbConsulta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._dtgConsultaPacientes)).BeginInit();
             this.SuspendLayout();
             // 
             // tbPaciente
             // 
             this.tbPaciente.Controls.Add(this.tbCadastro);
-            this.tbPaciente.Controls.Add(this._tbConsulta);
+            this.tbPaciente.Controls.Add(this.tbConsulta);
             this.tbPaciente.Controls.Add(this.tbAntropometricos);
             this.tbPaciente.Location = new System.Drawing.Point(2, 3);
             this.tbPaciente.Name = "tbPaciente";
@@ -475,19 +475,19 @@ namespace ProjetoTCC
             this.lblNome.TabIndex = 243;
             this.lblNome.Text = "Nome Completo:";
             // 
-            // _tbConsulta
+            // tbConsulta
             // 
-            this._tbConsulta.Controls.Add(this._txtNomePaciente);
-            this._tbConsulta.Controls.Add(this.lblNomePaciente);
-            this._tbConsulta.Controls.Add(this._dtgConsultaPacientes);
-            this._tbConsulta.Location = new System.Drawing.Point(4, 22);
-            this._tbConsulta.Name = "_tbConsulta";
-            this._tbConsulta.Padding = new System.Windows.Forms.Padding(3);
-            this._tbConsulta.Size = new System.Drawing.Size(790, 491);
-            this._tbConsulta.TabIndex = 1;
-            this._tbConsulta.Text = "Consulta";
-            this._tbConsulta.UseVisualStyleBackColor = true;
-            this._tbConsulta.Enter += new System.EventHandler(this.tbConsulta_Enter);
+            this.tbConsulta.Controls.Add(this._txtNomePaciente);
+            this.tbConsulta.Controls.Add(this.lblNomePaciente);
+            this.tbConsulta.Controls.Add(this._dtgConsultaPacientes);
+            this.tbConsulta.Location = new System.Drawing.Point(4, 22);
+            this.tbConsulta.Name = "tbConsulta";
+            this.tbConsulta.Padding = new System.Windows.Forms.Padding(3);
+            this.tbConsulta.Size = new System.Drawing.Size(790, 491);
+            this.tbConsulta.TabIndex = 1;
+            this.tbConsulta.Text = "Consulta";
+            this.tbConsulta.UseVisualStyleBackColor = true;
+            this.tbConsulta.Enter += new System.EventHandler(this.tbConsulta_Enter);
             // 
             // _txtNomePaciente
             // 
@@ -539,8 +539,8 @@ namespace ProjetoTCC
             this.tbCadastro.ResumeLayout(false);
             this.tbCadastro.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
-            this._tbConsulta.ResumeLayout(false);
-            this._tbConsulta.PerformLayout();
+            this.tbConsulta.ResumeLayout(false);
+            this.tbConsulta.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this._dtgConsultaPacientes)).EndInit();
             this.ResumeLayout(false);
 
@@ -551,31 +551,6 @@ namespace ProjetoTCC
         internal Button Button1;
         internal TextBox TextBox18;
         public Button _btnProcurarPaciente;
-
-        internal Button btnProcurarPaciente
-        {
-            [MethodImpl(MethodImplOptions.Synchronized)]
-            get
-            {
-                return _btnProcurarPaciente;
-            }
-
-            [MethodImpl(MethodImplOptions.Synchronized)]
-            set
-            {
-                if (_btnProcurarPaciente != null)
-                {
-                    _btnProcurarPaciente.Click -= btnProcurarPaciente_Click;
-                }
-
-                _btnProcurarPaciente = value;
-                if (_btnProcurarPaciente != null)
-                {
-                    _btnProcurarPaciente.Click += btnProcurarPaciente_Click;
-                }
-            }
-        }
-
         internal Label Label24;
         internal TextBox txtCodPaciente;
         internal TextBox TextBox17;
@@ -716,32 +691,9 @@ namespace ProjetoTCC
         internal Label Label7;
         internal PictureBox PictureBox1;
         internal Label lblNome;
-        private TabPage _tbConsulta;
+        private TabPage tbConsulta;
 
-        internal TabPage tbConsulta
-        {
-            [MethodImpl(MethodImplOptions.Synchronized)]
-            get
-            {
-                return _tbConsulta;
-            }
-
-            [MethodImpl(MethodImplOptions.Synchronized)]
-            set
-            {
-                if (_tbConsulta != null)
-                {
-                    _tbConsulta.Enter -= tbConsulta_Enter;
-                }
-
-                _tbConsulta = value;
-                if (_tbConsulta != null)
-                {
-                    _tbConsulta.Enter += tbConsulta_Enter;
-                }
-            }
-        }
-
+       
         public DataGridView _dtgConsultaPacientes;
 
         internal DataGridView dtgConsultaPacientes

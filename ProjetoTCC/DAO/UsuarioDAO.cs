@@ -104,5 +104,55 @@ namespace ProjetoTCC
 
         }
 
+        public void CriarAlterarUsuario(DataGridView dtgDados, string usuario, string senha, string nome, string email, string situacao, string tipoUsuario, bool alterarSenha)
+        {
+            SQLiteCommand cmd;
+            cmd = new SQLiteCommand();
+
+            try
+            {
+                using (cmd = new SQLiteCommand(objConexao))
+                {
+                    using (var transaction = objConexao.BeginTransaction())
+                    {
+                       if (senha != "")
+                        {
+                            string strSQL = $@"INSERT INTO Login (usuario, senha, nome, email, situacao, tipoUsuario) 
+                                               VALUES ('{usuario}', '{senha}', '{nome}', '{email}', '{situacao}', '{tipoUsuario}')";
+                        }
+                        else
+                        {
+                            string strSQL = $@"INSERT INTO Login (usuario,  nome, email, situacao, tipoUsuario) 
+                                               VALUES ('{usuario}', '{nome}', '{email}', '{situacao}', '{tipoUsuario}')";
+                        }
+                        var dr = cmd.ExecuteReader();
+                        transaction.Commit();
+                        Interaction.MsgBox("Os dados foram Salvos", MsgBoxStyle.OkOnly, "SALVAR");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Interaction.MsgBox("Ocorreu um erro ao salvar.\n\n" + ex.Message, MsgBoxStyle.OkOnly, "ERRO AO SALVAR");
+            }
+        }
+
+        public bool VerificarExisteUsuario(string usuario)
+        {
+            string strSQL = $"SELECT COUNT(1) AS existe FROM Login WHERE usuario = '{usuario}'";
+
+            var cmd = new SQLiteCommand(strSQL, objConexao);
+            objConexao.Open();
+            var dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                return true;
+            }
+            return false;
+        }
+
     }
 }
+
+//string strSQL = $@"UPDATE Login SET senha='{senha}', nome='{senha}', email='{senha}', 
+//                                               situacao='{senha}', tipoUsuario='{senha}' WHERE usuario='{usuario}'";

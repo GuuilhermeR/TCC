@@ -54,6 +54,7 @@ namespace ProjetoTCC
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
+            bool alterarSenha = false;
             if (txtUsuario.Text == "")
             {
                 Interaction.MsgBox("O usuário não foi informado");
@@ -69,30 +70,15 @@ namespace ProjetoTCC
                 Interaction.MsgBox("As senhas não conferem");
                 return;
             }
+            if (Interaction.MsgBox("Você deseja alterar a senha do usuário?", MsgBoxStyle.YesNo, "ALTERAÇÃO DE SENHA") == MsgBoxResult.Yes)
+                alterarSenha = true;
 
-            SQLiteCommand cmd;
-            cmd = new SQLiteCommand();
-
-            try
+            if (usuario.VerificarExisteUsuario(txtUsuario.Text)==true)
             {
-                using (cmd = new SQLiteCommand(objConexao))
-                {
-                    using (var transaction = objConexao.BeginTransaction())
-                    {
-                        foreach (DataGridViewRow row in dtgUsuarios.Rows)
-                        {
-                            string strSQL = $@"INSERT INTO Alimento () 
-                                    VALUES ()";
-                        };
-
-                        transaction.Commit();
-                        Interaction.MsgBox("Os dados foram Salvos", MsgBoxStyle.OkOnly, "SALVAR");
-                    }
-                }
-            }
-            catch (Exception ex)
+                usuario.CriarAlterarUsuario(dtgUsuarios, txtUsuario.Text, txtSenha.Text, txtNome.Text, txtEmail.Text, cbxSituacao.Text, cbxTipoUsuario.Text, alterarSenha);
+            } else
             {
-                Interaction.MsgBox("Ocorreu um erro ao salvar.\n\n" + ex.Message, MsgBoxStyle.OkOnly, "ERRO AO SALVAR");
+
             }
 
         }

@@ -101,10 +101,9 @@ namespace ProjetoTCC
             {
                 dtgDados.Rows.Add(dr["usuario"], dr["nome"], dr["email"], dr["tipoUsuario"], dr["situacao"]);
             }
-
         }
 
-        public void CriarAlterarUsuario(DataGridView dtgDados, string usuario, string senha, string nome, string email, string situacao, string tipoUsuario, bool alterarSenha)
+        public void AlterarUsuario(string usuario, string senha, string nome, string email, string situacao, string tipoUsuario, bool alterarSenha)
         {
             SQLiteCommand cmd;
             cmd = new SQLiteCommand();
@@ -115,19 +114,44 @@ namespace ProjetoTCC
                 {
                     using (var transaction = objConexao.BeginTransaction())
                     {
-                       if (senha != "")
+                       if (alterarSenha)
                         {
-                            string strSQL = $@"INSERT INTO Login (usuario, senha, nome, email, situacao, tipoUsuario) 
-                                               VALUES ('{usuario}', '{senha}', '{nome}', '{email}', '{situacao}', '{tipoUsuario}')";
+                            string strSQL = $@"UPDATE Login senha='{senha}', nome='{nome}', email='{email}', situacao='{situacao}', tipoUsuario='{tipoUsuario}' WHERE usuario='{usuario}'";
                         }
                         else
                         {
-                            string strSQL = $@"INSERT INTO Login (usuario,  nome, email, situacao, tipoUsuario) 
-                                               VALUES ('{usuario}', '{nome}', '{email}', '{situacao}', '{tipoUsuario}')";
+                            string strSQL = $@"UPDATE Login nome='{nome}', email='{email}', situacao='{situacao}', tipoUsuario='{tipoUsuario}' WHERE usuario='{usuario}'";
                         }
                         var dr = cmd.ExecuteReader();
                         transaction.Commit();
-                        Interaction.MsgBox("Os dados foram Salvos", MsgBoxStyle.OkOnly, "SALVAR");
+                        Interaction.MsgBox("Os dados foram Salvos.", MsgBoxStyle.OkOnly, "SALVAR");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Interaction.MsgBox("Ocorreu um erro ao salvar.\n\n" + ex.Message, MsgBoxStyle.OkOnly, "ERRO AO SALVAR");
+            }
+        }
+
+        public void CriarUsuario(string usuario, string senha, string nome, string email, string situacao, string tipoUsuario, bool alterarSenha)
+        {
+            SQLiteCommand cmd;
+            cmd = new SQLiteCommand();
+
+            try
+            {
+                using (cmd = new SQLiteCommand(objConexao))
+                {
+                    using (var transaction = objConexao.BeginTransaction())
+                    {
+
+                        string strSQL = $@"INSERT INTO Login (usuario, senha, nome, email, situacao, tipoUsuario) 
+                                               VALUES ('{usuario}', '{senha}', '{nome}', '{email}', '{situacao}', '{tipoUsuario}')";
+
+                        var dr = cmd.ExecuteReader();
+                        transaction.Commit();
+                        Interaction.MsgBox("Os dados foram Salvos.", MsgBoxStyle.OkOnly, "SALVAR");
                     }
                 }
             }
@@ -139,6 +163,7 @@ namespace ProjetoTCC
 
         public bool VerificarExisteUsuario(string usuario)
         {
+            bool retorno = false;
             string strSQL = $"SELECT COUNT(1) AS existe FROM Login WHERE usuario = '{usuario}'";
 
             var cmd = new SQLiteCommand(strSQL, objConexao);
@@ -146,13 +171,12 @@ namespace ProjetoTCC
             var dr = cmd.ExecuteReader();
             if (dr.Read())
             {
-                return true;
+                retorno = true;
             }
-            return false;
+            objConexao.Close();
+            return retorno;
+
         }
 
     }
 }
-
-//string strSQL = $@"UPDATE Login SET senha='{senha}', nome='{senha}', email='{senha}', 
-//                                               situacao='{senha}', tipoUsuario='{senha}' WHERE usuario='{usuario}'";

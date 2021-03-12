@@ -70,14 +70,17 @@ namespace ProjetoTCC
                 Interaction.MsgBox("As senhas não conferem");
                 return;
             }
-            if (Interaction.MsgBox("Você deseja alterar a senha do usuário?", MsgBoxStyle.YesNo, "ALTERAÇÃO DE SENHA") == MsgBoxResult.Yes)
-                alterarSenha = true;
+           
 
-            if (usuario.VerificarExisteUsuario(txtUsuario.Text)==true)
+            if (usuario.VerificarExisteUsuario(txtUsuario.Text)==false)
             {
-                usuario.CriarAlterarUsuario(dtgUsuarios, txtUsuario.Text, txtSenha.Text, txtNome.Text, txtEmail.Text, cbxSituacao.Text, cbxTipoUsuario.Text, alterarSenha);
-            } else
+                usuario.CriarUsuario(txtUsuario.Text, txtSenha.Text, txtNome.Text, txtEmail.Text, cbxSituacao.Text, cbxTipoUsuario.Text);
+            }
+            else
             {
+                if (Interaction.MsgBox("Você deseja alterar a senha do usuário?", MsgBoxStyle.YesNo, "ALTERAÇÃO DE SENHA") == MsgBoxResult.Yes)
+                    alterarSenha = true;
+                usuario.AlterarUsuario(txtUsuario.Text, txtSenha.Text, txtNome.Text, txtEmail.Text, cbxSituacao.Text, cbxTipoUsuario.Text, alterarSenha);
 
             }
 
@@ -85,14 +88,12 @@ namespace ProjetoTCC
 
         private void txtSenha_Enter(object sender, EventArgs e)
         {
-            txtSenha.Text = "";
             txtSenha.PasswordChar = '*';
         }
 
         private void txtConfirmarSenha_TextChanged(object sender, EventArgs e)
         {
-            txtSenha.Text = "";
-            txtSenha.PasswordChar = '*';
+            txtConfirmarSenha.PasswordChar = '*';
         }
     }
 }

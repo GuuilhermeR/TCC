@@ -29,12 +29,12 @@ namespace ProjetoTCC
                     objConexao.Open();
                 }
 
-                string strSQL = $"SELECT Nome FROM Login WHERE usuario = '{usuarioLogin}'" + '\r' + '\n';
+                string strSQL = $"SELECT nome FROM Login WHERE usuario = '{usuarioLogin}'";
                 using (var cmd = new SQLiteCommand(strSQL, objConexao))
                 {
                     using (var dr = cmd.ExecuteReader())
                     {
-                        while (dr.Read())
+                        if (dr.Read())
                             nome = Conversions.ToString(dr["Nome"]);
                     }
                 }

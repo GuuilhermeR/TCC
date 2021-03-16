@@ -1,5 +1,5 @@
-﻿using System;
-using System.Drawing;
+﻿using MaterialSkin;
+using System;
 using System.Windows.Forms;
 
 namespace ProjetoTCC
@@ -12,12 +12,11 @@ namespace ProjetoTCC
             _BtnPacientes.Name = "BtnPacientes";
             _btnDeslogar.Name = "btnDeslogar";
             _btnAgenda.Name = "btnAgenda";
-            _btnOcultar.Name = "btnOcultar";
             _btnConfig.Name = "btnConfig";
             _btnCadAlimento.Name = "btnCadAlimento";
             _btnCadCardapio.Name = "btnCadCardapio";
-            _btnMostrar.Name = "btnMostrar";
         }
+
 
         private void btnCadastrarAlimento_Click(object sender, EventArgs e)
         {
@@ -33,25 +32,17 @@ namespace ProjetoTCC
 
         private void frmMenuPrincipal_Load(object sender, EventArgs e)
         {
+            this.MaximizeBox = false;
+
             //lblUsuario.Text = $"Seja bem vindo(a) ao sistema {frmTelaLogin.usuario.getNomeUsuario()}";
-        }
 
-        private void btnOcultar_Click(object sender, EventArgs e)
-        {
-            pnlBotoes.Hide();
-            btnMostrar.Show();
-            btnOcultar.Hide();
-            pbxLogoGrande.Location = new Point(295, 120);
-            lblNomeApp.Location = new Point(375, 470);
-        }
+            InitializeComponent();
 
-        private void btnMostrar_Click(object sender, EventArgs e)
-        {
-            pnlBotoes.Show();
-            btnMostrar.Hide();
-            btnOcultar.Show();
-            pbxLogoGrande.Location = new Point(385, 120);
-            lblNomeApp.Location = new Point(462, 470);
+            var materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+
         }
 
         private void btnCadastrarPaciente_Click(object sender, EventArgs e)

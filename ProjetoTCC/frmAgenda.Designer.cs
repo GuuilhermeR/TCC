@@ -91,6 +91,7 @@ namespace ProjetoTCC
             this.dtgAgenda.Name = "dtgAgenda";
             this.dtgAgenda.Size = new System.Drawing.Size(526, 533);
             this.dtgAgenda.TabIndex = 3;
+            this.dtgAgenda.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgAgenda_CellEndEdit);
             // 
             // horario
             // 

@@ -29,6 +29,8 @@ namespace ProjetoTCC
 
         private void btnAvançar_Click(object sender, EventArgs e)
         {
+            dtgAgenda.Rows.Clear();
+            CriarHorariosPadrao();
             var data = Convert.ToDateTime(lblData.Text);
             DateTime dataAvançada = data.AddDays(1);
             lblData.Text = dataAvançada.ToString("dd/MM/yyyy");
@@ -37,6 +39,8 @@ namespace ProjetoTCC
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
+            dtgAgenda.Rows.Clear();
+            CriarHorariosPadrao();
             var data = Convert.ToDateTime(lblData.Text);
             DateTime dataAvançada = data.AddDays(-1);
             lblData.Text = dataAvançada.ToString("dd/MM/yyyy");
@@ -50,6 +54,9 @@ namespace ProjetoTCC
                 dtgAgenda.Rows.Add(i+":00");
             }
         }
-
+        private void dtgAgenda_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            dtgAgenda.AutoResizeColumns();
+        }
     }
 }

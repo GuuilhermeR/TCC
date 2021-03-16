@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SQLite;
+using ProjetoTCC;
 
 namespace ProjetoTCC
 {
@@ -18,8 +19,8 @@ namespace ProjetoTCC
 
         private void btnProcurarPaciente_Click(object sender, EventArgs e)
         {
-            var frmBuscaPaciente = new frmBuscarPaciente();
-            My.MyProject.Forms.frmBuscarPaciente.Show();
+           // var frmBuscaPaciente = new frmBuscarPaciente();
+            //frmBuscarPaciente.Show();
         }
 
         private void frmPlanilhaCardapio_Load(object sender, EventArgs e)

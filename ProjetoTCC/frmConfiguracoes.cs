@@ -74,7 +74,7 @@ namespace ProjetoTCC
 
             if (usuario.VerificarExisteUsuario(txtUsuario.Text)==false)
             {
-                usuario.CriarUsuario(txtUsuario.Text, txtSenha.Text, txtNome.Text, txtEmail.Text, cbxSituacao.Text, cbxTipoUsuario.Text);
+               // usuario.CriarUsuario(txtUsuario.Text, txtSenha.Text, txtNome.Text, txtEmail.Text, cbxSituacao.Text, cbxTipoUsuario.Text);
             }
             else
             {

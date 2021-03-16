@@ -91,7 +91,6 @@ namespace ProjetoTCC
 
         private void btnImportar_Click(object sender, EventArgs e)
         {
-            ListView teste = new ListView();
             if (string.IsNullOrEmpty(txtNomeTabela.Text))
             {
                 Interaction.MsgBox("Favor informar o nome da tabela que está sendo salvo!");

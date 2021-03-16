@@ -33,7 +33,7 @@ namespace ProjetoTCC
 
         private void frmMenuPrincipal_Load(object sender, EventArgs e)
         {
-            lblUsuario.Text = $"Seja bem vindo(a) ao sistema {My.MyProject.Forms.frmTelaLogin.usuario.getNomeUsuario()}";
+            //lblUsuario.Text = $"Seja bem vindo(a) ao sistema {frmTelaLogin.usuario.getNomeUsuario()}";
         }
 
         private void btnOcultar_Click(object sender, EventArgs e)

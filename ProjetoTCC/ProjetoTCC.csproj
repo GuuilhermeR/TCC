@@ -119,12 +119,6 @@
     <Compile Include="frmAdicionarRefeicao.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAgenda.Designer.cs">
-      <DependentUpon>frmAgenda.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmAgenda.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="frmBuscarPaciente.Designer.cs">
       <DependentUpon>frmBuscarPaciente.cs</DependentUpon>
     </Compile>
@@ -135,18 +129,6 @@
       <DependentUpon>frmCardapio.cs</DependentUpon>
     </Compile>
     <Compile Include="frmCardapio.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmPaciente.Designer.cs">
-      <DependentUpon>frmPaciente.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmPaciente.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmAlimento.Designer.cs">
-      <DependentUpon>frmAlimento.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmAlimento.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmConfiguracoes.Designer.cs">
@@ -165,12 +147,6 @@
       <DependentUpon>frmMenuPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMenuPrincipal.cs" />
-    <Compile Include="frmPlanilhaCardapio.Designer.cs">
-      <DependentUpon>frmPlanilhaCardapio.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmPlanilhaCardapio.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="frmTelaLogin.cs" />
     <Compile Include="frmTelaLogin.Designer.cs">
       <DependentUpon>frmTelaLogin.cs</DependentUpon>
@@ -193,9 +169,6 @@
     <EmbeddedResource Include="frmAdicionarRefeicao.resx">
       <DependentUpon>frmAdicionarRefeicao.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAgenda.resx">
-      <DependentUpon>frmAgenda.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmBuscarAlimento.resx">
       <DependentUpon>frmBuscarAlimento.cs</DependentUpon>
     </EmbeddedResource>
@@ -205,12 +178,6 @@
     <EmbeddedResource Include="frmCardapio.resx">
       <DependentUpon>frmCardapio.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPaciente.resx">
-      <DependentUpon>frmPaciente.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmAlimento.resx">
-      <DependentUpon>frmAlimento.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmConfiguracoes.resx">
       <DependentUpon>frmConfiguracoes.cs</DependentUpon>
     </EmbeddedResource>
@@ -219,9 +186,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMenuPrincipal.resx">
       <DependentUpon>frmMenuPrincipal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmPlanilhaCardapio.resx">
-      <DependentUpon>frmPlanilhaCardapio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTelaLogin.resx">
       <DependentUpon>frmTelaLogin.cs</DependentUpon>

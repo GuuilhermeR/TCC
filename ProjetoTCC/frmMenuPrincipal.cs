@@ -32,17 +32,7 @@
 
 //        private void frmMenuPrincipal_Load(object sender, EventArgs e)
 //        {
-//            this.MaximizeBox = false;
-
-//            //lblUsuario.Text = $"Seja bem vindo(a) ao sistema {frmTelaLogin.usuario.getNomeUsuario()}";
-
-//            InitializeComponent();
-
-//            var materialSkinManager = MaterialSkinManager.Instance;
-//            materialSkinManager.EnforceBackcolorOnAllComponents = true;
-//            materialSkinManager.AddFormToManage(this);
-//            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-//            materialSkinManager.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+//            
 
 //        }
 

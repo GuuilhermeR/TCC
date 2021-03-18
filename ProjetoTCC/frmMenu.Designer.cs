@@ -25,6 +25,9 @@ namespace ProjetoTCC
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenu));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.pbxLogoGrande = new System.Windows.Forms.PictureBox();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
@@ -36,7 +39,7 @@ namespace ProjetoTCC
             this.btnAvançar = new System.Windows.Forms.Button();
             this.btnVoltar = new System.Windows.Forms.Button();
             this.tabMenu = new System.Windows.Forms.TabPage();
-            this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
+            this.TabControlNutreasy = new MaterialSkin.Controls.MaterialTabControl();
             this.tabAlimento = new System.Windows.Forms.TabPage();
             this.tbAlimento = new System.Windows.Forms.TabControl();
             this._tbConsulta = new System.Windows.Forms.TabPage();
@@ -117,11 +120,32 @@ namespace ProjetoTCC
             this._dtgConsultaPacientes = new System.Windows.Forms.DataGridView();
             this.tbAntropometricos = new System.Windows.Forms.TabPage();
             this.tabConfig = new System.Windows.Forms.TabPage();
+            this.tbConfig = new System.Windows.Forms.TabControl();
+            this.TabPage1 = new System.Windows.Forms.TabPage();
+            this.txtConfirmarSenha = new System.Windows.Forms.TextBox();
+            this.txtSenha = new System.Windows.Forms.TextBox();
+            this.txtEmailConfig = new System.Windows.Forms.TextBox();
+            this.txtNomeUsuarioConfig = new System.Windows.Forms.TextBox();
+            this.txtUsuarioConfig = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lblSenha = new System.Windows.Forms.Label();
+            this.cbxSituacao = new System.Windows.Forms.ComboBox();
+            this.lblSituacao = new System.Windows.Forms.Label();
+            this.btnExcluirConfigUsuario = new System.Windows.Forms.Button();
+            this.btnSalvarConfigUsuario = new System.Windows.Forms.Button();
+            this.cbxTipoUsuario = new System.Windows.Forms.ComboBox();
+            this.lblPerfil = new System.Windows.Forms.Label();
+            this.lblEmail = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.dtgUsuarios = new System.Windows.Forms.DataGridView();
+            this.TabPage2 = new System.Windows.Forms.TabPage();
+            this.GraficoProtChoLip = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.pbxLogoGrande)).BeginInit();
             this.tabAgenda.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgAgenda)).BeginInit();
             this.tabMenu.SuspendLayout();
-            this.materialTabControl1.SuspendLayout();
+            this.TabControlNutreasy.SuspendLayout();
             this.tabAlimento.SuspendLayout();
             this.tbAlimento.SuspendLayout();
             this._tbConsulta.SuspendLayout();
@@ -136,6 +160,11 @@ namespace ProjetoTCC
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
             this.tbConsultaPaciente.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._dtgConsultaPacientes)).BeginInit();
+            this.tabConfig.SuspendLayout();
+            this.tbConfig.SuspendLayout();
+            this.TabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgUsuarios)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GraficoProtChoLip)).BeginInit();
             this.SuspendLayout();
             // 
             // pbxLogoGrande
@@ -282,24 +311,24 @@ namespace ProjetoTCC
             this.tabMenu.Text = "Home";
             this.tabMenu.UseVisualStyleBackColor = true;
             // 
-            // materialTabControl1
+            // TabControlNutreasy
             // 
-            this.materialTabControl1.Controls.Add(this.tabMenu);
-            this.materialTabControl1.Controls.Add(this.tabAgenda);
-            this.materialTabControl1.Controls.Add(this.tabAlimento);
-            this.materialTabControl1.Controls.Add(this.tabCardapio);
-            this.materialTabControl1.Controls.Add(this.tabPaciente);
-            this.materialTabControl1.Controls.Add(this.tabConfig);
-            this.materialTabControl1.Depth = 0;
-            this.materialTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.materialTabControl1.ImageList = this.imageList1;
-            this.materialTabControl1.Location = new System.Drawing.Point(3, 3);
-            this.materialTabControl1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialTabControl1.Multiline = true;
-            this.materialTabControl1.Name = "materialTabControl1";
-            this.materialTabControl1.SelectedIndex = 0;
-            this.materialTabControl1.Size = new System.Drawing.Size(979, 732);
-            this.materialTabControl1.TabIndex = 12;
+            this.TabControlNutreasy.Controls.Add(this.tabMenu);
+            this.TabControlNutreasy.Controls.Add(this.tabAgenda);
+            this.TabControlNutreasy.Controls.Add(this.tabAlimento);
+            this.TabControlNutreasy.Controls.Add(this.tabCardapio);
+            this.TabControlNutreasy.Controls.Add(this.tabPaciente);
+            this.TabControlNutreasy.Controls.Add(this.tabConfig);
+            this.TabControlNutreasy.Depth = 0;
+            this.TabControlNutreasy.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TabControlNutreasy.ImageList = this.imageList1;
+            this.TabControlNutreasy.Location = new System.Drawing.Point(3, 3);
+            this.TabControlNutreasy.MouseState = MaterialSkin.MouseState.HOVER;
+            this.TabControlNutreasy.Multiline = true;
+            this.TabControlNutreasy.Name = "TabControlNutreasy";
+            this.TabControlNutreasy.SelectedIndex = 0;
+            this.TabControlNutreasy.Size = new System.Drawing.Size(979, 732);
+            this.TabControlNutreasy.TabIndex = 12;
             // 
             // tabAlimento
             // 
@@ -463,7 +492,7 @@ namespace ProjetoTCC
             this.tbImportarPlanilha.Location = new System.Drawing.Point(4, 22);
             this.tbImportarPlanilha.Name = "tbImportarPlanilha";
             this.tbImportarPlanilha.Padding = new System.Windows.Forms.Padding(3);
-            this.tbImportarPlanilha.Size = new System.Drawing.Size(903, 645);
+            this.tbImportarPlanilha.Size = new System.Drawing.Size(951, 651);
             this.tbImportarPlanilha.TabIndex = 2;
             this.tbImportarPlanilha.Text = "Importação tabela";
             this.tbImportarPlanilha.UseVisualStyleBackColor = true;
@@ -471,7 +500,7 @@ namespace ProjetoTCC
             // pbCarregando
             // 
             this.pbCarregando.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.pbCarregando.Location = new System.Drawing.Point(6, 612);
+            this.pbCarregando.Location = new System.Drawing.Point(6, 618);
             this.pbCarregando.Name = "pbCarregando";
             this.pbCarregando.Size = new System.Drawing.Size(808, 23);
             this.pbCarregando.TabIndex = 273;
@@ -480,7 +509,7 @@ namespace ProjetoTCC
             // txtNomeTabela
             // 
             this.txtNomeTabela.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtNomeTabela.Location = new System.Drawing.Point(147, 579);
+            this.txtNomeTabela.Location = new System.Drawing.Point(147, 585);
             this.txtNomeTabela.Name = "txtNomeTabela";
             this.txtNomeTabela.Size = new System.Drawing.Size(503, 20);
             this.txtNomeTabela.TabIndex = 272;
@@ -489,7 +518,7 @@ namespace ProjetoTCC
             // 
             this.lblNomeTabela.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblNomeTabela.AutoSize = true;
-            this.lblNomeTabela.Location = new System.Drawing.Point(3, 582);
+            this.lblNomeTabela.Location = new System.Drawing.Point(3, 588);
             this.lblNomeTabela.Name = "lblNomeTabela";
             this.lblNomeTabela.Size = new System.Drawing.Size(74, 13);
             this.lblNomeTabela.TabIndex = 271;
@@ -500,7 +529,7 @@ namespace ProjetoTCC
             this._cbxNomePlanilha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._cbxNomePlanilha.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._cbxNomePlanilha.FormattingEnabled = true;
-            this._cbxNomePlanilha.Location = new System.Drawing.Point(147, 547);
+            this._cbxNomePlanilha.Location = new System.Drawing.Point(147, 553);
             this._cbxNomePlanilha.Name = "_cbxNomePlanilha";
             this._cbxNomePlanilha.Size = new System.Drawing.Size(503, 21);
             this._cbxNomePlanilha.TabIndex = 270;
@@ -509,7 +538,7 @@ namespace ProjetoTCC
             // _btnImportar
             // 
             this._btnImportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._btnImportar.Location = new System.Drawing.Point(813, 609);
+            this._btnImportar.Location = new System.Drawing.Point(861, 615);
             this._btnImportar.Name = "_btnImportar";
             this._btnImportar.Size = new System.Drawing.Size(84, 30);
             this._btnImportar.TabIndex = 269;
@@ -527,14 +556,14 @@ namespace ProjetoTCC
             this.dtgDados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgDados.Location = new System.Drawing.Point(6, 6);
             this.dtgDados.Name = "dtgDados";
-            this.dtgDados.Size = new System.Drawing.Size(891, 506);
+            this.dtgDados.Size = new System.Drawing.Size(939, 512);
             this.dtgDados.TabIndex = 268;
             // 
             // _btnBuscarPlanilha
             // 
             this._btnBuscarPlanilha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._btnBuscarPlanilha.Image = global::ProjetoTCC.My.Resources.Resources.consultar;
-            this._btnBuscarPlanilha.Location = new System.Drawing.Point(782, 518);
+            this._btnBuscarPlanilha.Location = new System.Drawing.Point(782, 524);
             this._btnBuscarPlanilha.Name = "_btnBuscarPlanilha";
             this._btnBuscarPlanilha.Size = new System.Drawing.Size(30, 23);
             this._btnBuscarPlanilha.TabIndex = 266;
@@ -544,7 +573,7 @@ namespace ProjetoTCC
             // txtCaminhoArquivoExcel
             // 
             this.txtCaminhoArquivoExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtCaminhoArquivoExcel.Location = new System.Drawing.Point(147, 518);
+            this.txtCaminhoArquivoExcel.Location = new System.Drawing.Point(147, 524);
             this.txtCaminhoArquivoExcel.Name = "txtCaminhoArquivoExcel";
             this.txtCaminhoArquivoExcel.ReadOnly = true;
             this.txtCaminhoArquivoExcel.Size = new System.Drawing.Size(629, 20);
@@ -554,7 +583,7 @@ namespace ProjetoTCC
             // 
             this.Label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Label10.AutoSize = true;
-            this.Label10.Location = new System.Drawing.Point(3, 551);
+            this.Label10.Location = new System.Drawing.Point(3, 557);
             this.Label10.Name = "Label10";
             this.Label10.Size = new System.Drawing.Size(92, 13);
             this.Label10.TabIndex = 1;
@@ -564,7 +593,7 @@ namespace ProjetoTCC
             // 
             this.lblCaminho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCaminho.AutoSize = true;
-            this.lblCaminho.Location = new System.Drawing.Point(3, 521);
+            this.lblCaminho.Location = new System.Drawing.Point(3, 527);
             this.lblCaminho.Name = "lblCaminho";
             this.lblCaminho.Size = new System.Drawing.Size(104, 13);
             this.lblCaminho.TabIndex = 0;
@@ -572,6 +601,7 @@ namespace ProjetoTCC
             // 
             // tabCardapio
             // 
+            this.tabCardapio.Controls.Add(this.GraficoProtChoLip);
             this.tabCardapio.Controls.Add(this.dtgRefeicoes);
             this.tabCardapio.Controls.Add(this.button1);
             this.tabCardapio.Controls.Add(this._btnAdicionar);
@@ -598,7 +628,7 @@ namespace ProjetoTCC
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dtgRefeicoes.BackgroundColor = System.Drawing.Color.White;
             this.dtgRefeicoes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgRefeicoes.Location = new System.Drawing.Point(6, 291);
+            this.dtgRefeicoes.Location = new System.Drawing.Point(6, 210);
             this.dtgRefeicoes.Name = "dtgRefeicoes";
             this.dtgRefeicoes.Size = new System.Drawing.Size(959, 356);
             this.dtgRefeicoes.TabIndex = 282;
@@ -619,7 +649,7 @@ namespace ProjetoTCC
             // 
             this._btnAdicionar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnAdicionar.Image = ((System.Drawing.Image)(resources.GetObject("_btnAdicionar.Image")));
-            this._btnAdicionar.Location = new System.Drawing.Point(865, 255);
+            this._btnAdicionar.Location = new System.Drawing.Point(868, 159);
             this._btnAdicionar.MaximumSize = new System.Drawing.Size(100, 30);
             this._btnAdicionar.MinimumSize = new System.Drawing.Size(100, 30);
             this._btnAdicionar.Name = "_btnAdicionar";
@@ -633,7 +663,7 @@ namespace ProjetoTCC
             // 
             // txtDescricao
             // 
-            this.txtDescricao.Location = new System.Drawing.Point(222, 126);
+            this.txtDescricao.Location = new System.Drawing.Point(222, 82);
             this.txtDescricao.Multiline = true;
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Size = new System.Drawing.Size(626, 107);
@@ -642,7 +672,7 @@ namespace ProjetoTCC
             // lblDescricao
             // 
             this.lblDescricao.AutoSize = true;
-            this.lblDescricao.Location = new System.Drawing.Point(41, 129);
+            this.lblDescricao.Location = new System.Drawing.Point(41, 85);
             this.lblDescricao.Name = "lblDescricao";
             this.lblDescricao.Size = new System.Drawing.Size(117, 13);
             this.lblDescricao.TabIndex = 279;
@@ -1080,7 +1110,7 @@ namespace ProjetoTCC
             this.tbConsultaPaciente.Location = new System.Drawing.Point(4, 22);
             this.tbConsultaPaciente.Name = "tbConsultaPaciente";
             this.tbConsultaPaciente.Padding = new System.Windows.Forms.Padding(3);
-            this.tbConsultaPaciente.Size = new System.Drawing.Size(903, 648);
+            this.tbConsultaPaciente.Size = new System.Drawing.Size(951, 654);
             this.tbConsultaPaciente.TabIndex = 1;
             this.tbConsultaPaciente.Text = "Consulta";
             this.tbConsultaPaciente.UseVisualStyleBackColor = true;
@@ -1110,7 +1140,7 @@ namespace ProjetoTCC
             this._dtgConsultaPacientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this._dtgConsultaPacientes.Location = new System.Drawing.Point(6, 38);
             this._dtgConsultaPacientes.Name = "_dtgConsultaPacientes";
-            this._dtgConsultaPacientes.Size = new System.Drawing.Size(891, 604);
+            this._dtgConsultaPacientes.Size = new System.Drawing.Size(939, 610);
             this._dtgConsultaPacientes.TabIndex = 0;
             this._dtgConsultaPacientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._dtgConsultaPacientes_CellDoubleClick);
             // 
@@ -1119,13 +1149,14 @@ namespace ProjetoTCC
             this.tbAntropometricos.Location = new System.Drawing.Point(4, 22);
             this.tbAntropometricos.Name = "tbAntropometricos";
             this.tbAntropometricos.Padding = new System.Windows.Forms.Padding(3);
-            this.tbAntropometricos.Size = new System.Drawing.Size(903, 648);
+            this.tbAntropometricos.Size = new System.Drawing.Size(951, 654);
             this.tbAntropometricos.TabIndex = 2;
             this.tbAntropometricos.Text = "Antropometria";
             this.tbAntropometricos.UseVisualStyleBackColor = true;
             // 
             // tabConfig
             // 
+            this.tabConfig.Controls.Add(this.tbConfig);
             this.tabConfig.ImageKey = "settings32px.png";
             this.tabConfig.Location = new System.Drawing.Point(4, 39);
             this.tabConfig.Name = "tabConfig";
@@ -1134,14 +1165,253 @@ namespace ProjetoTCC
             this.tabConfig.TabIndex = 5;
             this.tabConfig.Text = "Configurações";
             this.tabConfig.UseVisualStyleBackColor = true;
+            this.tabConfig.Enter += new System.EventHandler(this.tabConfig_Enter);
+            // 
+            // tbConfig
+            // 
+            this.tbConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbConfig.Controls.Add(this.TabPage1);
+            this.tbConfig.Controls.Add(this.TabPage2);
+            this.tbConfig.Location = new System.Drawing.Point(3, 6);
+            this.tbConfig.Name = "tbConfig";
+            this.tbConfig.SelectedIndex = 0;
+            this.tbConfig.Size = new System.Drawing.Size(965, 680);
+            this.tbConfig.TabIndex = 1;
+            // 
+            // TabPage1
+            // 
+            this.TabPage1.Controls.Add(this.txtConfirmarSenha);
+            this.TabPage1.Controls.Add(this.txtSenha);
+            this.TabPage1.Controls.Add(this.txtEmailConfig);
+            this.TabPage1.Controls.Add(this.txtNomeUsuarioConfig);
+            this.TabPage1.Controls.Add(this.txtUsuarioConfig);
+            this.TabPage1.Controls.Add(this.label9);
+            this.TabPage1.Controls.Add(this.lblSenha);
+            this.TabPage1.Controls.Add(this.cbxSituacao);
+            this.TabPage1.Controls.Add(this.lblSituacao);
+            this.TabPage1.Controls.Add(this.btnExcluirConfigUsuario);
+            this.TabPage1.Controls.Add(this.btnSalvarConfigUsuario);
+            this.TabPage1.Controls.Add(this.cbxTipoUsuario);
+            this.TabPage1.Controls.Add(this.lblPerfil);
+            this.TabPage1.Controls.Add(this.lblEmail);
+            this.TabPage1.Controls.Add(this.label11);
+            this.TabPage1.Controls.Add(this.label12);
+            this.TabPage1.Controls.Add(this.dtgUsuarios);
+            this.TabPage1.Location = new System.Drawing.Point(4, 22);
+            this.TabPage1.Name = "TabPage1";
+            this.TabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.TabPage1.Size = new System.Drawing.Size(957, 654);
+            this.TabPage1.TabIndex = 0;
+            this.TabPage1.Text = "Usuários";
+            this.TabPage1.UseVisualStyleBackColor = true;
+            // 
+            // txtConfirmarSenha
+            // 
+            this.txtConfirmarSenha.Location = new System.Drawing.Point(424, 59);
+            this.txtConfirmarSenha.Name = "txtConfirmarSenha";
+            this.txtConfirmarSenha.Size = new System.Drawing.Size(168, 20);
+            this.txtConfirmarSenha.TabIndex = 57;
+            this.txtConfirmarSenha.Enter += new System.EventHandler(this.txtConfirmarSenha_Enter);
+            // 
+            // txtSenha
+            // 
+            this.txtSenha.Location = new System.Drawing.Point(78, 59);
+            this.txtSenha.Name = "txtSenha";
+            this.txtSenha.Size = new System.Drawing.Size(168, 20);
+            this.txtSenha.TabIndex = 55;
+            this.txtSenha.Enter += new System.EventHandler(this.txtSenha_Enter);
+            // 
+            // txtEmailConfig
+            // 
+            this.txtEmailConfig.Location = new System.Drawing.Point(78, 103);
+            this.txtEmailConfig.Name = "txtEmailConfig";
+            this.txtEmailConfig.Size = new System.Drawing.Size(469, 20);
+            this.txtEmailConfig.TabIndex = 8;
+            // 
+            // txtNomeUsuarioConfig
+            // 
+            this.txtNomeUsuarioConfig.Location = new System.Drawing.Point(385, 13);
+            this.txtNomeUsuarioConfig.Name = "txtNomeUsuarioConfig";
+            this.txtNomeUsuarioConfig.Size = new System.Drawing.Size(425, 20);
+            this.txtNomeUsuarioConfig.TabIndex = 4;
+            // 
+            // txtUsuarioConfig
+            // 
+            this.txtUsuarioConfig.Location = new System.Drawing.Point(78, 13);
+            this.txtUsuarioConfig.Name = "txtUsuarioConfig";
+            this.txtUsuarioConfig.Size = new System.Drawing.Size(168, 20);
+            this.txtUsuarioConfig.TabIndex = 3;
+            this.txtUsuarioConfig.Leave += new System.EventHandler(this.txtUsuarioConfig_Leave);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(304, 62);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(86, 13);
+            this.label9.TabIndex = 56;
+            this.label9.Text = "Confirmar senha:";
+            // 
+            // lblSenha
+            // 
+            this.lblSenha.AutoSize = true;
+            this.lblSenha.Location = new System.Drawing.Point(6, 62);
+            this.lblSenha.Name = "lblSenha";
+            this.lblSenha.Size = new System.Drawing.Size(41, 13);
+            this.lblSenha.TabIndex = 54;
+            this.lblSenha.Text = "Senha:";
+            // 
+            // cbxSituacao
+            // 
+            this.cbxSituacao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxSituacao.FormattingEnabled = true;
+            this.cbxSituacao.Items.AddRange(new object[] {
+            "Ativo",
+            "Inativo"});
+            this.cbxSituacao.Location = new System.Drawing.Point(693, 59);
+            this.cbxSituacao.Name = "cbxSituacao";
+            this.cbxSituacao.Size = new System.Drawing.Size(117, 21);
+            this.cbxSituacao.TabIndex = 53;
+            // 
+            // lblSituacao
+            // 
+            this.lblSituacao.AutoSize = true;
+            this.lblSituacao.Location = new System.Drawing.Point(607, 62);
+            this.lblSituacao.Name = "lblSituacao";
+            this.lblSituacao.Size = new System.Drawing.Size(52, 13);
+            this.lblSituacao.TabIndex = 52;
+            this.lblSituacao.Text = "Situação:";
+            // 
+            // btnExcluirConfigUsuario
+            // 
+            this.btnExcluirConfigUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExcluirConfigUsuario.Image = global::ProjetoTCC.My.Resources.Resources.DeleteRed;
+            this.btnExcluirConfigUsuario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExcluirConfigUsuario.Location = new System.Drawing.Point(862, 134);
+            this.btnExcluirConfigUsuario.Name = "btnExcluirConfigUsuario";
+            this.btnExcluirConfigUsuario.Size = new System.Drawing.Size(89, 30);
+            this.btnExcluirConfigUsuario.TabIndex = 51;
+            this.btnExcluirConfigUsuario.Text = "Excluir";
+            this.btnExcluirConfigUsuario.UseVisualStyleBackColor = true;
+            this.btnExcluirConfigUsuario.Click += new System.EventHandler(this.btnExcluirConfigUsuario_Click);
+            // 
+            // btnSalvarConfigUsuario
+            // 
+            this.btnSalvarConfigUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSalvarConfigUsuario.Image = global::ProjetoTCC.My.Resources.Resources.mvtSaveGreen_16;
+            this.btnSalvarConfigUsuario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSalvarConfigUsuario.Location = new System.Drawing.Point(767, 134);
+            this.btnSalvarConfigUsuario.Name = "btnSalvarConfigUsuario";
+            this.btnSalvarConfigUsuario.Size = new System.Drawing.Size(89, 30);
+            this.btnSalvarConfigUsuario.TabIndex = 50;
+            this.btnSalvarConfigUsuario.Text = "Salvar";
+            this.btnSalvarConfigUsuario.UseVisualStyleBackColor = true;
+            this.btnSalvarConfigUsuario.Click += new System.EventHandler(this.btnSalvarConfigUsuario_Click);
+            // 
+            // cbxTipoUsuario
+            // 
+            this.cbxTipoUsuario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxTipoUsuario.FormattingEnabled = true;
+            this.cbxTipoUsuario.Items.AddRange(new object[] {
+            "Administrador",
+            "Nutricionista",
+            "Recepcionista"});
+            this.cbxTipoUsuario.Location = new System.Drawing.Point(636, 103);
+            this.cbxTipoUsuario.Name = "cbxTipoUsuario";
+            this.cbxTipoUsuario.Size = new System.Drawing.Size(165, 21);
+            this.cbxTipoUsuario.TabIndex = 10;
+            // 
+            // lblPerfil
+            // 
+            this.lblPerfil.AutoSize = true;
+            this.lblPerfil.Location = new System.Drawing.Point(578, 106);
+            this.lblPerfil.Name = "lblPerfil";
+            this.lblPerfil.Size = new System.Drawing.Size(33, 13);
+            this.lblPerfil.TabIndex = 9;
+            this.lblPerfil.Text = "Perfil:";
+            // 
+            // lblEmail
+            // 
+            this.lblEmail.AutoSize = true;
+            this.lblEmail.Location = new System.Drawing.Point(6, 106);
+            this.lblEmail.Name = "lblEmail";
+            this.lblEmail.Size = new System.Drawing.Size(38, 13);
+            this.lblEmail.TabIndex = 7;
+            this.lblEmail.Text = "E-mail:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(313, 16);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(38, 13);
+            this.label11.TabIndex = 2;
+            this.label11.Text = "Nome:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 16);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(46, 13);
+            this.label12.TabIndex = 1;
+            this.label12.Text = "Usuário:";
+            // 
+            // dtgUsuarios
+            // 
+            this.dtgUsuarios.AllowUserToAddRows = false;
+            this.dtgUsuarios.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtgUsuarios.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dtgUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgUsuarios.Location = new System.Drawing.Point(6, 170);
+            this.dtgUsuarios.Name = "dtgUsuarios";
+            this.dtgUsuarios.ReadOnly = true;
+            this.dtgUsuarios.Size = new System.Drawing.Size(944, 478);
+            this.dtgUsuarios.TabIndex = 0;
+            this.dtgUsuarios.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgUsuarios_CellContentDoubleClick);
+            // 
+            // TabPage2
+            // 
+            this.TabPage2.Location = new System.Drawing.Point(4, 22);
+            this.TabPage2.Name = "TabPage2";
+            this.TabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.TabPage2.Size = new System.Drawing.Size(951, 651);
+            this.TabPage2.TabIndex = 1;
+            this.TabPage2.Text = "Permissões";
+            this.TabPage2.UseVisualStyleBackColor = true;
+            // 
+            // GraficoProtChoLip
+            // 
+            this.GraficoProtChoLip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.GraficoProtChoLip.BackColor = System.Drawing.Color.Transparent;
+            chartArea1.AlignmentOrientation = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal;
+            chartArea1.Name = "ChartArea1";
+            this.GraficoProtChoLip.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.GraficoProtChoLip.Legends.Add(legend1);
+            this.GraficoProtChoLip.Location = new System.Drawing.Point(6, 572);
+            this.GraficoProtChoLip.Name = "GraficoProtChoLip";
+            this.GraficoProtChoLip.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.GraficoProtChoLip.Series.Add(series1);
+            this.GraficoProtChoLip.Size = new System.Drawing.Size(274, 111);
+            this.GraficoProtChoLip.TabIndex = 283;
+            this.GraficoProtChoLip.Text = "chart1";
             // 
             // frmMenu
             // 
             this.ClientSize = new System.Drawing.Size(985, 738);
-            this.Controls.Add(this.materialTabControl1);
-            this.DoubleBuffered = false;
+            this.Controls.Add(this.TabControlNutreasy);
+            this.DrawerHighlightWithAccent = false;
             this.DrawerShowIconsWhenHidden = true;
-            this.DrawerTabControl = this.materialTabControl1;
+            this.DrawerTabControl = this.TabControlNutreasy;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmMenu";
             this.Text = "Nutreasy Menu";
@@ -1152,7 +1422,7 @@ namespace ProjetoTCC
             ((System.ComponentModel.ISupportInitialize)(this.dtgAgenda)).EndInit();
             this.tabMenu.ResumeLayout(false);
             this.tabMenu.PerformLayout();
-            this.materialTabControl1.ResumeLayout(false);
+            this.TabControlNutreasy.ResumeLayout(false);
             this.tabAlimento.ResumeLayout(false);
             this.tbAlimento.ResumeLayout(false);
             this._tbConsulta.ResumeLayout(false);
@@ -1172,6 +1442,12 @@ namespace ProjetoTCC
             this.tbConsultaPaciente.ResumeLayout(false);
             this.tbConsultaPaciente.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this._dtgConsultaPacientes)).EndInit();
+            this.tabConfig.ResumeLayout(false);
+            this.tbConfig.ResumeLayout(false);
+            this.TabPage1.ResumeLayout(false);
+            this.TabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgUsuarios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GraficoProtChoLip)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1182,7 +1458,7 @@ namespace ProjetoTCC
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.TabPage tabAgenda;
         private System.Windows.Forms.TabPage tabMenu;
-        private MaterialTabControl materialTabControl1;
+        private MaterialTabControl TabControlNutreasy;
         private System.Windows.Forms.TabPage tabAlimento;
         private System.Windows.Forms.TabPage tabCardapio;
         private System.Windows.Forms.TabPage tabPaciente;
@@ -1269,5 +1545,26 @@ namespace ProjetoTCC
         private MvtWindowsForms.ButtonInserir _btnAdicionar;
         internal System.Windows.Forms.Label lblDescricao;
         internal System.Windows.Forms.TextBox txtDescricao;
+        internal System.Windows.Forms.TabControl tbConfig;
+        internal System.Windows.Forms.TabPage TabPage1;
+        private System.Windows.Forms.TextBox txtConfirmarSenha;
+        private System.Windows.Forms.TextBox txtSenha;
+        private System.Windows.Forms.TextBox txtEmailConfig;
+        private System.Windows.Forms.TextBox txtNomeUsuarioConfig;
+        private System.Windows.Forms.TextBox txtUsuarioConfig;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblSenha;
+        private System.Windows.Forms.ComboBox cbxSituacao;
+        private System.Windows.Forms.Label lblSituacao;
+        internal System.Windows.Forms.Button btnExcluirConfigUsuario;
+        internal System.Windows.Forms.Button btnSalvarConfigUsuario;
+        private System.Windows.Forms.ComboBox cbxTipoUsuario;
+        private System.Windows.Forms.Label lblPerfil;
+        private System.Windows.Forms.Label lblEmail;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        internal System.Windows.Forms.DataGridView dtgUsuarios;
+        internal System.Windows.Forms.TabPage TabPage2;
+        private System.Windows.Forms.DataVisualization.Charting.Chart GraficoProtChoLip;
     }
 }

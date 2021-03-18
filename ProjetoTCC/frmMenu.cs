@@ -44,7 +44,7 @@ namespace ProjetoTCC
             this.MaximizeBox = false;
             lblUsuario.Visible = false;
             //lblUsuario.Text = $"Seja bem vindo(a) ao sistema {frmTelaLogin.usuario.getNomeUsuario()}";
-         
+
         }
 
         #region Agenda
@@ -508,6 +508,10 @@ namespace ProjetoTCC
         private void tabCardapio_Enter(object sender, EventArgs e)
         {
             CarregarColunas();
+            //efetuar cálculo, onde 100% é kCal X e desse valor tirar as porcentagens para montar o gráfico
+            GraficoProtChoLip.Series[0].Points.AddXY("Carboidrato" , 25);
+            GraficoProtChoLip.Series[0].Points.AddXY("Lipídio" , 25); 
+            GraficoProtChoLip.Series[0].Points.AddXY("Proteina", 50); 
         }
 
         private void CarregarColunas()
@@ -533,7 +537,96 @@ namespace ProjetoTCC
             //frmBuscarPaciente.Show();
         }
 
+
         #endregion
+
+        #region Configurações
+
+        private void btnSalvarConfigUsuario_Click(object sender, EventArgs e)
+        {
+            bool alterarSenha = false;
+            if (txtUsuarioConfig.Text == "")
+            {
+                Interaction.MsgBox("O usuário não foi informado");
+                return;
+            }
+            if (txtSenha.Text == "")
+            {
+                Interaction.MsgBox("O campo senha não foi informado");
+                return;
+            }
+            if (txtSenha.Text != txtConfirmarSenha.Text)
+            {
+                Interaction.MsgBox("As senhas não conferem");
+                return;
+            }
+
+
+            if (usuario.VerificarExisteUsuario(txtUsuarioConfig.Text) == false)
+            {
+                // usuario.CriarUsuario(txtUsuario.Text, txtSenha.Text, txtNome.Text, txtEmail.Text, cbxSituacao.Text, cbxTipoUsuario.Text);
+            }
+            else
+            {
+                if (Interaction.MsgBox("Você deseja alterar a senha do usuário?", MsgBoxStyle.YesNo, "ALTERAÇÃO DE SENHA") == MsgBoxResult.Yes)
+                    alterarSenha = true;
+                usuario.AlterarUsuario(txtUsuarioConfig.Text, txtSenha.Text, txtNome.Text, txtEmail.Text, cbxSituacao.Text, cbxTipoUsuario.Text, alterarSenha);
+
+            }
+        }
+
+        private void btnExcluirConfigUsuario_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CriarColunas()
+        {
+            if (dtgUsuarios.Columns.Count <= 0)
+            {
+                dtgUsuarios.Columns.Add("usuario", "Usuário");
+                dtgUsuarios.Columns.Add("nome", "Nome");
+                dtgUsuarios.Columns.Add("email", "E-mail");
+                dtgUsuarios.Columns.Add("situacao", "Situação");
+                dtgUsuarios.Columns.Add("tipoUsuario", "Perfil");
+            }
+        }
+
+        private void txtUsuarioConfig_Leave(object sender, EventArgs e)
+        {
+            if (txtUsuarioConfig.Text != "")
+                usuario.Buscar(txtUsuarioConfig.Text, dtgUsuarios);
+        }
+
+        private void tabConfig_Enter(object sender, EventArgs e)
+        {
+            CriarColunas();
+            usuario.Buscar("", dtgUsuarios);
+        }
+
+        private void dtgUsuarios_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                txtUsuarioConfig.Text = dtgUsuarios.CurrentRow.Cells["usuario"].Value.ToString();
+                txtNomeUsuarioConfig.Text = dtgUsuarios.CurrentRow.Cells["nome"].Value.ToString();
+                txtEmailConfig.Text = dtgUsuarios.CurrentRow.Cells["email"].Value.ToString();
+                cbxSituacao.Text = dtgUsuarios.CurrentRow.Cells["situacao"].Value.ToString();
+                cbxTipoUsuario.Text = dtgUsuarios.CurrentRow.Cells["tipoUsuario"].Value.ToString();
+            }
+        }
+
+        private void txtSenha_Enter(object sender, EventArgs e)
+        {
+            txtSenha.PasswordChar = '*';
+        }
+
+        private void txtConfirmarSenha_Enter(object sender, EventArgs e)
+        {
+            txtConfirmarSenha.PasswordChar = '*';
+        }
+        #endregion
+
 
     }
 }

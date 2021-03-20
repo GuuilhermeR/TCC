@@ -4,17 +4,11 @@ using MaterialSkin.Controls;
 using Microsoft.VisualBasic;
 using Microsoft.VisualBasic.CompilerServices;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SQLite;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ProjetoTCC
@@ -44,7 +38,6 @@ namespace ProjetoTCC
             this.MaximizeBox = false;
             lblUsuario.Visible = false;
             //lblUsuario.Text = $"Seja bem vindo(a) ao sistema {frmTelaLogin.usuario.getNomeUsuario()}";
-
         }
 
         #region Agenda
@@ -78,6 +71,7 @@ namespace ProjetoTCC
 
         private void CriarHorariosPadrao()
         {
+            dtgAgenda.Rows.Clear();
             for (int i = 7; i <= 19; i++)
             {
                 dtgAgenda.Rows.Add(i + ":00");
@@ -487,20 +481,6 @@ namespace ProjetoTCC
         {
             paciente.Buscar(_dtgConsultaPacientes, _txtNomePaciente.Text);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         #endregion
 
         #region Cardápio
@@ -625,8 +605,8 @@ namespace ProjetoTCC
         {
             txtConfirmarSenha.PasswordChar = '*';
         }
-        #endregion
 
+        #endregion
 
     }
 }

@@ -65,6 +65,7 @@ namespace ProjetoTCC
             this.Label10 = new System.Windows.Forms.Label();
             this.lblCaminho = new System.Windows.Forms.Label();
             this.tabCardapio = new System.Windows.Forms.TabPage();
+            this.GraficoProtChoLip = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dtgRefeicoes = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this._btnAdicionar = new MvtWindowsForms.ButtonInserir();
@@ -140,7 +141,6 @@ namespace ProjetoTCC
             this.label12 = new System.Windows.Forms.Label();
             this.dtgUsuarios = new System.Windows.Forms.DataGridView();
             this.TabPage2 = new System.Windows.Forms.TabPage();
-            this.GraficoProtChoLip = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.pbxLogoGrande)).BeginInit();
             this.tabAgenda.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgAgenda)).BeginInit();
@@ -153,6 +153,7 @@ namespace ProjetoTCC
             this.tbImportarPlanilha.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDados)).BeginInit();
             this.tabCardapio.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GraficoProtChoLip)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgRefeicoes)).BeginInit();
             this.tabPaciente.SuspendLayout();
             this.tbPaciente.SuspendLayout();
@@ -164,7 +165,6 @@ namespace ProjetoTCC
             this.tbConfig.SuspendLayout();
             this.TabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgUsuarios)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GraficoProtChoLip)).BeginInit();
             this.SuspendLayout();
             // 
             // pbxLogoGrande
@@ -620,6 +620,28 @@ namespace ProjetoTCC
             this.tabCardapio.UseVisualStyleBackColor = true;
             this.tabCardapio.Enter += new System.EventHandler(this.tabCardapio_Enter);
             // 
+            // GraficoProtChoLip
+            // 
+            this.GraficoProtChoLip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.GraficoProtChoLip.BackColor = System.Drawing.Color.Transparent;
+            this.GraficoProtChoLip.BorderlineColor = System.Drawing.Color.Transparent;
+            chartArea1.AlignmentOrientation = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal;
+            chartArea1.Name = "ChartArea1";
+            this.GraficoProtChoLip.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.GraficoProtChoLip.Legends.Add(legend1);
+            this.GraficoProtChoLip.Location = new System.Drawing.Point(6, 572);
+            this.GraficoProtChoLip.Name = "GraficoProtChoLip";
+            this.GraficoProtChoLip.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.GraficoProtChoLip.Series.Add(series1);
+            this.GraficoProtChoLip.Size = new System.Drawing.Size(274, 111);
+            this.GraficoProtChoLip.TabIndex = 283;
+            this.GraficoProtChoLip.Text = "chart1";
+            // 
             // dtgRefeicoes
             // 
             this.dtgRefeicoes.AllowUserToAddRows = false;
@@ -649,7 +671,7 @@ namespace ProjetoTCC
             // 
             this._btnAdicionar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnAdicionar.Image = ((System.Drawing.Image)(resources.GetObject("_btnAdicionar.Image")));
-            this._btnAdicionar.Location = new System.Drawing.Point(868, 159);
+            this._btnAdicionar.Location = new System.Drawing.Point(865, 174);
             this._btnAdicionar.MaximumSize = new System.Drawing.Size(100, 30);
             this._btnAdicionar.MinimumSize = new System.Drawing.Size(100, 30);
             this._btnAdicionar.Name = "_btnAdicionar";
@@ -666,7 +688,7 @@ namespace ProjetoTCC
             this.txtDescricao.Location = new System.Drawing.Point(222, 82);
             this.txtDescricao.Multiline = true;
             this.txtDescricao.Name = "txtDescricao";
-            this.txtDescricao.Size = new System.Drawing.Size(626, 107);
+            this.txtDescricao.Size = new System.Drawing.Size(419, 59);
             this.txtDescricao.TabIndex = 278;
             // 
             // lblDescricao
@@ -1379,31 +1401,10 @@ namespace ProjetoTCC
             this.TabPage2.Location = new System.Drawing.Point(4, 22);
             this.TabPage2.Name = "TabPage2";
             this.TabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.TabPage2.Size = new System.Drawing.Size(951, 651);
+            this.TabPage2.Size = new System.Drawing.Size(957, 654);
             this.TabPage2.TabIndex = 1;
             this.TabPage2.Text = "Permissões";
             this.TabPage2.UseVisualStyleBackColor = true;
-            // 
-            // GraficoProtChoLip
-            // 
-            this.GraficoProtChoLip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.GraficoProtChoLip.BackColor = System.Drawing.Color.Transparent;
-            chartArea1.AlignmentOrientation = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal;
-            chartArea1.Name = "ChartArea1";
-            this.GraficoProtChoLip.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.GraficoProtChoLip.Legends.Add(legend1);
-            this.GraficoProtChoLip.Location = new System.Drawing.Point(6, 572);
-            this.GraficoProtChoLip.Name = "GraficoProtChoLip";
-            this.GraficoProtChoLip.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.GraficoProtChoLip.Series.Add(series1);
-            this.GraficoProtChoLip.Size = new System.Drawing.Size(274, 111);
-            this.GraficoProtChoLip.TabIndex = 283;
-            this.GraficoProtChoLip.Text = "chart1";
             // 
             // frmMenu
             // 
@@ -1433,6 +1434,7 @@ namespace ProjetoTCC
             ((System.ComponentModel.ISupportInitialize)(this.dtgDados)).EndInit();
             this.tabCardapio.ResumeLayout(false);
             this.tabCardapio.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GraficoProtChoLip)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgRefeicoes)).EndInit();
             this.tabPaciente.ResumeLayout(false);
             this.tbPaciente.ResumeLayout(false);
@@ -1447,7 +1449,6 @@ namespace ProjetoTCC
             this.TabPage1.ResumeLayout(false);
             this.TabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgUsuarios)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GraficoProtChoLip)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -36,7 +36,6 @@ namespace TCC2
 
             this.MaximizeBox = false;
             lblUsuario.Visible = false;
-            lblUsuario.Text = "oi";
             //lblUsuario.Text = $"Seja bem vindo(a) ao sistema {frmTelaLogin.usuario.getNomeUsuario()}";
         }
 

@@ -18,9 +18,22 @@ namespace ProjetoTCC
 
         public void setNomeUsuario(string usuarioLogin)
         {
-            var usuarioLogado = (from c in TCC2.BancoDadosSingleton.Instance.Login where c.usuario == usuarioLogin select c.nome).Single();
-            nome = usuarioLogado.ToString();
-            return;
+            if (usuarioLogin == "")
+            {
+                return;
+            }
+            try
+            {
+                var usuarioLogado = (from c in TCC2.BancoDadosSingleton.Instance.Login where c.usuario == usuarioLogin select c.nome).Single();
+                nome = usuarioLogado.ToString();
+                return;
+
+            }
+            catch
+            {
+                return;
+
+            }
         }
 
         public object getNomeUsuario()

@@ -36,7 +36,11 @@ namespace TCC2
             materialSkinManager.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.BlueGrey500, Accent.LightGreen200, TextShade.WHITE);
 
             this.MaximizeBox = false;
-            lblUsuario.Text = $"Seja bem vindo(a) ao sistema {usuario.getNomeUsuario()}";
+            if (usuario.getNomeUsuario() != "")
+            {
+                lblUsuario.Text = $"Seja bem vindo(a) ao sistema {usuario.getNomeUsuario()}";
+                lblUsuario.Visible = true;
+            }
         }
 
         #region Agenda
@@ -44,7 +48,7 @@ namespace TCC2
         private void tabAgenda_Enter(object sender, EventArgs e)
         {
             DateTime hoje = DateTime.Now;
-            lblData.Text = hoje.ToString("dd/MM/yyyy");
+            lblDataAtual.Text = hoje.ToString("dd/MM/yyyy");
             CriarHorariosPadrao();
             dtgAgenda.AutoResizeColumns();
             dtgAgenda.AutoResizeRows();
@@ -55,18 +59,18 @@ namespace TCC2
         {
             dtgAgenda.Rows.Clear();
             CriarHorariosPadrao();
-            var data = Convert.ToDateTime(lblData.Text);
+            var data = Convert.ToDateTime(lblDataAtual.Text);
             DateTime dataAvançada = data.AddDays(1);
-            lblData.Text = dataAvançada.ToString("dd/MM/yyyy");
+            lblDataAtual.Text = dataAvançada.ToString("dd/MM/yyyy");
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
             dtgAgenda.Rows.Clear();
             CriarHorariosPadrao();
-            var data = Convert.ToDateTime(lblData.Text);
+            var data = Convert.ToDateTime(lblDataAtual.Text);
             DateTime dataAvançada = data.AddDays(-1);
-            lblData.Text = dataAvançada.ToString("dd/MM/yyyy");
+            lblDataAtual.Text = dataAvançada.ToString("dd/MM/yyyy");
         }
 
         private void CriarHorariosPadrao()
@@ -83,6 +87,17 @@ namespace TCC2
             dtgAgenda.AutoResizeColumns();
         }
 
+        private void btnSalvarAgenda_Click(object sender, EventArgs e)
+        {
+            int result = DateTime.Compare(Convert.ToDateTime(lblDataAtual.Text), DateTime.Now);
+
+            if (result < 0)
+            {
+                MessageBox.Show(this, "Não é possível agendar consulta datas passadas!", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+        }
         #endregion
 
         #region Alimento

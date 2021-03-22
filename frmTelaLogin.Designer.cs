@@ -47,7 +47,7 @@ namespace TCC2
             this.btnLogar.DrawShadows = true;
             this.btnLogar.HighEmphasis = true;
             this.btnLogar.Icon = null;
-            this.btnLogar.Location = new System.Drawing.Point(179, 463);
+            this.btnLogar.Location = new System.Drawing.Point(177, 478);
             this.btnLogar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnLogar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnLogar.Name = "btnLogar";
@@ -126,7 +126,7 @@ namespace TCC2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(447, 508);
+            this.ClientSize = new System.Drawing.Size(447, 548);
             this.Controls.Add(this.lblAviso);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.txtSenha);

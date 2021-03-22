@@ -30,17 +30,16 @@ namespace TCC2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenuPrincipal));
             this.TabControlNutreasy = new MaterialSkin.Controls.MaterialTabControl();
             this.tabMenu = new System.Windows.Forms.TabPage();
             this.pbxLogoGrande = new System.Windows.Forms.PictureBox();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.tabAgenda = new System.Windows.Forms.TabPage();
-            this.btnSalvar = new System.Windows.Forms.Button();
-            this.lblData = new System.Windows.Forms.Label();
+            this.btnSalvarAgenda = new System.Windows.Forms.Button();
+            this.lblDataAtual = new System.Windows.Forms.Label();
             this.dtgAgenda = new System.Windows.Forms.DataGridView();
-            this.horario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAvançar = new System.Windows.Forms.Button();
             this.btnVoltar = new System.Windows.Forms.Button();
             this.tabAlimento = new System.Windows.Forms.TabPage();
@@ -143,6 +142,8 @@ namespace TCC2
             this.dtgUsuarios = new System.Windows.Forms.DataGridView();
             this.TabPage2 = new System.Windows.Forms.TabPage();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.horario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomePaciente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TabControlNutreasy.SuspendLayout();
             this.tabMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxLogoGrande)).BeginInit();
@@ -228,8 +229,8 @@ namespace TCC2
             // 
             // tabAgenda
             // 
-            this.tabAgenda.Controls.Add(this.btnSalvar);
-            this.tabAgenda.Controls.Add(this.lblData);
+            this.tabAgenda.Controls.Add(this.btnSalvarAgenda);
+            this.tabAgenda.Controls.Add(this.lblDataAtual);
             this.tabAgenda.Controls.Add(this.dtgAgenda);
             this.tabAgenda.Controls.Add(this.btnAvançar);
             this.tabAgenda.Controls.Add(this.btnVoltar);
@@ -243,30 +244,31 @@ namespace TCC2
             this.tabAgenda.UseVisualStyleBackColor = true;
             this.tabAgenda.Enter += new System.EventHandler(this.tabAgenda_Enter);
             // 
-            // btnSalvar
+            // btnSalvarAgenda
             // 
-            this.btnSalvar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSalvar.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
-            this.btnSalvar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalvar.Location = new System.Drawing.Point(876, 653);
-            this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(89, 30);
-            this.btnSalvar.TabIndex = 54;
-            this.btnSalvar.Text = "Salvar";
-            this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvarAgenda.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSalvarAgenda.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
+            this.btnSalvarAgenda.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSalvarAgenda.Location = new System.Drawing.Point(876, 653);
+            this.btnSalvarAgenda.Name = "btnSalvarAgenda";
+            this.btnSalvarAgenda.Size = new System.Drawing.Size(89, 30);
+            this.btnSalvarAgenda.TabIndex = 54;
+            this.btnSalvarAgenda.Text = "Salvar";
+            this.btnSalvarAgenda.UseVisualStyleBackColor = true;
+            this.btnSalvarAgenda.Click += new System.EventHandler(this.btnSalvarAgenda_Click);
             // 
-            // lblData
+            // lblDataAtual
             // 
-            this.lblData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.lblDataAtual.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblData.AutoSize = true;
-            this.lblData.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblData.Location = new System.Drawing.Point(451, 28);
-            this.lblData.Name = "lblData";
-            this.lblData.Size = new System.Drawing.Size(128, 25);
-            this.lblData.TabIndex = 53;
-            this.lblData.Text = "dd/MM/yyyy";
-            this.lblData.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblDataAtual.AutoSize = true;
+            this.lblDataAtual.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDataAtual.Location = new System.Drawing.Point(422, 28);
+            this.lblDataAtual.Name = "lblDataAtual";
+            this.lblDataAtual.Size = new System.Drawing.Size(128, 25);
+            this.lblDataAtual.TabIndex = 53;
+            this.lblDataAtual.Text = "dd/MM/yyyy";
+            this.lblDataAtual.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // dtgAgenda
             // 
@@ -275,29 +277,22 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dtgAgenda.BackgroundColor = System.Drawing.Color.White;
-            this.dtgAgenda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgAgenda.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.horario});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgAgenda.DefaultCellStyle = dataGridViewCellStyle4;
+            this.horario,
+            this.nomePaciente});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgAgenda.DefaultCellStyle = dataGridViewCellStyle1;
             this.dtgAgenda.Location = new System.Drawing.Point(6, 58);
             this.dtgAgenda.Name = "dtgAgenda";
             this.dtgAgenda.Size = new System.Drawing.Size(959, 589);
             this.dtgAgenda.TabIndex = 52;
             this.dtgAgenda.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgAgenda_CellEndEdit);
-            // 
-            // horario
-            // 
-            this.horario.HeaderText = "Horário";
-            this.horario.Name = "horario";
-            this.horario.ReadOnly = true;
-            this.horario.Width = 223;
             // 
             // btnAvançar
             // 
@@ -1360,6 +1355,20 @@ namespace TCC2
             this.imageList1.Images.SetKeyName(4, "Alimento32px.png");
             this.imageList1.Images.SetKeyName(5, "agenda32px.png");
             // 
+            // horario
+            // 
+            this.horario.HeaderText = "Horário";
+            this.horario.Name = "horario";
+            this.horario.ReadOnly = true;
+            this.horario.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.horario.Width = 223;
+            // 
+            // nomePaciente
+            // 
+            this.nomePaciente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nomePaciente.HeaderText = "Paciente";
+            this.nomePaciente.Name = "nomePaciente";
+            // 
             // frmMenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1416,10 +1425,9 @@ namespace TCC2
         internal System.Windows.Forms.PictureBox pbxLogoGrande;
         internal System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.TabPage tabAgenda;
-        internal System.Windows.Forms.Button btnSalvar;
-        private System.Windows.Forms.Label lblData;
+        internal System.Windows.Forms.Button btnSalvarAgenda;
+        private System.Windows.Forms.Label lblDataAtual;
         private System.Windows.Forms.DataGridView dtgAgenda;
-        private System.Windows.Forms.DataGridViewTextBoxColumn horario;
         internal System.Windows.Forms.Button btnAvançar;
         internal System.Windows.Forms.Button btnVoltar;
         private System.Windows.Forms.TabPage tabAlimento;
@@ -1522,6 +1530,8 @@ namespace TCC2
         internal System.Windows.Forms.DataGridView dtgUsuarios;
         internal System.Windows.Forms.TabPage TabPage2;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn horario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nomePaciente;
     }
 }
 

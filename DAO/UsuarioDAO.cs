@@ -2,8 +2,8 @@
 using System.Data;
 using System.Data.SQLite;
 using System.Windows.Forms;
+using System.Linq;
 using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace ProjetoTCC
 {
@@ -18,12 +18,9 @@ namespace ProjetoTCC
 
         public void setNomeUsuario(string usuarioLogin)
         {
-            if (usuarioLogin is object)
-            {               
-
-                string strSQL = $"SELECT nome FROM Login WHERE usuario = '{usuarioLogin}'";
-               
-            }
+            var usuarioLogado = (from c in TCC2.BancoDadosSingleton.Instance.Login where c.usuario == usuarioLogin select c.nome).Single();
+            nome = usuarioLogado.ToString();
+            return;
         }
 
         public object getNomeUsuario()
@@ -38,7 +35,9 @@ namespace ProjetoTCC
 
         public void setUsuario(string usuarioLogado)
         {
-            usuario = usuarioLogado;
+            var usuarioLog = (from c in TCC2.BancoDadosSingleton.Instance.Login where c.usuario == usuarioLogado select c.usuario).Single();
+            usuario = usuarioLog.ToString();
+            return;
         }
 
         public object getUsuarioSenha()
@@ -51,13 +50,14 @@ namespace ProjetoTCC
             senha = senhaatual;
         }
 
-        public object verificarUsuarioLogado(string usuarioLogado, string senha)
+        public bool verificarUsuarioLogado(string usuarioLogado, string senha)
         {
-            string strSQL = string.Empty;
-            bool usuarioOK = false;
-            strSQL = $"SELECT count(1) AS existe FROM Login WHERE usuario = '{usuarioLogado}' AND senha = '{senha}'";
+            bool usuarioOK;
+            var usuarioLog = (from c in TCC2.BancoDadosSingleton.Instance.Login where c.usuario == usuarioLogado && c.senha == senha select c.usuario).Single();
+            if (usuarioLog != "")
+                return true;
 
-            return usuarioOK;
+            return false;
         }
 
         public void Buscar(string usuario, DataGridView dtgDados)

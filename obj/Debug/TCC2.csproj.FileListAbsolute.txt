@@ -25,3 +25,4 @@ C:\Users\movtech\Desktop\TCC2\bin\Debug\System.Data.SQLite.dll.config
 C:\Users\movtech\Desktop\TCC2\obj\Debug\TCC2.csproj.CopyComplete
 C:\Users\movtech\Desktop\TCC2\obj\Debug\TCC2.exe
 C:\Users\movtech\Desktop\TCC2\obj\Debug\TCC2.pdb
+C:\Users\movtech\Desktop\TCC2\obj\Debug\TCC2.frmTelaLogin.resources

@@ -52,7 +52,6 @@ namespace ProjetoTCC
 
         public bool verificarUsuarioLogado(string usuarioLogado, string senha)
         {
-            bool usuarioOK;
             var usuarioLog = (from c in TCC2.BancoDadosSingleton.Instance.Login where c.usuario == usuarioLogado && c.senha == senha select c.usuario).Single();
             if (usuarioLog != "")
                 return true;

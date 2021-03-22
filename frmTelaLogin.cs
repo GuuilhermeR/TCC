@@ -16,6 +16,7 @@ namespace TCC2
     public partial class frmTelaLogin : MaterialForm
     {
         public UsuarioDAO usuario = new UsuarioDAO();
+
         public frmTelaLogin()
         {
             InitializeComponent();
@@ -47,12 +48,24 @@ namespace TCC2
                 lblAviso.ForeColor = Color.Red;
                 return;
             }
-            if (txtSenha.Text != "senha")
+
+           
+
+            if ((bool)usuario.loginUsuario(txtUsuario.Text, txtSenha.Text))
             {
-                lblAviso.Text = "Senha incorreta.";
+                usuario.setUsuario(txtUsuario.Text);
+                usuario.setNomeUsuario(txtUsuario.Text);
+                usuario.setUsuarioSenha(txtSenha.Text);
+                var usuarioLogado = usuario.getUsuario();
+                frmMenuPrincipal menu = new frmMenuPrincipal(usuarioLogado.ToString());
+                menu.Show();
+                this.Hide();
+            }
+            else
+            {
+                lblAviso.Text = "Usuário/Senha incorreto.";
                 lblAviso.Visible = true;
                 lblAviso.ForeColor = Color.Red;
-                return;
             }
 
                         

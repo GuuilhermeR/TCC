@@ -29,6 +29,7 @@ namespace TCC2
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTelaLogin));
             this.btnLogar = new MaterialSkin.Controls.MaterialButton();
             this.txtUsuario = new MaterialSkin.Controls.MaterialTextBox();
             this.txtSenha = new MaterialSkin.Controls.MaterialTextBox();
@@ -131,7 +132,9 @@ namespace TCC2
             this.Controls.Add(this.txtSenha);
             this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.btnLogar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmTelaLogin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Entrar";
             this.Load += new System.EventHandler(this.frmTelaLogin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

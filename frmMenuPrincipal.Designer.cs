@@ -30,7 +30,7 @@ namespace TCC2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenuPrincipal));
             this.TabControlNutreasy = new MaterialSkin.Controls.MaterialTabControl();
             this.tabMenu = new System.Windows.Forms.TabPage();
@@ -246,6 +246,7 @@ namespace TCC2
             // btnSalvar
             // 
             this.btnSalvar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSalvar.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
             this.btnSalvar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSalvar.Location = new System.Drawing.Point(876, 653);
             this.btnSalvar.Name = "btnSalvar";
@@ -277,14 +278,14 @@ namespace TCC2
             this.dtgAgenda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgAgenda.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.horario});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgAgenda.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgAgenda.DefaultCellStyle = dataGridViewCellStyle4;
             this.dtgAgenda.Location = new System.Drawing.Point(6, 58);
             this.dtgAgenda.Name = "dtgAgenda";
             this.dtgAgenda.Size = new System.Drawing.Size(959, 589);
@@ -398,6 +399,7 @@ namespace TCC2
             // btnExcluirAlimento
             // 
             this.btnExcluirAlimento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExcluirAlimento.Image = global::TCC2.Properties.Resources.DeleteRed;
             this.btnExcluirAlimento.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExcluirAlimento.Location = new System.Drawing.Point(856, 615);
             this.btnExcluirAlimento.Name = "btnExcluirAlimento";
@@ -409,6 +411,7 @@ namespace TCC2
             // btnSalvarAlimento
             // 
             this.btnSalvarAlimento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSalvarAlimento.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
             this.btnSalvarAlimento.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSalvarAlimento.Location = new System.Drawing.Point(761, 615);
             this.btnSalvarAlimento.Name = "btnSalvarAlimento";
@@ -617,6 +620,7 @@ namespace TCC2
             // btnSalvarCardapio
             // 
             this.btnSalvarCardapio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSalvarCardapio.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
             this.btnSalvarCardapio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSalvarCardapio.Location = new System.Drawing.Point(876, 653);
             this.btnSalvarCardapio.Name = "btnSalvarCardapio";
@@ -662,6 +666,7 @@ namespace TCC2
             // 
             // btnSearchPatient
             // 
+            this.btnSearchPatient.Image = global::TCC2.Properties.Resources.consultar;
             this.btnSearchPatient.Location = new System.Drawing.Point(318, 31);
             this.btnSearchPatient.Name = "btnSearchPatient";
             this.btnSearchPatient.Size = new System.Drawing.Size(30, 23);
@@ -745,6 +750,7 @@ namespace TCC2
             // 
             // _btnProcurarPaciente
             // 
+            this._btnProcurarPaciente.Image = global::TCC2.Properties.Resources.consultar;
             this._btnProcurarPaciente.Location = new System.Drawing.Point(441, 11);
             this._btnProcurarPaciente.Name = "_btnProcurarPaciente";
             this._btnProcurarPaciente.Size = new System.Drawing.Size(30, 23);
@@ -822,6 +828,7 @@ namespace TCC2
             // _btnExcluir
             // 
             this._btnExcluir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this._btnExcluir.Image = global::TCC2.Properties.Resources.DeleteRed;
             this._btnExcluir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._btnExcluir.Location = new System.Drawing.Point(855, 618);
             this._btnExcluir.Name = "_btnExcluir";
@@ -834,6 +841,7 @@ namespace TCC2
             // _btnSalvar
             // 
             this._btnSalvar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this._btnSalvar.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
             this._btnSalvar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._btnSalvar.Location = new System.Drawing.Point(760, 618);
             this._btnSalvar.Name = "_btnSalvar";
@@ -1245,6 +1253,7 @@ namespace TCC2
             // btnExcluirConfigUsuario
             // 
             this.btnExcluirConfigUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExcluirConfigUsuario.Image = global::TCC2.Properties.Resources.DeleteRed;
             this.btnExcluirConfigUsuario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExcluirConfigUsuario.Location = new System.Drawing.Point(862, 134);
             this.btnExcluirConfigUsuario.Name = "btnExcluirConfigUsuario";
@@ -1256,6 +1265,7 @@ namespace TCC2
             // btnSalvarConfigUsuario
             // 
             this.btnSalvarConfigUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSalvarConfigUsuario.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
             this.btnSalvarConfigUsuario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSalvarConfigUsuario.Location = new System.Drawing.Point(767, 134);
             this.btnSalvarConfigUsuario.Name = "btnSalvarConfigUsuario";
@@ -1359,7 +1369,9 @@ namespace TCC2
             this.DrawerShowIconsWhenHidden = true;
             this.DrawerTabControl = this.TabControlNutreasy;
             this.DrawerUseColors = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmMenuPrincipal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nutreasy";
             this.Load += new System.EventHandler(this.frmMenuPrincipal_Load);
             this.TabControlNutreasy.ResumeLayout(false);

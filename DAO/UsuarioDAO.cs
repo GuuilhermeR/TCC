@@ -35,9 +35,7 @@ namespace ProjetoTCC
 
         public void setUsuario(string usuarioLogado)
         {
-            var usuarioLog = (from c in TCC2.BancoDadosSingleton.Instance.Login where c.usuario == usuarioLogado select c.usuario).Single();
-            usuario = usuarioLog.ToString();
-            return;
+            usuario = usuarioLogado.ToString();
         }
 
         public object getUsuarioSenha()
@@ -50,16 +48,25 @@ namespace ProjetoTCC
             senha = senhaatual;
         }
 
-        public bool verificarUsuarioLogado(string usuarioLogado, string senha)
+        public bool loginUsuario(string usuarioLogado, string senha)
         {
-            var usuarioLog = (from c in TCC2.BancoDadosSingleton.Instance.Login where c.usuario == usuarioLogado && c.senha == senha select c.usuario).Single();
-            if (usuarioLog != "")
-                return true;
+            try
+            {
+                var usuarioLog = (from c in TCC2.BancoDadosSingleton.Instance.Login where c.usuario == usuarioLogado && c.senha == senha select c).Single();
+                if (usuarioLog.usuario.Length > 0)
+                {
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
 
+            }
             return false;
         }
 
-        public void Buscar(string usuario, DataGridView dtgDados)
+        public void Buscar(string usuario)
         {
             string strSQL = string.Empty;
            // var config = new frmConfiguracoes();
@@ -78,17 +85,17 @@ namespace ProjetoTCC
 
             try
             {
-                
-                       if (alterarSenha)
-                        {
-                            string strSQL = $@"UPDATE Login senha='{senha}', nome='{nome}', email='{email}', situacao='{situacao}', tipoUsuario='{tipoUsuario}' WHERE usuario='{usuario}'";
-                        }
-                        else
-                        {
-                            string strSQL = $@"UPDATE Login nome='{nome}', email='{email}', situacao='{situacao}', tipoUsuario='{tipoUsuario}' WHERE usuario='{usuario}'";
-                        }
-                      
-                        Interaction.MsgBox("Os dados foram Salvos.", MsgBoxStyle.OkOnly, "SALVAR");
+
+                if (alterarSenha)
+                {
+                    string strSQL = $@"UPDATE Login senha='{senha}', nome='{nome}', email='{email}', situacao='{situacao}', tipoUsuario='{tipoUsuario}' WHERE usuario='{usuario}'";
+                }
+                else
+                {
+                    string strSQL = $@"UPDATE Login nome='{nome}', email='{email}', situacao='{situacao}', tipoUsuario='{tipoUsuario}' WHERE usuario='{usuario}'";
+                }
+
+                Interaction.MsgBox("Os dados foram Salvos.", MsgBoxStyle.OkOnly, "SALVAR");
             }
             catch (Exception ex)
             {
@@ -119,10 +126,12 @@ namespace ProjetoTCC
 
         public bool VerificarExisteUsuario(string usuario)
         {
-            bool retorno = false;
-            string strSQL = $"SELECT COUNT(1) AS existe FROM Login WHERE usuario = '{usuario}'";
+            var usuarioLog = (from c in TCC2.BancoDadosSingleton.Instance.Login where c.usuario == usuario select c.usuario).Single();
 
-            return retorno;
+            if (usuarioLog != "")
+                return true;
+
+            return false;
 
         }
 

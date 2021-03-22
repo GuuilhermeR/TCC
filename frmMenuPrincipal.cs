@@ -16,15 +16,16 @@ namespace TCC2
 {
     public partial class frmMenuPrincipal : MaterialForm
     {
-        public frmMenuPrincipal()
-        {
-            InitializeComponent();
-        }
-
         public PacienteDAO paciente = new PacienteDAO();
         public UsuarioDAO usuario = new UsuarioDAO();
         public AlimentoDAO alimento = new AlimentoDAO();
         private DataTableCollection tables;
+
+        public frmMenuPrincipal(string usuarioLogado)
+        {
+            InitializeComponent();
+            usuario.setNomeUsuario(usuarioLogado);
+        }
 
         private void frmMenuPrincipal_Load(object sender, EventArgs e)
         {
@@ -35,8 +36,7 @@ namespace TCC2
             materialSkinManager.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.BlueGrey500, Accent.LightGreen200, TextShade.WHITE);
 
             this.MaximizeBox = false;
-            lblUsuario.Visible = false;
-            //lblUsuario.Text = $"Seja bem vindo(a) ao sistema {frmTelaLogin.usuario.getNomeUsuario()}";
+            lblUsuario.Text = $"Seja bem vindo(a) ao sistema {usuario.getNomeUsuario()}";
         }
 
         #region Agenda
@@ -517,12 +517,12 @@ namespace TCC2
         private void txtUsuarioConfig_Leave(object sender, EventArgs e)
         {
             if (txtUsuarioConfig.Text != "")
-                usuario.Buscar(txtUsuarioConfig.Text, dtgUsuarios);
+                usuario.Buscar(txtUsuarioConfig.Text);
         }
         private void tbConfig_Enter(object sender, EventArgs e)
         {
             CriarColunas();
-            usuario.Buscar("", dtgUsuarios);
+            usuario.Buscar("");
         }
         private void dtgUsuarios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {

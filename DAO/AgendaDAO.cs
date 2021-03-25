@@ -29,13 +29,15 @@ namespace ProjetoTCC
             return agenda.ToString();
         }
 
-        public void AdicionarPaciente(string dataAgenda, string horario, string paciente)
+        public void AdicionarPaciente(string dataAgenda, string horario, string paciente, bool atendido, bool retorno)
         {
             Agenda agendaInsert = new Agenda();
 
             agendaInsert.paciente = paciente;
             agendaInsert.data = dataAgenda;
             agendaInsert.hora = horario;
+            agendaInsert.atendido = atendido;
+            agendaInsert.retorno = retorno;
 
             BancoDadosSingleton.Instance.Agenda.Add(agendaInsert);
             BancoDadosSingleton.Instance.SaveChanges();

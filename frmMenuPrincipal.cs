@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
 using Microsoft.VisualBasic;
+using System.Drawing;
 
 namespace TCC2
 {
@@ -46,6 +47,14 @@ namespace TCC2
 
         #region Agenda
 
+        private void LoadAgenda()
+        {
+            foreach (DataGridViewRow row in dtgAgenda.Rows)
+            {
+                row.Cells["nomePaciente"].Value = agenda.CarregarAgenda(lblDataAtual.Text, row.Cells["horario"].Value.ToString());
+            }
+        }
+
         private void tabAgenda_Enter(object sender, EventArgs e)
         {
             DateTime hoje = DateTime.Now;
@@ -54,11 +63,7 @@ namespace TCC2
             dtgAgenda.AutoResizeColumns();
             dtgAgenda.AutoResizeRows();
             dtgAgenda.Refresh();
-
-            foreach (DataGridViewRow row in dtgAgenda.Rows)
-            {              
-                row.Cells["nomePaciente"].Value = agenda.CarregarAgenda(lblDataAtual.Text, row.Cells["horario"].Value.ToString());
-            }
+            LoadAgenda();
         }
 
         private void btnAvançar_Click(object sender, EventArgs e)
@@ -68,6 +73,7 @@ namespace TCC2
             var data = Convert.ToDateTime(lblDataAtual.Text);
             DateTime dataAvançada = data.AddDays(1);
             lblDataAtual.Text = dataAvançada.ToString("dd/MM/yyyy");
+            LoadAgenda();
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
@@ -77,6 +83,7 @@ namespace TCC2
             var data = Convert.ToDateTime(lblDataAtual.Text);
             DateTime dataAvançada = data.AddDays(-1);
             lblDataAtual.Text = dataAvançada.ToString("dd/MM/yyyy");
+            LoadAgenda();
         }
 
         private void CriarHorariosPadrao()
@@ -91,22 +98,50 @@ namespace TCC2
         private void dtgAgenda_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             dtgAgenda.AutoResizeColumns();
+
+            if(dtgAgenda.Rows[e.RowIndex].Cells["nomePaciente"].Value == "")
+                dtgAgenda.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+
+            dtgAgenda.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Tomato;
+        }
+
+        private void dtgAgenda_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+           
         }
 
         private void btnSalvarAgenda_Click(object sender, EventArgs e)
         {
             int result = DateTime.Compare(Convert.ToDateTime(lblDataAtual.Text), DateTime.Now);
 
-            if (result < 0)
+            if (result == 0 )
             {
-                MessageBox.Show(this, "Não é possível agendar consulta datas passadas!", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, "Não é possível agendar consulta em datas passadas!", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             foreach (DataGridViewRow row in dtgAgenda.Rows)
             {
-                agenda.AdicionarPaciente(lblDataAtual.Text, row.Cells["horario"].Value.ToString(), row.Cells["nomePaciente"].Value.ToString());
+                bool atendido = true;
+                bool retorno = true;
+                if (row.DefaultCellStyle.BackColor == Color.Tomato)
+                {
+                    if(row.Cells["atendido"].Value == null)
+                    {
+                        atendido = false;
+                    }
+                    if (row.Cells["retorno"].Value == null)
+                    {
+                        retorno = false;
+                    }
+                    agenda.AdicionarPaciente(
+                        lblDataAtual.Text,
+                        row.Cells["horario"].Value.ToString(),
+                        row.Cells["nomePaciente"].Value.ToString(),
+                        atendido,
+                        retorno);
+                }
             }
-
+            LoadAgenda();
         }
         #endregion
 
@@ -570,5 +605,6 @@ namespace TCC2
         }
         #endregion
 
+        
     }
 }

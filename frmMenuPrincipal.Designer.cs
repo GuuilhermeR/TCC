@@ -40,8 +40,6 @@ namespace TCC2
             this.btnSalvarAgenda = new System.Windows.Forms.Button();
             this.lblDataAtual = new System.Windows.Forms.Label();
             this.dtgAgenda = new System.Windows.Forms.DataGridView();
-            this.horario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomePaciente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAvançar = new System.Windows.Forms.Button();
             this.btnVoltar = new System.Windows.Forms.Button();
             this.tabAlimento = new System.Windows.Forms.TabPage();
@@ -144,6 +142,10 @@ namespace TCC2
             this.dtgUsuarios = new System.Windows.Forms.DataGridView();
             this.TabPage2 = new System.Windows.Forms.TabPage();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.horario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomePaciente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.atendido = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.retorno = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.TabControlNutreasy.SuspendLayout();
             this.tabMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxLogoGrande)).BeginInit();
@@ -279,7 +281,9 @@ namespace TCC2
             this.dtgAgenda.BackgroundColor = System.Drawing.Color.White;
             this.dtgAgenda.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.horario,
-            this.nomePaciente});
+            this.nomePaciente,
+            this.atendido,
+            this.retorno});
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -293,20 +297,7 @@ namespace TCC2
             this.dtgAgenda.Size = new System.Drawing.Size(959, 589);
             this.dtgAgenda.TabIndex = 52;
             this.dtgAgenda.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgAgenda_CellEndEdit);
-            // 
-            // horario
-            // 
-            this.horario.HeaderText = "Horário";
-            this.horario.Name = "horario";
-            this.horario.ReadOnly = true;
-            this.horario.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.horario.Width = 223;
-            // 
-            // nomePaciente
-            // 
-            this.nomePaciente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nomePaciente.HeaderText = "Paciente";
-            this.nomePaciente.Name = "nomePaciente";
+            this.dtgAgenda.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgAgenda_CellEnter);
             // 
             // btnAvançar
             // 
@@ -1369,6 +1360,30 @@ namespace TCC2
             this.imageList1.Images.SetKeyName(4, "Alimento32px.png");
             this.imageList1.Images.SetKeyName(5, "agenda32px.png");
             // 
+            // horario
+            // 
+            this.horario.HeaderText = "Horário";
+            this.horario.Name = "horario";
+            this.horario.ReadOnly = true;
+            this.horario.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.horario.Width = 223;
+            // 
+            // nomePaciente
+            // 
+            this.nomePaciente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nomePaciente.HeaderText = "Paciente";
+            this.nomePaciente.Name = "nomePaciente";
+            // 
+            // atendido
+            // 
+            this.atendido.HeaderText = "Atendido?";
+            this.atendido.Name = "atendido";
+            // 
+            // retorno
+            // 
+            this.retorno.HeaderText = "Retorno?";
+            this.retorno.Name = "retorno";
+            // 
             // frmMenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1532,6 +1547,8 @@ namespace TCC2
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.DataGridViewTextBoxColumn horario;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomePaciente;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn atendido;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn retorno;
     }
 }
 

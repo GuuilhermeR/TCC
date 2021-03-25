@@ -1,8 +1,3 @@
-C:\Users\movtech\Desktop\TCC2\obj\Debug\TCC2.frmMenuPrincipal.resources
-C:\Users\movtech\Desktop\TCC2\obj\Debug\TCC2.Properties.Resources.resources
-C:\Users\movtech\Desktop\TCC2\obj\Debug\TCC2.csproj.GenerateResource.cache
-C:\Users\movtech\Desktop\TCC2\obj\Debug\TCC2.csproj.CoreCompileInputs.cache
-C:\Users\movtech\Desktop\TCC2\obj\Debug\TCC2.csprojAssemblyReference.cache
 C:\Users\movtech\Desktop\TCC2\bin\Debug\TCC2.exe.config
 C:\Users\movtech\Desktop\TCC2\bin\Debug\TCC2.exe
 C:\Users\movtech\Desktop\TCC2\bin\Debug\TCC2.pdb
@@ -22,7 +17,11 @@ C:\Users\movtech\Desktop\TCC2\bin\Debug\ExcelDataReader.DataSet.pdb
 C:\Users\movtech\Desktop\TCC2\bin\Debug\ExcelDataReader.DataSet.xml
 C:\Users\movtech\Desktop\TCC2\bin\Debug\System.Data.SQLite.xml
 C:\Users\movtech\Desktop\TCC2\bin\Debug\System.Data.SQLite.dll.config
+C:\Users\movtech\Desktop\TCC2\obj\Debug\TCC2.frmMenuPrincipal.resources
+C:\Users\movtech\Desktop\TCC2\obj\Debug\TCC2.frmTelaLogin.resources
+C:\Users\movtech\Desktop\TCC2\obj\Debug\TCC2.Properties.Resources.resources
+C:\Users\movtech\Desktop\TCC2\obj\Debug\TCC2.csproj.GenerateResource.cache
+C:\Users\movtech\Desktop\TCC2\obj\Debug\TCC2.csproj.CoreCompileInputs.cache
 C:\Users\movtech\Desktop\TCC2\obj\Debug\TCC2.csproj.CopyComplete
 C:\Users\movtech\Desktop\TCC2\obj\Debug\TCC2.exe
 C:\Users\movtech\Desktop\TCC2\obj\Debug\TCC2.pdb
-C:\Users\movtech\Desktop\TCC2\obj\Debug\TCC2.frmTelaLogin.resources

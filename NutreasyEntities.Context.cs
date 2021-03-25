@@ -25,6 +25,7 @@ namespace TCC2
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Agenda> Agenda { get; set; }
         public virtual DbSet<Login> Login { get; set; }
     }
 }

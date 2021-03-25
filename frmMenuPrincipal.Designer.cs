@@ -40,6 +40,8 @@ namespace TCC2
             this.btnSalvarAgenda = new System.Windows.Forms.Button();
             this.lblDataAtual = new System.Windows.Forms.Label();
             this.dtgAgenda = new System.Windows.Forms.DataGridView();
+            this.horario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomePaciente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAvançar = new System.Windows.Forms.Button();
             this.btnVoltar = new System.Windows.Forms.Button();
             this.tabAlimento = new System.Windows.Forms.TabPage();
@@ -142,8 +144,6 @@ namespace TCC2
             this.dtgUsuarios = new System.Windows.Forms.DataGridView();
             this.TabPage2 = new System.Windows.Forms.TabPage();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.horario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomePaciente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TabControlNutreasy.SuspendLayout();
             this.tabMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxLogoGrande)).BeginInit();
@@ -293,6 +293,20 @@ namespace TCC2
             this.dtgAgenda.Size = new System.Drawing.Size(959, 589);
             this.dtgAgenda.TabIndex = 52;
             this.dtgAgenda.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgAgenda_CellEndEdit);
+            // 
+            // horario
+            // 
+            this.horario.HeaderText = "Horário";
+            this.horario.Name = "horario";
+            this.horario.ReadOnly = true;
+            this.horario.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.horario.Width = 223;
+            // 
+            // nomePaciente
+            // 
+            this.nomePaciente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nomePaciente.HeaderText = "Paciente";
+            this.nomePaciente.Name = "nomePaciente";
             // 
             // btnAvançar
             // 
@@ -1354,20 +1368,6 @@ namespace TCC2
             this.imageList1.Images.SetKeyName(3, "Cardapio32px.png");
             this.imageList1.Images.SetKeyName(4, "Alimento32px.png");
             this.imageList1.Images.SetKeyName(5, "agenda32px.png");
-            // 
-            // horario
-            // 
-            this.horario.HeaderText = "Horário";
-            this.horario.Name = "horario";
-            this.horario.ReadOnly = true;
-            this.horario.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.horario.Width = 223;
-            // 
-            // nomePaciente
-            // 
-            this.nomePaciente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nomePaciente.HeaderText = "Paciente";
-            this.nomePaciente.Name = "nomePaciente";
             // 
             // frmMenuPrincipal
             // 

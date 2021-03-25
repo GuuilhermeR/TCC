@@ -4,7 +4,18 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="NutreasyLoginModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="datasource=C:\Users\movtech\Desktop\TCC2\bin\Debug\NutreasyDB.DB" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="NutreasyModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="datasource=C:\Users\movtech\Desktop\TCC2\bin\Debug\NutreasyDB.DB" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Agenda">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="paciente" Type="varchar" MaxLength="2147483647" />
+          <Property Name="data" Type="varchar" MaxLength="2147483647" />
+          <Property Name="retorno" Type="bit" />
+          <Property Name="atendido" Type="bit" />
+          <Property Name="hora" Type="varchar" MaxLength="2147483647" />
+        </EntityType>
         <EntityType Name="Login">
           <Key>
             <PropertyRef Name="usuario" />
@@ -16,14 +27,25 @@
           <Property Name="email" Type="varchar" MaxLength="2147483647" />
           <Property Name="perfil" Type="varchar" MaxLength="2147483647" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="NutreasyLoginModelStoreContainer">
+        <EntityContainer Name="NutreasyModelStoreContainer">
+          <EntitySet Name="Agenda" EntityType="Self.Agenda" store:Type="Tables" />
           <EntitySet Name="Login" EntityType="Self.Login" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="NutreasyLoginModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="NutreasyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Agenda">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="paciente" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="retorno" Type="Boolean" />
+          <Property Name="atendido" Type="Boolean" />
+          <Property Name="data" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="hora" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="Login">
           <Key>
             <PropertyRef Name="usuario" />
@@ -36,6 +58,7 @@
           <Property Name="perfil" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityContainer Name="NutreasyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Agenda" EntityType="Self.Agenda" />
           <EntitySet Name="Login" EntityType="Self.Login" />
         </EntityContainer>
       </Schema>
@@ -43,9 +66,21 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="NutreasyLoginModelStoreContainer" CdmEntityContainer="NutreasyEntities">
+        <EntityContainerMapping StorageEntityContainer="NutreasyModelStoreContainer" CdmEntityContainer="NutreasyEntities">
+          <EntitySetMapping Name="Agenda">
+            <EntityTypeMapping TypeName="NutreasyModel.Agenda">
+              <MappingFragment StoreEntitySet="Agenda">
+                <ScalarProperty Name="hora" ColumnName="hora" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="paciente" ColumnName="paciente" />
+                <ScalarProperty Name="retorno" ColumnName="retorno" />
+                <ScalarProperty Name="atendido" ColumnName="atendido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Login">
-            <EntityTypeMapping TypeName="NutreasyLoginModel.Login">
+            <EntityTypeMapping TypeName="NutreasyModel.Login">
               <MappingFragment StoreEntitySet="Login">
                 <ScalarProperty Name="usuario" ColumnName="usuario" />
                 <ScalarProperty Name="senha" ColumnName="senha" />

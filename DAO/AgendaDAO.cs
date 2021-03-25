@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Data;
 using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Linq;
+using Microsoft.VisualBasic;
+using TCC2;
 
-namespace ProjetoTCC.DAO
+namespace ProjetoTCC
 {
    public class AgendaDAO
     {
@@ -15,16 +15,30 @@ namespace ProjetoTCC.DAO
             
         }
 
-        //public DBAcesso objBanco = new DBAcesso();
-        public SQLiteConnection objConexao;
-
-        public void CarregarAgenda(DataGridView dtgDados, string dataAgenda)
+        public string CarregarAgenda(string dataAgenda, string horario)
         {
-            string strSQL = string.Empty;
-            strSQL = "SELECT horario, paciente FROM Agenda\n";
-            strSQL += $"WHERE data = '{dataAgenda}'\n";
+            var agenda = "";
+            try
+            {
+             agenda  = (from a in TCC2.BancoDadosSingleton.Instance.Agenda where a.data == dataAgenda && a.hora == horario select a.paciente).Single();
+            }
+            catch
+            {
 
+            }
+            return agenda.ToString();
         }
 
+        public void AdicionarPaciente(string dataAgenda, string horario, string paciente)
+        {
+            Agenda agendaInsert = new Agenda();
+
+            agendaInsert.paciente = paciente;
+            agendaInsert.data = dataAgenda;
+            agendaInsert.hora = horario;
+
+            BancoDadosSingleton.Instance.Agenda.Add(agendaInsert);
+            BancoDadosSingleton.Instance.SaveChanges();
+        }
     }
 }

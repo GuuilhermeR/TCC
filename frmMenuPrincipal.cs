@@ -19,6 +19,7 @@ namespace TCC2
         public PacienteDAO paciente = new PacienteDAO();
         public UsuarioDAO usuario = new UsuarioDAO();
         public AlimentoDAO alimento = new AlimentoDAO();
+        public AgendaDAO agenda = new AgendaDAO();
         private DataTableCollection tables;
 
         public frmMenuPrincipal(string usuarioLogado)
@@ -36,7 +37,7 @@ namespace TCC2
             materialSkinManager.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.BlueGrey500, Accent.LightGreen200, TextShade.WHITE);
 
             this.MaximizeBox = false;
-            if (usuario.getNomeUsuario() != "")
+            if (usuario.getNomeUsuario() != null || usuario.getNomeUsuario() != "")
             {
                 lblUsuario.Text = $"Seja bem vindo(a) ao sistema {usuario.getNomeUsuario()}";
                 lblUsuario.Visible = true;
@@ -53,6 +54,11 @@ namespace TCC2
             dtgAgenda.AutoResizeColumns();
             dtgAgenda.AutoResizeRows();
             dtgAgenda.Refresh();
+
+            foreach (DataGridViewRow row in dtgAgenda.Rows)
+            {              
+                row.Cells["nomePaciente"].Value = agenda.CarregarAgenda(lblDataAtual.Text, row.Cells["horario"].Value.ToString());
+            }
         }
 
         private void btnAvançar_Click(object sender, EventArgs e)
@@ -95,6 +101,10 @@ namespace TCC2
             {
                 MessageBox.Show(this, "Não é possível agendar consulta datas passadas!", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
+            }
+            foreach (DataGridViewRow row in dtgAgenda.Rows)
+            {
+                agenda.AdicionarPaciente(lblDataAtual.Text, row.Cells["horario"].Value.ToString(), row.Cells["nomePaciente"].Value.ToString());
             }
 
         }

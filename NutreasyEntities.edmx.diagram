@@ -4,8 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="43c7e14117f04e88a1d00abcac0c34db" Name="Diagram1">
-        <EntityTypeShape EntityType="NutreasyLoginModel.Login" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="55c0348f39134e6386f5ad1f23e5c03f" Name="Diagram1">
+        <EntityTypeShape EntityType="NutreasyModel.Agenda" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NutreasyModel.Login" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -78,10 +78,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Agenda.cs">
+      <DependentUpon>NutreasyEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="BancoDadosSingleton.cs" />
     <Compile Include="DAO\AgendaDAO.cs" />
     <Compile Include="DAO\AlimentoDAO.cs" />
-    <Compile Include="DAO\AlimentoDAOBase.cs" />
     <Compile Include="frmMenuPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,22 +98,22 @@
       <DependentUpon>frmTelaLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>NutreasyEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model1.Context.cs">
+    <Compile Include="NutreasyEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
+      <DependentUpon>NutreasyEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model1.cs">
+    <Compile Include="NutreasyEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>NutreasyEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="NutreasyDB.Designer.cs">
+    <Compile Include="NutreasyEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NutreasyDB.edmx</DependentUpon>
+      <DependentUpon>NutreasyEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -132,12 +134,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EntityDeploy Include="NutreasyDB.edmx">
+    <EntityDeploy Include="NutreasyEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>NutreasyDB.Designer.cs</LastGenOutput>
+      <LastGenOutput>NutreasyEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="NutreasyDB.edmx.diagram">
-      <DependentUpon>NutreasyDB.edmx</DependentUpon>
+    <None Include="NutreasyEntities.edmx.diagram">
+      <DependentUpon>NutreasyEntities.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -154,15 +156,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model1.Context.tt">
+    <Content Include="NutreasyEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NutreasyDB.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+      <DependentUpon>NutreasyEntities.edmx</DependentUpon>
+      <LastGenOutput>NutreasyEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model1.tt">
+    <Content Include="NutreasyEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NutreasyDB.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
+      <DependentUpon>NutreasyEntities.edmx</DependentUpon>
+      <LastGenOutput>NutreasyEntities.cs</LastGenOutput>
     </Content>
     <Content Include="Resources\2355300-removebg-preview %283%29.png" />
     <Content Include="Resources\5-Icon-Branco.png" />

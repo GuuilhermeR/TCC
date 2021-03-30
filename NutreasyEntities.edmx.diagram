@@ -6,7 +6,9 @@
     <edmx:Diagrams>
       <Diagram DiagramId="55c0348f39134e6386f5ad1f23e5c03f" Name="Diagram1">
         <EntityTypeShape EntityType="NutreasyModel.Agenda" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NutreasyModel.Login" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NutreasyModel.Login" Width="1.5" PointX="2.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NutreasyModel.AlimentoImportados" Width="1.5" PointX="4.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NutreasyModel.Alimentos" Width="1.5" PointX="0.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -40,6 +40,11 @@ namespace TCC2
             this.btnSalvarAgenda = new System.Windows.Forms.Button();
             this.lblDataAtual = new System.Windows.Forms.Label();
             this.dtgAgenda = new System.Windows.Forms.DataGridView();
+            this.horario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomePaciente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.atendido = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.retorno = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAvançar = new System.Windows.Forms.Button();
             this.btnVoltar = new System.Windows.Forms.Button();
             this.tabAlimento = new System.Windows.Forms.TabPage();
@@ -142,10 +147,7 @@ namespace TCC2
             this.dtgUsuarios = new System.Windows.Forms.DataGridView();
             this.TabPage2 = new System.Windows.Forms.TabPage();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.horario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomePaciente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.atendido = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.retorno = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.tabReceitas = new System.Windows.Forms.TabPage();
             this.TabControlNutreasy.SuspendLayout();
             this.tabMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxLogoGrande)).BeginInit();
@@ -178,6 +180,7 @@ namespace TCC2
             this.TabControlNutreasy.Controls.Add(this.tabAlimento);
             this.TabControlNutreasy.Controls.Add(this.tabCardapio);
             this.TabControlNutreasy.Controls.Add(this.tabPaciente);
+            this.TabControlNutreasy.Controls.Add(this.tabReceitas);
             this.TabControlNutreasy.Controls.Add(this.tabConfig);
             this.TabControlNutreasy.Depth = 0;
             this.TabControlNutreasy.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -197,11 +200,12 @@ namespace TCC2
             this.tabMenu.ImageKey = "menu32px.png";
             this.tabMenu.Location = new System.Drawing.Point(4, 39);
             this.tabMenu.Name = "tabMenu";
-            this.tabMenu.Padding = new System.Windows.Forms.Padding(3);
+            this.tabMenu.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tabMenu.Size = new System.Drawing.Size(971, 689);
             this.tabMenu.TabIndex = 0;
             this.tabMenu.Text = "Home";
             this.tabMenu.UseVisualStyleBackColor = true;
+            this.tabMenu.Enter += new System.EventHandler(this.tabMenu_Enter);
             // 
             // pbxLogoGrande
             // 
@@ -239,7 +243,7 @@ namespace TCC2
             this.tabAgenda.ImageKey = "agenda32px.png";
             this.tabAgenda.Location = new System.Drawing.Point(4, 39);
             this.tabAgenda.Name = "tabAgenda";
-            this.tabAgenda.Padding = new System.Windows.Forms.Padding(3);
+            this.tabAgenda.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tabAgenda.Size = new System.Drawing.Size(971, 689);
             this.tabAgenda.TabIndex = 1;
             this.tabAgenda.Text = "Agenda";
@@ -265,7 +269,7 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDataAtual.AutoSize = true;
             this.lblDataAtual.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDataAtual.Location = new System.Drawing.Point(422, 28);
+            this.lblDataAtual.Location = new System.Drawing.Point(400, 29);
             this.lblDataAtual.Name = "lblDataAtual";
             this.lblDataAtual.Size = new System.Drawing.Size(128, 25);
             this.lblDataAtual.TabIndex = 53;
@@ -279,11 +283,13 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dtgAgenda.BackgroundColor = System.Drawing.Color.White;
+            this.dtgAgenda.ColumnHeadersHeight = 29;
             this.dtgAgenda.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.horario,
             this.nomePaciente,
             this.atendido,
-            this.retorno});
+            this.retorno,
+            this.ID});
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -294,10 +300,49 @@ namespace TCC2
             this.dtgAgenda.DefaultCellStyle = dataGridViewCellStyle1;
             this.dtgAgenda.Location = new System.Drawing.Point(6, 58);
             this.dtgAgenda.Name = "dtgAgenda";
+            this.dtgAgenda.RowHeadersWidth = 51;
             this.dtgAgenda.Size = new System.Drawing.Size(959, 589);
             this.dtgAgenda.TabIndex = 52;
             this.dtgAgenda.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgAgenda_CellEndEdit);
-            this.dtgAgenda.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgAgenda_CellEnter);
+            this.dtgAgenda.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtgAgenda_KeyDown);
+            // 
+            // horario
+            // 
+            this.horario.HeaderText = "Horário";
+            this.horario.MinimumWidth = 6;
+            this.horario.Name = "horario";
+            this.horario.ReadOnly = true;
+            this.horario.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.horario.Width = 223;
+            // 
+            // nomePaciente
+            // 
+            this.nomePaciente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nomePaciente.HeaderText = "Paciente";
+            this.nomePaciente.MinimumWidth = 6;
+            this.nomePaciente.Name = "nomePaciente";
+            // 
+            // atendido
+            // 
+            this.atendido.HeaderText = "Atendido?";
+            this.atendido.MinimumWidth = 6;
+            this.atendido.Name = "atendido";
+            this.atendido.Width = 125;
+            // 
+            // retorno
+            // 
+            this.retorno.HeaderText = "Retorno?";
+            this.retorno.MinimumWidth = 6;
+            this.retorno.Name = "retorno";
+            this.retorno.Width = 125;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.MinimumWidth = 6;
+            this.ID.Name = "ID";
+            this.ID.Visible = false;
+            this.ID.Width = 125;
             // 
             // btnAvançar
             // 
@@ -326,7 +371,7 @@ namespace TCC2
             this.tabAlimento.ImageKey = "Alimento32px.png";
             this.tabAlimento.Location = new System.Drawing.Point(4, 39);
             this.tabAlimento.Name = "tabAlimento";
-            this.tabAlimento.Padding = new System.Windows.Forms.Padding(3);
+            this.tabAlimento.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tabAlimento.Size = new System.Drawing.Size(971, 689);
             this.tabAlimento.TabIndex = 2;
             this.tabAlimento.Text = "Alimento";
@@ -342,7 +387,7 @@ namespace TCC2
             this.tbAlimento.Location = new System.Drawing.Point(6, 6);
             this.tbAlimento.Name = "tbAlimento";
             this.tbAlimento.SelectedIndex = 0;
-            this.tbAlimento.Size = new System.Drawing.Size(959, 677);
+            this.tbAlimento.Size = new System.Drawing.Size(959, 685);
             this.tbAlimento.TabIndex = 1;
             this.tbAlimento.Enter += new System.EventHandler(this.tbAlimento_Enter);
             // 
@@ -360,8 +405,8 @@ namespace TCC2
             this._tbConsulta.Controls.Add(this.dtgConAlimento);
             this._tbConsulta.Location = new System.Drawing.Point(4, 22);
             this._tbConsulta.Name = "_tbConsulta";
-            this._tbConsulta.Padding = new System.Windows.Forms.Padding(3);
-            this._tbConsulta.Size = new System.Drawing.Size(951, 651);
+            this._tbConsulta.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this._tbConsulta.Size = new System.Drawing.Size(951, 659);
             this._tbConsulta.TabIndex = 1;
             this._tbConsulta.Text = "Cadastro/Consulta";
             this._tbConsulta.UseVisualStyleBackColor = true;
@@ -370,7 +415,7 @@ namespace TCC2
             // 
             this.btnRecalcular.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnRecalcular.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRecalcular.Location = new System.Drawing.Point(6, 615);
+            this.btnRecalcular.Location = new System.Drawing.Point(6, 623);
             this.btnRecalcular.Name = "btnRecalcular";
             this.btnRecalcular.Size = new System.Drawing.Size(89, 30);
             this.btnRecalcular.TabIndex = 54;
@@ -401,7 +446,7 @@ namespace TCC2
             this.btnExcluirAlimento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExcluirAlimento.Image = global::TCC2.Properties.Resources.DeleteRed;
             this.btnExcluirAlimento.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExcluirAlimento.Location = new System.Drawing.Point(856, 615);
+            this.btnExcluirAlimento.Location = new System.Drawing.Point(856, 623);
             this.btnExcluirAlimento.Name = "btnExcluirAlimento";
             this.btnExcluirAlimento.Size = new System.Drawing.Size(89, 30);
             this.btnExcluirAlimento.TabIndex = 51;
@@ -413,7 +458,7 @@ namespace TCC2
             this.btnSalvarAlimento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSalvarAlimento.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
             this.btnSalvarAlimento.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalvarAlimento.Location = new System.Drawing.Point(761, 615);
+            this.btnSalvarAlimento.Location = new System.Drawing.Point(761, 623);
             this.btnSalvarAlimento.Name = "btnSalvarAlimento";
             this.btnSalvarAlimento.Size = new System.Drawing.Size(89, 30);
             this.btnSalvarAlimento.TabIndex = 50;
@@ -422,7 +467,6 @@ namespace TCC2
             // 
             // cbxTabela
             // 
-            this.cbxTabela.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxTabela.FormattingEnabled = true;
             this.cbxTabela.Location = new System.Drawing.Point(127, 6);
             this.cbxTabela.Name = "cbxTabela";
@@ -462,7 +506,8 @@ namespace TCC2
             this.dtgConAlimento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgConAlimento.Location = new System.Drawing.Point(6, 64);
             this.dtgConAlimento.Name = "dtgConAlimento";
-            this.dtgConAlimento.Size = new System.Drawing.Size(939, 545);
+            this.dtgConAlimento.RowHeadersWidth = 51;
+            this.dtgConAlimento.Size = new System.Drawing.Size(939, 553);
             this.dtgConAlimento.TabIndex = 0;
             // 
             // tbImportarPlanilha
@@ -479,8 +524,8 @@ namespace TCC2
             this.tbImportarPlanilha.Controls.Add(this.lblCaminho);
             this.tbImportarPlanilha.Location = new System.Drawing.Point(4, 22);
             this.tbImportarPlanilha.Name = "tbImportarPlanilha";
-            this.tbImportarPlanilha.Padding = new System.Windows.Forms.Padding(3);
-            this.tbImportarPlanilha.Size = new System.Drawing.Size(951, 651);
+            this.tbImportarPlanilha.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbImportarPlanilha.Size = new System.Drawing.Size(951, 659);
             this.tbImportarPlanilha.TabIndex = 2;
             this.tbImportarPlanilha.Text = "Importação tabela";
             this.tbImportarPlanilha.UseVisualStyleBackColor = true;
@@ -488,7 +533,7 @@ namespace TCC2
             // pbCarregando
             // 
             this.pbCarregando.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.pbCarregando.Location = new System.Drawing.Point(6, 618);
+            this.pbCarregando.Location = new System.Drawing.Point(6, 626);
             this.pbCarregando.Name = "pbCarregando";
             this.pbCarregando.Size = new System.Drawing.Size(808, 23);
             this.pbCarregando.TabIndex = 273;
@@ -497,7 +542,7 @@ namespace TCC2
             // txtNomeTabela
             // 
             this.txtNomeTabela.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtNomeTabela.Location = new System.Drawing.Point(147, 585);
+            this.txtNomeTabela.Location = new System.Drawing.Point(147, 593);
             this.txtNomeTabela.Name = "txtNomeTabela";
             this.txtNomeTabela.Size = new System.Drawing.Size(503, 20);
             this.txtNomeTabela.TabIndex = 272;
@@ -506,7 +551,7 @@ namespace TCC2
             // 
             this.lblNomeTabela.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblNomeTabela.AutoSize = true;
-            this.lblNomeTabela.Location = new System.Drawing.Point(3, 588);
+            this.lblNomeTabela.Location = new System.Drawing.Point(3, 596);
             this.lblNomeTabela.Name = "lblNomeTabela";
             this.lblNomeTabela.Size = new System.Drawing.Size(74, 13);
             this.lblNomeTabela.TabIndex = 271;
@@ -517,7 +562,7 @@ namespace TCC2
             this._cbxNomePlanilha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._cbxNomePlanilha.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._cbxNomePlanilha.FormattingEnabled = true;
-            this._cbxNomePlanilha.Location = new System.Drawing.Point(147, 553);
+            this._cbxNomePlanilha.Location = new System.Drawing.Point(147, 561);
             this._cbxNomePlanilha.Name = "_cbxNomePlanilha";
             this._cbxNomePlanilha.Size = new System.Drawing.Size(503, 21);
             this._cbxNomePlanilha.TabIndex = 270;
@@ -526,7 +571,7 @@ namespace TCC2
             // _btnImportar
             // 
             this._btnImportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._btnImportar.Location = new System.Drawing.Point(861, 615);
+            this._btnImportar.Location = new System.Drawing.Point(861, 623);
             this._btnImportar.Name = "_btnImportar";
             this._btnImportar.Size = new System.Drawing.Size(84, 30);
             this._btnImportar.TabIndex = 269;
@@ -544,15 +589,17 @@ namespace TCC2
             this.dtgDados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgDados.Location = new System.Drawing.Point(6, 6);
             this.dtgDados.Name = "dtgDados";
-            this.dtgDados.Size = new System.Drawing.Size(939, 512);
+            this.dtgDados.RowHeadersWidth = 51;
+            this.dtgDados.Size = new System.Drawing.Size(939, 519);
             this.dtgDados.TabIndex = 268;
             // 
             // _btnBuscarPlanilha
             // 
             this._btnBuscarPlanilha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this._btnBuscarPlanilha.Location = new System.Drawing.Point(782, 524);
+            this._btnBuscarPlanilha.Image = global::TCC2.Properties.Resources.consultar;
+            this._btnBuscarPlanilha.Location = new System.Drawing.Point(781, 531);
             this._btnBuscarPlanilha.Name = "_btnBuscarPlanilha";
-            this._btnBuscarPlanilha.Size = new System.Drawing.Size(30, 23);
+            this._btnBuscarPlanilha.Size = new System.Drawing.Size(24, 22);
             this._btnBuscarPlanilha.TabIndex = 266;
             this._btnBuscarPlanilha.UseVisualStyleBackColor = true;
             this._btnBuscarPlanilha.Click += new System.EventHandler(this._btnBuscarPlanilha_Click);
@@ -560,7 +607,7 @@ namespace TCC2
             // txtCaminhoArquivoExcel
             // 
             this.txtCaminhoArquivoExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtCaminhoArquivoExcel.Location = new System.Drawing.Point(147, 524);
+            this.txtCaminhoArquivoExcel.Location = new System.Drawing.Point(147, 532);
             this.txtCaminhoArquivoExcel.Name = "txtCaminhoArquivoExcel";
             this.txtCaminhoArquivoExcel.ReadOnly = true;
             this.txtCaminhoArquivoExcel.Size = new System.Drawing.Size(629, 20);
@@ -570,7 +617,7 @@ namespace TCC2
             // 
             this.Label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Label10.AutoSize = true;
-            this.Label10.Location = new System.Drawing.Point(3, 557);
+            this.Label10.Location = new System.Drawing.Point(3, 565);
             this.Label10.Name = "Label10";
             this.Label10.Size = new System.Drawing.Size(92, 13);
             this.Label10.TabIndex = 1;
@@ -580,7 +627,7 @@ namespace TCC2
             // 
             this.lblCaminho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCaminho.AutoSize = true;
-            this.lblCaminho.Location = new System.Drawing.Point(3, 527);
+            this.lblCaminho.Location = new System.Drawing.Point(3, 535);
             this.lblCaminho.Name = "lblCaminho";
             this.lblCaminho.Size = new System.Drawing.Size(104, 13);
             this.lblCaminho.TabIndex = 0;
@@ -598,7 +645,7 @@ namespace TCC2
             this.tabCardapio.ImageKey = "Cardapio32px.png";
             this.tabCardapio.Location = new System.Drawing.Point(4, 39);
             this.tabCardapio.Name = "tabCardapio";
-            this.tabCardapio.Padding = new System.Windows.Forms.Padding(3);
+            this.tabCardapio.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tabCardapio.Size = new System.Drawing.Size(971, 689);
             this.tabCardapio.TabIndex = 3;
             this.tabCardapio.Text = "Cardápio";
@@ -614,7 +661,8 @@ namespace TCC2
             this.dtgRefeicoes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgRefeicoes.Location = new System.Drawing.Point(6, 210);
             this.dtgRefeicoes.Name = "dtgRefeicoes";
-            this.dtgRefeicoes.Size = new System.Drawing.Size(959, 356);
+            this.dtgRefeicoes.RowHeadersWidth = 51;
+            this.dtgRefeicoes.Size = new System.Drawing.Size(959, 357);
             this.dtgRefeicoes.TabIndex = 282;
             // 
             // btnSalvarCardapio
@@ -622,7 +670,7 @@ namespace TCC2
             this.btnSalvarCardapio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSalvarCardapio.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
             this.btnSalvarCardapio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalvarCardapio.Location = new System.Drawing.Point(876, 653);
+            this.btnSalvarCardapio.Location = new System.Drawing.Point(876, 630);
             this.btnSalvarCardapio.Name = "btnSalvarCardapio";
             this.btnSalvarCardapio.Size = new System.Drawing.Size(89, 30);
             this.btnSalvarCardapio.TabIndex = 281;
@@ -680,7 +728,7 @@ namespace TCC2
             this.tabPaciente.ImageKey = "Paciente32px.png";
             this.tabPaciente.Location = new System.Drawing.Point(4, 39);
             this.tabPaciente.Name = "tabPaciente";
-            this.tabPaciente.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPaciente.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tabPaciente.Size = new System.Drawing.Size(971, 689);
             this.tabPaciente.TabIndex = 4;
             this.tabPaciente.Text = "Paciente";
@@ -697,7 +745,7 @@ namespace TCC2
             this.tbPaciente.Location = new System.Drawing.Point(6, 3);
             this.tbPaciente.Name = "tbPaciente";
             this.tbPaciente.SelectedIndex = 0;
-            this.tbPaciente.Size = new System.Drawing.Size(959, 680);
+            this.tbPaciente.Size = new System.Drawing.Size(959, 681);
             this.tbPaciente.TabIndex = 1;
             // 
             // tbCadastro
@@ -742,8 +790,8 @@ namespace TCC2
             this.tbCadastro.Controls.Add(this.lblNome);
             this.tbCadastro.Location = new System.Drawing.Point(4, 22);
             this.tbCadastro.Name = "tbCadastro";
-            this.tbCadastro.Padding = new System.Windows.Forms.Padding(3);
-            this.tbCadastro.Size = new System.Drawing.Size(951, 654);
+            this.tbCadastro.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbCadastro.Size = new System.Drawing.Size(951, 655);
             this.tbCadastro.TabIndex = 0;
             this.tbCadastro.Text = "Cadastro";
             this.tbCadastro.UseVisualStyleBackColor = true;
@@ -830,7 +878,7 @@ namespace TCC2
             this._btnExcluir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnExcluir.Image = global::TCC2.Properties.Resources.DeleteRed;
             this._btnExcluir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._btnExcluir.Location = new System.Drawing.Point(855, 618);
+            this._btnExcluir.Location = new System.Drawing.Point(855, 619);
             this._btnExcluir.Name = "_btnExcluir";
             this._btnExcluir.Size = new System.Drawing.Size(89, 30);
             this._btnExcluir.TabIndex = 242;
@@ -843,7 +891,7 @@ namespace TCC2
             this._btnSalvar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnSalvar.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
             this._btnSalvar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._btnSalvar.Location = new System.Drawing.Point(760, 618);
+            this._btnSalvar.Location = new System.Drawing.Point(760, 619);
             this._btnSalvar.Name = "_btnSalvar";
             this._btnSalvar.Size = new System.Drawing.Size(89, 30);
             this._btnSalvar.TabIndex = 241;
@@ -1075,7 +1123,7 @@ namespace TCC2
             this.tbConsultaPaciente.Controls.Add(this._dtgConsultaPacientes);
             this.tbConsultaPaciente.Location = new System.Drawing.Point(4, 22);
             this.tbConsultaPaciente.Name = "tbConsultaPaciente";
-            this.tbConsultaPaciente.Padding = new System.Windows.Forms.Padding(3);
+            this.tbConsultaPaciente.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tbConsultaPaciente.Size = new System.Drawing.Size(951, 654);
             this.tbConsultaPaciente.TabIndex = 1;
             this.tbConsultaPaciente.Text = "Consulta";
@@ -1106,7 +1154,8 @@ namespace TCC2
             this._dtgConsultaPacientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this._dtgConsultaPacientes.Location = new System.Drawing.Point(6, 38);
             this._dtgConsultaPacientes.Name = "_dtgConsultaPacientes";
-            this._dtgConsultaPacientes.Size = new System.Drawing.Size(939, 610);
+            this._dtgConsultaPacientes.RowHeadersWidth = 51;
+            this._dtgConsultaPacientes.Size = new System.Drawing.Size(939, 609);
             this._dtgConsultaPacientes.TabIndex = 0;
             this._dtgConsultaPacientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._dtgConsultaPacientes_CellDoubleClick);
             // 
@@ -1114,7 +1163,7 @@ namespace TCC2
             // 
             this.tbAntropometricos.Location = new System.Drawing.Point(4, 22);
             this.tbAntropometricos.Name = "tbAntropometricos";
-            this.tbAntropometricos.Padding = new System.Windows.Forms.Padding(3);
+            this.tbAntropometricos.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tbAntropometricos.Size = new System.Drawing.Size(951, 654);
             this.tbAntropometricos.TabIndex = 2;
             this.tbAntropometricos.Text = "Antropometria";
@@ -1126,7 +1175,7 @@ namespace TCC2
             this.tabConfig.ImageKey = "settings32px.png";
             this.tabConfig.Location = new System.Drawing.Point(4, 39);
             this.tabConfig.Name = "tabConfig";
-            this.tabConfig.Padding = new System.Windows.Forms.Padding(3);
+            this.tabConfig.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tabConfig.Size = new System.Drawing.Size(971, 689);
             this.tabConfig.TabIndex = 5;
             this.tabConfig.Text = "Configurações";
@@ -1142,7 +1191,7 @@ namespace TCC2
             this.tbConfig.Location = new System.Drawing.Point(3, 6);
             this.tbConfig.Name = "tbConfig";
             this.tbConfig.SelectedIndex = 0;
-            this.tbConfig.Size = new System.Drawing.Size(965, 680);
+            this.tbConfig.Size = new System.Drawing.Size(965, 681);
             this.tbConfig.TabIndex = 1;
             this.tbConfig.Enter += new System.EventHandler(this.tbConfig_Enter);
             // 
@@ -1167,8 +1216,8 @@ namespace TCC2
             this.TabPage1.Controls.Add(this.dtgUsuarios);
             this.TabPage1.Location = new System.Drawing.Point(4, 22);
             this.TabPage1.Name = "TabPage1";
-            this.TabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.TabPage1.Size = new System.Drawing.Size(957, 654);
+            this.TabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.TabPage1.Size = new System.Drawing.Size(957, 655);
             this.TabPage1.TabIndex = 0;
             this.TabPage1.Text = "Usuários";
             this.TabPage1.UseVisualStyleBackColor = true;
@@ -1335,7 +1384,8 @@ namespace TCC2
             this.dtgUsuarios.Location = new System.Drawing.Point(6, 170);
             this.dtgUsuarios.Name = "dtgUsuarios";
             this.dtgUsuarios.ReadOnly = true;
-            this.dtgUsuarios.Size = new System.Drawing.Size(944, 478);
+            this.dtgUsuarios.RowHeadersWidth = 51;
+            this.dtgUsuarios.Size = new System.Drawing.Size(944, 479);
             this.dtgUsuarios.TabIndex = 0;
             this.dtgUsuarios.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgUsuarios_CellDoubleClick);
             // 
@@ -1343,7 +1393,7 @@ namespace TCC2
             // 
             this.TabPage2.Location = new System.Drawing.Point(4, 22);
             this.TabPage2.Name = "TabPage2";
-            this.TabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.TabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.TabPage2.Size = new System.Drawing.Size(957, 654);
             this.TabPage2.TabIndex = 1;
             this.TabPage2.Text = "Permissões";
@@ -1359,30 +1409,17 @@ namespace TCC2
             this.imageList1.Images.SetKeyName(3, "Cardapio32px.png");
             this.imageList1.Images.SetKeyName(4, "Alimento32px.png");
             this.imageList1.Images.SetKeyName(5, "agenda32px.png");
+            this.imageList1.Images.SetKeyName(6, "Receitas32px.png");
             // 
-            // horario
+            // tabReceitas
             // 
-            this.horario.HeaderText = "Horário";
-            this.horario.Name = "horario";
-            this.horario.ReadOnly = true;
-            this.horario.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.horario.Width = 223;
-            // 
-            // nomePaciente
-            // 
-            this.nomePaciente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nomePaciente.HeaderText = "Paciente";
-            this.nomePaciente.Name = "nomePaciente";
-            // 
-            // atendido
-            // 
-            this.atendido.HeaderText = "Atendido?";
-            this.atendido.Name = "atendido";
-            // 
-            // retorno
-            // 
-            this.retorno.HeaderText = "Retorno?";
-            this.retorno.Name = "retorno";
+            this.tabReceitas.ImageIndex = 6;
+            this.tabReceitas.Location = new System.Drawing.Point(4, 39);
+            this.tabReceitas.Name = "tabReceitas";
+            this.tabReceitas.Size = new System.Drawing.Size(971, 689);
+            this.tabReceitas.TabIndex = 6;
+            this.tabReceitas.Text = "Receitas";
+            this.tabReceitas.UseVisualStyleBackColor = true;
             // 
             // frmMenuPrincipal
             // 
@@ -1549,6 +1586,8 @@ namespace TCC2
         private System.Windows.Forms.DataGridViewTextBoxColumn nomePaciente;
         private System.Windows.Forms.DataGridViewCheckBoxColumn atendido;
         private System.Windows.Forms.DataGridViewCheckBoxColumn retorno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.TabPage tabReceitas;
     }
 }
 

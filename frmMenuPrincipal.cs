@@ -12,21 +12,24 @@ using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
 using Microsoft.VisualBasic;
 using System.Drawing;
+using System.Collections.Generic;
 
 namespace TCC2
 {
     public partial class frmMenuPrincipal : MaterialForm
     {
-        public PacienteDAO paciente = new PacienteDAO();
-        public UsuarioDAO usuario = new UsuarioDAO();
-        public AlimentoDAO alimento = new AlimentoDAO();
-        public AgendaDAO agenda = new AgendaDAO();
+        public PacienteDAO pacienteDAO = new PacienteDAO();
+        public UsuarioDAO usuarioDAO = new UsuarioDAO();
+        public AlimentoDAO alimentoDAO = new AlimentoDAO();
+        public AgendaDAO agendaDAO = new AgendaDAO();
         private DataTableCollection tables;
+        List<string> deletar = new List<string>();
 
+        #region Menu
         public frmMenuPrincipal(string usuarioLogado)
         {
             InitializeComponent();
-            usuario.setNomeUsuario(usuarioLogado);
+            usuarioDAO.setNomeUsuario(usuarioLogado);
         }
 
         private void frmMenuPrincipal_Load(object sender, EventArgs e)
@@ -38,12 +41,29 @@ namespace TCC2
             materialSkinManager.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.BlueGrey500, Accent.LightGreen200, TextShade.WHITE);
 
             this.MaximizeBox = false;
-            if (usuario.getNomeUsuario() != null || usuario.getNomeUsuario() != "")
+            if (usuarioDAO.getNomeUsuario() != null)
             {
-                lblUsuario.Text = $"Seja bem vindo(a) ao sistema {usuario.getNomeUsuario()}";
+                lblUsuario.Text = $"Seja bem vindo(a) ao sistema {usuarioDAO.getNomeUsuario()}";
+                lblUsuario.Visible = true;
+            } else
+            {
+                lblUsuario.Text = $"Seja bem vindo(a) ao sistema Guilherme Rüdiger";
                 lblUsuario.Visible = true;
             }
         }
+
+        private void tabMenu_Enter(object sender, EventArgs e)
+        {
+            //var ConsultasMarcada = this.agendaDAO.CarregarAgenda(DateAndTime.Now.ToString("dd/MM/yyyy"), DateAndTime.Now.AddHours(1).ToString("HH:00"));
+
+           // if( ConsultasMarcada != null)
+           // ConsultasMarcada.ForEach(x =>
+           //{
+           //    MessageBox.Show($"Você tem hora marcada com {x.paciente} às {x.hora}");
+           //});
+
+        }
+        #endregion
 
         #region Agenda
 
@@ -51,7 +71,20 @@ namespace TCC2
         {
             foreach (DataGridViewRow row in dtgAgenda.Rows)
             {
-                row.Cells["nomePaciente"].Value = agenda.CarregarAgenda(lblDataAtual.Text, row.Cells["horario"].Value.ToString());
+                var agenda = this.agendaDAO.CarregarAgenda(lblDataAtual.Text, row.Cells["horario"].Value.ToString());
+                if (agenda == null)
+                    continue;
+
+                if (agenda != null || agenda.Count > 0)
+                {
+                    agenda.ForEach(x =>
+                    {
+                        row.Cells["ID"].Value = x.ID;
+                        row.Cells["nomePaciente"].Value = x.paciente;
+                        row.Cells["atendido"].Value = x.atendido;
+                        row.Cells["retorno"].Value = x.retorno;
+                    });
+                }
             }
         }
 
@@ -99,24 +132,20 @@ namespace TCC2
         {
             dtgAgenda.AutoResizeColumns();
 
-            if(dtgAgenda.Rows[e.RowIndex].Cells["nomePaciente"].Value == "")
+            if (dtgAgenda.Rows[e.RowIndex].Cells["nomePaciente"].Value == "")
                 dtgAgenda.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
 
             dtgAgenda.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Tomato;
-        }
-
-        private void dtgAgenda_CellEnter(object sender, DataGridViewCellEventArgs e)
-        {
-           
         }
 
         private void btnSalvarAgenda_Click(object sender, EventArgs e)
         {
             int result = DateTime.Compare(Convert.ToDateTime(lblDataAtual.Text), DateTime.Now);
 
-            if (result == 0 )
+            if (result != -1)
             {
                 MessageBox.Show(this, "Não é possível agendar consulta em datas passadas!", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                LoadAgenda();
                 return;
             }
             foreach (DataGridViewRow row in dtgAgenda.Rows)
@@ -125,7 +154,7 @@ namespace TCC2
                 bool retorno = true;
                 if (row.DefaultCellStyle.BackColor == Color.Tomato)
                 {
-                    if(row.Cells["atendido"].Value == null)
+                    if (row.Cells["atendido"].Value == null)
                     {
                         atendido = false;
                     }
@@ -133,7 +162,7 @@ namespace TCC2
                     {
                         retorno = false;
                     }
-                    agenda.AdicionarPaciente(
+                    agendaDAO.AdicionarPaciente(
                         lblDataAtual.Text,
                         row.Cells["horario"].Value.ToString(),
                         row.Cells["nomePaciente"].Value.ToString(),
@@ -141,37 +170,26 @@ namespace TCC2
                         retorno);
                 }
             }
+            if (deletar.Count > 0)
+            {
+                agendaDAO.DeletarPacienteAgenda(deletar);
+            }
             LoadAgenda();
+        }
+
+        private void dtgAgenda_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == (char)Keys.Delete)
+            {
+                deletar.Add(dtgAgenda.CurrentRow.Cells["ID"].Value.ToString());
+                dtgAgenda.CurrentRow.Cells["nomePaciente"].Value = "";
+                dtgAgenda.CurrentRow.Cells["atendido"].Value = false;
+                dtgAgenda.CurrentRow.Cells["retorno"].Value = false;
+            }
         }
         #endregion
 
         #region Alimento
-
-        private bool VerificarExisteTabela(string nomeTabela)
-        {
-            bool existe = false;
-
-            string strSQL = $@"SELECT COUNT(1) AS Existe FROM Alimento WHERE nomeTabela='{nomeTabela}'";
-
-
-            return existe;
-        }
-
-
-        private void ExcluirTabela(string nomeTabela)
-        {
-
-            string strSQL = $@"DELETE FROM Alimento WHERE nomeTabela = '{nomeTabela}'";
-
-
-        }
-
-        private void CarregarTabelas()
-        {
-            string strSQL = string.Empty;
-            strSQL = "SELECT nomeTabela FROM Alimento";
-
-        }
 
         private void btnRecalcular_Click(object sender, EventArgs e)
         {
@@ -220,12 +238,12 @@ namespace TCC2
             {
                 if (txtAlimentoFiltro.Text != "")
                 {
-                    alimento.Buscar(dtgConAlimento, txtAlimentoFiltro.Text, cbxTabela.Text);
+                    alimentoDAO.Buscar(dtgConAlimento, txtAlimentoFiltro.Text, cbxTabela.Text);
                     return;
                 }
                 else
                 {
-                    alimento.Buscar(dtgConAlimento, "", cbxTabela.Text);
+                    alimentoDAO.Buscar(dtgConAlimento, "", cbxTabela.Text);
                     return;
                 }
             }
@@ -233,7 +251,7 @@ namespace TCC2
 
         private void tbAlimento_Enter(object sender, EventArgs e)
         {
-            CarregarTabelas();
+            //CarregarTabelas();
         }
 
         private void _btnImportar_Click(object sender, EventArgs e)
@@ -243,47 +261,25 @@ namespace TCC2
                 Interaction.MsgBox("Favor informar o nome da tabela que está sendo salvo!");
                 return;
             }
-            if (VerificarExisteTabela(txtNomeTabela.Text))
-            {
-                if (Interaction.MsgBox("Esta tabela já existe, Deseja apagar?", MsgBoxStyle.YesNo) == MsgBoxResult.Yes)
-                {
-                    ExcluirTabela(txtNomeTabela.Text);
-                }
-                return;
-            }
+            //if (VerificarExisteTabela(txtNomeTabela.Text))
+            //{
+            //    if (Interaction.MsgBox("Esta tabela já existe, Deseja apagar?", MsgBoxStyle.YesNo) == MsgBoxResult.Yes)
+            //    {
+            //        ExcluirTabela(txtNomeTabela.Text);
+            //    }
+            //    return;
+            //}
 
             pbCarregando.Visible = true;
             pbCarregando.Value = 0;
-
-            SQLiteCommand cmd;
-            cmd = new SQLiteCommand();
 
             try
             {
                 foreach (DataGridViewRow row in dtgDados.Rows)
                 {
-                    pbCarregando.PerformStep();
-                    string alimento = row.Cells["ALIMENTO"].Value.ToString();
-                    if (alimento.Contains("'"))
-                    {
-                        alimento.Replace("'", "''");
-                    }
-                    var qtde = row.Cells["PL"].Value.ToString();
-                    var proteina = row.Cells["Prot"].Value.ToString();
-                    var carboidrato = row.Cells["Carb"].Value.ToString();
-                    var lipidio = row.Cells["Lipidio"].Value.ToString();
-                    var Ca = row.Cells["Ca"].Value.ToString();
-                    var Fe = row.Cells["Fe"].Value.ToString();
-                    var B1 = row.Cells["B1"].Value.ToString();
-                    var B2 = row.Cells["B2"].Value.ToString();
-                    var vitC = row.Cells["C"].Value.ToString();
-                    var FibrTotal = row.Cells["FibrTot"].Value.ToString();
-                    string strSQL = $@"INSERT INTO Alimento (descAlimento, qtd, proteina, carboidrato, lipidio, calcio, ferro, vitB1, vitB2, vitC, fibraTtl, nomeTabela) 
-                                    VALUES ('{alimento}',{qtde.Replace(",", ".")},{proteina.Replace(",", ".")},{carboidrato.Replace(",", ".")},{lipidio.Replace(",", ".")},{Ca.Replace(",", ".")}
-                                    ,{Fe.Replace(",", ".")},{B1.Replace(",", ".")},{B2.Replace(",", ".")},{vitC.Replace(",", ".")},{FibrTotal.Replace(",", ".")}, '{txtNomeTabela.Text}')";
+                    
+
                 };
-
-
                 Interaction.MsgBox("Os dados foram Salvos", MsgBoxStyle.OkOnly, "SALVAR");
             }
             catch (Exception ex)
@@ -325,7 +321,7 @@ namespace TCC2
                     }
                     catch (Exception ex)
                     {
-                        //Interaction.MsgBox(ex.Message);
+                        Interaction.MsgBox(ex.Message);
                     }
 
                 }
@@ -422,7 +418,7 @@ namespace TCC2
 
         private void btnSearchPatient_Click_1(object sender, EventArgs e)
         {
-            paciente.Buscar(dtgDados, txtNome.Text);
+            pacienteDAO.Buscar(dtgDados, txtNome.Text);
         }
 
         private void limparCamposCadPaciente()
@@ -447,7 +443,7 @@ namespace TCC2
 
         private void txtNome_Leave(object sender, EventArgs e)
         {
-            paciente.Buscar(_dtgConsultaPacientes, _txtNomePaciente.Text);
+            pacienteDAO.Buscar(_dtgConsultaPacientes, _txtNomePaciente.Text);
         }
 
         private void btnSalvarCardapio_Click(object sender, EventArgs e)
@@ -462,7 +458,7 @@ namespace TCC2
         {
             if (!string.IsNullOrEmpty(txtCodPaciente.Text))
             {
-                paciente.Deletar(Conversions.ToInteger(txtCodPaciente.Text));
+                pacienteDAO.Deletar(Conversions.ToInteger(txtCodPaciente.Text));
                 limparCamposCadPaciente();
             }
             else
@@ -562,7 +558,7 @@ namespace TCC2
             }
 
 
-            if (usuario.VerificarExisteUsuario(txtUsuarioConfig.Text) == false)
+            if (usuarioDAO.VerificarExisteUsuario(txtUsuarioConfig.Text) == false)
             {
                 // usuario.CriarUsuario(txtUsuario.Text, txtSenha.Text, txtNome.Text, txtEmail.Text, cbxSituacao.Text, cbxTipoUsuario.Text);
             }
@@ -570,19 +566,19 @@ namespace TCC2
             {
                 if (Interaction.MsgBox("Você deseja alterar a senha do usuário?", MsgBoxStyle.YesNo, "ALTERAÇÃO DE SENHA") == MsgBoxResult.Yes)
                     alterarSenha = true;
-                usuario.AlterarUsuario(txtUsuarioConfig.Text, txtSenha.Text, txtNome.Text, txtEmail.Text, cbxSituacao.Text, cbxTipoUsuario.Text, alterarSenha);
+                usuarioDAO.AlterarUsuario(txtUsuarioConfig.Text, txtSenha.Text, txtNome.Text, txtEmail.Text, cbxSituacao.Text, cbxTipoUsuario.Text, alterarSenha);
 
             }
         }
         private void txtUsuarioConfig_Leave(object sender, EventArgs e)
         {
             if (txtUsuarioConfig.Text != "")
-                usuario.Buscar(txtUsuarioConfig.Text);
+                usuarioDAO.Buscar(txtUsuarioConfig.Text);
         }
         private void tbConfig_Enter(object sender, EventArgs e)
         {
             CriarColunas();
-            usuario.Buscar("");
+            usuarioDAO.Buscar("");
         }
         private void dtgUsuarios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -603,8 +599,9 @@ namespace TCC2
         {
             txtConfirmarSenha.PasswordChar = '*';
         }
+
+
         #endregion
 
-        
     }
 }

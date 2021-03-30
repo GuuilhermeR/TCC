@@ -67,6 +67,7 @@
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -79,6 +80,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Agenda.cs">
+      <DependentUpon>NutreasyEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AlimentoImportados.cs">
+      <DependentUpon>NutreasyEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Alimentos.cs">
       <DependentUpon>NutreasyEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="BancoDadosSingleton.cs" />

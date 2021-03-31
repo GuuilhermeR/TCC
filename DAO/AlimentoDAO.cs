@@ -41,6 +41,30 @@ namespace ProjetoTCC
 
         }
 
+        public void Update(int codAlimento, string alimento, decimal qtd, decimal kCal, decimal proteina, decimal carboidrato, decimal lipidio)
+        {
+            try
+            {
+                var aliUpdate = (from ali in BancoDadosSingleton.Instance.Alimentos where ali.codAlimento == codAlimento select ali).Single();
+
+                aliUpdate.nomeAlimento = alimento;
+                aliUpdate.qtd = qtd;
+                aliUpdate.kcal = kCal;
+                aliUpdate.prot = proteina;
+                aliUpdate.carbo = carboidrato;
+                aliUpdate.lipidio = lipidio;
+
+                BancoDadosSingleton.Instance.Alimentos.Add(aliUpdate);
+                BancoDadosSingleton.Instance.SaveChanges();
+
+            }
+            catch (Exception ex)
+            {
+                Interaction.MsgBox("Ocorreu um erro ao salvar o Alimento." + '\n' + ex.Message + '\n' + ex.InnerException, Constants.vbOKOnly, "Alerta");
+
+            }
+
+        }
         public bool VerificarAlimento(string alimentoVerificar)
         {
             var alimentoRetorno = "";
@@ -65,29 +89,50 @@ namespace ProjetoTCC
         public void Deletar(int codAlimento)
         {
 
-            string strSQL = string.Empty;
-            try
+            using (var db = new NutreasyEntities())
             {
-                strSQL = $"DELETE FROM Alimento WHERE codAlimento = {codAlimento}";
-
-                Interaction.MsgBox("O Alimento foi excluído!", Constants.vbInformation, "Atenção!");
+                var delete = db.Database.Connection.CreateCommand();
+                delete.CommandText = $"DELETE FROM Alimento WHERE codAlimento IN ({codAlimento})";
+                db.Database.Connection.Open();
+                delete.ExecuteNonQuery();
+                db.Database.Connection.Close();
             }
-            catch (Exception ex)
-            {
-                Interaction.MsgBox("Ocorreu um erro ao excluir o Alimento." + '\n' + ex.Message, Constants.vbOKOnly, "Alerta");
-            }
-
 
         }
 
-        public void Buscar(DataGridView dtgDados, string nomeAlimento, string nomeTabela)
+        public List<Alimentos> Buscar (string nomeAlimento, string nomeTabela)
         {
-            string strSQL = string.Empty;
-            strSQL = "SELECT codigo, nome, cpf, medidaCaseira, kCal, proteina, carboidrato, lipidio, calcio, ferro, vitC FROM Alimento\n";
-            strSQL += $"WHERE nomeTabela = '{nomeTabela}' \n";
-            if (nomeAlimento != "")
-                strSQL += $"AND nome LIKE '%{nomeAlimento}%'";
+            try
+            {
+                List<Alimentos> agenda = new List<Alimentos>();
+                if (nomeAlimento == "") {
+                    agenda = (from a in BancoDadosSingleton.Instance.Alimentos where a.nomeTabela == nomeTabela select a).ToList();
+                }
+                else
+                {
+                    agenda = (from a in BancoDadosSingleton.Instance.Alimentos where a.nomeAlimento == nomeAlimento && a.nomeTabela == nomeTabela select a).ToList();
+                }
+                return agenda;
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
+        public List<Alimentos> BuscarTabelas()
+        {
+            List<Alimentos> teste= new List<Alimentos>();
+            try
+            {
+                var agenda = ((from a in BancoDadosSingleton.Instance.Alimentos select a).Distinct()).ToList();
+                teste = agenda;
+                return teste;
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }

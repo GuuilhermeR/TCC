@@ -30,7 +30,7 @@ namespace TCC2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenuPrincipal));
             this.TabControlNutreasy = new MaterialSkin.Controls.MaterialTabControl();
             this.tabMenu = new System.Windows.Forms.TabPage();
@@ -298,14 +298,14 @@ namespace TCC2
             this.atendido,
             this.retorno,
             this.ID});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgAgenda.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgAgenda.DefaultCellStyle = dataGridViewCellStyle6;
             this.dtgAgenda.Location = new System.Drawing.Point(8, 71);
             this.dtgAgenda.Margin = new System.Windows.Forms.Padding(4);
             this.dtgAgenda.Name = "dtgAgenda";
@@ -388,6 +388,7 @@ namespace TCC2
             this.tabAlimento.TabIndex = 2;
             this.tabAlimento.Text = "Alimento";
             this.tabAlimento.UseVisualStyleBackColor = true;
+            this.tabAlimento.Enter += new System.EventHandler(this.tabAlimento_Enter);
             // 
             // tbAlimento
             // 
@@ -433,7 +434,7 @@ namespace TCC2
             this.btnRecalcular.Margin = new System.Windows.Forms.Padding(4);
             this.btnRecalcular.Name = "btnRecalcular";
             this.btnRecalcular.Size = new System.Drawing.Size(119, 37);
-            this.btnRecalcular.TabIndex = 54;
+            this.btnRecalcular.TabIndex = 3;
             this.btnRecalcular.Text = "Recalcular";
             this.btnRecalcular.UseVisualStyleBackColor = true;
             this.btnRecalcular.Click += new System.EventHandler(this.btnRecalcular_Click);
@@ -467,9 +468,10 @@ namespace TCC2
             this.btnExcluirAlimento.Margin = new System.Windows.Forms.Padding(4);
             this.btnExcluirAlimento.Name = "btnExcluirAlimento";
             this.btnExcluirAlimento.Size = new System.Drawing.Size(119, 37);
-            this.btnExcluirAlimento.TabIndex = 51;
+            this.btnExcluirAlimento.TabIndex = 5;
             this.btnExcluirAlimento.Text = "Excluir";
             this.btnExcluirAlimento.UseVisualStyleBackColor = true;
+            this.btnExcluirAlimento.Click += new System.EventHandler(this.btnExcluirAlimento_Click);
             // 
             // btnSalvarAlimento
             // 
@@ -480,9 +482,10 @@ namespace TCC2
             this.btnSalvarAlimento.Margin = new System.Windows.Forms.Padding(4);
             this.btnSalvarAlimento.Name = "btnSalvarAlimento";
             this.btnSalvarAlimento.Size = new System.Drawing.Size(119, 37);
-            this.btnSalvarAlimento.TabIndex = 50;
+            this.btnSalvarAlimento.TabIndex = 4;
             this.btnSalvarAlimento.Text = "Salvar";
             this.btnSalvarAlimento.UseVisualStyleBackColor = true;
+            this.btnSalvarAlimento.Click += new System.EventHandler(this.btnSalvarAlimento_Click);
             // 
             // cbxTabela
             // 
@@ -491,7 +494,7 @@ namespace TCC2
             this.cbxTabela.Margin = new System.Windows.Forms.Padding(4);
             this.cbxTabela.Name = "cbxTabela";
             this.cbxTabela.Size = new System.Drawing.Size(583, 24);
-            this.cbxTabela.TabIndex = 5;
+            this.cbxTabela.TabIndex = 0;
             // 
             // label7
             // 
@@ -508,7 +511,7 @@ namespace TCC2
             this.txtAlimentoFiltro.Margin = new System.Windows.Forms.Padding(4);
             this.txtAlimentoFiltro.Name = "txtAlimentoFiltro";
             this.txtAlimentoFiltro.Size = new System.Drawing.Size(583, 22);
-            this.txtAlimentoFiltro.TabIndex = 3;
+            this.txtAlimentoFiltro.TabIndex = 1;
             this.txtAlimentoFiltro.Leave += new System.EventHandler(this.txtAlimentoFiltro_Leave);
             // 
             // lblTabela
@@ -532,7 +535,7 @@ namespace TCC2
             this.dtgConAlimento.Name = "dtgConAlimento";
             this.dtgConAlimento.RowHeadersWidth = 51;
             this.dtgConAlimento.Size = new System.Drawing.Size(1252, 668);
-            this.dtgConAlimento.TabIndex = 0;
+            this.dtgConAlimento.TabIndex = 2;
             // 
             // tbImportarPlanilha
             // 

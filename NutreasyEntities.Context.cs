@@ -26,8 +26,7 @@ namespace TCC2
         }
     
         public virtual DbSet<Agenda> Agenda { get; set; }
-        public virtual DbSet<Login> Login { get; set; }
-        public virtual DbSet<AlimentoImportados> AlimentoImportados { get; set; }
         public virtual DbSet<Alimentos> Alimentos { get; set; }
+        public virtual DbSet<Login> Login { get; set; }
     }
 }

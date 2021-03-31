@@ -63,6 +63,16 @@ namespace TCC2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap CarregarLoading {
+            get {
+                object obj = ResourceManager.GetObject("CarregarLoading", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap consultar {
             get {
                 object obj = ResourceManager.GetObject("consultar", resourceCulture);
@@ -86,6 +96,16 @@ namespace TCC2.Properties {
         internal static System.Drawing.Bitmap iconTCC_removebg_preview__1____Copia {
             get {
                 object obj = ResourceManager.GetObject("iconTCC-removebg-preview (1) - Copia", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap loading__1___4_ {
+            get {
+                object obj = ResourceManager.GetObject("loading (1) (4)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

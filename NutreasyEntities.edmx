@@ -16,26 +16,18 @@
           <Property Name="atendido" Type="bit" />
           <Property Name="hora" Type="varchar" MaxLength="2147483647" />
         </EntityType>
-        <EntityType Name="AlimentoImportados">
-          <Key>
-            <PropertyRef Name="codTabelaImportada" />
-          </Key>
-          <Property Name="codTabelaImportada" Type="integer" Nullable="false" />
-          <Property Name="nomeTabelaImportada" Type="varchar" MaxLength="2147483647" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6005: The data type '' is currently not supported for the target Entity Framework version; the column 'codAlimentoImportado' in the table 'main.Alimentos' was excluded.-->
         <EntityType Name="Alimentos">
           <Key>
             <PropertyRef Name="codAlimento" />
           </Key>
-          <Property Name="codAlimento" Type="integer" Nullable="false" />
+          <Property Name="codAlimento" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nomeAlimento" Type="varchar" MaxLength="2147483647" />
           <Property Name="qtd" Type="decimal" Precision="53" Scale="0" />
           <Property Name="kcal" Type="decimal" Precision="53" Scale="0" />
           <Property Name="prot" Type="decimal" Precision="53" Scale="0" />
           <Property Name="carbo" Type="decimal" Precision="53" Scale="0" />
           <Property Name="lipidio" Type="decimal" Precision="53" Scale="0" />
+          <Property Name="nomeTabela" Type="varchar" MaxLength="2147483647" />
         </EntityType>
         <EntityType Name="Login">
           <Key>
@@ -48,15 +40,8 @@ warning 6005: The data type '' is currently not supported for the target Entity 
           <Property Name="email" Type="varchar" MaxLength="2147483647" />
           <Property Name="perfil" Type="varchar" MaxLength="2147483647" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6007: The association between 'AlimentoImportados' and 'Alimentos' will not be created because the key column 'AlimentoImportados.codAlimentoImportado' was not found to be part of the table definition (see previous warnings).
-        <Association Name="FK_Alimentos_0_0">
-          <End Role="AlimentoImportados" Type="Self.AlimentoImportados" Multiplicity="1" />
-          <End Role="Alimentos" Type="Self.Alimentos" Multiplicity="*" />
-        </Association>-->
         <EntityContainer Name="NutreasyModelStoreContainer">
           <EntitySet Name="Agenda" EntityType="Self.Agenda" store:Type="Tables" />
-          <EntitySet Name="AlimentoImportados" EntityType="Self.AlimentoImportados" store:Type="Tables" />
           <EntitySet Name="Alimentos" EntityType="Self.Alimentos" store:Type="Tables" />
           <EntitySet Name="Login" EntityType="Self.Login" store:Type="Tables" />
         </EntityContainer>
@@ -70,10 +55,23 @@ warning 6007: The association between 'AlimentoImportados' and 'Alimentos' will 
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="paciente" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="data" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <Property Name="retorno" Type="Boolean" />
           <Property Name="atendido" Type="Boolean" />
-          <Property Name="data" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <Property Name="hora" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Alimentos">
+          <Key>
+            <PropertyRef Name="codAlimento" />
+          </Key>
+          <Property Name="codAlimento" Type="Int64" Nullable="false" />
+          <Property Name="nomeAlimento" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="qtd" Type="Decimal" Precision="53" Scale="0" />
+          <Property Name="kcal" Type="Decimal" Precision="53" Scale="0" />
+          <Property Name="prot" Type="Decimal" Precision="53" Scale="0" />
+          <Property Name="carbo" Type="Decimal" Precision="53" Scale="0" />
+          <Property Name="lipidio" Type="Decimal" Precision="53" Scale="0" />
+          <Property Name="nomeTabela" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Login">
           <Key>
@@ -88,29 +86,9 @@ warning 6007: The association between 'AlimentoImportados' and 'Alimentos' will 
         </EntityType>
         <EntityContainer Name="NutreasyEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Agenda" EntityType="Self.Agenda" />
+          <EntitySet Name="Alimentos" EntityType="Self.Alimentos" />
           <EntitySet Name="Login" EntityType="Self.Login" />
-          <EntitySet Name="AlimentoImportados" EntityType="NutreasyModel.AlimentoImportados" />
-          <EntitySet Name="Alimentos" EntityType="NutreasyModel.Alimentos" />
         </EntityContainer>
-        <EntityType Name="AlimentoImportados">
-          <Key>
-            <PropertyRef Name="codTabelaImportada" />
-          </Key>
-          <Property Name="codTabelaImportada" Type="Int64" Nullable="false" />
-          <Property Name="nomeTabelaImportada" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="Alimentos">
-          <Key>
-            <PropertyRef Name="codAlimento" />
-          </Key>
-          <Property Name="codAlimento" Type="Int64" Nullable="false" />
-          <Property Name="nomeAlimento" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
-          <Property Name="qtd" Type="Decimal" Precision="53" Scale="0" />
-          <Property Name="kcal" Type="Decimal" Precision="53" Scale="0" />
-          <Property Name="prot" Type="Decimal" Precision="53" Scale="0" />
-          <Property Name="carbo" Type="Decimal" Precision="53" Scale="0" />
-          <Property Name="lipidio" Type="Decimal" Precision="53" Scale="0" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -120,12 +98,26 @@ warning 6007: The association between 'AlimentoImportados' and 'Alimentos' will 
           <EntitySetMapping Name="Agenda">
             <EntityTypeMapping TypeName="NutreasyModel.Agenda">
               <MappingFragment StoreEntitySet="Agenda">
-                <ScalarProperty Name="hora" ColumnName="hora" />
-                <ScalarProperty Name="data" ColumnName="data" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="paciente" ColumnName="paciente" />
+                <ScalarProperty Name="data" ColumnName="data" />
                 <ScalarProperty Name="retorno" ColumnName="retorno" />
                 <ScalarProperty Name="atendido" ColumnName="atendido" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Alimentos">
+            <EntityTypeMapping TypeName="NutreasyModel.Alimentos">
+              <MappingFragment StoreEntitySet="Alimentos">
+                <ScalarProperty Name="nomeTabela" ColumnName="nomeTabela" />
+                <ScalarProperty Name="codAlimento" ColumnName="codAlimento" />
+                <ScalarProperty Name="nomeAlimento" ColumnName="nomeAlimento" />
+                <ScalarProperty Name="qtd" ColumnName="qtd" />
+                <ScalarProperty Name="kcal" ColumnName="kcal" />
+                <ScalarProperty Name="prot" ColumnName="prot" />
+                <ScalarProperty Name="carbo" ColumnName="carbo" />
+                <ScalarProperty Name="lipidio" ColumnName="lipidio" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -138,27 +130,6 @@ warning 6007: The association between 'AlimentoImportados' and 'Alimentos' will 
                 <ScalarProperty Name="situacao" ColumnName="situacao" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="perfil" ColumnName="perfil" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AlimentoImportados">
-            <EntityTypeMapping TypeName="NutreasyModel.AlimentoImportados">
-              <MappingFragment StoreEntitySet="AlimentoImportados">
-                <ScalarProperty Name="nomeTabelaImportada" ColumnName="nomeTabelaImportada" />
-                <ScalarProperty Name="codTabelaImportada" ColumnName="codTabelaImportada" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Alimentos">
-            <EntityTypeMapping TypeName="NutreasyModel.Alimentos">
-              <MappingFragment StoreEntitySet="Alimentos">
-                <ScalarProperty Name="lipidio" ColumnName="lipidio" />
-                <ScalarProperty Name="carbo" ColumnName="carbo" />
-                <ScalarProperty Name="prot" ColumnName="prot" />
-                <ScalarProperty Name="kcal" ColumnName="kcal" />
-                <ScalarProperty Name="qtd" ColumnName="qtd" />
-                <ScalarProperty Name="nomeAlimento" ColumnName="nomeAlimento" />
-                <ScalarProperty Name="codAlimento" ColumnName="codAlimento" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

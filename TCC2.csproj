@@ -52,6 +52,9 @@
       <HintPath>packages\MaterialSkin.2.2.1.4\lib\net461\MaterialSkin.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="MvtWindowsForms">
+      <HintPath>..\..\..\..\MovtechFontes\MvtComponentsNew\MovtechDLL2015\MvtWindowsForms.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -80,9 +83,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Agenda.cs">
-      <DependentUpon>NutreasyEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AlimentoImportados.cs">
       <DependentUpon>NutreasyEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Alimentos.cs">
@@ -133,14 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EntityDeploy Include="NutreasyEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>NutreasyEntities.Designer.cs</LastGenOutput>
@@ -153,6 +148,11 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -178,6 +178,7 @@
     <Content Include="Resources\baixados-removebg-preview %281%29.png" />
     <Content Include="Resources\baixados-removebg-preview.png" />
     <Content Include="Resources\calculadora.png" />
+    <None Include="Resources\CarregarLoading.gif" />
     <Content Include="Resources\consultar.png" />
     <Content Include="Resources\consultar1.png" />
     <None Include="Resources\DeleteRed1.png" />
@@ -186,6 +187,8 @@
     <Content Include="Resources\DeleteRed.png" />
     <Content Include="Resources\iconTCC-removebg-preview %281%29 - Copia.png" />
     <Content Include="Resources\kisspng-computer-icons-meal-food-meal-icon-5b3cb405517002.9542126315307049013336-removebg-preview.png" />
+    <None Include="Resources\loading %281%29.gif" />
+    <None Include="Resources\loading %281%29 %284%29.gif" />
     <Content Include="Resources\mvtSaveGreen-16.png" />
     <None Include="Resources\mvtSaveGreen-161.png" />
     <Content Include="Resources\tools %283%29.png" />

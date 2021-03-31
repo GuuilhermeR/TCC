@@ -16,9 +16,9 @@ namespace TCC2
     {
         public long ID { get; set; }
         public string paciente { get; set; }
+        public string data { get; set; }
         public Nullable<bool> retorno { get; set; }
         public Nullable<bool> atendido { get; set; }
-        public string data { get; set; }
         public string hora { get; set; }
     }
 }

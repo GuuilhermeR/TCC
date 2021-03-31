@@ -258,7 +258,17 @@ namespace TCC2
         {
             if (string.IsNullOrEmpty(txtNomeTabela.Text))
             {
-                Interaction.MsgBox("Favor informar o nome da tabela que está sendo salvo!");
+                Interaction.MsgBox("Favor informar o nome da tabela que está sendo salvo.");
+                return;
+            }
+            if (string.IsNullOrEmpty(txtCaminhoArquivoExcel.Text))
+            {
+                Interaction.MsgBox("Favor informar o caminho do arquivo.");
+                return;
+            }
+            if (string.IsNullOrEmpty(_cbxNomePlanilha.Text))
+            {
+                Interaction.MsgBox("Favor informar a planilha a ser salva.");
                 return;
             }
             //if (VerificarExisteTabela(txtNomeTabela.Text))
@@ -269,32 +279,31 @@ namespace TCC2
             //    }
             //    return;
             //}
-
-            pbCarregando.Visible = true;
-            pbCarregando.Value = 0;
-
+            
             try
             {
                 foreach (DataGridViewRow row in dtgDados.Rows)
                 {
-                    
+                    decimal qtd = Convert.ToDecimal(row.Cells["Qtd"].Value);
+                    decimal kcal = Convert.ToDecimal(row.Cells["kcal"].Value);
+                    decimal Prot = Convert.ToDecimal(row.Cells["Prot"].Value);
+                    decimal Carb = Convert.ToDecimal(row.Cells["Carb"].Value);
+                    decimal Lipidios = Convert.ToDecimal(row.Cells["Lipidios"].Value);
 
+                    alimentoDAO.Salvar(Convert.ToString(row.Cells["Alimento"].Value), qtd, kcal, Prot, Carb, Lipidios, Convert.ToString(row.Cells["REF"].Value));
                 };
                 Interaction.MsgBox("Os dados foram Salvos", MsgBoxStyle.OkOnly, "SALVAR");
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("Ocorreu um erro:" + Environment.NewLine + ex.Message, MsgBoxStyle.Critical, "ERRO AO SALVAR");
-
+                Interaction.MsgBox("Ocorreu um erro:" + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException, MsgBoxStyle.Critical, "ERRO AO SALVAR");
             }
 
-            pbCarregando.Value = 0;
-            pbCarregando.Visible = false;
         }
 
         private void _cbxNomePlanilha_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var dt = tables[_cbxNomePlanilha.SelectedItem.ToString()];
+            var dt = tables[_cbxNomePlanilha.SelectedItem.ToString().Replace(",",".")];
             dtgDados.DataSource = dt;
         }
 

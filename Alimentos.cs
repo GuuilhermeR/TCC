@@ -21,5 +21,6 @@ namespace TCC2
         public Nullable<decimal> prot { get; set; }
         public Nullable<decimal> carbo { get; set; }
         public Nullable<decimal> lipidio { get; set; }
+        public string nomeTabela { get; set; }
     }
 }

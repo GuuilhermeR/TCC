@@ -175,6 +175,7 @@
     </Content>
     <Content Include="Resources\2355300-removebg-preview %283%29.png" />
     <Content Include="Resources\5-Icon-Branco.png" />
+    <None Include="Resources\Adicionar.png" />
     <Content Include="Resources\baixados-removebg-preview %281%29.png" />
     <Content Include="Resources\baixados-removebg-preview.png" />
     <Content Include="Resources\calculadora.png" />
@@ -191,6 +192,7 @@
     <None Include="Resources\loading %281%29 %284%29.gif" />
     <Content Include="Resources\mvtSaveGreen-16.png" />
     <None Include="Resources\mvtSaveGreen-161.png" />
+    <None Include="Resources\no-icon-png-6.jpg" />
     <Content Include="Resources\tools %283%29.png" />
   </ItemGroup>
   <ItemGroup>

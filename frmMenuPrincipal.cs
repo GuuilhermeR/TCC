@@ -25,6 +25,7 @@ namespace TCC2
         public AgendaDAO agendaDAO = new AgendaDAO();
         private DataTableCollection tables;
         List<string> deletar = new List<string>();
+        List<string> deletarAlimento = new List<string>();
 
         #region Menu
         public frmMenuPrincipal(string usuarioLogado)
@@ -46,7 +47,8 @@ namespace TCC2
             {
                 lblUsuario.Text = $"Seja bem vindo(a) ao sistema {usuarioDAO.getNomeUsuario()}";
                 lblUsuario.Visible = true;
-            } else
+            }
+            else
             {
                 lblUsuario.Text = $"Seja bem vindo(a) ao sistema Guilherme Rüdiger";
                 lblUsuario.Visible = true;
@@ -57,11 +59,11 @@ namespace TCC2
         {
             //var ConsultasMarcada = this.agendaDAO.CarregarAgenda(DateAndTime.Now.ToString("dd/MM/yyyy"), DateAndTime.Now.AddHours(1).ToString("HH:00"));
 
-           // if( ConsultasMarcada != null)
-           // ConsultasMarcada.ForEach(x =>
-           //{
-           //    MessageBox.Show($"Você tem hora marcada com {x.paciente} às {x.hora}");
-           //});
+            // if( ConsultasMarcada != null)
+            // ConsultasMarcada.ForEach(x =>
+            //{
+            //    MessageBox.Show($"Você tem hora marcada com {x.paciente} às {x.hora}");
+            //});
 
         }
 
@@ -141,7 +143,7 @@ namespace TCC2
         private void CriarHorariosPadrao()
         {
             dtgAgenda.Rows.Clear();
-            for (int i = 7; i <= 19; i++)
+            for (int i = 7; i <= 21; i++)
             {
                 dtgAgenda.Rows.Add(i + ":00");
             }
@@ -151,7 +153,7 @@ namespace TCC2
         {
             dtgAgenda.AutoResizeColumns();
 
-            if (dtgAgenda.Rows[e.RowIndex].Cells["nomePaciente"].Value.ToString() == "")
+            if (dtgAgenda.Rows[e.RowIndex].Cells["nomePaciente"].Value.ToString() == "" || dtgAgenda.Rows[e.RowIndex].Cells["nomePaciente"].Value.ToString() != null)
                 dtgAgenda.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
 
             dtgAgenda.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Tomato;
@@ -159,20 +161,22 @@ namespace TCC2
 
         private void btnSalvarAgenda_Click(object sender, EventArgs e)
         {
-            int result = DateTime.Compare(Convert.ToDateTime(lblDataAtual.Text), DateTime.Now);
-
-            if (result != -1)
-            {
-                MessageBox.Show(this, "Não é possível agendar consulta em datas passadas!", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                LoadAgenda();
-                return;
-            }
             foreach (DataGridViewRow row in dtgAgenda.Rows)
             {
                 bool atendido = true;
                 bool retorno = true;
+
                 if (row.DefaultCellStyle.BackColor == Color.Tomato)
                 {
+                    int result = DateTime.Compare(Convert.ToDateTime(DateTime.Now.ToString("dd/MM/yyyy HH:mm")), Convert.ToDateTime(lblDataAtual.Text + ' ' + row.Cells["horario"].Value));
+
+                    if (result == 1)
+                    {
+                        MessageBox.Show(this, $"Não é possível agendar consulta para: '{row.Cells["nomePaciente"].Value.ToString().ToUpper()}' em uma data/hora que passou!", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        tabAgenda_Enter(sender, e);
+                        return;
+                    }
+
                     if (row.Cells["atendido"].Value == null)
                     {
                         atendido = false;
@@ -188,12 +192,14 @@ namespace TCC2
                         atendido,
                         retorno);
                 }
+
             }
             if (deletar.Count > 0)
             {
                 agendaDAO.DeletarPacienteAgenda(deletar);
             }
-            LoadAgenda();
+            dtgAgenda.Rows.Clear();
+            tabAgenda_Enter(sender, e);
         }
 
         private void dtgAgenda_KeyDown(object sender, KeyEventArgs e)
@@ -212,42 +218,57 @@ namespace TCC2
 
         private void btnRecalcular_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dtgConAlimento.Rows)
+            if (dtgConAlimento.Rows.Count > 0)
             {
-                double ProteinaGramas;
-                double ProteinaKcal;
-                ProteinaGramas = Conversions.ToDouble(Operators.DivideObject(Operators.MultiplyObject(row.Cells["qtde"].Value, row.Cells["proteina"].Value), row.Cells["qtde"].Value));
-                ProteinaKcal = ProteinaGramas * 4d;
-                row.Cells["proteina"].Value = ProteinaGramas.ToString("N2");
+                foreach (DataGridViewRow row in dtgConAlimento.Rows)
+                {
+                    double ProteinaKcal = 0;
+                    double CarboidratoKcal = 0;
+                    double LipidioKcal = 0;
 
-                double CarboidratoGramas;
-                double CarboidratoKcal;
-                CarboidratoGramas = Conversions.ToDouble(Operators.DivideObject(Operators.MultiplyObject(row.Cells["qtde"].Value, row.Cells["carboidrato"].Value), row.Cells["qtde"].Value));
-                CarboidratoKcal = CarboidratoGramas * 4d;
-                row.Cells["carboidrato"].Value = CarboidratoGramas.ToString("N2");
+                    if (row.Cells["prot"].Value.ToString() != "")
+                    {
+                        double ProteinaGramas = 0;
+                        ProteinaGramas = Conversions.ToDouble(Operators.DivideObject(Operators.MultiplyObject(row.Cells["qtd"].Value, row.Cells["prot"].Value), row.Cells["qtd"].Value));
+                        ProteinaKcal = ProteinaGramas * 4d;
+                        row.Cells["prot"].Value = ProteinaGramas.ToString("N2");
+                    }
 
-                double LipidioGramas;
-                double LipidioKcal;
-                LipidioGramas = Conversions.ToDouble(Operators.DivideObject(Operators.MultiplyObject(row.Cells["qtde"].Value, row.Cells["lipidio"].Value), row.Cells["qtde"].Value));
-                LipidioKcal = LipidioGramas * 9d;
-                row.Cells["lipidio"].Value = LipidioGramas.ToString("N2");
+                    if (row.Cells["carbo"].Value.ToString() != "")
+                    {
+                        double CarboidratoGramas = 0;
+                        CarboidratoGramas = Conversions.ToDouble(Operators.DivideObject(Operators.MultiplyObject(row.Cells["qtd"].Value, row.Cells["carbo"].Value), row.Cells["qtd"].Value));
+                        CarboidratoKcal = CarboidratoGramas * 4d;
+                        row.Cells["carbo"].Value = CarboidratoGramas.ToString("N2");
+                    }
 
-                double somaTotalCaloria;
-                somaTotalCaloria = ProteinaKcal + CarboidratoKcal + LipidioKcal;
+                    if (row.Cells["lipidio"].Value.ToString() != "")
+                    {
+                        double LipidioGramas = 0;
+                        LipidioGramas = Conversions.ToDouble(Operators.DivideObject(Operators.MultiplyObject(row.Cells["qtd"].Value, row.Cells["lipidio"].Value), row.Cells["qtd"].Value));
+                        LipidioKcal = LipidioGramas * 9d;
+                        row.Cells["lipidio"].Value = LipidioGramas.ToString("N2");
+                    }
 
-                row.Cells["kcal"].Value = somaTotalCaloria.ToString("N2");
+                    double somaTotalCaloria = ProteinaKcal + CarboidratoKcal + LipidioKcal;
+                    row.Cells["kcal"].Value = somaTotalCaloria.ToString("N2");
 
-                double calcio;
-                calcio = Conversions.ToDouble(Operators.MultiplyObject(row.Cells["calcio"].Value, row.Cells["qtde"].Value));
-                row.Cells["calcio"].Value = calcio.ToString("N2");
+                    //double calcio;
+                    //calcio = Conversions.ToDouble(Operators.MultiplyObject(row.Cells["calcio"].Value, row.Cells["qtd"].Value));
+                    //row.Cells["calcio"].Value = calcio.ToString("N2");
 
-                double ferro;
-                ferro = Conversions.ToDouble(Operators.MultiplyObject(row.Cells["ferro"].Value, row.Cells["qtde"].Value));
-                row.Cells["ferro"].Value = ferro.ToString("N2");
+                    //double ferro;
+                    //ferro = Conversions.ToDouble(Operators.MultiplyObject(row.Cells["ferro"].Value, row.Cells["qtd"].Value));
+                    //row.Cells["ferro"].Value = ferro.ToString("N2");
 
-                double VitaminaC;
-                VitaminaC = Conversions.ToDouble(Operators.MultiplyObject(row.Cells["vitC"].Value, row.Cells["qtde"].Value));
-                row.Cells["vitC"].Value = VitaminaC.ToString("N2");
+                    //double VitaminaC;
+                    //VitaminaC = Conversions.ToDouble(Operators.MultiplyObject(row.Cells["vitC"].Value, row.Cells["qtd"].Value));
+                    //row.Cells["vitC"].Value = VitaminaC.ToString("N2");
+                }
+            }
+            else
+            {
+                MessageBox.Show(this, "Não foram encontrados itens para recalcular.");
             }
         }
 
@@ -255,10 +276,17 @@ namespace TCC2
         {
             if (cbxTabela.Text != "")
             {
-                dtgConAlimento.Rows.Clear();
+                dtgConAlimento.DataSource = null;
                 var teste = alimentoDAO.Buscar(txtAlimentoFiltro.Text, cbxTabela.Text);
                 DataTable dt = ConvertToDataTable(teste);
                 dtgConAlimento.DataSource = dt;
+                dtgConAlimento.Columns["codAlimento"].Visible = false;
+                dtgConAlimento.Columns["nomeAlimento"].HeaderText = "Alimento";
+                dtgConAlimento.Columns["qtd"].HeaderText = "Qtde";
+                dtgConAlimento.Columns["prot"].HeaderText = "Proteína";
+                dtgConAlimento.Columns["carbo"].HeaderText = "Carboidrato";
+                dtgConAlimento.Columns["lipidio"].HeaderText = "Lipídio";
+                dtgConAlimento.Columns["nomeTabela"].HeaderText = "Tabela";
                 return;
             }
         }
@@ -285,15 +313,7 @@ namespace TCC2
                 Interaction.MsgBox("Favor informar a planilha a ser salva.");
                 return;
             }
-            //if (VerificarExisteTabela(txtNomeTabela.Text))
-            //{
-            //    if (Interaction.MsgBox("Esta tabela já existe, Deseja apagar?", MsgBoxStyle.YesNo) == MsgBoxResult.Yes)
-            //    {
-            //        ExcluirTabela(txtNomeTabela.Text);
-            //    }
-            //    return;
-            //}
-            
+
             try
             {
                 foreach (DataGridViewRow row in dtgDados.Rows)
@@ -312,12 +332,11 @@ namespace TCC2
             {
                 Interaction.MsgBox("Ocorreu um erro:" + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException, MsgBoxStyle.Critical, "ERRO AO SALVAR");
             }
-
         }
 
         private void _cbxNomePlanilha_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var dt = tables[_cbxNomePlanilha.SelectedItem.ToString().Replace(",",".")];
+            var dt = tables[_cbxNomePlanilha.SelectedItem.ToString().Replace(",", ".")];
             dtgDados.DataSource = dt;
         }
 
@@ -344,9 +363,8 @@ namespace TCC2
                     }
                     catch (Exception ex)
                     {
-                        Interaction.MsgBox(ex.Message);
+                        Interaction.MsgBox("Ocorreu um erro:" + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException, MsgBoxStyle.Critical, "ERRO AO SALVAR");
                     }
-
                 }
             }
         }
@@ -357,32 +375,58 @@ namespace TCC2
             tabela = (alimentoDAO.BuscarTabelas());
             tabela.ForEach(x =>
             {
-                if(!cbxTabela.Items.Contains(x.nomeTabela))
-                cbxTabela.Items.Add(x.nomeTabela);
+                if (!cbxTabela.Items.Contains(x.nomeTabela))
+                    cbxTabela.Items.Add(x.nomeTabela);
             });
             return;
         }
+
         private void btnSalvarAlimento_Click(object sender, EventArgs e)
         {
-            foreach(DataGridViewRow row in dtgConAlimento.Rows)
+            foreach (DataGridViewRow row in dtgConAlimento.Rows)
             {
-                if(Convert.ToInt32(row.Cells["codAlimento"].Value) != 0)
+                if (row.DefaultCellStyle.BackColor == Color.Tomato)
                 {
                     alimentoDAO.Salvar(row.Cells["nomeAlimento"].Value.ToString(), Convert.ToDecimal(row.Cells["qtd"].Value), Convert.ToDecimal(row.Cells["kcal"].Value)
                                    , Convert.ToDecimal(row.Cells["prot"].Value), Convert.ToDecimal(row.Cells["carbo"].Value), Convert.ToDecimal(row.Cells["lipidio"].Value), cbxTabela.Text.ToString());
                 }
-                else
+                else if (row.DefaultCellStyle.BackColor == Color.LightSalmon)
                 {
                     alimentoDAO.Update(Convert.ToInt16(row.Cells["codAlimento"].Value), row.Cells["nomeAlimento"].Value.ToString(), Convert.ToDecimal(row.Cells["qtd"].Value),
                         Convert.ToDecimal(row.Cells["kcal"].Value), Convert.ToDecimal(row.Cells["prot"].Value), Convert.ToDecimal(row.Cells["carbo"].Value), Convert.ToDecimal(row.Cells["lipidio"].Value));
                 }
             }
+
+            if (deletarAlimento != null || deletarAlimento.Count > 0)
+                deletarAlimento.ForEach(x =>
+                {
+                    alimentoDAO.Deletar(Convert.ToDouble(x));
+                });
         }
-        private void btnExcluirAlimento_Click(object sender, EventArgs e)
+
+        private void dtgConAlimento_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            foreach (DataGridViewRow row in dtgConAlimento.Rows)
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
-                alimentoDAO.Deletar(Convert.ToInt32(row.Cells["codAlimento"].Value));
+                if (dtgConAlimento.CurrentRow.Cells["codAlimento"].Value.ToString() != "")
+                {
+                    dtgConAlimento.CurrentRow.DefaultCellStyle.BackColor = Color.LightSalmon;
+                }
+                else
+                {
+                    dtgConAlimento.CurrentRow.DefaultCellStyle.BackColor = Color.Tomato;
+                }
+            }
+        }
+
+        private void dtgConAlimento_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == (char)Keys.Delete)
+            {
+                if (dtgConAlimento.CurrentRow.Cells["codAlimento"].Value.ToString() != "")
+                {
+                    deletarAlimento.Add(dtgConAlimento.CurrentRow.Cells["codAlimento"].Value.ToString());
+                }
             }
         }
         #endregion
@@ -401,7 +445,7 @@ namespace TCC2
 
             if (ChecaServidor.StatusCode != HttpStatusCode.OK)
             {
-                MessageBox.Show("Servidor indisponível");
+                MessageBox.Show("Você não tem uma conexão com a internet.");
                 return;
             }
 
@@ -660,8 +704,8 @@ namespace TCC2
 
 
 
+
         #endregion
 
-        
     }
 }

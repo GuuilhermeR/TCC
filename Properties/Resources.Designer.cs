@@ -63,6 +63,16 @@ namespace TCC2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Adicionar {
+            get {
+                object obj = ResourceManager.GetObject("Adicionar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap CarregarLoading {
             get {
                 object obj = ResourceManager.GetObject("CarregarLoading", resourceCulture);
@@ -116,6 +126,16 @@ namespace TCC2.Properties {
         internal static System.Drawing.Bitmap mvtSaveGreen_16 {
             get {
                 object obj = ResourceManager.GetObject("mvtSaveGreen-16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap no_icon_png_6 {
+            get {
+                object obj = ResourceManager.GetObject("no-icon-png-6", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -86,13 +86,13 @@ namespace ProjetoTCC
             return false;
         }
 
-        public void Deletar(int codAlimento)
+        public void Deletar(double codAlimento)
         {
 
             using (var db = new NutreasyEntities())
             {
                 var delete = db.Database.Connection.CreateCommand();
-                delete.CommandText = $"DELETE FROM Alimento WHERE codAlimento IN ({codAlimento})";
+                delete.CommandText = $"DELETE FROM Alimentos WHERE codAlimento = {codAlimento}";
                 db.Database.Connection.Open();
                 delete.ExecuteNonQuery();
                 db.Database.Connection.Close();
@@ -106,11 +106,11 @@ namespace ProjetoTCC
             {
                 List<Alimentos> agenda = new List<Alimentos>();
                 if (nomeAlimento == "") {
-                    agenda = (from a in BancoDadosSingleton.Instance.Alimentos where a.nomeTabela == nomeTabela select a).ToList();
+                    agenda = ((from a in BancoDadosSingleton.Instance.Alimentos where a.nomeTabela == nomeTabela select a).Distinct()).ToList();
                 }
                 else
                 {
-                    agenda = (from a in BancoDadosSingleton.Instance.Alimentos where a.nomeAlimento == nomeAlimento && a.nomeTabela == nomeTabela select a).ToList();
+                    agenda = ((from a in BancoDadosSingleton.Instance.Alimentos where a.nomeAlimento == nomeAlimento && a.nomeTabela == nomeTabela select a).Distinct()).ToList();
                 }
                 return agenda;
             }

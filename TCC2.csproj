@@ -122,6 +122,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NutreasyEntities.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Paciente.cs">
+      <DependentUpon>NutreasyEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DAO\UsuarioDAO.cs" />

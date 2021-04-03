@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Data;
 using System.Data.SQLite;
 using System.Windows.Forms;
+using System.Linq;
 using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
+using TCC2;
+using System.Collections.Generic;
 
 namespace ProjetoTCC
 {
@@ -14,87 +17,114 @@ namespace ProjetoTCC
 
         public SQLiteConnection objConexao;
 
-        private int retornaUltimoCodPaciente()
+        public void Salvar(string nome, long cpf, string dtNasc, string email, string peso, string altura, double cep, long num, string telefone, string celular, string endereco, string bairro, string municipio, string uf, string complemento)
         {
+            if (VerificarPacienteExiste(nome))
+            {
+                var pacienteUpdate = (from c in BancoDadosSingleton.Instance.Paciente where c.nome == nome select c).Single();
 
-            string strSQL = string.Empty;
-            var codPaciente = default(int);
-            strSQL = $"SELECT MAX(codigo) As Codigo FROM Paciente";
-            
-            return codPaciente;
+                pacienteUpdate.nome = nome;
+                pacienteUpdate.CPF = cpf;
+                pacienteUpdate.dtNasc = dtNasc;
+                pacienteUpdate.email = email;
+                pacienteUpdate.CEP = cep;
+                pacienteUpdate.endereco = endereco;
+                pacienteUpdate.numero = num;
+                pacienteUpdate.bairro = bairro;
+                pacienteUpdate.municipio = municipio;
+                pacienteUpdate.UF = uf;
+                pacienteUpdate.complemento = complemento;
+                pacienteUpdate.telefone = telefone;
+
+                BancoDadosSingleton.Instance.SaveChanges();
+            }
+            else
+            {
+                Paciente pacienteInsert = new Paciente();
+
+                pacienteInsert.nome = nome;
+                pacienteInsert.CPF = cpf;
+                pacienteInsert.dtNasc = dtNasc;
+                pacienteInsert.email = email;
+                pacienteInsert.CEP = cep;
+                pacienteInsert.endereco = endereco;
+                pacienteInsert.numero = num;
+                pacienteInsert.bairro = bairro;
+                pacienteInsert.municipio = municipio;
+                pacienteInsert.UF = uf;
+                pacienteInsert.complemento = complemento;
+                pacienteInsert.telefone = telefone;
+                
+
+                BancoDadosSingleton.Instance.Paciente.Add(pacienteInsert);
+                BancoDadosSingleton.Instance.SaveChanges();
+            }
         }
 
-        public void Atualizar(double codPaciente, string nomeCompleto, string cpf, string dtNasc, string email, string peso, string altura, string cep, double num, string telefone, string celular, string endereco, string bairro, string municipio, string uf, string complemento)
+        public bool VerificarPacienteExiste(string pacienteBuscar)
         {
-            objConexao.Open();
-            string strSQL = string.Empty;
+            var paciente = "";
+            var agendado = "";
             try
             {
-                strSQL = $@"UPDATE Paciente SET nome= '{nomeCompleto}', cpf = {cpf}, dtNasc = '{dtNasc}', 
-                            email = '{email}', peso = {peso}, altura = {altura}, cep ={cep}, endereco ='{endereco}', bairro ='{bairro}', municipio ='{municipio}', uf ='{uf}', complemento ='{complemento}',
-                            numero = {num}, telefone = {telefone}, celular = {celular} WHERE codigo = {codPaciente}";
-
-                var cmd = new SQLiteCommand(strSQL, objConexao);
-                cmd.ExecuteNonQuery();
-                Interaction.MsgBox("O Paciente foi salvo.", Constants.vbInformation, "Atenção!");
+                paciente = (from a in BancoDadosSingleton.Instance.Agenda where a.paciente == pacienteBuscar select a.paciente).Single();
+                agendado = paciente.ToString();
             }
-            catch (Exception ex)
+            catch
             {
-                Interaction.MsgBox("Ocorreu um erro ao salvar o Paciente." + '\n' + ex.Message, Constants.vbOKOnly, "Alerta");
+                return false;
             }
 
-            objConexao.Close();
+            if (agendado != "")
+            {
+                return true;
+            }
+
+            return false;
         }
 
-        public void Salvar(string nomeCompleto, string cpf, string dtNasc, string email, string peso, string altura, string cep, double num, string telefone, string celular, string endereco, string bairro, string municipio, string uf, string complemento)
+        public void Deletar(double CPF)
         {
-            objConexao.Open();
-            string strSQL = string.Empty;
+
+            using (var db = new NutreasyEntities())
+            {
+                var delete = db.Database.Connection.CreateCommand();
+                delete.CommandText = $"DELETE FROM Paciente WHERE cpf IN ({CPF})";
+                db.Database.Connection.Open();
+                delete.ExecuteNonQuery();
+                db.Database.Connection.Close();
+
+            }
+        }
+
+        public List<Paciente> Buscar(string nomePaciente)
+        {
+            List<Paciente> paciente = new List<Paciente>();
             try
             {
-                strSQL = strSQL = $@"INSERT INTO Paciente (nome, cpf, dtNasc, email, peso, altura, cep, endereco, bairro, municipio, uf, numero, telefone, celular) 
-                            values ('{nomeCompleto}', {cpf}, '{dtNasc}', '{email}', {peso}, {altura}, {cep}, '{endereco}', '{bairro}', '{municipio}', '{uf}', {num}, {telefone}, {celular})";
-
-                var cmd = new SQLiteCommand(strSQL, objConexao);
-                cmd.ExecuteNonQuery();
-                Interaction.MsgBox("O Paciente foi salvo.", Constants.vbInformation, "Atenção!");
+                if(nomePaciente != "")
+                {
+                    var pacienteBuscar = (from p in BancoDadosSingleton.Instance.Paciente where p.nome == nomePaciente select p).ToList();
+                    paciente = pacienteBuscar;
+                }
+                else
+                {
+                    var pacienteBuscar = (from p in BancoDadosSingleton.Instance.Paciente select p).ToList();
+                    paciente = pacienteBuscar;
+                }
+                if (paciente.Count > 0)
+                {
+                    return paciente;
+                }
+                else
+                {
+                    return null;
+                }
             }
-            catch (Exception ex)
+            catch
             {
-                Interaction.MsgBox("Ocorreu um erro ao salvar o Paciente." + '\n' + ex.Message, Constants.vbOKOnly, "Alerta");
+                return null;
             }
-
-            objConexao.Close();
-        }
-
-        public void Deletar(int codPaciente)
-        {
-          
-            string strSQL = string.Empty;
-            try
-            {
-                strSQL = $"DELETE FROM Paciente WHERE codAlimento = {codPaciente}";
-               
-                Interaction.MsgBox("O Paciente foi excluído!", Constants.vbInformation, "Atenção!");
-            }
-            catch (Exception ex)
-            {
-                Interaction.MsgBox("Ocorreu um erro ao excluir o Paciente." + '\n' + ex.Message, Constants.vbOKOnly, "Alerta");
-            }
-
-            
-        }
-
-        public void Buscar(DataGridView dtgDados, string nomePaciente)
-        {
-            string strSQL = string.Empty;
-            strSQL = "SELECT codigo, nome, cpf, dtNasc, email, peso, altura, cep, telefone, celular FROM Paciente";
-            if (!string.IsNullOrEmpty(nomePaciente.ToString()))
-            {
-                strSQL += $"WHERE nome LIKE '%{nomePaciente.ToString()}%'";
-            }
-
-            
         }
     }
 }

@@ -40,10 +40,29 @@
           <Property Name="email" Type="varchar" MaxLength="2147483647" />
           <Property Name="perfil" Type="varchar" MaxLength="2147483647" Nullable="false" />
         </EntityType>
+        <EntityType Name="Paciente">
+          <Key>
+            <PropertyRef Name="CPF" />
+          </Key>
+          <Property Name="CPF" Type="integer" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="2147483647" />
+          <Property Name="dtNasc" Type="varchar" MaxLength="2147483647" />
+          <Property Name="email" Type="varchar" MaxLength="2147483647" />
+          <Property Name="CEP" Type="real" />
+          <Property Name="endereco" Type="varchar" MaxLength="2147483647" />
+          <Property Name="numero" Type="integer" />
+          <Property Name="bairro" Type="varchar" MaxLength="2147483647" />
+          <Property Name="municipio" Type="varchar" MaxLength="2147483647" />
+          <Property Name="UF" Type="varchar" MaxLength="2" />
+          <Property Name="complemento" Type="varchar" MaxLength="2147483647" />
+          <Property Name="telefone" Type="varchar" MaxLength="2147483647" />
+          <Property Name="celular" Type="varchar" MaxLength="2147483647" />
+        </EntityType>
         <EntityContainer Name="NutreasyModelStoreContainer">
           <EntitySet Name="Agenda" EntityType="Self.Agenda" store:Type="Tables" />
           <EntitySet Name="Alimentos" EntityType="Self.Alimentos" store:Type="Tables" />
           <EntitySet Name="Login" EntityType="Self.Login" store:Type="Tables" />
+          <EntitySet Name="Paciente" EntityType="Self.Paciente" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -88,7 +107,26 @@
           <EntitySet Name="Agenda" EntityType="Self.Agenda" />
           <EntitySet Name="Alimentos" EntityType="Self.Alimentos" />
           <EntitySet Name="Login" EntityType="Self.Login" />
+          <EntitySet Name="Paciente" EntityType="NutreasyModel.Paciente" />
         </EntityContainer>
+        <EntityType Name="Paciente">
+          <Key>
+            <PropertyRef Name="CPF" />
+          </Key>
+          <Property Name="CPF" Type="Int64" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="dtNasc" Type="DateTime" />
+          <Property Name="email" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="CEP" Type="Double" />
+          <Property Name="endereco" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="numero" Type="Int64" />
+          <Property Name="bairro" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="municipio" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="UF" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="complemento" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="telefone" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="celular" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -130,6 +168,25 @@
                 <ScalarProperty Name="situacao" ColumnName="situacao" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="perfil" ColumnName="perfil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Paciente">
+            <EntityTypeMapping TypeName="NutreasyModel.Paciente">
+              <MappingFragment StoreEntitySet="Paciente">
+                <ScalarProperty Name="celular" ColumnName="celular" />
+                <ScalarProperty Name="telefone" ColumnName="telefone" />
+                <ScalarProperty Name="complemento" ColumnName="complemento" />
+                <ScalarProperty Name="UF" ColumnName="UF" />
+                <ScalarProperty Name="municipio" ColumnName="municipio" />
+                <ScalarProperty Name="bairro" ColumnName="bairro" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="endereco" ColumnName="endereco" />
+                <ScalarProperty Name="CEP" ColumnName="CEP" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="dtNasc" ColumnName="dtNasc" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="CPF" ColumnName="CPF" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

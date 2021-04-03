@@ -226,7 +226,7 @@ namespace TCC2
                     double CarboidratoKcal = 0;
                     double LipidioKcal = 0;
 
-                    if (row.Cells["prot"].Value.ToString() != "")
+                    if (row.Cells["prot"].Value != null)
                     {
                         double ProteinaGramas = 0;
                         ProteinaGramas = Conversions.ToDouble(Operators.DivideObject(Operators.MultiplyObject(row.Cells["qtd"].Value, row.Cells["prot"].Value), row.Cells["qtd"].Value));
@@ -234,7 +234,7 @@ namespace TCC2
                         row.Cells["prot"].Value = ProteinaGramas.ToString("N2");
                     }
 
-                    if (row.Cells["carbo"].Value.ToString() != "")
+                    if (row.Cells["carbo"].Value != null)
                     {
                         double CarboidratoGramas = 0;
                         CarboidratoGramas = Conversions.ToDouble(Operators.DivideObject(Operators.MultiplyObject(row.Cells["qtd"].Value, row.Cells["carbo"].Value), row.Cells["qtd"].Value));
@@ -242,7 +242,7 @@ namespace TCC2
                         row.Cells["carbo"].Value = CarboidratoGramas.ToString("N2");
                     }
 
-                    if (row.Cells["lipidio"].Value.ToString() != "")
+                    if (row.Cells["lipidio"].Value != null)
                     {
                         double LipidioGramas = 0;
                         LipidioGramas = Conversions.ToDouble(Operators.DivideObject(Operators.MultiplyObject(row.Cells["qtd"].Value, row.Cells["lipidio"].Value), row.Cells["qtd"].Value));
@@ -277,8 +277,8 @@ namespace TCC2
             if (cbxTabela.Text != "")
             {
                 dtgConAlimento.DataSource = null;
-                var teste = alimentoDAO.Buscar(txtAlimentoFiltro.Text, cbxTabela.Text);
-                DataTable dt = ConvertToDataTable(teste);
+                var listaAlimentos = alimentoDAO.Buscar(txtAlimentoFiltro.Text, cbxTabela.Text);
+                DataTable dt = ConvertToDataTable(listaAlimentos);
                 dtgConAlimento.DataSource = dt;
                 dtgConAlimento.Columns["codAlimento"].Visible = false;
                 dtgConAlimento.Columns["nomeAlimento"].HeaderText = "Alimento";
@@ -432,16 +432,27 @@ namespace TCC2
         #endregion
 
         #region CadastroPaciente 
+
         private void _btnProcurarPaciente_Click(object sender, EventArgs e)
         {
-            tbConsultaPaciente.Show();
+            tbPaciente.SelectedTab = tbConsultaPaciente;
         }
+
         private void buscarEndCep(string CEP)
         {
-
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create($@"https://viacep.com.br/ws/{CEP}/json/");
             request.AllowAutoRedirect = false;
-            HttpWebResponse ChecaServidor = (HttpWebResponse)request.GetResponse();
+            HttpWebResponse ChecaServidor;
+
+            try
+            {
+                ChecaServidor = (HttpWebResponse)request.GetResponse();
+            }
+            catch
+            {
+                MessageBox.Show("Você não tem uma conexão com a internet, não foi possível buscar os dados.");
+                return;
+            }
 
             if (ChecaServidor.StatusCode != HttpStatusCode.OK)
             {
@@ -515,17 +526,10 @@ namespace TCC2
                     }
                 }
             }
-
         }
 
-        private void btnSearchPatient_Click_1(object sender, EventArgs e)
+             private void limparCamposCadPaciente()
         {
-            pacienteDAO.Buscar(dtgDados, txtNome.Text);
-        }
-
-        private void limparCamposCadPaciente()
-        {
-            txtCodPaciente.Text = "";
             _txtNomePaciente.Text = "";
             txtCPF.Text = "";
             txtDtNasc.Text = "";
@@ -545,7 +549,7 @@ namespace TCC2
 
         private void txtNome_Leave(object sender, EventArgs e)
         {
-            pacienteDAO.Buscar(_dtgConsultaPacientes, _txtNomePaciente.Text);
+            pacienteDAO.Buscar(_txtNomePaciente.Text);
         }
 
         private void btnSalvarCardapio_Click(object sender, EventArgs e)
@@ -558,9 +562,9 @@ namespace TCC2
         }
         private void _btnExcluir_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtCodPaciente.Text))
+            if (!string.IsNullOrEmpty(txtCPF.Text))
             {
-                pacienteDAO.Deletar(Conversions.ToInteger(txtCodPaciente.Text));
+                pacienteDAO.Deletar(Convert.ToDouble(txtCPF.Text));
                 limparCamposCadPaciente();
             }
             else
@@ -572,7 +576,6 @@ namespace TCC2
         {
             if (e.RowIndex >= 0 & e.ColumnIndex >= 0)
             {
-                txtCodPaciente.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells[""].Value);
                 _txtNomePaciente.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells[""].Value);
                 txtCPF.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells[""].Value);
                 txtDtNasc.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells[""].Value);
@@ -588,9 +591,29 @@ namespace TCC2
                 tbPaciente.SelectedTab = tbCadastro;
             }
         }
+
+        private void _txtNomePaciente_Leave(object sender, EventArgs e)
+        {
+            var listaPacientes = pacienteDAO.Buscar(_txtNomePaciente.Text);
+            if (listaPacientes.Count > 0)
+            {
+                DataTable dt = ConvertToDataTable(listaPacientes);
+                dtgConAlimento.DataSource = dt;
+            }
+        }
+
+        private void _btnSalvar_Click(object sender, EventArgs e)
+        {
+
+        }
         #endregion
 
         #region Cardápio
+
+        private void btnSearchPatient_Click(object sender, EventArgs e)
+        {
+            pacienteDAO.Buscar(txtNome.Text);
+        }
 
         private void tabCardapio_Enter(object sender, EventArgs e)
         {
@@ -617,13 +640,6 @@ namespace TCC2
             // var frmAddRefeicao = new frmAdicionarRefeição();
             //  frmAddRefeicao.Show();
         }
-
-        private void btnSearchPatient_Click(object sender, EventArgs e)
-        {
-            // var frmBuscaPaciente = new frmBuscarPaciente();
-            //frmBuscarPaciente.Show();
-        }
-
 
         #endregion
 
@@ -705,7 +721,9 @@ namespace TCC2
 
 
 
+
         #endregion
 
+        
     }
 }

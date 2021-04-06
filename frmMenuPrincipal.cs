@@ -373,6 +373,7 @@ namespace TCC2
         {
             List<Alimentos> tabela = new List<Alimentos>();
             tabela = (alimentoDAO.BuscarTabelas());
+            if (tabela != null)
             tabela.ForEach(x =>
             {
                 if (!cbxTabela.Items.Contains(x.nomeTabela))
@@ -432,11 +433,6 @@ namespace TCC2
         #endregion
 
         #region CadastroPaciente 
-
-        private void _btnProcurarPaciente_Click(object sender, EventArgs e)
-        {
-            tbPaciente.SelectedTab = tbConsultaPaciente;
-        }
 
         private void buscarEndCep(string CEP)
         {
@@ -530,12 +526,10 @@ namespace TCC2
 
              private void limparCamposCadPaciente()
         {
-            _txtNomePaciente.Text = "";
+            txtNome.Text = "";
             txtCPF.Text = "";
             txtDtNasc.Text = "";
             txtEmail.Text = "";
-            txtPeso.Text = "";
-            txtAltura.Text = "";
             txtCEP.Text = "";
             txtEndereco.Text = "";
             txtNumero.Text = "";
@@ -547,14 +541,9 @@ namespace TCC2
             txtCelular.Text = "";
         }
 
-        private void txtNome_Leave(object sender, EventArgs e)
-        {
-            pacienteDAO.Buscar(_txtNomePaciente.Text);
-        }
 
         private void btnSalvarCardapio_Click(object sender, EventArgs e)
         {
-            tbConsultaPaciente.Show();
         }
         private void txtCEP_Leave(object sender, EventArgs e)
         {
@@ -576,12 +565,10 @@ namespace TCC2
         {
             if (e.RowIndex >= 0 & e.ColumnIndex >= 0)
             {
-                _txtNomePaciente.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells[""].Value);
+                txtNome.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells[""].Value);
                 txtCPF.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells[""].Value);
                 txtDtNasc.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells[""].Value);
                 txtEmail.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells[""].Value);
-                txtPeso.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells[""].Value);
-                txtAltura.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells[""].Value);
                 txtCEP.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells[""].Value);
                 txtNumero.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells[""].Value);
                 txtComplemento.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells[""].Value);
@@ -592,19 +579,18 @@ namespace TCC2
             }
         }
 
-        private void _txtNomePaciente_Leave(object sender, EventArgs e)
+        private void _btnSalvar_Click(object sender, EventArgs e)
         {
-            var listaPacientes = pacienteDAO.Buscar(_txtNomePaciente.Text);
-            if (listaPacientes.Count > 0)
+
+        }
+        private void txtNome_Leave(object sender, EventArgs e)
+        {
+            var listaPacientes = pacienteDAO.Buscar(txtNome.Text);
+            if (listaPacientes != null || listaPacientes.Count > 0)
             {
                 DataTable dt = ConvertToDataTable(listaPacientes);
                 dtgConAlimento.DataSource = dt;
             }
-        }
-
-        private void _btnSalvar_Click(object sender, EventArgs e)
-        {
-
         }
         #endregion
 
@@ -717,6 +703,7 @@ namespace TCC2
         {
             txtConfirmarSenha.PasswordChar = '*';
         }
+
 
 
 

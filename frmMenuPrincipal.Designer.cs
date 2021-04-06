@@ -30,7 +30,7 @@ namespace TCC2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenuPrincipal));
             this.TabControlNutreasy = new MaterialSkin.Controls.MaterialTabControl();
             this.tabMenu = new System.Windows.Forms.TabPage();
@@ -83,13 +83,8 @@ namespace TCC2
             this.tabPaciente = new System.Windows.Forms.TabPage();
             this.tbPaciente = new System.Windows.Forms.TabControl();
             this.tbCadastro = new System.Windows.Forms.TabPage();
-            this._btnProcurarPaciente = new System.Windows.Forms.Button();
-            this.txtPeso = new System.Windows.Forms.TextBox();
-            this.Label5 = new System.Windows.Forms.Label();
-            this.Label4 = new System.Windows.Forms.Label();
-            this.txtAltura = new System.Windows.Forms.TextBox();
-            this.Label3 = new System.Windows.Forms.Label();
-            this.Label2 = new System.Windows.Forms.Label();
+            this.txtDtNasc = new System.Windows.Forms.DateTimePicker();
+            this._dtgConsultaPacientes = new System.Windows.Forms.DataGridView();
             this._btnExcluir = new System.Windows.Forms.Button();
             this._btnSalvar = new System.Windows.Forms.Button();
             this.txtNumero = new System.Windows.Forms.TextBox();
@@ -112,17 +107,12 @@ namespace TCC2
             this.lblBairro = new System.Windows.Forms.Label();
             this.txtEndereco = new System.Windows.Forms.TextBox();
             this.lblEndereco = new System.Windows.Forms.Label();
-            this.txtDtNasc = new System.Windows.Forms.TextBox();
             this.lblDataNascimento = new System.Windows.Forms.Label();
             this.txtCPF = new System.Windows.Forms.TextBox();
             this.lblCPF = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.pbImagem = new System.Windows.Forms.PictureBox();
             this.lblNome = new System.Windows.Forms.Label();
-            this.tbConsultaPaciente = new System.Windows.Forms.TabPage();
-            this._txtNomePaciente = new System.Windows.Forms.TextBox();
-            this.lblNomePaciente = new System.Windows.Forms.Label();
-            this._dtgConsultaPacientes = new System.Windows.Forms.DataGridView();
             this.tbAntropometricos = new System.Windows.Forms.TabPage();
             this.tabReceitas = new System.Windows.Forms.TabPage();
             this.tabConfig = new System.Windows.Forms.TabPage();
@@ -164,9 +154,8 @@ namespace TCC2
             this.tabPaciente.SuspendLayout();
             this.tbPaciente.SuspendLayout();
             this.tbCadastro.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbImagem)).BeginInit();
-            this.tbConsultaPaciente.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._dtgConsultaPacientes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImagem)).BeginInit();
             this.tabConfig.SuspendLayout();
             this.tbConfig.SuspendLayout();
             this.TabPage1.SuspendLayout();
@@ -297,14 +286,14 @@ namespace TCC2
             this.atendido,
             this.retorno,
             this.ID});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgAgenda.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgAgenda.DefaultCellStyle = dataGridViewCellStyle2;
             this.dtgAgenda.Location = new System.Drawing.Point(8, 71);
             this.dtgAgenda.Margin = new System.Windows.Forms.Padding(4);
             this.dtgAgenda.Name = "dtgAgenda";
@@ -802,7 +791,6 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbPaciente.Controls.Add(this.tbCadastro);
-            this.tbPaciente.Controls.Add(this.tbConsultaPaciente);
             this.tbPaciente.Controls.Add(this.tbAntropometricos);
             this.tbPaciente.Location = new System.Drawing.Point(8, 4);
             this.tbPaciente.Margin = new System.Windows.Forms.Padding(4);
@@ -813,13 +801,8 @@ namespace TCC2
             // 
             // tbCadastro
             // 
-            this.tbCadastro.Controls.Add(this._btnProcurarPaciente);
-            this.tbCadastro.Controls.Add(this.txtPeso);
-            this.tbCadastro.Controls.Add(this.Label5);
-            this.tbCadastro.Controls.Add(this.Label4);
-            this.tbCadastro.Controls.Add(this.txtAltura);
-            this.tbCadastro.Controls.Add(this.Label3);
-            this.tbCadastro.Controls.Add(this.Label2);
+            this.tbCadastro.Controls.Add(this.txtDtNasc);
+            this.tbCadastro.Controls.Add(this._dtgConsultaPacientes);
             this.tbCadastro.Controls.Add(this._btnExcluir);
             this.tbCadastro.Controls.Add(this._btnSalvar);
             this.tbCadastro.Controls.Add(this.txtNumero);
@@ -842,7 +825,6 @@ namespace TCC2
             this.tbCadastro.Controls.Add(this.lblBairro);
             this.tbCadastro.Controls.Add(this.txtEndereco);
             this.tbCadastro.Controls.Add(this.lblEndereco);
-            this.tbCadastro.Controls.Add(this.txtDtNasc);
             this.tbCadastro.Controls.Add(this.lblDataNascimento);
             this.tbCadastro.Controls.Add(this.txtCPF);
             this.tbCadastro.Controls.Add(this.lblCPF);
@@ -858,79 +840,34 @@ namespace TCC2
             this.tbCadastro.Text = "Cadastro";
             this.tbCadastro.UseVisualStyleBackColor = true;
             // 
-            // _btnProcurarPaciente
+            // txtDtNasc
             // 
-            this._btnProcurarPaciente.Image = global::TCC2.Properties.Resources.consultar;
-            this._btnProcurarPaciente.Location = new System.Drawing.Point(651, 37);
-            this._btnProcurarPaciente.Margin = new System.Windows.Forms.Padding(4);
-            this._btnProcurarPaciente.Name = "_btnProcurarPaciente";
-            this._btnProcurarPaciente.Size = new System.Drawing.Size(40, 28);
-            this._btnProcurarPaciente.TabIndex = 262;
-            this._btnProcurarPaciente.UseVisualStyleBackColor = true;
-            this._btnProcurarPaciente.Click += new System.EventHandler(this._btnProcurarPaciente_Click);
+            this.txtDtNasc.Location = new System.Drawing.Point(466, 101);
+            this.txtDtNasc.Name = "txtDtNasc";
+            this.txtDtNasc.Size = new System.Drawing.Size(199, 22);
+            this.txtDtNasc.TabIndex = 269;
+            this.txtDtNasc.Value = new System.DateTime(2021, 4, 5, 0, 0, 0, 0);
             // 
-            // txtPeso
+            // _dtgConsultaPacientes
             // 
-            this.txtPeso.Location = new System.Drawing.Point(375, 261);
-            this.txtPeso.Margin = new System.Windows.Forms.Padding(4);
-            this.txtPeso.Name = "txtPeso";
-            this.txtPeso.Size = new System.Drawing.Size(79, 22);
-            this.txtPeso.TabIndex = 230;
-            // 
-            // Label5
-            // 
-            this.Label5.AutoSize = true;
-            this.Label5.Location = new System.Drawing.Point(706, 265);
-            this.Label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.Label5.Name = "Label5";
-            this.Label5.Size = new System.Drawing.Size(26, 17);
-            this.Label5.TabIndex = 260;
-            this.Label5.Text = "cm";
-            // 
-            // Label4
-            // 
-            this.Label4.AutoSize = true;
-            this.Label4.Location = new System.Drawing.Point(463, 265);
-            this.Label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.Label4.Name = "Label4";
-            this.Label4.Size = new System.Drawing.Size(25, 17);
-            this.Label4.TabIndex = 259;
-            this.Label4.Text = "Kg";
-            // 
-            // txtAltura
-            // 
-            this.txtAltura.Location = new System.Drawing.Point(618, 261);
-            this.txtAltura.Margin = new System.Windows.Forms.Padding(4);
-            this.txtAltura.Name = "txtAltura";
-            this.txtAltura.Size = new System.Drawing.Size(79, 22);
-            this.txtAltura.TabIndex = 231;
-            // 
-            // Label3
-            // 
-            this.Label3.AutoSize = true;
-            this.Label3.Location = new System.Drawing.Point(542, 265);
-            this.Label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.Label3.Name = "Label3";
-            this.Label3.Size = new System.Drawing.Size(49, 17);
-            this.Label3.TabIndex = 258;
-            this.Label3.Text = "Altura:";
-            // 
-            // Label2
-            // 
-            this.Label2.AutoSize = true;
-            this.Label2.Location = new System.Drawing.Point(316, 265);
-            this.Label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.Label2.Name = "Label2";
-            this.Label2.Size = new System.Drawing.Size(44, 17);
-            this.Label2.TabIndex = 257;
-            this.Label2.Text = "Peso:";
+            this._dtgConsultaPacientes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this._dtgConsultaPacientes.BackgroundColor = System.Drawing.Color.White;
+            this._dtgConsultaPacientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this._dtgConsultaPacientes.Location = new System.Drawing.Point(8, 497);
+            this._dtgConsultaPacientes.Margin = new System.Windows.Forms.Padding(4);
+            this._dtgConsultaPacientes.Name = "_dtgConsultaPacientes";
+            this._dtgConsultaPacientes.RowHeadersWidth = 51;
+            this._dtgConsultaPacientes.Size = new System.Drawing.Size(1255, 295);
+            this._dtgConsultaPacientes.TabIndex = 266;
             // 
             // _btnExcluir
             // 
-            this._btnExcluir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this._btnExcluir.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this._btnExcluir.Image = global::TCC2.Properties.Resources.DeleteRed;
             this._btnExcluir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._btnExcluir.Location = new System.Drawing.Point(1140, 749);
+            this._btnExcluir.Location = new System.Drawing.Point(1144, 452);
             this._btnExcluir.Margin = new System.Windows.Forms.Padding(4);
             this._btnExcluir.Name = "_btnExcluir";
             this._btnExcluir.Size = new System.Drawing.Size(119, 37);
@@ -941,10 +878,10 @@ namespace TCC2
             // 
             // _btnSalvar
             // 
-            this._btnSalvar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this._btnSalvar.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this._btnSalvar.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
             this._btnSalvar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._btnSalvar.Location = new System.Drawing.Point(1013, 749);
+            this._btnSalvar.Location = new System.Drawing.Point(1017, 452);
             this._btnSalvar.Margin = new System.Windows.Forms.Padding(4);
             this._btnSalvar.Name = "_btnSalvar";
             this._btnSalvar.Size = new System.Drawing.Size(119, 37);
@@ -955,7 +892,8 @@ namespace TCC2
             // 
             // txtNumero
             // 
-            this.txtNumero.Location = new System.Drawing.Point(1068, 344);
+            this.txtNumero.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtNumero.Location = new System.Drawing.Point(881, 265);
             this.txtNumero.Margin = new System.Windows.Forms.Padding(4);
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(79, 22);
@@ -963,8 +901,9 @@ namespace TCC2
             // 
             // lblNum
             // 
+            this.lblNum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblNum.AutoSize = true;
-            this.lblNum.Location = new System.Drawing.Point(1021, 348);
+            this.lblNum.Location = new System.Drawing.Point(832, 269);
             this.lblNum.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNum.Name = "lblNum";
             this.lblNum.Size = new System.Drawing.Size(27, 17);
@@ -973,16 +912,16 @@ namespace TCC2
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(494, 175);
+            this.txtEmail.Location = new System.Drawing.Point(358, 154);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(4);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(295, 22);
+            this.txtEmail.Size = new System.Drawing.Size(428, 22);
             this.txtEmail.TabIndex = 229;
             // 
             // Label1
             // 
             this.Label1.AutoSize = true;
-            this.Label1.Location = new System.Drawing.Point(309, 179);
+            this.Label1.Location = new System.Drawing.Point(268, 157);
             this.Label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label1.Name = "Label1";
             this.Label1.Size = new System.Drawing.Size(51, 17);
@@ -991,16 +930,16 @@ namespace TCC2
             // 
             // txtComplemento
             // 
-            this.txtComplemento.Location = new System.Drawing.Point(170, 505);
+            this.txtComplemento.Location = new System.Drawing.Point(148, 394);
             this.txtComplemento.Margin = new System.Windows.Forms.Padding(4);
             this.txtComplemento.Name = "txtComplemento";
-            this.txtComplemento.Size = new System.Drawing.Size(848, 22);
+            this.txtComplemento.Size = new System.Drawing.Size(829, 22);
             this.txtComplemento.TabIndex = 238;
             // 
             // lblComplemento
             // 
             this.lblComplemento.AutoSize = true;
-            this.lblComplemento.Location = new System.Drawing.Point(17, 509);
+            this.lblComplemento.Location = new System.Drawing.Point(20, 397);
             this.lblComplemento.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblComplemento.Name = "lblComplemento";
             this.lblComplemento.Size = new System.Drawing.Size(98, 17);
@@ -1009,16 +948,16 @@ namespace TCC2
             // 
             // txtUF
             // 
-            this.txtUF.Location = new System.Drawing.Point(1068, 429);
+            this.txtUF.Location = new System.Drawing.Point(1028, 337);
             this.txtUF.Margin = new System.Windows.Forms.Padding(4);
             this.txtUF.Name = "txtUF";
-            this.txtUF.Size = new System.Drawing.Size(79, 22);
+            this.txtUF.Size = new System.Drawing.Size(64, 22);
             this.txtUF.TabIndex = 237;
             // 
             // lblUF
             // 
             this.lblUF.AutoSize = true;
-            this.lblUF.Location = new System.Drawing.Point(1021, 433);
+            this.lblUF.Location = new System.Drawing.Point(963, 339);
             this.lblUF.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUF.Name = "lblUF";
             this.lblUF.Size = new System.Drawing.Size(30, 17);
@@ -1027,16 +966,16 @@ namespace TCC2
             // 
             // txtCelular
             // 
-            this.txtCelular.Location = new System.Drawing.Point(458, 580);
+            this.txtCelular.Location = new System.Drawing.Point(492, 455);
             this.txtCelular.Margin = new System.Windows.Forms.Padding(4);
             this.txtCelular.Name = "txtCelular";
-            this.txtCelular.Size = new System.Drawing.Size(239, 22);
+            this.txtCelular.Size = new System.Drawing.Size(219, 22);
             this.txtCelular.TabIndex = 240;
             // 
             // lblCelular
             // 
             this.lblCelular.AutoSize = true;
-            this.lblCelular.Location = new System.Drawing.Point(388, 584);
+            this.lblCelular.Location = new System.Drawing.Point(402, 459);
             this.lblCelular.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCelular.Name = "lblCelular";
             this.lblCelular.Size = new System.Drawing.Size(56, 17);
@@ -1045,16 +984,16 @@ namespace TCC2
             // 
             // txtTelefone
             // 
-            this.txtTelefone.Location = new System.Drawing.Point(102, 580);
+            this.txtTelefone.Location = new System.Drawing.Point(110, 457);
             this.txtTelefone.Margin = new System.Windows.Forms.Padding(4);
             this.txtTelefone.Name = "txtTelefone";
-            this.txtTelefone.Size = new System.Drawing.Size(239, 22);
+            this.txtTelefone.Size = new System.Drawing.Size(220, 22);
             this.txtTelefone.TabIndex = 239;
             // 
             // lblTelefone
             // 
             this.lblTelefone.AutoSize = true;
-            this.lblTelefone.Location = new System.Drawing.Point(17, 584);
+            this.lblTelefone.Location = new System.Drawing.Point(20, 461);
             this.lblTelefone.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTelefone.Name = "lblTelefone";
             this.lblTelefone.Size = new System.Drawing.Size(68, 17);
@@ -1063,16 +1002,16 @@ namespace TCC2
             // 
             // txtMunicipio
             // 
-            this.txtMunicipio.Location = new System.Drawing.Point(678, 429);
+            this.txtMunicipio.Location = new System.Drawing.Point(682, 336);
             this.txtMunicipio.Margin = new System.Windows.Forms.Padding(4);
             this.txtMunicipio.Name = "txtMunicipio";
-            this.txtMunicipio.Size = new System.Drawing.Size(303, 22);
+            this.txtMunicipio.Size = new System.Drawing.Size(240, 22);
             this.txtMunicipio.TabIndex = 236;
             // 
             // lblMunicipio
             // 
             this.lblMunicipio.AutoSize = true;
-            this.lblMunicipio.Location = new System.Drawing.Point(585, 433);
+            this.lblMunicipio.Location = new System.Drawing.Point(583, 340);
             this.lblMunicipio.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMunicipio.Name = "lblMunicipio";
             this.lblMunicipio.Size = new System.Drawing.Size(71, 17);
@@ -1081,7 +1020,7 @@ namespace TCC2
             // 
             // txtCEP
             // 
-            this.txtCEP.Location = new System.Drawing.Point(82, 344);
+            this.txtCEP.Location = new System.Drawing.Point(350, 209);
             this.txtCEP.Margin = new System.Windows.Forms.Padding(4);
             this.txtCEP.Name = "txtCEP";
             this.txtCEP.Size = new System.Drawing.Size(164, 22);
@@ -1091,7 +1030,8 @@ namespace TCC2
             // lblCEP
             // 
             this.lblCEP.AutoSize = true;
-            this.lblCEP.Location = new System.Drawing.Point(17, 348);
+            this.lblCEP.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
+            this.lblCEP.Location = new System.Drawing.Point(271, 212);
             this.lblCEP.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCEP.Name = "lblCEP";
             this.lblCEP.Size = new System.Drawing.Size(39, 17);
@@ -1100,16 +1040,16 @@ namespace TCC2
             // 
             // txtBairro
             // 
-            this.txtBairro.Location = new System.Drawing.Point(82, 429);
+            this.txtBairro.Location = new System.Drawing.Point(105, 336);
             this.txtBairro.Margin = new System.Windows.Forms.Padding(4);
             this.txtBairro.Name = "txtBairro";
-            this.txtBairro.Size = new System.Drawing.Size(440, 22);
+            this.txtBairro.Size = new System.Drawing.Size(409, 22);
             this.txtBairro.TabIndex = 235;
             // 
             // lblBairro
             // 
             this.lblBairro.AutoSize = true;
-            this.lblBairro.Location = new System.Drawing.Point(17, 433);
+            this.lblBairro.Location = new System.Drawing.Point(20, 339);
             this.lblBairro.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBairro.Name = "lblBairro";
             this.lblBairro.Size = new System.Drawing.Size(50, 17);
@@ -1118,34 +1058,26 @@ namespace TCC2
             // 
             // txtEndereco
             // 
-            this.txtEndereco.Location = new System.Drawing.Point(374, 344);
+            this.txtEndereco.Location = new System.Drawing.Point(118, 266);
             this.txtEndereco.Margin = new System.Windows.Forms.Padding(4);
             this.txtEndereco.Name = "txtEndereco";
-            this.txtEndereco.Size = new System.Drawing.Size(608, 22);
+            this.txtEndereco.Size = new System.Drawing.Size(668, 22);
             this.txtEndereco.TabIndex = 233;
             // 
             // lblEndereco
             // 
             this.lblEndereco.AutoSize = true;
-            this.lblEndereco.Location = new System.Drawing.Point(281, 348);
+            this.lblEndereco.Location = new System.Drawing.Point(15, 269);
             this.lblEndereco.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEndereco.Name = "lblEndereco";
             this.lblEndereco.Size = new System.Drawing.Size(73, 17);
             this.lblEndereco.TabIndex = 247;
             this.lblEndereco.Text = "Endereço:";
             // 
-            // txtDtNasc
-            // 
-            this.txtDtNasc.Location = new System.Drawing.Point(494, 132);
-            this.txtDtNasc.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDtNasc.Name = "txtDtNasc";
-            this.txtDtNasc.Size = new System.Drawing.Size(132, 22);
-            this.txtDtNasc.TabIndex = 228;
-            // 
             // lblDataNascimento
             // 
             this.lblDataNascimento.AutoSize = true;
-            this.lblDataNascimento.Location = new System.Drawing.Point(309, 135);
+            this.lblDataNascimento.Location = new System.Drawing.Point(268, 106);
             this.lblDataNascimento.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDataNascimento.Name = "lblDataNascimento";
             this.lblDataNascimento.Size = new System.Drawing.Size(138, 17);
@@ -1154,16 +1086,16 @@ namespace TCC2
             // 
             // txtCPF
             // 
-            this.txtCPF.Location = new System.Drawing.Point(494, 44);
+            this.txtCPF.Location = new System.Drawing.Point(923, 44);
             this.txtCPF.Margin = new System.Windows.Forms.Padding(4);
             this.txtCPF.Name = "txtCPF";
-            this.txtCPF.Size = new System.Drawing.Size(132, 22);
+            this.txtCPF.Size = new System.Drawing.Size(154, 22);
             this.txtCPF.TabIndex = 227;
             // 
             // lblCPF
             // 
             this.lblCPF.AutoSize = true;
-            this.lblCPF.Location = new System.Drawing.Point(310, 44);
+            this.lblCPF.Location = new System.Drawing.Point(854, 47);
             this.lblCPF.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCPF.Name = "lblCPF";
             this.lblCPF.Size = new System.Drawing.Size(38, 17);
@@ -1172,19 +1104,20 @@ namespace TCC2
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(494, 87);
+            this.txtNome.Location = new System.Drawing.Point(340, 44);
             this.txtNome.Margin = new System.Windows.Forms.Padding(4);
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(436, 22);
+            this.txtNome.Size = new System.Drawing.Size(461, 22);
             this.txtNome.TabIndex = 226;
+            this.txtNome.Leave += new System.EventHandler(this.txtNome_Leave);
             // 
             // pbImagem
             // 
             this.pbImagem.Image = global::TCC2.Properties.Resources.no_icon_png_6;
-            this.pbImagem.Location = new System.Drawing.Point(20, 16);
+            this.pbImagem.Location = new System.Drawing.Point(23, 16);
             this.pbImagem.Margin = new System.Windows.Forms.Padding(4);
             this.pbImagem.Name = "pbImagem";
-            this.pbImagem.Size = new System.Drawing.Size(260, 256);
+            this.pbImagem.Size = new System.Drawing.Size(232, 207);
             this.pbImagem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbImagem.TabIndex = 244;
             this.pbImagem.TabStop = false;
@@ -1192,60 +1125,12 @@ namespace TCC2
             // lblNome
             // 
             this.lblNome.AutoSize = true;
-            this.lblNome.Location = new System.Drawing.Point(309, 91);
+            this.lblNome.Location = new System.Drawing.Point(268, 47);
             this.lblNome.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNome.Name = "lblNome";
-            this.lblNome.Size = new System.Drawing.Size(112, 17);
+            this.lblNome.Size = new System.Drawing.Size(49, 17);
             this.lblNome.TabIndex = 243;
-            this.lblNome.Text = "Nome Completo:";
-            // 
-            // tbConsultaPaciente
-            // 
-            this.tbConsultaPaciente.Controls.Add(this._txtNomePaciente);
-            this.tbConsultaPaciente.Controls.Add(this.lblNomePaciente);
-            this.tbConsultaPaciente.Controls.Add(this._dtgConsultaPacientes);
-            this.tbConsultaPaciente.Location = new System.Drawing.Point(4, 25);
-            this.tbConsultaPaciente.Margin = new System.Windows.Forms.Padding(4);
-            this.tbConsultaPaciente.Name = "tbConsultaPaciente";
-            this.tbConsultaPaciente.Padding = new System.Windows.Forms.Padding(4);
-            this.tbConsultaPaciente.Size = new System.Drawing.Size(1271, 800);
-            this.tbConsultaPaciente.TabIndex = 1;
-            this.tbConsultaPaciente.Text = "Consulta";
-            this.tbConsultaPaciente.UseVisualStyleBackColor = true;
-            // 
-            // _txtNomePaciente
-            // 
-            this._txtNomePaciente.Location = new System.Drawing.Point(85, 15);
-            this._txtNomePaciente.Margin = new System.Windows.Forms.Padding(4);
-            this._txtNomePaciente.Name = "_txtNomePaciente";
-            this._txtNomePaciente.Size = new System.Drawing.Size(977, 22);
-            this._txtNomePaciente.TabIndex = 2;
-            this._txtNomePaciente.Leave += new System.EventHandler(this._txtNomePaciente_Leave);
-            // 
-            // lblNomePaciente
-            // 
-            this.lblNomePaciente.AutoSize = true;
-            this.lblNomePaciente.Location = new System.Drawing.Point(8, 18);
-            this.lblNomePaciente.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblNomePaciente.Name = "lblNomePaciente";
-            this.lblNomePaciente.Size = new System.Drawing.Size(49, 17);
-            this.lblNomePaciente.TabIndex = 1;
-            this.lblNomePaciente.Text = "Nome:";
-            // 
-            // _dtgConsultaPacientes
-            // 
-            this._dtgConsultaPacientes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this._dtgConsultaPacientes.BackgroundColor = System.Drawing.Color.White;
-            this._dtgConsultaPacientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this._dtgConsultaPacientes.Location = new System.Drawing.Point(8, 47);
-            this._dtgConsultaPacientes.Margin = new System.Windows.Forms.Padding(4);
-            this._dtgConsultaPacientes.Name = "_dtgConsultaPacientes";
-            this._dtgConsultaPacientes.RowHeadersWidth = 51;
-            this._dtgConsultaPacientes.Size = new System.Drawing.Size(1252, 738);
-            this._dtgConsultaPacientes.TabIndex = 0;
-            this._dtgConsultaPacientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._dtgConsultaPacientes_CellDoubleClick);
+            this.lblNome.Text = "Nome:";
             // 
             // tbAntropometricos
             // 
@@ -1571,10 +1456,8 @@ namespace TCC2
             this.tbPaciente.ResumeLayout(false);
             this.tbCadastro.ResumeLayout(false);
             this.tbCadastro.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbImagem)).EndInit();
-            this.tbConsultaPaciente.ResumeLayout(false);
-            this.tbConsultaPaciente.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this._dtgConsultaPacientes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImagem)).EndInit();
             this.tabConfig.ResumeLayout(false);
             this.tbConfig.ResumeLayout(false);
             this.TabPage1.ResumeLayout(false);
@@ -1629,13 +1512,6 @@ namespace TCC2
         private System.Windows.Forms.TabPage tabPaciente;
         internal System.Windows.Forms.TabControl tbPaciente;
         internal System.Windows.Forms.TabPage tbCadastro;
-        public System.Windows.Forms.Button _btnProcurarPaciente;
-        internal System.Windows.Forms.TextBox txtPeso;
-        internal System.Windows.Forms.Label Label5;
-        internal System.Windows.Forms.Label Label4;
-        internal System.Windows.Forms.TextBox txtAltura;
-        internal System.Windows.Forms.Label Label3;
-        internal System.Windows.Forms.Label Label2;
         public System.Windows.Forms.Button _btnExcluir;
         public System.Windows.Forms.Button _btnSalvar;
         internal System.Windows.Forms.TextBox txtNumero;
@@ -1658,17 +1534,12 @@ namespace TCC2
         internal System.Windows.Forms.Label lblBairro;
         internal System.Windows.Forms.TextBox txtEndereco;
         internal System.Windows.Forms.Label lblEndereco;
-        internal System.Windows.Forms.TextBox txtDtNasc;
         internal System.Windows.Forms.Label lblDataNascimento;
         internal System.Windows.Forms.TextBox txtCPF;
         internal System.Windows.Forms.Label lblCPF;
         internal System.Windows.Forms.TextBox txtNome;
         internal System.Windows.Forms.PictureBox pbImagem;
         internal System.Windows.Forms.Label lblNome;
-        private System.Windows.Forms.TabPage tbConsultaPaciente;
-        public System.Windows.Forms.TextBox _txtNomePaciente;
-        internal System.Windows.Forms.Label lblNomePaciente;
-        public System.Windows.Forms.DataGridView _dtgConsultaPacientes;
         private System.Windows.Forms.TabPage tbAntropometricos;
         private System.Windows.Forms.TabPage tabConfig;
         internal System.Windows.Forms.TabControl tbConfig;
@@ -1701,6 +1572,8 @@ namespace TCC2
         private System.Windows.Forms.PictureBox pbCarrengado;
         internal System.Windows.Forms.Button btnAdicionarAlimentoCard;
         internal System.Windows.Forms.Button btnConfigurarFormula;
+        public System.Windows.Forms.DataGridView _dtgConsultaPacientes;
+        private System.Windows.Forms.DateTimePicker txtDtNasc;
     }
 }
 

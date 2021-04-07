@@ -475,8 +475,27 @@ namespace TCC2
         {
             foreach (DataGridViewRow rows in dtgSalvarMedCaseira.Rows)
             {
+                if(Convert.ToInt32(rows.Cells["salvo"].Value) != 1)
                 medidaCaseiraDAO.Salvar(rows.Cells["desc"].Value.ToString(), Convert.ToDecimal(rows.Cells["qtd"].Value), Convert.ToInt32(txtCodAlimentoMedCas.Text));
             }
+        }
+        private void txtAlimentoMedCaseira_Leave(object sender, EventArgs e)
+        {
+            dtgSalvarMedCaseira.DataSource = null;
+
+            var listaMedCaseira = medidaCaseiraDAO.Buscar(Convert.ToInt32(txtCodAlimentoMedCas.Text));
+
+            if (listaMedCaseira == null)
+                return;
+            DataTable dt = ConvertToDataTable(listaMedCaseira);
+
+            dtgSalvarMedCaseira.DataSource = dt;
+            dtgSalvarMedCaseira.Columns.Add("salvo","salvo");            
+            foreach (DataGridViewRow rows in dtgSalvarMedCaseira.Rows)
+            {
+                rows.Cells["salvo"].Value = 1;
+            }
+            dtgSalvarMedCaseira.Columns["salvo"].Visible = false;
         }
         #endregion
 
@@ -802,6 +821,7 @@ namespace TCC2
         {
             txtConfirmarSenha.PasswordChar = '*';
         }
+
 
 
 

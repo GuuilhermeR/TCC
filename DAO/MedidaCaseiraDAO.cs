@@ -36,5 +36,27 @@ namespace TCC2
             }
 
         }
+
+        public List<MedidaCaseira> Buscar(int codAlimento)
+        {
+            try
+            {
+                var medCaseira = ((from mc in BancoDadosSingleton.Instance.MedidaCaseira where mc.codAlimento == codAlimento select mc).Distinct()).ToList();
+                if (medCaseira.Count > 0)
+                {
+                    return medCaseira;
+
+                }
+                else
+                {
+                    return null;
+
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

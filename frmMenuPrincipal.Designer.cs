@@ -72,6 +72,7 @@ namespace TCC2
             this.lblCaminho = new System.Windows.Forms.Label();
             this._btnBuscarPlanilha = new System.Windows.Forms.Button();
             this.tbCadMedCaseira = new System.Windows.Forms.TabPage();
+            this.txtCodAlimentoMedCas = new System.Windows.Forms.TextBox();
             this.btnAddMedCaseira = new System.Windows.Forms.Button();
             this.btnSalvarMedCas = new System.Windows.Forms.Button();
             this.dtgSalvarMedCaseira = new System.Windows.Forms.DataGridView();
@@ -161,7 +162,6 @@ namespace TCC2
             this.TabPage2 = new System.Windows.Forms.TabPage();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.txtCodAlimentoMedCas = new System.Windows.Forms.TextBox();
             this.TabControlNutreasy.SuspendLayout();
             this.tabMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxLogoGrande)).BeginInit();
@@ -713,6 +713,18 @@ namespace TCC2
             this.tbCadMedCaseira.UseVisualStyleBackColor = true;
             this.tbCadMedCaseira.Enter += new System.EventHandler(this.tbCadMedCaseira_Enter);
             // 
+            // txtCodAlimentoMedCas
+            // 
+            this.txtCodAlimentoMedCas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCodAlimentoMedCas.Enabled = false;
+            this.txtCodAlimentoMedCas.Location = new System.Drawing.Point(486, 55);
+            this.txtCodAlimentoMedCas.Name = "txtCodAlimentoMedCas";
+            this.txtCodAlimentoMedCas.Size = new System.Drawing.Size(38, 22);
+            this.txtCodAlimentoMedCas.TabIndex = 285;
+            this.txtCodAlimentoMedCas.Visible = false;
+            // 
             // btnAddMedCaseira
             // 
             this.btnAddMedCaseira.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -835,6 +847,7 @@ namespace TCC2
             this.txtAlimentoMedCaseira.Name = "txtAlimentoMedCaseira";
             this.txtAlimentoMedCaseira.Size = new System.Drawing.Size(562, 22);
             this.txtAlimentoMedCaseira.TabIndex = 5;
+            this.txtAlimentoMedCaseira.Leave += new System.EventHandler(this.txtAlimentoMedCaseira_Leave);
             // 
             // lblAlimentoMedCas
             // 
@@ -1711,18 +1724,6 @@ namespace TCC2
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // txtCodAlimentoMedCas
-            // 
-            this.txtCodAlimentoMedCas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCodAlimentoMedCas.Enabled = false;
-            this.txtCodAlimentoMedCas.Location = new System.Drawing.Point(486, 55);
-            this.txtCodAlimentoMedCas.Name = "txtCodAlimentoMedCas";
-            this.txtCodAlimentoMedCas.Size = new System.Drawing.Size(38, 22);
-            this.txtCodAlimentoMedCas.TabIndex = 285;
-            this.txtCodAlimentoMedCas.Visible = false;
             // 
             // frmMenuPrincipal
             // 

@@ -4,7 +4,6 @@ using MaterialSkin.Controls;
 using ProjetoTCC;
 using System;
 using System.Data;
-using System.Data.SQLite;
 using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
@@ -23,9 +22,12 @@ namespace TCC2
         public UsuarioDAO usuarioDAO = new UsuarioDAO();
         public AlimentoDAO alimentoDAO = new AlimentoDAO();
         public AgendaDAO agendaDAO = new AgendaDAO();
+        public MedidaCaseiraDAO medidaCaseiraDAO = new MedidaCaseiraDAO();
         private DataTableCollection tables;
         List<string> deletar = new List<string>();
         List<string> deletarAlimento = new List<string>();
+        private object tamanhoArquivoImagem;
+        private byte[] vetorImagens;
 
         #region Menu
         public frmMenuPrincipal(string usuarioLogado)
@@ -278,6 +280,8 @@ namespace TCC2
             {
                 dtgConAlimento.DataSource = null;
                 var listaAlimentos = alimentoDAO.Buscar(txtAlimentoFiltro.Text, cbxTabela.Text);
+                if (listaAlimentos == null)
+                    return;
                 DataTable dt = ConvertToDataTable(listaAlimentos);
                 dtgConAlimento.DataSource = dt;
                 dtgConAlimento.Columns["codAlimento"].Visible = false;
@@ -374,11 +378,11 @@ namespace TCC2
             List<Alimentos> tabela = new List<Alimentos>();
             tabela = (alimentoDAO.BuscarTabelas());
             if (tabela != null)
-            tabela.ForEach(x =>
-            {
-                if (!cbxTabela.Items.Contains(x.nomeTabela))
-                    cbxTabela.Items.Add(x.nomeTabela);
-            });
+                tabela.ForEach(x =>
+                {
+                    if (!cbxTabela.Items.Contains(x.nomeTabela))
+                        cbxTabela.Items.Add(x.nomeTabela);
+                });
             return;
         }
 
@@ -428,6 +432,50 @@ namespace TCC2
                 {
                     deletarAlimento.Add(dtgConAlimento.CurrentRow.Cells["codAlimento"].Value.ToString());
                 }
+            }
+        }
+
+        private void tbCadMedCaseira_Enter(object sender, EventArgs e)
+        {
+            dtgMedCaseiraAlimentos.DataSource = null;
+
+            var listaAlimentos = alimentoDAO.Buscar("", "");
+            if (listaAlimentos == null)
+                return;
+            DataTable dt = ConvertToDataTable(listaAlimentos);
+            dtgMedCaseiraAlimentos.DataSource = dt;
+
+            dtgMedCaseiraAlimentos.Columns["codAlimento"].Visible = false;
+            dtgMedCaseiraAlimentos.Columns["qtd"].Visible = false;
+            dtgMedCaseiraAlimentos.Columns["kcal"].Visible = false;
+            dtgMedCaseiraAlimentos.Columns["prot"].Visible = false;
+            dtgMedCaseiraAlimentos.Columns["carbo"].Visible = false;
+            dtgMedCaseiraAlimentos.Columns["lipidio"].Visible = false;
+            dtgMedCaseiraAlimentos.Columns["MedidaCaseira"].Visible = false;
+            dtgMedCaseiraAlimentos.Columns["nomeTabela"].HeaderText = "Tabela";
+            dtgMedCaseiraAlimentos.Columns["nomeAlimento"].HeaderText = "Alimento";
+
+        }
+        private void dtgMedCaseiraAlimentos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 || e.ColumnIndex >= 0)
+            {
+                txtAlimentoMedCaseira.Text = dtgMedCaseiraAlimentos.CurrentRow.Cells["nomeAlimento"].Value.ToString();
+                txtCodAlimentoMedCas.Text = dtgMedCaseiraAlimentos.CurrentRow.Cells["codAlimento"].Value.ToString();
+            }
+        }
+        private void btnAddMedCaseira_Click(object sender, EventArgs e)
+        {
+            dtgSalvarMedCaseira.Rows.Add(txtAlimentoMedCaseira.Text, txtDescMedCaseira.Text, txtQtdMedCas.Text);
+            txtAlimentoMedCaseira.Text = "";
+            txtDescMedCaseira.Text = "";
+            txtQtdMedCas.Text = "";
+        }
+        private void btnSalvarMedCas_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow rows in dtgSalvarMedCaseira.Rows)
+            {
+                medidaCaseiraDAO.Salvar(rows.Cells["desc"].Value.ToString(), Convert.ToDecimal(rows.Cells["qtd"].Value), Convert.ToInt32(txtCodAlimentoMedCas.Text));
             }
         }
         #endregion
@@ -524,7 +572,7 @@ namespace TCC2
             }
         }
 
-             private void limparCamposCadPaciente()
+        private void limparCamposCadPaciente()
         {
             txtNome.Text = "";
             txtCPF.Text = "";
@@ -581,15 +629,66 @@ namespace TCC2
 
         private void _btnSalvar_Click(object sender, EventArgs e)
         {
-
+            pacienteDAO.Salvar(txtNome.Text, Convert.ToDouble(txtCPF.Text), txtDtNasc.Text, txtEmail.Text, Convert.ToDouble(txtCEP.Text), 
+                            Convert.ToDouble(txtNumero.Text), txtTelefone.Text, txtCelular.Text, txtEndereco.Text, txtBairro.Text, txtMunicipio.Text, txtUF.Text, txtComplemento.Text, this.vetorImagens);
+            tbCadastro_Enter(sender, e);
         }
         private void txtNome_Leave(object sender, EventArgs e)
         {
             var listaPacientes = pacienteDAO.Buscar(txtNome.Text);
-            if (listaPacientes != null || listaPacientes.Count > 0)
+            if (listaPacientes == null)
+                return;
+            DataTable dt = ConvertToDataTable(listaPacientes);
+            dtgConAlimento.DataSource = dt;
+        }
+
+        private void tbCadastro_Enter(object sender, EventArgs e)
+        {
+            _dtgConsultaPacientes.DataSource = null;
+            var listaPacientes = pacienteDAO.Buscar("");
+
+            if (listaPacientes == null)
+                return;
+            DataTable dt = ConvertToDataTable(listaPacientes);
+            _dtgConsultaPacientes.DataSource = dt;
+
+            _dtgConsultaPacientes.Columns["codPaciente"].Visible = false;
+            _dtgConsultaPacientes.Columns["imagem"].Visible = false;
+            _dtgConsultaPacientes.Columns["nome"].HeaderText = "Nome";
+            _dtgConsultaPacientes.Columns["dtNasc"].HeaderText = "Data Nascimento";
+            _dtgConsultaPacientes.Columns["email"].HeaderText = "E-mail";
+            _dtgConsultaPacientes.Columns["endereco"].HeaderText = "Endereço";
+            _dtgConsultaPacientes.Columns["numero"].HeaderText = "Nº";
+            _dtgConsultaPacientes.Columns["bairro"].HeaderText = "Bairro";
+            _dtgConsultaPacientes.Columns["municipio"].HeaderText = "Munícipio";
+            _dtgConsultaPacientes.Columns["UF"].HeaderText = "UF";
+            _dtgConsultaPacientes.Columns["complemento"].HeaderText = "Complemento";
+            _dtgConsultaPacientes.Columns["telefone"].HeaderText = "Telefone";
+            _dtgConsultaPacientes.Columns["celular"].HeaderText = "Celular";
+
+        }
+
+        private void pbImagem_Click(object sender, EventArgs e)
+        {
+            try
             {
-                DataTable dt = ConvertToDataTable(listaPacientes);
-                dtgConAlimento.DataSource = dt;
+                this.openFileDialog1.ShowDialog(this);
+                string strFn = this.openFileDialog1.FileName;
+
+                if (string.IsNullOrEmpty(strFn))
+                    return;
+
+                this.pbImagem.Image = Image.FromFile(strFn);
+                FileInfo arqImagem = new FileInfo(strFn);
+                tamanhoArquivoImagem = arqImagem.Length;
+                FileStream fs = new FileStream(strFn, FileMode.Open, FileAccess.Read, FileShare.Read);
+                vetorImagens = new byte[Convert.ToInt32(this.tamanhoArquivoImagem)];
+                int iBytesRead = fs.Read(this.vetorImagens, 0, Convert.ToInt32(this.tamanhoArquivoImagem));
+                fs.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         #endregion
@@ -703,6 +802,9 @@ namespace TCC2
         {
             txtConfirmarSenha.PasswordChar = '*';
         }
+
+
+
 
 
 

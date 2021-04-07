@@ -29,5 +29,6 @@ namespace TCC2
         public virtual DbSet<Alimentos> Alimentos { get; set; }
         public virtual DbSet<Login> Login { get; set; }
         public virtual DbSet<Paciente> Paciente { get; set; }
+        public virtual DbSet<MedidaCaseira> MedidaCaseira { get; set; }
     }
 }

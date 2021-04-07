@@ -27,5 +27,7 @@ namespace TCC2
         public string complemento { get; set; }
         public string telefone { get; set; }
         public string celular { get; set; }
+        public long codPaciente { get; set; }
+        public byte[] imagem { get; set; }
     }
 }

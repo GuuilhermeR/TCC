@@ -40,11 +40,21 @@
           <Property Name="email" Type="varchar" MaxLength="2147483647" />
           <Property Name="perfil" Type="varchar" MaxLength="2147483647" Nullable="false" />
         </EntityType>
+        <EntityType Name="MedidaCaseira">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descricao" Type="varchar" MaxLength="2147483647" />
+          <Property Name="qtd" Type="decimal" Precision="53" Scale="0" />
+          <Property Name="codAlimento" Type="integer" />
+        </EntityType>
         <EntityType Name="Paciente">
           <Key>
-            <PropertyRef Name="CPF" />
+            <PropertyRef Name="codPaciente" />
           </Key>
-          <Property Name="CPF" Type="integer" Nullable="false" />
+          <Property Name="codPaciente" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CPF" Type="integer" />
           <Property Name="nome" Type="varchar" MaxLength="2147483647" />
           <Property Name="dtNasc" Type="varchar" MaxLength="2147483647" />
           <Property Name="email" Type="varchar" MaxLength="2147483647" />
@@ -53,16 +63,34 @@
           <Property Name="numero" Type="integer" />
           <Property Name="bairro" Type="varchar" MaxLength="2147483647" />
           <Property Name="municipio" Type="varchar" MaxLength="2147483647" />
-          <Property Name="UF" Type="varchar" MaxLength="2" />
+          <Property Name="UF" Type="varchar" MaxLength="2147483647" />
           <Property Name="complemento" Type="varchar" MaxLength="2147483647" />
           <Property Name="telefone" Type="varchar" MaxLength="2147483647" />
           <Property Name="celular" Type="varchar" MaxLength="2147483647" />
+          <Property Name="imagem" Type="blob" />
         </EntityType>
+        <Association Name="FK_MedidaCaseira_0_0">
+          <End Role="Alimentos" Type="Self.Alimentos" Multiplicity="0..1" />
+          <End Role="MedidaCaseira" Type="Self.MedidaCaseira" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alimentos">
+              <PropertyRef Name="codAlimento" />
+            </Principal>
+            <Dependent Role="MedidaCaseira">
+              <PropertyRef Name="codAlimento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="NutreasyModelStoreContainer">
           <EntitySet Name="Agenda" EntityType="Self.Agenda" store:Type="Tables" />
           <EntitySet Name="Alimentos" EntityType="Self.Alimentos" store:Type="Tables" />
           <EntitySet Name="Login" EntityType="Self.Login" store:Type="Tables" />
+          <EntitySet Name="MedidaCaseira" EntityType="Self.MedidaCaseira" store:Type="Tables" />
           <EntitySet Name="Paciente" EntityType="Self.Paciente" store:Type="Tables" />
+          <AssociationSet Name="FK_MedidaCaseira_0_0" Association="Self.FK_MedidaCaseira_0_0">
+            <End Role="Alimentos" EntitySet="Alimentos" />
+            <End Role="MedidaCaseira" EntitySet="MedidaCaseira" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -91,6 +119,7 @@
           <Property Name="carbo" Type="Decimal" Precision="53" Scale="0" />
           <Property Name="lipidio" Type="Decimal" Precision="53" Scale="0" />
           <Property Name="nomeTabela" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MedidaCaseira" Relationship="NutreasyModel.FK_MedidaCaseira_0_0" FromRole="Alimentos" ToRole="MedidaCaseira" />
         </EntityType>
         <EntityType Name="Login">
           <Key>
@@ -108,25 +137,54 @@
           <EntitySet Name="Alimentos" EntityType="Self.Alimentos" />
           <EntitySet Name="Login" EntityType="Self.Login" />
           <EntitySet Name="Paciente" EntityType="NutreasyModel.Paciente" />
+          <EntitySet Name="MedidaCaseira" EntityType="NutreasyModel.MedidaCaseira" />
+          <AssociationSet Name="FK_MedidaCaseira_0_0" Association="NutreasyModel.FK_MedidaCaseira_0_0">
+            <End Role="Alimentos" EntitySet="Alimentos" />
+            <End Role="MedidaCaseira" EntitySet="MedidaCaseira" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Paciente">
           <Key>
-            <PropertyRef Name="CPF" />
+            <PropertyRef Name="codPaciente" />
           </Key>
           <Property Name="CPF" Type="Int64" Nullable="false" />
           <Property Name="nome" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
-          <Property Name="dtNasc" Type="DateTime" />
+          <Property Name="dtNasc" Type="String" />
           <Property Name="email" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <Property Name="CEP" Type="Double" />
           <Property Name="endereco" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <Property Name="numero" Type="Int64" />
           <Property Name="bairro" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <Property Name="municipio" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
-          <Property Name="UF" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="UF" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="complemento" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <Property Name="telefone" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <Property Name="celular" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="codPaciente" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="imagem" Type="Binary" MaxLength="2147483647" FixedLength="false" />
         </EntityType>
+        <EntityType Name="MedidaCaseira">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descricao" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="qtd" Type="Decimal" />
+          <Property Name="codAlimento" Type="Int64" />
+          <NavigationProperty Name="Alimentos" Relationship="NutreasyModel.FK_MedidaCaseira_0_0" FromRole="MedidaCaseira" ToRole="Alimentos" />
+        </EntityType>
+        <Association Name="FK_MedidaCaseira_0_0">
+          <End Type="NutreasyModel.Alimentos" Role="Alimentos" Multiplicity="0..1" />
+          <End Type="NutreasyModel.MedidaCaseira" Role="MedidaCaseira" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alimentos">
+              <PropertyRef Name="codAlimento" />
+            </Principal>
+            <Dependent Role="MedidaCaseira">
+              <PropertyRef Name="codAlimento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -174,6 +232,8 @@
           <EntitySetMapping Name="Paciente">
             <EntityTypeMapping TypeName="NutreasyModel.Paciente">
               <MappingFragment StoreEntitySet="Paciente">
+                <ScalarProperty Name="imagem" ColumnName="imagem" />
+                <ScalarProperty Name="codPaciente" ColumnName="codPaciente" />
                 <ScalarProperty Name="celular" ColumnName="celular" />
                 <ScalarProperty Name="telefone" ColumnName="telefone" />
                 <ScalarProperty Name="complemento" ColumnName="complemento" />
@@ -187,6 +247,16 @@
                 <ScalarProperty Name="dtNasc" ColumnName="dtNasc" />
                 <ScalarProperty Name="nome" ColumnName="nome" />
                 <ScalarProperty Name="CPF" ColumnName="CPF" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MedidaCaseira">
+            <EntityTypeMapping TypeName="NutreasyModel.MedidaCaseira">
+              <MappingFragment StoreEntitySet="MedidaCaseira">
+                <ScalarProperty Name="codAlimento" ColumnName="codAlimento" />
+                <ScalarProperty Name="qtd" ColumnName="qtd" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

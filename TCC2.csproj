@@ -107,6 +107,10 @@
     <Compile Include="Login.cs">
       <DependentUpon>NutreasyEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="MedidaCaseira.cs">
+      <DependentUpon>NutreasyEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAO\MedidaCaseiraDAO.cs" />
     <Compile Include="NutreasyEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

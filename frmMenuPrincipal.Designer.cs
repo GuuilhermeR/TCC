@@ -71,6 +71,20 @@ namespace TCC2
             this.Label10 = new System.Windows.Forms.Label();
             this.lblCaminho = new System.Windows.Forms.Label();
             this._btnBuscarPlanilha = new System.Windows.Forms.Button();
+            this.tbCadMedCaseira = new System.Windows.Forms.TabPage();
+            this.btnAddMedCaseira = new System.Windows.Forms.Button();
+            this.btnSalvarMedCas = new System.Windows.Forms.Button();
+            this.dtgSalvarMedCaseira = new System.Windows.Forms.DataGridView();
+            this.alimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.desc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qtd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtQtdMedCas = new System.Windows.Forms.TextBox();
+            this.lblQtd = new System.Windows.Forms.Label();
+            this.txtDescMedCaseira = new System.Windows.Forms.TextBox();
+            this.lblDescMedCaseira = new System.Windows.Forms.Label();
+            this.txtAlimentoMedCaseira = new System.Windows.Forms.TextBox();
+            this.lblAlimentoMedCas = new System.Windows.Forms.Label();
+            this.dtgMedCaseiraAlimentos = new System.Windows.Forms.DataGridView();
             this.tabCardapio = new System.Windows.Forms.TabPage();
             this.btnAdicionarAlimentoCard = new System.Windows.Forms.Button();
             this.dtgRefeicoes = new System.Windows.Forms.DataGridView();
@@ -114,6 +128,15 @@ namespace TCC2
             this.pbImagem = new System.Windows.Forms.PictureBox();
             this.lblNome = new System.Windows.Forms.Label();
             this.tbAntropometricos = new System.Windows.Forms.TabPage();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tbAnamnese = new System.Windows.Forms.TabPage();
             this.tabReceitas = new System.Windows.Forms.TabPage();
             this.tabConfig = new System.Windows.Forms.TabPage();
             this.tbConfig = new System.Windows.Forms.TabControl();
@@ -137,6 +160,8 @@ namespace TCC2
             this.dtgUsuarios = new System.Windows.Forms.DataGridView();
             this.TabPage2 = new System.Windows.Forms.TabPage();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.txtCodAlimentoMedCas = new System.Windows.Forms.TextBox();
             this.TabControlNutreasy.SuspendLayout();
             this.tabMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxLogoGrande)).BeginInit();
@@ -149,6 +174,9 @@ namespace TCC2
             this.tbImportarPlanilha.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbCarrengado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDados)).BeginInit();
+            this.tbCadMedCaseira.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgSalvarMedCaseira)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgMedCaseiraAlimentos)).BeginInit();
             this.tabCardapio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgRefeicoes)).BeginInit();
             this.tabPaciente.SuspendLayout();
@@ -156,6 +184,7 @@ namespace TCC2
             this.tbCadastro.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._dtgConsultaPacientes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagem)).BeginInit();
+            this.tbAntropometricos.SuspendLayout();
             this.tabConfig.SuspendLayout();
             this.tbConfig.SuspendLayout();
             this.TabPage1.SuspendLayout();
@@ -385,6 +414,7 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbAlimento.Controls.Add(this._tbConsulta);
             this.tbAlimento.Controls.Add(this.tbImportarPlanilha);
+            this.tbAlimento.Controls.Add(this.tbCadMedCaseira);
             this.tbAlimento.Location = new System.Drawing.Point(8, 7);
             this.tbAlimento.Margin = new System.Windows.Forms.Padding(4);
             this.tbAlimento.Name = "tbAlimento";
@@ -661,6 +691,180 @@ namespace TCC2
             this._btnBuscarPlanilha.UseVisualStyleBackColor = true;
             this._btnBuscarPlanilha.Click += new System.EventHandler(this._btnBuscarPlanilha_Click);
             // 
+            // tbCadMedCaseira
+            // 
+            this.tbCadMedCaseira.Controls.Add(this.txtCodAlimentoMedCas);
+            this.tbCadMedCaseira.Controls.Add(this.btnAddMedCaseira);
+            this.tbCadMedCaseira.Controls.Add(this.btnSalvarMedCas);
+            this.tbCadMedCaseira.Controls.Add(this.dtgSalvarMedCaseira);
+            this.tbCadMedCaseira.Controls.Add(this.txtQtdMedCas);
+            this.tbCadMedCaseira.Controls.Add(this.lblQtd);
+            this.tbCadMedCaseira.Controls.Add(this.txtDescMedCaseira);
+            this.tbCadMedCaseira.Controls.Add(this.lblDescMedCaseira);
+            this.tbCadMedCaseira.Controls.Add(this.txtAlimentoMedCaseira);
+            this.tbCadMedCaseira.Controls.Add(this.lblAlimentoMedCas);
+            this.tbCadMedCaseira.Controls.Add(this.dtgMedCaseiraAlimentos);
+            this.tbCadMedCaseira.Location = new System.Drawing.Point(4, 25);
+            this.tbCadMedCaseira.Name = "tbCadMedCaseira";
+            this.tbCadMedCaseira.Padding = new System.Windows.Forms.Padding(3);
+            this.tbCadMedCaseira.Size = new System.Drawing.Size(1271, 805);
+            this.tbCadMedCaseira.TabIndex = 3;
+            this.tbCadMedCaseira.Text = "Cadastrar Medida Caseira";
+            this.tbCadMedCaseira.UseVisualStyleBackColor = true;
+            this.tbCadMedCaseira.Enter += new System.EventHandler(this.tbCadMedCaseira_Enter);
+            // 
+            // btnAddMedCaseira
+            // 
+            this.btnAddMedCaseira.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddMedCaseira.Image = global::TCC2.Properties.Resources.Adicionar;
+            this.btnAddMedCaseira.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddMedCaseira.Location = new System.Drawing.Point(1129, 205);
+            this.btnAddMedCaseira.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAddMedCaseira.Name = "btnAddMedCaseira";
+            this.btnAddMedCaseira.Size = new System.Drawing.Size(135, 37);
+            this.btnAddMedCaseira.TabIndex = 284;
+            this.btnAddMedCaseira.Text = "Adicionar";
+            this.btnAddMedCaseira.UseVisualStyleBackColor = true;
+            this.btnAddMedCaseira.Click += new System.EventHandler(this.btnAddMedCaseira_Click);
+            // 
+            // btnSalvarMedCas
+            // 
+            this.btnSalvarMedCas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSalvarMedCas.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
+            this.btnSalvarMedCas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSalvarMedCas.Location = new System.Drawing.Point(1145, 761);
+            this.btnSalvarMedCas.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSalvarMedCas.Name = "btnSalvarMedCas";
+            this.btnSalvarMedCas.Size = new System.Drawing.Size(119, 37);
+            this.btnSalvarMedCas.TabIndex = 11;
+            this.btnSalvarMedCas.Text = "Salvar";
+            this.btnSalvarMedCas.UseVisualStyleBackColor = true;
+            this.btnSalvarMedCas.Click += new System.EventHandler(this.btnSalvarMedCas_Click);
+            // 
+            // dtgSalvarMedCaseira
+            // 
+            this.dtgSalvarMedCaseira.AllowUserToAddRows = false;
+            this.dtgSalvarMedCaseira.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtgSalvarMedCaseira.BackgroundColor = System.Drawing.Color.White;
+            this.dtgSalvarMedCaseira.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgSalvarMedCaseira.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.alimento,
+            this.desc,
+            this.qtd});
+            this.dtgSalvarMedCaseira.Location = new System.Drawing.Point(481, 250);
+            this.dtgSalvarMedCaseira.Margin = new System.Windows.Forms.Padding(4);
+            this.dtgSalvarMedCaseira.Name = "dtgSalvarMedCaseira";
+            this.dtgSalvarMedCaseira.RowHeadersWidth = 51;
+            this.dtgSalvarMedCaseira.Size = new System.Drawing.Size(783, 503);
+            this.dtgSalvarMedCaseira.TabIndex = 10;
+            // 
+            // alimento
+            // 
+            this.alimento.HeaderText = "Alimento";
+            this.alimento.MinimumWidth = 6;
+            this.alimento.Name = "alimento";
+            this.alimento.Width = 125;
+            // 
+            // desc
+            // 
+            this.desc.HeaderText = "Descrição";
+            this.desc.MinimumWidth = 6;
+            this.desc.Name = "desc";
+            this.desc.Width = 125;
+            // 
+            // qtd
+            // 
+            this.qtd.HeaderText = "Quantidade";
+            this.qtd.MinimumWidth = 6;
+            this.qtd.Name = "qtd";
+            this.qtd.Width = 125;
+            // 
+            // txtQtdMedCas
+            // 
+            this.txtQtdMedCas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtQtdMedCas.Location = new System.Drawing.Point(970, 143);
+            this.txtQtdMedCas.Name = "txtQtdMedCas";
+            this.txtQtdMedCas.Size = new System.Drawing.Size(217, 22);
+            this.txtQtdMedCas.TabIndex = 9;
+            // 
+            // lblQtd
+            // 
+            this.lblQtd.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblQtd.AutoSize = true;
+            this.lblQtd.Location = new System.Drawing.Point(863, 146);
+            this.lblQtd.Name = "lblQtd";
+            this.lblQtd.Size = new System.Drawing.Size(75, 17);
+            this.lblQtd.TabIndex = 8;
+            this.lblQtd.Text = "Qtd (g/ml):";
+            // 
+            // txtDescMedCaseira
+            // 
+            this.txtDescMedCaseira.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDescMedCaseira.Location = new System.Drawing.Point(585, 145);
+            this.txtDescMedCaseira.Name = "txtDescMedCaseira";
+            this.txtDescMedCaseira.Size = new System.Drawing.Size(217, 22);
+            this.txtDescMedCaseira.TabIndex = 7;
+            // 
+            // lblDescMedCaseira
+            // 
+            this.lblDescMedCaseira.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDescMedCaseira.AutoSize = true;
+            this.lblDescMedCaseira.Location = new System.Drawing.Point(486, 148);
+            this.lblDescMedCaseira.Name = "lblDescMedCaseira";
+            this.lblDescMedCaseira.Size = new System.Drawing.Size(75, 17);
+            this.lblDescMedCaseira.TabIndex = 6;
+            this.lblDescMedCaseira.Text = "Descrição:";
+            // 
+            // txtAlimentoMedCaseira
+            // 
+            this.txtAlimentoMedCaseira.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAlimentoMedCaseira.Enabled = false;
+            this.txtAlimentoMedCaseira.Location = new System.Drawing.Point(576, 32);
+            this.txtAlimentoMedCaseira.Name = "txtAlimentoMedCaseira";
+            this.txtAlimentoMedCaseira.Size = new System.Drawing.Size(562, 22);
+            this.txtAlimentoMedCaseira.TabIndex = 5;
+            // 
+            // lblAlimentoMedCas
+            // 
+            this.lblAlimentoMedCas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblAlimentoMedCas.AutoSize = true;
+            this.lblAlimentoMedCas.Location = new System.Drawing.Point(486, 35);
+            this.lblAlimentoMedCas.Name = "lblAlimentoMedCas";
+            this.lblAlimentoMedCas.Size = new System.Drawing.Size(66, 17);
+            this.lblAlimentoMedCas.TabIndex = 4;
+            this.lblAlimentoMedCas.Text = "Alimento:";
+            // 
+            // dtgMedCaseiraAlimentos
+            // 
+            this.dtgMedCaseiraAlimentos.AllowUserToAddRows = false;
+            this.dtgMedCaseiraAlimentos.AllowUserToDeleteRows = false;
+            this.dtgMedCaseiraAlimentos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtgMedCaseiraAlimentos.BackgroundColor = System.Drawing.Color.White;
+            this.dtgMedCaseiraAlimentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgMedCaseiraAlimentos.Location = new System.Drawing.Point(9, 4);
+            this.dtgMedCaseiraAlimentos.Margin = new System.Windows.Forms.Padding(4);
+            this.dtgMedCaseiraAlimentos.Name = "dtgMedCaseiraAlimentos";
+            this.dtgMedCaseiraAlimentos.RowHeadersWidth = 51;
+            this.dtgMedCaseiraAlimentos.Size = new System.Drawing.Size(470, 794);
+            this.dtgMedCaseiraAlimentos.TabIndex = 3;
+            this.dtgMedCaseiraAlimentos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgMedCaseiraAlimentos_CellDoubleClick);
+            // 
             // tabCardapio
             // 
             this.tabCardapio.Controls.Add(this.btnAdicionarAlimentoCard);
@@ -792,6 +996,7 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbPaciente.Controls.Add(this.tbCadastro);
             this.tbPaciente.Controls.Add(this.tbAntropometricos);
+            this.tbPaciente.Controls.Add(this.tbAnamnese);
             this.tbPaciente.Location = new System.Drawing.Point(8, 4);
             this.tbPaciente.Margin = new System.Windows.Forms.Padding(4);
             this.tbPaciente.Name = "tbPaciente";
@@ -839,27 +1044,30 @@ namespace TCC2
             this.tbCadastro.TabIndex = 0;
             this.tbCadastro.Text = "Cadastro";
             this.tbCadastro.UseVisualStyleBackColor = true;
+            this.tbCadastro.Enter += new System.EventHandler(this.tbCadastro_Enter);
             // 
             // txtDtNasc
             // 
+            this.txtDtNasc.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.txtDtNasc.Location = new System.Drawing.Point(466, 101);
             this.txtDtNasc.Name = "txtDtNasc";
-            this.txtDtNasc.Size = new System.Drawing.Size(199, 22);
+            this.txtDtNasc.Size = new System.Drawing.Size(209, 22);
             this.txtDtNasc.TabIndex = 269;
             this.txtDtNasc.Value = new System.DateTime(2021, 4, 5, 0, 0, 0, 0);
             // 
             // _dtgConsultaPacientes
             // 
+            this._dtgConsultaPacientes.AllowUserToAddRows = false;
             this._dtgConsultaPacientes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this._dtgConsultaPacientes.BackgroundColor = System.Drawing.Color.White;
             this._dtgConsultaPacientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this._dtgConsultaPacientes.Location = new System.Drawing.Point(8, 497);
+            this._dtgConsultaPacientes.Location = new System.Drawing.Point(8, 523);
             this._dtgConsultaPacientes.Margin = new System.Windows.Forms.Padding(4);
             this._dtgConsultaPacientes.Name = "_dtgConsultaPacientes";
             this._dtgConsultaPacientes.RowHeadersWidth = 51;
-            this._dtgConsultaPacientes.Size = new System.Drawing.Size(1255, 295);
+            this._dtgConsultaPacientes.Size = new System.Drawing.Size(1255, 269);
             this._dtgConsultaPacientes.TabIndex = 266;
             // 
             // _btnExcluir
@@ -867,7 +1075,7 @@ namespace TCC2
             this._btnExcluir.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this._btnExcluir.Image = global::TCC2.Properties.Resources.DeleteRed;
             this._btnExcluir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._btnExcluir.Location = new System.Drawing.Point(1144, 452);
+            this._btnExcluir.Location = new System.Drawing.Point(1144, 478);
             this._btnExcluir.Margin = new System.Windows.Forms.Padding(4);
             this._btnExcluir.Name = "_btnExcluir";
             this._btnExcluir.Size = new System.Drawing.Size(119, 37);
@@ -881,7 +1089,7 @@ namespace TCC2
             this._btnSalvar.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this._btnSalvar.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
             this._btnSalvar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._btnSalvar.Location = new System.Drawing.Point(1017, 452);
+            this._btnSalvar.Location = new System.Drawing.Point(1017, 478);
             this._btnSalvar.Margin = new System.Windows.Forms.Padding(4);
             this._btnSalvar.Name = "_btnSalvar";
             this._btnSalvar.Size = new System.Drawing.Size(119, 37);
@@ -1121,6 +1329,7 @@ namespace TCC2
             this.pbImagem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbImagem.TabIndex = 244;
             this.pbImagem.TabStop = false;
+            this.pbImagem.Click += new System.EventHandler(this.pbImagem_Click);
             // 
             // lblNome
             // 
@@ -1134,6 +1343,14 @@ namespace TCC2
             // 
             // tbAntropometricos
             // 
+            this.tbAntropometricos.Controls.Add(this.textBox5);
+            this.tbAntropometricos.Controls.Add(this.label5);
+            this.tbAntropometricos.Controls.Add(this.textBox4);
+            this.tbAntropometricos.Controls.Add(this.label4);
+            this.tbAntropometricos.Controls.Add(this.textBox3);
+            this.tbAntropometricos.Controls.Add(this.label3);
+            this.tbAntropometricos.Controls.Add(this.textBox2);
+            this.tbAntropometricos.Controls.Add(this.label2);
             this.tbAntropometricos.Location = new System.Drawing.Point(4, 25);
             this.tbAntropometricos.Margin = new System.Windows.Forms.Padding(4);
             this.tbAntropometricos.Name = "tbAntropometricos";
@@ -1142,6 +1359,80 @@ namespace TCC2
             this.tbAntropometricos.TabIndex = 2;
             this.tbAntropometricos.Text = "Antropometria";
             this.tbAntropometricos.UseVisualStyleBackColor = true;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(80, 200);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(100, 22);
+            this.textBox5.TabIndex = 7;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(28, 203);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(46, 17);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "label5";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(80, 147);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(100, 22);
+            this.textBox4.TabIndex = 5;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(28, 150);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(46, 17);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "label4";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(80, 62);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 22);
+            this.textBox3.TabIndex = 3;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(28, 65);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(46, 17);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "label3";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(80, 21);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 22);
+            this.textBox2.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(28, 24);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(46, 17);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "label2";
+            // 
+            // tbAnamnese
+            // 
+            this.tbAnamnese.Location = new System.Drawing.Point(4, 25);
+            this.tbAnamnese.Name = "tbAnamnese";
+            this.tbAnamnese.Padding = new System.Windows.Forms.Padding(3);
+            this.tbAnamnese.Size = new System.Drawing.Size(1271, 800);
+            this.tbAnamnese.TabIndex = 3;
+            this.tbAnamnese.Text = "Anamnese";
+            this.tbAnamnese.UseVisualStyleBackColor = true;
             // 
             // tabReceitas
             // 
@@ -1417,6 +1708,22 @@ namespace TCC2
             this.imageList1.Images.SetKeyName(5, "agenda32px.png");
             this.imageList1.Images.SetKeyName(6, "Receitas32px.png");
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // txtCodAlimentoMedCas
+            // 
+            this.txtCodAlimentoMedCas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCodAlimentoMedCas.Enabled = false;
+            this.txtCodAlimentoMedCas.Location = new System.Drawing.Point(486, 55);
+            this.txtCodAlimentoMedCas.Name = "txtCodAlimentoMedCas";
+            this.txtCodAlimentoMedCas.Size = new System.Drawing.Size(38, 22);
+            this.txtCodAlimentoMedCas.TabIndex = 285;
+            this.txtCodAlimentoMedCas.Visible = false;
+            // 
             // frmMenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1449,6 +1756,10 @@ namespace TCC2
             this.tbImportarPlanilha.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbCarrengado)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDados)).EndInit();
+            this.tbCadMedCaseira.ResumeLayout(false);
+            this.tbCadMedCaseira.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgSalvarMedCaseira)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgMedCaseiraAlimentos)).EndInit();
             this.tabCardapio.ResumeLayout(false);
             this.tabCardapio.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgRefeicoes)).EndInit();
@@ -1458,6 +1769,8 @@ namespace TCC2
             this.tbCadastro.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this._dtgConsultaPacientes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagem)).EndInit();
+            this.tbAntropometricos.ResumeLayout(false);
+            this.tbAntropometricos.PerformLayout();
             this.tabConfig.ResumeLayout(false);
             this.tbConfig.ResumeLayout(false);
             this.TabPage1.ResumeLayout(false);
@@ -1574,6 +1887,31 @@ namespace TCC2
         internal System.Windows.Forms.Button btnConfigurarFormula;
         public System.Windows.Forms.DataGridView _dtgConsultaPacientes;
         private System.Windows.Forms.DateTimePicker txtDtNasc;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TabPage tbAnamnese;
+        private System.Windows.Forms.TabPage tbCadMedCaseira;
+        internal System.Windows.Forms.DataGridView dtgSalvarMedCaseira;
+        private System.Windows.Forms.TextBox txtQtdMedCas;
+        private System.Windows.Forms.Label lblQtd;
+        private System.Windows.Forms.TextBox txtDescMedCaseira;
+        private System.Windows.Forms.Label lblDescMedCaseira;
+        private System.Windows.Forms.TextBox txtAlimentoMedCaseira;
+        private System.Windows.Forms.Label lblAlimentoMedCas;
+        internal System.Windows.Forms.DataGridView dtgMedCaseiraAlimentos;
+        internal System.Windows.Forms.Button btnSalvarMedCas;
+        internal System.Windows.Forms.Button btnAddMedCaseira;
+        private System.Windows.Forms.DataGridViewTextBoxColumn alimento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn desc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn qtd;
+        private System.Windows.Forms.TextBox txtCodAlimentoMedCas;
     }
 }
 

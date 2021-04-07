@@ -14,6 +14,12 @@ namespace TCC2
     
     public partial class Alimentos
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Alimentos()
+        {
+            this.MedidaCaseira = new HashSet<MedidaCaseira>();
+        }
+    
         public long codAlimento { get; set; }
         public string nomeAlimento { get; set; }
         public Nullable<decimal> qtd { get; set; }
@@ -22,5 +28,8 @@ namespace TCC2
         public Nullable<decimal> carbo { get; set; }
         public Nullable<decimal> lipidio { get; set; }
         public string nomeTabela { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MedidaCaseira> MedidaCaseira { get; set; }
     }
 }

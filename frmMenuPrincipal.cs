@@ -165,8 +165,6 @@ namespace TCC2
         {
             foreach (DataGridViewRow row in dtgAgenda.Rows)
             {
-                bool atendido = true;
-                bool retorno = true;
 
                 if (row.DefaultCellStyle.BackColor == Color.Tomato)
                 {
@@ -179,20 +177,12 @@ namespace TCC2
                         return;
                     }
 
-                    if (row.Cells["atendido"].Value == null)
-                    {
-                        atendido = false;
-                    }
-                    if (row.Cells["retorno"].Value == null)
-                    {
-                        retorno = false;
-                    }
                     agendaDAO.AdicionarPaciente(
                         lblDataAtual.Text,
                         row.Cells["horario"].Value.ToString(),
                         row.Cells["nomePaciente"].Value.ToString(),
-                        atendido,
-                        retorno);
+                        Convert.ToBoolean(row.Cells["atendido"].Value),
+                        Convert.ToBoolean(row.Cells["retorno"].Value));
                 }
 
             }
@@ -291,6 +281,7 @@ namespace TCC2
                 dtgConAlimento.Columns["carbo"].HeaderText = "Carboidrato";
                 dtgConAlimento.Columns["lipidio"].HeaderText = "Lipídio";
                 dtgConAlimento.Columns["nomeTabela"].HeaderText = "Tabela";
+                dtgConAlimento.Columns["MedidaCaseira"].Visible = false;
                 return;
             }
         }
@@ -458,10 +449,32 @@ namespace TCC2
         }
         private void dtgMedCaseiraAlimentos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            
             if (e.RowIndex >= 0 || e.ColumnIndex >= 0)
             {
                 txtAlimentoMedCaseira.Text = dtgMedCaseiraAlimentos.CurrentRow.Cells["nomeAlimento"].Value.ToString();
                 txtCodAlimentoMedCas.Text = dtgMedCaseiraAlimentos.CurrentRow.Cells["codAlimento"].Value.ToString();
+            }
+
+            dtgSalvarMedCaseira.DataSource = null;
+
+            var listaMedCaseira = medidaCaseiraDAO.Buscar(Convert.ToInt32(txtCodAlimentoMedCas.Text));
+
+            if (listaMedCaseira == null)
+                return;
+
+            DataTable dt = ConvertToDataTable(listaMedCaseira);
+
+            dtgSalvarMedCaseira.DataSource = dt;
+            dtgSalvarMedCaseira.Columns["ID"].Visible = false;
+            dtgSalvarMedCaseira.Columns["codAlimento"].Visible = false;
+            dtgSalvarMedCaseira.Columns["Alimentos"].Visible = false;
+            dtgSalvarMedCaseira.Columns["descricao"].HeaderText = "Descricao";
+            dtgSalvarMedCaseira.Columns["qtd"].HeaderText = "Quantidade";
+
+            foreach (DataGridViewRow rows in dtgSalvarMedCaseira.Rows)
+            {
+                rows.Cells["salvo"].Value = 1;
             }
         }
         private void btnAddMedCaseira_Click(object sender, EventArgs e)
@@ -478,24 +491,15 @@ namespace TCC2
                 if(Convert.ToInt32(rows.Cells["salvo"].Value) != 1)
                 medidaCaseiraDAO.Salvar(rows.Cells["desc"].Value.ToString(), Convert.ToDecimal(rows.Cells["qtd"].Value), Convert.ToInt32(txtCodAlimentoMedCas.Text));
             }
+            dtgSalvarMedCaseira.DataSource = null;
+            txtAlimentoMedCaseira.Text = "";
+            txtDescMedCaseira.Text = "";
+            txtQtdMedCas.Text = "";
+            txtCodAlimentoMedCas.Text = "";
         }
         private void txtAlimentoMedCaseira_Leave(object sender, EventArgs e)
         {
-            dtgSalvarMedCaseira.DataSource = null;
-
-            var listaMedCaseira = medidaCaseiraDAO.Buscar(Convert.ToInt32(txtCodAlimentoMedCas.Text));
-
-            if (listaMedCaseira == null)
-                return;
-            DataTable dt = ConvertToDataTable(listaMedCaseira);
-
-            dtgSalvarMedCaseira.DataSource = dt;
-            dtgSalvarMedCaseira.Columns.Add("salvo","salvo");            
-            foreach (DataGridViewRow rows in dtgSalvarMedCaseira.Rows)
-            {
-                rows.Cells["salvo"].Value = 1;
-            }
-            dtgSalvarMedCaseira.Columns["salvo"].Visible = false;
+            
         }
         #endregion
 
@@ -710,41 +714,77 @@ namespace TCC2
                 MessageBox.Show(ex.Message);
             }
         }
-        #endregion
-
-        #region Cardápio
-
         private void btnSearchPatient_Click(object sender, EventArgs e)
         {
             pacienteDAO.Buscar(txtNome.Text);
         }
+        #endregion
+
+        #region Cardápio
 
         private void tabCardapio_Enter(object sender, EventArgs e)
         {
-            CarregarColunas();
-            //efetuar cálculo, onde 100% é kCal X e desse valor tirar as porcentagens para montar o gráfico
-            //GraficoProtChoLip.Series[0].Points.AddXY("Carboidrato", 25);
-            //GraficoProtChoLip.Series[0].Points.AddXY("Lipídio", 25);
-            //GraficoProtChoLip.Series[0].Points.AddXY("Proteina", 50);
-        }
+            List<Alimentos> tabela = new List<Alimentos>();
+            tabela = (alimentoDAO.BuscarTabelas());
+            if (tabela != null)
+                tabela.ForEach(x =>
+                {
+                    if (!cbxTabelaAlimentoCardapio.Items.Contains(x.nomeTabela))
+                        cbxTabelaAlimentoCardapio.Items.Add(x.nomeTabela);
+                });
 
-        private void CarregarColunas()
+        }
+        private void cbxTabelaAlimentoCardapio_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (dtgRefeicoes.ColumnCount <= 0)
-            {
-                dtgRefeicoes.Columns.Add("refeicao", "Refeição"); // Vai buscar a descrição salva na tela PlanilhaCardapio
-                dtgRefeicoes.Columns.Add("alimento", "Alimento");
-                dtgRefeicoes.Columns.Add("qtde", "Quantidade");
-                dtgRefeicoes.Columns.Add("hora", "Horário");
-            }
+            var listaAlimentos = alimentoDAO.Buscar("", cbxTabelaAlimentoCardapio.Text);
+            if (listaAlimentos == null)
+                return;
+            DataTable dt = ConvertToDataTable(listaAlimentos);
+            dtgCardapioAlimentos.DataSource = dt;
+            dtgCardapioAlimentos.Columns["codAlimento"].Visible = false;
+            dtgCardapioAlimentos.Columns["nomeAlimento"].HeaderText = "Alimento";
+            dtgCardapioAlimentos.Columns["kcal"].Visible = false;
+            dtgCardapioAlimentos.Columns["qtd"].Visible = false;
+            dtgCardapioAlimentos.Columns["prot"].Visible = false;
+            dtgCardapioAlimentos.Columns["carbo"].Visible = false;
+            dtgCardapioAlimentos.Columns["lipidio"].Visible = false;
+            dtgCardapioAlimentos.Columns["nomeTabela"].Visible = false;
+            dtgCardapioAlimentos.Columns["MedidaCaseira"].Visible = false;
+            dtgCardapioAlimentos.AutoResizeColumns();
         }
 
-        private void _btnAdicionar_Click(object sender, EventArgs e)
+        private void btnAddAliCard_Click(object sender, EventArgs e)
         {
-            // var frmAddRefeicao = new frmAdicionarRefeição();
-            //  frmAddRefeicao.Show();
+            if (dtgCardapioAlimentos.SelectedRows.Count >= 1 || dtgCardapioAlimentos.SelectedCells.Count >= 1)
+                foreach (DataGridViewRow row in dtgCardapioAlimentos.Rows)
+                    if (row.Selected == true)
+                        dtgRefeicoes.Rows.Add(adicionar(row));
         }
 
+        private DataGridViewRow adicionar(DataGridViewRow row)
+        {
+            DataGridViewRow newRow = (DataGridViewRow)row.Clone();
+            newRow.Cells[0].Value = row.Cells["nomeAlimento"].Value;
+            dtgRefeicoes.Columns.Add("codAlimento", "codAlimento");
+            dtgRefeicoes.Columns.Add("nomeAlimento", "Alimento");
+            dtgRefeicoes.Columns.Add("kcal", "kcal");
+            dtgRefeicoes.Columns.Add("qtd", "qtd");
+            dtgRefeicoes.Columns.Add("prot", "prot");
+            dtgRefeicoes.Columns.Add("carbo", "carbo");
+            dtgRefeicoes.Columns.Add("lipidio", "lipidio");
+            dtgRefeicoes.Columns.Add("nomeTabela", "nomeTabela");
+            dtgRefeicoes.Columns.Add("MedidaCaseira", "MedidaCaseira");
+            dtgRefeicoes.Columns["codAlimento"].Visible = false;
+            dtgRefeicoes.Columns["nomeAlimento"].HeaderText = "Alimento";
+            dtgRefeicoes.Columns["kcal"].Visible = false;
+            dtgRefeicoes.Columns["qtd"].Visible = false;
+            dtgRefeicoes.Columns["prot"].Visible = false;
+            dtgRefeicoes.Columns["carbo"].Visible = false;
+            dtgRefeicoes.Columns["lipidio"].Visible = false;
+            dtgRefeicoes.Columns["nomeTabela"].Visible = false;
+            dtgRefeicoes.Columns["MedidaCaseira"].Visible = false;
+            return newRow;
+        }
         #endregion
 
         #region Configurações
@@ -831,8 +871,10 @@ namespace TCC2
 
 
 
-        #endregion
 
-        
+
+
+        #endregion
+                
     }
 }

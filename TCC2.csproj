@@ -183,6 +183,8 @@
     <Content Include="Resources\2355300-removebg-preview %283%29.png" />
     <Content Include="Resources\5-Icon-Branco.png" />
     <None Include="Resources\Adicionar.png" />
+    <None Include="Resources\arrow-icon-1.jpg" />
+    <None Include="Resources\arrow-icon-1 - Copia.jpg" />
     <Content Include="Resources\baixados-removebg-preview %281%29.png" />
     <Content Include="Resources\baixados-removebg-preview.png" />
     <Content Include="Resources\calculadora.png" />

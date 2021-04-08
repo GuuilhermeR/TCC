@@ -41,7 +41,9 @@ namespace TCC2
         {
             try
             {
-                var medCaseira = ((from mc in BancoDadosSingleton.Instance.MedidaCaseira where mc.codAlimento == codAlimento select mc).Distinct()).ToList();
+                var medCaseira = ((from mc in BancoDadosSingleton.Instance.MedidaCaseira 
+                                   where mc.codAlimento == codAlimento 
+                                   select mc).Distinct()).ToList();
                 if (medCaseira.Count > 0)
                 {
                     return medCaseira;

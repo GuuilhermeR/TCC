@@ -136,10 +136,16 @@
   <data name="DeleteRed" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DeleteRed1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="no-icon-png-6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\no-icon-png-6.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="iconTCC-removebg-preview (1) - Copia" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\iconTCC-removebg-preview (1) - Copia.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="no-icon-png-6" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\no-icon-png-6.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="arrow-icon-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow-icon-1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="arrow-icon-1 - Copia" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow-icon-1 - Copia.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

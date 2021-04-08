@@ -30,7 +30,10 @@ namespace TCC2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenuPrincipal));
             this.TabControlNutreasy = new MaterialSkin.Controls.MaterialTabControl();
             this.tabMenu = new System.Windows.Forms.TabPage();
@@ -73,12 +76,8 @@ namespace TCC2
             this._btnBuscarPlanilha = new System.Windows.Forms.Button();
             this.tbCadMedCaseira = new System.Windows.Forms.TabPage();
             this.txtCodAlimentoMedCas = new System.Windows.Forms.TextBox();
-            this.btnAddMedCaseira = new System.Windows.Forms.Button();
-            this.btnSalvarMedCas = new System.Windows.Forms.Button();
             this.dtgSalvarMedCaseira = new System.Windows.Forms.DataGridView();
-            this.alimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.desc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.qtd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.salvo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtQtdMedCas = new System.Windows.Forms.TextBox();
             this.lblQtd = new System.Windows.Forms.Label();
             this.txtDescMedCaseira = new System.Windows.Forms.TextBox();
@@ -86,10 +85,17 @@ namespace TCC2
             this.txtAlimentoMedCaseira = new System.Windows.Forms.TextBox();
             this.lblAlimentoMedCas = new System.Windows.Forms.Label();
             this.dtgMedCaseiraAlimentos = new System.Windows.Forms.DataGridView();
+            this.btnAddMedCaseira = new System.Windows.Forms.Button();
+            this.btnSalvarMedCas = new System.Windows.Forms.Button();
             this.tabCardapio = new System.Windows.Forms.TabPage();
-            this.btnAdicionarAlimentoCard = new System.Windows.Forms.Button();
+            this.btnRemoveAliCardap = new System.Windows.Forms.PictureBox();
+            this.btnAddAliCard = new System.Windows.Forms.PictureBox();
+            this.lblTabelaCardapio = new System.Windows.Forms.Label();
+            this.cbxTabelaAlimentoCardapio = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.graficoProtCHOLip = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.dtgCardapioAlimentos = new System.Windows.Forms.DataGridView();
             this.dtgRefeicoes = new System.Windows.Forms.DataGridView();
-            this.txtDescricao = new System.Windows.Forms.TextBox();
             this.lblDescricao = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -178,6 +184,10 @@ namespace TCC2
             ((System.ComponentModel.ISupportInitialize)(this.dtgSalvarMedCaseira)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgMedCaseiraAlimentos)).BeginInit();
             this.tabCardapio.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnRemoveAliCardap)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddAliCard)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.graficoProtCHOLip)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgCardapioAlimentos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgRefeicoes)).BeginInit();
             this.tabPaciente.SuspendLayout();
             this.tbPaciente.SuspendLayout();
@@ -209,7 +219,7 @@ namespace TCC2
             this.TabControlNutreasy.Multiline = true;
             this.TabControlNutreasy.Name = "TabControlNutreasy";
             this.TabControlNutreasy.SelectedIndex = 0;
-            this.TabControlNutreasy.Size = new System.Drawing.Size(1305, 892);
+            this.TabControlNutreasy.Size = new System.Drawing.Size(1510, 1043);
             this.TabControlNutreasy.TabIndex = 13;
             // 
             // tabMenu
@@ -221,7 +231,7 @@ namespace TCC2
             this.tabMenu.Margin = new System.Windows.Forms.Padding(4);
             this.tabMenu.Name = "tabMenu";
             this.tabMenu.Padding = new System.Windows.Forms.Padding(4);
-            this.tabMenu.Size = new System.Drawing.Size(1297, 849);
+            this.tabMenu.Size = new System.Drawing.Size(1502, 1000);
             this.tabMenu.TabIndex = 0;
             this.tabMenu.Text = "Home";
             this.tabMenu.UseVisualStyleBackColor = true;
@@ -237,7 +247,7 @@ namespace TCC2
             this.pbxLogoGrande.Location = new System.Drawing.Point(341, 176);
             this.pbxLogoGrande.Margin = new System.Windows.Forms.Padding(4);
             this.pbxLogoGrande.Name = "pbxLogoGrande";
-            this.pbxLogoGrande.Size = new System.Drawing.Size(612, 472);
+            this.pbxLogoGrande.Size = new System.Drawing.Size(817, 623);
             this.pbxLogoGrande.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbxLogoGrande.TabIndex = 6;
             this.pbxLogoGrande.TabStop = false;
@@ -248,7 +258,7 @@ namespace TCC2
             this.lblUsuario.BackColor = System.Drawing.Color.Transparent;
             this.lblUsuario.Dock = System.Windows.Forms.DockStyle.Right;
             this.lblUsuario.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.lblUsuario.Location = new System.Drawing.Point(1236, 4);
+            this.lblUsuario.Location = new System.Drawing.Point(1441, 4);
             this.lblUsuario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUsuario.Name = "lblUsuario";
             this.lblUsuario.Size = new System.Drawing.Size(57, 23);
@@ -267,7 +277,7 @@ namespace TCC2
             this.tabAgenda.Margin = new System.Windows.Forms.Padding(4);
             this.tabAgenda.Name = "tabAgenda";
             this.tabAgenda.Padding = new System.Windows.Forms.Padding(4);
-            this.tabAgenda.Size = new System.Drawing.Size(1297, 849);
+            this.tabAgenda.Size = new System.Drawing.Size(1502, 1000);
             this.tabAgenda.TabIndex = 1;
             this.tabAgenda.Text = "Agenda";
             this.tabAgenda.UseVisualStyleBackColor = true;
@@ -278,7 +288,7 @@ namespace TCC2
             this.btnSalvarAgenda.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSalvarAgenda.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
             this.btnSalvarAgenda.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalvarAgenda.Location = new System.Drawing.Point(1168, 795);
+            this.btnSalvarAgenda.Location = new System.Drawing.Point(1373, 946);
             this.btnSalvarAgenda.Margin = new System.Windows.Forms.Padding(4);
             this.btnSalvarAgenda.Name = "btnSalvarAgenda";
             this.btnSalvarAgenda.Size = new System.Drawing.Size(119, 37);
@@ -315,19 +325,19 @@ namespace TCC2
             this.atendido,
             this.retorno,
             this.ID});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgAgenda.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgAgenda.DefaultCellStyle = dataGridViewCellStyle1;
             this.dtgAgenda.Location = new System.Drawing.Point(8, 71);
             this.dtgAgenda.Margin = new System.Windows.Forms.Padding(4);
             this.dtgAgenda.Name = "dtgAgenda";
             this.dtgAgenda.RowHeadersWidth = 51;
-            this.dtgAgenda.Size = new System.Drawing.Size(1279, 716);
+            this.dtgAgenda.Size = new System.Drawing.Size(1484, 867);
             this.dtgAgenda.TabIndex = 52;
             this.dtgAgenda.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgAgenda_CellEndEdit);
             this.dtgAgenda.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtgAgenda_KeyDown);
@@ -373,7 +383,7 @@ namespace TCC2
             // btnAvançar
             // 
             this.btnAvançar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAvançar.Location = new System.Drawing.Point(1187, 39);
+            this.btnAvançar.Location = new System.Drawing.Point(1392, 39);
             this.btnAvançar.Margin = new System.Windows.Forms.Padding(4);
             this.btnAvançar.Name = "btnAvançar";
             this.btnAvançar.Size = new System.Drawing.Size(100, 28);
@@ -401,7 +411,7 @@ namespace TCC2
             this.tabAlimento.Margin = new System.Windows.Forms.Padding(4);
             this.tabAlimento.Name = "tabAlimento";
             this.tabAlimento.Padding = new System.Windows.Forms.Padding(4);
-            this.tabAlimento.Size = new System.Drawing.Size(1297, 849);
+            this.tabAlimento.Size = new System.Drawing.Size(1502, 1000);
             this.tabAlimento.TabIndex = 2;
             this.tabAlimento.Text = "Alimento";
             this.tabAlimento.UseVisualStyleBackColor = true;
@@ -419,7 +429,7 @@ namespace TCC2
             this.tbAlimento.Margin = new System.Windows.Forms.Padding(4);
             this.tbAlimento.Name = "tbAlimento";
             this.tbAlimento.SelectedIndex = 0;
-            this.tbAlimento.Size = new System.Drawing.Size(1279, 834);
+            this.tbAlimento.Size = new System.Drawing.Size(1484, 985);
             this.tbAlimento.TabIndex = 1;
             this.tbAlimento.Enter += new System.EventHandler(this.tbAlimento_Enter);
             // 
@@ -439,7 +449,7 @@ namespace TCC2
             this._tbConsulta.Margin = new System.Windows.Forms.Padding(4);
             this._tbConsulta.Name = "_tbConsulta";
             this._tbConsulta.Padding = new System.Windows.Forms.Padding(4);
-            this._tbConsulta.Size = new System.Drawing.Size(1271, 805);
+            this._tbConsulta.Size = new System.Drawing.Size(1476, 956);
             this._tbConsulta.TabIndex = 1;
             this._tbConsulta.Text = "Cadastro/Consulta";
             this._tbConsulta.UseVisualStyleBackColor = true;
@@ -448,7 +458,7 @@ namespace TCC2
             // 
             this.btnConfigurarFormula.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnConfigurarFormula.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConfigurarFormula.Location = new System.Drawing.Point(1113, 34);
+            this.btnConfigurarFormula.Location = new System.Drawing.Point(1318, 34);
             this.btnConfigurarFormula.Margin = new System.Windows.Forms.Padding(4);
             this.btnConfigurarFormula.Name = "btnConfigurarFormula";
             this.btnConfigurarFormula.Size = new System.Drawing.Size(147, 37);
@@ -460,7 +470,7 @@ namespace TCC2
             // 
             this.btnRecalcular.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnRecalcular.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRecalcular.Location = new System.Drawing.Point(8, 754);
+            this.btnRecalcular.Location = new System.Drawing.Point(8, 905);
             this.btnRecalcular.Margin = new System.Windows.Forms.Padding(4);
             this.btnRecalcular.Name = "btnRecalcular";
             this.btnRecalcular.Size = new System.Drawing.Size(119, 37);
@@ -494,7 +504,7 @@ namespace TCC2
             this.btnSalvarAlimento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSalvarAlimento.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
             this.btnSalvarAlimento.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalvarAlimento.Location = new System.Drawing.Point(1141, 754);
+            this.btnSalvarAlimento.Location = new System.Drawing.Point(1346, 905);
             this.btnSalvarAlimento.Margin = new System.Windows.Forms.Padding(4);
             this.btnSalvarAlimento.Name = "btnSalvarAlimento";
             this.btnSalvarAlimento.Size = new System.Drawing.Size(119, 37);
@@ -550,7 +560,7 @@ namespace TCC2
             this.dtgConAlimento.Margin = new System.Windows.Forms.Padding(4);
             this.dtgConAlimento.Name = "dtgConAlimento";
             this.dtgConAlimento.RowHeadersWidth = 51;
-            this.dtgConAlimento.Size = new System.Drawing.Size(1252, 668);
+            this.dtgConAlimento.Size = new System.Drawing.Size(1457, 819);
             this.dtgConAlimento.TabIndex = 2;
             this.dtgConAlimento.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgConAlimento_CellEndEdit);
             this.dtgConAlimento.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtgConAlimento_KeyDown);
@@ -571,7 +581,7 @@ namespace TCC2
             this.tbImportarPlanilha.Margin = new System.Windows.Forms.Padding(4);
             this.tbImportarPlanilha.Name = "tbImportarPlanilha";
             this.tbImportarPlanilha.Padding = new System.Windows.Forms.Padding(4);
-            this.tbImportarPlanilha.Size = new System.Drawing.Size(1271, 805);
+            this.tbImportarPlanilha.Size = new System.Drawing.Size(1476, 956);
             this.tbImportarPlanilha.TabIndex = 2;
             this.tbImportarPlanilha.Text = "Importação tabela";
             this.tbImportarPlanilha.UseVisualStyleBackColor = true;
@@ -591,7 +601,7 @@ namespace TCC2
             // txtNomeTabela
             // 
             this.txtNomeTabela.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtNomeTabela.Location = new System.Drawing.Point(196, 733);
+            this.txtNomeTabela.Location = new System.Drawing.Point(196, 884);
             this.txtNomeTabela.Margin = new System.Windows.Forms.Padding(4);
             this.txtNomeTabela.Name = "txtNomeTabela";
             this.txtNomeTabela.Size = new System.Drawing.Size(669, 22);
@@ -601,7 +611,7 @@ namespace TCC2
             // 
             this.lblNomeTabela.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblNomeTabela.AutoSize = true;
-            this.lblNomeTabela.Location = new System.Drawing.Point(4, 737);
+            this.lblNomeTabela.Location = new System.Drawing.Point(4, 888);
             this.lblNomeTabela.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNomeTabela.Name = "lblNomeTabela";
             this.lblNomeTabela.Size = new System.Drawing.Size(97, 17);
@@ -613,7 +623,7 @@ namespace TCC2
             this._cbxNomePlanilha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._cbxNomePlanilha.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._cbxNomePlanilha.FormattingEnabled = true;
-            this._cbxNomePlanilha.Location = new System.Drawing.Point(196, 694);
+            this._cbxNomePlanilha.Location = new System.Drawing.Point(196, 845);
             this._cbxNomePlanilha.Margin = new System.Windows.Forms.Padding(4);
             this._cbxNomePlanilha.Name = "_cbxNomePlanilha";
             this._cbxNomePlanilha.Size = new System.Drawing.Size(669, 24);
@@ -623,7 +633,7 @@ namespace TCC2
             // _btnImportar
             // 
             this._btnImportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._btnImportar.Location = new System.Drawing.Point(1151, 760);
+            this._btnImportar.Location = new System.Drawing.Point(1356, 911);
             this._btnImportar.Margin = new System.Windows.Forms.Padding(4);
             this._btnImportar.Name = "_btnImportar";
             this._btnImportar.Size = new System.Drawing.Size(112, 37);
@@ -644,13 +654,13 @@ namespace TCC2
             this.dtgDados.Margin = new System.Windows.Forms.Padding(4);
             this.dtgDados.Name = "dtgDados";
             this.dtgDados.RowHeadersWidth = 51;
-            this.dtgDados.Size = new System.Drawing.Size(1255, 626);
+            this.dtgDados.Size = new System.Drawing.Size(1460, 777);
             this.dtgDados.TabIndex = 268;
             // 
             // txtCaminhoArquivoExcel
             // 
             this.txtCaminhoArquivoExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtCaminhoArquivoExcel.Location = new System.Drawing.Point(196, 658);
+            this.txtCaminhoArquivoExcel.Location = new System.Drawing.Point(196, 809);
             this.txtCaminhoArquivoExcel.Margin = new System.Windows.Forms.Padding(4);
             this.txtCaminhoArquivoExcel.Name = "txtCaminhoArquivoExcel";
             this.txtCaminhoArquivoExcel.ReadOnly = true;
@@ -661,7 +671,7 @@ namespace TCC2
             // 
             this.Label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Label10.AutoSize = true;
-            this.Label10.Location = new System.Drawing.Point(4, 699);
+            this.Label10.Location = new System.Drawing.Point(4, 850);
             this.Label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label10.Name = "Label10";
             this.Label10.Size = new System.Drawing.Size(122, 17);
@@ -672,7 +682,7 @@ namespace TCC2
             // 
             this.lblCaminho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCaminho.AutoSize = true;
-            this.lblCaminho.Location = new System.Drawing.Point(4, 662);
+            this.lblCaminho.Location = new System.Drawing.Point(4, 813);
             this.lblCaminho.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCaminho.Name = "lblCaminho";
             this.lblCaminho.Size = new System.Drawing.Size(138, 17);
@@ -683,7 +693,7 @@ namespace TCC2
             // 
             this._btnBuscarPlanilha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._btnBuscarPlanilha.Image = global::TCC2.Properties.Resources.consultar;
-            this._btnBuscarPlanilha.Location = new System.Drawing.Point(1040, 652);
+            this._btnBuscarPlanilha.Location = new System.Drawing.Point(1040, 803);
             this._btnBuscarPlanilha.Margin = new System.Windows.Forms.Padding(4);
             this._btnBuscarPlanilha.Name = "_btnBuscarPlanilha";
             this._btnBuscarPlanilha.Size = new System.Drawing.Size(36, 32);
@@ -694,8 +704,6 @@ namespace TCC2
             // tbCadMedCaseira
             // 
             this.tbCadMedCaseira.Controls.Add(this.txtCodAlimentoMedCas);
-            this.tbCadMedCaseira.Controls.Add(this.btnAddMedCaseira);
-            this.tbCadMedCaseira.Controls.Add(this.btnSalvarMedCas);
             this.tbCadMedCaseira.Controls.Add(this.dtgSalvarMedCaseira);
             this.tbCadMedCaseira.Controls.Add(this.txtQtdMedCas);
             this.tbCadMedCaseira.Controls.Add(this.lblQtd);
@@ -704,10 +712,12 @@ namespace TCC2
             this.tbCadMedCaseira.Controls.Add(this.txtAlimentoMedCaseira);
             this.tbCadMedCaseira.Controls.Add(this.lblAlimentoMedCas);
             this.tbCadMedCaseira.Controls.Add(this.dtgMedCaseiraAlimentos);
+            this.tbCadMedCaseira.Controls.Add(this.btnAddMedCaseira);
+            this.tbCadMedCaseira.Controls.Add(this.btnSalvarMedCas);
             this.tbCadMedCaseira.Location = new System.Drawing.Point(4, 25);
             this.tbCadMedCaseira.Name = "tbCadMedCaseira";
             this.tbCadMedCaseira.Padding = new System.Windows.Forms.Padding(3);
-            this.tbCadMedCaseira.Size = new System.Drawing.Size(1271, 805);
+            this.tbCadMedCaseira.Size = new System.Drawing.Size(1476, 956);
             this.tbCadMedCaseira.TabIndex = 3;
             this.tbCadMedCaseira.Text = "Cadastrar Medida Caseira";
             this.tbCadMedCaseira.UseVisualStyleBackColor = true;
@@ -721,37 +731,9 @@ namespace TCC2
             this.txtCodAlimentoMedCas.Enabled = false;
             this.txtCodAlimentoMedCas.Location = new System.Drawing.Point(486, 55);
             this.txtCodAlimentoMedCas.Name = "txtCodAlimentoMedCas";
-            this.txtCodAlimentoMedCas.Size = new System.Drawing.Size(38, 22);
+            this.txtCodAlimentoMedCas.Size = new System.Drawing.Size(90, 22);
             this.txtCodAlimentoMedCas.TabIndex = 285;
             this.txtCodAlimentoMedCas.Visible = false;
-            // 
-            // btnAddMedCaseira
-            // 
-            this.btnAddMedCaseira.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddMedCaseira.Image = global::TCC2.Properties.Resources.Adicionar;
-            this.btnAddMedCaseira.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddMedCaseira.Location = new System.Drawing.Point(1129, 205);
-            this.btnAddMedCaseira.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAddMedCaseira.Name = "btnAddMedCaseira";
-            this.btnAddMedCaseira.Size = new System.Drawing.Size(135, 37);
-            this.btnAddMedCaseira.TabIndex = 284;
-            this.btnAddMedCaseira.Text = "Adicionar";
-            this.btnAddMedCaseira.UseVisualStyleBackColor = true;
-            this.btnAddMedCaseira.Click += new System.EventHandler(this.btnAddMedCaseira_Click);
-            // 
-            // btnSalvarMedCas
-            // 
-            this.btnSalvarMedCas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSalvarMedCas.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
-            this.btnSalvarMedCas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalvarMedCas.Location = new System.Drawing.Point(1145, 761);
-            this.btnSalvarMedCas.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSalvarMedCas.Name = "btnSalvarMedCas";
-            this.btnSalvarMedCas.Size = new System.Drawing.Size(119, 37);
-            this.btnSalvarMedCas.TabIndex = 11;
-            this.btnSalvarMedCas.Text = "Salvar";
-            this.btnSalvarMedCas.UseVisualStyleBackColor = true;
-            this.btnSalvarMedCas.Click += new System.EventHandler(this.btnSalvarMedCas_Click);
             // 
             // dtgSalvarMedCaseira
             // 
@@ -762,45 +744,30 @@ namespace TCC2
             this.dtgSalvarMedCaseira.BackgroundColor = System.Drawing.Color.White;
             this.dtgSalvarMedCaseira.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgSalvarMedCaseira.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.alimento,
-            this.desc,
-            this.qtd});
+            this.salvo});
             this.dtgSalvarMedCaseira.Location = new System.Drawing.Point(481, 250);
             this.dtgSalvarMedCaseira.Margin = new System.Windows.Forms.Padding(4);
             this.dtgSalvarMedCaseira.Name = "dtgSalvarMedCaseira";
             this.dtgSalvarMedCaseira.RowHeadersWidth = 51;
-            this.dtgSalvarMedCaseira.Size = new System.Drawing.Size(783, 503);
+            this.dtgSalvarMedCaseira.Size = new System.Drawing.Size(988, 654);
             this.dtgSalvarMedCaseira.TabIndex = 10;
             // 
-            // alimento
+            // salvo
             // 
-            this.alimento.HeaderText = "Alimento";
-            this.alimento.MinimumWidth = 6;
-            this.alimento.Name = "alimento";
-            this.alimento.Width = 125;
-            // 
-            // desc
-            // 
-            this.desc.HeaderText = "Descrição";
-            this.desc.MinimumWidth = 6;
-            this.desc.Name = "desc";
-            this.desc.Width = 125;
-            // 
-            // qtd
-            // 
-            this.qtd.HeaderText = "Quantidade";
-            this.qtd.MinimumWidth = 6;
-            this.qtd.Name = "qtd";
-            this.qtd.Width = 125;
+            this.salvo.HeaderText = "salvo";
+            this.salvo.MinimumWidth = 6;
+            this.salvo.Name = "salvo";
+            this.salvo.Visible = false;
+            this.salvo.Width = 125;
             // 
             // txtQtdMedCas
             // 
             this.txtQtdMedCas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtQtdMedCas.Location = new System.Drawing.Point(970, 143);
+            this.txtQtdMedCas.Location = new System.Drawing.Point(1106, 145);
             this.txtQtdMedCas.Name = "txtQtdMedCas";
-            this.txtQtdMedCas.Size = new System.Drawing.Size(217, 22);
+            this.txtQtdMedCas.Size = new System.Drawing.Size(339, 22);
             this.txtQtdMedCas.TabIndex = 9;
             // 
             // lblQtd
@@ -809,7 +776,7 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblQtd.AutoSize = true;
-            this.lblQtd.Location = new System.Drawing.Point(863, 146);
+            this.lblQtd.Location = new System.Drawing.Point(975, 148);
             this.lblQtd.Name = "lblQtd";
             this.lblQtd.Size = new System.Drawing.Size(75, 17);
             this.lblQtd.TabIndex = 8;
@@ -822,7 +789,7 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDescMedCaseira.Location = new System.Drawing.Point(585, 145);
             this.txtDescMedCaseira.Name = "txtDescMedCaseira";
-            this.txtDescMedCaseira.Size = new System.Drawing.Size(217, 22);
+            this.txtDescMedCaseira.Size = new System.Drawing.Size(348, 22);
             this.txtDescMedCaseira.TabIndex = 7;
             // 
             // lblDescMedCaseira
@@ -845,7 +812,7 @@ namespace TCC2
             this.txtAlimentoMedCaseira.Enabled = false;
             this.txtAlimentoMedCaseira.Location = new System.Drawing.Point(576, 32);
             this.txtAlimentoMedCaseira.Name = "txtAlimentoMedCaseira";
-            this.txtAlimentoMedCaseira.Size = new System.Drawing.Size(562, 22);
+            this.txtAlimentoMedCaseira.Size = new System.Drawing.Size(767, 22);
             this.txtAlimentoMedCaseira.TabIndex = 5;
             this.txtAlimentoMedCaseira.Leave += new System.EventHandler(this.txtAlimentoMedCaseira_Leave);
             // 
@@ -865,24 +832,56 @@ namespace TCC2
             // 
             this.dtgMedCaseiraAlimentos.AllowUserToAddRows = false;
             this.dtgMedCaseiraAlimentos.AllowUserToDeleteRows = false;
-            this.dtgMedCaseiraAlimentos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtgMedCaseiraAlimentos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.dtgMedCaseiraAlimentos.BackgroundColor = System.Drawing.Color.White;
             this.dtgMedCaseiraAlimentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgMedCaseiraAlimentos.Location = new System.Drawing.Point(9, 4);
             this.dtgMedCaseiraAlimentos.Margin = new System.Windows.Forms.Padding(4);
             this.dtgMedCaseiraAlimentos.Name = "dtgMedCaseiraAlimentos";
             this.dtgMedCaseiraAlimentos.RowHeadersWidth = 51;
-            this.dtgMedCaseiraAlimentos.Size = new System.Drawing.Size(470, 794);
+            this.dtgMedCaseiraAlimentos.Size = new System.Drawing.Size(464, 945);
             this.dtgMedCaseiraAlimentos.TabIndex = 3;
             this.dtgMedCaseiraAlimentos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgMedCaseiraAlimentos_CellDoubleClick);
             // 
+            // btnAddMedCaseira
+            // 
+            this.btnAddMedCaseira.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddMedCaseira.Image = global::TCC2.Properties.Resources.Adicionar;
+            this.btnAddMedCaseira.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddMedCaseira.Location = new System.Drawing.Point(1334, 205);
+            this.btnAddMedCaseira.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAddMedCaseira.Name = "btnAddMedCaseira";
+            this.btnAddMedCaseira.Size = new System.Drawing.Size(135, 37);
+            this.btnAddMedCaseira.TabIndex = 284;
+            this.btnAddMedCaseira.Text = "Adicionar";
+            this.btnAddMedCaseira.UseVisualStyleBackColor = true;
+            this.btnAddMedCaseira.Click += new System.EventHandler(this.btnAddMedCaseira_Click);
+            // 
+            // btnSalvarMedCas
+            // 
+            this.btnSalvarMedCas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSalvarMedCas.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
+            this.btnSalvarMedCas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSalvarMedCas.Location = new System.Drawing.Point(1350, 912);
+            this.btnSalvarMedCas.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSalvarMedCas.Name = "btnSalvarMedCas";
+            this.btnSalvarMedCas.Size = new System.Drawing.Size(119, 37);
+            this.btnSalvarMedCas.TabIndex = 11;
+            this.btnSalvarMedCas.Text = "Salvar";
+            this.btnSalvarMedCas.UseVisualStyleBackColor = true;
+            this.btnSalvarMedCas.Click += new System.EventHandler(this.btnSalvarMedCas_Click);
+            // 
             // tabCardapio
             // 
-            this.tabCardapio.Controls.Add(this.btnAdicionarAlimentoCard);
+            this.tabCardapio.Controls.Add(this.btnRemoveAliCardap);
+            this.tabCardapio.Controls.Add(this.btnAddAliCard);
+            this.tabCardapio.Controls.Add(this.lblTabelaCardapio);
+            this.tabCardapio.Controls.Add(this.cbxTabelaAlimentoCardapio);
+            this.tabCardapio.Controls.Add(this.comboBox1);
+            this.tabCardapio.Controls.Add(this.graficoProtCHOLip);
+            this.tabCardapio.Controls.Add(this.dtgCardapioAlimentos);
             this.tabCardapio.Controls.Add(this.dtgRefeicoes);
-            this.tabCardapio.Controls.Add(this.txtDescricao);
             this.tabCardapio.Controls.Add(this.lblDescricao);
             this.tabCardapio.Controls.Add(this.textBox1);
             this.tabCardapio.Controls.Add(this.label8);
@@ -893,23 +892,105 @@ namespace TCC2
             this.tabCardapio.Margin = new System.Windows.Forms.Padding(4);
             this.tabCardapio.Name = "tabCardapio";
             this.tabCardapio.Padding = new System.Windows.Forms.Padding(4);
-            this.tabCardapio.Size = new System.Drawing.Size(1297, 849);
+            this.tabCardapio.Size = new System.Drawing.Size(1502, 1000);
             this.tabCardapio.TabIndex = 3;
             this.tabCardapio.Text = "Cardápio";
             this.tabCardapio.UseVisualStyleBackColor = true;
+            this.tabCardapio.Enter += new System.EventHandler(this.tabCardapio_Enter);
             // 
-            // btnAdicionarAlimentoCard
+            // btnRemoveAliCardap
             // 
-            this.btnAdicionarAlimentoCard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdicionarAlimentoCard.Image = global::TCC2.Properties.Resources.Adicionar;
-            this.btnAdicionarAlimentoCard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdicionarAlimentoCard.Location = new System.Drawing.Point(1154, 199);
-            this.btnAdicionarAlimentoCard.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAdicionarAlimentoCard.Name = "btnAdicionarAlimentoCard";
-            this.btnAdicionarAlimentoCard.Size = new System.Drawing.Size(135, 37);
-            this.btnAdicionarAlimentoCard.TabIndex = 283;
-            this.btnAdicionarAlimentoCard.Text = "Adicionar";
-            this.btnAdicionarAlimentoCard.UseVisualStyleBackColor = true;
+            this.btnRemoveAliCardap.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnRemoveAliCardap.Image = global::TCC2.Properties.Resources.arrow_icon_1;
+            this.btnRemoveAliCardap.Location = new System.Drawing.Point(581, 522);
+            this.btnRemoveAliCardap.Name = "btnRemoveAliCardap";
+            this.btnRemoveAliCardap.Size = new System.Drawing.Size(64, 59);
+            this.btnRemoveAliCardap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnRemoveAliCardap.TabIndex = 289;
+            this.btnRemoveAliCardap.TabStop = false;
+            // 
+            // btnAddAliCard
+            // 
+            this.btnAddAliCard.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnAddAliCard.Image = global::TCC2.Properties.Resources.arrow_icon_1___Copia;
+            this.btnAddAliCard.Location = new System.Drawing.Point(581, 314);
+            this.btnAddAliCard.Name = "btnAddAliCard";
+            this.btnAddAliCard.Size = new System.Drawing.Size(64, 59);
+            this.btnAddAliCard.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnAddAliCard.TabIndex = 288;
+            this.btnAddAliCard.TabStop = false;
+            this.btnAddAliCard.Click += new System.EventHandler(this.btnAddAliCard_Click);
+            // 
+            // lblTabelaCardapio
+            // 
+            this.lblTabelaCardapio.AutoSize = true;
+            this.lblTabelaCardapio.Location = new System.Drawing.Point(24, 80);
+            this.lblTabelaCardapio.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTabelaCardapio.Name = "lblTabelaCardapio";
+            this.lblTabelaCardapio.Size = new System.Drawing.Size(56, 17);
+            this.lblTabelaCardapio.TabIndex = 287;
+            this.lblTabelaCardapio.Text = "Tabela:";
+            // 
+            // cbxTabelaAlimentoCardapio
+            // 
+            this.cbxTabelaAlimentoCardapio.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxTabelaAlimentoCardapio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxTabelaAlimentoCardapio.FormattingEnabled = true;
+            this.cbxTabelaAlimentoCardapio.Location = new System.Drawing.Point(148, 77);
+            this.cbxTabelaAlimentoCardapio.Margin = new System.Windows.Forms.Padding(4);
+            this.cbxTabelaAlimentoCardapio.Name = "cbxTabelaAlimentoCardapio";
+            this.cbxTabelaAlimentoCardapio.Size = new System.Drawing.Size(397, 24);
+            this.cbxTabelaAlimentoCardapio.TabIndex = 286;
+            this.cbxTabelaAlimentoCardapio.SelectedIndexChanged += new System.EventHandler(this.cbxTabelaAlimentoCardapio_SelectedIndexChanged);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Café da manhã",
+            "Lanche",
+            "Almoço",
+            "Lanche da tarde",
+            "Janta",
+            "Ceia"});
+            this.comboBox1.Location = new System.Drawing.Point(652, 27);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(324, 24);
+            this.comboBox1.TabIndex = 285;
+            // 
+            // graficoProtCHOLip
+            // 
+            this.graficoProtCHOLip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            chartArea1.Name = "ChartArea1";
+            this.graficoProtCHOLip.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.graficoProtCHOLip.Legends.Add(legend1);
+            this.graficoProtCHOLip.Location = new System.Drawing.Point(8, 767);
+            this.graficoProtCHOLip.Name = "graficoProtCHOLip";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.graficoProtCHOLip.Series.Add(series1);
+            this.graficoProtCHOLip.Size = new System.Drawing.Size(372, 226);
+            this.graficoProtCHOLip.TabIndex = 284;
+            // 
+            // dtgCardapioAlimentos
+            // 
+            this.dtgCardapioAlimentos.AllowUserToAddRows = false;
+            this.dtgCardapioAlimentos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtgCardapioAlimentos.BackgroundColor = System.Drawing.Color.White;
+            this.dtgCardapioAlimentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgCardapioAlimentos.Location = new System.Drawing.Point(8, 132);
+            this.dtgCardapioAlimentos.Margin = new System.Windows.Forms.Padding(4);
+            this.dtgCardapioAlimentos.Name = "dtgCardapioAlimentos";
+            this.dtgCardapioAlimentos.RowHeadersWidth = 51;
+            this.dtgCardapioAlimentos.Size = new System.Drawing.Size(537, 628);
+            this.dtgCardapioAlimentos.TabIndex = 283;
             // 
             // dtgRefeicoes
             // 
@@ -919,26 +1000,17 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dtgRefeicoes.BackgroundColor = System.Drawing.Color.White;
             this.dtgRefeicoes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgRefeicoes.Location = new System.Drawing.Point(8, 244);
+            this.dtgRefeicoes.Location = new System.Drawing.Point(680, 132);
             this.dtgRefeicoes.Margin = new System.Windows.Forms.Padding(4);
             this.dtgRefeicoes.Name = "dtgRefeicoes";
             this.dtgRefeicoes.RowHeadersWidth = 51;
-            this.dtgRefeicoes.Size = new System.Drawing.Size(1281, 513);
+            this.dtgRefeicoes.Size = new System.Drawing.Size(814, 628);
             this.dtgRefeicoes.TabIndex = 282;
-            // 
-            // txtDescricao
-            // 
-            this.txtDescricao.Location = new System.Drawing.Point(296, 101);
-            this.txtDescricao.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDescricao.Multiline = true;
-            this.txtDescricao.Name = "txtDescricao";
-            this.txtDescricao.Size = new System.Drawing.Size(557, 72);
-            this.txtDescricao.TabIndex = 278;
             // 
             // lblDescricao
             // 
             this.lblDescricao.AutoSize = true;
-            this.lblDescricao.Location = new System.Drawing.Point(55, 105);
+            this.lblDescricao.Location = new System.Drawing.Point(444, 30);
             this.lblDescricao.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDescricao.Name = "lblDescricao";
             this.lblDescricao.Size = new System.Drawing.Size(154, 17);
@@ -948,7 +1020,7 @@ namespace TCC2
             // textBox1
             // 
             this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(296, 39);
+            this.textBox1.Location = new System.Drawing.Point(191, 32);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(99, 22);
@@ -957,7 +1029,7 @@ namespace TCC2
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(55, 43);
+            this.label8.Location = new System.Drawing.Point(29, 35);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(115, 17);
@@ -969,7 +1041,7 @@ namespace TCC2
             this.btnSalvarCardapio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSalvarCardapio.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
             this.btnSalvarCardapio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalvarCardapio.Location = new System.Drawing.Point(1170, 804);
+            this.btnSalvarCardapio.Location = new System.Drawing.Point(1375, 955);
             this.btnSalvarCardapio.Margin = new System.Windows.Forms.Padding(4);
             this.btnSalvarCardapio.Name = "btnSalvarCardapio";
             this.btnSalvarCardapio.Size = new System.Drawing.Size(119, 37);
@@ -981,7 +1053,7 @@ namespace TCC2
             // btnSearchPatient
             // 
             this.btnSearchPatient.Image = global::TCC2.Properties.Resources.consultar;
-            this.btnSearchPatient.Location = new System.Drawing.Point(428, 33);
+            this.btnSearchPatient.Location = new System.Drawing.Point(336, 29);
             this.btnSearchPatient.Margin = new System.Windows.Forms.Padding(4);
             this.btnSearchPatient.Name = "btnSearchPatient";
             this.btnSearchPatient.Size = new System.Drawing.Size(40, 28);
@@ -997,7 +1069,7 @@ namespace TCC2
             this.tabPaciente.Margin = new System.Windows.Forms.Padding(4);
             this.tabPaciente.Name = "tabPaciente";
             this.tabPaciente.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPaciente.Size = new System.Drawing.Size(1297, 849);
+            this.tabPaciente.Size = new System.Drawing.Size(1502, 1000);
             this.tabPaciente.TabIndex = 4;
             this.tabPaciente.Text = "Paciente";
             this.tabPaciente.UseVisualStyleBackColor = true;
@@ -1014,7 +1086,7 @@ namespace TCC2
             this.tbPaciente.Margin = new System.Windows.Forms.Padding(4);
             this.tbPaciente.Name = "tbPaciente";
             this.tbPaciente.SelectedIndex = 0;
-            this.tbPaciente.Size = new System.Drawing.Size(1279, 829);
+            this.tbPaciente.Size = new System.Drawing.Size(1484, 980);
             this.tbPaciente.TabIndex = 1;
             // 
             // tbCadastro
@@ -1053,7 +1125,7 @@ namespace TCC2
             this.tbCadastro.Margin = new System.Windows.Forms.Padding(4);
             this.tbCadastro.Name = "tbCadastro";
             this.tbCadastro.Padding = new System.Windows.Forms.Padding(4);
-            this.tbCadastro.Size = new System.Drawing.Size(1271, 800);
+            this.tbCadastro.Size = new System.Drawing.Size(1476, 951);
             this.tbCadastro.TabIndex = 0;
             this.tbCadastro.Text = "Cadastro";
             this.tbCadastro.UseVisualStyleBackColor = true;
@@ -1076,11 +1148,11 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Right)));
             this._dtgConsultaPacientes.BackgroundColor = System.Drawing.Color.White;
             this._dtgConsultaPacientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this._dtgConsultaPacientes.Location = new System.Drawing.Point(8, 523);
+            this._dtgConsultaPacientes.Location = new System.Drawing.Point(8, 582);
             this._dtgConsultaPacientes.Margin = new System.Windows.Forms.Padding(4);
             this._dtgConsultaPacientes.Name = "_dtgConsultaPacientes";
             this._dtgConsultaPacientes.RowHeadersWidth = 51;
-            this._dtgConsultaPacientes.Size = new System.Drawing.Size(1255, 269);
+            this._dtgConsultaPacientes.Size = new System.Drawing.Size(1460, 361);
             this._dtgConsultaPacientes.TabIndex = 266;
             // 
             // _btnExcluir
@@ -1088,7 +1160,7 @@ namespace TCC2
             this._btnExcluir.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this._btnExcluir.Image = global::TCC2.Properties.Resources.DeleteRed;
             this._btnExcluir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._btnExcluir.Location = new System.Drawing.Point(1144, 478);
+            this._btnExcluir.Location = new System.Drawing.Point(1349, 553);
             this._btnExcluir.Margin = new System.Windows.Forms.Padding(4);
             this._btnExcluir.Name = "_btnExcluir";
             this._btnExcluir.Size = new System.Drawing.Size(119, 37);
@@ -1102,7 +1174,7 @@ namespace TCC2
             this._btnSalvar.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this._btnSalvar.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
             this._btnSalvar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._btnSalvar.Location = new System.Drawing.Point(1017, 478);
+            this._btnSalvar.Location = new System.Drawing.Point(1222, 553);
             this._btnSalvar.Margin = new System.Windows.Forms.Padding(4);
             this._btnSalvar.Name = "_btnSalvar";
             this._btnSalvar.Size = new System.Drawing.Size(119, 37);
@@ -1114,7 +1186,7 @@ namespace TCC2
             // txtNumero
             // 
             this.txtNumero.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtNumero.Location = new System.Drawing.Point(881, 265);
+            this.txtNumero.Location = new System.Drawing.Point(944, 338);
             this.txtNumero.Margin = new System.Windows.Forms.Padding(4);
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(79, 22);
@@ -1124,7 +1196,7 @@ namespace TCC2
             // 
             this.lblNum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblNum.AutoSize = true;
-            this.lblNum.Location = new System.Drawing.Point(832, 269);
+            this.lblNum.Location = new System.Drawing.Point(895, 342);
             this.lblNum.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNum.Name = "lblNum";
             this.lblNum.Size = new System.Drawing.Size(27, 17);
@@ -1368,7 +1440,7 @@ namespace TCC2
             this.tbAntropometricos.Margin = new System.Windows.Forms.Padding(4);
             this.tbAntropometricos.Name = "tbAntropometricos";
             this.tbAntropometricos.Padding = new System.Windows.Forms.Padding(4);
-            this.tbAntropometricos.Size = new System.Drawing.Size(1271, 800);
+            this.tbAntropometricos.Size = new System.Drawing.Size(1476, 951);
             this.tbAntropometricos.TabIndex = 2;
             this.tbAntropometricos.Text = "Antropometria";
             this.tbAntropometricos.UseVisualStyleBackColor = true;
@@ -1442,7 +1514,7 @@ namespace TCC2
             this.tbAnamnese.Location = new System.Drawing.Point(4, 25);
             this.tbAnamnese.Name = "tbAnamnese";
             this.tbAnamnese.Padding = new System.Windows.Forms.Padding(3);
-            this.tbAnamnese.Size = new System.Drawing.Size(1271, 800);
+            this.tbAnamnese.Size = new System.Drawing.Size(1476, 951);
             this.tbAnamnese.TabIndex = 3;
             this.tbAnamnese.Text = "Anamnese";
             this.tbAnamnese.UseVisualStyleBackColor = true;
@@ -1453,7 +1525,7 @@ namespace TCC2
             this.tabReceitas.Location = new System.Drawing.Point(4, 39);
             this.tabReceitas.Margin = new System.Windows.Forms.Padding(4);
             this.tabReceitas.Name = "tabReceitas";
-            this.tabReceitas.Size = new System.Drawing.Size(1297, 849);
+            this.tabReceitas.Size = new System.Drawing.Size(1502, 1000);
             this.tabReceitas.TabIndex = 6;
             this.tabReceitas.Text = "Receitas";
             this.tabReceitas.UseVisualStyleBackColor = true;
@@ -1466,7 +1538,7 @@ namespace TCC2
             this.tabConfig.Margin = new System.Windows.Forms.Padding(4);
             this.tabConfig.Name = "tabConfig";
             this.tabConfig.Padding = new System.Windows.Forms.Padding(4);
-            this.tabConfig.Size = new System.Drawing.Size(1297, 849);
+            this.tabConfig.Size = new System.Drawing.Size(1502, 1000);
             this.tabConfig.TabIndex = 5;
             this.tabConfig.Text = "Configurações";
             this.tabConfig.UseVisualStyleBackColor = true;
@@ -1482,7 +1554,7 @@ namespace TCC2
             this.tbConfig.Margin = new System.Windows.Forms.Padding(4);
             this.tbConfig.Name = "tbConfig";
             this.tbConfig.SelectedIndex = 0;
-            this.tbConfig.Size = new System.Drawing.Size(1287, 829);
+            this.tbConfig.Size = new System.Drawing.Size(1492, 980);
             this.tbConfig.TabIndex = 1;
             this.tbConfig.Enter += new System.EventHandler(this.tbConfig_Enter);
             // 
@@ -1509,7 +1581,7 @@ namespace TCC2
             this.TabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.TabPage1.Name = "TabPage1";
             this.TabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.TabPage1.Size = new System.Drawing.Size(1279, 800);
+            this.TabPage1.Size = new System.Drawing.Size(1484, 951);
             this.TabPage1.TabIndex = 0;
             this.TabPage1.Text = "Usuários";
             this.TabPage1.UseVisualStyleBackColor = true;
@@ -1605,7 +1677,7 @@ namespace TCC2
             this.btnExcluirConfigUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExcluirConfigUsuario.Image = global::TCC2.Properties.Resources.DeleteRed;
             this.btnExcluirConfigUsuario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExcluirConfigUsuario.Location = new System.Drawing.Point(1149, 165);
+            this.btnExcluirConfigUsuario.Location = new System.Drawing.Point(1354, 165);
             this.btnExcluirConfigUsuario.Margin = new System.Windows.Forms.Padding(4);
             this.btnExcluirConfigUsuario.Name = "btnExcluirConfigUsuario";
             this.btnExcluirConfigUsuario.Size = new System.Drawing.Size(119, 37);
@@ -1618,7 +1690,7 @@ namespace TCC2
             this.btnSalvarConfigUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSalvarConfigUsuario.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
             this.btnSalvarConfigUsuario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalvarConfigUsuario.Location = new System.Drawing.Point(1023, 165);
+            this.btnSalvarConfigUsuario.Location = new System.Drawing.Point(1228, 165);
             this.btnSalvarConfigUsuario.Margin = new System.Windows.Forms.Padding(4);
             this.btnSalvarConfigUsuario.Name = "btnSalvarConfigUsuario";
             this.btnSalvarConfigUsuario.Size = new System.Drawing.Size(119, 37);
@@ -1694,7 +1766,7 @@ namespace TCC2
             this.dtgUsuarios.Name = "dtgUsuarios";
             this.dtgUsuarios.ReadOnly = true;
             this.dtgUsuarios.RowHeadersWidth = 51;
-            this.dtgUsuarios.Size = new System.Drawing.Size(1259, 577);
+            this.dtgUsuarios.Size = new System.Drawing.Size(1464, 728);
             this.dtgUsuarios.TabIndex = 0;
             this.dtgUsuarios.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgUsuarios_CellDoubleClick);
             // 
@@ -1704,7 +1776,7 @@ namespace TCC2
             this.TabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.TabPage2.Name = "TabPage2";
             this.TabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.TabPage2.Size = new System.Drawing.Size(1279, 800);
+            this.TabPage2.Size = new System.Drawing.Size(1484, 951);
             this.TabPage2.TabIndex = 1;
             this.TabPage2.Text = "Permissões";
             this.TabPage2.UseVisualStyleBackColor = true;
@@ -1729,7 +1801,7 @@ namespace TCC2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1313, 900);
+            this.ClientSize = new System.Drawing.Size(1518, 1051);
             this.Controls.Add(this.TabControlNutreasy);
             this.DrawerShowIconsWhenHidden = true;
             this.DrawerTabControl = this.TabControlNutreasy;
@@ -1763,6 +1835,10 @@ namespace TCC2
             ((System.ComponentModel.ISupportInitialize)(this.dtgMedCaseiraAlimentos)).EndInit();
             this.tabCardapio.ResumeLayout(false);
             this.tabCardapio.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnRemoveAliCardap)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddAliCard)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.graficoProtCHOLip)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgCardapioAlimentos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgRefeicoes)).EndInit();
             this.tabPaciente.ResumeLayout(false);
             this.tbPaciente.ResumeLayout(false);
@@ -1818,7 +1894,6 @@ namespace TCC2
         private System.Windows.Forms.TabPage tabCardapio;
         internal System.Windows.Forms.DataGridView dtgRefeicoes;
         internal System.Windows.Forms.Button btnSalvarCardapio;
-        internal System.Windows.Forms.TextBox txtDescricao;
         internal System.Windows.Forms.Label lblDescricao;
         private System.Windows.Forms.Button btnSearchPatient;
         internal System.Windows.Forms.TextBox textBox1;
@@ -1884,7 +1959,6 @@ namespace TCC2
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.TabPage tabReceitas;
         private System.Windows.Forms.PictureBox pbCarrengado;
-        internal System.Windows.Forms.Button btnAdicionarAlimentoCard;
         internal System.Windows.Forms.Button btnConfigurarFormula;
         public System.Windows.Forms.DataGridView _dtgConsultaPacientes;
         private System.Windows.Forms.DateTimePicker txtDtNasc;
@@ -1909,10 +1983,15 @@ namespace TCC2
         internal System.Windows.Forms.DataGridView dtgMedCaseiraAlimentos;
         internal System.Windows.Forms.Button btnSalvarMedCas;
         internal System.Windows.Forms.Button btnAddMedCaseira;
-        private System.Windows.Forms.DataGridViewTextBoxColumn alimento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn desc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn qtd;
         private System.Windows.Forms.TextBox txtCodAlimentoMedCas;
+        internal System.Windows.Forms.DataGridView dtgCardapioAlimentos;
+        private System.Windows.Forms.DataVisualization.Charting.Chart graficoProtCHOLip;
+        private System.Windows.Forms.ComboBox comboBox1;
+        internal System.Windows.Forms.Label lblTabelaCardapio;
+        private System.Windows.Forms.ComboBox cbxTabelaAlimentoCardapio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn salvo;
+        private System.Windows.Forms.PictureBox btnAddAliCard;
+        private System.Windows.Forms.PictureBox btnRemoveAliCardap;
     }
 }
 

@@ -14,6 +14,12 @@ namespace TCC2
     
     public partial class Paciente
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Paciente()
+        {
+            this.Cardapio = new HashSet<Cardapio>();
+        }
+    
         public long CPF { get; set; }
         public string nome { get; set; }
         public string dtNasc { get; set; }
@@ -29,5 +35,8 @@ namespace TCC2
         public string celular { get; set; }
         public long codPaciente { get; set; }
         public byte[] imagem { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cardapio> Cardapio { get; set; }
     }
 }

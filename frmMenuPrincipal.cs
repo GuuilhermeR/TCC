@@ -25,17 +25,21 @@ namespace TCC2
         public AlimentoDAO alimentoDAO = new AlimentoDAO();
         public AgendaDAO agendaDAO = new AgendaDAO();
         public MedidaCaseiraDAO medidaCaseiraDAO = new MedidaCaseiraDAO();
+        public CardapioDAO cardapioDAO = new CardapioDAO();
         private DataTableCollection tables;
         List<string> deletar = new List<string>();
         List<string> deletarAlimento = new List<string>();
         private object tamanhoArquivoImagem;
         private byte[] vetorImagens;
+        
+
 
         #region Menu
         public frmMenuPrincipal(string usuarioLogado)
         {
             InitializeComponent();
             usuarioDAO.setNomeUsuario(usuarioLogado);
+
         }
 
         private void frmMenuPrincipal_Load(object sender, EventArgs e)
@@ -614,10 +618,6 @@ namespace TCC2
             txtCelular.Text = "";
         }
 
-
-        private void btnSalvarCardapio_Click(object sender, EventArgs e)
-        {
-        }
         private void txtCEP_Leave(object sender, EventArgs e)
         {
             buscarEndCep(txtCEP.Text);
@@ -735,25 +735,6 @@ namespace TCC2
                         cbxTabelaAlimentoCardapio.Items.Add(x.nomeTabela);
                 });
         }
-        private void cbxTabelaAlimentoCardapio_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var listaAlimentos = alimentoDAO.Buscar("", cbxTabelaAlimentoCardapio.Text);
-            if (listaAlimentos == null)
-                return;
-            DataTable dt = ConvertToDataTable(listaAlimentos);
-            dtgCardapioAlimentos.DataSource = dt;
-
-            dtgCardapioAlimentos.Columns["codAlimento"].Visible = false;
-            dtgCardapioAlimentos.Columns["nomeAlimento"].HeaderText = "Alimento";
-            dtgCardapioAlimentos.Columns["kcal"].Visible = false;
-            dtgCardapioAlimentos.Columns["qtd"].Visible = false;
-            dtgCardapioAlimentos.Columns["prot"].Visible = false;
-            dtgCardapioAlimentos.Columns["carbo"].Visible = false;
-            dtgCardapioAlimentos.Columns["lipidio"].Visible = false;
-            dtgCardapioAlimentos.Columns["nomeTabela"].Visible = false;
-            dtgCardapioAlimentos.Columns["MedidaCaseira"].Visible = false;
-            dtgCardapioAlimentos.AutoResizeColumns();
-        }
 
         private void btnAddAliCard_Click(object sender, EventArgs e)
         {
@@ -843,6 +824,26 @@ namespace TCC2
             }
         }
 
+        private void cbxTabelaAlimentoCardapio_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            var listaAlimentos = alimentoDAO.Buscar("", cbxTabelaAlimentoCardapio.Text);
+            if (listaAlimentos == null)
+                return;
+            DataTable dt = ConvertToDataTable(listaAlimentos);
+            dtgCardapioAlimentos.DataSource = dt;
+
+            dtgCardapioAlimentos.Columns["codAlimento"].Visible = false;
+            dtgCardapioAlimentos.Columns["nomeAlimento"].HeaderText = "Alimento";
+            dtgCardapioAlimentos.Columns["kcal"].Visible = false;
+            dtgCardapioAlimentos.Columns["qtd"].Visible = false;
+            dtgCardapioAlimentos.Columns["prot"].Visible = false;
+            dtgCardapioAlimentos.Columns["carbo"].Visible = false;
+            dtgCardapioAlimentos.Columns["lipidio"].Visible = false;
+            dtgCardapioAlimentos.Columns["nomeTabela"].Visible = false;
+            dtgCardapioAlimentos.Columns["MedidaCaseira"].Visible = false;
+            dtgCardapioAlimentos.AutoResizeColumns();
+        }
+
         private DataGridViewRow adicionar(DataGridViewRow row)
         {
             DataGridViewRow newRow = (DataGridViewRow)row.Clone();
@@ -859,6 +860,9 @@ namespace TCC2
                 dtgRefeicoes.Columns.Add("lipidio", "lipidio");
                 dtgRefeicoes.Columns.Add("nomeTabela", "nomeTabela");
                 dtgRefeicoes.Columns.Add("MedidaCaseira", "MedidaCaseira");
+                dtgRefeicoes.Columns.Add(colunaMedidaCaseira);
+                colunaMedidaCaseira.Items.Add("100g");
+                dtgRefeicoes.Columns.Add("obs", "Observação");
                 dtgRefeicoes.Columns["codAlimento"].Visible = false;
                 dtgRefeicoes.Columns["nomeAlimento"].HeaderText = "Alimento";
                 dtgRefeicoes.Columns["kcal"].Visible = false;
@@ -879,27 +883,24 @@ namespace TCC2
 
             var medCaseiraItens = medidaCaseiraDAO.Buscar(Convert.ToInt32(row.Cells["codAlimento"].Value));
             if (medCaseiraItens == null)
-            {
                 return newRow;
-            }
+            
             colunaMedidaCaseira.HeaderText = "Medida Caseira";
             colunaMedidaCaseira.Name = "medCaseira";
             colunaMedidaCaseira.Items.Clear();
             medCaseiraItens.ForEach(x =>
             {
                 if (x.codAlimento == x.Alimentos.codAlimento)
-                {
-                    colunaMedidaCaseira = new DataGridViewComboBoxColumn();
                     colunaMedidaCaseira.Items.Add(x.descricao);
-                    dtgRefeicoes.Columns.Add(colunaMedidaCaseira);
-                }
             });
+
 
             return newRow;
         }
 
         private void btnRemoveAliCardap_Click(object sender, EventArgs e)
         {
+
             if (dtgRefeicoes.SelectedRows.Count >= 1 || dtgRefeicoes.SelectedCells.Count >= 1)
             {
                 foreach (DataGridViewRow row in dtgRefeicoes.Rows)
@@ -908,8 +909,16 @@ namespace TCC2
             }
         }
 
+        private void btnSalvarCardapio_Click(object sender, EventArgs e)
+        {
 
+        }
 
+        private void btnPacienteCardapio_Click(object sender, EventArgs e)
+        {
+            frmBuscarPaciente buscaPacientes = new frmBuscarPaciente();
+            buscaPacientes.Show();
+        }
         #endregion
 
         #region Configurações
@@ -954,7 +963,6 @@ namespace TCC2
                 if (Interaction.MsgBox("Você deseja alterar a senha do usuário?", MsgBoxStyle.YesNo, "ALTERAÇÃO DE SENHA") == MsgBoxResult.Yes)
                     alterarSenha = true;
                 usuarioDAO.AlterarUsuario(txtUsuarioConfig.Text, txtSenha.Text, txtNome.Text, txtEmail.Text, cbxSituacao.Text, cbxTipoUsuario.Text, alterarSenha);
-
             }
         }
         private void txtUsuarioConfig_Leave(object sender, EventArgs e)
@@ -987,20 +995,13 @@ namespace TCC2
             txtConfirmarSenha.PasswordChar = '*';
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
         #endregion
 
+        private void tbCadCardapio_Enter(object sender, EventArgs e)
+        {
+            if (CardapioDAO.nomePacienteCard != "")
+                txtPaciente.Text = CardapioDAO.nomePacienteCard;
+        }
 
     }
 }

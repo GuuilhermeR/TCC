@@ -18,6 +18,7 @@ namespace TCC2
         public Alimentos()
         {
             this.MedidaCaseira = new HashSet<MedidaCaseira>();
+            this.Cardapio = new HashSet<Cardapio>();
         }
     
         public long codAlimento { get; set; }
@@ -31,5 +32,7 @@ namespace TCC2
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MedidaCaseira> MedidaCaseira { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cardapio> Cardapio { get; set; }
     }
 }

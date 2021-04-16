@@ -11,6 +11,9 @@
         <EntityTypeShape EntityType="NutreasyModel.Paciente" Width="1.5" PointX="8.875" PointY="1.25" />
         <EntityTypeShape EntityType="NutreasyModel.MedidaCaseira" Width="1.5" PointX="5.625" PointY="5.5" />
         <AssociationConnector Association="NutreasyModel.FK_MedidaCaseira_0_0" />
+        <EntityTypeShape EntityType="NutreasyModel.Cardapio" Width="1.5" PointX="11.125" PointY="1.75" />
+        <AssociationConnector Association="NutreasyModel.FK_Cardapio_0_0" />
+        <AssociationConnector Association="NutreasyModel.FK_Cardapio_1_0" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -51,12 +51,10 @@ namespace TCC2
                 if (cardapio.Count > 0)
                 {
                     return cardapio;
-
                 }
                 else
                 {
                     return null;
-
                 }
             }
             catch
@@ -64,8 +62,5 @@ namespace TCC2
                 return null;
             }
         }
-
-
     }
-
 }

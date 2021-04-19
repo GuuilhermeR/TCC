@@ -36,6 +36,7 @@ namespace TCC2
             }
             return idade;
         }
+
         private void frmBuscarPaciente_Load(object sender, EventArgs e)
         {
             var materialSkinManager = MaterialSkinManager.Instance;

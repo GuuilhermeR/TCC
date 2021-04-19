@@ -32,8 +32,6 @@ namespace TCC2
         private object tamanhoArquivoImagem;
         private byte[] vetorImagens;
 
-
-
         #region Menu
         public frmMenuPrincipal(string usuarioLogado)
         {
@@ -51,6 +49,7 @@ namespace TCC2
             materialSkinManager.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.BlueGrey500, Accent.LightGreen200, TextShade.WHITE);
 
             this.MaximizeBox = false;
+            
             if (usuarioDAO.getNomeUsuario() != null)
             {
                 lblUsuario.Text = $"Seja bem vindo(a) ao sistema {usuarioDAO.getNomeUsuario()}";
@@ -721,7 +720,8 @@ namespace TCC2
         #endregion
 
         #region Cardápio
-
+        //Ao invés de colocar medida caseira, para finalizar o básico do projeto, será possível apenas colocar quantidade em gramas. O gráfico irá carregar após 
+        //informar a quantidade em gramas (evento sair da célula) apenas. Posteriormente, como ajustes será implementado medidas caseiras.
         private void tabCardapio_Enter(object sender, EventArgs e)
         {
             List<Alimentos> tabela = new List<Alimentos>();
@@ -751,7 +751,7 @@ namespace TCC2
             if (dtgCardapioAlimentos.SelectedRows.Count >= 1 || dtgCardapioAlimentos.SelectedCells.Count >= 1)
             {
                 foreach (DataGridViewRow row in dtgCardapioAlimentos.Rows)
-                    if (row.Selected == true)
+                    if (row.Selected == true || row.Cells["nomeAlimento"].Selected)
                     {
                         linhaAdicionada = adicionar(row);
                         dtgRefeicoes.Rows.Add(linhaAdicionada);
@@ -787,9 +787,6 @@ namespace TCC2
 
             if (proteina != 0 || carboidrato != 0 || lipidio != 0)
             {
-                //lblVlrProt.Text = proteina.ToString("N2") + " g";
-                //lblVlrCarbo.Text = carboidrato.ToString("N2") + " g";
-                //lblVlrLip.Text = lipidio.ToString("N2") + " g";
                 lblValorKcal.Text = kcal.ToString("N2") + " Kcal";
 
                 Func<ChartPoint, string> labelPoint = chartPoint => string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
@@ -850,6 +847,7 @@ namespace TCC2
 
             if (dtgRefeicoes.Columns.Count == 0)
             {
+                colunaMedidaCaseira.Items.Clear();
                 dtgRefeicoes.Columns.Add("codAlimento", "codAlimento");
                 dtgRefeicoes.Columns.Add("nomeAlimento", "Alimento");
                 dtgRefeicoes.Columns.Add("kcal", "kcal");
@@ -881,36 +879,29 @@ namespace TCC2
             newRow.Cells[5].Value = row.Cells["lipidio"].Value;
 
             var medCaseiraItens = medidaCaseiraDAO.Buscar(Convert.ToInt32(row.Cells["codAlimento"].Value));
+
             if (medCaseiraItens == null)
                 return newRow;
 
             colunaMedidaCaseira.HeaderText = "Medida Caseira";
             colunaMedidaCaseira.Name = "medCaseira";
-            colunaMedidaCaseira.Items.Clear();
             medCaseiraItens.ForEach(x =>
             {
                 if (x.codAlimento == x.Alimentos.codAlimento)
                     colunaMedidaCaseira.Items.Add(x.descricao);
             });
 
-
             return newRow;
-        }
-
-        private void btnRemoveAliCardap_Click(object sender, EventArgs e)
-        {
-
-            if (dtgRefeicoes.SelectedRows.Count >= 1 || dtgRefeicoes.SelectedCells.Count >= 1)
-            {
-                foreach (DataGridViewRow row in dtgRefeicoes.Rows)
-                    if (row.Selected == true)
-                        dtgRefeicoes.Rows.Remove(row);
-            }
         }
 
         private void btnSalvarCardapio_Click(object sender, EventArgs e)
         {
-
+            foreach (DataGridViewRow row in dtgRefeicoes.Rows)
+            cardapioDAO.Salvar(Convert.ToInt32(CardapioDAO.codPacienteCard), 
+                                                (int)row.Cells["codAlimento"].Value, 
+                                                (decimal)row.Cells["medCaseira"].Value, 
+                                                row.Cells["codAlimento"].Value.ToString(), 
+                                                Convert.ToDecimal(lblValorKcal.Text));
         }
 
         private void btnPacienteCardapio_Click(object sender, EventArgs e)
@@ -995,12 +986,6 @@ namespace TCC2
         }
 
         #endregion
-
-        private void tbCadCardapio_Enter(object sender, EventArgs e)
-        {
-            if (CardapioDAO.nomePacienteCard != "")
-                txtPaciente.Text = CardapioDAO.nomePacienteCard;
-        }
 
     }
 }

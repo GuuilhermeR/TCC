@@ -31,7 +31,7 @@ namespace TCC2
         List<string> deletarAlimento = new List<string>();
         private object tamanhoArquivoImagem;
         private byte[] vetorImagens;
-        
+
 
 
         #region Menu
@@ -288,6 +288,7 @@ namespace TCC2
                 dtgConAlimento.Columns["lipidio"].HeaderText = "Lipídio";
                 dtgConAlimento.Columns["nomeTabela"].HeaderText = "Tabela";
                 dtgConAlimento.Columns["MedidaCaseira"].Visible = false;
+                dtgConAlimento.Columns["Cardapio"].Visible = false;
                 return;
             }
         }
@@ -424,12 +425,8 @@ namespace TCC2
         private void dtgConAlimento_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyValue == (char)Keys.Delete)
-            {
                 if (dtgConAlimento.CurrentRow.Cells["codAlimento"].Value.ToString() != "")
-                {
                     deletarAlimento.Add(dtgConAlimento.CurrentRow.Cells["codAlimento"].Value.ToString());
-                }
-            }
         }
 
         private void tbCadMedCaseira_Enter(object sender, EventArgs e)
@@ -449,6 +446,7 @@ namespace TCC2
             dtgMedCaseiraAlimentos.Columns["carbo"].Visible = false;
             dtgMedCaseiraAlimentos.Columns["lipidio"].Visible = false;
             dtgMedCaseiraAlimentos.Columns["MedidaCaseira"].Visible = false;
+            dtgMedCaseiraAlimentos.Columns["Cardapio"].Visible = false;
             dtgMedCaseiraAlimentos.Columns["nomeTabela"].HeaderText = "Tabela";
             dtgMedCaseiraAlimentos.Columns["nomeAlimento"].HeaderText = "Alimento";
 
@@ -841,6 +839,7 @@ namespace TCC2
             dtgCardapioAlimentos.Columns["lipidio"].Visible = false;
             dtgCardapioAlimentos.Columns["nomeTabela"].Visible = false;
             dtgCardapioAlimentos.Columns["MedidaCaseira"].Visible = false;
+            dtgCardapioAlimentos.Columns["Cardapio"].Visible = false;
             dtgCardapioAlimentos.AutoResizeColumns();
         }
 
@@ -884,7 +883,7 @@ namespace TCC2
             var medCaseiraItens = medidaCaseiraDAO.Buscar(Convert.ToInt32(row.Cells["codAlimento"].Value));
             if (medCaseiraItens == null)
                 return newRow;
-            
+
             colunaMedidaCaseira.HeaderText = "Medida Caseira";
             colunaMedidaCaseira.Name = "medCaseira";
             colunaMedidaCaseira.Items.Clear();
@@ -916,8 +915,8 @@ namespace TCC2
 
         private void btnPacienteCardapio_Click(object sender, EventArgs e)
         {
-            frmBuscarPaciente buscaPacientes = new frmBuscarPaciente();
-            buscaPacientes.Show();
+            frmBuscarPaciente buscaPacientes = new frmBuscarPaciente(this);
+            buscaPacientes.ShowDialog();
         }
         #endregion
 

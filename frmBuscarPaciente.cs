@@ -18,10 +18,33 @@ namespace TCC2
         public PacienteDAO pacienteDAO = new PacienteDAO();
         public CardapioDAO cardapioDAO = new CardapioDAO();
 
-        public frmBuscarPaciente()
+        frmMenuPrincipal instanciaMenuPrincipal;
+
+        public frmBuscarPaciente(frmMenuPrincipal menu)
         {
-            var menu = new frmMenuPrincipal("");
             InitializeComponent();
+            instanciaMenuPrincipal = menu;
+        }
+
+        public static int calcularIdade (string dataNas)
+        {
+            DateTime dataNascimento = Convert.ToDateTime(dataNas);
+            int idade = DateTime.Now.Year - dataNascimento.Year;
+            if (DateTime.Now.DayOfYear < dataNascimento.DayOfYear)
+            {
+                idade -= 1;
+            }
+            return idade;
+        }
+        private void frmBuscarPaciente_Load(object sender, EventArgs e)
+        {
+            var materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.EnforceBackcolorOnAllComponents = true;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.BlueGrey500, Accent.LightGreen200, TextShade.WHITE);
+
+            var menu = new frmMenuPrincipal("");
             var listaPaciente = pacienteDAO.Buscar("");
             if (listaPaciente == null)
                 return;
@@ -52,35 +75,16 @@ namespace TCC2
             dtgPacientes.AutoResizeColumns();
         }
 
-        public static int calcularIdade (string dataNas)
-        {
-            DateTime dataNascimento = Convert.ToDateTime(dataNas);
-            int idade = DateTime.Now.Year - dataNascimento.Year;
-            if (DateTime.Now.DayOfYear < dataNascimento.DayOfYear)
-            {
-                idade -= 1;
-            }
-            return idade;
-        }
-        private void frmBuscarPaciente_Load(object sender, EventArgs e)
-        {
-            var materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.EnforceBackcolorOnAllComponents = true;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.BlueGrey500, Accent.LightGreen200, TextShade.WHITE);
-        }
-
         private void dtgPacientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
                 if (e.ColumnIndex >= 0)
                 {
                     CardapioDAO.codPacienteCard = dtgPacientes.Rows[e.RowIndex].Cells["codPaciente"].Value.ToString();
-                    CardapioDAO.nomePacienteCard = dtgPacientes.Rows[e.RowIndex].Cells["nome"].Value.ToString();
+                    instanciaMenuPrincipal.txtPaciente.Text = dtgPacientes.Rows[e.RowIndex].Cells["nome"].Value.ToString();
+                    instanciaMenuPrincipal.txtPaciente.Refresh();
                     frmBuscarPaciente.ActiveForm.Close();
-                }            
-        } 
+                }
+        }
     }
 }
-    

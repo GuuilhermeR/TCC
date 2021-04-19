@@ -27,7 +27,6 @@ C:\Users\movtech\Desktop\TCC2\obj\Debug\TCC2.exe
 C:\Users\movtech\Desktop\TCC2\obj\Debug\TCC2.pdb
 C:\Users\movtech\Desktop\TCC2\bin\Debug\MvtWindowsForms.dll
 C:\Users\movtech\Desktop\TCC2\bin\Debug\MvtLib.dll
-C:\Users\movtech\Desktop\TCC2\obj\Debug\TCC2.csprojAssemblyReference.cache
 C:\Users\movtech\Desktop\TCC2\bin\Debug\LiveCharts.dll
 C:\Users\movtech\Desktop\TCC2\bin\Debug\LiveCharts.WinForms.dll
 C:\Users\movtech\Desktop\TCC2\bin\Debug\LiveCharts.Wpf.dll
@@ -38,3 +37,4 @@ C:\Users\movtech\Desktop\TCC2\bin\Debug\LiveCharts.WinForms.xml
 C:\Users\movtech\Desktop\TCC2\bin\Debug\LiveCharts.Wpf.pdb
 C:\Users\movtech\Desktop\TCC2\bin\Debug\LiveCharts.Wpf.xml
 C:\Users\movtech\Desktop\TCC2\obj\Debug\TCC2.frmBuscarPaciente.resources
+C:\Users\movtech\Desktop\TCC2\obj\Debug\TCC2.csprojAssemblyReference.cache

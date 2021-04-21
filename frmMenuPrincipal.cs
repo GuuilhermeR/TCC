@@ -652,6 +652,7 @@ namespace TCC2
                 txtMunicipio.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["municipio"].Value);
                 txtEndereco.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["endereco"].Value);
                 txtUF.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["UF"].Value);
+                if(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["imagem"].Value != null)
                 pbImagem.Image = ByteToImage((byte[])_dtgConsultaPacientes.Rows[e.RowIndex].Cells["imagem"].Value);
                 tbPaciente.SelectedTab = tbCadastro;
             }
@@ -1011,86 +1012,6 @@ namespace TCC2
             txtPacienteConsultaCardapio.Text = null;
             trwConsultarCardPaciente.Nodes.Clear();
         }
-        #endregion
-
-        #region Configurações
-
-        private void CriarColunas()
-        {
-            if (dtgUsuarios.Columns.Count <= 0)
-            {
-                dtgUsuarios.Columns.Add("usuario", "Usuário");
-                dtgUsuarios.Columns.Add("nome", "Nome");
-                dtgUsuarios.Columns.Add("email", "E-mail");
-                dtgUsuarios.Columns.Add("situacao", "Situação");
-                dtgUsuarios.Columns.Add("tipoUsuario", "Perfil");
-            }
-        }
-        private void btnSalvarConfigUsuario_Click(object sender, EventArgs e)
-        {
-            bool alterarSenha = false;
-            if (txtUsuarioConfig.Text == "")
-            {
-                Interaction.MsgBox("O usuário não foi informado");
-                return;
-            }
-            if (txtSenha.Text == "")
-            {
-                Interaction.MsgBox("O campo senha não foi informado");
-                return;
-            }
-            if (txtSenha.Text != txtConfirmarSenha.Text)
-            {
-                Interaction.MsgBox("As senhas não conferem");
-                return;
-            }
-
-
-            if (usuarioDAO.VerificarExisteUsuario(txtUsuarioConfig.Text) == false)
-            {
-                // usuario.CriarUsuario(txtUsuario.Text, txtSenha.Text, txtNome.Text, txtEmail.Text, cbxSituacao.Text, cbxTipoUsuario.Text);
-            }
-            else
-            {
-                if (Interaction.MsgBox("Você deseja alterar a senha do usuário?", MsgBoxStyle.YesNo, "ALTERAÇÃO DE SENHA") == MsgBoxResult.Yes)
-                    alterarSenha = true;
-                usuarioDAO.AlterarUsuario(txtUsuarioConfig.Text, txtSenha.Text, txtNome.Text, txtEmail.Text, cbxSituacao.Text, cbxTipoUsuario.Text, alterarSenha);
-            }
-        }
-        private void txtUsuarioConfig_Leave(object sender, EventArgs e)
-        {
-            if (txtUsuarioConfig.Text != "")
-                usuarioDAO.Buscar(txtUsuarioConfig.Text);
-        }
-        private void tbConfig_Enter(object sender, EventArgs e)
-        {
-            CriarColunas();
-            usuarioDAO.Buscar("");
-        }
-        private void dtgUsuarios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
-            {
-                txtUsuarioConfig.Text = dtgUsuarios.CurrentRow.Cells["usuario"].Value.ToString();
-                txtNomeUsuarioConfig.Text = dtgUsuarios.CurrentRow.Cells["nome"].Value.ToString();
-                txtEmailConfig.Text = dtgUsuarios.CurrentRow.Cells["email"].Value.ToString();
-                cbxSituacao.Text = dtgUsuarios.CurrentRow.Cells["situacao"].Value.ToString();
-                cbxTipoUsuario.Text = dtgUsuarios.CurrentRow.Cells["tipoUsuario"].Value.ToString();
-            }
-        }
-        private void txtSenha_Enter(object sender, EventArgs e)
-        {
-            txtSenha.PasswordChar = '*';
-        }
-        private void txtConfirmarSenha_Enter(object sender, EventArgs e)
-        {
-            txtConfirmarSenha.PasswordChar = '*';
-        }
-
-
-
-
-        #endregion
 
         private void txtPacienteConsultaCardapio_TextChanged(object sender, EventArgs e)
         {
@@ -1189,5 +1110,86 @@ namespace TCC2
                 }
             });
         }
+        #endregion
+
+        #region Configurações
+
+        private void CriarColunas()
+        {
+            if (dtgUsuarios.Columns.Count <= 0)
+            {
+                dtgUsuarios.Columns.Add("usuario", "Usuário");
+                dtgUsuarios.Columns.Add("nome", "Nome");
+                dtgUsuarios.Columns.Add("email", "E-mail");
+                dtgUsuarios.Columns.Add("situacao", "Situação");
+                dtgUsuarios.Columns.Add("tipoUsuario", "Perfil");
+            }
+        }
+        private void btnSalvarConfigUsuario_Click(object sender, EventArgs e)
+        {
+            bool alterarSenha = false;
+            if (txtUsuarioConfig.Text == "")
+            {
+                Interaction.MsgBox("O usuário não foi informado");
+                return;
+            }
+            if (txtSenha.Text == "")
+            {
+                Interaction.MsgBox("O campo senha não foi informado");
+                return;
+            }
+            if (txtSenha.Text != txtConfirmarSenha.Text)
+            {
+                Interaction.MsgBox("As senhas não conferem");
+                return;
+            }
+
+
+            if (usuarioDAO.VerificarExisteUsuario(txtUsuarioConfig.Text) == false)
+            {
+                // usuario.CriarUsuario(txtUsuario.Text, txtSenha.Text, txtNome.Text, txtEmail.Text, cbxSituacao.Text, cbxTipoUsuario.Text);
+            }
+            else
+            {
+                if (Interaction.MsgBox("Você deseja alterar a senha do usuário?", MsgBoxStyle.YesNo, "ALTERAÇÃO DE SENHA") == MsgBoxResult.Yes)
+                    alterarSenha = true;
+                usuarioDAO.AlterarUsuario(txtUsuarioConfig.Text, txtSenha.Text, txtNome.Text, txtEmail.Text, cbxSituacao.Text, cbxTipoUsuario.Text, alterarSenha);
+            }
+        }
+        private void txtUsuarioConfig_Leave(object sender, EventArgs e)
+        {
+            if (txtUsuarioConfig.Text != "")
+                usuarioDAO.Buscar(txtUsuarioConfig.Text);
+        }
+        private void tbConfig_Enter(object sender, EventArgs e)
+        {
+            CriarColunas();
+            usuarioDAO.Buscar("");
+        }
+        private void dtgUsuarios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                txtUsuarioConfig.Text = dtgUsuarios.CurrentRow.Cells["usuario"].Value.ToString();
+                txtNomeUsuarioConfig.Text = dtgUsuarios.CurrentRow.Cells["nome"].Value.ToString();
+                txtEmailConfig.Text = dtgUsuarios.CurrentRow.Cells["email"].Value.ToString();
+                cbxSituacao.Text = dtgUsuarios.CurrentRow.Cells["situacao"].Value.ToString();
+                cbxTipoUsuario.Text = dtgUsuarios.CurrentRow.Cells["tipoUsuario"].Value.ToString();
+            }
+        }
+        private void txtSenha_Enter(object sender, EventArgs e)
+        {
+            txtSenha.PasswordChar = '*';
+        }
+        private void txtConfirmarSenha_Enter(object sender, EventArgs e)
+        {
+            txtConfirmarSenha.PasswordChar = '*';
+        }
+
+
+
+
+        #endregion
+                
     }
 }

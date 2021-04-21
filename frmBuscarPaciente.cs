@@ -84,6 +84,8 @@ namespace TCC2
                     CardapioDAO.codPacienteCard = dtgPacientes.Rows[e.RowIndex].Cells["codPaciente"].Value.ToString();
                     instanciaMenuPrincipal.txtPaciente.Text = dtgPacientes.Rows[e.RowIndex].Cells["nome"].Value.ToString();
                     instanciaMenuPrincipal.txtPaciente.Refresh();
+                    instanciaMenuPrincipal.txtPacienteConsultaCardapio.Text = dtgPacientes.Rows[e.RowIndex].Cells["nome"].Value.ToString();
+                    instanciaMenuPrincipal.txtPacienteConsultaCardapio.Refresh();
                     frmBuscarPaciente.ActiveForm.Close();
                 }
         }

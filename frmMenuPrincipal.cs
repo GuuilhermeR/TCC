@@ -32,6 +32,7 @@ namespace TCC2
         private object tamanhoArquivoImagem;
         private byte[] vetorImagens;
         private double quantidadeSalva;
+        private decimal quantidadeAntigaCardapio;
 
         #region Menu
         public frmMenuPrincipal(string usuarioLogado)
@@ -216,6 +217,7 @@ namespace TCC2
 
         private void btnRecalcular_Click(object sender, EventArgs e)
         {
+            if(quantidadeSalva != 0)
             if (dtgConAlimento.Rows.Count > 0)
             {
                 foreach (DataGridViewRow row in dtgConAlimento.Rows)
@@ -250,7 +252,7 @@ namespace TCC2
 
                     double somaTotalCaloria = ProteinaKcal + CarboidratoKcal + LipidioKcal;
                     row.Cells["kcal"].Value = somaTotalCaloria.ToString("N2");
-
+                    
                     //double calcio;
                     //calcio = Conversions.ToDouble(Operators.MultiplyObject(row.Cells["calcio"].Value, row.Cells["qtd"].Value));
                     //row.Cells["calcio"].Value = calcio.ToString("N2");
@@ -792,8 +794,14 @@ namespace TCC2
             {
                 lblValorKcal.Text = kcal.ToString("N2") + " Kcal";
 
-                Func<ChartPoint, string> labelPoint = chartPoint => string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
-                SeriesCollection piechartData = new SeriesCollection
+                CarregarGrafico(proteina, carboidrato, lipidio);
+            }
+        }
+
+        private void CarregarGrafico(decimal proteina, decimal carboidrato, decimal lipidio)
+        {
+            Func<ChartPoint, string> labelPoint = chartPoint => string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
+            SeriesCollection piechartData = new SeriesCollection
                 {
                     new PieSeries
                     {
@@ -817,9 +825,8 @@ namespace TCC2
                         LabelPoint = labelPoint
                     }
                 };
-                graficoMacroNutri.Series = piechartData;
-                graficoMacroNutri.LegendLocation = LegendLocation.Right;
-            }
+            graficoMacroNutri.Series = piechartData;
+            graficoMacroNutri.LegendLocation = LegendLocation.Right;
         }
 
         private void cbxTabelaAlimentoCardapio_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -910,9 +917,11 @@ namespace TCC2
             graficoMacroNutri.Series = null;
             txtPaciente.Text = null;
             cbxRefeicao.Text = null;
-            cbxTabela.SelectedIndex = 0;
+            lblValorKcal.Text = null;
+            cbxTabelaAlimentoCardapio.SelectedIndex = -1;
             CardapioDAO.codPacienteCard = null;
             CardapioDAO.nomePacienteCard = null;
+            btnApagar_Click(sender, e);
         }
 
         private void btnPacienteCardapio_Click(object sender, EventArgs e)
@@ -968,19 +977,27 @@ namespace TCC2
         }
         private void dtgRefeicoes_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            if ((decimal)dtgRefeicoes.CurrentRow.Cells["qtd"].Value != 100)
+            if ((decimal)dtgRefeicoes.CurrentRow.Cells["qtd"].Value != quantidadeAntigaCardapio)
             {
-
+                CarregarGrafico((decimal)dtgRefeicoes.CurrentRow.Cells["prot"].Value, 
+                                (decimal)dtgRefeicoes.CurrentRow.Cells["carbo"].Value, 
+                                (decimal)dtgRefeicoes.CurrentRow.Cells["lipidio"].Value);
             }
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void btnBuscaPaciente_Click(object sender, EventArgs e)
         {
             frmBuscarPaciente buscaPacientes = new frmBuscarPaciente(this);
             buscaPacientes.ShowDialog();
         }
-        private void txtPacienteConsultaCardapio_Leave(object sender, EventArgs e)
+        private void dtgRefeicoes_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-
+            if((decimal)dtgRefeicoes.CurrentRow.Cells["qtd"].Value != null)
+            quantidadeAntigaCardapio = (decimal)dtgRefeicoes.CurrentRow.Cells["qtd"].Value;
+        }
+        private void btnApagar_Click(object sender, EventArgs e)
+        {
+            txtPacienteConsultaCardapio.Text = null;
+            trwConsultarCardPaciente.Nodes.Clear();
         }
         #endregion
 
@@ -1059,7 +1076,106 @@ namespace TCC2
         }
 
 
+
+
         #endregion
 
+        private void txtPacienteConsultaCardapio_TextChanged(object sender, EventArgs e)
+        {
+            var listaCardapio = cardapioDAO.Consultar(Convert.ToInt32(CardapioDAO.codPacienteCard));
+            if (listaCardapio == null)
+                return;
+            else if (listaCardapio.Count == 0)
+                return;
+            trwConsultarCardPaciente.Nodes.Clear();
+
+            TreeNode rootNode = trwConsultarCardPaciente.Nodes.Add("Refeição");
+            rootNode.ImageIndex = 0;
+
+            // Cria os nós filhos para o raiz
+            TreeNode cafe = rootNode.Nodes.Add("Café da manhã");
+            cafe.ImageIndex = 1;
+            TreeNode Lanche = rootNode.Nodes.Add("Lanche");
+            Lanche.ImageIndex = 1;
+            TreeNode Almoco = rootNode.Nodes.Add("Almoço");
+            Almoco.ImageIndex = 1;
+            TreeNode LancheTarde = rootNode.Nodes.Add("Lanche da tarde");
+            LancheTarde.ImageIndex = 1;
+            TreeNode Jantar = rootNode.Nodes.Add("Jantar");
+            Jantar.ImageIndex = 1;
+            TreeNode Ceia = rootNode.Nodes.Add("Ceia");
+            Ceia.ImageIndex = 1;
+            listaCardapio.ForEach(card =>
+            {
+                switch (card.Refeicao)
+                {
+                    case "Café da manhã":
+                        TreeNode filhoCafe = cafe.Nodes.Add("Alimento: " + card.Alimentos.nomeAlimento);
+                        filhoCafe.ImageIndex = 2;
+                        filhoCafe = cafe.Nodes.Add("Medida Caseira: " + card.medidaCaseiraQtde.ToString());
+                        filhoCafe.ImageIndex = 2;
+                        filhoCafe = cafe.Nodes.Add("KCal: " + card.kcal.ToString());
+                        filhoCafe.ImageIndex = 2;
+                        filhoCafe = cafe.Nodes.Add("Obs: " + card.Obs.ToString());
+                        filhoCafe.ImageIndex = 2;
+                        return;
+
+                    case "Lanche":
+                        TreeNode filhoLanche = Lanche.Nodes.Add("Alimento: " + card.Alimentos.nomeAlimento);
+                        filhoLanche.ImageIndex = 2;
+                        filhoLanche = Lanche.Nodes.Add("Medida Caseira: " + card.medidaCaseiraQtde.ToString());
+                        filhoLanche.ImageIndex = 2;
+                        filhoLanche = Lanche.Nodes.Add("KCal: " + card.kcal.ToString());
+                        filhoLanche.ImageIndex = 2;
+                        filhoLanche = Lanche.Nodes.Add("Obs: " + card.Obs.ToString());
+                        filhoLanche.ImageIndex = 2;
+                        return;
+
+                    case "Almoço":
+                        TreeNode filhoAlmoco = Almoco.Nodes.Add("Alimento: " + card.Alimentos.nomeAlimento);
+                        filhoAlmoco.ImageIndex = 2;
+                        filhoAlmoco = Almoco.Nodes.Add("Medida Caseira: " + card.medidaCaseiraQtde.ToString());
+                        filhoAlmoco.ImageIndex = 2;
+                        filhoAlmoco = Almoco.Nodes.Add("KCal: " + card.kcal.ToString());
+                        filhoAlmoco.ImageIndex = 2;
+                        filhoAlmoco = Almoco.Nodes.Add("Obs: " + card.Obs.ToString());
+                        filhoAlmoco.ImageIndex = 2;
+                        return;
+
+                    case "Lanche da tarde":
+                        TreeNode filhoLancheTarde = LancheTarde.Nodes.Add("Alimento: " + card.Alimentos.nomeAlimento);
+                        filhoLancheTarde.ImageIndex = 2;
+                        filhoLancheTarde = LancheTarde.Nodes.Add("Medida Caseira: " + card.medidaCaseiraQtde.ToString());
+                        filhoLancheTarde.ImageIndex = 2;
+                        filhoLancheTarde = LancheTarde.Nodes.Add("KCal: " + card.kcal.ToString());
+                        filhoLancheTarde.ImageIndex = 2;
+                        filhoLancheTarde = LancheTarde.Nodes.Add("Obs: " + card.Obs.ToString());
+                        filhoLancheTarde.ImageIndex = 2;
+                        return;
+
+                    case "Jantar":
+                        TreeNode filhoJantar = Jantar.Nodes.Add("Alimento: " + card.Alimentos.nomeAlimento);
+                        filhoJantar.ImageIndex = 2;
+                        filhoJantar = Jantar.Nodes.Add("Medida Caseira: " + card.medidaCaseiraQtde.ToString());
+                        filhoJantar.ImageIndex = 2;
+                        filhoJantar = Jantar.Nodes.Add("KCal: " + card.kcal.ToString());
+                        filhoJantar.ImageIndex = 2;
+                        filhoJantar = Jantar.Nodes.Add("Obs: " + card.Obs.ToString());
+                        filhoJantar.ImageIndex = 2;
+                        return;
+
+                    case "Ceia":
+                        TreeNode filhoCeia = Ceia.Nodes.Add("Alimento: " + card.Alimentos.nomeAlimento);
+                        filhoCeia.ImageIndex = 2;
+                        filhoCeia = Ceia.Nodes.Add("Medida Caseira: " + card.medidaCaseiraQtde.ToString());
+                        filhoCeia.ImageIndex = 2;
+                        filhoCeia = Ceia.Nodes.Add("KCal: " + card.kcal.ToString());
+                        filhoCeia.ImageIndex = 2;
+                        filhoCeia = Ceia.Nodes.Add("Obs: " + card.Obs.ToString());
+                        filhoCeia.ImageIndex = 2;
+                        return;
+                }
+            });
+        }
     }
 }

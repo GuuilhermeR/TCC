@@ -30,7 +30,7 @@ namespace TCC2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenuPrincipal));
             this.TabControlNutreasy = new MaterialSkin.Controls.MaterialTabControl();
             this.tabMenu = new System.Windows.Forms.TabPage();
@@ -329,14 +329,14 @@ namespace TCC2
             this.atendido,
             this.retorno,
             this.ID});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgAgenda.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgAgenda.DefaultCellStyle = dataGridViewCellStyle1;
             this.dtgAgenda.Location = new System.Drawing.Point(6, 58);
             this.dtgAgenda.Name = "dtgAgenda";
             this.dtgAgenda.RowHeadersWidth = 51;
@@ -1047,7 +1047,7 @@ namespace TCC2
             this.dtgCardapioAlimentos.Location = new System.Drawing.Point(5, 80);
             this.dtgCardapioAlimentos.Name = "dtgCardapioAlimentos";
             this.dtgCardapioAlimentos.RowHeadersWidth = 51;
-            this.dtgCardapioAlimentos.Size = new System.Drawing.Size(543, 465);
+            this.dtgCardapioAlimentos.Size = new System.Drawing.Size(531, 465);
             this.dtgCardapioAlimentos.TabIndex = 305;
             // 
             // dtgRefeicoes
@@ -1059,10 +1059,10 @@ namespace TCC2
             this.dtgRefeicoes.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dtgRefeicoes.BackgroundColor = System.Drawing.Color.White;
             this.dtgRefeicoes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgRefeicoes.Location = new System.Drawing.Point(640, 80);
+            this.dtgRefeicoes.Location = new System.Drawing.Point(659, 80);
             this.dtgRefeicoes.Name = "dtgRefeicoes";
             this.dtgRefeicoes.RowHeadersWidth = 51;
-            this.dtgRefeicoes.Size = new System.Drawing.Size(569, 465);
+            this.dtgRefeicoes.Size = new System.Drawing.Size(550, 465);
             this.dtgRefeicoes.TabIndex = 304;
             this.dtgRefeicoes.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dtgRefeicoes_CellBeginEdit);
             this.dtgRefeicoes.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgRefeicoes_CellEndEdit);
@@ -1240,9 +1240,11 @@ namespace TCC2
             this._dtgConsultaPacientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this._dtgConsultaPacientes.Location = new System.Drawing.Point(6, 473);
             this._dtgConsultaPacientes.Name = "_dtgConsultaPacientes";
+            this._dtgConsultaPacientes.ReadOnly = true;
             this._dtgConsultaPacientes.RowHeadersWidth = 51;
             this._dtgConsultaPacientes.Size = new System.Drawing.Size(1199, 255);
             this._dtgConsultaPacientes.TabIndex = 266;
+            this._dtgConsultaPacientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._dtgConsultaPacientes_CellDoubleClick);
             // 
             // _btnExcluir
             // 
@@ -1274,17 +1276,15 @@ namespace TCC2
             // 
             // txtNumero
             // 
-            this.txtNumero.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtNumero.Location = new System.Drawing.Point(716, 274);
+            this.txtNumero.Location = new System.Drawing.Point(688, 212);
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(60, 20);
             this.txtNumero.TabIndex = 234;
             // 
             // lblNum
             // 
-            this.lblNum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblNum.AutoSize = true;
-            this.lblNum.Location = new System.Drawing.Point(679, 277);
+            this.lblNum.Location = new System.Drawing.Point(651, 215);
             this.lblNum.Name = "lblNum";
             this.lblNum.Size = new System.Drawing.Size(22, 13);
             this.lblNum.TabIndex = 256;

@@ -6,12 +6,12 @@
     <edmx:Diagrams>
       <Diagram DiagramId="2bc301a95dfb43809b94c4e63cccce4e" Name="Diagram1">
         <EntityTypeShape EntityType="NutreasyModel.Agenda" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NutreasyModel.Alimentos" Width="1.5" PointX="5.625" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="NutreasyModel.Alimentos" Width="1.5" PointX="7.25" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="NutreasyModel.Login" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="NutreasyModel.Paciente" Width="1.5" PointX="8.875" PointY="1.25" />
-        <EntityTypeShape EntityType="NutreasyModel.MedidaCaseira" Width="1.5" PointX="5.625" PointY="5.5" />
+        <EntityTypeShape EntityType="NutreasyModel.Paciente" Width="1.5" PointX="11.25" PointY="5.125" />
+        <EntityTypeShape EntityType="NutreasyModel.MedidaCaseira" Width="1.5" PointX="7.25" PointY="6.125" />
         <AssociationConnector Association="NutreasyModel.FK_MedidaCaseira_0_0" />
-        <EntityTypeShape EntityType="NutreasyModel.Cardapio" Width="1.5" PointX="11.125" PointY="1.75" />
+        <EntityTypeShape EntityType="NutreasyModel.Cardapio" Width="1.5" PointX="11.25" PointY="1.375" />
         <AssociationConnector Association="NutreasyModel.FK_Cardapio_0_0" />
         <AssociationConnector Association="NutreasyModel.FK_Cardapio_1_0" />
       </Diagram>

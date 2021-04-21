@@ -38,3 +38,37 @@ C:\Users\movtech\Desktop\TCC2\bin\Debug\LiveCharts.Wpf.pdb
 C:\Users\movtech\Desktop\TCC2\bin\Debug\LiveCharts.Wpf.xml
 C:\Users\movtech\Desktop\TCC2\obj\Debug\TCC2.frmBuscarPaciente.resources
 C:\Users\movtech\Desktop\TCC2\obj\Debug\TCC2.csprojAssemblyReference.cache
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\bin\Debug\TCC2.exe.config
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\bin\Debug\TCC2.exe
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\bin\Debug\TCC2.pdb
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\bin\Debug\EntityFramework.dll
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\bin\Debug\ExcelDataReader.DataSet.dll
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\bin\Debug\ExcelDataReader.dll
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\bin\Debug\LiveCharts.dll
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\bin\Debug\LiveCharts.WinForms.dll
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\bin\Debug\LiveCharts.Wpf.dll
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\bin\Debug\MaterialSkin.dll
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\bin\Debug\System.Data.SQLite.dll
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\bin\Debug\EntityFramework.xml
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\bin\Debug\ExcelDataReader.pdb
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\bin\Debug\ExcelDataReader.xml
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\bin\Debug\ExcelDataReader.DataSet.pdb
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\bin\Debug\ExcelDataReader.DataSet.xml
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\bin\Debug\LiveCharts.pdb
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\bin\Debug\LiveCharts.WinForms.pdb
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\bin\Debug\LiveCharts.Wpf.pdb
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\bin\Debug\System.Data.SQLite.xml
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\bin\Debug\System.Data.SQLite.dll.config
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\obj\Debug\TCC2.frmBuscarPaciente.resources
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\obj\Debug\TCC2.frmMenuPrincipal.resources
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\obj\Debug\TCC2.frmTelaLogin.resources
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\obj\Debug\TCC2.Properties.Resources.resources
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\obj\Debug\TCC2.csproj.GenerateResource.cache
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\obj\Debug\TCC2.csproj.CoreCompileInputs.cache
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\obj\Debug\TCC2.csproj.CopyComplete
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\obj\Debug\TCC2.exe
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\obj\Debug\TCC2.pdb

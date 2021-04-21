@@ -18,15 +18,16 @@ namespace TCC2
         {
         }
 
-        public void Salvar(int codPaciente, int codAlimento, decimal medidaCaseiraQtde, string obs, decimal kcal)
+        public void Salvar(string codPaciente, int codAlimento, string refeicao, decimal medidaCaseiraQtde, string obs, decimal kcal)
         {
             try
             {
                 Cardapio cardapioInsert = new Cardapio();
 
-                cardapioInsert.codPaciente = codPaciente;
+                cardapioInsert.codPaciente = Convert.ToInt32(codPaciente);
                 cardapioInsert.codAlimento = codAlimento;
                 cardapioInsert.medidaCaseiraQtde = medidaCaseiraQtde;               
+                cardapioInsert.Refeicao = refeicao;               
                 cardapioInsert.Obs = obs;               
                 cardapioInsert.kcal = kcal;               
 

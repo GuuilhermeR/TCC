@@ -72,3 +72,4 @@ C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\obj\Debug\TCC2.csproj.CoreCom
 C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\obj\Debug\TCC2.csproj.CopyComplete
 C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\obj\Debug\TCC2.exe
 C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\obj\Debug\TCC2.pdb
+C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\obj\Debug\TCC2.csprojAssemblyReference.cache

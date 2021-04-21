@@ -31,6 +31,7 @@ namespace TCC2
         List<string> deletarAlimento = new List<string>();
         private object tamanhoArquivoImagem;
         private byte[] vetorImagens;
+        private double quantidadeSalva;
 
         #region Menu
         public frmMenuPrincipal(string usuarioLogado)
@@ -226,7 +227,7 @@ namespace TCC2
                     if (row.Cells["prot"].Value != null)
                     {
                         double ProteinaGramas = 0;
-                        ProteinaGramas = Conversions.ToDouble(Operators.DivideObject(Operators.MultiplyObject(row.Cells["qtd"].Value, row.Cells["prot"].Value), row.Cells["qtd"].Value));
+                        ProteinaGramas = Conversions.ToDouble(((decimal)row.Cells["qtd"].Value * (decimal)row.Cells["prot"].Value)/ (decimal)quantidadeSalva);
                         ProteinaKcal = ProteinaGramas * 4d;
                         row.Cells["prot"].Value = ProteinaGramas.ToString("N2");
                     }
@@ -234,7 +235,7 @@ namespace TCC2
                     if (row.Cells["carbo"].Value != null)
                     {
                         double CarboidratoGramas = 0;
-                        CarboidratoGramas = Conversions.ToDouble(Operators.DivideObject(Operators.MultiplyObject(row.Cells["qtd"].Value, row.Cells["carbo"].Value), row.Cells["qtd"].Value));
+                        CarboidratoGramas = Conversions.ToDouble(((decimal)row.Cells["qtd"].Value * (decimal)row.Cells["carbo"].Value)/ (decimal)quantidadeSalva);
                         CarboidratoKcal = CarboidratoGramas * 4d;
                         row.Cells["carbo"].Value = CarboidratoGramas.ToString("N2");
                     }
@@ -242,7 +243,7 @@ namespace TCC2
                     if (row.Cells["lipidio"].Value != null)
                     {
                         double LipidioGramas = 0;
-                        LipidioGramas = Conversions.ToDouble(Operators.DivideObject(Operators.MultiplyObject(row.Cells["qtd"].Value, row.Cells["lipidio"].Value), row.Cells["qtd"].Value));
+                        LipidioGramas = Conversions.ToDouble(((decimal)row.Cells["qtd"].Value * (decimal)row.Cells["lipidio"].Value)/ (decimal)quantidadeSalva);
                         LipidioKcal = LipidioGramas * 9d;
                         row.Cells["lipidio"].Value = LipidioGramas.ToString("N2");
                     }
@@ -267,6 +268,7 @@ namespace TCC2
             {
                 MessageBox.Show(this, "Não foram encontrados itens para recalcular.");
             }
+            quantidadeSalva = 0d;
         }
 
         private void txtAlimentoFiltro_Leave(object sender, EventArgs e)
@@ -281,6 +283,7 @@ namespace TCC2
                 dtgConAlimento.DataSource = dt;
                 dtgConAlimento.Columns["codAlimento"].Visible = false;
                 dtgConAlimento.Columns["nomeAlimento"].HeaderText = "Alimento";
+                dtgConAlimento.Columns["nomeAlimento"].Width = 450;
                 dtgConAlimento.Columns["qtd"].HeaderText = "Qtde";
                 dtgConAlimento.Columns["prot"].HeaderText = "Proteína";
                 dtgConAlimento.Columns["carbo"].HeaderText = "Carboidrato";
@@ -760,9 +763,9 @@ namespace TCC2
                 foreach (DataGridViewRow row in dtgRefeicoes.Rows)
                 {
                     kcal += (decimal)row.Cells[2].Value;
-                    proteina += (decimal)row.Cells[3].Value;
-                    carboidrato += (decimal)row.Cells[4].Value;
-                    lipidio += (decimal)row.Cells[5].Value;
+                    proteina += (decimal)row.Cells["prot"].Value;
+                    carboidrato += (decimal)row.Cells["carbo"].Value;
+                    lipidio += (decimal)row.Cells["lipidio"].Value;
                 }
                 dtgRefeicoes.AutoResizeColumns();
             }
@@ -843,27 +846,24 @@ namespace TCC2
         private DataGridViewRow adicionar(DataGridViewRow row)
         {
             DataGridViewRow newRow = (DataGridViewRow)row.Clone();
-            var colunaMedidaCaseira = new DataGridViewComboBoxColumn();
+            //var colunaMedidaCaseira = new DataGridViewComboBoxColumn();
 
             if (dtgRefeicoes.Columns.Count == 0)
             {
-                colunaMedidaCaseira.Items.Clear();
                 dtgRefeicoes.Columns.Add("codAlimento", "codAlimento");
                 dtgRefeicoes.Columns.Add("nomeAlimento", "Alimento");
-                dtgRefeicoes.Columns.Add("kcal", "kcal");
-                dtgRefeicoes.Columns.Add("qtd", "qtd");
-                dtgRefeicoes.Columns.Add("prot", "prot");
-                dtgRefeicoes.Columns.Add("carbo", "carbo");
-                dtgRefeicoes.Columns.Add("lipidio", "lipidio");
+                dtgRefeicoes.Columns.Add("kcal", "KCal");
+                dtgRefeicoes.Columns.Add("qtd", "Qtd");
+                dtgRefeicoes.Columns.Add("prot", "Prot");
+                dtgRefeicoes.Columns.Add("carbo", "Carbo");
+                dtgRefeicoes.Columns.Add("lipidio", "Lipidio");
                 dtgRefeicoes.Columns.Add("nomeTabela", "nomeTabela");
                 dtgRefeicoes.Columns.Add("MedidaCaseira", "MedidaCaseira");
-                dtgRefeicoes.Columns.Add(colunaMedidaCaseira);
-                colunaMedidaCaseira.Items.Add("100g");
                 dtgRefeicoes.Columns.Add("obs", "Observação");
                 dtgRefeicoes.Columns["codAlimento"].Visible = false;
                 dtgRefeicoes.Columns["nomeAlimento"].HeaderText = "Alimento";
                 dtgRefeicoes.Columns["kcal"].Visible = false;
-                dtgRefeicoes.Columns["qtd"].Visible = false;
+                dtgRefeicoes.Columns["qtd"].Visible = true;
                 dtgRefeicoes.Columns["prot"].Visible = false;
                 dtgRefeicoes.Columns["carbo"].Visible = false;
                 dtgRefeicoes.Columns["lipidio"].Visible = false;
@@ -874,40 +874,113 @@ namespace TCC2
             newRow.Cells[0].Value = row.Cells["codAlimento"].Value;
             newRow.Cells[1].Value = row.Cells["nomeAlimento"].Value;
             newRow.Cells[2].Value = row.Cells["kcal"].Value;
-            newRow.Cells[3].Value = row.Cells["prot"].Value;
-            newRow.Cells[4].Value = row.Cells["carbo"].Value;
-            newRow.Cells[5].Value = row.Cells["lipidio"].Value;
+            newRow.Cells[3].Value = row.Cells["qtd"].Value;
+            newRow.Cells[4].Value = row.Cells["prot"].Value;
+            newRow.Cells[5].Value = row.Cells["carbo"].Value;
+            newRow.Cells[6].Value = row.Cells["lipidio"].Value;
 
-            var medCaseiraItens = medidaCaseiraDAO.Buscar(Convert.ToInt32(row.Cells["codAlimento"].Value));
+            //var medCaseiraItens = medidaCaseiraDAO.Buscar(Convert.ToInt32(row.Cells["codAlimento"].Value));
 
-            if (medCaseiraItens == null)
-                return newRow;
+            //if (medCaseiraItens == null)
+                //return newRow;
 
-            colunaMedidaCaseira.HeaderText = "Medida Caseira";
-            colunaMedidaCaseira.Name = "medCaseira";
-            medCaseiraItens.ForEach(x =>
-            {
-                if (x.codAlimento == x.Alimentos.codAlimento)
-                    colunaMedidaCaseira.Items.Add(x.descricao);
-            });
+            //colunaMedidaCaseira.HeaderText = "Medida Caseira";
+            //colunaMedidaCaseira.Name = "medCaseira";
+            //medCaseiraItens.ForEach(x =>
+            //{
+            //    if (x.codAlimento == x.Alimentos.codAlimento)
+            //        colunaMedidaCaseira.Items.Add(x.descricao);
+            //});
 
             return newRow;
         }
 
         private void btnSalvarCardapio_Click(object sender, EventArgs e)
         {
+            decimal Kcal;
+            Kcal = Convert.ToDecimal(lblValorKcal.Text.Split(' ')[0]);
             foreach (DataGridViewRow row in dtgRefeicoes.Rows)
-            cardapioDAO.Salvar(Convert.ToInt32(CardapioDAO.codPacienteCard), 
-                                                (int)row.Cells["codAlimento"].Value, 
-                                                (decimal)row.Cells["medCaseira"].Value, 
-                                                row.Cells["codAlimento"].Value.ToString(), 
-                                                Convert.ToDecimal(lblValorKcal.Text));
+            cardapioDAO.Salvar(Convert.ToString(CardapioDAO.codPacienteCard), 
+                                                Convert.ToInt32(row.Cells["codAlimento"].Value),
+                                                Convert.ToString(cbxRefeicao.Text),
+                                                Convert.ToInt32(row.Cells["qtd"].Value), 
+                                                Convert.ToString(row.Cells["obs"].Value), 
+                                                Kcal);
+            dtgRefeicoes.DataSource = null;
+            graficoMacroNutri.Series = null;
+            txtPaciente.Text = null;
+            cbxRefeicao.Text = null;
+            cbxTabela.SelectedIndex = 0;
+            CardapioDAO.codPacienteCard = null;
+            CardapioDAO.nomePacienteCard = null;
         }
 
         private void btnPacienteCardapio_Click(object sender, EventArgs e)
         {
             frmBuscarPaciente buscaPacientes = new frmBuscarPaciente(this);
             buscaPacientes.ShowDialog();
+        }
+        private void dtgConAlimento_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            if (e.ColumnIndex >= 0)
+            {
+                if(dtgConAlimento.CurrentRow.Cells["qtd"].Value != null)
+                quantidadeSalva = Convert.ToDouble(dtgConAlimento.CurrentRow.Cells["qtd"].Value);
+            }
+        }
+
+        private void txtFiltroAlimento_Leave(object sender, EventArgs e)
+        {
+            if (txtFiltroAlimento.Text != "")
+            {
+                var listaAlimentos = alimentoDAO.Buscar(txtFiltroAlimento.Text, cbxTabelaAlimentoCardapio.Text);
+                if (listaAlimentos == null)
+                    return;
+                else if (listaAlimentos.Count == 0)
+                    return;
+                dtgCardapioAlimentos.DataSource = null;
+                DataTable dt = ConvertToDataTable(listaAlimentos);
+                dtgCardapioAlimentos.DataSource = dt;
+                dtgCardapioAlimentos.Columns["codAlimento"].Visible = false;
+                dtgCardapioAlimentos.Columns["nomeAlimento"].HeaderText = "Alimento";
+                dtgCardapioAlimentos.Columns["kcal"].HeaderText = "KCal";
+                dtgCardapioAlimentos.Columns["qtd"].HeaderText = "Qtd";
+                dtgCardapioAlimentos.Columns["prot"].HeaderText = "Prot";
+                dtgCardapioAlimentos.Columns["carbo"].HeaderText = "Carbo";
+                dtgCardapioAlimentos.Columns["lipidio"].HeaderText = "Lipídio";
+                dtgCardapioAlimentos.Columns["nomeTabela"].Visible = false;
+                dtgCardapioAlimentos.Columns["MedidaCaseira"].Visible = false;
+                dtgCardapioAlimentos.Columns["Cardapio"].Visible = false;
+                dtgCardapioAlimentos.AutoResizeColumns();
+            }
+        }
+        private void cbxRefeicao_Leave(object sender, EventArgs e)
+        {
+            if (cbxRefeicao.Text == "" || cbxRefeicao.Text == null)
+            {
+
+            }
+        }
+
+        private void btnConfigGramasCard_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void dtgRefeicoes_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if ((decimal)dtgRefeicoes.CurrentRow.Cells["qtd"].Value != 100)
+            {
+
+            }
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmBuscarPaciente buscaPacientes = new frmBuscarPaciente(this);
+            buscaPacientes.ShowDialog();
+        }
+        private void txtPacienteConsultaCardapio_Leave(object sender, EventArgs e)
+        {
+
         }
         #endregion
 
@@ -984,6 +1057,7 @@ namespace TCC2
         {
             txtConfirmarSenha.PasswordChar = '*';
         }
+
 
         #endregion
 

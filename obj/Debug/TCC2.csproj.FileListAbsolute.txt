@@ -73,3 +73,32 @@ C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\obj\Debug\TCC2.csproj.CopyCom
 C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\obj\Debug\TCC2.exe
 C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\obj\Debug\TCC2.pdb
 C:\Users\guilh\OneDrive\Área de Trabalho\Nutreasy\obj\Debug\TCC2.csprojAssemblyReference.cache
+C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\TCC2.exe.config
+C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\TCC2.exe
+C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\TCC2.pdb
+C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\EntityFramework.dll
+C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\ExcelDataReader.dll
+C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\ExcelDataReader.pdb
+C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\ExcelDataReader.DataSet.dll
+C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\ExcelDataReader.DataSet.pdb
+C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\LiveCharts.dll
+C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\LiveCharts.pdb
+C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\LiveCharts.WinForms.dll
+C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\LiveCharts.WinForms.pdb
+C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\LiveCharts.Wpf.dll
+C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\LiveCharts.Wpf.pdb
+C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\MaterialSkin.dll
+C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\System.Data.SQLite.dll
+C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\TCC2.exe.config
+C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\TCC2.frmBuscarPaciente.resources
+C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\TCC2.frmMenuPrincipal.resources
+C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\TCC2.frmTelaLogin.resources
+C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\TCC2.Properties.Resources.resources
+C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\TCC2.csproj.GenerateResource.cache
+C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\TCC2.csproj.CoreCompileInputs.cache
+C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\TCC2.csproj.CopyComplete
+C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\TCC2.exe
+C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\TCC2.pdb

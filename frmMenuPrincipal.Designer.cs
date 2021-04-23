@@ -30,7 +30,7 @@ namespace TCC2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenuPrincipal));
             this.TabControlNutreasy = new MaterialSkin.Controls.MaterialTabControl();
             this.tabMenu = new System.Windows.Forms.TabPage();
@@ -177,6 +177,8 @@ namespace TCC2
             this.label13 = new System.Windows.Forms.Label();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.btnCancelarCardapio = new System.Windows.Forms.Button();
+            this.tbSobre = new System.Windows.Forms.TabPage();
             this.TabControlNutreasy.SuspendLayout();
             this.tabMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxLogoGrande)).BeginInit();
@@ -220,6 +222,7 @@ namespace TCC2
             this.TabControlNutreasy.Controls.Add(this.tabPaciente);
             this.TabControlNutreasy.Controls.Add(this.tabReceitas);
             this.TabControlNutreasy.Controls.Add(this.tabConfig);
+            this.TabControlNutreasy.Controls.Add(this.tbSobre);
             this.TabControlNutreasy.Depth = 0;
             this.TabControlNutreasy.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TabControlNutreasy.ImageList = this.imageList1;
@@ -329,14 +332,14 @@ namespace TCC2
             this.atendido,
             this.retorno,
             this.ID});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgAgenda.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgAgenda.DefaultCellStyle = dataGridViewCellStyle5;
             this.dtgAgenda.Location = new System.Drawing.Point(6, 58);
             this.dtgAgenda.Name = "dtgAgenda";
             this.dtgAgenda.RowHeadersWidth = 51;
@@ -877,6 +880,7 @@ namespace TCC2
             // 
             // tbCadCardapio
             // 
+            this.tbCadCardapio.Controls.Add(this.btnCancelarCardapio);
             this.tbCadCardapio.Controls.Add(this.btnConfigGramasCard);
             this.tbCadCardapio.Controls.Add(this.txtFiltroAlimento);
             this.tbCadCardapio.Controls.Add(this.graficoMacroNutri);
@@ -1082,7 +1086,7 @@ namespace TCC2
             this.btnSalvarCardapio.AutoSize = true;
             this.btnSalvarCardapio.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
             this.btnSalvarCardapio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalvarCardapio.Location = new System.Drawing.Point(1094, 687);
+            this.btnSalvarCardapio.Location = new System.Drawing.Point(973, 687);
             this.btnSalvarCardapio.Name = "btnSalvarCardapio";
             this.btnSalvarCardapio.Size = new System.Drawing.Size(115, 35);
             this.btnSalvarCardapio.TabIndex = 303;
@@ -1859,10 +1863,36 @@ namespace TCC2
             this.imageList1.Images.SetKeyName(4, "Alimento32px.png");
             this.imageList1.Images.SetKeyName(5, "agenda32px.png");
             this.imageList1.Images.SetKeyName(6, "Receitas32px.png");
+            this.imageList1.Images.SetKeyName(7, "information.png");
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // btnCancelarCardapio
+            // 
+            this.btnCancelarCardapio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelarCardapio.AutoSize = true;
+            this.btnCancelarCardapio.Image = global::TCC2.Properties.Resources.DeleteRed;
+            this.btnCancelarCardapio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancelarCardapio.Location = new System.Drawing.Point(1094, 687);
+            this.btnCancelarCardapio.Name = "btnCancelarCardapio";
+            this.btnCancelarCardapio.Size = new System.Drawing.Size(115, 35);
+            this.btnCancelarCardapio.TabIndex = 316;
+            this.btnCancelarCardapio.Text = "Cancelar";
+            this.btnCancelarCardapio.UseVisualStyleBackColor = true;
+            this.btnCancelarCardapio.Click += new System.EventHandler(this.btnCancelarCardapio_Click);
+            // 
+            // tbSobre
+            // 
+            this.tbSobre.ImageKey = "information.png";
+            this.tbSobre.Location = new System.Drawing.Point(4, 39);
+            this.tbSobre.Name = "tbSobre";
+            this.tbSobre.Padding = new System.Windows.Forms.Padding(3);
+            this.tbSobre.Size = new System.Drawing.Size(1229, 764);
+            this.tbSobre.TabIndex = 7;
+            this.tbSobre.Text = "Sobre";
+            this.tbSobre.UseVisualStyleBackColor = true;
             // 
             // frmMenuPrincipal
             // 
@@ -2072,6 +2102,8 @@ namespace TCC2
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TreeView trwConsultarCardPaciente;
+        public System.Windows.Forms.Button btnCancelarCardapio;
+        private System.Windows.Forms.TabPage tbSobre;
     }
 }
 

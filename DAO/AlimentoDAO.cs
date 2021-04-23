@@ -131,7 +131,7 @@ namespace ProjetoTCC
                 teste = agenda;
                 return teste;
             }
-            catch
+            catch (Exception ex)
             {
                 return null;
             }

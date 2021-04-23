@@ -92,7 +92,6 @@ C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\MaterialSkin.dll
 C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\System.Data.SQLite.dll
 C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\System.Data.SQLite.EF6.dll
 C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\System.Data.SQLite.Linq.dll
-C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\TCC2.exe.config
 C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\TCC2.frmBuscarPaciente.resources
 C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\TCC2.frmMenuPrincipal.resources
 C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\TCC2.frmTelaLogin.resources
@@ -102,3 +101,4 @@ C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\TCC2.csproj.CoreCompileInputs
 C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\TCC2.csproj.CopyComplete
 C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\TCC2.exe
 C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\TCC2.pdb
+C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\TCC2.exe.config

@@ -217,60 +217,59 @@ namespace TCC2
 
         private void btnRecalcular_Click(object sender, EventArgs e)
         {
-            if(quantidadeSalva != 0)
-            if (dtgConAlimento.Rows.Count > 0)
-            {
-                foreach (DataGridViewRow row in dtgConAlimento.Rows)
+            if (quantidadeSalva != 0)
+                if (dtgConAlimento.Rows.Count > 0)
                 {
-                    double ProteinaKcal = 0;
-                    double CarboidratoKcal = 0;
-                    double LipidioKcal = 0;
+                    RecalcularMacroNutrientes(dtgConAlimento,quantidadeSalva);
+                }
+                else
+                {
+                    MessageBox.Show(this, "Não foram encontrados itens para recalcular.");
+                }
+            quantidadeSalva = 0d;
+        }
 
-                    if (row.Cells["prot"].Value != null)
-                    {
-                        double ProteinaGramas = 0;
-                        ProteinaGramas = Conversions.ToDouble(((decimal)row.Cells["qtd"].Value * (decimal)row.Cells["prot"].Value)/ (decimal)quantidadeSalva);
-                        ProteinaKcal = ProteinaGramas * 4d;
-                        row.Cells["prot"].Value = ProteinaGramas.ToString("N2");
-                    }
+        void RecalcularMacroNutrientes(DataGridView dtg, double qtdSalva)
+        {
+            foreach (DataGridViewRow row in dtg.Rows)
+            {
+                double ProteinaKcal = 0;
+                double CarboidratoKcal = 0;
+                double LipidioKcal = 0;
 
-                    if (row.Cells["carbo"].Value != null)
-                    {
-                        double CarboidratoGramas = 0;
-                        CarboidratoGramas = Conversions.ToDouble(((decimal)row.Cells["qtd"].Value * (decimal)row.Cells["carbo"].Value)/ (decimal)quantidadeSalva);
-                        CarboidratoKcal = CarboidratoGramas * 4d;
-                        row.Cells["carbo"].Value = CarboidratoGramas.ToString("N2");
-                    }
+                if (Convert.ToDouble(row.Cells["qtd"].Value) == qtdSalva)
+                    continue;
 
-                    if (row.Cells["lipidio"].Value != null)
-                    {
-                        double LipidioGramas = 0;
-                        LipidioGramas = Conversions.ToDouble(((decimal)row.Cells["qtd"].Value * (decimal)row.Cells["lipidio"].Value)/ (decimal)quantidadeSalva);
-                        LipidioKcal = LipidioGramas * 9d;
-                        row.Cells["lipidio"].Value = LipidioGramas.ToString("N2");
-                    }
+                if (row.DefaultCellStyle.BackColor == Color.Red || row.DefaultCellStyle.BackColor == Color.LightSalmon) { 
+                if (row.Cells["prot"].Value != null)
+                {
+                    double ProteinaGramas = 0;
+                    ProteinaGramas = Conversions.ToDouble((Convert.ToDouble(row.Cells["qtd"].Value) * Convert.ToDouble(row.Cells["prot"].Value)) / Convert.ToDouble(qtdSalva));
+                    ProteinaKcal = ProteinaGramas * 4d;
+                    row.Cells["prot"].Value = Convert.ToDouble(ProteinaKcal).ToString("N2");
+                }
 
-                    double somaTotalCaloria = ProteinaKcal + CarboidratoKcal + LipidioKcal;
-                    row.Cells["kcal"].Value = somaTotalCaloria.ToString("N2");
-                    
-                    //double calcio;
-                    //calcio = Conversions.ToDouble(Operators.MultiplyObject(row.Cells["calcio"].Value, row.Cells["qtd"].Value));
-                    //row.Cells["calcio"].Value = calcio.ToString("N2");
+                if (row.Cells["carbo"].Value != null)
+                {
+                    double CarboidratoGramas = 0;
+                    CarboidratoGramas = Conversions.ToDouble((Convert.ToDouble(row.Cells["qtd"].Value) * Convert.ToDouble(row.Cells["carbo"].Value)) / Convert.ToDouble(qtdSalva));
+                    CarboidratoKcal = CarboidratoGramas * 4d;
+                    row.Cells["carbo"].Value = Convert.ToDouble(CarboidratoKcal).ToString("N2");
+                }
 
-                    //double ferro;
-                    //ferro = Conversions.ToDouble(Operators.MultiplyObject(row.Cells["ferro"].Value, row.Cells["qtd"].Value));
-                    //row.Cells["ferro"].Value = ferro.ToString("N2");
+                if (row.Cells["lipidio"].Value != null)
+                {
+                    double LipidioGramas = 0;
+                    LipidioGramas = Conversions.ToDouble((Convert.ToDouble(row.Cells["qtd"].Value) * Convert.ToDouble(row.Cells["lipidio"].Value)) / Convert.ToDouble(qtdSalva));
+                    LipidioKcal = LipidioGramas * 9d;
+                    row.Cells["lipidio"].Value = LipidioKcal.ToString("N2");
+                }
 
-                    //double VitaminaC;
-                    //VitaminaC = Conversions.ToDouble(Operators.MultiplyObject(row.Cells["vitC"].Value, row.Cells["qtd"].Value));
-                    //row.Cells["vitC"].Value = VitaminaC.ToString("N2");
+                double somaTotalCaloria = ProteinaKcal + CarboidratoKcal + LipidioKcal;
+                row.Cells["kcal"].Value = Convert.ToDouble(somaTotalCaloria).ToString("N2");
+                row.DefaultCellStyle.BackColor = Color.White;
                 }
             }
-            else
-            {
-                MessageBox.Show(this, "Não foram encontrados itens para recalcular.");
-            }
-            quantidadeSalva = 0d;
         }
 
         private void txtAlimentoFiltro_Leave(object sender, EventArgs e)
@@ -813,6 +812,7 @@ namespace TCC2
 
         private void CarregarGrafico(decimal proteina, decimal carboidrato, decimal lipidio)
         {
+            graficoMacroNutri.Series = null;
             Func<ChartPoint, string> labelPoint = chartPoint => string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
             SeriesCollection piechartData = new SeriesCollection
                 {
@@ -990,12 +990,15 @@ namespace TCC2
         }
         private void dtgRefeicoes_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            if ((decimal)dtgRefeicoes.CurrentRow.Cells["qtd"].Value != quantidadeAntigaCardapio)
+            if (Convert.ToDecimal(dtgRefeicoes.CurrentRow.Cells["qtd"].Value) != quantidadeAntigaCardapio)
             {
+                RecalcularMacroNutrientes(dtgRefeicoes,Convert.ToDouble(quantidadeAntigaCardapio));
+
                 CarregarGrafico((decimal)dtgRefeicoes.CurrentRow.Cells["prot"].Value, 
                                 (decimal)dtgRefeicoes.CurrentRow.Cells["carbo"].Value, 
                                 (decimal)dtgRefeicoes.CurrentRow.Cells["lipidio"].Value);
             }
+            quantidadeAntigaCardapio = 0;
         }
         private void btnBuscaPaciente_Click(object sender, EventArgs e)
         {
@@ -1004,8 +1007,9 @@ namespace TCC2
         }
         private void dtgRefeicoes_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            if((decimal)dtgRefeicoes.CurrentRow.Cells["qtd"].Value != null)
-            quantidadeAntigaCardapio = (decimal)dtgRefeicoes.CurrentRow.Cells["qtd"].Value;
+            if(Convert.ToDecimal(dtgRefeicoes.CurrentRow.Cells["qtd"].Value) != null)
+            quantidadeAntigaCardapio = Convert.ToDecimal(dtgRefeicoes.CurrentRow.Cells["qtd"].Value);
+
         }
         private void btnApagar_Click(object sender, EventArgs e)
         {
@@ -1015,6 +1019,8 @@ namespace TCC2
 
         private void txtPacienteConsultaCardapio_TextChanged(object sender, EventArgs e)
         {
+            if (CardapioDAO.codPacienteCard == "")
+                return;
             var listaCardapio = cardapioDAO.Consultar(Convert.ToInt32(CardapioDAO.codPacienteCard));
             if (listaCardapio == null)
                 return;
@@ -1110,6 +1116,24 @@ namespace TCC2
                 }
             });
         }
+
+        private void btnCancelarCardapio_Click(object sender, EventArgs e)
+        {
+            txtPaciente.Text = "";
+            CardapioDAO.codPacienteCard = "";
+            CardapioDAO.nomePacienteCard = "";
+            txtPacienteConsultaCardapio.Text = "";
+            dtgRefeicoes.DataSource = null;
+            dtgRefeicoes.Rows.Clear();
+            dtgRefeicoes.Columns.Clear();
+            cbxTabelaAlimentoCardapio.Text = "";
+            dtgCardapioAlimentos.DataSource = null;
+            dtgCardapioAlimentos.Rows.Clear();
+            dtgCardapioAlimentos.Columns.Clear();
+            graficoMacroNutri.Series = null;
+            trwConsultarCardPaciente.Nodes.Clear();
+            lblValorKcal.Text = "";
+        }
         #endregion
 
         #region Configurações
@@ -1189,7 +1213,6 @@ namespace TCC2
 
 
 
-        #endregion
-                
+        #endregion        
     }
 }

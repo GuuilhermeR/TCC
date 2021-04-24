@@ -16,7 +16,7 @@ namespace TCC2
     {
         public long ID { get; set; }
         public string descricao { get; set; }
-        public Nullable<decimal> qtd { get; set; }
+        public Nullable<double> qtd { get; set; }
         public Nullable<long> codAlimento { get; set; }
     
         public virtual Alimentos Alimentos { get; set; }

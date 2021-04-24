@@ -17,10 +17,10 @@ namespace TCC2
         public long ID { get; set; }
         public Nullable<long> codPaciente { get; set; }
         public Nullable<long> codAlimento { get; set; }
-        public Nullable<decimal> medidaCaseiraQtde { get; set; }
+        public Nullable<double> medidaCaseiraQtde { get; set; }
         public string Obs { get; set; }
         public string Refeicao { get; set; }
-        public Nullable<decimal> kcal { get; set; }
+        public Nullable<double> kcal { get; set; }
     
         public virtual Alimentos Alimentos { get; set; }
         public virtual Paciente Paciente { get; set; }

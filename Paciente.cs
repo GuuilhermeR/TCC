@@ -20,7 +20,8 @@ namespace TCC2
             this.Cardapio = new HashSet<Cardapio>();
         }
     
-        public long CPF { get; set; }
+        public long codPaciente { get; set; }
+        public Nullable<long> CPF { get; set; }
         public string nome { get; set; }
         public string dtNasc { get; set; }
         public string email { get; set; }
@@ -33,7 +34,6 @@ namespace TCC2
         public string complemento { get; set; }
         public string telefone { get; set; }
         public string celular { get; set; }
-        public long codPaciente { get; set; }
         public byte[] imagem { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

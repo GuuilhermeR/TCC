@@ -32,7 +32,7 @@ namespace TCC2
         private object tamanhoArquivoImagem;
         private byte[] vetorImagens;
         private double quantidadeSalva;
-        private decimal quantidadeAntigaCardapio;
+        private double quantidadeAntigaCardapio;
 
         #region Menu
         public frmMenuPrincipal(string usuarioLogado)
@@ -240,7 +240,8 @@ namespace TCC2
                 if (Convert.ToDouble(row.Cells["qtd"].Value) == qtdSalva)
                     continue;
 
-                if (row.DefaultCellStyle.BackColor == Color.Red || row.DefaultCellStyle.BackColor == Color.LightSalmon) { 
+                if (row.DefaultCellStyle.BackColor == Color.Red || row.DefaultCellStyle.BackColor == Color.LightSalmon) 
+                { 
                 if (row.Cells["prot"].Value != null)
                 {
                     double ProteinaGramas = 0;
@@ -323,11 +324,11 @@ namespace TCC2
             {
                 foreach (DataGridViewRow row in dtgDados.Rows)
                 {
-                    decimal qtd = Convert.ToDecimal(row.Cells["Qtd"].Value);
-                    decimal kcal = Convert.ToDecimal(row.Cells["kcal"].Value);
-                    decimal Prot = Convert.ToDecimal(row.Cells["Prot"].Value);
-                    decimal Carb = Convert.ToDecimal(row.Cells["Carb"].Value);
-                    decimal Lipidios = Convert.ToDecimal(row.Cells["Lipidios"].Value);
+                    double qtd = Convert.ToDouble(row.Cells["Qtd"].Value);
+                    double kcal = Convert.ToDouble(row.Cells["kcal"].Value);
+                    double Prot = Convert.ToDouble(row.Cells["Prot"].Value);
+                    double Carb = Convert.ToDouble(row.Cells["Carb"].Value);
+                    double Lipidios = Convert.ToDouble(row.Cells["Lipidios"].Value);
 
                     alimentoDAO.Salvar(Convert.ToString(row.Cells["Alimento"].Value), qtd, kcal, Prot, Carb, Lipidios, Convert.ToString(row.Cells["REF"].Value));
                 };
@@ -393,13 +394,13 @@ namespace TCC2
             {
                 if (row.DefaultCellStyle.BackColor == Color.Tomato)
                 {
-                    alimentoDAO.Salvar(row.Cells["nomeAlimento"].Value.ToString(), Convert.ToDecimal(row.Cells["qtd"].Value), Convert.ToDecimal(row.Cells["kcal"].Value)
-                                   , Convert.ToDecimal(row.Cells["prot"].Value), Convert.ToDecimal(row.Cells["carbo"].Value), Convert.ToDecimal(row.Cells["lipidio"].Value), cbxTabela.Text.ToString());
+                    alimentoDAO.Salvar(row.Cells["nomeAlimento"].Value.ToString(), Convert.ToDouble(row.Cells["qtd"].Value), Convert.ToDouble(row.Cells["kcal"].Value)
+                                   , Convert.ToDouble(row.Cells["prot"].Value), Convert.ToDouble(row.Cells["carbo"].Value), Convert.ToDouble(row.Cells["lipidio"].Value), cbxTabela.Text.ToString());
                 }
                 else if (row.DefaultCellStyle.BackColor == Color.LightSalmon)
                 {
-                    alimentoDAO.Update(Convert.ToInt16(row.Cells["codAlimento"].Value), row.Cells["nomeAlimento"].Value.ToString(), Convert.ToDecimal(row.Cells["qtd"].Value),
-                        Convert.ToDecimal(row.Cells["kcal"].Value), Convert.ToDecimal(row.Cells["prot"].Value), Convert.ToDecimal(row.Cells["carbo"].Value), Convert.ToDecimal(row.Cells["lipidio"].Value));
+                    alimentoDAO.Update(Convert.ToInt16(row.Cells["codAlimento"].Value), row.Cells["nomeAlimento"].Value.ToString(), Convert.ToDouble(row.Cells["qtd"].Value),
+                        Convert.ToDouble(row.Cells["kcal"].Value), Convert.ToDouble(row.Cells["prot"].Value), Convert.ToDouble(row.Cells["carbo"].Value), Convert.ToDouble(row.Cells["lipidio"].Value));
                 }
             }
 
@@ -496,7 +497,7 @@ namespace TCC2
             foreach (DataGridViewRow rows in dtgSalvarMedCaseira.Rows)
             {
                 if (Convert.ToInt32(rows.Cells["salvo"].Value) != 1)
-                    medidaCaseiraDAO.Salvar(rows.Cells["desc"].Value.ToString(), Convert.ToDecimal(rows.Cells["qtd"].Value), Convert.ToInt32(txtCodAlimentoMedCas.Text));
+                    medidaCaseiraDAO.Salvar(rows.Cells["desc"].Value.ToString(), Convert.ToDouble(rows.Cells["qtd"].Value), Convert.ToInt32(txtCodAlimentoMedCas.Text));
             }
             dtgSalvarMedCaseira.DataSource = null;
             txtAlimentoMedCaseira.Text = "";
@@ -759,10 +760,10 @@ namespace TCC2
                 return;
             }
 
-            decimal proteina = 0;
-            decimal carboidrato = 0;
-            decimal lipidio = 0;
-            decimal kcal = 0;
+            double proteina = 0;
+            double carboidrato = 0;
+            double lipidio = 0;
+            double kcal = 0;
             DataGridViewRow linhaAdicionada = null;
 
             if (dtgCardapioAlimentos.SelectedRows.Count >= 1 || dtgCardapioAlimentos.SelectedCells.Count >= 1)
@@ -776,10 +777,10 @@ namespace TCC2
 
                 foreach (DataGridViewRow row in dtgRefeicoes.Rows)
                 {
-                    kcal += (decimal)row.Cells[2].Value;
-                    proteina += (decimal)row.Cells["prot"].Value;
-                    carboidrato += (decimal)row.Cells["carbo"].Value;
-                    lipidio += (decimal)row.Cells["lipidio"].Value;
+                    kcal += (double)row.Cells[2].Value;
+                    proteina += (double)row.Cells["prot"].Value;
+                    carboidrato += (double)row.Cells["carbo"].Value;
+                    lipidio += (double)row.Cells["lipidio"].Value;
                 }
                 dtgRefeicoes.AutoResizeColumns();
             }
@@ -810,7 +811,7 @@ namespace TCC2
             }
         }
 
-        private void CarregarGrafico(decimal proteina, decimal carboidrato, decimal lipidio)
+        private void CarregarGrafico(double proteina, double carboidrato, double lipidio)
         {
             graficoMacroNutri.Series = null;
             Func<ChartPoint, string> labelPoint = chartPoint => string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
@@ -819,21 +820,21 @@ namespace TCC2
                     new PieSeries
                     {
                         Title = "Proteína",
-                        Values = new ChartValues<decimal> {proteina},
+                        Values = new ChartValues<double> {proteina},
                         DataLabels = true,
                         LabelPoint = labelPoint
                     },
                     new PieSeries
                     {
                         Title = "Carboidrato",
-                        Values = new ChartValues<decimal> {carboidrato},
+                        Values = new ChartValues<double> {carboidrato},
                         DataLabels = true,
                         LabelPoint = labelPoint
                     },
                     new PieSeries
                     {
                         Title = "Lipídios",
-                        Values = new ChartValues<decimal> {lipidio},
+                        Values = new ChartValues<double> {lipidio},
                         DataLabels = true,
                         LabelPoint = labelPoint
                     }
@@ -917,8 +918,8 @@ namespace TCC2
 
         private void btnSalvarCardapio_Click(object sender, EventArgs e)
         {
-            decimal Kcal;
-            Kcal = Convert.ToDecimal(lblValorKcal.Text.Split(' ')[0]);
+            double Kcal;
+            Kcal = Convert.ToDouble(lblValorKcal.Text.Split(' ')[0]);
             foreach (DataGridViewRow row in dtgRefeicoes.Rows)
             cardapioDAO.Salvar(Convert.ToString(CardapioDAO.codPacienteCard), 
                                                 Convert.ToInt32(row.Cells["codAlimento"].Value),
@@ -990,13 +991,14 @@ namespace TCC2
         }
         private void dtgRefeicoes_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            if (Convert.ToDecimal(dtgRefeicoes.CurrentRow.Cells["qtd"].Value) != quantidadeAntigaCardapio)
+            dtgRefeicoes.CurrentRow.DefaultCellStyle.BackColor = Color.Red;
+            if (Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["qtd"].Value) != quantidadeAntigaCardapio)
             {
                 RecalcularMacroNutrientes(dtgRefeicoes,Convert.ToDouble(quantidadeAntigaCardapio));
 
-                CarregarGrafico((decimal)dtgRefeicoes.CurrentRow.Cells["prot"].Value, 
-                                (decimal)dtgRefeicoes.CurrentRow.Cells["carbo"].Value, 
-                                (decimal)dtgRefeicoes.CurrentRow.Cells["lipidio"].Value);
+                CarregarGrafico(Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["prot"].Value),
+                                Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["carbo"].Value),
+                                Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["lipidio"].Value));
             }
             quantidadeAntigaCardapio = 0;
         }
@@ -1007,8 +1009,8 @@ namespace TCC2
         }
         private void dtgRefeicoes_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            if(Convert.ToDecimal(dtgRefeicoes.CurrentRow.Cells["qtd"].Value) != null)
-            quantidadeAntigaCardapio = Convert.ToDecimal(dtgRefeicoes.CurrentRow.Cells["qtd"].Value);
+            if(Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["qtd"].Value) != null)
+            quantidadeAntigaCardapio = Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["qtd"].Value);
 
         }
         private void btnApagar_Click(object sender, EventArgs e)

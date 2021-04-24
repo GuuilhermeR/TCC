@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="NutreasyModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="datasource=C:\Users\movtech\Desktop\TCC2\bin\Debug\NutreasyDB.DB" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="mainModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="datasource=C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\NutreasyDB.DB" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Agenda">
           <Key>
             <PropertyRef Name="ID" />
@@ -22,11 +22,11 @@
           </Key>
           <Property Name="codAlimento" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nomeAlimento" Type="varchar" MaxLength="2147483647" />
-          <Property Name="qtd" Type="decimal" Precision="53" Scale="0" />
-          <Property Name="kcal" Type="decimal" Precision="53" Scale="0" />
-          <Property Name="prot" Type="decimal" Precision="53" Scale="0" />
-          <Property Name="carbo" Type="decimal" Precision="53" Scale="0" />
-          <Property Name="lipidio" Type="decimal" Precision="53" Scale="0" />
+          <Property Name="qtd" Type="real" />
+          <Property Name="kcal" Type="real" />
+          <Property Name="prot" Type="real" />
+          <Property Name="carbo" Type="real" />
+          <Property Name="lipidio" Type="real" />
           <Property Name="nomeTabela" Type="varchar" MaxLength="2147483647" />
         </EntityType>
         <EntityType Name="Cardapio">
@@ -36,10 +36,10 @@
           <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="codPaciente" Type="integer" />
           <Property Name="codAlimento" Type="integer" />
-          <Property Name="medidaCaseiraQtde" Type="decimal" Precision="53" Scale="0" />
+          <Property Name="medidaCaseiraQtde" Type="real" />
           <Property Name="Obs" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="Refeicao" Type="nvarchar" MaxLength="2147483647" />
-          <Property Name="kcal" Type="decimal" Precision="53" Scale="0" />
+          <Property Name="kcal" Type="real" />
         </EntityType>
         <EntityType Name="Login">
           <Key>
@@ -58,7 +58,7 @@
           </Key>
           <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="descricao" Type="varchar" MaxLength="2147483647" />
-          <Property Name="qtd" Type="decimal" Precision="53" Scale="0" />
+          <Property Name="qtd" Type="real" />
           <Property Name="codAlimento" Type="integer" />
         </EntityType>
         <EntityType Name="Paciente">
@@ -117,7 +117,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="NutreasyModelStoreContainer">
+        <EntityContainer Name="mainModelStoreContainer">
           <EntitySet Name="Agenda" EntityType="Self.Agenda" store:Type="Tables" />
           <EntitySet Name="Alimentos" EntityType="Self.Alimentos" store:Type="Tables" />
           <EntitySet Name="Cardapio" EntityType="Self.Cardapio" store:Type="Tables" />
@@ -140,7 +140,7 @@
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="NutreasyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="mainModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Agenda">
           <Key>
             <PropertyRef Name="ID" />
@@ -156,16 +156,30 @@
           <Key>
             <PropertyRef Name="codAlimento" />
           </Key>
-          <Property Name="codAlimento" Type="Int64" Nullable="false" />
+          <Property Name="codAlimento" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nomeAlimento" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
-          <Property Name="qtd" Type="Decimal" Precision="53" Scale="0" />
-          <Property Name="kcal" Type="Decimal" Precision="53" Scale="0" />
-          <Property Name="prot" Type="Decimal" Precision="53" Scale="0" />
-          <Property Name="carbo" Type="Decimal" Precision="53" Scale="0" />
-          <Property Name="lipidio" Type="Decimal" Precision="53" Scale="0" />
+          <Property Name="qtd" Type="Double" />
+          <Property Name="kcal" Type="Double" />
+          <Property Name="prot" Type="Double" />
+          <Property Name="carbo" Type="Double" />
+          <Property Name="lipidio" Type="Double" />
           <Property Name="nomeTabela" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="MedidaCaseira" Relationship="NutreasyModel.FK_MedidaCaseira_0_0" FromRole="Alimentos" ToRole="MedidaCaseira" />
-          <NavigationProperty Name="Cardapio" Relationship="NutreasyModel.FK_Cardapio_0_0" FromRole="Alimentos" ToRole="Cardapio" />
+          <NavigationProperty Name="Cardapio" Relationship="Self.FK_Cardapio_0_0" FromRole="Alimentos" ToRole="Cardapio" />
+          <NavigationProperty Name="MedidaCaseira" Relationship="Self.FK_MedidaCaseira_0_0" FromRole="Alimentos" ToRole="MedidaCaseira" />
+        </EntityType>
+        <EntityType Name="Cardapio">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codPaciente" Type="Int64" />
+          <Property Name="codAlimento" Type="Int64" />
+          <Property Name="medidaCaseiraQtde" Type="Double" />
+          <Property Name="Obs" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Refeicao" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="kcal" Type="Double" />
+          <NavigationProperty Name="Alimentos" Relationship="Self.FK_Cardapio_0_0" FromRole="Cardapio" ToRole="Alimentos" />
+          <NavigationProperty Name="Paciente" Relationship="Self.FK_Cardapio_1_0" FromRole="Cardapio" ToRole="Paciente" />
         </EntityType>
         <EntityType Name="Login">
           <Key>
@@ -178,60 +192,52 @@
           <Property Name="email" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <Property Name="perfil" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="NutreasyEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Agenda" EntityType="Self.Agenda" />
-          <EntitySet Name="Alimentos" EntityType="Self.Alimentos" />
-          <EntitySet Name="Login" EntityType="Self.Login" />
-          <EntitySet Name="Paciente" EntityType="NutreasyModel.Paciente" />
-          <EntitySet Name="MedidaCaseira" EntityType="NutreasyModel.MedidaCaseira" />
-          <AssociationSet Name="FK_MedidaCaseira_0_0" Association="NutreasyModel.FK_MedidaCaseira_0_0">
-            <End Role="Alimentos" EntitySet="Alimentos" />
-            <End Role="MedidaCaseira" EntitySet="MedidaCaseira" />
-          </AssociationSet>
-          <EntitySet Name="Cardapio" EntityType="NutreasyModel.Cardapio" />
-          <AssociationSet Name="FK_Cardapio_0_0" Association="NutreasyModel.FK_Cardapio_0_0">
-            <End Role="Alimentos" EntitySet="Alimentos" />
-            <End Role="Cardapio" EntitySet="Cardapio" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cardapio_1_0" Association="NutreasyModel.FK_Cardapio_1_0">
-            <End Role="Paciente" EntitySet="Paciente" />
-            <End Role="Cardapio" EntitySet="Cardapio" />
-          </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="Paciente">
-          <Key>
-            <PropertyRef Name="codPaciente" />
-          </Key>
-          <Property Name="CPF" Type="Int64" Nullable="false" />
-          <Property Name="nome" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
-          <Property Name="dtNasc" Type="String" />
-          <Property Name="email" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
-          <Property Name="CEP" Type="Double" />
-          <Property Name="endereco" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
-          <Property Name="numero" Type="Int64" />
-          <Property Name="bairro" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
-          <Property Name="municipio" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
-          <Property Name="UF" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="complemento" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
-          <Property Name="telefone" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
-          <Property Name="celular" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
-          <Property Name="codPaciente" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="imagem" Type="Binary" MaxLength="2147483647" FixedLength="false" />
-          <NavigationProperty Name="Cardapio" Relationship="NutreasyModel.FK_Cardapio_1_0" FromRole="Paciente" ToRole="Cardapio" />
-        </EntityType>
         <EntityType Name="MedidaCaseira">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="descricao" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
-          <Property Name="qtd" Type="Decimal" />
+          <Property Name="qtd" Type="Double" />
           <Property Name="codAlimento" Type="Int64" />
-          <NavigationProperty Name="Alimentos" Relationship="NutreasyModel.FK_MedidaCaseira_0_0" FromRole="MedidaCaseira" ToRole="Alimentos" />
+          <NavigationProperty Name="Alimentos" Relationship="Self.FK_MedidaCaseira_0_0" FromRole="MedidaCaseira" ToRole="Alimentos" />
         </EntityType>
+        <EntityType Name="Paciente">
+          <Key>
+            <PropertyRef Name="codPaciente" />
+          </Key>
+          <Property Name="codPaciente" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CPF" Type="Int64" />
+          <Property Name="nome" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="dtNasc" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="CEP" Type="Double" />
+          <Property Name="endereco" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="numero" Type="Int64" />
+          <Property Name="bairro" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="municipio" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="UF" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="complemento" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="telefone" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="celular" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="imagem" Type="Binary" MaxLength="2147483647" FixedLength="false" />
+          <NavigationProperty Name="Cardapio" Relationship="Self.FK_Cardapio_1_0" FromRole="Paciente" ToRole="Cardapio" />
+        </EntityType>
+        <Association Name="FK_Cardapio_0_0">
+          <End Role="Alimentos" Type="Self.Alimentos" Multiplicity="0..1" />
+          <End Role="Cardapio" Type="Self.Cardapio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alimentos">
+              <PropertyRef Name="codAlimento" />
+            </Principal>
+            <Dependent Role="Cardapio">
+              <PropertyRef Name="codAlimento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MedidaCaseira_0_0">
-          <End Type="NutreasyModel.Alimentos" Role="Alimentos" Multiplicity="0..1" />
-          <End Type="NutreasyModel.MedidaCaseira" Role="MedidaCaseira" Multiplicity="*" />
+          <End Role="Alimentos" Type="Self.Alimentos" Multiplicity="0..1" />
+          <End Role="MedidaCaseira" Type="Self.MedidaCaseira" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Alimentos">
               <PropertyRef Name="codAlimento" />
@@ -241,35 +247,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Cardapio">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="codPaciente" Type="Int64" />
-          <Property Name="codAlimento" Type="Int64" />
-          <Property Name="medidaCaseiraQtde" Type="Decimal" Precision="53" Scale="0" />
-          <Property Name="Obs" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="Refeicao" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="kcal" Type="Decimal" Precision="53" Scale="0" />
-          <NavigationProperty Name="Alimentos" Relationship="NutreasyModel.FK_Cardapio_0_0" FromRole="Cardapio" ToRole="Alimentos" />
-          <NavigationProperty Name="Paciente" Relationship="NutreasyModel.FK_Cardapio_1_0" FromRole="Cardapio" ToRole="Paciente" />
-        </EntityType>
-        <Association Name="FK_Cardapio_0_0">
-          <End Type="NutreasyModel.Alimentos" Role="Alimentos" Multiplicity="0..1" />
-          <End Type="NutreasyModel.Cardapio" Role="Cardapio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Alimentos">
-              <PropertyRef Name="codAlimento" />
-            </Principal>
-            <Dependent Role="Cardapio">
-              <PropertyRef Name="codAlimento" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Cardapio_1_0">
-          <End Type="NutreasyModel.Paciente" Role="Paciente" Multiplicity="0..1" />
-          <End Type="NutreasyModel.Cardapio" Role="Cardapio" Multiplicity="*" />
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="0..1" />
+          <End Role="Cardapio" Type="Self.Cardapio" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Paciente">
               <PropertyRef Name="codPaciente" />
@@ -279,14 +259,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="NutreasyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Agenda" EntityType="Self.Agenda" />
+          <EntitySet Name="Alimentos" EntityType="Self.Alimentos" />
+          <EntitySet Name="Cardapio" EntityType="Self.Cardapio" />
+          <EntitySet Name="Login" EntityType="Self.Login" />
+          <EntitySet Name="MedidaCaseira" EntityType="Self.MedidaCaseira" />
+          <EntitySet Name="Paciente" EntityType="Self.Paciente" />
+          <AssociationSet Name="FK_Cardapio_0_0" Association="Self.FK_Cardapio_0_0">
+            <End Role="Alimentos" EntitySet="Alimentos" />
+            <End Role="Cardapio" EntitySet="Cardapio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MedidaCaseira_0_0" Association="Self.FK_MedidaCaseira_0_0">
+            <End Role="Alimentos" EntitySet="Alimentos" />
+            <End Role="MedidaCaseira" EntitySet="MedidaCaseira" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cardapio_1_0" Association="Self.FK_Cardapio_1_0">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Cardapio" EntitySet="Cardapio" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="NutreasyModelStoreContainer" CdmEntityContainer="NutreasyEntities">
+        <EntityContainerMapping StorageEntityContainer="mainModelStoreContainer" CdmEntityContainer="NutreasyEntities">
           <EntitySetMapping Name="Agenda">
-            <EntityTypeMapping TypeName="NutreasyModel.Agenda">
+            <EntityTypeMapping TypeName="mainModel.Agenda">
               <MappingFragment StoreEntitySet="Agenda">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="paciente" ColumnName="paciente" />
@@ -298,9 +298,8 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Alimentos">
-            <EntityTypeMapping TypeName="NutreasyModel.Alimentos">
+            <EntityTypeMapping TypeName="mainModel.Alimentos">
               <MappingFragment StoreEntitySet="Alimentos">
-                <ScalarProperty Name="nomeTabela" ColumnName="nomeTabela" />
                 <ScalarProperty Name="codAlimento" ColumnName="codAlimento" />
                 <ScalarProperty Name="nomeAlimento" ColumnName="nomeAlimento" />
                 <ScalarProperty Name="qtd" ColumnName="qtd" />
@@ -308,11 +307,25 @@
                 <ScalarProperty Name="prot" ColumnName="prot" />
                 <ScalarProperty Name="carbo" ColumnName="carbo" />
                 <ScalarProperty Name="lipidio" ColumnName="lipidio" />
+                <ScalarProperty Name="nomeTabela" ColumnName="nomeTabela" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cardapio">
+            <EntityTypeMapping TypeName="mainModel.Cardapio">
+              <MappingFragment StoreEntitySet="Cardapio">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="codPaciente" ColumnName="codPaciente" />
+                <ScalarProperty Name="codAlimento" ColumnName="codAlimento" />
+                <ScalarProperty Name="medidaCaseiraQtde" ColumnName="medidaCaseiraQtde" />
+                <ScalarProperty Name="Obs" ColumnName="Obs" />
+                <ScalarProperty Name="Refeicao" ColumnName="Refeicao" />
+                <ScalarProperty Name="kcal" ColumnName="kcal" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Login">
-            <EntityTypeMapping TypeName="NutreasyModel.Login">
+            <EntityTypeMapping TypeName="mainModel.Login">
               <MappingFragment StoreEntitySet="Login">
                 <ScalarProperty Name="usuario" ColumnName="usuario" />
                 <ScalarProperty Name="senha" ColumnName="senha" />
@@ -323,47 +336,34 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Paciente">
-            <EntityTypeMapping TypeName="NutreasyModel.Paciente">
-              <MappingFragment StoreEntitySet="Paciente">
-                <ScalarProperty Name="imagem" ColumnName="imagem" />
-                <ScalarProperty Name="codPaciente" ColumnName="codPaciente" />
-                <ScalarProperty Name="celular" ColumnName="celular" />
-                <ScalarProperty Name="telefone" ColumnName="telefone" />
-                <ScalarProperty Name="complemento" ColumnName="complemento" />
-                <ScalarProperty Name="UF" ColumnName="UF" />
-                <ScalarProperty Name="municipio" ColumnName="municipio" />
-                <ScalarProperty Name="bairro" ColumnName="bairro" />
-                <ScalarProperty Name="numero" ColumnName="numero" />
-                <ScalarProperty Name="endereco" ColumnName="endereco" />
-                <ScalarProperty Name="CEP" ColumnName="CEP" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="dtNasc" ColumnName="dtNasc" />
-                <ScalarProperty Name="nome" ColumnName="nome" />
-                <ScalarProperty Name="CPF" ColumnName="CPF" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="MedidaCaseira">
-            <EntityTypeMapping TypeName="NutreasyModel.MedidaCaseira">
+            <EntityTypeMapping TypeName="mainModel.MedidaCaseira">
               <MappingFragment StoreEntitySet="MedidaCaseira">
-                <ScalarProperty Name="codAlimento" ColumnName="codAlimento" />
-                <ScalarProperty Name="qtd" ColumnName="qtd" />
-                <ScalarProperty Name="descricao" ColumnName="descricao" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="qtd" ColumnName="qtd" />
+                <ScalarProperty Name="codAlimento" ColumnName="codAlimento" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Cardapio">
-            <EntityTypeMapping TypeName="NutreasyModel.Cardapio">
-              <MappingFragment StoreEntitySet="Cardapio">
-                <ScalarProperty Name="kcal" ColumnName="kcal" />
-                <ScalarProperty Name="Refeicao" ColumnName="Refeicao" />
-                <ScalarProperty Name="Obs" ColumnName="Obs" />
-                <ScalarProperty Name="medidaCaseiraQtde" ColumnName="medidaCaseiraQtde" />
-                <ScalarProperty Name="codAlimento" ColumnName="codAlimento" />
+          <EntitySetMapping Name="Paciente">
+            <EntityTypeMapping TypeName="mainModel.Paciente">
+              <MappingFragment StoreEntitySet="Paciente">
                 <ScalarProperty Name="codPaciente" ColumnName="codPaciente" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CPF" ColumnName="CPF" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="dtNasc" ColumnName="dtNasc" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="CEP" ColumnName="CEP" />
+                <ScalarProperty Name="endereco" ColumnName="endereco" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="bairro" ColumnName="bairro" />
+                <ScalarProperty Name="municipio" ColumnName="municipio" />
+                <ScalarProperty Name="UF" ColumnName="UF" />
+                <ScalarProperty Name="complemento" ColumnName="complemento" />
+                <ScalarProperty Name="telefone" ColumnName="telefone" />
+                <ScalarProperty Name="celular" ColumnName="celular" />
+                <ScalarProperty Name="imagem" ColumnName="imagem" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

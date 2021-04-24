@@ -17,22 +17,22 @@ namespace TCC2
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Alimentos()
         {
-            this.MedidaCaseira = new HashSet<MedidaCaseira>();
             this.Cardapio = new HashSet<Cardapio>();
+            this.MedidaCaseira = new HashSet<MedidaCaseira>();
         }
     
         public long codAlimento { get; set; }
         public string nomeAlimento { get; set; }
-        public Nullable<decimal> qtd { get; set; }
-        public Nullable<decimal> kcal { get; set; }
-        public Nullable<decimal> prot { get; set; }
-        public Nullable<decimal> carbo { get; set; }
-        public Nullable<decimal> lipidio { get; set; }
+        public Nullable<double> qtd { get; set; }
+        public Nullable<double> kcal { get; set; }
+        public Nullable<double> prot { get; set; }
+        public Nullable<double> carbo { get; set; }
+        public Nullable<double> lipidio { get; set; }
         public string nomeTabela { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MedidaCaseira> MedidaCaseira { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cardapio> Cardapio { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MedidaCaseira> MedidaCaseira { get; set; }
     }
 }

@@ -60,14 +60,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Agenda.cs">
-      <DependentUpon>NutreasyEntities.tt</DependentUpon>
+      <DependentUpon>NutreasyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Alimentos.cs">
-      <DependentUpon>NutreasyEntities.tt</DependentUpon>
+      <DependentUpon>NutreasyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="BancoDadosSingleton.cs" />
     <Compile Include="Cardapio.cs">
-      <DependentUpon>NutreasyEntities.tt</DependentUpon>
+      <DependentUpon>NutreasyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="DAO\AgendaDAO.cs" />
     <Compile Include="DAO\AlimentoDAO.cs" />
@@ -91,30 +91,30 @@
     <Compile Include="frmTelaLogin.Designer.cs">
       <DependentUpon>frmTelaLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAO\MedidaCaseiraDAO.cs" />
     <Compile Include="Login.cs">
-      <DependentUpon>NutreasyEntities.tt</DependentUpon>
+      <DependentUpon>NutreasyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="MedidaCaseira.cs">
-      <DependentUpon>NutreasyEntities.tt</DependentUpon>
+      <DependentUpon>NutreasyDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="DAO\MedidaCaseiraDAO.cs" />
-    <Compile Include="NutreasyEntities.Context.cs">
+    <Compile Include="NutreasyDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NutreasyEntities.Context.tt</DependentUpon>
+      <DependentUpon>NutreasyDB.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="NutreasyEntities.cs">
+    <Compile Include="NutreasyDB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NutreasyEntities.tt</DependentUpon>
+      <DependentUpon>NutreasyDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="NutreasyEntities.Designer.cs">
+    <Compile Include="NutreasyDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NutreasyEntities.edmx</DependentUpon>
+      <DependentUpon>NutreasyDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="Paciente.cs">
-      <DependentUpon>NutreasyEntities.tt</DependentUpon>
+      <DependentUpon>NutreasyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -133,12 +133,12 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="NutreasyEntities.edmx">
+    <EntityDeploy Include="NutreasyDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>NutreasyEntities.Designer.cs</LastGenOutput>
+      <LastGenOutput>NutreasyDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="NutreasyEntities.edmx.diagram">
-      <DependentUpon>NutreasyEntities.edmx</DependentUpon>
+    <None Include="NutreasyDB.edmx.diagram">
+      <DependentUpon>NutreasyDB.edmx</DependentUpon>
     </None>
     <None Include="package.config" />
     <None Include="Properties\Settings.settings">
@@ -160,15 +160,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="NutreasyEntities.Context.tt">
+    <Content Include="NutreasyDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NutreasyEntities.edmx</DependentUpon>
-      <LastGenOutput>NutreasyEntities.Context.cs</LastGenOutput>
+      <DependentUpon>NutreasyDB.edmx</DependentUpon>
+      <LastGenOutput>NutreasyDB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="NutreasyEntities.tt">
+    <Content Include="NutreasyDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NutreasyEntities.edmx</DependentUpon>
-      <LastGenOutput>NutreasyEntities.cs</LastGenOutput>
+      <DependentUpon>NutreasyDB.edmx</DependentUpon>
+      <LastGenOutput>NutreasyDB.cs</LastGenOutput>
     </Content>
     <Content Include="Resources\2355300-removebg-preview %283%29.png" />
     <Content Include="Resources\5-Icon-Branco.png" />

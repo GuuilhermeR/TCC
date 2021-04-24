@@ -15,7 +15,7 @@ namespace ProjetoTCC
         {
         }
 
-        public void Salvar(string alimento, decimal qtd, decimal kCal, decimal proteina, decimal carboidrato, decimal lipidio, string nomeTabela)
+        public void Salvar(string alimento, double qtd, double kCal, double proteina, double carboidrato, double lipidio, string nomeTabela)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace ProjetoTCC
 
         }
 
-        public void Update(int codAlimento, string alimento, decimal qtd, decimal kCal, decimal proteina, decimal carboidrato, decimal lipidio)
+        public void Update(int codAlimento, string alimento, double qtd, double kCal, double proteina, double carboidrato, double lipidio)
         {
             try
             {

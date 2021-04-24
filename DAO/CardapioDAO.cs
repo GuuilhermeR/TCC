@@ -18,7 +18,7 @@ namespace TCC2
         {
         }
 
-        public void Salvar(string codPaciente, int codAlimento, string refeicao, decimal medidaCaseiraQtde, string obs, decimal kcal)
+        public void Salvar(string codPaciente, int codAlimento, string refeicao, double medidaCaseiraQtde, string obs, double kcal)
         {
             try
             {

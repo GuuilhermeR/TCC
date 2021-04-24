@@ -15,7 +15,7 @@ namespace TCC2
         {
         }
 
-        public void Salvar(string descricao, decimal qtd, int codAlimento)
+        public void Salvar(string descricao, double qtd, int codAlimento)
         {
             try
             {

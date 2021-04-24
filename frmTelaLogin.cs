@@ -34,6 +34,7 @@ namespace TCC2
 
         private void btnLogar_Click(object sender, EventArgs e)
         {
+            lblAviso.Visible = false;   
             if(txtUsuario.Text == "")
             {
                lblAviso.Text = "Informe o usuário.";
@@ -48,8 +49,6 @@ namespace TCC2
                 lblAviso.ForeColor = Color.Red;
                 return;
             }
-
-           
 
             if ((bool)usuario.loginUsuario(txtUsuario.Text, txtSenha.Text))
             {
@@ -66,9 +65,7 @@ namespace TCC2
                 lblAviso.Text = "Usuário/Senha incorreto.";
                 lblAviso.Visible = true;
                 lblAviso.ForeColor = Color.Red;
-            }
-
-                        
+            }                        
         }
     }
 }

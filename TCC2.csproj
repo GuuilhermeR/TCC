@@ -35,6 +35,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DirectX.Capture, Version=1.0.1313.24984, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Desktop\CapturaImagemWebCam\CapturaImagemWebCam\Support\DirectX.Capture.dll</HintPath>
+    </Reference>
+    <Reference Include="DShowNET, Version=1.0.0.1, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Desktop\CapturaImagemWebCam\CapturaImagemWebCam\Support\DShowNET.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -66,6 +74,12 @@
       <DependentUpon>NutreasyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="BancoDadosSingleton.cs" />
+    <Compile Include="CapturarImagem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CapturarImagem.Designer.cs">
+      <DependentUpon>CapturarImagem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Cardapio.cs">
       <DependentUpon>NutreasyDB.tt</DependentUpon>
     </Compile>
@@ -119,6 +133,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DAO\UsuarioDAO.cs" />
+    <EmbeddedResource Include="CapturarImagem.resx">
+      <DependentUpon>CapturarImagem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmBuscarPaciente.resx">
       <DependentUpon>frmBuscarPaciente.cs</DependentUpon>
     </EmbeddedResource>
@@ -172,6 +189,8 @@
     </Content>
     <Content Include="Resources\2355300-removebg-preview %283%29.png" />
     <Content Include="Resources\5-Icon-Branco.png" />
+    <Content Include="Suporte\DirectX.Capture.dll" />
+    <Content Include="Suporte\DShowNET.dll" />
     <None Include="Resources\Adicionar.png" />
     <None Include="Resources\arrow-icon-1.jpg" />
     <None Include="Resources\arrow-icon-1 - Copia.jpg" />

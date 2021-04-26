@@ -15,6 +15,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using LiveCharts;
 using LiveCharts.Wpf;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Drawing.Imaging;
 
 namespace TCC2
 {
@@ -33,6 +37,11 @@ namespace TCC2
         private byte[] vetorImagens;
         private double quantidadeSalva;
         private double quantidadeAntigaCardapio;
+        public DirectX.Capture.Filter Camera;
+        public DirectX.Capture.Capture CaptureInfo;
+        public DirectX.Capture.Filters CamContainer;
+        Image capturaImagem;
+        public string caminhoImagemSalva = null;
 
         #region Menu
         public frmMenuPrincipal(string usuarioLogado)
@@ -653,7 +662,9 @@ namespace TCC2
                 txtEndereco.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["endereco"].Value);
                 txtUF.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["UF"].Value);
                 if (Convert.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["imagem"].Value) != "")
+                {
                     pbImagem.Image = ByteToImage((byte[])_dtgConsultaPacientes.Rows[e.RowIndex].Cells["imagem"].Value);
+                }
                 tbPaciente.SelectedTab = tbCadastro;
             }
         }
@@ -710,31 +721,106 @@ namespace TCC2
 
         private void pbImagem_Click(object sender, EventArgs e)
         {
-            try
+            var resposta = MessageBox.Show("Deseja tirar uma foto?", Text,MessageBoxButtons.YesNoCancel);
+            
+            if (resposta == System.Windows.Forms.DialogResult.Yes)
             {
-                this.openFileDialog1.ShowDialog(this);
-                string strFn = this.openFileDialog1.FileName;
+                CamContainer = new DirectX.Capture.Filters();
 
-                if (string.IsNullOrEmpty(strFn))
-                    return;
+                try
+                {
+                    int no_of_cam = CamContainer.VideoInputDevices.Count;
+                    for (int i = 0; i < no_of_cam; i++)
+                    {
+                        try
+                        {
+                            // obtém o dispositivo de entrada do vídeo
+                            Camera = CamContainer.VideoInputDevices[i];
 
-                this.pbImagem.Image = Image.FromFile(strFn);
-                FileInfo arqImagem = new FileInfo(strFn);
-                tamanhoArquivoImagem = arqImagem.Length;
-                FileStream fs = new FileStream(strFn, FileMode.Open, FileAccess.Read, FileShare.Read);
-                vetorImagens = new byte[Convert.ToInt32(this.tamanhoArquivoImagem)];
-                int iBytesRead = fs.Read(this.vetorImagens, 0, Convert.ToInt32(this.tamanhoArquivoImagem));
-                fs.Close();
+                            // inicializa a Captura usando o dispositivo
+                            CaptureInfo = new DirectX.Capture.Capture(Camera, null);
+
+                            // Define a janela de visualização do vídeo
+                            CaptureInfo.PreviewWindow = this.pbImagem;
+
+                            // Capturando o tratamento de evento
+                            CaptureInfo.FrameCaptureComplete += AtualizaImagem;
+
+                            // Captura o frame do dispositivo
+                            CaptureInfo.CaptureFrame();
+
+                            // Se o dispositivo foi encontrado e inicializado então sai sem checar o resto
+                            break;
+                        }
+                        catch (Exception ex)
+                        {
+                            throw ex;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(this, ex.Message);
+                }
             }
-            catch (Exception ex)
+            else if (resposta == System.Windows.Forms.DialogResult.No)
             {
-                MessageBox.Show(ex.Message);
+                try
+                {
+                    this.openFileDialog1.ShowDialog(this);
+                    string strFn = this.openFileDialog1.FileName;
+
+                    if (string.IsNullOrEmpty(strFn))
+                        return;
+
+                    this.pbImagem.Image = Image.FromFile(strFn);
+                    FileInfo arqImagem = new FileInfo(strFn);
+                    tamanhoArquivoImagem = arqImagem.Length;
+                    FileStream fs = new FileStream(strFn, FileMode.Open, FileAccess.Read, FileShare.Read);
+                    vetorImagens = new byte[Convert.ToInt32(this.tamanhoArquivoImagem)];
+                    int iBytesRead = fs.Read(this.vetorImagens, 0, Convert.ToInt32(this.tamanhoArquivoImagem));
+                    fs.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                return;
             }
         }
         private void btnSearchPatient_Click(object sender, EventArgs e)
         {
             pacienteDAO.Buscar(txtNome.Text);
         }
+
+        public void AtualizaImagem(PictureBox frame)
+        {
+            try
+            {
+                capturaImagem = frame.Image;
+                this.pbImagem.Image = capturaImagem;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro " + ex.Message);
+            }
+        }
+
+        private void btnCapturarImagem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CaptureInfo.CaptureFrame();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro " + ex.Message);
+            }
+        }
+
         #endregion
 
         #region Cardápio
@@ -1215,6 +1301,7 @@ namespace TCC2
 
 
 
-        #endregion        
+        #endregion
+       
     }
 }

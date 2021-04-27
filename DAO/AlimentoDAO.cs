@@ -109,10 +109,10 @@ namespace ProjetoTCC
                 }
                 else if (nomeAlimento != "" && nomeTabela != "")
                 {
-                    agenda = ((from a in BancoDadosSingleton.Instance.Alimentos where a.nomeAlimento.ToUpper() == nomeAlimento.ToUpper() && a.nomeTabela.ToUpper() == nomeTabela.ToUpper() select a).Distinct()).ToList();
+                    agenda = ((from a in BancoDadosSingleton.Instance.Alimentos where (a.nomeAlimento.ToUpper()).Contains(nomeAlimento.ToUpper()) && (a.nomeTabela.ToUpper()).Contains(nomeTabela.ToUpper())  select a).Distinct()).ToList();
                 } else
                 {
-                    agenda = ((from a in BancoDadosSingleton.Instance.Alimentos where a.nomeTabela.ToUpper() == nomeTabela.ToUpper() select a).Distinct()).ToList();
+                    agenda = ((from a in BancoDadosSingleton.Instance.Alimentos where (a.nomeTabela.ToUpper()).Contains(nomeTabela.ToUpper()) select a).Distinct()).ToList();
                 }
                 return agenda;
             }

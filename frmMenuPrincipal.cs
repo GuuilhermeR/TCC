@@ -634,9 +634,9 @@ namespace TCC2
         }
         private void _btnExcluir_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtCPF.Text))
+            if (!string.IsNullOrEmpty(txtCodPaciente.Text))
             {
-                pacienteDAO.Deletar(Convert.ToDouble(txtCPF.Text));
+                pacienteDAO.Deletar(Convert.ToDouble(txtCodPaciente.Text));
                 limparCamposCadPaciente();
             }
             else
@@ -648,6 +648,7 @@ namespace TCC2
         {
             if (e.RowIndex >= 0 & e.ColumnIndex >= 0)
             {
+                txtCodPaciente.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["codPaciente"].Value);
                 txtNome.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["nome"].Value);
                 txtCPF.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["CPF"].Value);
                 txtDtNasc.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["dtNasc"].Value);
@@ -694,6 +695,7 @@ namespace TCC2
 
         private void tbCadastro_Enter(object sender, EventArgs e)
         {
+            btnCapturarImagem.Visible = false;
             _dtgConsultaPacientes.DataSource = null;
             var listaPacientes = pacienteDAO.Buscar("");
 
@@ -725,6 +727,7 @@ namespace TCC2
             
             if (resposta == System.Windows.Forms.DialogResult.Yes)
             {
+                btnCapturarImagem.Visible = true;
                 CamContainer = new DirectX.Capture.Filters();
 
                 try
@@ -754,14 +757,17 @@ namespace TCC2
                         }
                         catch (Exception ex)
                         {
+                            btnCapturarImagem.Visible = false;
                             throw ex;
                         }
                     }
                 }
                 catch (Exception ex)
                 {
+                    btnCapturarImagem.Visible = false;
                     MessageBox.Show(this, ex.Message);
                 }
+                
             }
             else if (resposta == System.Windows.Forms.DialogResult.No)
             {
@@ -814,9 +820,19 @@ namespace TCC2
             try
             {
                 CaptureInfo.CaptureFrame();
+
+                FileStream fs = new FileStream(null, FileMode.Open, FileAccess.Read, FileShare.Read);
+                vetorImagens = new byte[Convert.ToInt32(this.tamanhoArquivoImagem)];
+                int iBytesRead = fs.Read(this.vetorImagens, 0, Convert.ToInt32(this.tamanhoArquivoImagem));
+                fs.Close();
+                btnCapturarImagem.Visible = false;
+                MessageBox.Show("Imagem salva com sucesso");
+                pbImagem.Image = null;
+
             }
             catch (Exception ex)
             {
+                btnCapturarImagem.Visible = false;
                 MessageBox.Show("Erro " + ex.Message);
             }
         }
@@ -989,7 +1005,7 @@ namespace TCC2
             //var medCaseiraItens = medidaCaseiraDAO.Buscar(Convert.ToInt32(row.Cells["codAlimento"].Value));
 
             //if (medCaseiraItens == null)
-                //return newRow;
+            //return newRow;
 
             //colunaMedidaCaseira.HeaderText = "Medida Caseira";
             //colunaMedidaCaseira.Name = "medCaseira";
@@ -1007,12 +1023,12 @@ namespace TCC2
             double Kcal;
             Kcal = Convert.ToDouble(lblValorKcal.Text.Split(' ')[0]);
             foreach (DataGridViewRow row in dtgRefeicoes.Rows)
-            cardapioDAO.Salvar(Convert.ToString(CardapioDAO.codPacienteCard), 
-                                                Convert.ToInt32(row.Cells["codAlimento"].Value),
-                                                Convert.ToString(cbxRefeicao.Text),
-                                                Convert.ToInt32(row.Cells["qtd"].Value), 
-                                                Convert.ToString(row.Cells["obs"].Value), 
-                                                Kcal);
+                cardapioDAO.Salvar(Convert.ToString(CardapioDAO.codPacienteCard),
+                                                    Convert.ToInt32(row.Cells["codAlimento"].Value),
+                                                    Convert.ToString(cbxRefeicao.Text),
+                                                    Convert.ToInt32(row.Cells["qtd"].Value),
+                                                    Convert.ToString(row.Cells["obs"].Value),
+                                                    Kcal);
             dtgRefeicoes.DataSource = null;
             graficoMacroNutri.Series = null;
             txtPaciente.Text = null;
@@ -1033,8 +1049,8 @@ namespace TCC2
         {
             if (e.ColumnIndex >= 0)
             {
-                if(dtgConAlimento.CurrentRow.Cells["qtd"].Value != null)
-                quantidadeSalva = Convert.ToDouble(dtgConAlimento.CurrentRow.Cells["qtd"].Value);
+                if (dtgConAlimento.CurrentRow.Cells["qtd"].Value != null)
+                    quantidadeSalva = Convert.ToDouble(dtgConAlimento.CurrentRow.Cells["qtd"].Value);
             }
         }
 
@@ -1080,7 +1096,7 @@ namespace TCC2
             dtgRefeicoes.CurrentRow.DefaultCellStyle.BackColor = Color.Red;
             if (Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["qtd"].Value) != quantidadeAntigaCardapio)
             {
-                RecalcularMacroNutrientes(dtgRefeicoes,Convert.ToDouble(quantidadeAntigaCardapio));
+                RecalcularMacroNutrientes(dtgRefeicoes, Convert.ToDouble(quantidadeAntigaCardapio));
 
                 CarregarGrafico(Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["prot"].Value),
                                 Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["carbo"].Value),
@@ -1095,8 +1111,8 @@ namespace TCC2
         }
         private void dtgRefeicoes_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            if(Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["qtd"].Value) != null)
-            quantidadeAntigaCardapio = Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["qtd"].Value);
+            if (Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["qtd"].Value) != null)
+                quantidadeAntigaCardapio = Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["qtd"].Value);
 
         }
         private void btnApagar_Click(object sender, EventArgs e)
@@ -1302,6 +1318,6 @@ namespace TCC2
 
 
         #endregion
-       
+
     }
 }

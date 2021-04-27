@@ -7,6 +7,7 @@ using Microsoft.VisualBasic;
 using TCC2;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
+using System.Data.Entity.SqlServer;
 
 namespace ProjetoTCC
 {
@@ -108,12 +109,12 @@ namespace ProjetoTCC
             return false;
         }
 
-        public void Deletar(double CPF)
+        public void Deletar(double codPaciente)
         {
             using (var db = new NutreasyEntities())
             {
                 var delete = db.Database.Connection.CreateCommand();
-                delete.CommandText = $"DELETE FROM Paciente WHERE cpf IN ({CPF})";
+                delete.CommandText = $"DELETE FROM Paciente WHERE cpf IN ({codPaciente})";
                 db.Database.Connection.Open();
                 delete.ExecuteNonQuery();
                 db.Database.Connection.Close();
@@ -127,7 +128,7 @@ namespace ProjetoTCC
             {
                 if (nomePaciente != "")
                 {
-                    var pacienteBuscar = (from p in BancoDadosSingleton.Instance.Paciente where p.nome == nomePaciente select p).ToList();
+                    var pacienteBuscar = (from p in BancoDadosSingleton.Instance.Paciente where (p.nome.ToUpper()).Contains(nomePaciente.ToUpper()) select p).ToList();
                     paciente = pacienteBuscar;
                 }
                 else
@@ -144,7 +145,7 @@ namespace ProjetoTCC
                     return null;
                 }
             }
-            catch
+            catch(Exception ex)
             {
                 return null;
             }

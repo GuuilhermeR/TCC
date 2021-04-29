@@ -19,7 +19,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Drawing.Imaging;
-
+using System.Transactions;
 
 namespace TCC2
 {
@@ -62,7 +62,7 @@ namespace TCC2
             materialSkinManager.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.BlueGrey500, Accent.LightGreen200, TextShade.WHITE);
 
             this.MaximizeBox = false;
-            
+
             if (usuarioDAO.getNomeUsuario() != null)
             {
                 lblUsuario.Text = $"Seja bem vindo(a) ao sistema {usuarioDAO.getNomeUsuario()}";
@@ -231,7 +231,7 @@ namespace TCC2
             if (quantidadeSalva != 0)
                 if (dtgConAlimento.Rows.Count > 0)
                 {
-                    RecalcularMacroNutrientes(dtgConAlimento,quantidadeSalva);
+                    RecalcularMacroNutrientes(dtgConAlimento, quantidadeSalva);
                 }
                 else
                 {
@@ -251,35 +251,35 @@ namespace TCC2
                 if (Convert.ToDouble(row.Cells["qtd"].Value) == qtdSalva)
                     continue;
 
-                if (row.DefaultCellStyle.BackColor == Color.Red || row.DefaultCellStyle.BackColor == Color.LightSalmon) 
-                { 
-                if (row.Cells["prot"].Value != null)
+                if (row.DefaultCellStyle.BackColor == Color.Red || row.DefaultCellStyle.BackColor == Color.LightSalmon)
                 {
-                    double ProteinaGramas = 0;
-                    ProteinaGramas = Conversions.ToDouble((Convert.ToDouble(row.Cells["qtd"].Value) * Convert.ToDouble(row.Cells["prot"].Value)) / Convert.ToDouble(qtdSalva));
-                    ProteinaKcal = ProteinaGramas * 4d;
-                    row.Cells["prot"].Value = Convert.ToDouble(ProteinaKcal).ToString("N2");
-                }
+                    if (row.Cells["prot"].Value != null)
+                    {
+                        double ProteinaGramas = 0;
+                        ProteinaGramas = Conversions.ToDouble((Convert.ToDouble(row.Cells["qtd"].Value) * Convert.ToDouble(row.Cells["prot"].Value)) / Convert.ToDouble(qtdSalva));
+                        ProteinaKcal = ProteinaGramas * 4d;
+                        row.Cells["prot"].Value = Convert.ToDouble(ProteinaKcal).ToString("N2");
+                    }
 
-                if (row.Cells["carbo"].Value != null)
-                {
-                    double CarboidratoGramas = 0;
-                    CarboidratoGramas = Conversions.ToDouble((Convert.ToDouble(row.Cells["qtd"].Value) * Convert.ToDouble(row.Cells["carbo"].Value)) / Convert.ToDouble(qtdSalva));
-                    CarboidratoKcal = CarboidratoGramas * 4d;
-                    row.Cells["carbo"].Value = Convert.ToDouble(CarboidratoKcal).ToString("N2");
-                }
+                    if (row.Cells["carbo"].Value != null)
+                    {
+                        double CarboidratoGramas = 0;
+                        CarboidratoGramas = Conversions.ToDouble((Convert.ToDouble(row.Cells["qtd"].Value) * Convert.ToDouble(row.Cells["carbo"].Value)) / Convert.ToDouble(qtdSalva));
+                        CarboidratoKcal = CarboidratoGramas * 4d;
+                        row.Cells["carbo"].Value = Convert.ToDouble(CarboidratoKcal).ToString("N2");
+                    }
 
-                if (row.Cells["lipidio"].Value != null)
-                {
-                    double LipidioGramas = 0;
-                    LipidioGramas = Conversions.ToDouble((Convert.ToDouble(row.Cells["qtd"].Value) * Convert.ToDouble(row.Cells["lipidio"].Value)) / Convert.ToDouble(qtdSalva));
-                    LipidioKcal = LipidioGramas * 9d;
-                    row.Cells["lipidio"].Value = LipidioKcal.ToString("N2");
-                }
+                    if (row.Cells["lipidio"].Value != null)
+                    {
+                        double LipidioGramas = 0;
+                        LipidioGramas = Conversions.ToDouble((Convert.ToDouble(row.Cells["qtd"].Value) * Convert.ToDouble(row.Cells["lipidio"].Value)) / Convert.ToDouble(qtdSalva));
+                        LipidioKcal = LipidioGramas * 9d;
+                        row.Cells["lipidio"].Value = LipidioKcal.ToString("N2");
+                    }
 
-                double somaTotalCaloria = ProteinaKcal + CarboidratoKcal + LipidioKcal;
-                row.Cells["kcal"].Value = Convert.ToDouble(somaTotalCaloria).ToString("N2");
-                row.DefaultCellStyle.BackColor = Color.White;
+                    double somaTotalCaloria = ProteinaKcal + CarboidratoKcal + LipidioKcal;
+                    row.Cells["kcal"].Value = Convert.ToDouble(somaTotalCaloria).ToString("N2");
+                    row.DefaultCellStyle.BackColor = Color.White;
                 }
             }
         }
@@ -330,39 +330,72 @@ namespace TCC2
                 Interaction.MsgBox("Favor informar a planilha a ser salva.");
                 return;
             }
-
-            try
+            pbCarregando.Visible = true;
+            using (TransactionScope tscope = new TransactionScope(TransactionScopeOption.Suppress))
             {
-                foreach (DataGridViewRow row in dtgDadosImportados.Rows)
+                try
                 {
-                    string alimento = Convert.ToString(row.Cells["Alimento"].Value);
-                    double qtd = Convert.ToDouble(row.Cells["qtd"].Value);
-                    double kcal = Convert.ToDouble(row.Cells["kcal"].Value);
-                    double Prot = Convert.ToDouble(row.Cells["prot"].Value);
-                    double Carb = Convert.ToDouble(row.Cells["carb"].Value);
-                    double Lipidios = Convert.ToDouble(row.Cells["lip"].Value);
-                    string tabela = "";
-                    
-                    try
+                    foreach (DataGridViewRow row in dtgDadosImportados.Rows)
                     {
-                        if (Convert.ToString(row.Cells["REF"].Value) != "")
-                        {
-                            tabela = Convert.ToString(row.Cells["REF"].Value);
-                        }
-                    }
-                    catch
-                    {                        
-                        tabela = Convert.ToString(txtNomeTabela.Text);
-                    }
+                        string alimento = "";
+                        double qtd = 0;
+                        double kcal = 0;
+                        double Prot = 0;
+                        double Carb = 0;
+                        double Lipidios = 0;
+                        string tabela = "";
 
-                    alimentoDAO.Salvar(alimento.Replace("'",""), qtd, kcal, Prot, Carb, Lipidios, tabela);
-                };
-                Interaction.MsgBox("Os dados foram Salvos", MsgBoxStyle.OkOnly, "SALVAR");
+                        try
+                        {
+                             alimento = Convert.ToString(row.Cells["Alimento"].Value);
+                             qtd = Convert.ToDouble(row.Cells["qtd"].Value);
+                             kcal = Convert.ToDouble(row.Cells["kcal"].Value);
+                             Prot = Convert.ToDouble(row.Cells["prot"].Value);
+                             Carb = Convert.ToDouble(row.Cells["carb"].Value);
+                             Lipidios = Convert.ToDouble(row.Cells["lip"].Value);
+                        }catch
+                        {
+                            continue;
+                        }
+
+                        try
+                        {
+                            if (Convert.ToString(row.Cells["REF"].Value) != "")
+                            {
+                                tabela = Convert.ToString(row.Cells["REF"].Value);
+                            }
+                        }
+                        catch
+                        {
+                            tabela = Convert.ToString(txtNomeTabela.Text);
+                        }
+                        if (!alimentoDAO.ExisteAlimento(alimento, tabela)
+                        {
+                            alimentoDAO.Salvar(alimento.Replace("'", ""), qtd, kcal, Prot, Carb, Lipidios, tabela);
+                        }
+                        else
+                        {
+                            alimentoDAO.Update(Convert.ToInt32(alimentoDAO.RetornaCodAlimentoExistente(alimento.Replace("'", ""), tabela)), alimento.Replace("'", ""), qtd, kcal, Prot, Carb, Lipidios, tabela);
+                        }
+                    };
+                    pbCarregando.Visible = false;
+                    Interaction.MsgBox("Os dados foram Salvos", MsgBoxStyle.OkOnly, "SALVAR");
+                }
+                catch (Exception ex)
+                {
+                    pbCarregando.Visible = false;
+                    Interaction.MsgBox("Ocorreu um erro:" + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException + Environment.NewLine, MsgBoxStyle.Critical, "ERRO AO SALVAR");
+                    return;
+                }
+                tscope.Complete();
             }
-            catch (Exception ex)
-            {
-                Interaction.MsgBox("Ocorreu um erro:" + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException, MsgBoxStyle.Critical, "ERRO AO SALVAR");
-            }
+
+            dtgDadosImportados.Rows.Clear();
+            dtgDadosImportados.Columns.Clear();
+            txtCaminhoArquivoExcel.Text = "";
+            _cbxNomePlanilha.Items.Clear();
+            txtNomeTabela.Text = "";
+
         }
 
         private void _cbxNomePlanilha_SelectedIndexChanged(object sender, EventArgs e)
@@ -370,7 +403,7 @@ namespace TCC2
             List<DataGridViewColumn> colunasDescartadas = new List<DataGridViewColumn>();
             var dt = tables[_cbxNomePlanilha.SelectedItem.ToString().Replace(",", ".")];
             dtgDadosImportados.DataSource = dt;
-            foreach(DataGridViewColumn column in dtgDadosImportados.Columns)
+            foreach (DataGridViewColumn column in dtgDadosImportados.Columns)
             {
                 Boolean existe = false;
                 if ((column.HeaderText.ToUpper()).Contains("alimento".ToUpper()))
@@ -403,7 +436,7 @@ namespace TCC2
                     column.Name = "kcal";
                     existe = true;
                 }
-                if ((column.HeaderText.ToUpper()).Contains("qtd".ToUpper()) || ((column.HeaderText.ToUpper()).Contains("pl".ToUpper())))
+                if ((column.HeaderText.ToUpper()).Contains("qtd".ToUpper()) || ((column.HeaderText.ToUpper()).Contains("pl".ToUpper())) || ((column.HeaderText.ToUpper()).Contains("Quantidade".ToUpper())))
                 {
                     column.HeaderText = "Quantidade";
                     column.Name = "qtd";
@@ -442,6 +475,7 @@ namespace TCC2
                                     _cbxNomePlanilha.Items.Add(table.TableName);
                             }
                         }
+                        //_cbxNomePlanilha.SelectedIndex = 0;
                     }
                     catch (Exception ex)
                     {
@@ -476,7 +510,7 @@ namespace TCC2
                 else if (row.DefaultCellStyle.BackColor == Color.LightSalmon)
                 {
                     alimentoDAO.Update(Convert.ToInt16(row.Cells["codAlimento"].Value), row.Cells["nomeAlimento"].Value.ToString(), Convert.ToDouble(row.Cells["qtd"].Value),
-                        Convert.ToDouble(row.Cells["kcal"].Value), Convert.ToDouble(row.Cells["prot"].Value), Convert.ToDouble(row.Cells["carbo"].Value), Convert.ToDouble(row.Cells["lipidio"].Value));
+                        Convert.ToDouble(row.Cells["kcal"].Value), Convert.ToDouble(row.Cells["prot"].Value), Convert.ToDouble(row.Cells["carbo"].Value), Convert.ToDouble(row.Cells["lipidio"].Value), cbxTabela.Text.ToString());
                 }
             }
 
@@ -585,10 +619,14 @@ namespace TCC2
         {
 
         }
+        private void _tbConsulta_Enter(object sender, EventArgs e)
+        {
+            tabAlimento_Enter(sender, e);
+        }
         #endregion
 
         #region CadastroPaciente 
-                
+
         private void limparCamposCadPaciente()
         {
             txtNome.Text = "";
@@ -700,8 +738,8 @@ namespace TCC2
 
         private void pbImagem_Click(object sender, EventArgs e)
         {
-            var resposta = MessageBox.Show("Deseja tirar uma foto?", Text,MessageBoxButtons.YesNoCancel);
-            
+            var resposta = MessageBox.Show("Deseja tirar uma foto?", Text, MessageBoxButtons.YesNoCancel);
+
             //if (resposta == System.Windows.Forms.DialogResult.Yes)
             //{
             //    btnCapturarImagem.Visible = true;
@@ -744,30 +782,30 @@ namespace TCC2
             //        btnCapturarImagem.Visible = false;
             //        MessageBox.Show(this, ex.Message);
             //    }
-                
+
             //}
             //else if (resposta == System.Windows.Forms.DialogResult.No)
             //{
-                try
-                {
-                    this.openFileDialog1.ShowDialog(this);
-                    string strFn = this.openFileDialog1.FileName;
+            try
+            {
+                this.openFileDialog1.ShowDialog(this);
+                string strFn = this.openFileDialog1.FileName;
 
-                    if (string.IsNullOrEmpty(strFn))
-                        return;
+                if (string.IsNullOrEmpty(strFn))
+                    return;
 
-                    this.pbImagem.Image = Image.FromFile(strFn);
-                    FileInfo arqImagem = new FileInfo(strFn);
-                    tamanhoArquivoImagem = arqImagem.Length;
-                    FileStream fs = new FileStream(strFn, FileMode.Open, FileAccess.Read, FileShare.Read);
-                    vetorImagens = new byte[Convert.ToInt32(this.tamanhoArquivoImagem)];
-                    int iBytesRead = fs.Read(this.vetorImagens, 0, Convert.ToInt32(this.tamanhoArquivoImagem));
-                    fs.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                this.pbImagem.Image = Image.FromFile(strFn);
+                FileInfo arqImagem = new FileInfo(strFn);
+                tamanhoArquivoImagem = arqImagem.Length;
+                FileStream fs = new FileStream(strFn, FileMode.Open, FileAccess.Read, FileShare.Read);
+                vetorImagens = new byte[Convert.ToInt32(this.tamanhoArquivoImagem)];
+                int iBytesRead = fs.Read(this.vetorImagens, 0, Convert.ToInt32(this.tamanhoArquivoImagem));
+                fs.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             //}
             //else
             //{
@@ -798,7 +836,7 @@ namespace TCC2
         //    {
         //        CaptureInfo.CaptureFrame();
 
-                
+
         //        //btnCapturarImagem.Visible = false;
         //        //MessageBox.Show("Imagem salva com sucesso");
         //        //pbImagem.Image = null;
@@ -1215,18 +1253,6 @@ namespace TCC2
         #endregion
 
         #region Configurações
-
-        private void CriarColunas()
-        {
-            if (dtgUsuarios.Columns.Count <= 0)
-            {
-                dtgUsuarios.Columns.Add("usuario", "Usuário");
-                dtgUsuarios.Columns.Add("nome", "Nome");
-                dtgUsuarios.Columns.Add("email", "E-mail");
-                dtgUsuarios.Columns.Add("situacao", "Situação");
-                dtgUsuarios.Columns.Add("tipoUsuario", "Perfil");
-            }
-        }
         private void btnSalvarConfigUsuario_Click(object sender, EventArgs e)
         {
             bool alterarSenha = false;
@@ -1264,9 +1290,12 @@ namespace TCC2
                 usuarioDAO.Buscar(txtUsuarioConfig.Text);
         }
         private void tbConfig_Enter(object sender, EventArgs e)
-        {
-            CriarColunas();
-            usuarioDAO.Buscar("");
+        {        
+            var listaUsuario = usuarioDAO.Buscar("");
+            if (listaUsuario == null)
+                return;
+            DataTable dt = ConvertToDataTable(listaUsuario);
+            dtgUsuarios.DataSource = dt;
         }
         private void dtgUsuarios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -1288,10 +1317,8 @@ namespace TCC2
             txtConfirmarSenha.PasswordChar = '*';
         }
 
-
-
-
         #endregion
-                
+
+
     }
 }

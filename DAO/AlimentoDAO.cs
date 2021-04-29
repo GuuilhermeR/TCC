@@ -19,33 +19,28 @@ namespace ProjetoTCC
 
         public void Salvar(string alimento, double qtd, double kCal, double proteina, double carboidrato, double lipidio, string nomeTabela)
         {
-            using (TransactionScope tscope = new TransactionScope(TransactionScopeOption.Suppress))
+            try
             {
-                try
-                {
-                    Alimentos alimentosInsert = new Alimentos();
+                Alimentos alimentosInsert = new Alimentos();
 
-                    alimentosInsert.nomeAlimento = alimento;
-                    alimentosInsert.qtd = qtd;
-                    alimentosInsert.kcal = kCal;
-                    alimentosInsert.prot = proteina;
-                    alimentosInsert.carbo = carboidrato;
-                    alimentosInsert.lipidio = lipidio;
-                    alimentosInsert.nomeTabela = nomeTabela;
+                alimentosInsert.nomeAlimento = alimento;
+                alimentosInsert.qtd = qtd;
+                alimentosInsert.kcal = kCal;
+                alimentosInsert.prot = proteina;
+                alimentosInsert.carbo = carboidrato;
+                alimentosInsert.lipidio = lipidio;
+                alimentosInsert.nomeTabela = nomeTabela;
 
-                    BancoDadosSingleton.Instance.Alimentos.Add(alimentosInsert);
-                    BancoDadosSingleton.Instance.SaveChanges();
-                    tscope.Complete();
-                }
-                catch (Exception ex)
-                {
-                    tscope.Dispose();
-                    Interaction.MsgBox("Ocorreu um erro ao salvar o Alimento." + '\n' + ex.Message + '\n' + ex.InnerException, Constants.vbOKOnly, "Alerta");
-                }
+                BancoDadosSingleton.Instance.Alimentos.Add(alimentosInsert);
+                BancoDadosSingleton.Instance.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Interaction.MsgBox("Ocorreu um erro ao salvar o Alimento." + '\n' + ex.Message + '\n' + ex.InnerException, Constants.vbOKOnly, "Alerta");
             }
         }
 
-        public void Update(int codAlimento, string alimento, double qtd, double kCal, double proteina, double carboidrato, double lipidio)
+        public void Update(int codAlimento, string alimento, double qtd, double kCal, double proteina, double carboidrato, double lipidio, string nomeTabela)
         {
             try
             {
@@ -57,6 +52,7 @@ namespace ProjetoTCC
                 aliUpdate.prot = proteina;
                 aliUpdate.carbo = carboidrato;
                 aliUpdate.lipidio = lipidio;
+                aliUpdate.nomeTabela = nomeTabela;
 
                 BancoDadosSingleton.Instance.Alimentos.Add(aliUpdate);
                 BancoDadosSingleton.Instance.SaveChanges();
@@ -90,11 +86,15 @@ namespace ProjetoTCC
             return false;
         }
 
-        private bool ExisteAlimento(string nomeAlimento, string nomeTabela)
+        public bool ExisteAlimento(string nomeAlimento, string nomeTabela)
         {
             try
             {
-                var Alimentos = (from ali in BancoDadosSingleton.Instance.Alimentos where ali.nomeAlimento.ToUpper() == nomeAlimento.ToUpper() && ali.nomeTabela.ToUpper() == nomeTabela.ToUpper() select ali).Single();
+                var Alimentos = (from ali in BancoDadosSingleton.Instance.Alimentos where ali.nomeAlimento.ToUpper() == nomeAlimento.ToUpper() && ali.nomeTabela.ToUpper() == nomeTabela.ToUpper() select ali).ToList();
+                if (Alimentos.Count > 0)
+                {
+                    return true;
+                }
             }
             catch
             {
@@ -102,6 +102,24 @@ namespace ProjetoTCC
             }
 
             return false;
+        }
+
+        public List<long> RetornaCodAlimentoExistente(string nomeAlimento, string nomeTabela)
+        {
+            try
+            {
+                var Alimentos = (from ali in BancoDadosSingleton.Instance.Alimentos where ali.nomeAlimento.ToUpper() == nomeAlimento.ToUpper() && ali.nomeTabela.ToUpper() == nomeTabela.ToUpper() select ali.codAlimento).ToList();
+                if (Alimentos.Count > 0)
+                {
+                    return Alimentos;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+
+            return null;
         }
 
         public void Deletar(double codAlimento)

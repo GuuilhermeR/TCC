@@ -4,13 +4,14 @@ using System.Data.SQLite;
 using System.Windows.Forms;
 using System.Linq;
 using Microsoft.VisualBasic;
+using System.Collections.Generic;
 
-namespace ProjetoTCC
+namespace TCC2
 {
     public class UsuarioDAO
     {
         public UsuarioDAO()
-        {}
+        { }
 
         private string usuario;
         private string senha;
@@ -24,15 +25,13 @@ namespace ProjetoTCC
             }
             try
             {
-                var usuarioLogado = (from c in TCC2.BancoDadosSingleton.Instance.Login where c.usuario == usuarioLogin select c.nome).Single();
+                var usuarioLogado = (from c in TCC2.BancoDadosSingleton.Instance.Login where c.usuario == usuarioLogin select c.nome).ToList();
                 nome = usuarioLogado.ToString();
                 return;
-
             }
             catch
             {
                 return;
-
             }
         }
 
@@ -65,8 +64,8 @@ namespace ProjetoTCC
         {
             try
             {
-                var usuarioLog = (from c in TCC2.BancoDadosSingleton.Instance.Login where c.usuario == usuarioLogado && c.senha == senha select c).Single();
-                if (usuarioLog.usuario.Length > 0)
+                var usuarioLog = (from c in TCC2.BancoDadosSingleton.Instance.Login where c.usuario == usuarioLogado && c.senha == senha select c).ToList();
+                if (usuarioLog.Count > 0)
                 {
                     return true;
                 }
@@ -79,16 +78,20 @@ namespace ProjetoTCC
             return false;
         }
 
-        public void Buscar(string usuario)
+        public List<Login> Buscar(string usuario)
         {
-            string strSQL = string.Empty;
-           // var config = new frmConfiguracoes();
-            strSQL = $"SELECT * FROM Login\n";
+            List<Login> usuarios = new List<Login>(); ;
             if (usuario != "")
             {
-                strSQL = $"WHERE usuario = '{usuario}'";
+                usuarios = ((from c in BancoDadosSingleton.Instance.Login where (c.usuario.ToUpper()).Contains(usuario.ToUpper()) select c).Distinct()).ToList();
             }
-          
+            else
+            {
+                usuarios = ((from c in BancoDadosSingleton.Instance.Login select c).Distinct()).ToList();
+            }
+
+            return usuarios;
+
         }
 
         public void AlterarUsuario(string usuario, string senha, string nome, string email, string situacao, string tipoUsuario, bool alterarSenha)
@@ -118,35 +121,34 @@ namespace ProjetoTCC
 
         public void CriarUsuario(string usuario, string senha, string nome, string email, string situacao, string tipoUsuario, bool alterarSenha)
         {
-            SQLiteCommand cmd;
-            cmd = new SQLiteCommand();
-
             try
             {
-              
-                        string strSQL = $@"INSERT INTO Login (usuario, senha, nome, email, situacao, tipoUsuario) 
-                                               VALUES ('{usuario}', '{senha}', '{nome}', '{email}', '{situacao}', '{tipoUsuario}')";
+                Login loginInsert = new Login();
 
-                       
-                      
-                        Interaction.MsgBox("Os dados foram Salvos.", MsgBoxStyle.OkOnly, "SALVAR");
+                loginInsert.usuario = usuario;
+                loginInsert.senha = senha;
+                loginInsert.nome = nome;
+                loginInsert.email = email;
+                loginInsert.situacao = situacao;
+                loginInsert.perfil = tipoUsuario;
+
+                BancoDadosSingleton.Instance.Login.Add(loginInsert);
+                BancoDadosSingleton.Instance.SaveChanges();
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("Ocorreu um erro ao salvar.\n\n" + ex.Message, MsgBoxStyle.OkOnly, "ERRO AO SALVAR");
+                Interaction.MsgBox("Ocorreu um erro ao salvar o usuário." + '\n' + ex.Message + '\n' + ex.InnerException, Constants.vbOKOnly, "Alerta");
             }
         }
 
         public bool VerificarExisteUsuario(string usuario)
         {
-            var usuarioLog = (from c in TCC2.BancoDadosSingleton.Instance.Login where c.usuario == usuario select c.usuario).Single();
+            var usuarioLog = (from c in TCC2.BancoDadosSingleton.Instance.Login where c.usuario == usuario select c.usuario).ToList();
 
-            if (usuarioLog != "")
+            if (usuarioLog.Count > 0)
                 return true;
 
             return false;
-
         }
-
     }
 }

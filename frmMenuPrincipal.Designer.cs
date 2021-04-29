@@ -30,7 +30,7 @@ namespace TCC2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenuPrincipal));
             this.TabControlNutreasy = new MaterialSkin.Controls.MaterialTabControl();
             this.tabMenu = new System.Windows.Forms.TabPage();
@@ -61,6 +61,7 @@ namespace TCC2
             this.lblTabela = new System.Windows.Forms.Label();
             this.dtgConAlimento = new System.Windows.Forms.DataGridView();
             this.tbImportarPlanilha = new System.Windows.Forms.TabPage();
+            this.pbCarregando = new System.Windows.Forms.PictureBox();
             this.txtNomeTabela = new System.Windows.Forms.TextBox();
             this.lblNomeTabela = new System.Windows.Forms.Label();
             this._cbxNomePlanilha = new System.Windows.Forms.ComboBox();
@@ -191,6 +192,7 @@ namespace TCC2
             this._tbConsulta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgConAlimento)).BeginInit();
             this.tbImportarPlanilha.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbCarregando)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDadosImportados)).BeginInit();
             this.tbCadMedCaseira.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgSalvarMedCaseira)).BeginInit();
@@ -334,14 +336,14 @@ namespace TCC2
             this.atendido,
             this.retorno,
             this.ID});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgAgenda.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgAgenda.DefaultCellStyle = dataGridViewCellStyle1;
             this.dtgAgenda.Location = new System.Drawing.Point(6, 58);
             this.dtgAgenda.Name = "dtgAgenda";
             this.dtgAgenda.RowHeadersWidth = 51;
@@ -458,6 +460,7 @@ namespace TCC2
             this._tbConsulta.TabIndex = 1;
             this._tbConsulta.Text = "Cadastro/Consulta";
             this._tbConsulta.UseVisualStyleBackColor = true;
+            this._tbConsulta.Enter += new System.EventHandler(this._tbConsulta_Enter);
             // 
             // btnConfigurarFormula
             // 
@@ -566,6 +569,7 @@ namespace TCC2
             // 
             // tbImportarPlanilha
             // 
+            this.tbImportarPlanilha.Controls.Add(this.pbCarregando);
             this.tbImportarPlanilha.Controls.Add(this.txtNomeTabela);
             this.tbImportarPlanilha.Controls.Add(this.lblNomeTabela);
             this.tbImportarPlanilha.Controls.Add(this._cbxNomePlanilha);
@@ -582,6 +586,17 @@ namespace TCC2
             this.tbImportarPlanilha.TabIndex = 2;
             this.tbImportarPlanilha.Text = "Importação tabela";
             this.tbImportarPlanilha.UseVisualStyleBackColor = true;
+            // 
+            // pbCarregando
+            // 
+            this.pbCarregando.Image = global::TCC2.Properties.Resources.CarregarLoading;
+            this.pbCarregando.Location = new System.Drawing.Point(369, 205);
+            this.pbCarregando.Name = "pbCarregando";
+            this.pbCarregando.Size = new System.Drawing.Size(414, 233);
+            this.pbCarregando.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pbCarregando.TabIndex = 273;
+            this.pbCarregando.TabStop = false;
+            this.pbCarregando.Visible = false;
             // 
             // txtNomeTabela
             // 
@@ -1945,6 +1960,7 @@ namespace TCC2
             ((System.ComponentModel.ISupportInitialize)(this.dtgConAlimento)).EndInit();
             this.tbImportarPlanilha.ResumeLayout(false);
             this.tbImportarPlanilha.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbCarregando)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDadosImportados)).EndInit();
             this.tbCadMedCaseira.ResumeLayout(false);
             this.tbCadMedCaseira.PerformLayout();
@@ -2129,6 +2145,7 @@ namespace TCC2
         private System.Windows.Forms.Button btnCapturarImagem;
         internal System.Windows.Forms.Label txtCodPaciente;
         internal System.Windows.Forms.TextBox txtCEP;
+        private System.Windows.Forms.PictureBox pbCarregando;
     }
 }
 

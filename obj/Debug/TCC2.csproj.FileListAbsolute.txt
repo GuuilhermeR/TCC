@@ -102,7 +102,6 @@ C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\TCC2.csproj.CoreCompileInputs
 C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\TCC2.csproj.CopyComplete
 C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\TCC2.exe
 C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\TCC2.pdb
-C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\TCC2.csprojAssemblyReference.cache
 C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\DirectX.Capture.dll
 C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\DShowNET.dll
 C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\EPPlus.dll

@@ -6,6 +6,8 @@ using System.Linq;
 using Microsoft.VisualBasic;
 using TCC2;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Contexts;
+using System.Transactions;
 
 namespace ProjetoTCC
 {
@@ -17,28 +19,30 @@ namespace ProjetoTCC
 
         public void Salvar(string alimento, double qtd, double kCal, double proteina, double carboidrato, double lipidio, string nomeTabela)
         {
-            try
+            using (TransactionScope tscope = new TransactionScope(TransactionScopeOption.Suppress))
             {
-                Alimentos alimentosInsert = new Alimentos();
+                try
+                {
+                    Alimentos alimentosInsert = new Alimentos();
 
-                alimentosInsert.nomeAlimento = alimento;
-                alimentosInsert.qtd = qtd;
-                alimentosInsert.kcal = kCal;
-                alimentosInsert.prot = proteina;
-                alimentosInsert.carbo = carboidrato;
-                alimentosInsert.lipidio = lipidio;
-                alimentosInsert.nomeTabela = nomeTabela;
+                    alimentosInsert.nomeAlimento = alimento;
+                    alimentosInsert.qtd = qtd;
+                    alimentosInsert.kcal = kCal;
+                    alimentosInsert.prot = proteina;
+                    alimentosInsert.carbo = carboidrato;
+                    alimentosInsert.lipidio = lipidio;
+                    alimentosInsert.nomeTabela = nomeTabela;
 
-                BancoDadosSingleton.Instance.Alimentos.Add(alimentosInsert);
-                BancoDadosSingleton.Instance.SaveChanges();
-
+                    BancoDadosSingleton.Instance.Alimentos.Add(alimentosInsert);
+                    BancoDadosSingleton.Instance.SaveChanges();
+                    tscope.Complete();
+                }
+                catch (Exception ex)
+                {
+                    tscope.Dispose();
+                    Interaction.MsgBox("Ocorreu um erro ao salvar o Alimento." + '\n' + ex.Message + '\n' + ex.InnerException, Constants.vbOKOnly, "Alerta");
+                }
             }
-            catch (Exception ex)
-            {
-                Interaction.MsgBox("Ocorreu um erro ao salvar o Alimento." + '\n' + ex.Message + '\n' + ex.InnerException, Constants.vbOKOnly, "Alerta");
-
-            }
-
         }
 
         public void Update(int codAlimento, string alimento, double qtd, double kCal, double proteina, double carboidrato, double lipidio)
@@ -70,7 +74,7 @@ namespace ProjetoTCC
             var alimentoRetorno = "";
             try
             {
-                var Alimentos = (from ali in BancoDadosSingleton.Instance.Alimentos where ali.nomeAlimento == alimentoVerificar select ali).Single();
+                var Alimentos = (from ali in BancoDadosSingleton.Instance.Alimentos where (ali.nomeAlimento.ToUpper()).Contains(alimentoVerificar.ToUpper()) select ali).Single();
                 alimentoRetorno = Alimentos.ToString();
             }
             catch
@@ -81,6 +85,20 @@ namespace ProjetoTCC
             if (alimentoRetorno != "")
             {
                 return true;
+            }
+
+            return false;
+        }
+
+        private bool ExisteAlimento(string nomeAlimento, string nomeTabela)
+        {
+            try
+            {
+                var Alimentos = (from ali in BancoDadosSingleton.Instance.Alimentos where ali.nomeAlimento.ToUpper() == nomeAlimento.ToUpper() && ali.nomeTabela.ToUpper() == nomeTabela.ToUpper() select ali).Single();
+            }
+            catch
+            {
+                return false;
             }
 
             return false;
@@ -99,18 +117,20 @@ namespace ProjetoTCC
 
         }
 
-        public List<Alimentos> Buscar (string nomeAlimento, string nomeTabela)
+        public List<Alimentos> Buscar(string nomeAlimento, string nomeTabela)
         {
             try
             {
                 List<Alimentos> agenda = new List<Alimentos>();
-                if (nomeAlimento == "" && nomeTabela == "") {
+                if (nomeAlimento == "" && nomeTabela == "")
+                {
                     agenda = ((from a in BancoDadosSingleton.Instance.Alimentos select a).Distinct()).ToList();
                 }
                 else if (nomeAlimento != "" && nomeTabela != "")
                 {
-                    agenda = ((from a in BancoDadosSingleton.Instance.Alimentos where (a.nomeAlimento.ToUpper()).Contains(nomeAlimento.ToUpper()) && (a.nomeTabela.ToUpper()).Contains(nomeTabela.ToUpper())  select a).Distinct()).ToList();
-                } else
+                    agenda = ((from a in BancoDadosSingleton.Instance.Alimentos where (a.nomeAlimento.ToUpper()).Contains(nomeAlimento.ToUpper()) && (a.nomeTabela.ToUpper()).Contains(nomeTabela.ToUpper()) select a).Distinct()).ToList();
+                }
+                else
                 {
                     agenda = ((from a in BancoDadosSingleton.Instance.Alimentos where (a.nomeTabela.ToUpper()).Contains(nomeTabela.ToUpper()) select a).Distinct()).ToList();
                 }
@@ -124,7 +144,7 @@ namespace ProjetoTCC
 
         public List<Alimentos> BuscarTabelas()
         {
-            List<Alimentos> teste= new List<Alimentos>();
+            List<Alimentos> teste = new List<Alimentos>();
             try
             {
                 var agenda = ((from a in BancoDadosSingleton.Instance.Alimentos select a).Distinct()).ToList();

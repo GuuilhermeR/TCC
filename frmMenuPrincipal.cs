@@ -20,6 +20,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Drawing.Imaging;
 
+
 namespace TCC2
 {
     public partial class frmMenuPrincipal : MaterialForm
@@ -30,6 +31,7 @@ namespace TCC2
         public AgendaDAO agendaDAO = new AgendaDAO();
         public MedidaCaseiraDAO medidaCaseiraDAO = new MedidaCaseiraDAO();
         public CardapioDAO cardapioDAO = new CardapioDAO();
+        public BuscadorCEP buscaCEP = new BuscadorCEP();
         private DataTableCollection tables;
         List<string> deletar = new List<string>();
         List<string> deletarAlimento = new List<string>();
@@ -331,15 +333,29 @@ namespace TCC2
 
             try
             {
-                foreach (DataGridViewRow row in dtgDados.Rows)
+                foreach (DataGridViewRow row in dtgDadosImportados.Rows)
                 {
-                    double qtd = Convert.ToDouble(row.Cells["Qtd"].Value);
+                    string alimento = Convert.ToString(row.Cells["Alimento"].Value);
+                    double qtd = Convert.ToDouble(row.Cells["qtd"].Value);
                     double kcal = Convert.ToDouble(row.Cells["kcal"].Value);
-                    double Prot = Convert.ToDouble(row.Cells["Prot"].Value);
-                    double Carb = Convert.ToDouble(row.Cells["Carb"].Value);
-                    double Lipidios = Convert.ToDouble(row.Cells["Lipidios"].Value);
+                    double Prot = Convert.ToDouble(row.Cells["prot"].Value);
+                    double Carb = Convert.ToDouble(row.Cells["carb"].Value);
+                    double Lipidios = Convert.ToDouble(row.Cells["lip"].Value);
+                    string tabela = "";
+                    
+                    try
+                    {
+                        if (Convert.ToString(row.Cells["REF"].Value) != "")
+                        {
+                            tabela = Convert.ToString(row.Cells["REF"].Value);
+                        }
+                    }
+                    catch
+                    {                        
+                        tabela = Convert.ToString(txtNomeTabela.Text);
+                    }
 
-                    alimentoDAO.Salvar(Convert.ToString(row.Cells["Alimento"].Value), qtd, kcal, Prot, Carb, Lipidios, Convert.ToString(row.Cells["REF"].Value));
+                    alimentoDAO.Salvar(alimento.Replace("'",""), qtd, kcal, Prot, Carb, Lipidios, tabela);
                 };
                 Interaction.MsgBox("Os dados foram Salvos", MsgBoxStyle.OkOnly, "SALVAR");
             }
@@ -351,8 +367,59 @@ namespace TCC2
 
         private void _cbxNomePlanilha_SelectedIndexChanged(object sender, EventArgs e)
         {
+            List<DataGridViewColumn> colunasDescartadas = new List<DataGridViewColumn>();
             var dt = tables[_cbxNomePlanilha.SelectedItem.ToString().Replace(",", ".")];
-            dtgDados.DataSource = dt;
+            dtgDadosImportados.DataSource = dt;
+            foreach(DataGridViewColumn column in dtgDadosImportados.Columns)
+            {
+                Boolean existe = false;
+                if ((column.HeaderText.ToUpper()).Contains("alimento".ToUpper()))
+                {
+                    column.HeaderText = "Alimento";
+                    column.Name = "alimento";
+                    existe = true;
+                }
+                if ((column.HeaderText.ToUpper()).Contains("prot".ToUpper()))
+                {
+                    column.HeaderText = "Proteína";
+                    column.Name = "prot";
+                    existe = true;
+                }
+                if ((column.HeaderText.ToUpper()).Contains("carb".ToUpper()))
+                {
+                    column.HeaderText = "Carboidrato";
+                    column.Name = "carb";
+                    existe = true;
+                }
+                if ((column.HeaderText.ToUpper()).Contains("lip".ToUpper()) || ((column.HeaderText.ToUpper()).Contains("total".ToUpper())))
+                {
+                    column.HeaderText = "Lipídio";
+                    column.Name = "lip";
+                    existe = true;
+                }
+                if ((column.HeaderText.ToUpper()).Contains("kcal".ToUpper()))
+                {
+                    column.HeaderText = "KCal";
+                    column.Name = "kcal";
+                    existe = true;
+                }
+                if ((column.HeaderText.ToUpper()).Contains("qtd".ToUpper()) || ((column.HeaderText.ToUpper()).Contains("pl".ToUpper())))
+                {
+                    column.HeaderText = "Quantidade";
+                    column.Name = "qtd";
+                    existe = true;
+                }
+                if (!existe)
+                {
+                    colunasDescartadas.Add(column);
+                }
+            }
+
+            colunasDescartadas.ForEach(x =>
+            {
+                dtgDadosImportados.Columns.Remove(x);
+            });
+
         }
 
         private void _btnBuscarPlanilha_Click(object sender, EventArgs e)
@@ -522,95 +589,7 @@ namespace TCC2
 
         #region CadastroPaciente 
 
-        private void buscarEndCep(string CEP)
-        {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create($@"https://viacep.com.br/ws/{CEP}/json/");
-            request.AllowAutoRedirect = false;
-            HttpWebResponse ChecaServidor;
-
-            try
-            {
-                ChecaServidor = (HttpWebResponse)request.GetResponse();
-            }
-            catch
-            {
-                MessageBox.Show("Você não tem uma conexão com a internet, não foi possível buscar os dados.");
-                return;
-            }
-
-            if (ChecaServidor.StatusCode != HttpStatusCode.OK)
-            {
-                MessageBox.Show("Você não tem uma conexão com a internet.");
-                return;
-            }
-
-            using (Stream webStream = ChecaServidor.GetResponseStream())
-            {
-                if (webStream != null)
-                {
-                    using (StreamReader responseReader = new StreamReader(webStream))
-                    {
-                        string response = responseReader.ReadToEnd();
-                        response = Regex.Replace(response, "[{},]", string.Empty);
-                        response = response.Replace("\"", "");
-
-                        String[] substrings = response.Split('\n');
-
-                        int cont = 0;
-                        foreach (var substring in substrings)
-                        {
-                            if (cont == 1)
-                            {
-                                string[] valor = substring.Split(":".ToCharArray());
-                                if (valor[0] == "  erro")
-                                {
-                                    MessageBox.Show("CEP não encontrado");
-                                    txtCEP.Focus();
-                                    return;
-                                }
-                            }
-
-                            //Logradouro
-                            if (cont == 2)
-                            {
-                                string[] valor = substring.Split(":".ToCharArray());
-                                txtEndereco.Text = valor[1];
-                            }
-
-                            //Complemento
-                            if (cont == 3)
-                            {
-                                string[] valor = substring.Split(":".ToCharArray());
-                                txtComplemento.Text = valor[1];
-                            }
-
-                            //Bairro
-                            if (cont == 4)
-                            {
-                                string[] valor = substring.Split(":".ToCharArray());
-                                txtBairro.Text = valor[1];
-                            }
-
-                            //Localidade (Cidade)
-                            if (cont == 5)
-                            {
-                                string[] valor = substring.Split(":".ToCharArray());
-                                txtMunicipio.Text = valor[1];
-                            }
-
-                            //Estado (UF)
-                            if (cont == 6)
-                            {
-                                string[] valor = substring.Split(":".ToCharArray());
-                                txtUF.Text = valor[1];
-                            }
-
-                            cont++;
-                        }
-                    }
-                }
-            }
-        }
+        
         private void limparCamposCadPaciente()
         {
             txtNome.Text = "";
@@ -630,7 +609,7 @@ namespace TCC2
 
         private void txtCEP_Leave(object sender, EventArgs e)
         {
-            buscarEndCep(txtCEP.Text);
+            buscaCEP.buscarEndCep(this,txtCEP.Text);
         }
         private void _btnExcluir_Click(object sender, EventArgs e)
         {
@@ -725,52 +704,52 @@ namespace TCC2
         {
             var resposta = MessageBox.Show("Deseja tirar uma foto?", Text,MessageBoxButtons.YesNoCancel);
             
-            if (resposta == System.Windows.Forms.DialogResult.Yes)
-            {
-                btnCapturarImagem.Visible = true;
-                CamContainer = new DirectX.Capture.Filters();
+            //if (resposta == System.Windows.Forms.DialogResult.Yes)
+            //{
+            //    btnCapturarImagem.Visible = true;
+            //    CamContainer = new DirectX.Capture.Filters();
 
-                try
-                {
-                    int no_of_cam = CamContainer.VideoInputDevices.Count;
-                    for (int i = 0; i < no_of_cam; i++)
-                    {
-                        try
-                        {
-                            // obtém o dispositivo de entrada do vídeo
-                            Camera = CamContainer.VideoInputDevices[i];
+            //    try
+            //    {
+            //        int no_of_cam = CamContainer.VideoInputDevices.Count;
+            //        for (int i = 0; i < no_of_cam; i++)
+            //        {
+            //            try
+            //            {
+            //                // obtém o dispositivo de entrada do vídeo
+            //                Camera = CamContainer.VideoInputDevices[i];
 
-                            // inicializa a Captura usando o dispositivo
-                            CaptureInfo = new DirectX.Capture.Capture(Camera, null);
+            //                // inicializa a Captura usando o dispositivo
+            //                CaptureInfo = new DirectX.Capture.Capture(Camera, null);
 
-                            // Define a janela de visualização do vídeo
-                            CaptureInfo.PreviewWindow = this.pbImagem;
+            //                // Define a janela de visualização do vídeo
+            //                CaptureInfo.PreviewWindow = this.pbImagem;
 
-                            // Capturando o tratamento de evento
-                            CaptureInfo.FrameCaptureComplete += AtualizaImagem;
+            //                // Capturando o tratamento de evento
+            //                CaptureInfo.FrameCaptureComplete += AtualizaImagem;
 
-                            // Captura o frame do dispositivo
-                            CaptureInfo.CaptureFrame();
+            //                // Captura o frame do dispositivo
+            //                CaptureInfo.CaptureFrame();
 
-                            // Se o dispositivo foi encontrado e inicializado então sai sem checar o resto
-                            break;
-                        }
-                        catch (Exception ex)
-                        {
-                            btnCapturarImagem.Visible = false;
-                            throw ex;
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    btnCapturarImagem.Visible = false;
-                    MessageBox.Show(this, ex.Message);
-                }
+            //                // Se o dispositivo foi encontrado e inicializado então sai sem checar o resto
+            //                break;
+            //            }
+            //            catch (Exception ex)
+            //            {
+            //                btnCapturarImagem.Visible = false;
+            //                throw ex;
+            //            }
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        btnCapturarImagem.Visible = false;
+            //        MessageBox.Show(this, ex.Message);
+            //    }
                 
-            }
-            else if (resposta == System.Windows.Forms.DialogResult.No)
-            {
+            //}
+            //else if (resposta == System.Windows.Forms.DialogResult.No)
+            //{
                 try
                 {
                     this.openFileDialog1.ShowDialog(this);
@@ -791,51 +770,48 @@ namespace TCC2
                 {
                     MessageBox.Show(ex.Message);
                 }
-            }
-            else
-            {
-                return;
-            }
+            //}
+            //else
+            //{
+            //    return;
+            //}
         }
         private void btnSearchPatient_Click(object sender, EventArgs e)
         {
             pacienteDAO.Buscar(txtNome.Text);
         }
 
-        public void AtualizaImagem(PictureBox frame)
-        {
-            try
-            {
-                capturaImagem = frame.Image;
-                this.pbImagem.Image = capturaImagem;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro " + ex.Message);
-            }
-        }
+        //public void AtualizaImagem(PictureBox frame)
+        //{
+        //    try
+        //    {
+        //        capturaImagem = frame.Image;
+        //        this.pbImagem.Image = capturaImagem;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Erro " + ex.Message);
+        //    }
+        //}
 
-        private void btnCapturarImagem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                CaptureInfo.CaptureFrame();
+        //private void btnCapturarImagem_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        CaptureInfo.CaptureFrame();
 
-                FileStream fs = new FileStream(null, FileMode.Open, FileAccess.Read, FileShare.Read);
-                vetorImagens = new byte[Convert.ToInt32(this.tamanhoArquivoImagem)];
-                int iBytesRead = fs.Read(this.vetorImagens, 0, Convert.ToInt32(this.tamanhoArquivoImagem));
-                fs.Close();
-                btnCapturarImagem.Visible = false;
-                MessageBox.Show("Imagem salva com sucesso");
-                pbImagem.Image = null;
+                
+        //        //btnCapturarImagem.Visible = false;
+        //        //MessageBox.Show("Imagem salva com sucesso");
+        //        //pbImagem.Image = null;
 
-            }
-            catch (Exception ex)
-            {
-                btnCapturarImagem.Visible = false;
-                MessageBox.Show("Erro " + ex.Message);
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        btnCapturarImagem.Visible = false;
+        //        MessageBox.Show("Erro " + ex.Message);
+        //    }
+        //}
 
         #endregion
 

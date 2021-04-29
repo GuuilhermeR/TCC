@@ -34,7 +34,6 @@ namespace TCC2
                 Interaction.MsgBox("Ocorreu um erro ao salvar o Alimento." + '\n' + ex.Message + '\n' + ex.InnerException, Constants.vbOKOnly, "Alerta");
 
             }
-
         }
 
         public List<MedidaCaseira> Buscar(int codAlimento)

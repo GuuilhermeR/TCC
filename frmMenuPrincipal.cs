@@ -588,8 +588,7 @@ namespace TCC2
         #endregion
 
         #region CadastroPaciente 
-
-        
+                
         private void limparCamposCadPaciente()
         {
             txtNome.Text = "";
@@ -606,10 +605,9 @@ namespace TCC2
             txtTelefone.Text = "";
             txtCelular.Text = "";
         }
-
         private void txtCEP_Leave(object sender, EventArgs e)
         {
-            buscaCEP.buscarEndCep(this,txtCEP.Text);
+            buscaCEP.buscarEndCep(this, txtCEP.Text);
         }
         private void _btnExcluir_Click(object sender, EventArgs e)
         {
@@ -1294,6 +1292,6 @@ namespace TCC2
 
 
         #endregion
-
+                
     }
 }

@@ -30,7 +30,7 @@ namespace TCC2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenuPrincipal));
             this.TabControlNutreasy = new MaterialSkin.Controls.MaterialTabControl();
             this.tabMenu = new System.Windows.Forms.TabPage();
@@ -336,14 +336,14 @@ namespace TCC2
             this.atendido,
             this.retorno,
             this.ID});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgAgenda.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgAgenda.DefaultCellStyle = dataGridViewCellStyle2;
             this.dtgAgenda.Location = new System.Drawing.Point(6, 58);
             this.dtgAgenda.Name = "dtgAgenda";
             this.dtgAgenda.RowHeadersWidth = 51;
@@ -1714,7 +1714,7 @@ namespace TCC2
             this.txtConfirmarSenha.Location = new System.Drawing.Point(424, 59);
             this.txtConfirmarSenha.Name = "txtConfirmarSenha";
             this.txtConfirmarSenha.Size = new System.Drawing.Size(168, 20);
-            this.txtConfirmarSenha.TabIndex = 57;
+            this.txtConfirmarSenha.TabIndex = 3;
             this.txtConfirmarSenha.Enter += new System.EventHandler(this.txtConfirmarSenha_Enter);
             // 
             // txtSenha
@@ -1722,7 +1722,7 @@ namespace TCC2
             this.txtSenha.Location = new System.Drawing.Point(78, 59);
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.Size = new System.Drawing.Size(168, 20);
-            this.txtSenha.TabIndex = 55;
+            this.txtSenha.TabIndex = 2;
             this.txtSenha.Enter += new System.EventHandler(this.txtSenha_Enter);
             // 
             // txtEmailConfig
@@ -1730,21 +1730,21 @@ namespace TCC2
             this.txtEmailConfig.Location = new System.Drawing.Point(78, 103);
             this.txtEmailConfig.Name = "txtEmailConfig";
             this.txtEmailConfig.Size = new System.Drawing.Size(469, 20);
-            this.txtEmailConfig.TabIndex = 8;
+            this.txtEmailConfig.TabIndex = 5;
             // 
             // txtNomeUsuarioConfig
             // 
             this.txtNomeUsuarioConfig.Location = new System.Drawing.Point(385, 13);
             this.txtNomeUsuarioConfig.Name = "txtNomeUsuarioConfig";
             this.txtNomeUsuarioConfig.Size = new System.Drawing.Size(425, 20);
-            this.txtNomeUsuarioConfig.TabIndex = 4;
+            this.txtNomeUsuarioConfig.TabIndex = 1;
             // 
             // txtUsuarioConfig
             // 
             this.txtUsuarioConfig.Location = new System.Drawing.Point(78, 13);
             this.txtUsuarioConfig.Name = "txtUsuarioConfig";
             this.txtUsuarioConfig.Size = new System.Drawing.Size(168, 20);
-            this.txtUsuarioConfig.TabIndex = 3;
+            this.txtUsuarioConfig.TabIndex = 0;
             this.txtUsuarioConfig.Leave += new System.EventHandler(this.txtUsuarioConfig_Leave);
             // 
             // label9
@@ -1775,7 +1775,7 @@ namespace TCC2
             this.cbxSituacao.Location = new System.Drawing.Point(693, 59);
             this.cbxSituacao.Name = "cbxSituacao";
             this.cbxSituacao.Size = new System.Drawing.Size(117, 21);
-            this.cbxSituacao.TabIndex = 53;
+            this.cbxSituacao.TabIndex = 4;
             // 
             // lblSituacao
             // 
@@ -1794,7 +1794,7 @@ namespace TCC2
             this.btnExcluirConfigUsuario.Location = new System.Drawing.Point(1117, 134);
             this.btnExcluirConfigUsuario.Name = "btnExcluirConfigUsuario";
             this.btnExcluirConfigUsuario.Size = new System.Drawing.Size(89, 30);
-            this.btnExcluirConfigUsuario.TabIndex = 51;
+            this.btnExcluirConfigUsuario.TabIndex = 8;
             this.btnExcluirConfigUsuario.Text = "Excluir";
             this.btnExcluirConfigUsuario.UseVisualStyleBackColor = true;
             // 
@@ -1806,7 +1806,7 @@ namespace TCC2
             this.btnSalvarConfigUsuario.Location = new System.Drawing.Point(1022, 134);
             this.btnSalvarConfigUsuario.Name = "btnSalvarConfigUsuario";
             this.btnSalvarConfigUsuario.Size = new System.Drawing.Size(89, 30);
-            this.btnSalvarConfigUsuario.TabIndex = 50;
+            this.btnSalvarConfigUsuario.TabIndex = 7;
             this.btnSalvarConfigUsuario.Text = "Salvar";
             this.btnSalvarConfigUsuario.UseVisualStyleBackColor = true;
             this.btnSalvarConfigUsuario.Click += new System.EventHandler(this.btnSalvarConfigUsuario_Click);
@@ -1822,7 +1822,7 @@ namespace TCC2
             this.cbxTipoUsuario.Location = new System.Drawing.Point(636, 103);
             this.cbxTipoUsuario.Name = "cbxTipoUsuario";
             this.cbxTipoUsuario.Size = new System.Drawing.Size(165, 21);
-            this.cbxTipoUsuario.TabIndex = 10;
+            this.cbxTipoUsuario.TabIndex = 6;
             // 
             // lblPerfil
             // 
@@ -1873,7 +1873,7 @@ namespace TCC2
             this.dtgUsuarios.ReadOnly = true;
             this.dtgUsuarios.RowHeadersWidth = 51;
             this.dtgUsuarios.Size = new System.Drawing.Size(1199, 548);
-            this.dtgUsuarios.TabIndex = 0;
+            this.dtgUsuarios.TabIndex = 9;
             this.dtgUsuarios.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgUsuarios_CellDoubleClick);
             // 
             // TabPage2

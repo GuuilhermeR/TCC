@@ -117,24 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="horario.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="nomePaciente.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="atendido.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="retorno.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="ID.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="salvo.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <metadata name="imageList1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
@@ -143,7 +125,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAABq
-        QwAAAk1TRnQBSQFMAgEBCAEAAagBAwGoAQMBIAEAASABAAT/ASEBAAj/AUIBTQE2BwABNgMAASgDAAGA
+        QwAAAk1TRnQBSQFMAgEBCAEAAbABAwGwAQMBIAEAASABAAT/ASEBAAj/AUIBTQE2BwABNgMAASgDAAGA
         AwABYAMAAQEBAAEgBgABwP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A
         /wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A
         /wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wAfAAMCAQMDNQFYA1UBsgNeAeUDPgH4A0wB8wNZAc8DSAGH
@@ -158,9 +140,9 @@
         Af0DQAH9A0AB/QNAAf0DQAH9A04BlAMSARkDWQHrAwAB/wNWAbwDDwEUGAADOQFgAykB+gMAAf8DRQF+
         EAADKgFAA1sB1gQAAzMBUgNGAYADRgGAA0YBgANGAYADRgGAA0YBgANGAYADRgGAA0YBgANGAYADRgGA
         A0YBgANGAYADRgGAA0YBgANGAYADRgGAA0YBgANXAd8DKgFAA1cBvwMqAUAvAAH+AwAB/wMAAf8DTAGR
-        JAADRgHsAwAB/wMAAf8DSgGMSwABAQMoAT0DSAGGA1UBtQNaAc0DWQHMA1UBtQNIAYYDKAE9AwABAS8A
+        JAADSgHsAwAB/wMAAf8DSgGMSwABAQMoAT0DSAGGA1UBtQNaAc0DWQHMA1UBtQNIAYYDKAE9AwABAS8A
         Af8DAAH/AyoBQTQAA1ABnwMAAf8DXAHOAwcBCiAAAzgBXgMAAf8DQQH5AxgBIQwAAyoBQAMAAf8DRQF9
-        AwcBCUgAA1cBvwMqAUADVwG/AyoBQC8AAf8DUQHjNwAB/wMAAf8DAAH/QAADMwFSA1oB1QMAAf8DAAH+
+        AwcBCUgAA1cBvwMqAUADVwG/AyoBQC8AAf8DUwHjNwAB/wMAAf8DAAH/QAADMwFSA1oB1QMAAf8DAAH+
         A1sB4QNXAcUDWAHGA1sB4QMAAf4DAAH/A1sB1gMzAVMrAAH/AwAB/wMqAUEwAAMPARQDQQH5AwAB/wMm
         ATgoAANXAb0DAAH/A0kBiQwAAyoBQANcAdQDVgGzA0EB+QMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMA
         Af8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMq
@@ -171,7 +153,7 @@
         ATwDVgG2A0AB/QMAAf8DAAH/AwAB/wMAAf8DQAH9A1UBtQMoATwDSAGIAwAB/gNZAckDCwEPHwAB/wMA
         Af8DKgFBCAADWwHWAwAB/wMAAf8DKwFDBAADMwFSAwAB/wMAAf8DWQHXBAADQgF1AwAB/wNQAZ4QAAMw
         AU0DAQH+A1ABnwMGAQgMAAMZASMDAAH/A0EB+QwAAyoBQANXAb8IAANXAb8DKgFASAADVwG/AyoBQB8A
-        Af8DAAH/IAADVgHcAwAB/wMAAf8DAAH/AwMBBCMAAf8DMAFLEAADJAE2A1EBpwwAAwEBAgNWAbkDKwH8
+        Af8DAAH/IAADVwHcAwAB/wMAAf8DAAH/AwMBBCMAAf8DMAFLEAADJAE2A1EBpwwAAwEBAgNWAbkDKwH8
         AzcBWwNFAX4DKwH8AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DKwH8A0UBfgM3AVsDKwH8
         A1YBuQMBAQIMAANIAYUDHQEpBwAB/wMAAf8DKgFBCAADWwHWAwAB/wMAAf8DKwFDBAADMgFRAwAB/wMA
         Af8DWAHRBAADQgF1AwAB/wNMAZMQAAMqAUEDSAH2AwAB/wNbAeEDOwFlAwMBBAQAAxMBGgMAAf8DAAH/
@@ -209,11 +191,11 @@
         A1gB3QM1AVcHAAH/AwAB/wMqAUEcAAMVAR0DNwFbAzcBWwMwAU0IAAMrAUMDNwFaAwwBEAMuAUgDWgHK
         AwAB/wMAAf8DAAH/AwAB/wMAAf8DWQHyA0oBjQMMARADIAEvFAADKgFAA1cBvwgAA1cBvwMqAUAQAAMy
         AVEDRgGAA0YBgANGAYADRgGAA0YBgANGAYADRgGAA0UBfgMOARMQAANXAb8DKgFAFwAB/wMBAQIrAAH/
-        AwAB/wMAAf8DAAH/AzgBXSgAA0UB7QMAAf8IAAM1AVYDWgHeBAADMAFLAwAB/wMpAT4DAAH/AwAB/wNc
+        AwAB/wMAAf8DAAH/AzgBXSgAA0gB7QMAAf8IAAM1AVYDWgHeBAADMAFLAwAB/wMpAT4DAAH/AwAB/wNc
         Ac4DLAFEAzwBZigAA1wBzgMAAf8DAAH/AykBPgMAAf8DLwFKBAADWAHdAzUBVwcAAf8DAAH/AyoBQRwA
         AzMBUgMAAf8DAAH/A1kB1wgAA1YBvAMAAf8DWgHkAyABLwQAAxsBJgM4AV0DQQFzAz4BbAMtAUUDBwEJ
         AxYBHwNRAacDWQHHFAADKgFAA1cBvwgAA1cBvwMqAUAQAANXAb8DUQGgA0YBgANGAYADRgGAA0YBgANG
-        AYADRgGAA1cB3wMqAUAQAANXAb8DKgFAFwAB/wMvAUovAAH/AwAB/wNWAdwvAAH/AwAB/wgAAzUEVwHf
+        AYADRgGAA1cB3wMqAUAQAANXAb8DKgFAFwAB/wMvAUovAAH/AwAB/wNXAdwvAAH/AwAB/wgAAzUEVwHf
         BAADJAE2AwAB/wMxAU8DXQHtAwAB/wNWAcEDNwFaA0EBcygAA1YBwQMAAf8DWQHsAzEBTwMAAf8DJAE2
         Ay8BSQNYAe8DUAGjAwwBEAMAAf8DAAH/AyoBQRwAAzMBUgMAAf8DAAH/A1kB1wgAA1YBvAMAAf8DAAH/
         AzgBXQQAAxABFQNAAXADOwFlAzcBWwgAA0QBeQMAAf8DWQHHFAADKgFAA1cBvwgAA1cBvwMqAUAQAANX
@@ -230,7 +212,7 @@
         AfcDAAH/A1wB5wMpAT4DAAH/A0IBdANIAYcDNwFaAz0BaQNQAaQDTwGlAwAB/wMAAf8DOQFgAx0BKgMd
         ASoDHQEqAx0BKgMdASoDHQEqAx0BKgMdASoDHQEqAx0BKgMdASoDHQEqAx0BKgMdASoDHQEqAx0BKgMd
         ASoDHQEqAx0BKgMdASoDHQEqAx0BKgMdASoDHQEqA0sBjwMAAf8DWQHHFAADKgFAA1cBvwgAA1cBvwMq
-        AUAMAAMjATQDXgHaAyoBQBgAA1cBvwNIAYQDCQEMDAADVwG/AyoBQBsAAf8vAAH/AwAB/wMAAf8oAANY
+        AUAMAAMjATQDXgHaAyoBQBgAA1cBvwNIAYQDCQEMDAADVwG/AyoBQBsAAf8vAAH/AwAB/wMAAf8oAANa
         AdsDAAH/CAADWQHsAwAB/wMAAf8DAAH/A0IBdQMMARADTgHwA1YBvAM2AVkDAAH/AwAB/wMAAf8DAAH/
         AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wM2AVkDVwG9A04B8AMMARADSAGH
         AzcBWgM9AWkDUAGkA08BpQMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/
@@ -242,7 +224,7 @@
         A08BpQMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/
         AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/
         A1kBxxQAAyoBQANXAb8IAANXAb8DKgFABAADEAEVA10B7QMTARooAANKAY0DSwGPCAADVwG/AyoBQB8A
-        Af8DEAEVIwAB/wMAAf8DAAH/AwAB/wMAAf4gAAMJAf0DAAH/DAADCgEOA1ABowNZAc8DNAFVCAADAQEC
+        Af8DEAEVIwAB/wMAAf8DAAH/AwAB/wMAAf4gAAMKAf0DAAH/DAADCgEOA1ABowNZAc8DNAFVCAADAQEC
         A1YBuQMrAfwDNwFbA0UBfgMrAfwDAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMrAfwDRQF9
         AzgBXAMrAfwDVgG4AwEBAgQAAz4BbAMrAUIDNAFUA0YBgANGAYEDAAH/AwAB/wMAAf8DAAH/AwAB/wMA
         Af8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMA
@@ -261,11 +243,11 @@
         A1oB1QMzAVIrAAH/AwAB/wMAAf8DAAH/AyoEQQFzAwAB/wMAAf8DQgH1AyEBMQNOAZQDAAH/AwAB/wMA
         Af8DAAH/AwAB/wMAAf8DAAH/AwAB/wM3AVoDOAFeAwEB/gMAAf8DQQH5AyoBQANEAXsDAAH/AwAB/wMA
         Af8DWQHHFAADKgFAA1cBvwgAA1cBvwMqAUAMAAMkATUDRAF5A0cBggNYAekDOAFdAwYBCAMZASMDVQG3
-        A1UBtQNFAX8DOwFjAwkBDAwAA1cBvwMqAUArAAH/AwAB/wMVAR00AANYAdgDAAH/AwAB/0cAAQEDKAE9
+        A1UBtQNFAX8DOwFjAwkBDAwAA1cBvwMqAUArAAH/AwAB/wMVAR00AANaAdgDAAH/AwAB/0cAAQEDKAE9
         A0gBhgNVAbUDWgHNA1kBzANVAbUDSAGGAygBPAMAAQEvAAH/AwAB/wMAAf8DQAH9AwQBBQNaAdgDAAH/
         AwAB/wMAAf8DRwGDAzUBVwMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AxYBHgNVAbUDAAH/
         AwAB/wMAAf8DUAGjAyYBOAMAAf8DAAH/AwAB/wNZAccUAAMqAUADVwG/CAADVwG/AyoBQBgAAyMBMwNY
-        AcADKQH6A1wB5wNHAYIDBAEFGAADVwG/AyoBQC8AAf8DAAH/AwAB/ygAAzQBVAMAAf8DAAH/AxIB+5wA
+        AcADKQH6A1wB5wNHAYIDBAEFGAADVwG/AyoBQC8AAf8DAAH/AwAB/ygAAzQBVAMAAf8DAAH/AxQB+5wA
         Ax4BKwMeASsDHgErAx4BKwQAA1cB3wMAAf8DAAH/AwAB/wNLAY4DCgEOAx4BKwMeASsDHgErAx4BKwMe
         ASsDHgErAx4BKwMeASsDAwEEA1YBvAMAAf8DAAH/AwAB/wNSAaYDBAEGAx4BKwMeASsDHgErAxgBIhQA
         AyoBQANXAb8IAANXAb8DKgFASAADVwG/AyoBQDcAAf8DAAH/AwAB/wMAAf8DAAH/AzYBWQMNAREDQAFw
@@ -433,6 +415,27 @@
         AQwBfwQABf8BOAEcAv8B+AEfAf8EAAX/AT8B/AL/AfwBPwH/AYACAAEBCw==
 </value>
   </data>
+  <metadata name="horario.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="nomePaciente.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="atendido.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="retorno.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="ID.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="salvo.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="salvo.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>147, 17</value>
   </metadata>

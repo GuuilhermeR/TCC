@@ -107,3 +107,4 @@ C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\DShowNET.dll
 C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\EPPlus.dll
 C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
 C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\System.ComponentModel.Annotations.dll
+C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\TCC2.csprojAssemblyReference.cache

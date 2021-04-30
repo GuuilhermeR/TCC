@@ -369,7 +369,7 @@ namespace TCC2
                         {
                             tabela = Convert.ToString(txtNomeTabela.Text);
                         }
-                        if (!alimentoDAO.ExisteAlimento(alimento, tabela)
+                        if (!alimentoDAO.ExisteAlimento(alimento, tabela))
                         {
                             alimentoDAO.Salvar(alimento.Replace("'", ""), qtd, kcal, Prot, Carb, Lipidios, tabela);
                         }
@@ -738,7 +738,7 @@ namespace TCC2
 
         private void pbImagem_Click(object sender, EventArgs e)
         {
-            var resposta = MessageBox.Show("Deseja tirar uma foto?", Text, MessageBoxButtons.YesNoCancel);
+            //var resposta = MessageBox.Show("Deseja selecionar uma foto?", Text, MessageBoxButtons.YesNoCancel);
 
             //if (resposta == System.Windows.Forms.DialogResult.Yes)
             //{
@@ -786,26 +786,20 @@ namespace TCC2
             //}
             //else if (resposta == System.Windows.Forms.DialogResult.No)
             //{
-            try
-            {
-                this.openFileDialog1.ShowDialog(this);
-                string strFn = this.openFileDialog1.FileName;
 
-                if (string.IsNullOrEmpty(strFn))
-                    return;
+            this.openFileDialog1.ShowDialog(this);
+            string strFn = this.openFileDialog1.FileName;
 
-                this.pbImagem.Image = Image.FromFile(strFn);
-                FileInfo arqImagem = new FileInfo(strFn);
-                tamanhoArquivoImagem = arqImagem.Length;
-                FileStream fs = new FileStream(strFn, FileMode.Open, FileAccess.Read, FileShare.Read);
-                vetorImagens = new byte[Convert.ToInt32(this.tamanhoArquivoImagem)];
-                int iBytesRead = fs.Read(this.vetorImagens, 0, Convert.ToInt32(this.tamanhoArquivoImagem));
-                fs.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            if (string.IsNullOrEmpty(strFn))
+                return;
+
+            this.pbImagem.Image = Image.FromFile(strFn);
+            FileInfo arqImagem = new FileInfo(strFn);
+            tamanhoArquivoImagem = arqImagem.Length;
+            FileStream fs = new FileStream(strFn, FileMode.Open, FileAccess.Read, FileShare.Read);
+            vetorImagens = new byte[Convert.ToInt32(this.tamanhoArquivoImagem)];
+            int iBytesRead = fs.Read(this.vetorImagens, 0, Convert.ToInt32(this.tamanhoArquivoImagem));
+            fs.Close();
             //}
             //else
             //{

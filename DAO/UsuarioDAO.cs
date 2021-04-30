@@ -104,11 +104,30 @@ namespace TCC2
 
                 if (alterarSenha)
                 {
-                    string strSQL = $@"UPDATE Login senha='{senha}', nome='{nome}', email='{email}', situacao='{situacao}', tipoUsuario='{tipoUsuario}' WHERE usuario='{usuario}'";
+
+                    var usuUpdate = (from usu in BancoDadosSingleton.Instance.Login where usu.usuario == usuario select usu).Single();
+
+                    usuUpdate.nome = nome;
+                    usuUpdate.senha = senha;
+                    usuUpdate.email = email;
+                    usuUpdate.situacao = situacao;
+                    usuUpdate.perfil = tipoUsuario;
+
+                    BancoDadosSingleton.Instance.Login.Add(usuUpdate);
+                    BancoDadosSingleton.Instance.SaveChanges();
+
                 }
                 else
                 {
-                    string strSQL = $@"UPDATE Login nome='{nome}', email='{email}', situacao='{situacao}', tipoUsuario='{tipoUsuario}' WHERE usuario='{usuario}'";
+                    var usuUpdate = (from usu in BancoDadosSingleton.Instance.Login where usu.usuario == usuario select usu).Single();
+
+                    usuUpdate.nome = nome;
+                    usuUpdate.email = email;
+                    usuUpdate.situacao = situacao;
+                    usuUpdate.perfil = tipoUsuario;
+
+                    BancoDadosSingleton.Instance.Login.Add(usuUpdate);
+                    BancoDadosSingleton.Instance.SaveChanges();
                 }
 
                 Interaction.MsgBox("Os dados foram Salvos.", MsgBoxStyle.OkOnly, "SALVAR");

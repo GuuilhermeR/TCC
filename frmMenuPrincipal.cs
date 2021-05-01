@@ -5,8 +5,6 @@ using ProjetoTCC;
 using System;
 using System.Data;
 using System.IO;
-using System.Net;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
 using Microsoft.VisualBasic;
@@ -15,10 +13,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using LiveCharts;
 using LiveCharts.Wpf;
-using System;
-using System.Drawing;
-using System.Windows.Forms;
-using System.Drawing.Imaging;
 using System.Transactions;
 
 namespace TCC2
@@ -255,7 +249,7 @@ namespace TCC2
                 {
                     if (row.Cells["prot"].Value != null)
                     {
-                        double ProteinaGramas = 0;
+                        double ProteinaGramas = 0; //Refazer o cálculo, se for mudar a qtd, teria que ser, ex: 100g - 22g de prot, 50g - x g de prot
                         ProteinaGramas = Conversions.ToDouble((Convert.ToDouble(row.Cells["qtd"].Value) * Convert.ToDouble(row.Cells["prot"].Value)) / Convert.ToDouble(qtdSalva));
                         ProteinaKcal = ProteinaGramas * 4d;
                         row.Cells["prot"].Value = Convert.ToDouble(ProteinaKcal).ToString("N2");

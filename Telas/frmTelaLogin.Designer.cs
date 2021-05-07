@@ -47,8 +47,8 @@ namespace TCC2
             this.btnLogar.DrawShadows = true;
             this.btnLogar.HighEmphasis = true;
             this.btnLogar.Icon = null;
-            this.btnLogar.Location = new System.Drawing.Point(177, 478);
-            this.btnLogar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnLogar.Location = new System.Drawing.Point(236, 596);
+            this.btnLogar.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.btnLogar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnLogar.Name = "btnLogar";
             this.btnLogar.Size = new System.Drawing.Size(77, 36);
@@ -67,12 +67,13 @@ namespace TCC2
             this.txtUsuario.Depth = 0;
             this.txtUsuario.Font = new System.Drawing.Font("Roboto", 12F);
             this.txtUsuario.Hint = "Usuário";
-            this.txtUsuario.Location = new System.Drawing.Point(113, 284);
+            this.txtUsuario.Location = new System.Drawing.Point(151, 350);
+            this.txtUsuario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtUsuario.MaxLength = 50;
             this.txtUsuario.MouseState = MaterialSkin.MouseState.OUT;
             this.txtUsuario.Multiline = false;
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(221, 50);
+            this.txtUsuario.Size = new System.Drawing.Size(295, 50);
             this.txtUsuario.TabIndex = 1;
             this.txtUsuario.Tag = "";
             this.txtUsuario.Text = "";
@@ -85,22 +86,25 @@ namespace TCC2
             this.txtSenha.Depth = 0;
             this.txtSenha.Font = new System.Drawing.Font("Roboto", 12F);
             this.txtSenha.Hint = "Senha";
-            this.txtSenha.Location = new System.Drawing.Point(113, 353);
+            this.txtSenha.Location = new System.Drawing.Point(151, 434);
+            this.txtSenha.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSenha.MaxLength = 50;
             this.txtSenha.MouseState = MaterialSkin.MouseState.OUT;
             this.txtSenha.Multiline = false;
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.Password = true;
-            this.txtSenha.Size = new System.Drawing.Size(221, 50);
+            this.txtSenha.Size = new System.Drawing.Size(295, 50);
             this.txtSenha.TabIndex = 2;
             this.txtSenha.Text = "";
+            this.txtSenha.Leave += new System.EventHandler(this.txtSenha_Leave);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::TCC2.Properties.Resources.iconTCC_removebg_preview__1____Copia;
-            this.pictureBox1.Location = new System.Drawing.Point(113, 71);
+            this.pictureBox1.Location = new System.Drawing.Point(151, 87);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(221, 195);
+            this.pictureBox1.Size = new System.Drawing.Size(295, 240);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
@@ -114,7 +118,8 @@ namespace TCC2
             this.lblAviso.BackColor = System.Drawing.Color.Red;
             this.lblAviso.Depth = 0;
             this.lblAviso.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblAviso.Location = new System.Drawing.Point(164, 418);
+            this.lblAviso.Location = new System.Drawing.Point(219, 514);
+            this.lblAviso.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAviso.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblAviso.Name = "lblAviso";
             this.lblAviso.Size = new System.Drawing.Size(107, 19);
@@ -124,16 +129,18 @@ namespace TCC2
             // 
             // frmTelaLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(447, 548);
+            this.ClientSize = new System.Drawing.Size(596, 674);
             this.Controls.Add(this.lblAviso);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.txtSenha);
             this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.btnLogar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmTelaLogin";
+            this.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Entrar";
             this.Load += new System.EventHandler(this.frmTelaLogin_Load);

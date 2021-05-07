@@ -8,6 +8,7 @@ using TCC2;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Data.Entity.SqlServer;
+using TCC2.Banco_de_Dados;
 
 namespace ProjetoTCC
 {

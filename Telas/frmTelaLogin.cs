@@ -67,5 +67,12 @@ namespace TCC2
                 lblAviso.ForeColor = Color.Red;
             }                        
         }
+
+        private void txtSenha_Leave(object sender, EventArgs e)
+        {
+            if (txtUsuario.Text != "")
+                if (txtSenha.Text != "")
+                    btnLogar_Click(sender, e);
+        }
     }
 }

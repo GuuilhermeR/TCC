@@ -7,18 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TCC2
+namespace TCC2.Banco_de_Dados
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class MedidaCaseira
+    public partial class Cardapio
     {
         public long ID { get; set; }
-        public string descricao { get; set; }
-        public Nullable<double> qtd { get; set; }
+        public Nullable<long> codPaciente { get; set; }
         public Nullable<long> codAlimento { get; set; }
+        public Nullable<double> medidaCaseiraQtde { get; set; }
+        public string Obs { get; set; }
+        public string Refeicao { get; set; }
+        public Nullable<double> kcal { get; set; }
     
         public virtual Alimentos Alimentos { get; set; }
+        public virtual Paciente Paciente { get; set; }
     }
 }

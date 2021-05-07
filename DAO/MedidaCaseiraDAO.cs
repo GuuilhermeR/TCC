@@ -6,6 +6,7 @@ using System.Linq;
 using Microsoft.VisualBasic;
 using TCC2;
 using System.Collections.Generic;
+using TCC2.Banco_de_Dados;
 
 namespace TCC2
 {

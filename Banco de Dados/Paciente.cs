@@ -7,32 +7,36 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TCC2
+namespace TCC2.Banco_de_Dados
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Alimentos
+    public partial class Paciente
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Alimentos()
+        public Paciente()
         {
             this.Cardapio = new HashSet<Cardapio>();
-            this.MedidaCaseira = new HashSet<MedidaCaseira>();
         }
     
-        public long codAlimento { get; set; }
-        public string nomeAlimento { get; set; }
-        public Nullable<double> qtd { get; set; }
-        public Nullable<double> kcal { get; set; }
-        public Nullable<double> prot { get; set; }
-        public Nullable<double> carbo { get; set; }
-        public Nullable<double> lipidio { get; set; }
-        public string nomeTabela { get; set; }
+        public long codPaciente { get; set; }
+        public Nullable<long> CPF { get; set; }
+        public string nome { get; set; }
+        public string dtNasc { get; set; }
+        public string email { get; set; }
+        public Nullable<double> CEP { get; set; }
+        public string endereco { get; set; }
+        public Nullable<long> numero { get; set; }
+        public string bairro { get; set; }
+        public string municipio { get; set; }
+        public string UF { get; set; }
+        public string complemento { get; set; }
+        public string telefone { get; set; }
+        public string celular { get; set; }
+        public byte[] imagem { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cardapio> Cardapio { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MedidaCaseira> MedidaCaseira { get; set; }
     }
 }

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TCC2
+namespace TCC2.Banco_de_Dados
 {
     using System;
     using System.Data.Entity;

@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Linq;
 using Microsoft.VisualBasic;
 using System.Collections.Generic;
+using TCC2.Banco_de_Dados;
 
 namespace TCC2
 {
@@ -25,7 +26,7 @@ namespace TCC2
             }
             try
             {
-                var usuarioLogado = (from c in TCC2.BancoDadosSingleton.Instance.Login where c.usuario == usuarioLogin select c.nome).ToList();
+                var usuarioLogado = (from c in TCC2.BancoDadosSingleton.Instance.Login where c.usuario == usuarioLogin select c.nome).FirstOrDefault();
                 nome = usuarioLogado.ToString();
                 return;
             }

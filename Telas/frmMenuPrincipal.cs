@@ -14,11 +14,14 @@ using System.ComponentModel;
 using LiveCharts;
 using LiveCharts.Wpf;
 using System.Transactions;
+using TCC2.Banco_de_Dados;
 
 namespace TCC2
 {
     public partial class frmMenuPrincipal : MaterialForm
     {
+
+        #region VariáveisGlobais
         public PacienteDAO pacienteDAO = new PacienteDAO();
         public UsuarioDAO usuarioDAO = new UsuarioDAO();
         public AlimentoDAO alimentoDAO = new AlimentoDAO();
@@ -38,6 +41,7 @@ namespace TCC2
         public DirectX.Capture.Filters CamContainer;
         Image capturaImagem;
         public string caminhoImagemSalva = null;
+        #endregion
 
         #region Menu
         public frmMenuPrincipal(string usuarioLogado)
@@ -781,19 +785,27 @@ namespace TCC2
             //else if (resposta == System.Windows.Forms.DialogResult.No)
             //{
 
-            this.openFileDialog1.ShowDialog(this);
-            string strFn = this.openFileDialog1.FileName;
+            try
+            {
+                this.openFileDialog1.ShowDialog(this);
+                string strFn = this.openFileDialog1.FileName;
 
-            if (string.IsNullOrEmpty(strFn))
-                return;
+                if (string.IsNullOrEmpty(strFn))
+                    return;
 
-            this.pbImagem.Image = Image.FromFile(strFn);
-            FileInfo arqImagem = new FileInfo(strFn);
-            tamanhoArquivoImagem = arqImagem.Length;
-            FileStream fs = new FileStream(strFn, FileMode.Open, FileAccess.Read, FileShare.Read);
-            vetorImagens = new byte[Convert.ToInt32(this.tamanhoArquivoImagem)];
-            int iBytesRead = fs.Read(this.vetorImagens, 0, Convert.ToInt32(this.tamanhoArquivoImagem));
-            fs.Close();
+                this.pbImagem.Image = Image.FromFile(strFn);
+                FileInfo arqImagem = new FileInfo(strFn);
+                tamanhoArquivoImagem = arqImagem.Length;
+                FileStream fs = new FileStream(strFn, FileMode.Open, FileAccess.Read, FileShare.Read);
+                vetorImagens = new byte[Convert.ToInt32(this.tamanhoArquivoImagem)];
+                int iBytesRead = fs.Read(this.vetorImagens, 0, Convert.ToInt32(this.tamanhoArquivoImagem));
+                fs.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Nenhuma imagem foi selecionada!");
+            }
+           
             //}
             //else
             //{
@@ -1049,7 +1061,7 @@ namespace TCC2
         {
             if (e.ColumnIndex >= 0)
             {
-                if (dtgConAlimento.CurrentRow.Cells["qtd"].Value != null)
+                if (Convert.ToString(dtgConAlimento.CurrentRow.Cells["qtd"].Value) != "")
                     quantidadeSalva = Convert.ToDouble(dtgConAlimento.CurrentRow.Cells["qtd"].Value);
             }
         }
@@ -1111,7 +1123,7 @@ namespace TCC2
         }
         private void dtgRefeicoes_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            if (Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["qtd"].Value) != null)
+            if (Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["qtd"].Value) != 0)
                 quantidadeAntigaCardapio = Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["qtd"].Value);
 
         }
@@ -1284,6 +1296,13 @@ namespace TCC2
                 return;
             DataTable dt = ConvertToDataTable(listaUsuario);
             dtgUsuarios.DataSource = dt;
+            dtgUsuarios.Columns["senha"].Visible = false;
+            dtgUsuarios.Columns["usuario"].HeaderText = "Usuário";
+            dtgUsuarios.Columns["nome"].HeaderText = "Nome";
+            dtgUsuarios.Columns["situacao"].HeaderText = "Situação";
+            dtgUsuarios.Columns["email"].HeaderText = "E-mail";
+            dtgUsuarios.Columns["perfil"].HeaderText = "Perfil";
+            dtgUsuarios.AutoResizeColumns();
         }
         private void dtgUsuarios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -1293,7 +1312,7 @@ namespace TCC2
                 txtNomeUsuarioConfig.Text = dtgUsuarios.CurrentRow.Cells["nome"].Value.ToString();
                 txtEmailConfig.Text = dtgUsuarios.CurrentRow.Cells["email"].Value.ToString();
                 cbxSituacao.Text = dtgUsuarios.CurrentRow.Cells["situacao"].Value.ToString();
-                cbxTipoUsuario.Text = dtgUsuarios.CurrentRow.Cells["tipoUsuario"].Value.ToString();
+                cbxTipoUsuario.Text = dtgUsuarios.CurrentRow.Cells["perfil"].Value.ToString();
             }
         }
         private void txtSenha_Enter(object sender, EventArgs e)
@@ -1306,7 +1325,6 @@ namespace TCC2
         }
 
         #endregion
-
 
     }
 }

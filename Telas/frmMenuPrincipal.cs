@@ -223,7 +223,6 @@ namespace TCC2
         #endregion
 
         #region Alimento
-
         private void btnRecalcular_Click(object sender, EventArgs e)
         {
             if (quantidadeSalva != 0)
@@ -299,7 +298,7 @@ namespace TCC2
                 dtgConAlimento.Columns["prot"].HeaderText = "Proteína";
                 dtgConAlimento.Columns["carbo"].HeaderText = "Carboidrato";
                 dtgConAlimento.Columns["lipidio"].HeaderText = "Lipídio";
-                dtgConAlimento.Columns["nomeTabela"].HeaderText = "Tabela";
+                dtgConAlimento.Columns["nomeTabela"].Visible = false;
                 dtgConAlimento.Columns["MedidaCaseira"].Visible = false;
                 dtgConAlimento.Columns["Cardapio"].Visible = false;
                 return;
@@ -1323,7 +1322,6 @@ namespace TCC2
         {
             txtConfirmarSenha.PasswordChar = '*';
         }
-
         #endregion
 
     }

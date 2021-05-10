@@ -61,7 +61,6 @@ namespace TCC2
             this.lblTabela = new System.Windows.Forms.Label();
             this.dtgConAlimento = new System.Windows.Forms.DataGridView();
             this.tbImportarPlanilha = new System.Windows.Forms.TabPage();
-            this.pbCarregando = new System.Windows.Forms.PictureBox();
             this.txtNomeTabela = new System.Windows.Forms.TextBox();
             this.lblNomeTabela = new System.Windows.Forms.Label();
             this._cbxNomePlanilha = new System.Windows.Forms.ComboBox();
@@ -182,6 +181,7 @@ namespace TCC2
             this.tbSobre = new System.Windows.Forms.TabPage();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.tbCadastrarTiposCardapios = new System.Windows.Forms.TabPage();
             this.TabControlNutreasy.SuspendLayout();
             this.tabMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxLogoGrande)).BeginInit();
@@ -192,7 +192,6 @@ namespace TCC2
             this._tbConsulta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgConAlimento)).BeginInit();
             this.tbImportarPlanilha.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbCarregando)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDadosImportados)).BeginInit();
             this.tbCadMedCaseira.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgSalvarMedCaseira)).BeginInit();
@@ -592,7 +591,6 @@ namespace TCC2
             // 
             // tbImportarPlanilha
             // 
-            this.tbImportarPlanilha.Controls.Add(this.pbCarregando);
             this.tbImportarPlanilha.Controls.Add(this.txtNomeTabela);
             this.tbImportarPlanilha.Controls.Add(this.lblNomeTabela);
             this.tbImportarPlanilha.Controls.Add(this._cbxNomePlanilha);
@@ -610,18 +608,6 @@ namespace TCC2
             this.tbImportarPlanilha.TabIndex = 2;
             this.tbImportarPlanilha.Text = "Importação tabela";
             this.tbImportarPlanilha.UseVisualStyleBackColor = true;
-            // 
-            // pbCarregando
-            // 
-            this.pbCarregando.Image = global::TCC2.Properties.Resources.CarregarLoading;
-            this.pbCarregando.Location = new System.Drawing.Point(492, 252);
-            this.pbCarregando.Margin = new System.Windows.Forms.Padding(4);
-            this.pbCarregando.Name = "pbCarregando";
-            this.pbCarregando.Size = new System.Drawing.Size(414, 233);
-            this.pbCarregando.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pbCarregando.TabIndex = 273;
-            this.pbCarregando.TabStop = false;
-            this.pbCarregando.Visible = false;
             // 
             // txtNomeTabela
             // 
@@ -676,12 +662,13 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dtgDadosImportados.BackgroundColor = System.Drawing.Color.White;
             this.dtgDadosImportados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgDadosImportados.Location = new System.Drawing.Point(8, 7);
+            this.dtgDadosImportados.Location = new System.Drawing.Point(12, 4);
             this.dtgDadosImportados.Margin = new System.Windows.Forms.Padding(4);
             this.dtgDadosImportados.Name = "dtgDadosImportados";
             this.dtgDadosImportados.RowHeadersWidth = 51;
             this.dtgDadosImportados.Size = new System.Drawing.Size(1601, 725);
             this.dtgDadosImportados.TabIndex = 268;
+            this.dtgDadosImportados.DragDrop += new System.Windows.Forms.DragEventHandler(this.dtgDadosImportados_DragDrop);
             // 
             // txtCaminhoArquivoExcel
             // 
@@ -924,6 +911,7 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tbCadCardapio);
             this.tabControl1.Controls.Add(this.tbConsultaCardapio);
+            this.tabControl1.Controls.Add(this.tbCadastrarTiposCardapios);
             this.tabControl1.Location = new System.Drawing.Point(3, 7);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl1.Name = "tabControl1";
@@ -1127,6 +1115,7 @@ namespace TCC2
             this.dtgCardapioAlimentos.RowHeadersWidth = 51;
             this.dtgCardapioAlimentos.Size = new System.Drawing.Size(708, 569);
             this.dtgCardapioAlimentos.TabIndex = 305;
+            this.dtgCardapioAlimentos.DragOver += new System.Windows.Forms.DragEventHandler(this.dtgCardapioAlimentos_DragOver);
             // 
             // dtgRefeicoes
             // 
@@ -1145,6 +1134,7 @@ namespace TCC2
             this.dtgRefeicoes.TabIndex = 304;
             this.dtgRefeicoes.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dtgRefeicoes_CellBeginEdit);
             this.dtgRefeicoes.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgRefeicoes_CellEndEdit);
+            this.dtgRefeicoes.DragDrop += new System.Windows.Forms.DragEventHandler(this.dtgRefeicoes_DragDrop);
             // 
             // label8
             // 
@@ -2040,6 +2030,16 @@ namespace TCC2
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // tbCadastrarTiposCardapios
+            // 
+            this.tbCadastrarTiposCardapios.Location = new System.Drawing.Point(4, 25);
+            this.tbCadastrarTiposCardapios.Name = "tbCadastrarTiposCardapios";
+            this.tbCadastrarTiposCardapios.Padding = new System.Windows.Forms.Padding(3);
+            this.tbCadastrarTiposCardapios.Size = new System.Drawing.Size(1621, 898);
+            this.tbCadastrarTiposCardapios.TabIndex = 2;
+            this.tbCadastrarTiposCardapios.Text = "Pré Definição Cardápios";
+            this.tbCadastrarTiposCardapios.UseVisualStyleBackColor = true;
+            // 
             // frmMenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2070,7 +2070,6 @@ namespace TCC2
             ((System.ComponentModel.ISupportInitialize)(this.dtgConAlimento)).EndInit();
             this.tbImportarPlanilha.ResumeLayout(false);
             this.tbImportarPlanilha.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbCarregando)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDadosImportados)).EndInit();
             this.tbCadMedCaseira.ResumeLayout(false);
             this.tbCadMedCaseira.PerformLayout();
@@ -2255,7 +2254,7 @@ namespace TCC2
         private System.Windows.Forms.Button btnCapturarImagem;
         internal System.Windows.Forms.Label txtCodPaciente;
         internal System.Windows.Forms.TextBox txtCEP;
-        private System.Windows.Forms.PictureBox pbCarregando;
+        private System.Windows.Forms.TabPage tbCadastrarTiposCardapios;
     }
 }
 

@@ -327,7 +327,7 @@ namespace TCC2
                 Interaction.MsgBox("Favor informar a planilha a ser salva.");
                 return;
             }
-            pbCarregando.Visible = true;
+            //pbCarregando.Visible = true;
             using (TransactionScope tscope = new TransactionScope(TransactionScopeOption.Suppress))
             {
                 try
@@ -375,12 +375,12 @@ namespace TCC2
                             alimentoDAO.Update(Convert.ToInt32(alimentoDAO.RetornaCodAlimentoExistente(alimento.Replace("'", ""), tabela)), alimento.Replace("'", ""), qtd, kcal, Prot, Carb, Lipidios, tabela);
                         }
                     };
-                    pbCarregando.Visible = false;
+                    //pbCarregando.Visible = false;
                     Interaction.MsgBox("Os dados foram Salvos", MsgBoxStyle.OkOnly, "SALVAR");
                 }
                 catch (Exception ex)
                 {
-                    pbCarregando.Visible = false;
+                    //pbCarregando.Visible = false;
                     Interaction.MsgBox("Ocorreu um erro:" + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException + Environment.NewLine, MsgBoxStyle.Critical, "ERRO AO SALVAR");
                     return;
                 }
@@ -472,7 +472,7 @@ namespace TCC2
                                     _cbxNomePlanilha.Items.Add(table.TableName);
                             }
                         }
-                        //_cbxNomePlanilha.SelectedIndex = 0;
+                        _cbxNomePlanilha.SelectedIndex = 0;
                     }
                     catch (Exception ex)
                     {
@@ -975,6 +975,7 @@ namespace TCC2
             dtgCardapioAlimentos.Columns["MedidaCaseira"].Visible = false;
             dtgCardapioAlimentos.Columns["Cardapio"].Visible = false;
             dtgCardapioAlimentos.AutoResizeColumns();
+            dtgCardapioAlimentos.Columns["nomeAlimento"].ReadOnly = true;
         }
 
         private DataGridViewRow adicionar(DataGridViewRow row)
@@ -1324,5 +1325,19 @@ namespace TCC2
         }
         #endregion
 
+        private void dtgCardapioAlimentos_DragOver(object sender, DragEventArgs e)
+        {
+            
+        }
+
+        private void dtgRefeicoes_DragDrop(object sender, DragEventArgs e)
+        {
+            
+        }
+
+        private void dtgDadosImportados_DragDrop(object sender, DragEventArgs e)
+        {
+            _btnBuscarPlanilha_Click(sender, e);
+        }
     }
 }

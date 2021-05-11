@@ -35,10 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DirectX.Capture, Version=1.0.1313.24984, Culture=neutral">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Desktop\CapturaImagemWebCam\CapturaImagemWebCam\Support\DirectX.Capture.dll</HintPath>
-    </Reference>
     <Reference Include="DShowNET, Version=1.0.0.1, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Desktop\CapturaImagemWebCam\CapturaImagemWebCam\Support\DShowNET.dll</HintPath>

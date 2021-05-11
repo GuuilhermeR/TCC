@@ -29,6 +29,7 @@ namespace TCC2
         public MedidaCaseiraDAO medidaCaseiraDAO = new MedidaCaseiraDAO();
         public CardapioDAO cardapioDAO = new CardapioDAO();
         public BuscadorCEP buscaCEP = new BuscadorCEP();
+        public ImportadorPlanilha importarPlan = new ImportadorPlanilha();
         private DataTableCollection tables;
         List<string> deletar = new List<string>();
         List<string> deletarAlimento = new List<string>();
@@ -36,9 +37,6 @@ namespace TCC2
         private byte[] vetorImagens;
         private double quantidadeSalva;
         private double quantidadeAntigaCardapio;
-        public DirectX.Capture.Filter Camera;
-        public DirectX.Capture.Capture CaptureInfo;
-        public DirectX.Capture.Filters CamContainer;
         Image capturaImagem;
         public string caminhoImagemSalva = null;
         #endregion
@@ -305,9 +303,25 @@ namespace TCC2
             }
         }
 
-        private void tbAlimento_Enter(object sender, EventArgs e)
+        private void dtgDadosImportados_DragDrop(object sender, DragEventArgs e)
         {
-            //CarregarTabelas();
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] fileList = (string[])e.Data.GetData(DataFormats.FileDrop);
+                string caminhoArquivo = fileList.GetValue(0).ToString();
+                importarPlan.ImporterWorksheet(caminhoArquivo, _cbxNomePlanilha);
+            }
+        }
+
+        private void dtgDadosImportados_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.Move;
+            else
+            {
+                String[] strGetFormats = e.Data.GetFormats();
+                e.Effect = DragDropEffects.None;
+            }
         }
 
         private void _btnImportar_Click(object sender, EventArgs e)
@@ -454,32 +468,7 @@ namespace TCC2
 
         private void _btnBuscarPlanilha_Click(object sender, EventArgs e)
         {
-            using (var ofd = new OpenFileDialog() { Filter = "Excel Workbook|*.xlsx|Excel 97-2003 Workbook|*.xls" })
-            {
-                if (ofd.ShowDialog() == DialogResult.OK)
-                {
-                    txtCaminhoArquivoExcel.Text = ofd.FileName;
-                    try
-                    {
-                        using (var stream = File.Open(ofd.FileName, FileMode.Open, FileAccess.Read))
-                        {
-                            using (var reader = ExcelReaderFactory.CreateReader(stream))
-                            {
-                                var result = reader.AsDataSet(new ExcelDataSetConfiguration() { ConfigureDataTable = new Func<IExcelDataReader, ExcelDataTableConfiguration>(__ => new ExcelDataTableConfiguration() { UseHeaderRow = true }) });
-                                tables = result.Tables;
-                                _cbxNomePlanilha.Items.Clear();
-                                foreach (DataTable table in tables)
-                                    _cbxNomePlanilha.Items.Add(table.TableName);
-                            }
-                        }
-                        _cbxNomePlanilha.SelectedIndex = 0;
-                    }
-                    catch (Exception ex)
-                    {
-                        Interaction.MsgBox("Ocorreu um erro:" + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException, MsgBoxStyle.Critical, "ERRO AO SALVAR");
-                    }
-                }
-            }
+            importarPlan.ImporterWorksheet(txtCaminhoArquivoExcel.Text,_cbxNomePlanilha);
         }
 
         private void tabAlimento_Enter(object sender, EventArgs e)
@@ -1325,19 +1314,5 @@ namespace TCC2
         }
         #endregion
 
-        private void dtgCardapioAlimentos_DragOver(object sender, DragEventArgs e)
-        {
-            
-        }
-
-        private void dtgRefeicoes_DragDrop(object sender, DragEventArgs e)
-        {
-            
-        }
-
-        private void dtgDadosImportados_DragDrop(object sender, DragEventArgs e)
-        {
-            _btnBuscarPlanilha_Click(sender, e);
-        }
     }
 }

@@ -20,13 +20,20 @@ namespace TCC2
 
         }
 
-        public void ImporterWorksheet(string caminhoExcel, ComboBox carregarCombo)
+        public void ImporterWorksheet(string caminhoExcel, ComboBox carregarCombo, TextBox caminhoExcelText)
         {
             using (var ofd = new OpenFileDialog() { Filter = "Excel Workbook|*.xlsx|Excel 97-2003 Workbook|*.xls" })
             {
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
-                    caminhoExcel = ofd.FileName;
+                    if(caminhoExcel != null)
+                    {
+                        caminhoExcelText.Text = ofd.FileName;
+                    } else
+                    {
+                        ofd.FileName = caminhoExcel;
+                    }
+
                     try
                     {
                         using (var stream = File.Open(ofd.FileName, FileMode.Open, FileAccess.Read))

@@ -309,7 +309,8 @@ namespace TCC2
             {
                 string[] fileList = (string[])e.Data.GetData(DataFormats.FileDrop);
                 string caminhoArquivo = fileList.GetValue(0).ToString();
-                importarPlan.ImporterWorksheet(caminhoArquivo, _cbxNomePlanilha);
+                txtCaminhoArquivoExcel.Text = caminhoArquivo;
+                importarPlan.ImporterWorksheet(caminhoArquivo, _cbxNomePlanilha, txtCaminhoArquivoExcel);
             }
         }
 
@@ -468,7 +469,7 @@ namespace TCC2
 
         private void _btnBuscarPlanilha_Click(object sender, EventArgs e)
         {
-            importarPlan.ImporterWorksheet(txtCaminhoArquivoExcel.Text,_cbxNomePlanilha);
+            importarPlan.ImporterWorksheet(txtCaminhoArquivoExcel.Text,_cbxNomePlanilha, txtCaminhoArquivoExcel);
         }
 
         private void tabAlimento_Enter(object sender, EventArgs e)
@@ -1021,15 +1022,15 @@ namespace TCC2
 
         private void btnSalvarCardapio_Click(object sender, EventArgs e)
         {
-            double Kcal;
-            Kcal = Convert.ToDouble(lblValorKcal.Text.Split(' ')[0]);
+            double Kcal = Convert.ToDouble(lblValorKcal.Text.Split(' ')[0]);
+            
             foreach (DataGridViewRow row in dtgRefeicoes.Rows)
                 cardapioDAO.Salvar(Convert.ToString(CardapioDAO.codPacienteCard),
                                                     Convert.ToInt32(row.Cells["codAlimento"].Value),
                                                     Convert.ToString(cbxRefeicao.Text),
                                                     Convert.ToInt32(row.Cells["qtd"].Value),
                                                     Convert.ToString(row.Cells["obs"].Value),
-                                                    Kcal);
+                                                    Convert.ToDouble(row.Cells["kcal"].Value));
             dtgRefeicoes.DataSource = null;
             graficoMacroNutri.Series = null;
             txtPaciente.Text = null;
@@ -1314,5 +1315,33 @@ namespace TCC2
         }
         #endregion
 
+        private void tbConsultaCardapio_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbConsultaCardapio_Enter(object sender, EventArgs e)
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("RowLevel", typeof(int));
+            table.Columns.Add("Title", typeof(string));
+            table.Columns.Add("Data1", typeof(string));
+            table.Columns.Add("Data2", typeof(string));
+
+            table.Rows.Add(0, "Node 1", null, null);
+            table.Rows.Add(1, "Node 1.1", "Data 1.1", "Text 1.1");
+            table.Rows.Add(1, "Node 1.2", "Data 1.2", "Text 1.2");
+            table.Rows.Add(1, "Node 1.3", "Data 1.3", "Text 1.3");
+            table.Rows.Add(0, "Node 2", null, "Node 2 details");
+            table.Rows.Add(1, "Node 2.1", "Data 2.1", "Text  2.1");
+            table.Rows.Add(2, "Node 2.1.1", "Data 2.1.1", "Text  2.1.1");
+            
+
+        }
+
+        private void trwConsultarCardPaciente_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+
+        }
     }
 }

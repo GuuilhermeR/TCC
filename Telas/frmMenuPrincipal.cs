@@ -310,7 +310,7 @@ namespace TCC2
                 string[] fileList = (string[])e.Data.GetData(DataFormats.FileDrop);
                 string caminhoArquivo = fileList.GetValue(0).ToString();
                 txtCaminhoArquivoExcel.Text = caminhoArquivo;
-                importarPlan.ImporterWorksheet(caminhoArquivo, _cbxNomePlanilha, txtCaminhoArquivoExcel);
+                ImporterWorksheet(caminhoArquivo);
             }
         }
 
@@ -469,7 +469,7 @@ namespace TCC2
 
         private void _btnBuscarPlanilha_Click(object sender, EventArgs e)
         {
-            importarPlan.ImporterWorksheet(txtCaminhoArquivoExcel.Text,_cbxNomePlanilha, txtCaminhoArquivoExcel);
+            ImporterWorksheet(txtCaminhoArquivoExcel.Text);
         }
 
         private void tabAlimento_Enter(object sender, EventArgs e)
@@ -1342,6 +1342,41 @@ namespace TCC2
         private void trwConsultarCardPaciente_AfterSelect(object sender, TreeViewEventArgs e)
         {
 
+        }
+
+        public void ImporterWorksheet(string caminhoExcel)
+        {
+            using (var ofd = new OpenFileDialog() { Filter = "Excel Workbook|*.xlsx|Excel 97-2003 Workbook|*.xls" })
+            {
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+
+                    txtCaminhoArquivoExcel.Text = ofd.FileName;
+                    txtCaminhoArquivoExcel.Refresh();
+                    if (caminhoExcel != "" && ofd.FileName != "")
+                        ofd.FileName = caminhoExcel;
+
+                    try
+                    {
+                        using (var stream = File.Open(ofd.FileName, FileMode.Open, FileAccess.Read))
+                        {
+                            using (var reader = ExcelReaderFactory.CreateReader(stream))
+                            {
+                                var result = reader.AsDataSet(new ExcelDataSetConfiguration() { ConfigureDataTable = new Func<IExcelDataReader, ExcelDataTableConfiguration>(__ => new ExcelDataTableConfiguration() { UseHeaderRow = true }) });
+                                tables = result.Tables;
+                                _cbxNomePlanilha.Items.Clear();
+                                foreach (DataTable table in tables)
+                                    _cbxNomePlanilha.Items.Add(table.TableName);
+                            }
+                        }
+                        _cbxNomePlanilha.SelectedIndex = 0;
+                    }
+                    catch (Exception ex)
+                    {
+                        Interaction.MsgBox("Ocorreu um erro:" + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException, MsgBoxStyle.Critical, "ERRO AO SALVAR");
+                    }
+                }
+            }
         }
     }
 }

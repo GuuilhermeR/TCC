@@ -51,10 +51,6 @@ namespace TCC2
                                    where card.codPaciente == codPaciente
                                  select card).Distinct()).ToList();
 
-                //var cardapioSQL = ((from card in BancoDadosSingleton.Instance.Cardapio
-                //                 where card.codPaciente == codPaciente
-                //                 select card).ToString());
-                //cardapioSQL.Replace("[Extent1].", " ");
                 if (cardapio.Count > 0)
                 {
                     return cardapio;

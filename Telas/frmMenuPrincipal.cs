@@ -73,14 +73,8 @@ namespace TCC2
 
         private void tabMenu_Enter(object sender, EventArgs e)
         {
-            //var ConsultasMarcada = this.agendaDAO.CarregarAgenda(DateAndTime.Now.ToString("dd/MM/yyyy"), DateAndTime.Now.AddHours(1).ToString("HH:00"));
-
-            // if( ConsultasMarcada != null)
-            // ConsultasMarcada.ForEach(x =>
-            //{
-            //    MessageBox.Show($"Você tem hora marcada com {x.paciente} às {x.hora}");
-            //});
-
+            mCardConsultas.BackColor = Color.Red;
+            tabMenu_Click(sender, e);
         }
 
         public DataTable ConvertToDataTable<T>(IList<T> data)
@@ -99,6 +93,68 @@ namespace TCC2
             }
             return table;
             //https://social.msdn.microsoft.com/Forums/vstudio/pt-BR/6ffcb247-77fb-40b4-bcba-08ba377ab9db/converting-a-list-to-datatable?forum=csharpgeneral
+        }
+
+        private void mcbxAtendido_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(this, "Deseja concluir esta consulta?", "Consulta", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                bool retorno = false;
+                if (mlblObservação.Text == "Retorno")
+                    retorno = true;
+
+                agendaDAO.AdicionarPaciente(
+                            Convert.ToString(mlblHorario.Text.ToString().Substring(0, 5)),
+                            Convert.ToString(mlblHorario.Text.ToString().Substring(6, mlblHorario.Text.Length)),
+                            Convert.ToString(mlblNome.Text),
+                            Convert.ToBoolean(mcbxAtendido.Text),
+                            retorno);
+            }
+        }
+
+        private void mcbxCancelar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(this, "Deseja realmente cancelar esta consulta?", "Consulta", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                mcbxCancelar.CheckState = CheckState.Unchecked;
+            }
+        }
+
+        private void tabMenu_Click(object sender, EventArgs e)
+        {
+            var ConsultasMarcada = this.agendaDAO.CarregarAgenda(DateAndTime.Now.ToString("dd/MM/yyyy"), DateAndTime.Now.AddHours(1).ToString("HH:00"));
+
+            if (ConsultasMarcada != null)
+                ConsultasMarcada.ForEach(x =>
+                {
+                    if (Convert.ToDateTime(x.data + ' ' + x.hora) <= DateTime.Now.AddHours(1))
+                    {
+                        mCardConsultas.Visible = true;
+                        mlblNome.Text = x.paciente;
+                        mlblHorario.Text = x.data + ' ' + x.hora;
+                        if ((bool)x.retorno)
+                        {
+                            mlblObservação.Text = "Retorno";
+                        }
+                        else
+                        {
+                            mlblObservação.Text = "";
+                        }
+                        if ((bool)x.atendido)
+                        {
+                            mCardConsultas.BackColor = Color.LightGreen;
+                        }
+                    }
+                });
+            //timer1.Enabled = true;
+            //mCardConsultas.BackColor = mCardConsultas.BackColor == Color.Red ? Color.White : Color.Red;
+        }
+
+
+
+        private void mcbxAtendido_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
         #endregion
 
@@ -359,13 +415,14 @@ namespace TCC2
 
                         try
                         {
-                             alimento = Convert.ToString(row.Cells["Alimento"].Value);
-                             qtd = Convert.ToDouble(row.Cells["qtd"].Value);
-                             kcal = Convert.ToDouble(row.Cells["kcal"].Value);
-                             Prot = Convert.ToDouble(row.Cells["prot"].Value);
-                             Carb = Convert.ToDouble(row.Cells["carb"].Value);
-                             Lipidios = Convert.ToDouble(row.Cells["lip"].Value);
-                        }catch
+                            alimento = Convert.ToString(row.Cells["Alimento"].Value);
+                            qtd = Convert.ToDouble(row.Cells["qtd"].Value);
+                            kcal = Convert.ToDouble(row.Cells["kcal"].Value);
+                            Prot = Convert.ToDouble(row.Cells["prot"].Value);
+                            Carb = Convert.ToDouble(row.Cells["carb"].Value);
+                            Lipidios = Convert.ToDouble(row.Cells["lip"].Value);
+                        }
+                        catch
                         {
                             continue;
                         }
@@ -794,7 +851,7 @@ namespace TCC2
             {
                 MessageBox.Show("Nenhuma imagem foi selecionada!");
             }
-           
+
             //}
             //else
             //{
@@ -1023,7 +1080,7 @@ namespace TCC2
         private void btnSalvarCardapio_Click(object sender, EventArgs e)
         {
             double Kcal = Convert.ToDouble(lblValorKcal.Text.Split(' ')[0]);
-            
+
             foreach (DataGridViewRow row in dtgRefeicoes.Rows)
                 cardapioDAO.Salvar(Convert.ToString(CardapioDAO.codPacienteCard),
                                                     Convert.ToInt32(row.Cells["codAlimento"].Value),
@@ -1280,7 +1337,7 @@ namespace TCC2
                 usuarioDAO.Buscar(txtUsuarioConfig.Text);
         }
         private void tbConfig_Enter(object sender, EventArgs e)
-        {        
+        {
             var listaUsuario = usuarioDAO.Buscar("");
             if (listaUsuario == null)
                 return;
@@ -1322,20 +1379,16 @@ namespace TCC2
 
         private void tbConsultaCardapio_Enter(object sender, EventArgs e)
         {
-            DataTable table = new DataTable();
-            table.Columns.Add("RowLevel", typeof(int));
-            table.Columns.Add("Title", typeof(string));
-            table.Columns.Add("Data1", typeof(string));
-            table.Columns.Add("Data2", typeof(string));
+            var consultaPaciente = cardapioDAO.Consultar(Convert.ToInt32(txtPacienteConsultaCardapio.Text));
+            if (consultaPaciente is null || consultaPaciente.Count == 0)
+                return;
 
-            table.Rows.Add(0, "Node 1", null, null);
-            table.Rows.Add(1, "Node 1.1", "Data 1.1", "Text 1.1");
-            table.Rows.Add(1, "Node 1.2", "Data 1.2", "Text 1.2");
-            table.Rows.Add(1, "Node 1.3", "Data 1.3", "Text 1.3");
-            table.Rows.Add(0, "Node 2", null, "Node 2 details");
-            table.Rows.Add(1, "Node 2.1", "Data 2.1", "Text  2.1");
-            table.Rows.Add(2, "Node 2.1.1", "Data 2.1.1", "Text  2.1.1");
-            
+            consultaPaciente.ForEach(pac =>
+            {
+
+
+
+            });
 
         }
 

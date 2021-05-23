@@ -39,6 +39,28 @@ namespace ProjetoTCC
             }
         }
 
+        public List<Agenda> CarregarConsulta(string dataAgenda)
+        {
+            try
+            {
+                var agenda = (from a in BancoDadosSingleton.Instance.Agenda where a.data == dataAgenda select a).ToList();
+                if (agenda.Count > 0)
+                {
+                    return agenda;
+
+                }
+                else
+                {
+                    return null;
+
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public void AdicionarPaciente(string dataAgenda, string horario, string paciente, bool atendido, bool retorno)
         {
             if (VerificarPacienteAgendado(paciente))

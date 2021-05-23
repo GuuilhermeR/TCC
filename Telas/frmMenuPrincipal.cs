@@ -73,7 +73,7 @@ namespace TCC2
 
         private void tabMenu_Enter(object sender, EventArgs e)
         {
-            mCardConsultas.BackColor = Color.Red;
+            mCardAtendimentoAtual.BackColor = Color.Red;
             tabMenu_Click(sender, e);
         }
 
@@ -122,14 +122,14 @@ namespace TCC2
 
         private void tabMenu_Click(object sender, EventArgs e)
         {
-            var ConsultasMarcada = this.agendaDAO.CarregarAgenda(DateAndTime.Now.ToString("dd/MM/yyyy"), DateAndTime.Now.AddHours(1).ToString("HH:00"));
+            var ConsultasMarcada = this.agendaDAO.CarregarConsulta(DateAndTime.Now.ToString("dd/MM/yyyy"));
 
             if (ConsultasMarcada != null)
                 ConsultasMarcada.ForEach(x =>
                 {
-                    if (Convert.ToDateTime(x.data + ' ' + x.hora) <= DateTime.Now.AddHours(1))
+                    if (Convert.ToDateTime(x.data + ' ' + x.hora) <= DateTime.Now)
                     {
-                        mCardConsultas.Visible = true;
+                        mCardAtendimentoAtual.Visible = true;
                         mlblNome.Text = x.paciente;
                         mlblHorario.Text = x.data + ' ' + x.hora;
                         if ((bool)x.retorno)
@@ -142,7 +142,28 @@ namespace TCC2
                         }
                         if ((bool)x.atendido)
                         {
-                            mCardConsultas.BackColor = Color.LightGreen;
+                            mCardAtendimentoAtual.BackColor = Color.LightGreen;
+                        }
+                    }
+                    else
+                    {
+                        if (Convert.ToDateTime(x.data + ' ' + x.hora) > DateTime.Now)
+                        {
+                            mCardAtendimentoFuturo.Visible = true;
+                            mlblNomeFuturo.Text = x.paciente;
+                            mlblHoraFutura.Text = x.data + ' ' + x.hora;
+                            if ((bool)x.retorno)
+                            {
+                                mlblObservacaoFuturo.Text = "Retorno";
+                            }
+                            else
+                            {
+                                mlblObservacaoFuturo.Text = "";
+                            }
+                            if ((bool)x.atendido)
+                            {
+                                mCardAtendimentoFuturo.BackColor = Color.LightGreen;
+                            }
                         }
                     }
                 });

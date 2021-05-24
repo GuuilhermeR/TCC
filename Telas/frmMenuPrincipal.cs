@@ -15,6 +15,7 @@ using LiveCharts;
 using LiveCharts.Wpf;
 using System.Transactions;
 using TCC2.Banco_de_Dados;
+using AdvancedDataGridView;
 
 namespace TCC2
 {
@@ -29,7 +30,6 @@ namespace TCC2
         public MedidaCaseiraDAO medidaCaseiraDAO = new MedidaCaseiraDAO();
         public CardapioDAO cardapioDAO = new CardapioDAO();
         public BuscadorCEP buscaCEP = new BuscadorCEP();
-        public ImportadorPlanilha importarPlan = new ImportadorPlanilha();
         private DataTableCollection tables;
         List<string> deletar = new List<string>();
         List<string> deletarAlimento = new List<string>();
@@ -75,6 +75,46 @@ namespace TCC2
         {
             mCardAtendimentoAtual.BackColor = Color.Red;
             tabMenu_Click(sender, e);
+        }
+
+        public void ImporterWorksheet(string caminhoExcel, OpenFileDialog ofd)
+        {
+            if (ofd.FileName == "")
+            {
+                ofd.FileName = caminhoExcel;
+                txtCaminhoArquivoExcel.Text = caminhoExcel;
+            }
+            else if (ofd.FileName != "")
+            {
+                txtCaminhoArquivoExcel.Text = ofd.FileName;
+            }
+            else
+            {
+                MessageBox.Show(this, "Não foi possível localizar o caminho do excel!", "ERRO CAMINHO", MessageBoxButtons.OK);
+                return;
+            }
+
+            txtCaminhoArquivoExcel.Refresh();
+
+            try
+            {
+                using (var stream = File.Open(ofd.FileName, FileMode.Open, FileAccess.Read))
+                {
+                    using (var reader = ExcelReaderFactory.CreateReader(stream))
+                    {
+                        var result = reader.AsDataSet(new ExcelDataSetConfiguration() { ConfigureDataTable = new Func<IExcelDataReader, ExcelDataTableConfiguration>(__ => new ExcelDataTableConfiguration() { UseHeaderRow = true }) });
+                        tables = result.Tables;
+                        _cbxNomePlanilha.Items.Clear();
+                        foreach (DataTable table in tables)
+                            _cbxNomePlanilha.Items.Add(table.TableName);
+                    }
+                }
+                _cbxNomePlanilha.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                Interaction.MsgBox("Ocorreu um erro:" + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException, MsgBoxStyle.Critical, "ERRO AO SALVAR");
+            }
         }
 
         public DataTable ConvertToDataTable<T>(IList<T> data)
@@ -127,42 +167,45 @@ namespace TCC2
             if (ConsultasMarcada != null)
                 ConsultasMarcada.ForEach(x =>
                 {
-                    if (Convert.ToDateTime(x.data + ' ' + x.hora) <= DateTime.Now)
+                    if(x.data == DateTime.Now.ToString("dd/MM/yyyy"))
                     {
-                        mCardAtendimentoAtual.Visible = true;
-                        mlblNome.Text = x.paciente;
-                        mlblHorario.Text = x.data + ' ' + x.hora;
-                        if ((bool)x.retorno)
+                        if (Convert.ToDateTime(x.data + ' ' + x.hora) <= DateTime.Now)
                         {
-                            mlblObservação.Text = "Retorno";
-                        }
-                        else
-                        {
-                            mlblObservação.Text = "";
-                        }
-                        if ((bool)x.atendido)
-                        {
-                            mCardAtendimentoAtual.BackColor = Color.LightGreen;
-                        }
-                    }
-                    else
-                    {
-                        if (Convert.ToDateTime(x.data + ' ' + x.hora) > DateTime.Now)
-                        {
-                            mCardAtendimentoFuturo.Visible = true;
-                            mlblNomeFuturo.Text = x.paciente;
-                            mlblHoraFutura.Text = x.data + ' ' + x.hora;
+                            mCardAtendimentoAtual.Visible = true;
+                            mlblNome.Text = x.paciente;
+                            mlblHorario.Text = x.data + ' ' + x.hora;
                             if ((bool)x.retorno)
                             {
-                                mlblObservacaoFuturo.Text = "Retorno";
+                                mlblObservação.Text = "Retorno";
                             }
                             else
                             {
-                                mlblObservacaoFuturo.Text = "";
+                                mlblObservação.Text = "";
                             }
                             if ((bool)x.atendido)
                             {
-                                mCardAtendimentoFuturo.BackColor = Color.LightGreen;
+                                mCardAtendimentoAtual.BackColor = Color.LightGreen;
+                            }
+                        }
+                        else
+                        {
+                            if (Convert.ToDateTime(x.data + ' ' + x.hora) > DateTime.Now)
+                            {
+                                mCardAtendimentoFuturo.Visible = true;
+                                mlblNomeFuturo.Text = x.paciente;
+                                mlblHoraFutura.Text = x.data + ' ' + x.hora;
+                                if ((bool)x.retorno)
+                                {
+                                    mlblObservacaoFuturo.Text = "Retorno";
+                                }
+                                else
+                                {
+                                    mlblObservacaoFuturo.Text = "";
+                                }
+                                if ((bool)x.atendido)
+                                {
+                                    mCardAtendimentoFuturo.BackColor = Color.LightGreen;
+                                }
                             }
                         }
                     }
@@ -382,12 +425,13 @@ namespace TCC2
 
         private void dtgDadosImportados_DragDrop(object sender, DragEventArgs e)
         {
+            OpenFileDialog ofd = new OpenFileDialog();
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 string[] fileList = (string[])e.Data.GetData(DataFormats.FileDrop);
                 string caminhoArquivo = fileList.GetValue(0).ToString();
                 txtCaminhoArquivoExcel.Text = caminhoArquivo;
-                ImporterWorksheet(caminhoArquivo);
+                ImporterWorksheet(caminhoArquivo, ofd);
             }
         }
 
@@ -547,7 +591,13 @@ namespace TCC2
 
         private void _btnBuscarPlanilha_Click(object sender, EventArgs e)
         {
-            ImporterWorksheet(txtCaminhoArquivoExcel.Text);
+            using (var ofd = new OpenFileDialog() { Filter = "Excel Workbook|*.xlsx|Excel 97-2003 Workbook|*.xls" })
+            {
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    ImporterWorksheet(txtCaminhoArquivoExcel.Text, ofd);
+                }
+            }
         }
 
         private void tabAlimento_Enter(object sender, EventArgs e)
@@ -1198,7 +1248,7 @@ namespace TCC2
         private void btnApagar_Click(object sender, EventArgs e)
         {
             txtPacienteConsultaCardapio.Text = null;
-            trwConsultarCardPaciente.Nodes.Clear();
+            trwDadosCard.Nodes.Clear();
         }
 
         private void txtPacienteConsultaCardapio_TextChanged(object sender, EventArgs e)
@@ -1210,30 +1260,39 @@ namespace TCC2
                 return;
             else if (listaCardapio.Count == 0)
                 return;
-            trwConsultarCardPaciente.Nodes.Clear();
+            trwDadosCard.Nodes.Clear();
 
-            TreeNode rootNode = trwConsultarCardPaciente.Nodes.Add("Refeição");
+            TreeGridColumn refeicaoColumn = new TreeGridColumn();
+            
+            refeicaoColumn.DefaultNodeImage = null;
+            refeicaoColumn.FillWeight = 50F;
+            refeicaoColumn.HeaderText = "Refeição";
+            refeicaoColumn.Name = "refeicao";
+            refeicaoColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            trwDadosCard.Columns.Add(refeicaoColumn);
+
+            TreeGridNode rootNode = trwDadosCard.Nodes.Add("Refeições");
             rootNode.ImageIndex = 0;
 
             // Cria os nós filhos para o raiz
-            TreeNode cafe = rootNode.Nodes.Add("Café da manhã");
+            TreeGridNode cafe = rootNode.Nodes.Add("Café da manhã");
             cafe.ImageIndex = 1;
-            TreeNode Lanche = rootNode.Nodes.Add("Lanche");
+            TreeGridNode Lanche = rootNode.Nodes.Add("Lanche");
             Lanche.ImageIndex = 1;
-            TreeNode Almoco = rootNode.Nodes.Add("Almoço");
+            TreeGridNode Almoco = rootNode.Nodes.Add("Almoço");
             Almoco.ImageIndex = 1;
-            TreeNode LancheTarde = rootNode.Nodes.Add("Lanche da tarde");
+            TreeGridNode LancheTarde = rootNode.Nodes.Add("Lanche da tarde");
             LancheTarde.ImageIndex = 1;
-            TreeNode Jantar = rootNode.Nodes.Add("Jantar");
+            TreeGridNode Jantar = rootNode.Nodes.Add("Jantar");
             Jantar.ImageIndex = 1;
-            TreeNode Ceia = rootNode.Nodes.Add("Ceia");
+            TreeGridNode Ceia = rootNode.Nodes.Add("Ceia");
             Ceia.ImageIndex = 1;
             listaCardapio.ForEach(card =>
             {
                 switch (card.Refeicao)
                 {
                     case "Café da manhã":
-                        TreeNode filhoCafe = cafe.Nodes.Add("Alimento: " + card.Alimentos.nomeAlimento);
+                        TreeGridNode filhoCafe = cafe.Nodes.Add("Alimento: " + card.Alimentos.nomeAlimento);
                         filhoCafe.ImageIndex = 2;
                         filhoCafe = cafe.Nodes.Add("Medida Caseira: " + card.medidaCaseiraQtde.ToString());
                         filhoCafe.ImageIndex = 2;
@@ -1244,7 +1303,7 @@ namespace TCC2
                         return;
 
                     case "Lanche":
-                        TreeNode filhoLanche = Lanche.Nodes.Add("Alimento: " + card.Alimentos.nomeAlimento);
+                        TreeGridNode filhoLanche = Lanche.Nodes.Add("Alimento: " + card.Alimentos.nomeAlimento);
                         filhoLanche.ImageIndex = 2;
                         filhoLanche = Lanche.Nodes.Add("Medida Caseira: " + card.medidaCaseiraQtde.ToString());
                         filhoLanche.ImageIndex = 2;
@@ -1255,7 +1314,7 @@ namespace TCC2
                         return;
 
                     case "Almoço":
-                        TreeNode filhoAlmoco = Almoco.Nodes.Add("Alimento: " + card.Alimentos.nomeAlimento);
+                        TreeGridNode filhoAlmoco = Almoco.Nodes.Add("Alimento: " + card.Alimentos.nomeAlimento);
                         filhoAlmoco.ImageIndex = 2;
                         filhoAlmoco = Almoco.Nodes.Add("Medida Caseira: " + card.medidaCaseiraQtde.ToString());
                         filhoAlmoco.ImageIndex = 2;
@@ -1266,7 +1325,7 @@ namespace TCC2
                         return;
 
                     case "Lanche da tarde":
-                        TreeNode filhoLancheTarde = LancheTarde.Nodes.Add("Alimento: " + card.Alimentos.nomeAlimento);
+                        TreeGridNode filhoLancheTarde = LancheTarde.Nodes.Add("Alimento: " + card.Alimentos.nomeAlimento);
                         filhoLancheTarde.ImageIndex = 2;
                         filhoLancheTarde = LancheTarde.Nodes.Add("Medida Caseira: " + card.medidaCaseiraQtde.ToString());
                         filhoLancheTarde.ImageIndex = 2;
@@ -1277,7 +1336,7 @@ namespace TCC2
                         return;
 
                     case "Jantar":
-                        TreeNode filhoJantar = Jantar.Nodes.Add("Alimento: " + card.Alimentos.nomeAlimento);
+                        TreeGridNode filhoJantar = Jantar.Nodes.Add("Alimento: " + card.Alimentos.nomeAlimento);
                         filhoJantar.ImageIndex = 2;
                         filhoJantar = Jantar.Nodes.Add("Medida Caseira: " + card.medidaCaseiraQtde.ToString());
                         filhoJantar.ImageIndex = 2;
@@ -1288,7 +1347,7 @@ namespace TCC2
                         return;
 
                     case "Ceia":
-                        TreeNode filhoCeia = Ceia.Nodes.Add("Alimento: " + card.Alimentos.nomeAlimento);
+                        TreeGridNode filhoCeia = Ceia.Nodes.Add("Alimento: " + card.Alimentos.nomeAlimento);
                         filhoCeia.ImageIndex = 2;
                         filhoCeia = Ceia.Nodes.Add("Medida Caseira: " + card.medidaCaseiraQtde.ToString());
                         filhoCeia.ImageIndex = 2;
@@ -1315,7 +1374,7 @@ namespace TCC2
             dtgCardapioAlimentos.Rows.Clear();
             dtgCardapioAlimentos.Columns.Clear();
             graficoMacroNutri.Series = null;
-            trwConsultarCardPaciente.Nodes.Clear();
+            trwDadosCard.Nodes.Clear();
             lblValorKcal.Text = "";
         }
         #endregion
@@ -1400,57 +1459,14 @@ namespace TCC2
 
         private void tbConsultaCardapio_Enter(object sender, EventArgs e)
         {
-            var consultaPaciente = cardapioDAO.Consultar(Convert.ToInt32(txtPacienteConsultaCardapio.Text));
-            if (consultaPaciente is null || consultaPaciente.Count == 0)
-                return;
+            //var consultaPaciente = cardapioDAO.Consultar(Convert.ToInt32(txtPacienteConsultaCardapio.Text));
+            //if (consultaPaciente is null || consultaPaciente.Count == 0)
+            //    return;
 
-            consultaPaciente.ForEach(pac =>
-            {
+            //consultaPaciente.ForEach(pac =>
+            //{
+            //});
 
-
-
-            });
-
-        }
-
-        private void trwConsultarCardPaciente_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-
-        }
-
-        public void ImporterWorksheet(string caminhoExcel)
-        {
-            using (var ofd = new OpenFileDialog() { Filter = "Excel Workbook|*.xlsx|Excel 97-2003 Workbook|*.xls" })
-            {
-                if (ofd.ShowDialog() == DialogResult.OK)
-                {
-
-                    txtCaminhoArquivoExcel.Text = ofd.FileName;
-                    txtCaminhoArquivoExcel.Refresh();
-                    if (caminhoExcel != "" && ofd.FileName != "")
-                        ofd.FileName = caminhoExcel;
-
-                    try
-                    {
-                        using (var stream = File.Open(ofd.FileName, FileMode.Open, FileAccess.Read))
-                        {
-                            using (var reader = ExcelReaderFactory.CreateReader(stream))
-                            {
-                                var result = reader.AsDataSet(new ExcelDataSetConfiguration() { ConfigureDataTable = new Func<IExcelDataReader, ExcelDataTableConfiguration>(__ => new ExcelDataTableConfiguration() { UseHeaderRow = true }) });
-                                tables = result.Tables;
-                                _cbxNomePlanilha.Items.Clear();
-                                foreach (DataTable table in tables)
-                                    _cbxNomePlanilha.Items.Add(table.TableName);
-                            }
-                        }
-                        _cbxNomePlanilha.SelectedIndex = 0;
-                    }
-                    catch (Exception ex)
-                    {
-                        Interaction.MsgBox("Ocorreu um erro:" + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException, MsgBoxStyle.Critical, "ERRO AO SALVAR");
-                    }
-                }
-            }
         }
     }
 }

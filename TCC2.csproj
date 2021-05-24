@@ -39,12 +39,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Desktop\CapturaImagemWebCam\CapturaImagemWebCam\Support\DShowNET.dll</HintPath>
     </Reference>
+    <Reference Include="ExpandableGridView, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\OneDrive\Faculdade\TCC\TreeGridview\TreeGridView\bin\Debug\ExpandableGridView.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -98,7 +103,6 @@
       <DependentUpon>frmTelaLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="DAO\MedidaCaseiraDAO.cs" />
-    <Compile Include="Classes\ImportadorPlanilha.cs" />
     <Compile Include="Banco de Dados\Login.cs">
       <DependentUpon>NutreasyDB.tt</DependentUpon>
     </Compile>

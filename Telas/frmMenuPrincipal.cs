@@ -327,6 +327,7 @@ namespace TCC2
             if (Convert.ToString(mlblObservação.Text) != "")
                 temRetorno = true;
             CancelarAtendimento(Convert.ToString(mlblHorario.Text), mlblNome.Text, mcbxAtendido.Checked, temRetorno);
+            tabMenu_Click(sender, e);
         }
 
         private void mcbxAtendido_CheckedChanged_1(object sender, EventArgs e)
@@ -335,6 +336,7 @@ namespace TCC2
             if (Convert.ToString(mlblObservação.Text) != "")
                 temRetorno = true;
             FinalizarAtendimento(Convert.ToString(mlblHorario.Text), mlblNome.Text, mcbxAtendido.Checked, temRetorno);
+            tabMenu_Click(sender, e);
         }
 
         private void mcbxAtendidoFuturo_CheckedChanged(object sender, EventArgs e)
@@ -343,6 +345,7 @@ namespace TCC2
             if (Convert.ToString(mlblObservação.Text) != "")
                 temRetorno = true;
             FinalizarAtendimento(Convert.ToString(mlblHoraFutura.Text), mlblNomeFuturo.Text, mcbxAtendidoFuturo.Checked, temRetorno);
+            tabMenu_Click(sender, e);
         }
 
         private void mcbxCancelarFuturo_CheckedChanged(object sender, EventArgs e)
@@ -351,6 +354,7 @@ namespace TCC2
             if (Convert.ToString(mlblObservação.Text) != "")
                 temRetorno = true;
             CancelarAtendimento(Convert.ToString(mlblHoraFutura.Text), mlblNomeFuturo.Text, mcbxAtendidoFuturo.Checked, temRetorno);
+            tabMenu_Click(sender, e);
         }
 
         private void CancelarAtendimento(string data, string paciente, bool atendido, bool retorno)
@@ -358,7 +362,6 @@ namespace TCC2
             if (MessageBox.Show(this, "Deseja realmente cancelar esta consulta?", "AVISO", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 agendaDAO.AdicionarPaciente(data.Substring(0, 10), data.Substring(11), paciente, atendido, retorno, 1);
-                this.Refresh();
             }
         }
 
@@ -367,7 +370,6 @@ namespace TCC2
             if (MessageBox.Show(this, "Deseja realmente finalizar esta consulta?", "AVISO", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 agendaDAO.AdicionarPaciente(data.Substring(0, 10), data.Substring(11), paciente, atendido, retorno, 0);
-                this.Refresh();
             }
         }
         #endregion

@@ -15,6 +15,7 @@
           <Property Name="retorno" Type="bit" />
           <Property Name="atendido" Type="bit" />
           <Property Name="hora" Type="varchar" MaxLength="2147483647" />
+          <Property Name="Cancelado" Type="int" />
         </EntityType>
         <EntityType Name="Alimentos">
           <Key>
@@ -151,6 +152,7 @@
           <Property Name="retorno" Type="Boolean" />
           <Property Name="atendido" Type="Boolean" />
           <Property Name="hora" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="Cancelado" Type="Int32" />
         </EntityType>
         <EntityType Name="Alimentos">
           <Key>
@@ -288,6 +290,7 @@
           <EntitySetMapping Name="Agenda">
             <EntityTypeMapping TypeName="mainModel.Agenda">
               <MappingFragment StoreEntitySet="Agenda">
+                <ScalarProperty Name="Cancelado" ColumnName="Cancelado" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="paciente" ColumnName="paciente" />
                 <ScalarProperty Name="data" ColumnName="data" />

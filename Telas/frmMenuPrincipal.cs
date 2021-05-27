@@ -135,31 +135,6 @@ namespace TCC2
             //https://social.msdn.microsoft.com/Forums/vstudio/pt-BR/6ffcb247-77fb-40b4-bcba-08ba377ab9db/converting-a-list-to-datatable?forum=csharpgeneral
         }
 
-        private void mcbxAtendido_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show(this, "Deseja concluir esta consulta?", "Consulta", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                bool retorno = false;
-                if (mlblObservação.Text == "Retorno")
-                    retorno = true;
-
-                agendaDAO.AdicionarPaciente(
-                            Convert.ToString(mlblHorario.Text.ToString().Substring(0, 5)),
-                            Convert.ToString(mlblHorario.Text.ToString().Substring(6, mlblHorario.Text.Length)),
-                            Convert.ToString(mlblNome.Text),
-                            Convert.ToBoolean(mcbxAtendido.Text),
-                            retorno);
-            }
-        }
-
-        private void mcbxCancelar_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show(this, "Deseja realmente cancelar esta consulta?", "Consulta", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                mcbxCancelar.CheckState = CheckState.Unchecked;
-            }
-        }
-
         private void tabMenu_Click(object sender, EventArgs e)
         {
             var ConsultasMarcada = this.agendaDAO.CarregarConsulta(DateAndTime.Now.ToString("dd/MM/yyyy"));
@@ -167,9 +142,9 @@ namespace TCC2
             if (ConsultasMarcada != null)
                 ConsultasMarcada.ForEach(x =>
                 {
-                    if(x.data == DateTime.Now.ToString("dd/MM/yyyy"))
+                    if (x.data == DateTime.Now.ToString("dd/MM/yyyy") && x.Cancelado == 0)
                     {
-                        if (Convert.ToDateTime(x.data + ' ' + x.hora) <= DateTime.Now)
+                        if (Convert.ToDateTime(x.data + ' ' + x.hora) <= DateTime.Now && x.atendido != true)
                         {
                             mCardAtendimentoAtual.Visible = true;
                             mlblNome.Text = x.paciente;
@@ -187,26 +162,33 @@ namespace TCC2
                                 mCardAtendimentoAtual.BackColor = Color.LightGreen;
                             }
                         }
+                    else if (Convert.ToDateTime(x.data + ' ' + x.hora) > DateTime.Now && x.Cancelado == 0)
+                    {
+                        if (Convert.ToDateTime(x.data + ' ' + x.hora) > DateTime.Now)
+                        {
+                            mCardAtendimentoFuturo.Visible = true;
+                            mlblNomeFuturo.Text = x.paciente;
+                            mlblHoraFutura.Text = x.data + ' ' + x.hora;
+                            if ((bool)x.retorno)
+                            {
+                                mlblObservacaoFuturo.Text = "Retorno";
+                            }
+                            else
+                            {
+                                mlblObservacaoFuturo.Text = "";
+                            }
+                            if ((bool)x.atendido)
+                            {
+                                mCardAtendimentoFuturo.BackColor = Color.LightGreen;
+                            }
+                        }
                         else
                         {
-                            if (Convert.ToDateTime(x.data + ' ' + x.hora) > DateTime.Now)
-                            {
-                                mCardAtendimentoFuturo.Visible = true;
-                                mlblNomeFuturo.Text = x.paciente;
-                                mlblHoraFutura.Text = x.data + ' ' + x.hora;
-                                if ((bool)x.retorno)
-                                {
-                                    mlblObservacaoFuturo.Text = "Retorno";
-                                }
-                                else
-                                {
-                                    mlblObservacaoFuturo.Text = "";
-                                }
-                                if ((bool)x.atendido)
-                                {
-                                    mCardAtendimentoFuturo.BackColor = Color.LightGreen;
-                                }
-                            }
+                            mCardAtendimentoFuturo.Visible = false;
+                        }
+                    }else
+                        {
+                            mCardAtendimentoAtual.Visible = false;
                         }
                     }
                 });
@@ -316,7 +298,7 @@ namespace TCC2
                         row.Cells["horario"].Value.ToString(),
                         row.Cells["nomePaciente"].Value.ToString(),
                         Convert.ToBoolean(row.Cells["atendido"].Value),
-                        Convert.ToBoolean(row.Cells["retorno"].Value));
+                        Convert.ToBoolean(row.Cells["retorno"].Value),0);
                 }
 
             }
@@ -336,6 +318,56 @@ namespace TCC2
                 dtgAgenda.CurrentRow.Cells["nomePaciente"].Value = "";
                 dtgAgenda.CurrentRow.Cells["atendido"].Value = false;
                 dtgAgenda.CurrentRow.Cells["retorno"].Value = false;
+            }
+        }
+
+        private void mcbxCancelar_CheckedChanged(object sender, EventArgs e)
+        {
+            bool temRetorno = false;
+            if (Convert.ToString(mlblObservação.Text) != "")
+                temRetorno = true;
+            CancelarAtendimento(Convert.ToString(mlblHorario.Text), mlblNome.Text, mcbxAtendido.Checked, temRetorno);
+        }
+
+        private void mcbxAtendido_CheckedChanged_1(object sender, EventArgs e)
+        {
+            bool temRetorno = false;
+            if (Convert.ToString(mlblObservação.Text) != "")
+                temRetorno = true;
+            FinalizarAtendimento(Convert.ToString(mlblHorario.Text), mlblNome.Text, mcbxAtendido.Checked, temRetorno);
+        }
+
+        private void mcbxAtendidoFuturo_CheckedChanged(object sender, EventArgs e)
+        {
+            bool temRetorno = false;
+            if (Convert.ToString(mlblObservação.Text) != "")
+                temRetorno = true;
+            FinalizarAtendimento(Convert.ToString(mlblHoraFutura.Text), mlblNomeFuturo.Text, mcbxAtendidoFuturo.Checked, temRetorno);
+        }
+
+        private void mcbxCancelarFuturo_CheckedChanged(object sender, EventArgs e)
+        {
+            bool temRetorno = false;
+            if (Convert.ToString(mlblObservação.Text) != "")
+                temRetorno = true;
+            CancelarAtendimento(Convert.ToString(mlblHoraFutura.Text), mlblNomeFuturo.Text, mcbxAtendidoFuturo.Checked, temRetorno);
+        }
+
+        private void CancelarAtendimento(string data, string paciente, bool atendido, bool retorno)
+        {
+            if (MessageBox.Show(this, "Deseja realmente cancelar esta consulta?", "AVISO", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                agendaDAO.AdicionarPaciente(data.Substring(0, 10), data.Substring(11), paciente, atendido, retorno, 1);
+                this.Refresh();
+            }
+        }
+
+        private void FinalizarAtendimento(string data, string paciente, bool atendido, bool retorno)
+        {
+            if (MessageBox.Show(this, "Deseja realmente finalizar esta consulta?", "AVISO", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                agendaDAO.AdicionarPaciente(data.Substring(0, 10), data.Substring(11), paciente, atendido, retorno, 0);
+                this.Refresh();
             }
         }
         #endregion
@@ -1468,5 +1500,6 @@ namespace TCC2
             //});
 
         }
+
     }
 }

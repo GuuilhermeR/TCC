@@ -328,6 +328,7 @@ namespace TCC2
             this.mcbxCancelarFuturo.TabIndex = 14;
             this.mcbxCancelarFuturo.Text = "Cancelar";
             this.mcbxCancelarFuturo.UseVisualStyleBackColor = true;
+            this.mcbxCancelarFuturo.CheckedChanged += new System.EventHandler(this.mcbxCancelarFuturo_CheckedChanged);
             // 
             // mcbxAtendidoFuturo
             // 
@@ -343,6 +344,7 @@ namespace TCC2
             this.mcbxAtendidoFuturo.TabIndex = 11;
             this.mcbxAtendidoFuturo.Text = "Atendido";
             this.mcbxAtendidoFuturo.UseVisualStyleBackColor = true;
+            this.mcbxAtendidoFuturo.CheckedChanged += new System.EventHandler(this.mcbxAtendidoFuturo_CheckedChanged);
             // 
             // mlblObservacaoFuturo
             // 
@@ -432,7 +434,7 @@ namespace TCC2
             this.mcbxCancelar.TabIndex = 14;
             this.mcbxCancelar.Text = "Cancelar";
             this.mcbxCancelar.UseVisualStyleBackColor = true;
-            this.mcbxCancelar.Click += new System.EventHandler(this.mcbxCancelar_Click);
+            this.mcbxCancelar.CheckedChanged += new System.EventHandler(this.mcbxCancelar_CheckedChanged);
             // 
             // mcbxAtendido
             // 
@@ -448,7 +450,7 @@ namespace TCC2
             this.mcbxAtendido.TabIndex = 11;
             this.mcbxAtendido.Text = "Atendido";
             this.mcbxAtendido.UseVisualStyleBackColor = true;
-            this.mcbxAtendido.Click += new System.EventHandler(this.mcbxAtendido_Click);
+            this.mcbxAtendido.CheckedChanged += new System.EventHandler(this.mcbxAtendido_CheckedChanged_1);
             // 
             // mlblObservação
             // 

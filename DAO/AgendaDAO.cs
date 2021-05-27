@@ -25,12 +25,10 @@ namespace ProjetoTCC
                 if (agenda.Count > 0)
                 {
                     return agenda;
-
                 }
                 else
                 {
                     return null;
-
                 }
             }
             catch
@@ -43,7 +41,7 @@ namespace ProjetoTCC
         {
             try
             {
-                var agenda = (from a in BancoDadosSingleton.Instance.Agenda where a.data == dataAgenda select a).ToList();
+                var agenda = (from a in BancoDadosSingleton.Instance.Agenda where a.data == dataAgenda  select a).ToList();
                 if (agenda.Count > 0)
                 {
                     return agenda;
@@ -61,42 +59,51 @@ namespace ProjetoTCC
             }
         }
 
-        public void AdicionarPaciente(string dataAgenda, string horario, string paciente, bool atendido, bool retorno)
+        public void AdicionarPaciente(string dataAgenda, string horario, string paciente, bool atendido, bool retorno, int cancelado)
         {
-            if (VerificarPacienteAgendado(paciente))
+            try
             {
-                var a = (from c in BancoDadosSingleton.Instance.Agenda where c.paciente == paciente select c).Single();
+                if (VerificarPacienteAgendado(paciente, dataAgenda))
+                {
+                    var a = (from c in BancoDadosSingleton.Instance.Agenda where c.paciente == paciente && c.data == dataAgenda select c).Single();
 
-                a.data = dataAgenda;
-                a.hora = horario;
-                a.atendido= atendido;
-                a.retorno= retorno;
+                    a.data = dataAgenda;
+                    a.hora = horario;
+                    a.atendido = atendido;
+                    a.retorno = retorno;
+                    a.Cancelado = cancelado;
 
-                BancoDadosSingleton.Instance.SaveChanges();
+                    BancoDadosSingleton.Instance.SaveChanges();
+                }
+                else
+                {
+                    Agenda agendaInsert = new Agenda();
+
+                    agendaInsert.paciente = paciente;
+                    agendaInsert.data = dataAgenda;
+                    agendaInsert.hora = horario;
+                    agendaInsert.atendido = atendido;
+                    agendaInsert.retorno = retorno;
+                    agendaInsert.Cancelado = cancelado;
+
+                    BancoDadosSingleton.Instance.Agenda.Add(agendaInsert);
+                    BancoDadosSingleton.Instance.SaveChanges();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Agenda agendaInsert = new Agenda();
-
-                agendaInsert.paciente = paciente;
-                agendaInsert.data = dataAgenda;
-                agendaInsert.hora = horario;
-                agendaInsert.atendido = atendido;
-                agendaInsert.retorno = retorno;
-
-                BancoDadosSingleton.Instance.Agenda.Add(agendaInsert);
-                BancoDadosSingleton.Instance.SaveChanges();
-            }
+                throw new Exception("Ocorreu um erro ao salvar!" + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException);
+            }            
             
         }
 
-        public bool VerificarPacienteAgendado(string pacienteAgendar)
+        public bool VerificarPacienteAgendado(string pacienteAgendar, string dataAgendada)
         {
             var paciente = "";
             var agendado = "";
             try
             {
-                paciente = (from a in BancoDadosSingleton.Instance.Agenda where a.paciente == pacienteAgendar select a.paciente).Single();
+                paciente = (from a in BancoDadosSingleton.Instance.Agenda where a.paciente == pacienteAgendar && a.data == dataAgendada select a.paciente).Single();
                 agendado = paciente.ToString();
             }
             catch
@@ -114,16 +121,22 @@ namespace ProjetoTCC
 
         public void DeletarPacienteAgenda(List<string> ID)
         {
-            using (var db = new NutreasyEntities())
+            try
             {
-                ID.ForEach(x =>
+                using (var db = new NutreasyEntities())
                 {
-                    var delete = db.Database.Connection.CreateCommand();
-                    delete.CommandText = $"DELETE FROM Agenda WHERE ID IN ({x})";
-                    db.Database.Connection.Open();
-                    delete.ExecuteNonQuery();
-                    db.Database.Connection.Close();
-                });                
+                    ID.ForEach(x =>
+                    {
+                        var delete = db.Database.Connection.CreateCommand();
+                        delete.CommandText = $"DELETE FROM Agenda WHERE ID IN ({x})";
+                        db.Database.Connection.Open();
+                        delete.ExecuteNonQuery();
+                        db.Database.Connection.Close();
+                    });
+                }
+            } catch (Exception ex)
+            {
+                throw new Exception("Ocorreu um erro ao deletar!" + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException);
             }
         }
 

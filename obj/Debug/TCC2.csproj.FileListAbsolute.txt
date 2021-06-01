@@ -181,4 +181,3 @@ C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\Galactic.Calendar.dll
 C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\Newtonsoft.Json.dll
 C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\ExpandableGridView.dll
 C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\ExpandableGridView.pdb
-C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.csprojAssemblyReference.cache

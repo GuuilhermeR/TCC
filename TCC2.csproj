@@ -80,6 +80,7 @@
     <Compile Include="Banco de Dados\Cardapio.cs">
       <DependentUpon>NutreasyDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Classes\FormatadorCampo.cs" />
     <Compile Include="DAO\AgendaDAO.cs" />
     <Compile Include="DAO\AlimentoDAO.cs" />
     <Compile Include="DAO\CardapioDAO.cs" />
@@ -181,8 +182,10 @@
       <DependentUpon>NutreasyDB.edmx</DependentUpon>
       <LastGenOutput>NutreasyDB.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\1486564177-finance-finance-calculator_81497.png" />
     <Content Include="Resources\2355300-removebg-preview %283%29.png" />
     <Content Include="Resources\5-Icon-Branco.png" />
+    <None Include="Resources\database_import_icon_135719.png" />
     <Content Include="Suporte\DirectX.Capture.dll" />
     <Content Include="Suporte\DShowNET.dll" />
     <None Include="Resources\Adicionar.png" />

@@ -63,6 +63,16 @@ namespace TCC2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _1486564177_finance_finance_calculator_81497 {
+            get {
+                object obj = ResourceManager.GetObject("1486564177-finance-finance-calculator_81497", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Adicionar {
             get {
                 object obj = ResourceManager.GetObject("Adicionar", resourceCulture);
@@ -106,6 +116,16 @@ namespace TCC2.Properties {
         internal static System.Drawing.Bitmap consultar {
             get {
                 object obj = ResourceManager.GetObject("consultar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap database_import_icon_135719 {
+            get {
+                object obj = ResourceManager.GetObject("database_import_icon_135719", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

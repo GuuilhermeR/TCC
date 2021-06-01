@@ -16,6 +16,7 @@ using LiveCharts.Wpf;
 using System.Transactions;
 using TCC2.Banco_de_Dados;
 using AdvancedDataGridView;
+using System.Text.RegularExpressions;
 
 namespace TCC2
 {
@@ -37,7 +38,7 @@ namespace TCC2
         private byte[] vetorImagens;
         private double quantidadeSalva;
         private double quantidadeAntigaCardapio;
-        Image capturaImagem;
+        //Image capturaImagem;
         public string caminhoImagemSalva = null;
         #endregion
 
@@ -68,6 +69,14 @@ namespace TCC2
             {
                 lblUsuario.Text = $"Seja bem vindo(a) ao sistema Guilherme Rüdiger";
                 lblUsuario.Visible = true;
+            }
+        }
+
+        private void PermitirApenasNumero(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 08)
+            {
+                e.Handled = true;
             }
         }
 
@@ -162,31 +171,32 @@ namespace TCC2
                                 mCardAtendimentoAtual.BackColor = Color.LightGreen;
                             }
                         }
-                    else if (Convert.ToDateTime(x.data + ' ' + x.hora) > DateTime.Now && x.Cancelado == 0)
-                    {
-                        if (Convert.ToDateTime(x.data + ' ' + x.hora) > DateTime.Now)
+                        else if (Convert.ToDateTime(x.data + ' ' + x.hora) > DateTime.Now && x.Cancelado == 0)
                         {
-                            mCardAtendimentoFuturo.Visible = true;
-                            mlblNomeFuturo.Text = x.paciente;
-                            mlblHoraFutura.Text = x.data + ' ' + x.hora;
-                            if ((bool)x.retorno)
+                            if (Convert.ToDateTime(x.data + ' ' + x.hora) > DateTime.Now)
                             {
-                                mlblObservacaoFuturo.Text = "Retorno";
+                                mCardAtendimentoFuturo.Visible = true;
+                                mlblNomeFuturo.Text = x.paciente;
+                                mlblHoraFutura.Text = x.data + ' ' + x.hora;
+                                if ((bool)x.retorno)
+                                {
+                                    mlblObservacaoFuturo.Text = "Retorno";
+                                }
+                                else
+                                {
+                                    mlblObservacaoFuturo.Text = "";
+                                }
+                                if ((bool)x.atendido)
+                                {
+                                    mCardAtendimentoFuturo.BackColor = Color.LightGreen;
+                                }
                             }
                             else
                             {
-                                mlblObservacaoFuturo.Text = "";
-                            }
-                            if ((bool)x.atendido)
-                            {
-                                mCardAtendimentoFuturo.BackColor = Color.LightGreen;
+                                mCardAtendimentoFuturo.Visible = false;
                             }
                         }
                         else
-                        {
-                            mCardAtendimentoFuturo.Visible = false;
-                        }
-                    }else
                         {
                             mCardAtendimentoAtual.Visible = false;
                         }
@@ -298,7 +308,7 @@ namespace TCC2
                         row.Cells["horario"].Value.ToString(),
                         row.Cells["nomePaciente"].Value.ToString(),
                         Convert.ToBoolean(row.Cells["atendido"].Value),
-                        Convert.ToBoolean(row.Cells["retorno"].Value),0);
+                        Convert.ToBoolean(row.Cells["retorno"].Value), 0);
                 }
 
             }
@@ -794,6 +804,11 @@ namespace TCC2
         }
         private void txtCEP_Leave(object sender, EventArgs e)
         {
+            try
+            {
+                txtCEP.Text = Convert.ToUInt64(txtCEP.Text).ToString(@"00000\-000");
+            }
+            catch { }
             buscaCEP.buscarEndCep(this, txtCEP.Text);
         }
         private void _btnExcluir_Click(object sender, EventArgs e)
@@ -831,8 +846,47 @@ namespace TCC2
                     pbImagem.Image = ByteToImage((byte[])_dtgConsultaPacientes.Rows[e.RowIndex].Cells["imagem"].Value);
                 }
                 tbPaciente.SelectedTab = tbCadastro;
+                FormatarCampos();
             }
         }
+
+        private void FormatarCampos()
+        {
+            try
+            {
+                txtCEP.Text = Convert.ToUInt64(txtCEP.Text).ToString(@"00000\-000");
+                txtTelefone.Text = Regex.Replace(txtTelefone.Text, @"(\d{2})(\d{5})(\d{4})", "($1) $2-$3");
+                txtCelular.Text = Regex.Replace(txtCelular.Text, @"(\d{2})(\d{5})(\d{4})", "($1) $2-$3");
+                txtCPF.Text = Convert.ToUInt64(txtCPF.Text).ToString(@"000\.000\.000\-00");
+            }
+            catch { }
+        }
+
+        private void txtCPF_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            PermitirApenasNumero(sender, e);
+        }
+
+        private void txtCEP_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            PermitirApenasNumero(sender, e);
+        }
+
+        private void txtNumero_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            PermitirApenasNumero(sender, e);
+        }
+
+        private void txtTelefone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            PermitirApenasNumero(sender, e);
+        }
+
+        private void txtCelular_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            PermitirApenasNumero(sender, e);
+        }
+
         public static Bitmap ByteToImage(byte[] blob)
         {
             MemoryStream mStream = new MemoryStream();
@@ -842,12 +896,14 @@ namespace TCC2
             mStream.Dispose();
             return bm;
         }
+
         private void _btnSalvar_Click(object sender, EventArgs e)
         {
             pacienteDAO.Salvar(txtNome.Text, Convert.ToDouble(txtCPF.Text), txtDtNasc.Text, txtEmail.Text, Convert.ToDouble(txtCEP.Text),
                             Convert.ToDouble(txtNumero.Text), txtTelefone.Text, txtCelular.Text, txtEndereco.Text, txtBairro.Text, txtMunicipio.Text, txtUF.Text, txtComplemento.Text, this.vetorImagens);
             tbCadastro_Enter(sender, e);
         }
+
         private void txtNome_Leave(object sender, EventArgs e)
         {
             var listaPacientes = pacienteDAO.Buscar(txtNome.Text);
@@ -1000,6 +1056,33 @@ namespace TCC2
         //    }
         //}
 
+        private void txtCPF_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtCPF.Text = Convert.ToUInt64(txtCPF.Text).ToString(@"000\.000\.000\-00");
+            }
+            catch { }
+        }
+
+        private void txtTelefone_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtTelefone.Text = Regex.Replace(txtTelefone.Text, @"(\d{2})(\d{5})(\d{4})", "($1) $2-$3");
+            }
+            catch { }
+        }
+
+        private void txtCelular_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtCelular.Text = Regex.Replace(txtCelular.Text, @"(\d{2})(\d{5})(\d{4})", "($1) $2-$3");
+            }
+            catch { }
+        }
+
         #endregion
 
         #region Cardápio
@@ -1110,24 +1193,27 @@ namespace TCC2
 
         private void cbxTabelaAlimentoCardapio_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            var listaAlimentos = alimentoDAO.Buscar("", cbxTabelaAlimentoCardapio.Text);
-            if (listaAlimentos == null)
-                return;
-            DataTable dt = ConvertToDataTable(listaAlimentos);
-            dtgCardapioAlimentos.DataSource = dt;
+            if (cbxTabelaAlimentoCardapio.Text != "")
+            {
+                var listaAlimentos = alimentoDAO.Buscar("", cbxTabelaAlimentoCardapio.Text);
+                if (listaAlimentos == null)
+                    return;
+                DataTable dt = ConvertToDataTable(listaAlimentos);
+                dtgCardapioAlimentos.DataSource = dt;
 
-            dtgCardapioAlimentos.Columns["codAlimento"].Visible = false;
-            dtgCardapioAlimentos.Columns["nomeAlimento"].HeaderText = "Alimento";
-            dtgCardapioAlimentos.Columns["kcal"].Visible = false;
-            dtgCardapioAlimentos.Columns["qtd"].Visible = false;
-            dtgCardapioAlimentos.Columns["prot"].Visible = false;
-            dtgCardapioAlimentos.Columns["carbo"].Visible = false;
-            dtgCardapioAlimentos.Columns["lipidio"].Visible = false;
-            dtgCardapioAlimentos.Columns["nomeTabela"].Visible = false;
-            dtgCardapioAlimentos.Columns["MedidaCaseira"].Visible = false;
-            dtgCardapioAlimentos.Columns["Cardapio"].Visible = false;
-            dtgCardapioAlimentos.AutoResizeColumns();
-            dtgCardapioAlimentos.Columns["nomeAlimento"].ReadOnly = true;
+                dtgCardapioAlimentos.Columns["codAlimento"].Visible = false;
+                dtgCardapioAlimentos.Columns["nomeAlimento"].HeaderText = "Alimento";
+                dtgCardapioAlimentos.Columns["kcal"].Visible = false;
+                dtgCardapioAlimentos.Columns["qtd"].Visible = false;
+                dtgCardapioAlimentos.Columns["prot"].Visible = false;
+                dtgCardapioAlimentos.Columns["carbo"].Visible = false;
+                dtgCardapioAlimentos.Columns["lipidio"].Visible = false;
+                dtgCardapioAlimentos.Columns["nomeTabela"].Visible = false;
+                dtgCardapioAlimentos.Columns["MedidaCaseira"].Visible = false;
+                dtgCardapioAlimentos.Columns["Cardapio"].Visible = false;
+                dtgCardapioAlimentos.AutoResizeColumns();
+                dtgCardapioAlimentos.Columns["nomeAlimento"].ReadOnly = true;
+            }
         }
 
         private DataGridViewRow adicionar(DataGridViewRow row)
@@ -1202,6 +1288,7 @@ namespace TCC2
             CardapioDAO.codPacienteCard = null;
             CardapioDAO.nomePacienteCard = null;
             btnApagar_Click(sender, e);
+            btnCancelarCardapio_Click(sender, e);
         }
 
         private void btnPacienteCardapio_Click(object sender, EventArgs e)
@@ -1281,7 +1368,7 @@ namespace TCC2
         }
         private void btnApagar_Click(object sender, EventArgs e)
         {
-            txtPacienteConsultaCardapio.Text = null;
+            txtPacienteConsultaCardapio.Clear();
             trwDadosCard.Nodes.Clear();
         }
 
@@ -1297,7 +1384,7 @@ namespace TCC2
             trwDadosCard.Nodes.Clear();
 
             TreeGridColumn refeicaoColumn = new TreeGridColumn();
-            
+
             refeicaoColumn.DefaultNodeImage = null;
             refeicaoColumn.FillWeight = 50F;
             refeicaoColumn.HeaderText = "Refeição";
@@ -1410,6 +1497,34 @@ namespace TCC2
             graficoMacroNutri.Series = null;
             trwDadosCard.Nodes.Clear();
             lblValorKcal.Text = "";
+            cbxRefeicao.SelectedIndex = -1;
+            cbxTabelaAlimentoCardapio.SelectedIndex = -1;
+        }
+
+        private void tbConsultaCardapio_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbConsultaCardapio_Enter(object sender, EventArgs e)
+        {
+            //var consultaPaciente = cardapioDAO.Consultar(Convert.ToInt32(txtPacienteConsultaCardapio.Text));
+            //if (consultaPaciente is null || consultaPaciente.Count == 0)
+            //    return;
+
+            //consultaPaciente.ForEach(pac =>
+            //{
+            //});
+
+        }
+
+        private void btnCancelarEditAlimentos_Click(object sender, EventArgs e)
+        {
+            cbxTabela.SelectedIndex = -1;
+            txtAlimentoFiltro.Clear();
+            dtgConAlimento.DataSource = null;
+            dtgConAlimento.Rows.Clear();
+            dtgConAlimento.Columns.Clear();
         }
         #endregion
 
@@ -1485,23 +1600,5 @@ namespace TCC2
             txtConfirmarSenha.PasswordChar = '*';
         }
         #endregion
-
-        private void tbConsultaCardapio_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tbConsultaCardapio_Enter(object sender, EventArgs e)
-        {
-            //var consultaPaciente = cardapioDAO.Consultar(Convert.ToInt32(txtPacienteConsultaCardapio.Text));
-            //if (consultaPaciente is null || consultaPaciente.Count == 0)
-            //    return;
-
-            //consultaPaciente.ForEach(pac =>
-            //{
-            //});
-
-        }
-
     }
 }

@@ -36,7 +36,7 @@ namespace TCC2
         List<string> deletarAlimento = new List<string>();
         private object tamanhoArquivoImagem;
         private byte[] vetorImagens;
-        private double quantidadeSalva;
+        private decimal quantidadeSalva;
         private double quantidadeAntigaCardapio;
         //Image capturaImagem;
         public string caminhoImagemSalva = null;
@@ -396,48 +396,48 @@ namespace TCC2
                 {
                     MessageBox.Show(this, "Não foram encontrados itens para recalcular.");
                 }
-            quantidadeSalva = 0d;
+            quantidadeSalva = 0;
         }
 
-        void RecalcularMacroNutrientes(DataGridView dtg, double qtdSalva)
+        void RecalcularMacroNutrientes(DataGridView dtg, decimal qtdSalva)
         {
             foreach (DataGridViewRow row in dtg.Rows)
             {
-                double ProteinaKcal = 0;
-                double CarboidratoKcal = 0;
-                double LipidioKcal = 0;
+                decimal ProteinaKcal = 0;
+                decimal CarboidratoKcal = 0;
+                decimal LipidioKcal = 0;
 
-                if (Convert.ToDouble(row.Cells["qtd"].Value) == qtdSalva)
+                if (Conversions.ToDecimal(row.Cells["qtd"].Value) == qtdSalva)
                     continue;
 
                 if (row.DefaultCellStyle.BackColor == Color.Red || row.DefaultCellStyle.BackColor == Color.LightSalmon)
                 {
                     if (row.Cells["prot"].Value != null)
                     {
-                        double ProteinaGramas = 0; //Refazer o cálculo, se for mudar a qtd, teria que ser, ex: 100g - 22g de prot, 50g - x g de prot
-                        ProteinaGramas = Conversions.ToDouble((Convert.ToDouble(row.Cells["qtd"].Value) * Convert.ToDouble(row.Cells["prot"].Value)) / Convert.ToDouble(qtdSalva));
-                        ProteinaKcal = ProteinaGramas * 4d;
-                        row.Cells["prot"].Value = Convert.ToDouble(ProteinaKcal).ToString("N2");
+                        decimal ProteinaGramas = 0; //Refazer o cálculo, se for mudar a qtd, teria que ser, ex: 100g - 22g de prot, 50g - x g de prot
+                        ProteinaGramas = Conversions.ToDecimal((Conversions.ToDecimal(row.Cells["qtd"].Value) * Conversions.ToDecimal(row.Cells["prot"].Value)) / Conversions.ToDecimal(qtdSalva));
+                        ProteinaKcal = ProteinaGramas * 4;
+                        row.Cells["prot"].Value = Conversions.ToDecimal(ProteinaKcal);
                     }
 
                     if (row.Cells["carbo"].Value != null)
                     {
-                        double CarboidratoGramas = 0;
-                        CarboidratoGramas = Conversions.ToDouble((Convert.ToDouble(row.Cells["qtd"].Value) * Convert.ToDouble(row.Cells["carbo"].Value)) / Convert.ToDouble(qtdSalva));
-                        CarboidratoKcal = CarboidratoGramas * 4d;
-                        row.Cells["carbo"].Value = Convert.ToDouble(CarboidratoKcal).ToString("N2");
+                        decimal CarboidratoGramas = 0;
+                        CarboidratoGramas = Conversions.ToDecimal((Conversions.ToDecimal(row.Cells["qtd"].Value) * Conversions.ToDecimal(row.Cells["carbo"].Value)) / Conversions.ToDecimal(qtdSalva));
+                        CarboidratoKcal = CarboidratoGramas * 4;
+                        row.Cells["carbo"].Value = Conversions.ToDecimal(CarboidratoKcal);
                     }
 
                     if (row.Cells["lipidio"].Value != null)
                     {
-                        double LipidioGramas = 0;
-                        LipidioGramas = Conversions.ToDouble((Convert.ToDouble(row.Cells["qtd"].Value) * Convert.ToDouble(row.Cells["lipidio"].Value)) / Convert.ToDouble(qtdSalva));
-                        LipidioKcal = LipidioGramas * 9d;
-                        row.Cells["lipidio"].Value = LipidioKcal.ToString("N2");
+                        decimal LipidioGramas = 0;
+                        LipidioGramas = Conversions.ToDecimal((Conversions.ToDecimal(row.Cells["qtd"].Value) * Conversions.ToDecimal(row.Cells["lipidio"].Value)) / Conversions.ToDecimal(qtdSalva));
+                        LipidioKcal = LipidioGramas * 9;
+                        row.Cells["lipidio"].Value = LipidioKcal;
                     }
 
-                    double somaTotalCaloria = ProteinaKcal + CarboidratoKcal + LipidioKcal;
-                    row.Cells["kcal"].Value = Convert.ToDouble(somaTotalCaloria).ToString("N2");
+                    decimal somaTotalCaloria = ProteinaKcal + CarboidratoKcal + LipidioKcal;
+                    row.Cells["kcal"].Value = Conversions.ToDecimal(somaTotalCaloria);
                     row.DefaultCellStyle.BackColor = Color.White;
                 }
             }
@@ -1301,7 +1301,7 @@ namespace TCC2
             if (e.ColumnIndex >= 0)
             {
                 if (Convert.ToString(dtgConAlimento.CurrentRow.Cells["qtd"].Value) != "")
-                    quantidadeSalva = Convert.ToDouble(dtgConAlimento.CurrentRow.Cells["qtd"].Value);
+                    quantidadeSalva = Convert.ToDecimal(dtgConAlimento.CurrentRow.Cells["qtd"].Value);
             }
         }
 
@@ -1347,7 +1347,7 @@ namespace TCC2
             dtgRefeicoes.CurrentRow.DefaultCellStyle.BackColor = Color.Red;
             if (Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["qtd"].Value) != quantidadeAntigaCardapio)
             {
-                RecalcularMacroNutrientes(dtgRefeicoes, Convert.ToDouble(quantidadeAntigaCardapio));
+                RecalcularMacroNutrientes(dtgRefeicoes, Convert.ToDecimal(quantidadeAntigaCardapio));
 
                 CarregarGrafico(Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["prot"].Value),
                                 Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["carbo"].Value),

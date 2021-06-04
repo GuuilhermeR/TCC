@@ -90,6 +90,12 @@
     <Compile Include="Telas\frmBuscarPaciente.Designer.cs">
       <DependentUpon>frmBuscarPaciente.cs</DependentUpon>
     </Compile>
+    <Compile Include="Telas\frmCadastro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Telas\frmCadastro.Designer.cs">
+      <DependentUpon>frmCadastro.cs</DependentUpon>
+    </Compile>
     <Compile Include="Telas\frmMenuPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +139,9 @@
     <Compile Include="DAO\UsuarioDAO.cs" />
     <EmbeddedResource Include="Telas\frmBuscarPaciente.resx">
       <DependentUpon>frmBuscarPaciente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Telas\frmCadastro.resx">
+      <DependentUpon>frmCadastro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\frmMenuPrincipal.resx">
       <DependentUpon>frmMenuPrincipal.cs</DependentUpon>

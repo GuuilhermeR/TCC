@@ -21,7 +21,7 @@ namespace TCC2
 
         private void frmTelaLogin_Load(object sender, EventArgs e)
         {
-
+            this.MaximizeBox = false;
         }
 
         private void btnLogar_Click(object sender, EventArgs e)

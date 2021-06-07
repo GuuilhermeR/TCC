@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TCC2.Telas;
 
 namespace TCC2
 {
@@ -16,8 +17,9 @@ namespace TCC2
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMenuPrincipal(""));
+            //Application.Run(new frmMenuPrincipal(""));
             //Application.Run(new frmTelaLogin());
+            Application.Run(new frmCadastro());
         }
     }
 }

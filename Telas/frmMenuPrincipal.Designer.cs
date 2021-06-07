@@ -32,7 +32,8 @@ namespace TCC2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenuPrincipal));
             this.TabControlNutreasy = new MaterialSkin.Controls.MaterialTabControl();
             this.tabMenu = new System.Windows.Forms.TabPage();
@@ -199,6 +200,8 @@ namespace TCC2
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.TabControlNutreasy.SuspendLayout();
             this.tabMenu.SuspendLayout();
             this.mCardAtendimentoAtual.SuspendLayout();
@@ -267,7 +270,7 @@ namespace TCC2
             this.tabMenu.ImageKey = "menu32px.png";
             this.tabMenu.Location = new System.Drawing.Point(4, 39);
             this.tabMenu.Name = "tabMenu";
-            this.tabMenu.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabMenu.Padding = new System.Windows.Forms.Padding(3);
             this.tabMenu.Size = new System.Drawing.Size(1229, 764);
             this.tabMenu.TabIndex = 0;
             this.tabMenu.Text = "Home";
@@ -287,10 +290,10 @@ namespace TCC2
             this.mCardAtendimentoAtual.Depth = 0;
             this.mCardAtendimentoAtual.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.mCardAtendimentoAtual.Location = new System.Drawing.Point(17, 36);
-            this.mCardAtendimentoAtual.Margin = new System.Windows.Forms.Padding(14, 14, 14, 14);
+            this.mCardAtendimentoAtual.Margin = new System.Windows.Forms.Padding(14);
             this.mCardAtendimentoAtual.MouseState = MaterialSkin.MouseState.HOVER;
             this.mCardAtendimentoAtual.Name = "mCardAtendimentoAtual";
-            this.mCardAtendimentoAtual.Padding = new System.Windows.Forms.Padding(14, 14, 14, 14);
+            this.mCardAtendimentoAtual.Padding = new System.Windows.Forms.Padding(14);
             this.mCardAtendimentoAtual.Size = new System.Drawing.Size(337, 266);
             this.mCardAtendimentoAtual.TabIndex = 10;
             this.mCardAtendimentoAtual.Visible = false;
@@ -394,10 +397,10 @@ namespace TCC2
             this.mCardAtendimentoFuturo.Depth = 0;
             this.mCardAtendimentoFuturo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.mCardAtendimentoFuturo.Location = new System.Drawing.Point(883, 36);
-            this.mCardAtendimentoFuturo.Margin = new System.Windows.Forms.Padding(14, 14, 14, 14);
+            this.mCardAtendimentoFuturo.Margin = new System.Windows.Forms.Padding(14);
             this.mCardAtendimentoFuturo.MouseState = MaterialSkin.MouseState.HOVER;
             this.mCardAtendimentoFuturo.Name = "mCardAtendimentoFuturo";
-            this.mCardAtendimentoFuturo.Padding = new System.Windows.Forms.Padding(14, 14, 14, 14);
+            this.mCardAtendimentoFuturo.Padding = new System.Windows.Forms.Padding(14);
             this.mCardAtendimentoFuturo.Size = new System.Drawing.Size(337, 266);
             this.mCardAtendimentoFuturo.TabIndex = 18;
             this.mCardAtendimentoFuturo.Visible = false;
@@ -521,7 +524,7 @@ namespace TCC2
             this.tabAgenda.ImageKey = "agenda32px.png";
             this.tabAgenda.Location = new System.Drawing.Point(4, 39);
             this.tabAgenda.Name = "tabAgenda";
-            this.tabAgenda.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabAgenda.Padding = new System.Windows.Forms.Padding(3);
             this.tabAgenda.Size = new System.Drawing.Size(1229, 764);
             this.tabAgenda.TabIndex = 1;
             this.tabAgenda.Text = "Agenda";
@@ -569,16 +572,24 @@ namespace TCC2
             this.atendido,
             this.retorno,
             this.ID});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgAgenda.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgAgenda.DefaultCellStyle = dataGridViewCellStyle3;
             this.dtgAgenda.Location = new System.Drawing.Point(6, 58);
             this.dtgAgenda.Name = "dtgAgenda";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgAgenda.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dtgAgenda.RowHeadersWidth = 51;
             this.dtgAgenda.Size = new System.Drawing.Size(1219, 671);
             this.dtgAgenda.TabIndex = 52;
@@ -653,7 +664,7 @@ namespace TCC2
             this.tabAlimento.ImageKey = "Alimento32px.png";
             this.tabAlimento.Location = new System.Drawing.Point(4, 39);
             this.tabAlimento.Name = "tabAlimento";
-            this.tabAlimento.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabAlimento.Padding = new System.Windows.Forms.Padding(3);
             this.tabAlimento.Size = new System.Drawing.Size(1229, 764);
             this.tabAlimento.TabIndex = 2;
             this.tabAlimento.Text = "Alimento";
@@ -689,7 +700,7 @@ namespace TCC2
             this._tbConsulta.Controls.Add(this.dtgConAlimento);
             this._tbConsulta.Location = new System.Drawing.Point(4, 22);
             this._tbConsulta.Name = "_tbConsulta";
-            this._tbConsulta.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this._tbConsulta.Padding = new System.Windows.Forms.Padding(3);
             this._tbConsulta.Size = new System.Drawing.Size(1211, 734);
             this._tbConsulta.TabIndex = 1;
             this._tbConsulta.Text = "Cadastro/Consulta";
@@ -820,7 +831,7 @@ namespace TCC2
             this.tbImportarPlanilha.Controls.Add(this._btnBuscarPlanilha);
             this.tbImportarPlanilha.Location = new System.Drawing.Point(4, 22);
             this.tbImportarPlanilha.Name = "tbImportarPlanilha";
-            this.tbImportarPlanilha.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbImportarPlanilha.Padding = new System.Windows.Forms.Padding(3);
             this.tbImportarPlanilha.Size = new System.Drawing.Size(1211, 734);
             this.tbImportarPlanilha.TabIndex = 2;
             this.tbImportarPlanilha.Text = "Importação tabela";
@@ -941,9 +952,9 @@ namespace TCC2
             this.tbCadMedCaseira.Controls.Add(this.btnAddMedCaseira);
             this.tbCadMedCaseira.Controls.Add(this.btnSalvarMedCas);
             this.tbCadMedCaseira.Location = new System.Drawing.Point(4, 22);
-            this.tbCadMedCaseira.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbCadMedCaseira.Margin = new System.Windows.Forms.Padding(2);
             this.tbCadMedCaseira.Name = "tbCadMedCaseira";
-            this.tbCadMedCaseira.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbCadMedCaseira.Padding = new System.Windows.Forms.Padding(2);
             this.tbCadMedCaseira.Size = new System.Drawing.Size(1211, 734);
             this.tbCadMedCaseira.TabIndex = 3;
             this.tbCadMedCaseira.Text = "Cadastrar Medida Caseira";
@@ -957,7 +968,7 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCodAlimentoMedCas.Enabled = false;
             this.txtCodAlimentoMedCas.Location = new System.Drawing.Point(361, 50);
-            this.txtCodAlimentoMedCas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCodAlimentoMedCas.Margin = new System.Windows.Forms.Padding(2);
             this.txtCodAlimentoMedCas.Name = "txtCodAlimentoMedCas";
             this.txtCodAlimentoMedCas.Size = new System.Drawing.Size(175, 20);
             this.txtCodAlimentoMedCas.TabIndex = 285;
@@ -993,7 +1004,7 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtQtdMedCas.Location = new System.Drawing.Point(941, 118);
-            this.txtQtdMedCas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtQtdMedCas.Margin = new System.Windows.Forms.Padding(2);
             this.txtQtdMedCas.Name = "txtQtdMedCas";
             this.txtQtdMedCas.Size = new System.Drawing.Size(250, 20);
             this.txtQtdMedCas.TabIndex = 9;
@@ -1017,7 +1028,7 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDescMedCaseira.Location = new System.Drawing.Point(439, 118);
-            this.txtDescMedCaseira.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtDescMedCaseira.Margin = new System.Windows.Forms.Padding(2);
             this.txtDescMedCaseira.Name = "txtDescMedCaseira";
             this.txtDescMedCaseira.Size = new System.Drawing.Size(368, 20);
             this.txtDescMedCaseira.TabIndex = 7;
@@ -1042,7 +1053,7 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAlimentoMedCaseira.Enabled = false;
             this.txtAlimentoMedCaseira.Location = new System.Drawing.Point(432, 26);
-            this.txtAlimentoMedCaseira.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtAlimentoMedCaseira.Margin = new System.Windows.Forms.Padding(2);
             this.txtAlimentoMedCaseira.Name = "txtAlimentoMedCaseira";
             this.txtAlimentoMedCaseira.Size = new System.Drawing.Size(682, 20);
             this.txtAlimentoMedCaseira.TabIndex = 5;
@@ -1108,7 +1119,7 @@ namespace TCC2
             this.tabCardapio.ImageKey = "Cardapio32px.png";
             this.tabCardapio.Location = new System.Drawing.Point(4, 39);
             this.tabCardapio.Name = "tabCardapio";
-            this.tabCardapio.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabCardapio.Padding = new System.Windows.Forms.Padding(3);
             this.tabCardapio.Size = new System.Drawing.Size(1229, 764);
             this.tabCardapio.TabIndex = 3;
             this.tabCardapio.Text = "Cardápio";
@@ -1124,7 +1135,7 @@ namespace TCC2
             this.tabControl1.Controls.Add(this.tbConsultaCardapio);
             this.tabControl1.Controls.Add(this.tbCadastrarTiposCardapios);
             this.tabControl1.Location = new System.Drawing.Point(2, 6);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1222, 753);
@@ -1150,9 +1161,9 @@ namespace TCC2
             this.tbCadCardapio.Controls.Add(this.label8);
             this.tbCadCardapio.Controls.Add(this.btnSalvarCardapio);
             this.tbCadCardapio.Location = new System.Drawing.Point(4, 22);
-            this.tbCadCardapio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbCadCardapio.Margin = new System.Windows.Forms.Padding(2);
             this.tbCadCardapio.Name = "tbCadCardapio";
-            this.tbCadCardapio.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbCadCardapio.Padding = new System.Windows.Forms.Padding(2);
             this.tbCadCardapio.Size = new System.Drawing.Size(1214, 727);
             this.tbCadCardapio.TabIndex = 0;
             this.tbCadCardapio.Text = "Criar Cardápio";
@@ -1198,7 +1209,7 @@ namespace TCC2
             // 
             this.graficoMacroNutri.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.graficoMacroNutri.Location = new System.Drawing.Point(4, 549);
-            this.graficoMacroNutri.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.graficoMacroNutri.Margin = new System.Windows.Forms.Padding(2);
             this.graficoMacroNutri.Name = "graficoMacroNutri";
             this.graficoMacroNutri.Size = new System.Drawing.Size(360, 172);
             this.graficoMacroNutri.TabIndex = 313;
@@ -1209,7 +1220,7 @@ namespace TCC2
             this.btnAddAliCard.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnAddAliCard.Image = global::TCC2.Properties.Resources.arrow_icon_1___Copia;
             this.btnAddAliCard.Location = new System.Drawing.Point(568, 275);
-            this.btnAddAliCard.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAddAliCard.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddAliCard.Name = "btnAddAliCard";
             this.btnAddAliCard.Size = new System.Drawing.Size(56, 55);
             this.btnAddAliCard.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1229,7 +1240,7 @@ namespace TCC2
             "Jantar",
             "Ceia"});
             this.cbxRefeicao.Location = new System.Drawing.Point(404, 11);
-            this.cbxRefeicao.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbxRefeicao.Margin = new System.Windows.Forms.Padding(2);
             this.cbxRefeicao.Name = "cbxRefeicao";
             this.cbxRefeicao.Size = new System.Drawing.Size(210, 21);
             this.cbxRefeicao.TabIndex = 306;
@@ -1369,7 +1380,7 @@ namespace TCC2
             this.tbConsultaCardapio.Controls.Add(this.btnBuscaPaciente);
             this.tbConsultaCardapio.Location = new System.Drawing.Point(4, 22);
             this.tbConsultaCardapio.Name = "tbConsultaCardapio";
-            this.tbConsultaCardapio.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbConsultaCardapio.Padding = new System.Windows.Forms.Padding(3);
             this.tbConsultaCardapio.Size = new System.Drawing.Size(1214, 727);
             this.tbConsultaCardapio.TabIndex = 1;
             this.tbConsultaCardapio.Text = "Cardápios Salvos";
@@ -1442,9 +1453,9 @@ namespace TCC2
             // tbCadastrarTiposCardapios
             // 
             this.tbCadastrarTiposCardapios.Location = new System.Drawing.Point(4, 22);
-            this.tbCadastrarTiposCardapios.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbCadastrarTiposCardapios.Margin = new System.Windows.Forms.Padding(2);
             this.tbCadastrarTiposCardapios.Name = "tbCadastrarTiposCardapios";
-            this.tbCadastrarTiposCardapios.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbCadastrarTiposCardapios.Padding = new System.Windows.Forms.Padding(2);
             this.tbCadastrarTiposCardapios.Size = new System.Drawing.Size(1214, 727);
             this.tbCadastrarTiposCardapios.TabIndex = 2;
             this.tbCadastrarTiposCardapios.Text = "Pré Definição Cardápios";
@@ -1456,7 +1467,7 @@ namespace TCC2
             this.tabPaciente.ImageKey = "Paciente32px.png";
             this.tabPaciente.Location = new System.Drawing.Point(4, 39);
             this.tabPaciente.Name = "tabPaciente";
-            this.tabPaciente.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPaciente.Padding = new System.Windows.Forms.Padding(3);
             this.tabPaciente.Size = new System.Drawing.Size(1229, 764);
             this.tabPaciente.TabIndex = 4;
             this.tabPaciente.Text = "Paciente";
@@ -1512,7 +1523,7 @@ namespace TCC2
             this.tbCadastro.Controls.Add(this.lblNome);
             this.tbCadastro.Location = new System.Drawing.Point(4, 22);
             this.tbCadastro.Name = "tbCadastro";
-            this.tbCadastro.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbCadastro.Padding = new System.Windows.Forms.Padding(3);
             this.tbCadastro.Size = new System.Drawing.Size(1209, 730);
             this.tbCadastro.TabIndex = 0;
             this.tbCadastro.Text = "Cadastro";
@@ -1551,7 +1562,7 @@ namespace TCC2
             // 
             this.txtDtNasc.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.txtDtNasc.Location = new System.Drawing.Point(394, 82);
-            this.txtDtNasc.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtDtNasc.Margin = new System.Windows.Forms.Padding(2);
             this.txtDtNasc.Name = "txtDtNasc";
             this.txtDtNasc.Size = new System.Drawing.Size(158, 20);
             this.txtDtNasc.TabIndex = 269;
@@ -1821,6 +1832,8 @@ namespace TCC2
             // 
             // tbAntropometricos
             // 
+            this.tbAntropometricos.Controls.Add(this.label15);
+            this.tbAntropometricos.Controls.Add(this.label14);
             this.tbAntropometricos.Controls.Add(this.textBox5);
             this.tbAntropometricos.Controls.Add(this.label5);
             this.tbAntropometricos.Controls.Add(this.textBox4);
@@ -1831,7 +1844,7 @@ namespace TCC2
             this.tbAntropometricos.Controls.Add(this.label2);
             this.tbAntropometricos.Location = new System.Drawing.Point(4, 22);
             this.tbAntropometricos.Name = "tbAntropometricos";
-            this.tbAntropometricos.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbAntropometricos.Padding = new System.Windows.Forms.Padding(3);
             this.tbAntropometricos.Size = new System.Drawing.Size(1209, 730);
             this.tbAntropometricos.TabIndex = 2;
             this.tbAntropometricos.Text = "Antropometria";
@@ -1840,7 +1853,7 @@ namespace TCC2
             // textBox5
             // 
             this.textBox5.Location = new System.Drawing.Point(79, 162);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox5.Margin = new System.Windows.Forms.Padding(2);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(76, 20);
             this.textBox5.TabIndex = 7;
@@ -1858,7 +1871,7 @@ namespace TCC2
             // textBox4
             // 
             this.textBox4.Location = new System.Drawing.Point(79, 119);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(2);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(76, 20);
             this.textBox4.TabIndex = 5;
@@ -1876,7 +1889,7 @@ namespace TCC2
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(79, 51);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(2);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(76, 20);
             this.textBox3.TabIndex = 3;
@@ -1884,17 +1897,17 @@ namespace TCC2
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(21, 53);
+            this.label3.Location = new System.Drawing.Point(21, 54);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.Size = new System.Drawing.Size(37, 13);
             this.label3.TabIndex = 2;
-            this.label3.Text = "label3";
+            this.label3.Text = "Altura:";
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(79, 18);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(76, 20);
             this.textBox2.TabIndex = 1;
@@ -1902,19 +1915,19 @@ namespace TCC2
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(21, 20);
+            this.label2.Location = new System.Drawing.Point(21, 21);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.Size = new System.Drawing.Size(34, 13);
             this.label2.TabIndex = 0;
-            this.label2.Text = "label2";
+            this.label2.Text = "Peso:";
             // 
             // tbAnamnese
             // 
             this.tbAnamnese.Location = new System.Drawing.Point(4, 22);
-            this.tbAnamnese.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbAnamnese.Margin = new System.Windows.Forms.Padding(2);
             this.tbAnamnese.Name = "tbAnamnese";
-            this.tbAnamnese.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbAnamnese.Padding = new System.Windows.Forms.Padding(2);
             this.tbAnamnese.Size = new System.Drawing.Size(1209, 730);
             this.tbAnamnese.TabIndex = 3;
             this.tbAnamnese.Text = "Anamnese";
@@ -1936,7 +1949,7 @@ namespace TCC2
             this.tabConfig.ImageKey = "settings32px.png";
             this.tabConfig.Location = new System.Drawing.Point(4, 39);
             this.tabConfig.Name = "tabConfig";
-            this.tabConfig.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabConfig.Padding = new System.Windows.Forms.Padding(3);
             this.tabConfig.Size = new System.Drawing.Size(1229, 764);
             this.tabConfig.TabIndex = 5;
             this.tabConfig.Text = "Configurações";
@@ -1977,7 +1990,7 @@ namespace TCC2
             this.TabPage1.Controls.Add(this.dtgUsuarios);
             this.TabPage1.Location = new System.Drawing.Point(4, 22);
             this.TabPage1.Name = "TabPage1";
-            this.TabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.TabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.TabPage1.Size = new System.Drawing.Size(1212, 726);
             this.TabPage1.TabIndex = 0;
             this.TabPage1.Text = "Usuários";
@@ -2156,7 +2169,7 @@ namespace TCC2
             this.TabPage2.Controls.Add(this.label13);
             this.TabPage2.Location = new System.Drawing.Point(4, 22);
             this.TabPage2.Name = "TabPage2";
-            this.TabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.TabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.TabPage2.Size = new System.Drawing.Size(1212, 726);
             this.TabPage2.TabIndex = 1;
             this.TabPage2.Text = "Permissões";
@@ -2183,7 +2196,7 @@ namespace TCC2
             this.tbSobre.ImageKey = "information.png";
             this.tbSobre.Location = new System.Drawing.Point(4, 39);
             this.tbSobre.Name = "tbSobre";
-            this.tbSobre.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbSobre.Padding = new System.Windows.Forms.Padding(3);
             this.tbSobre.Size = new System.Drawing.Size(1229, 764);
             this.tbSobre.TabIndex = 7;
             this.tbSobre.Text = "Sobre";
@@ -2205,6 +2218,26 @@ namespace TCC2
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(204, 21);
+            this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(29, 13);
+            this.label14.TabIndex = 8;
+            this.label14.Text = "IMC:";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(237, 21);
+            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(62, 13);
+            this.label15.TabIndex = 9;
+            this.label15.Text = "VALORIMC";
             // 
             // frmMenuPrincipal
             // 
@@ -2440,6 +2473,8 @@ namespace TCC2
         private MaterialSkin.Controls.MaterialLabel mlblNomeFuturo;
         private TreeGridView trwDadosCard;
         public System.Windows.Forms.Button btnCancelarEditAlimentos;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
     }
 }
 

@@ -49,7 +49,7 @@ namespace TCC2.Telas
             this.mLblNome.Font = new System.Drawing.Font("Roboto", 12F);
             this.mLblNome.Hint = "Nome Completo";
             this.mLblNome.Location = new System.Drawing.Point(71, 95);
-            this.mLblNome.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.mLblNome.Margin = new System.Windows.Forms.Padding(2);
             this.mLblNome.MaxLength = 50;
             this.mLblNome.MouseState = MaterialSkin.MouseState.OUT;
             this.mLblNome.Multiline = false;
@@ -68,7 +68,7 @@ namespace TCC2.Telas
             this.mLblUsuario.Font = new System.Drawing.Font("Roboto", 12F);
             this.mLblUsuario.Hint = "Usuário";
             this.mLblUsuario.Location = new System.Drawing.Point(71, 167);
-            this.mLblUsuario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.mLblUsuario.Margin = new System.Windows.Forms.Padding(2);
             this.mLblUsuario.MaxLength = 50;
             this.mLblUsuario.MouseState = MaterialSkin.MouseState.OUT;
             this.mLblUsuario.Multiline = false;
@@ -87,7 +87,7 @@ namespace TCC2.Telas
             this.mLblSenha.Font = new System.Drawing.Font("Roboto", 12F);
             this.mLblSenha.Hint = "Senha";
             this.mLblSenha.Location = new System.Drawing.Point(71, 247);
-            this.mLblSenha.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.mLblSenha.Margin = new System.Windows.Forms.Padding(2);
             this.mLblSenha.MaxLength = 50;
             this.mLblSenha.MouseState = MaterialSkin.MouseState.OUT;
             this.mLblSenha.Multiline = false;
@@ -107,7 +107,7 @@ namespace TCC2.Telas
             this.mLblEmail.Font = new System.Drawing.Font("Roboto", 12F);
             this.mLblEmail.Hint = "E-mail";
             this.mLblEmail.Location = new System.Drawing.Point(71, 330);
-            this.mLblEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.mLblEmail.Margin = new System.Windows.Forms.Padding(2);
             this.mLblEmail.MaxLength = 50;
             this.mLblEmail.MouseState = MaterialSkin.MouseState.OUT;
             this.mLblEmail.Multiline = false;
@@ -136,6 +136,7 @@ namespace TCC2.Telas
             this.mBtnCadastrar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.mBtnCadastrar.UseAccentColor = false;
             this.mBtnCadastrar.UseVisualStyleBackColor = true;
+            this.mBtnCadastrar.Click += new System.EventHandler(this.mBtnCadastrar_Click);
             // 
             // materialRadioButton1
             // 
@@ -201,9 +202,9 @@ namespace TCC2.Telas
             this.Controls.Add(this.mLblSenha);
             this.Controls.Add(this.mLblUsuario);
             this.Controls.Add(this.mLblNome);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmCadastro";
-            this.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Padding = new System.Windows.Forms.Padding(2);
             this.Text = "Cadastro Usuário";
             this.ResumeLayout(false);
             this.PerformLayout();

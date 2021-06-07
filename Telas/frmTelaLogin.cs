@@ -1,13 +1,19 @@
-﻿using MaterialSkin;
+﻿using Classes;
+using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace TCC2
 {
     public partial class frmTelaLogin : MaterialForm
     {
         public UsuarioDAO usuario = new UsuarioDAO();
+        public Criptografor descriptografar = new Criptografor();
 
         public frmTelaLogin()
         {
@@ -26,6 +32,7 @@ namespace TCC2
 
         private void btnLogar_Click(object sender, EventArgs e)
         {
+            
             lblAviso.Visible = false;   
             if(txtUsuario.Text == "")
             {
@@ -46,7 +53,7 @@ namespace TCC2
             {
                 usuario.setUsuario(txtUsuario.Text);
                 usuario.setNomeUsuario(txtUsuario.Text);
-                usuario.setUsuarioSenha(txtSenha.Text);
+                usuario.setUsuarioSenha(descriptografar.DescriptPassword(txtSenha.Text));
                 var usuarioLogado = usuario.getUsuario();
                 frmMenuPrincipal menu = new frmMenuPrincipal(usuarioLogado.ToString());
                 menu.Show();
@@ -66,5 +73,10 @@ namespace TCC2
                 if (txtSenha.Text != "")
                     btnLogar_Click(sender, e);
         }
+
+      
+
+        
+
     }
 }

@@ -80,6 +80,7 @@
     <Compile Include="Banco de Dados\Cardapio.cs">
       <DependentUpon>NutreasyDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Classes\Criptografor.cs" />
     <Compile Include="Classes\FormatadorCampo.cs" />
     <Compile Include="DAO\AgendaDAO.cs" />
     <Compile Include="DAO\AlimentoDAO.cs" />

@@ -14,11 +14,20 @@ namespace TCC2.Banco_de_Dados
     
     public partial class Login
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Login()
+        {
+            this.Permissao = new HashSet<Permissao>();
+        }
+    
         public string usuario { get; set; }
         public string senha { get; set; }
         public string nome { get; set; }
         public string situacao { get; set; }
         public string email { get; set; }
         public string perfil { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Permissao> Permissao { get; set; }
     }
 }

@@ -28,6 +28,7 @@ namespace TCC2
             {
                 var usuarioLogado = (from c in TCC2.BancoDadosSingleton.Instance.Login where c.usuario == usuarioLogin select c.nome).FirstOrDefault();
                 nome = usuarioLogado.ToString();
+                usuario = usuarioLogin.ToString();
                 return;
             }
             catch

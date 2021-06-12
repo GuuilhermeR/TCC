@@ -17,6 +17,7 @@ using System.Transactions;
 using TCC2.Banco_de_Dados;
 using AdvancedDataGridView;
 using System.Text.RegularExpressions;
+using DAO;
 
 namespace TCC2
 {
@@ -29,6 +30,7 @@ namespace TCC2
         public AlimentoDAO alimentoDAO = new AlimentoDAO();
         public AgendaDAO agendaDAO = new AgendaDAO();
         public MedidaCaseiraDAO medidaCaseiraDAO = new MedidaCaseiraDAO();
+        public PermissaoDAO permissaoDAO = new PermissaoDAO();
         public CardapioDAO cardapioDAO = new CardapioDAO();
         public BuscadorCEP buscaCEP = new BuscadorCEP();
         private DataTableCollection tables;
@@ -47,7 +49,6 @@ namespace TCC2
         {
             InitializeComponent();
             usuarioDAO.setNomeUsuario(usuarioLogado);
-
         }
 
         private void frmMenuPrincipal_Load(object sender, EventArgs e)
@@ -69,6 +70,15 @@ namespace TCC2
             {
                 lblUsuario.Text = $"Seja bem vindo(a) ao sistema Guilherme Rüdiger";
                 lblUsuario.Visible = true;
+            }
+        }
+
+        private void IsPermitido(string nome)
+        {
+            if (permissaoDAO.temPermissao(usuarioDAO.getUsuario().ToString()))
+            {
+                MessageBox.Show($"Você não tem acesso a essa aba: {nome}!","SEM PERMISSÃO",MessageBoxButtons.OK,MessageBoxIcon.Warning,MessageBoxDefaultButton.Button1,MessageBoxOptions.DefaultDesktopOnly);
+                TabControlNutreasy.SelectedTab = tabMenu;
             }
         }
 
@@ -646,6 +656,7 @@ namespace TCC2
 
         private void tabAlimento_Enter(object sender, EventArgs e)
         {
+            IsPermitido(tabAlimento.Text.ToString());
             List<Alimentos> tabela = new List<Alimentos>();
             tabela = (alimentoDAO.BuscarTabelas());
             if (tabela != null)
@@ -1600,5 +1611,10 @@ namespace TCC2
             txtConfirmarSenha.PasswordChar = '*';
         }
         #endregion
+
+        private void tbPermissao_Click(object sender, EventArgs e)
+        {
+            //Carregar usuários no cbxUsuarios para dar permissão
+        }
     }
 }

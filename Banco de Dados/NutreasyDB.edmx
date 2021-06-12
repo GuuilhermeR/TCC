@@ -82,6 +82,15 @@
           <Property Name="celular" Type="varchar" MaxLength="2147483647" />
           <Property Name="imagem" Type="blob" />
         </EntityType>
+        <EntityType Name="Permissao">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="2147483647" />
+          <Property Name="funcaoPermitida" Type="integer" />
+          <Property Name="programa" Type="varchar" MaxLength="2147483647" />
+        </EntityType>
         <Association Name="FK_Cardapio_0_0">
           <End Role="Alimentos" Type="Self.Alimentos" Multiplicity="0..1" />
           <End Role="Cardapio" Type="Self.Cardapio" Multiplicity="*" />
@@ -118,6 +127,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Permissao_0_0">
+          <End Role="Login" Type="Self.Login" Multiplicity="0..1" />
+          <End Role="Permissao" Type="Self.Permissao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="usuario" />
+            </Principal>
+            <Dependent Role="Permissao">
+              <PropertyRef Name="usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="mainModelStoreContainer">
           <EntitySet Name="Agenda" EntityType="Self.Agenda" store:Type="Tables" />
           <EntitySet Name="Alimentos" EntityType="Self.Alimentos" store:Type="Tables" />
@@ -125,6 +146,7 @@
           <EntitySet Name="Login" EntityType="Self.Login" store:Type="Tables" />
           <EntitySet Name="MedidaCaseira" EntityType="Self.MedidaCaseira" store:Type="Tables" />
           <EntitySet Name="Paciente" EntityType="Self.Paciente" store:Type="Tables" />
+          <EntitySet Name="Permissao" EntityType="Self.Permissao" store:Type="Tables" />
           <AssociationSet Name="FK_Cardapio_0_0" Association="Self.FK_Cardapio_0_0">
             <End Role="Alimentos" EntitySet="Alimentos" />
             <End Role="Cardapio" EntitySet="Cardapio" />
@@ -136,6 +158,10 @@
           <AssociationSet Name="FK_MedidaCaseira_0_0" Association="Self.FK_MedidaCaseira_0_0">
             <End Role="Alimentos" EntitySet="Alimentos" />
             <End Role="MedidaCaseira" EntitySet="MedidaCaseira" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Permissao_0_0" Association="Self.FK_Permissao_0_0">
+            <End Role="Login" EntitySet="Login" />
+            <End Role="Permissao" EntitySet="Permissao" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -193,6 +219,7 @@
           <Property Name="situacao" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <Property Name="perfil" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Permissao" Relationship="mainModel.FK_Permissao_0_0" FromRole="Login" ToRole="Permissao" />
         </EntityType>
         <EntityType Name="MedidaCaseira">
           <Key>
@@ -280,7 +307,34 @@
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="Cardapio" EntitySet="Cardapio" />
           </AssociationSet>
+          <EntitySet Name="Permissao" EntityType="mainModel.Permissao" />
+          <AssociationSet Name="FK_Permissao_0_0" Association="mainModel.FK_Permissao_0_0">
+            <End Role="Login" EntitySet="Login" />
+            <End Role="Permissao" EntitySet="Permissao" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Permissao">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuario" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="funcaoPermitida" Type="Int64" />
+          <Property Name="programa" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Login" Relationship="mainModel.FK_Permissao_0_0" FromRole="Permissao" ToRole="Login" />
+        </EntityType>
+        <Association Name="FK_Permissao_0_0">
+          <End Type="mainModel.Login" Role="Login" Multiplicity="0..1" />
+          <End Type="mainModel.Permissao" Role="Permissao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="usuario" />
+            </Principal>
+            <Dependent Role="Permissao">
+              <PropertyRef Name="usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -367,6 +421,16 @@
                 <ScalarProperty Name="telefone" ColumnName="telefone" />
                 <ScalarProperty Name="celular" ColumnName="celular" />
                 <ScalarProperty Name="imagem" ColumnName="imagem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Permissao">
+            <EntityTypeMapping TypeName="mainModel.Permissao">
+              <MappingFragment StoreEntitySet="Permissao">
+                <ScalarProperty Name="programa" ColumnName="programa" />
+                <ScalarProperty Name="funcaoPermitida" ColumnName="funcaoPermitida" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

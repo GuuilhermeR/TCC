@@ -196,17 +196,16 @@ namespace TCC2
             this.label12 = new System.Windows.Forms.Label();
             this.dtgUsuarios = new System.Windows.Forms.DataGridView();
             this.tbPermissao = new System.Windows.Forms.TabPage();
+            this.cbxUsuario = new System.Windows.Forms.ComboBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnSalvarPermissao = new System.Windows.Forms.Button();
+            this.cbxTelaLiberar = new System.Windows.Forms.ComboBox();
+            this.lblPrograma = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.tbSobre = new System.Windows.Forms.TabPage();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.lblPrograma = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.cbxUsuario = new System.Windows.Forms.ComboBox();
             this.TabControlNutreasy.SuspendLayout();
             this.tabMenu.SuspendLayout();
             this.mCardAtendimentoAtual.SuspendLayout();
@@ -2360,9 +2359,8 @@ namespace TCC2
             // 
             this.tbPermissao.Controls.Add(this.cbxUsuario);
             this.tbPermissao.Controls.Add(this.dataGridView1);
-            this.tbPermissao.Controls.Add(this.button1);
-            this.tbPermissao.Controls.Add(this.button2);
-            this.tbPermissao.Controls.Add(this.comboBox1);
+            this.tbPermissao.Controls.Add(this.btnSalvarPermissao);
+            this.tbPermissao.Controls.Add(this.cbxTelaLiberar);
             this.tbPermissao.Controls.Add(this.lblPrograma);
             this.tbPermissao.Controls.Add(this.label13);
             this.tbPermissao.Location = new System.Drawing.Point(4, 25);
@@ -2373,7 +2371,75 @@ namespace TCC2
             this.tbPermissao.TabIndex = 1;
             this.tbPermissao.Text = "Permissões";
             this.tbPermissao.UseVisualStyleBackColor = true;
-            this.tbPermissao.Click += new System.EventHandler(this.tbPermissao_Click);
+            this.tbPermissao.Enter += new System.EventHandler(this.tbPermissao_Enter);
+            // 
+            // cbxUsuario
+            // 
+            this.cbxUsuario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxUsuario.FormattingEnabled = true;
+            this.cbxUsuario.Location = new System.Drawing.Point(160, 19);
+            this.cbxUsuario.Margin = new System.Windows.Forms.Padding(4);
+            this.cbxUsuario.Name = "cbxUsuario";
+            this.cbxUsuario.Size = new System.Drawing.Size(219, 24);
+            this.cbxUsuario.TabIndex = 15;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(10, 214);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.Size = new System.Drawing.Size(1599, 675);
+            this.dataGridView1.TabIndex = 14;
+            // 
+            // btnSalvarPermissao
+            // 
+            this.btnSalvarPermissao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSalvarPermissao.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
+            this.btnSalvarPermissao.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSalvarPermissao.Location = new System.Drawing.Point(1456, 163);
+            this.btnSalvarPermissao.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSalvarPermissao.Name = "btnSalvarPermissao";
+            this.btnSalvarPermissao.Size = new System.Drawing.Size(153, 43);
+            this.btnSalvarPermissao.TabIndex = 12;
+            this.btnSalvarPermissao.Text = "Salvar";
+            this.btnSalvarPermissao.UseVisualStyleBackColor = true;
+            this.btnSalvarPermissao.Click += new System.EventHandler(this.btnSalvarPermissao_Click);
+            // 
+            // cbxTelaLiberar
+            // 
+            this.cbxTelaLiberar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxTelaLiberar.FormattingEnabled = true;
+            this.cbxTelaLiberar.Items.AddRange(new object[] {
+            "Agenda",
+            "Alimento",
+            "Cardápio",
+            "Paciente",
+            "Receitas",
+            "Configurações",
+            "Sobre"});
+            this.cbxTelaLiberar.Location = new System.Drawing.Point(160, 91);
+            this.cbxTelaLiberar.Margin = new System.Windows.Forms.Padding(4);
+            this.cbxTelaLiberar.Name = "cbxTelaLiberar";
+            this.cbxTelaLiberar.Size = new System.Drawing.Size(219, 24);
+            this.cbxTelaLiberar.TabIndex = 10;
+            // 
+            // lblPrograma
+            // 
+            this.lblPrograma.AutoSize = true;
+            this.lblPrograma.Location = new System.Drawing.Point(8, 94);
+            this.lblPrograma.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPrograma.Name = "lblPrograma";
+            this.lblPrograma.Size = new System.Drawing.Size(74, 17);
+            this.lblPrograma.TabIndex = 11;
+            this.lblPrograma.Text = "Programa:";
             // 
             // label13
             // 
@@ -2413,86 +2479,6 @@ namespace TCC2
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Agenda",
-            "Alimento",
-            "Cardápio",
-            "Paciente",
-            "Receitas",
-            "Configurações",
-            "Sobre"});
-            this.comboBox1.Location = new System.Drawing.Point(104, 91);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(219, 24);
-            this.comboBox1.TabIndex = 10;
-            // 
-            // lblPrograma
-            // 
-            this.lblPrograma.AutoSize = true;
-            this.lblPrograma.Location = new System.Drawing.Point(8, 94);
-            this.lblPrograma.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblPrograma.Name = "lblPrograma";
-            this.lblPrograma.Size = new System.Drawing.Size(74, 17);
-            this.lblPrograma.TabIndex = 11;
-            this.lblPrograma.Text = "Programa:";
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Image = global::TCC2.Properties.Resources.DeleteRed;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(1458, 163);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(153, 43);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Excluir";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(1297, 163);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(153, 43);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "Salvar";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(10, 214);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1599, 675);
-            this.dataGridView1.TabIndex = 14;
-            // 
-            // cbxUsuario
-            // 
-            this.cbxUsuario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxUsuario.FormattingEnabled = true;
-            this.cbxUsuario.Location = new System.Drawing.Point(104, 19);
-            this.cbxUsuario.Margin = new System.Windows.Forms.Padding(4);
-            this.cbxUsuario.Name = "cbxUsuario";
-            this.cbxUsuario.Size = new System.Drawing.Size(219, 24);
-            this.cbxUsuario.TabIndex = 15;
             // 
             // frmMenuPrincipal
             // 
@@ -2735,9 +2721,8 @@ namespace TCC2
         private System.Windows.Forms.Label label14;
         private MvtWindowsForms.RitchTextBoxWithToolBar ritchTextBoxWithToolBar1;
         internal System.Windows.Forms.DataGridView dataGridView1;
-        internal System.Windows.Forms.Button button1;
-        internal System.Windows.Forms.Button button2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        internal System.Windows.Forms.Button btnSalvarPermissao;
+        private System.Windows.Forms.ComboBox cbxTelaLiberar;
         private System.Windows.Forms.Label lblPrograma;
         private System.Windows.Forms.ComboBox cbxUsuario;
     }

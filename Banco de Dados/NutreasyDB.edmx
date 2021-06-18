@@ -88,7 +88,6 @@
           </Key>
           <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="usuario" Type="varchar" MaxLength="2147483647" />
-          <Property Name="funcaoPermitida" Type="integer" />
           <Property Name="programa" Type="varchar" MaxLength="2147483647" />
         </EntityType>
         <Association Name="FK_Cardapio_0_0">
@@ -319,7 +318,6 @@
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="usuario" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
-          <Property Name="funcaoPermitida" Type="Int64" />
           <Property Name="programa" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Login" Relationship="mainModel.FK_Permissao_0_0" FromRole="Permissao" ToRole="Login" />
         </EntityType>
@@ -428,7 +426,6 @@
             <EntityTypeMapping TypeName="mainModel.Permissao">
               <MappingFragment StoreEntitySet="Permissao">
                 <ScalarProperty Name="programa" ColumnName="programa" />
-                <ScalarProperty Name="funcaoPermitida" ColumnName="funcaoPermitida" />
                 <ScalarProperty Name="usuario" ColumnName="usuario" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>

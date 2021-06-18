@@ -16,7 +16,6 @@ namespace TCC2.Banco_de_Dados
     {
         public long ID { get; set; }
         public string usuario { get; set; }
-        public Nullable<long> funcaoPermitida { get; set; }
         public string programa { get; set; }
     
         public virtual Login Login { get; set; }

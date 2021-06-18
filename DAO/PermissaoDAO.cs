@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TCC2;
 using TCC2.Banco_de_Dados;
 
 namespace DAO
@@ -15,7 +16,7 @@ namespace DAO
         {
             try
             {
-                var temPerm = (from p in TCC2.BancoDadosSingleton.Instance.Permissao where p.usuario == usuario && p.programa == nameAba select p.funcaoPermitida).ToList();
+                var temPerm = (from p in TCC2.BancoDadosSingleton.Instance.Permissao where p.usuario == usuario && p.programa == nameAba select p).ToList();
                 if (temPerm.Count > 0)
                 {
                     return true;
@@ -31,7 +32,38 @@ namespace DAO
             }
         }
 
+        public void AdicionarPermissao(string usuario, string telaPermissao)
+        {
+            if (!VerificarPermissao(usuario, telaPermissao))
+            {
+                Permissao permissaoInsert = new Permissao();
 
+                permissaoInsert.usuario = usuario;
+                permissaoInsert.programa = telaPermissao;
+
+                BancoDadosSingleton.Instance.Permissao.Add(permissaoInsert);
+                BancoDadosSingleton.Instance.SaveChanges();
+            }
+            else
+            {
+                throw new Exception("Esse usuário ja possui permissão para essa tela");
+
+            }
+
+        }
+
+        public bool VerificarPermissao(string usuario, string tela)
+        {
+            var temPerm = (from p in TCC2.BancoDadosSingleton.Instance.Permissao where p.usuario == usuario && p.programa == tela select p).ToList();
+            if (temPerm.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
     }
 }

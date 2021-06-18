@@ -80,6 +80,24 @@ namespace TCC2
             return false;
         }
 
+        public List<string> retornaUsuarios()
+        {
+            try
+            {
+                var usuarios = (from c in TCC2.BancoDadosSingleton.Instance.Login select c.usuario).ToList();
+                if (usuarios.Count > 0)
+                {
+                    return usuarios;
+                }
+            }
+            catch
+            {
+                return null;
+
+            }
+            return null;
+        }
+
         public List<Login> Buscar(string usuario)
         {
             List<Login> usuarios = new List<Login>(); ;

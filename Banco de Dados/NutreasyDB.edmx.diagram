@@ -14,7 +14,7 @@
         <AssociationConnector Association="mainModel.FK_Cardapio_0_0" ManuallyRouted="false" />
         <AssociationConnector Association="mainModel.FK_MedidaCaseira_0_0" ManuallyRouted="false" />
         <AssociationConnector Association="mainModel.FK_Cardapio_1_0" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="mainModel.Permissao" Width="1.5" PointX="8" PointY="4" />
+        <EntityTypeShape EntityType="mainModel.Permissao" Width="1.5" PointX="8.375" PointY="4.125" />
         <AssociationConnector Association="mainModel.FK_Permissao_0_0" />
       </Diagram>
     </edmx:Diagrams>

@@ -75,7 +75,7 @@ namespace TCC2
 
         private void IsPermitido(string nome)
         {
-            if (permissaoDAO.temPermissao(usuarioDAO.getUsuario().ToString()))
+            if (permissaoDAO.temPermissao(usuarioDAO.getUsuario().ToString(),""))
             {
                 MessageBox.Show($"Você não tem acesso a essa aba: {nome}!","SEM PERMISSÃO",MessageBoxButtons.OK,MessageBoxIcon.Warning,MessageBoxDefaultButton.Button1,MessageBoxOptions.DefaultDesktopOnly);
                 TabControlNutreasy.SelectedTab = tabMenu;
@@ -214,13 +214,6 @@ namespace TCC2
                 });
             //timer1.Enabled = true;
             //mCardConsultas.BackColor = mCardConsultas.BackColor == Color.Red ? Color.White : Color.Red;
-        }
-
-
-
-        private void mcbxAtendido_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
         #endregion
 
@@ -1610,11 +1603,23 @@ namespace TCC2
         {
             txtConfirmarSenha.PasswordChar = '*';
         }
+
+        private void tbPermissao_Enter(object sender, EventArgs e)
+        {
+            var listaUsuarios = usuarioDAO.retornaUsuarios();
+
+            if (listaUsuarios.Count <= 0)
+                return;
+
+            listaUsuarios.ForEach(x => cbxUsuario.Items.Add(x));
+        }
+
+        private void btnSalvarPermissao_Click(object sender, EventArgs e)
+        {
+            permissaoDAO.AdicionarPermissao(Convert.ToString(cbxUsuario.Text), Convert.ToString(cbxTelaLiberar.Text));
+        }
         #endregion
 
-        private void tbPermissao_Click(object sender, EventArgs e)
-        {
-            //Carregar usuários no cbxUsuarios para dar permissão
-        }
+
     }
 }

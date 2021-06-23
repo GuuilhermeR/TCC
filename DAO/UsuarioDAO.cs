@@ -52,17 +52,12 @@ namespace TCC2
             usuario = usuarioLogado.ToString();
         }
 
-        public object getUsuarioSenha()
-        {
-            return senha;
-        }
-
         public void setUsuarioSenha(string senhaatual)
         {
             senha = senhaatual;
         }
 
-        public bool loginUsuario(string usuarioLogado, string senha)
+        public bool validarLogin(string usuarioLogado, string senha)
         {
             try
             {
@@ -80,7 +75,7 @@ namespace TCC2
             return false;
         }
 
-        public List<string> retornaUsuarios()
+        public List<string> getAllUsuarios()
         {
             try
             {
@@ -98,7 +93,7 @@ namespace TCC2
             return null;
         }
 
-        public List<Login> Buscar(string usuario)
+        public List<Login> getUsuario(string usuario)
         {
             List<Login> usuarios = new List<Login>(); ;
             if (usuario != "")

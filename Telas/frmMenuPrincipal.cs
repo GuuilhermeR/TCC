@@ -156,7 +156,7 @@ namespace TCC2
 
         private void tabMenu_Click(object sender, EventArgs e)
         {
-            var ConsultasMarcada = this.agendaDAO.CarregarConsulta(DateAndTime.Now.ToString("dd/MM/yyyy"));
+            var ConsultasMarcada = this.agendaDAO.CarregarConsultasMenu(DateAndTime.Now.ToString("dd/MM/yyyy"));
 
             if (ConsultasMarcada != null)
                 ConsultasMarcada.ForEach(x =>
@@ -806,15 +806,6 @@ namespace TCC2
             txtTelefone.Text = "";
             txtCelular.Text = "";
         }
-        private void txtCEP_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                txtCEP.Text = Convert.ToUInt64(txtCEP.Text).ToString(@"00000\-000");
-            }
-            catch { }
-            buscaCEP.buscarEndCep(this, txtCEP.Text);
-        }
         private void _btnExcluir_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtCodPaciente.Text))
@@ -866,29 +857,14 @@ namespace TCC2
             catch { }
         }
 
-        private void txtCPF_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtCEP_Leave(object sender, EventArgs e)
         {
-            PermitirApenasNumero(sender, e);
-        }
-
-        private void txtCEP_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            PermitirApenasNumero(sender, e);
-        }
-
-        private void txtNumero_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            PermitirApenasNumero(sender, e);
-        }
-
-        private void txtTelefone_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            PermitirApenasNumero(sender, e);
-        }
-
-        private void txtCelular_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            PermitirApenasNumero(sender, e);
+            buscaCEP.buscarEndCep(this, txtCEP.Text);
+            try
+            {
+                txtCEP.Text = Convert.ToUInt64(txtCEP.Text).ToString(@"00000\-000");
+            }
+            catch { }
         }
 
         public static Bitmap ByteToImage(byte[] blob)
@@ -1059,6 +1035,10 @@ namespace TCC2
         //        MessageBox.Show("Erro " + ex.Message);
         //    }
         //}
+        private void txtCPF_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            PermitirApenasNumero(sender, e);
+        }
 
         private void txtCPF_Leave(object sender, EventArgs e)
         {
@@ -1069,16 +1049,7 @@ namespace TCC2
             catch { }
         }
 
-        private void txtTelefone_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                txtTelefone.Text = Regex.Replace(txtTelefone.Text, @"(\d{2})(\d{5})(\d{4})", "($1) $2-$3");
-            }
-            catch { }
-        }
-
-        private void txtCelular_Leave(object sender, EventArgs e)
+        private void txtCelular_Leave_1(object sender, EventArgs e)
         {
             try
             {
@@ -1087,6 +1058,34 @@ namespace TCC2
             catch { }
         }
 
+        private void txtTelefone_Leave_1(object sender, EventArgs e)
+        {
+            try
+            {
+                txtTelefone.Text = Regex.Replace(txtTelefone.Text, @"(\d{2})(\d{5})(\d{4})", "($1) $2-$3");
+            }
+            catch { }
+        }
+
+        private void txtCEP_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            PermitirApenasNumero(sender, e);
+        }
+
+        private void txtNumero_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            PermitirApenasNumero(sender, e);
+        }
+
+        private void txtTelefone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            PermitirApenasNumero(sender, e);
+        }
+
+        private void txtCelular_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            PermitirApenasNumero(sender, e);
+        }
         #endregion
 
         #region Cardápio
@@ -1567,11 +1566,11 @@ namespace TCC2
         private void txtUsuarioConfig_Leave(object sender, EventArgs e)
         {
             if (txtUsuarioConfig.Text != "")
-                usuarioDAO.Buscar(txtUsuarioConfig.Text);
+                usuarioDAO.getUsuario(txtUsuarioConfig.Text);
         }
         private void tbConfig_Enter(object sender, EventArgs e)
         {
-            var listaUsuario = usuarioDAO.Buscar("");
+            var listaUsuario = usuarioDAO.getUsuario("");
             if (listaUsuario == null)
                 return;
             DataTable dt = ConvertToDataTable(listaUsuario);
@@ -1606,7 +1605,7 @@ namespace TCC2
 
         private void tbPermissao_Enter(object sender, EventArgs e)
         {
-            var listaUsuarios = usuarioDAO.retornaUsuarios();
+            var listaUsuarios = usuarioDAO.getAllUsuarios();
 
             if (listaUsuarios.Count <= 0)
                 return;
@@ -1618,8 +1617,9 @@ namespace TCC2
         {
             permissaoDAO.AdicionarPermissao(Convert.ToString(cbxUsuario.Text), Convert.ToString(cbxTelaLiberar.Text));
         }
-        #endregion
 
+
+        #endregion
 
     }
 }

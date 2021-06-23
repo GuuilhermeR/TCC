@@ -37,7 +37,7 @@ namespace ProjetoTCC
             }
         }
 
-        public List<Agenda> CarregarConsulta(string dataAgenda)
+        public List<Agenda> CarregarConsultasMenu(string dataAgenda)
         {
             try
             {

@@ -49,7 +49,7 @@ namespace TCC2
                 return;
             }
 
-            if ((bool)usuario.loginUsuario(txtUsuario.Text, txtSenha.Text))
+            if ((bool)usuario.validarLogin(txtUsuario.Text, txtSenha.Text))
             {
                 usuario.setUsuario(txtUsuario.Text);
                 usuario.setNomeUsuario(txtUsuario.Text);

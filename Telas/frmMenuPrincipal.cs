@@ -446,30 +446,6 @@ namespace TCC2
             }
         }
 
-        private void txtAlimentoFiltro_Leave(object sender, EventArgs e)
-        {
-            if (cbxTabela.Text != "")
-            {
-                dtgConAlimento.DataSource = null;
-                var listaAlimentos = alimentoDAO.Buscar(txtAlimentoFiltro.Text, cbxTabela.Text);
-                if (listaAlimentos == null)
-                    return;
-                DataTable dt = ConvertToDataTable(listaAlimentos);
-                dtgConAlimento.DataSource = dt;
-                dtgConAlimento.Columns["codAlimento"].Visible = false;
-                dtgConAlimento.Columns["nomeAlimento"].HeaderText = "Alimento";
-                dtgConAlimento.Columns["nomeAlimento"].Width = 450;
-                dtgConAlimento.Columns["qtd"].HeaderText = "Qtde";
-                dtgConAlimento.Columns["prot"].HeaderText = "Proteína";
-                dtgConAlimento.Columns["carbo"].HeaderText = "Carboidrato";
-                dtgConAlimento.Columns["lipidio"].HeaderText = "Lipídio";
-                dtgConAlimento.Columns["nomeTabela"].Visible = false;
-                dtgConAlimento.Columns["MedidaCaseira"].Visible = false;
-                dtgConAlimento.Columns["Cardapio"].Visible = false;
-                return;
-            }
-        }
-
         private void dtgDadosImportados_DragDrop(object sender, DragEventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -786,6 +762,30 @@ namespace TCC2
         {
             tabAlimento_Enter(sender, e);
         }
+
+        private void txtAlimentoFiltro_Leave(object sender, EventArgs e)
+        {
+            if (cbxTabela.Text != "")
+            {
+                dtgConAlimento.DataSource = null;
+                var listaAlimentos = alimentoDAO.Buscar(txtAlimentoFiltro.Text, cbxTabela.Text);
+                if (listaAlimentos == null)
+                    return;
+                DataTable dt = ConvertToDataTable(listaAlimentos);
+                dtgConAlimento.DataSource = dt;
+                dtgConAlimento.Columns["codAlimento"].Visible = false;
+                dtgConAlimento.Columns["nomeAlimento"].HeaderText = "Alimento";
+                dtgConAlimento.Columns["nomeAlimento"].Width = 450;
+                dtgConAlimento.Columns["qtd"].HeaderText = "Qtde";
+                dtgConAlimento.Columns["prot"].HeaderText = "Proteína";
+                dtgConAlimento.Columns["carbo"].HeaderText = "Carboidrato";
+                dtgConAlimento.Columns["lipidio"].HeaderText = "Lipídio";
+                dtgConAlimento.Columns["nomeTabela"].Visible = false;
+                dtgConAlimento.Columns["MedidaCaseira"].Visible = false;
+                dtgConAlimento.Columns["Cardapio"].Visible = false;
+                return;
+            }
+        }
         #endregion
 
         #region CadastroPaciente 
@@ -859,12 +859,15 @@ namespace TCC2
 
         private void txtCEP_Leave(object sender, EventArgs e)
         {
-            buscaCEP.buscarEndCep(this, txtCEP.Text);
-            try
+            if (txtCEP.Text != "")
             {
-                txtCEP.Text = Convert.ToUInt64(txtCEP.Text).ToString(@"00000\-000");
-            }
-            catch { }
+                buscaCEP.buscarEndCep(this, txtCEP.Text);
+                try
+                {
+                    txtCEP.Text = Convert.ToUInt64(txtCEP.Text).ToString(@"00000\-000");
+                }
+                catch { }
+            }           
         }
 
         public static Bitmap ByteToImage(byte[] blob)
@@ -1194,31 +1197,6 @@ namespace TCC2
             graficoMacroNutri.LegendLocation = LegendLocation.Right;
         }
 
-        private void cbxTabelaAlimentoCardapio_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            if (cbxTabelaAlimentoCardapio.Text != "")
-            {
-                var listaAlimentos = alimentoDAO.Buscar("", cbxTabelaAlimentoCardapio.Text);
-                if (listaAlimentos == null)
-                    return;
-                DataTable dt = ConvertToDataTable(listaAlimentos);
-                dtgCardapioAlimentos.DataSource = dt;
-
-                dtgCardapioAlimentos.Columns["codAlimento"].Visible = false;
-                dtgCardapioAlimentos.Columns["nomeAlimento"].HeaderText = "Alimento";
-                dtgCardapioAlimentos.Columns["kcal"].Visible = false;
-                dtgCardapioAlimentos.Columns["qtd"].Visible = false;
-                dtgCardapioAlimentos.Columns["prot"].Visible = false;
-                dtgCardapioAlimentos.Columns["carbo"].Visible = false;
-                dtgCardapioAlimentos.Columns["lipidio"].Visible = false;
-                dtgCardapioAlimentos.Columns["nomeTabela"].Visible = false;
-                dtgCardapioAlimentos.Columns["MedidaCaseira"].Visible = false;
-                dtgCardapioAlimentos.Columns["Cardapio"].Visible = false;
-                dtgCardapioAlimentos.AutoResizeColumns();
-                dtgCardapioAlimentos.Columns["nomeAlimento"].ReadOnly = true;
-            }
-        }
-
         private DataGridViewRow adicionar(DataGridViewRow row)
         {
             DataGridViewRow newRow = (DataGridViewRow)row.Clone();
@@ -1299,6 +1277,7 @@ namespace TCC2
             frmBuscarPaciente buscaPacientes = new frmBuscarPaciente(this);
             buscaPacientes.ShowDialog();
         }
+
         private void dtgConAlimento_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             if (e.ColumnIndex >= 0)
@@ -1331,13 +1310,6 @@ namespace TCC2
                 dtgCardapioAlimentos.Columns["MedidaCaseira"].Visible = false;
                 dtgCardapioAlimentos.Columns["Cardapio"].Visible = false;
                 dtgCardapioAlimentos.AutoResizeColumns();
-            }
-        }
-        private void cbxRefeicao_Leave(object sender, EventArgs e)
-        {
-            if (cbxRefeicao.Text == "" || cbxRefeicao.Text == null)
-            {
-
             }
         }
 
@@ -1484,6 +1456,30 @@ namespace TCC2
             });
         }
 
+        private void cbxTabelaAlimentoCardapio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxTabelaAlimentoCardapio.Text != "")
+            {
+                var listaAlimentos = alimentoDAO.Buscar("", cbxTabelaAlimentoCardapio.Text);
+                if (listaAlimentos == null)
+                    return;
+                DataTable dt = ConvertToDataTable(listaAlimentos);
+                dtgCardapioAlimentos.DataSource = dt;
+
+                dtgCardapioAlimentos.Columns["codAlimento"].Visible = false;
+                dtgCardapioAlimentos.Columns["nomeAlimento"].HeaderText = "Alimento";
+                dtgCardapioAlimentos.Columns["kcal"].Visible = false;
+                dtgCardapioAlimentos.Columns["qtd"].Visible = false;
+                dtgCardapioAlimentos.Columns["prot"].Visible = false;
+                dtgCardapioAlimentos.Columns["carbo"].Visible = false;
+                dtgCardapioAlimentos.Columns["lipidio"].Visible = false;
+                dtgCardapioAlimentos.Columns["nomeTabela"].Visible = false;
+                dtgCardapioAlimentos.Columns["MedidaCaseira"].Visible = false;
+                dtgCardapioAlimentos.Columns["Cardapio"].Visible = false;
+                dtgCardapioAlimentos.AutoResizeColumns();
+                dtgCardapioAlimentos.Columns["nomeAlimento"].ReadOnly = true;
+            }
+        }
         private void btnCancelarCardapio_Click(object sender, EventArgs e)
         {
             txtPaciente.Text = "";
@@ -1524,7 +1520,7 @@ namespace TCC2
         private void btnCancelarEditAlimentos_Click(object sender, EventArgs e)
         {
             cbxTabela.SelectedIndex = -1;
-            txtAlimentoFiltro.Clear();
+            txtAlimentoFiltro.Text = "";
             dtgConAlimento.DataSource = null;
             dtgConAlimento.Rows.Clear();
             dtgConAlimento.Columns.Clear();
@@ -1563,11 +1559,6 @@ namespace TCC2
                 usuarioDAO.AlterarUsuario(txtUsuarioConfig.Text, txtSenha.Text, txtNome.Text, txtEmail.Text, cbxSituacao.Text, cbxTipoUsuario.Text, alterarSenha);
             }
         }
-        private void txtUsuarioConfig_Leave(object sender, EventArgs e)
-        {
-            if (txtUsuarioConfig.Text != "")
-                usuarioDAO.getUsuario(txtUsuarioConfig.Text);
-        }
         private void tbConfig_Enter(object sender, EventArgs e)
         {
             var listaUsuario = usuarioDAO.getUsuario("");
@@ -1594,15 +1585,6 @@ namespace TCC2
                 cbxTipoUsuario.Text = dtgUsuarios.CurrentRow.Cells["perfil"].Value.ToString();
             }
         }
-        private void txtSenha_Enter(object sender, EventArgs e)
-        {
-            txtSenha.PasswordChar = '*';
-        }
-        private void txtConfirmarSenha_Enter(object sender, EventArgs e)
-        {
-            txtConfirmarSenha.PasswordChar = '*';
-        }
-
         private void tbPermissao_Enter(object sender, EventArgs e)
         {
             var listaUsuarios = usuarioDAO.getAllUsuarios();
@@ -1612,14 +1594,18 @@ namespace TCC2
 
             listaUsuarios.ForEach(x => cbxUsuario.Items.Add(x));
         }
+        private void txtUsuarioConfig_Leave(object sender, EventArgs e)
+        {
+            if (txtUsuarioConfig.Text != "")
+                usuarioDAO.getUsuario(txtUsuarioConfig.Text);
+        }
 
         private void btnSalvarPermissao_Click(object sender, EventArgs e)
         {
             permissaoDAO.AdicionarPermissao(Convert.ToString(cbxUsuario.Text), Convert.ToString(cbxTelaLiberar.Text));
         }
-
-
         #endregion
 
+        
     }
 }

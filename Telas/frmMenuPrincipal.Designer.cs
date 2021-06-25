@@ -31,8 +31,13 @@ namespace TCC2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange11 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange12 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange13 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange14 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange15 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenuPrincipal));
             this.TabControlNutreasy = new MaterialSkin.Controls.MaterialTabControl();
             this.tabMenu = new System.Windows.Forms.TabPage();
@@ -53,6 +58,7 @@ namespace TCC2
             this.pbxLogoGrande = new System.Windows.Forms.PictureBox();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.tabAgenda = new System.Windows.Forms.TabPage();
+            this.calAgendamento = new System.Windows.Forms.Calendar.Calendar();
             this.btnSalvarAgenda = new System.Windows.Forms.Button();
             this.lblDataAtual = new System.Windows.Forms.Label();
             this.dtgAgenda = new System.Windows.Forms.DataGridView();
@@ -75,14 +81,11 @@ namespace TCC2
             this.lblTabela = new System.Windows.Forms.Label();
             this.dtgConAlimento = new System.Windows.Forms.DataGridView();
             this.tbImportarPlanilha = new System.Windows.Forms.TabPage();
-            this.txtNomeTabela = new System.Windows.Forms.TextBox();
-            this.lblNomeTabela = new System.Windows.Forms.Label();
-            this._cbxNomePlanilha = new System.Windows.Forms.ComboBox();
+            this.txtNomeTabela = new MaterialSkin.Controls.MaterialTextBox();
+            this._cbxNomePlanilha = new MaterialSkin.Controls.MaterialComboBox();
+            this.txtCaminhoArquivoExcel = new MaterialSkin.Controls.MaterialTextBox();
             this._btnImportar = new System.Windows.Forms.Button();
             this.dtgDadosImportados = new System.Windows.Forms.DataGridView();
-            this.txtCaminhoArquivoExcel = new System.Windows.Forms.TextBox();
-            this.Label10 = new System.Windows.Forms.Label();
-            this.lblCaminho = new System.Windows.Forms.Label();
             this._btnBuscarPlanilha = new System.Windows.Forms.Button();
             this.tbCadMedCaseira = new System.Windows.Forms.TabPage();
             this.txtCodAlimentoMedCas = new System.Windows.Forms.TextBox();
@@ -152,10 +155,19 @@ namespace TCC2
             this.tabConfig = new System.Windows.Forms.TabPage();
             this.tbConfig = new System.Windows.Forms.TabControl();
             this.TabPage1 = new System.Windows.Forms.TabPage();
+            this.txtEmailConfig = new MaterialSkin.Controls.MaterialTextBox();
+            this.cbxTipoUsuario = new MaterialSkin.Controls.MaterialComboBox();
+            this.cbxSituacao = new MaterialSkin.Controls.MaterialComboBox();
+            this.txtConfirmarSenha = new MaterialSkin.Controls.MaterialTextBox();
+            this.txtSenha = new MaterialSkin.Controls.MaterialTextBox();
+            this.txtNomeUsuarioConfig = new MaterialSkin.Controls.MaterialTextBox();
+            this.txtUsuarioConfig = new MaterialSkin.Controls.MaterialTextBox();
             this.btnExcluirConfigUsuario = new System.Windows.Forms.Button();
             this.btnSalvarConfigUsuario = new System.Windows.Forms.Button();
             this.dtgUsuarios = new System.Windows.Forms.DataGridView();
             this.tbPermissao = new System.Windows.Forms.TabPage();
+            this.cbxTelaLiberar = new MaterialSkin.Controls.MaterialComboBox();
+            this.cbxUsuario = new MaterialSkin.Controls.MaterialComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnSalvarPermissao = new System.Windows.Forms.Button();
             this.tbSobre = new System.Windows.Forms.TabPage();
@@ -163,16 +175,7 @@ namespace TCC2
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.textBoxContextMenuStrip1 = new MaterialSkin.Controls.TextBoxContextMenuStrip();
-            this.txtUsuarioConfig = new MaterialSkin.Controls.MaterialTextBox();
-            this.txtNomeUsuarioConfig = new MaterialSkin.Controls.MaterialTextBox();
-            this.txtSenha = new MaterialSkin.Controls.MaterialTextBox();
-            this.txtConfirmarSenha = new MaterialSkin.Controls.MaterialTextBox();
-            this.cbxSituacao = new MaterialSkin.Controls.MaterialComboBox();
             this.sqLiteCommandBuilder1 = new System.Data.SQLite.SQLiteCommandBuilder();
-            this.cbxTipoUsuario = new MaterialSkin.Controls.MaterialComboBox();
-            this.txtEmailConfig = new MaterialSkin.Controls.MaterialTextBox();
-            this.cbxUsuario = new MaterialSkin.Controls.MaterialComboBox();
-            this.cbxTelaLiberar = new MaterialSkin.Controls.MaterialComboBox();
             this.TabControlNutreasy.SuspendLayout();
             this.tabMenu.SuspendLayout();
             this.mCardAtendimentoAtual.SuspendLayout();
@@ -489,6 +492,7 @@ namespace TCC2
             // 
             // tabAgenda
             // 
+            this.tabAgenda.Controls.Add(this.calAgendamento);
             this.tabAgenda.Controls.Add(this.btnSalvarAgenda);
             this.tabAgenda.Controls.Add(this.lblDataAtual);
             this.tabAgenda.Controls.Add(this.dtgAgenda);
@@ -503,6 +507,37 @@ namespace TCC2
             this.tabAgenda.Text = "Agenda";
             this.tabAgenda.UseVisualStyleBackColor = true;
             this.tabAgenda.Enter += new System.EventHandler(this.tabAgenda_Enter);
+            // 
+            // calAgendamento
+            // 
+            this.calAgendamento.Font = new System.Drawing.Font("Segoe UI", 9F);
+            calendarHighlightRange11.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange11.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange11.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange12.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange12.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange12.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange13.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange13.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange13.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange14.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange14.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange14.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange15.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange15.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange15.StartTime = System.TimeSpan.Parse("08:00:00");
+            this.calAgendamento.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
+        calendarHighlightRange11,
+        calendarHighlightRange12,
+        calendarHighlightRange13,
+        calendarHighlightRange14,
+        calendarHighlightRange15};
+            this.calAgendamento.ItemsTimeFormat = "hh:mm";
+            this.calAgendamento.Location = new System.Drawing.Point(6, 86);
+            this.calAgendamento.Name = "calAgendamento";
+            this.calAgendamento.Size = new System.Drawing.Size(1217, 599);
+            this.calAgendamento.TabIndex = 55;
+            this.calAgendamento.TimeScale = System.Windows.Forms.Calendar.CalendarTimeScale.SixtyMinutes;
             // 
             // btnSalvarAgenda
             // 
@@ -545,24 +580,24 @@ namespace TCC2
             this.atendido,
             this.retorno,
             this.ID});
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgAgenda.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgAgenda.DefaultCellStyle = dataGridViewCellStyle5;
             this.dtgAgenda.Location = new System.Drawing.Point(6, 58);
             this.dtgAgenda.Name = "dtgAgenda";
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgAgenda.RowHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgAgenda.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dtgAgenda.RowHeadersWidth = 51;
             this.dtgAgenda.Size = new System.Drawing.Size(1219, 659);
             this.dtgAgenda.TabIndex = 52;
@@ -718,6 +753,7 @@ namespace TCC2
             this.cbxTabela.Size = new System.Drawing.Size(659, 49);
             this.cbxTabela.StartIndex = 0;
             this.cbxTabela.TabIndex = 320;
+            this.cbxTabela.SelectedIndexChanged += new System.EventHandler(this.cbxTabela_SelectedIndexChanged);
             // 
             // btnCancelarEditAlimentos
             // 
@@ -799,13 +835,10 @@ namespace TCC2
             // 
             this.tbImportarPlanilha.AllowDrop = true;
             this.tbImportarPlanilha.Controls.Add(this.txtNomeTabela);
-            this.tbImportarPlanilha.Controls.Add(this.lblNomeTabela);
             this.tbImportarPlanilha.Controls.Add(this._cbxNomePlanilha);
+            this.tbImportarPlanilha.Controls.Add(this.txtCaminhoArquivoExcel);
             this.tbImportarPlanilha.Controls.Add(this._btnImportar);
             this.tbImportarPlanilha.Controls.Add(this.dtgDadosImportados);
-            this.tbImportarPlanilha.Controls.Add(this.txtCaminhoArquivoExcel);
-            this.tbImportarPlanilha.Controls.Add(this.Label10);
-            this.tbImportarPlanilha.Controls.Add(this.lblCaminho);
             this.tbImportarPlanilha.Controls.Add(this._btnBuscarPlanilha);
             this.tbImportarPlanilha.Location = new System.Drawing.Point(4, 22);
             this.tbImportarPlanilha.Name = "tbImportarPlanilha";
@@ -818,31 +851,64 @@ namespace TCC2
             // txtNomeTabela
             // 
             this.txtNomeTabela.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtNomeTabela.Location = new System.Drawing.Point(194, 678);
+            this.txtNomeTabela.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtNomeTabela.Depth = 0;
+            this.txtNomeTabela.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtNomeTabela.Hint = "Nome Tabela";
+            this.txtNomeTabela.LeadingIcon = null;
+            this.txtNomeTabela.Location = new System.Drawing.Point(9, 678);
+            this.txtNomeTabela.MaxLength = 50;
+            this.txtNomeTabela.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtNomeTabela.Multiline = false;
             this.txtNomeTabela.Name = "txtNomeTabela";
-            this.txtNomeTabela.Size = new System.Drawing.Size(503, 20);
-            this.txtNomeTabela.TabIndex = 272;
-            // 
-            // lblNomeTabela
-            // 
-            this.lblNomeTabela.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblNomeTabela.AutoSize = true;
-            this.lblNomeTabela.Location = new System.Drawing.Point(3, 682);
-            this.lblNomeTabela.Name = "lblNomeTabela";
-            this.lblNomeTabela.Size = new System.Drawing.Size(74, 13);
-            this.lblNomeTabela.TabIndex = 271;
-            this.lblNomeTabela.Text = "Nome Tabela:";
+            this.txtNomeTabela.Size = new System.Drawing.Size(659, 50);
+            this.txtNomeTabela.TabIndex = 325;
+            this.txtNomeTabela.Text = "";
+            this.txtNomeTabela.TrailingIcon = null;
             // 
             // _cbxNomePlanilha
             // 
             this._cbxNomePlanilha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this._cbxNomePlanilha.AutoResize = false;
+            this._cbxNomePlanilha.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this._cbxNomePlanilha.Depth = 0;
+            this._cbxNomePlanilha.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this._cbxNomePlanilha.DropDownHeight = 174;
             this._cbxNomePlanilha.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this._cbxNomePlanilha.DropDownWidth = 121;
+            this._cbxNomePlanilha.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this._cbxNomePlanilha.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this._cbxNomePlanilha.FormattingEnabled = true;
-            this._cbxNomePlanilha.Location = new System.Drawing.Point(194, 648);
+            this._cbxNomePlanilha.Hint = "Nome da Planilha";
+            this._cbxNomePlanilha.IntegralHeight = false;
+            this._cbxNomePlanilha.ItemHeight = 43;
+            this._cbxNomePlanilha.Location = new System.Drawing.Point(9, 623);
+            this._cbxNomePlanilha.MaxDropDownItems = 4;
+            this._cbxNomePlanilha.MouseState = MaterialSkin.MouseState.OUT;
             this._cbxNomePlanilha.Name = "_cbxNomePlanilha";
-            this._cbxNomePlanilha.Size = new System.Drawing.Size(503, 21);
-            this._cbxNomePlanilha.TabIndex = 270;
-            this._cbxNomePlanilha.SelectedIndexChanged += new System.EventHandler(this._cbxNomePlanilha_SelectedIndexChanged);
+            this._cbxNomePlanilha.Size = new System.Drawing.Size(659, 49);
+            this._cbxNomePlanilha.StartIndex = 0;
+            this._cbxNomePlanilha.TabIndex = 324;
+            this._cbxNomePlanilha.SelectedIndexChanged += new System.EventHandler(this._cbxNomePlanilha_SelectedIndexChanged_1);
+            // 
+            // txtCaminhoArquivoExcel
+            // 
+            this.txtCaminhoArquivoExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtCaminhoArquivoExcel.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtCaminhoArquivoExcel.Depth = 0;
+            this.txtCaminhoArquivoExcel.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtCaminhoArquivoExcel.Hint = "Caminho do Arquivo";
+            this.txtCaminhoArquivoExcel.LeadingIcon = null;
+            this.txtCaminhoArquivoExcel.Location = new System.Drawing.Point(9, 567);
+            this.txtCaminhoArquivoExcel.MaxLength = 50;
+            this.txtCaminhoArquivoExcel.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtCaminhoArquivoExcel.Multiline = false;
+            this.txtCaminhoArquivoExcel.Name = "txtCaminhoArquivoExcel";
+            this.txtCaminhoArquivoExcel.ReadOnly = true;
+            this.txtCaminhoArquivoExcel.Size = new System.Drawing.Size(659, 50);
+            this.txtCaminhoArquivoExcel.TabIndex = 323;
+            this.txtCaminhoArquivoExcel.Text = "";
+            this.txtCaminhoArquivoExcel.TrailingIcon = null;
             // 
             // _btnImportar
             // 
@@ -871,45 +937,16 @@ namespace TCC2
             this.dtgDadosImportados.Location = new System.Drawing.Point(9, 3);
             this.dtgDadosImportados.Name = "dtgDadosImportados";
             this.dtgDadosImportados.RowHeadersWidth = 51;
-            this.dtgDadosImportados.Size = new System.Drawing.Size(1201, 592);
+            this.dtgDadosImportados.Size = new System.Drawing.Size(1201, 558);
             this.dtgDadosImportados.TabIndex = 268;
             this.dtgDadosImportados.DragDrop += new System.Windows.Forms.DragEventHandler(this.dtgDadosImportados_DragDrop);
             this.dtgDadosImportados.DragEnter += new System.Windows.Forms.DragEventHandler(this.dtgDadosImportados_DragEnter);
-            // 
-            // txtCaminhoArquivoExcel
-            // 
-            this.txtCaminhoArquivoExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtCaminhoArquivoExcel.Location = new System.Drawing.Point(194, 618);
-            this.txtCaminhoArquivoExcel.Name = "txtCaminhoArquivoExcel";
-            this.txtCaminhoArquivoExcel.ReadOnly = true;
-            this.txtCaminhoArquivoExcel.Size = new System.Drawing.Size(629, 20);
-            this.txtCaminhoArquivoExcel.TabIndex = 2;
-            // 
-            // Label10
-            // 
-            this.Label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.Label10.AutoSize = true;
-            this.Label10.Location = new System.Drawing.Point(3, 652);
-            this.Label10.Name = "Label10";
-            this.Label10.Size = new System.Drawing.Size(92, 13);
-            this.Label10.TabIndex = 1;
-            this.Label10.Text = "Nome da planilha:";
-            // 
-            // lblCaminho
-            // 
-            this.lblCaminho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblCaminho.AutoSize = true;
-            this.lblCaminho.Location = new System.Drawing.Point(3, 622);
-            this.lblCaminho.Name = "lblCaminho";
-            this.lblCaminho.Size = new System.Drawing.Size(104, 13);
-            this.lblCaminho.TabIndex = 0;
-            this.lblCaminho.Text = "Caminho do arquivo:";
             // 
             // _btnBuscarPlanilha
             // 
             this._btnBuscarPlanilha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._btnBuscarPlanilha.Image = global::TCC2.Properties.Resources.consultar;
-            this._btnBuscarPlanilha.Location = new System.Drawing.Point(827, 613);
+            this._btnBuscarPlanilha.Location = new System.Drawing.Point(674, 580);
             this._btnBuscarPlanilha.Name = "_btnBuscarPlanilha";
             this._btnBuscarPlanilha.Size = new System.Drawing.Size(27, 26);
             this._btnBuscarPlanilha.TabIndex = 266;
@@ -1985,6 +2022,146 @@ namespace TCC2
             this.TabPage1.Text = "Usuários";
             this.TabPage1.UseVisualStyleBackColor = true;
             // 
+            // txtEmailConfig
+            // 
+            this.txtEmailConfig.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtEmailConfig.Depth = 0;
+            this.txtEmailConfig.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtEmailConfig.Hint = "E-mail";
+            this.txtEmailConfig.LeadingIcon = null;
+            this.txtEmailConfig.Location = new System.Drawing.Point(9, 163);
+            this.txtEmailConfig.MaxLength = 50;
+            this.txtEmailConfig.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtEmailConfig.Multiline = false;
+            this.txtEmailConfig.Name = "txtEmailConfig";
+            this.txtEmailConfig.Size = new System.Drawing.Size(635, 50);
+            this.txtEmailConfig.TabIndex = 6;
+            this.txtEmailConfig.Text = "";
+            this.txtEmailConfig.TrailingIcon = null;
+            // 
+            // cbxTipoUsuario
+            // 
+            this.cbxTipoUsuario.AutoResize = false;
+            this.cbxTipoUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cbxTipoUsuario.Depth = 0;
+            this.cbxTipoUsuario.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbxTipoUsuario.DropDownHeight = 174;
+            this.cbxTipoUsuario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxTipoUsuario.DropDownWidth = 121;
+            this.cbxTipoUsuario.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cbxTipoUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cbxTipoUsuario.FormattingEnabled = true;
+            this.cbxTipoUsuario.Hint = "Refeição";
+            this.cbxTipoUsuario.IntegralHeight = false;
+            this.cbxTipoUsuario.ItemHeight = 43;
+            this.cbxTipoUsuario.Items.AddRange(new object[] {
+            "Nutricionista",
+            "Recepcionista"});
+            this.cbxTipoUsuario.Location = new System.Drawing.Point(667, 83);
+            this.cbxTipoUsuario.MaxDropDownItems = 4;
+            this.cbxTipoUsuario.MouseState = MaterialSkin.MouseState.OUT;
+            this.cbxTipoUsuario.Name = "cbxTipoUsuario";
+            this.cbxTipoUsuario.Size = new System.Drawing.Size(302, 49);
+            this.cbxTipoUsuario.StartIndex = 0;
+            this.cbxTipoUsuario.TabIndex = 5;
+            // 
+            // cbxSituacao
+            // 
+            this.cbxSituacao.AutoResize = false;
+            this.cbxSituacao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cbxSituacao.Depth = 0;
+            this.cbxSituacao.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbxSituacao.DropDownHeight = 174;
+            this.cbxSituacao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxSituacao.DropDownWidth = 121;
+            this.cbxSituacao.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cbxSituacao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cbxSituacao.FormattingEnabled = true;
+            this.cbxSituacao.Hint = "Refeição";
+            this.cbxSituacao.IntegralHeight = false;
+            this.cbxSituacao.ItemHeight = 43;
+            this.cbxSituacao.Items.AddRange(new object[] {
+            "Ativo",
+            "Inativo"});
+            this.cbxSituacao.Location = new System.Drawing.Point(848, 5);
+            this.cbxSituacao.MaxDropDownItems = 4;
+            this.cbxSituacao.MouseState = MaterialSkin.MouseState.OUT;
+            this.cbxSituacao.Name = "cbxSituacao";
+            this.cbxSituacao.Size = new System.Drawing.Size(261, 49);
+            this.cbxSituacao.StartIndex = 0;
+            this.cbxSituacao.TabIndex = 2;
+            // 
+            // txtConfirmarSenha
+            // 
+            this.txtConfirmarSenha.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtConfirmarSenha.Depth = 0;
+            this.txtConfirmarSenha.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtConfirmarSenha.Hint = "Confirmar Senha";
+            this.txtConfirmarSenha.LeadingIcon = null;
+            this.txtConfirmarSenha.Location = new System.Drawing.Point(338, 84);
+            this.txtConfirmarSenha.MaxLength = 50;
+            this.txtConfirmarSenha.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtConfirmarSenha.Multiline = false;
+            this.txtConfirmarSenha.Name = "txtConfirmarSenha";
+            this.txtConfirmarSenha.Password = true;
+            this.txtConfirmarSenha.Size = new System.Drawing.Size(280, 50);
+            this.txtConfirmarSenha.TabIndex = 4;
+            this.txtConfirmarSenha.Text = "";
+            this.txtConfirmarSenha.TrailingIcon = null;
+            // 
+            // txtSenha
+            // 
+            this.txtSenha.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtSenha.Depth = 0;
+            this.txtSenha.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtSenha.Hint = "Senha";
+            this.txtSenha.LeadingIcon = null;
+            this.txtSenha.Location = new System.Drawing.Point(9, 84);
+            this.txtSenha.MaxLength = 50;
+            this.txtSenha.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtSenha.Multiline = false;
+            this.txtSenha.Name = "txtSenha";
+            this.txtSenha.Password = true;
+            this.txtSenha.Size = new System.Drawing.Size(280, 50);
+            this.txtSenha.TabIndex = 3;
+            this.txtSenha.Text = "";
+            this.txtSenha.TrailingIcon = null;
+            // 
+            // txtNomeUsuarioConfig
+            // 
+            this.txtNomeUsuarioConfig.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtNomeUsuarioConfig.Depth = 0;
+            this.txtNomeUsuarioConfig.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtNomeUsuarioConfig.Hint = "Nome";
+            this.txtNomeUsuarioConfig.LeadingIcon = null;
+            this.txtNomeUsuarioConfig.Location = new System.Drawing.Point(338, 6);
+            this.txtNomeUsuarioConfig.MaxLength = 50;
+            this.txtNomeUsuarioConfig.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtNomeUsuarioConfig.Multiline = false;
+            this.txtNomeUsuarioConfig.Name = "txtNomeUsuarioConfig";
+            this.txtNomeUsuarioConfig.Size = new System.Drawing.Size(461, 50);
+            this.txtNomeUsuarioConfig.TabIndex = 1;
+            this.txtNomeUsuarioConfig.Text = "";
+            this.txtNomeUsuarioConfig.TrailingIcon = null;
+            // 
+            // txtUsuarioConfig
+            // 
+            this.txtUsuarioConfig.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtUsuarioConfig.Depth = 0;
+            this.txtUsuarioConfig.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtUsuarioConfig.Hint = "Usuário";
+            this.txtUsuarioConfig.LeadingIcon = null;
+            this.txtUsuarioConfig.Location = new System.Drawing.Point(9, 6);
+            this.txtUsuarioConfig.MaxLength = 50;
+            this.txtUsuarioConfig.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtUsuarioConfig.Multiline = false;
+            this.txtUsuarioConfig.Name = "txtUsuarioConfig";
+            this.txtUsuarioConfig.Size = new System.Drawing.Size(280, 50);
+            this.txtUsuarioConfig.TabIndex = 0;
+            this.txtUsuarioConfig.Text = "";
+            this.txtUsuarioConfig.TrailingIcon = null;
+            this.txtUsuarioConfig.Leave += new System.EventHandler(this.txtUsuarioConfig_Leave);
+            // 
             // btnExcluirConfigUsuario
             // 
             this.btnExcluirConfigUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -2040,6 +2217,52 @@ namespace TCC2
             this.tbPermissao.Text = "Permissões";
             this.tbPermissao.UseVisualStyleBackColor = true;
             this.tbPermissao.Enter += new System.EventHandler(this.tbPermissao_Enter);
+            // 
+            // cbxTelaLiberar
+            // 
+            this.cbxTelaLiberar.AutoResize = false;
+            this.cbxTelaLiberar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cbxTelaLiberar.Depth = 0;
+            this.cbxTelaLiberar.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbxTelaLiberar.DropDownHeight = 174;
+            this.cbxTelaLiberar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxTelaLiberar.DropDownWidth = 121;
+            this.cbxTelaLiberar.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cbxTelaLiberar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cbxTelaLiberar.FormattingEnabled = true;
+            this.cbxTelaLiberar.Hint = "Programa";
+            this.cbxTelaLiberar.IntegralHeight = false;
+            this.cbxTelaLiberar.ItemHeight = 43;
+            this.cbxTelaLiberar.Location = new System.Drawing.Point(8, 91);
+            this.cbxTelaLiberar.MaxDropDownItems = 4;
+            this.cbxTelaLiberar.MouseState = MaterialSkin.MouseState.OUT;
+            this.cbxTelaLiberar.Name = "cbxTelaLiberar";
+            this.cbxTelaLiberar.Size = new System.Drawing.Size(522, 49);
+            this.cbxTelaLiberar.StartIndex = 0;
+            this.cbxTelaLiberar.TabIndex = 17;
+            // 
+            // cbxUsuario
+            // 
+            this.cbxUsuario.AutoResize = false;
+            this.cbxUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cbxUsuario.Depth = 0;
+            this.cbxUsuario.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbxUsuario.DropDownHeight = 174;
+            this.cbxUsuario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxUsuario.DropDownWidth = 121;
+            this.cbxUsuario.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cbxUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cbxUsuario.FormattingEnabled = true;
+            this.cbxUsuario.Hint = "Usuário";
+            this.cbxUsuario.IntegralHeight = false;
+            this.cbxUsuario.ItemHeight = 43;
+            this.cbxUsuario.Location = new System.Drawing.Point(8, 16);
+            this.cbxUsuario.MaxDropDownItems = 4;
+            this.cbxUsuario.MouseState = MaterialSkin.MouseState.OUT;
+            this.cbxUsuario.Name = "cbxUsuario";
+            this.cbxUsuario.Size = new System.Drawing.Size(522, 49);
+            this.cbxUsuario.StartIndex = 0;
+            this.cbxUsuario.TabIndex = 16;
             // 
             // dataGridView1
             // 
@@ -2105,196 +2328,10 @@ namespace TCC2
             this.textBoxContextMenuStrip1.Name = "textBoxContextMenuStrip1";
             this.textBoxContextMenuStrip1.Size = new System.Drawing.Size(123, 170);
             // 
-            // txtUsuarioConfig
-            // 
-            this.txtUsuarioConfig.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtUsuarioConfig.Depth = 0;
-            this.txtUsuarioConfig.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtUsuarioConfig.Hint = "Usuário";
-            this.txtUsuarioConfig.LeadingIcon = null;
-            this.txtUsuarioConfig.Location = new System.Drawing.Point(9, 6);
-            this.txtUsuarioConfig.MaxLength = 50;
-            this.txtUsuarioConfig.MouseState = MaterialSkin.MouseState.OUT;
-            this.txtUsuarioConfig.Multiline = false;
-            this.txtUsuarioConfig.Name = "txtUsuarioConfig";
-            this.txtUsuarioConfig.Size = new System.Drawing.Size(280, 50);
-            this.txtUsuarioConfig.TabIndex = 0;
-            this.txtUsuarioConfig.Text = "";
-            this.txtUsuarioConfig.TrailingIcon = null;
-            this.txtUsuarioConfig.Leave += new System.EventHandler(this.txtUsuarioConfig_Leave);
-            // 
-            // txtNomeUsuarioConfig
-            // 
-            this.txtNomeUsuarioConfig.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtNomeUsuarioConfig.Depth = 0;
-            this.txtNomeUsuarioConfig.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtNomeUsuarioConfig.Hint = "Nome";
-            this.txtNomeUsuarioConfig.LeadingIcon = null;
-            this.txtNomeUsuarioConfig.Location = new System.Drawing.Point(338, 6);
-            this.txtNomeUsuarioConfig.MaxLength = 50;
-            this.txtNomeUsuarioConfig.MouseState = MaterialSkin.MouseState.OUT;
-            this.txtNomeUsuarioConfig.Multiline = false;
-            this.txtNomeUsuarioConfig.Name = "txtNomeUsuarioConfig";
-            this.txtNomeUsuarioConfig.Size = new System.Drawing.Size(461, 50);
-            this.txtNomeUsuarioConfig.TabIndex = 1;
-            this.txtNomeUsuarioConfig.Text = "";
-            this.txtNomeUsuarioConfig.TrailingIcon = null;
-            // 
-            // txtSenha
-            // 
-            this.txtSenha.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtSenha.Depth = 0;
-            this.txtSenha.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtSenha.Hint = "Senha";
-            this.txtSenha.LeadingIcon = null;
-            this.txtSenha.Location = new System.Drawing.Point(9, 84);
-            this.txtSenha.MaxLength = 50;
-            this.txtSenha.MouseState = MaterialSkin.MouseState.OUT;
-            this.txtSenha.Multiline = false;
-            this.txtSenha.Name = "txtSenha";
-            this.txtSenha.Password = true;
-            this.txtSenha.Size = new System.Drawing.Size(280, 50);
-            this.txtSenha.TabIndex = 3;
-            this.txtSenha.Text = "";
-            this.txtSenha.TrailingIcon = null;
-            // 
-            // txtConfirmarSenha
-            // 
-            this.txtConfirmarSenha.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtConfirmarSenha.Depth = 0;
-            this.txtConfirmarSenha.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtConfirmarSenha.Hint = "Confirmar Senha";
-            this.txtConfirmarSenha.LeadingIcon = null;
-            this.txtConfirmarSenha.Location = new System.Drawing.Point(338, 84);
-            this.txtConfirmarSenha.MaxLength = 50;
-            this.txtConfirmarSenha.MouseState = MaterialSkin.MouseState.OUT;
-            this.txtConfirmarSenha.Multiline = false;
-            this.txtConfirmarSenha.Name = "txtConfirmarSenha";
-            this.txtConfirmarSenha.Password = true;
-            this.txtConfirmarSenha.Size = new System.Drawing.Size(280, 50);
-            this.txtConfirmarSenha.TabIndex = 4;
-            this.txtConfirmarSenha.Text = "";
-            this.txtConfirmarSenha.TrailingIcon = null;
-            // 
-            // cbxSituacao
-            // 
-            this.cbxSituacao.AutoResize = false;
-            this.cbxSituacao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.cbxSituacao.Depth = 0;
-            this.cbxSituacao.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.cbxSituacao.DropDownHeight = 174;
-            this.cbxSituacao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxSituacao.DropDownWidth = 121;
-            this.cbxSituacao.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.cbxSituacao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.cbxSituacao.FormattingEnabled = true;
-            this.cbxSituacao.Hint = "Refeição";
-            this.cbxSituacao.IntegralHeight = false;
-            this.cbxSituacao.ItemHeight = 43;
-            this.cbxSituacao.Items.AddRange(new object[] {
-            "Ativo",
-            "Inativo"});
-            this.cbxSituacao.Location = new System.Drawing.Point(848, 5);
-            this.cbxSituacao.MaxDropDownItems = 4;
-            this.cbxSituacao.MouseState = MaterialSkin.MouseState.OUT;
-            this.cbxSituacao.Name = "cbxSituacao";
-            this.cbxSituacao.Size = new System.Drawing.Size(261, 49);
-            this.cbxSituacao.StartIndex = 0;
-            this.cbxSituacao.TabIndex = 2;
-            // 
             // sqLiteCommandBuilder1
             // 
             this.sqLiteCommandBuilder1.DataAdapter = null;
             this.sqLiteCommandBuilder1.QuoteSuffix = "]";
-            // 
-            // cbxTipoUsuario
-            // 
-            this.cbxTipoUsuario.AutoResize = false;
-            this.cbxTipoUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.cbxTipoUsuario.Depth = 0;
-            this.cbxTipoUsuario.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.cbxTipoUsuario.DropDownHeight = 174;
-            this.cbxTipoUsuario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxTipoUsuario.DropDownWidth = 121;
-            this.cbxTipoUsuario.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.cbxTipoUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.cbxTipoUsuario.FormattingEnabled = true;
-            this.cbxTipoUsuario.Hint = "Refeição";
-            this.cbxTipoUsuario.IntegralHeight = false;
-            this.cbxTipoUsuario.ItemHeight = 43;
-            this.cbxTipoUsuario.Items.AddRange(new object[] {
-            "Nutricionista",
-            "Recepcionista"});
-            this.cbxTipoUsuario.Location = new System.Drawing.Point(667, 83);
-            this.cbxTipoUsuario.MaxDropDownItems = 4;
-            this.cbxTipoUsuario.MouseState = MaterialSkin.MouseState.OUT;
-            this.cbxTipoUsuario.Name = "cbxTipoUsuario";
-            this.cbxTipoUsuario.Size = new System.Drawing.Size(302, 49);
-            this.cbxTipoUsuario.StartIndex = 0;
-            this.cbxTipoUsuario.TabIndex = 5;
-            // 
-            // txtEmailConfig
-            // 
-            this.txtEmailConfig.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtEmailConfig.Depth = 0;
-            this.txtEmailConfig.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtEmailConfig.Hint = "E-mail";
-            this.txtEmailConfig.LeadingIcon = null;
-            this.txtEmailConfig.Location = new System.Drawing.Point(9, 163);
-            this.txtEmailConfig.MaxLength = 50;
-            this.txtEmailConfig.MouseState = MaterialSkin.MouseState.OUT;
-            this.txtEmailConfig.Multiline = false;
-            this.txtEmailConfig.Name = "txtEmailConfig";
-            this.txtEmailConfig.Size = new System.Drawing.Size(635, 50);
-            this.txtEmailConfig.TabIndex = 6;
-            this.txtEmailConfig.Text = "";
-            this.txtEmailConfig.TrailingIcon = null;
-            // 
-            // cbxUsuario
-            // 
-            this.cbxUsuario.AutoResize = false;
-            this.cbxUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.cbxUsuario.Depth = 0;
-            this.cbxUsuario.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.cbxUsuario.DropDownHeight = 174;
-            this.cbxUsuario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxUsuario.DropDownWidth = 121;
-            this.cbxUsuario.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.cbxUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.cbxUsuario.FormattingEnabled = true;
-            this.cbxUsuario.Hint = "Usuário";
-            this.cbxUsuario.IntegralHeight = false;
-            this.cbxUsuario.ItemHeight = 43;
-            this.cbxUsuario.Location = new System.Drawing.Point(8, 16);
-            this.cbxUsuario.MaxDropDownItems = 4;
-            this.cbxUsuario.MouseState = MaterialSkin.MouseState.OUT;
-            this.cbxUsuario.Name = "cbxUsuario";
-            this.cbxUsuario.Size = new System.Drawing.Size(522, 49);
-            this.cbxUsuario.StartIndex = 0;
-            this.cbxUsuario.TabIndex = 16;
-            // 
-            // cbxTelaLiberar
-            // 
-            this.cbxTelaLiberar.AutoResize = false;
-            this.cbxTelaLiberar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.cbxTelaLiberar.Depth = 0;
-            this.cbxTelaLiberar.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.cbxTelaLiberar.DropDownHeight = 174;
-            this.cbxTelaLiberar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxTelaLiberar.DropDownWidth = 121;
-            this.cbxTelaLiberar.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.cbxTelaLiberar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.cbxTelaLiberar.FormattingEnabled = true;
-            this.cbxTelaLiberar.Hint = "Programa";
-            this.cbxTelaLiberar.IntegralHeight = false;
-            this.cbxTelaLiberar.ItemHeight = 43;
-            this.cbxTelaLiberar.Location = new System.Drawing.Point(8, 91);
-            this.cbxTelaLiberar.MaxDropDownItems = 4;
-            this.cbxTelaLiberar.MouseState = MaterialSkin.MouseState.OUT;
-            this.cbxTelaLiberar.Name = "cbxTelaLiberar";
-            this.cbxTelaLiberar.Size = new System.Drawing.Size(522, 49);
-            this.cbxTelaLiberar.StartIndex = 0;
-            this.cbxTelaLiberar.TabIndex = 17;
             // 
             // frmMenuPrincipal
             // 
@@ -2383,15 +2420,9 @@ namespace TCC2
         internal System.Windows.Forms.Label lblTabela;
         internal System.Windows.Forms.DataGridView dtgConAlimento;
         internal System.Windows.Forms.TabPage tbImportarPlanilha;
-        internal System.Windows.Forms.TextBox txtNomeTabela;
-        internal System.Windows.Forms.Label lblNomeTabela;
-        public System.Windows.Forms.ComboBox _cbxNomePlanilha;
         private System.Windows.Forms.Button _btnImportar;
         internal System.Windows.Forms.DataGridView dtgDadosImportados;
         private System.Windows.Forms.Button _btnBuscarPlanilha;
-        internal System.Windows.Forms.TextBox txtCaminhoArquivoExcel;
-        internal System.Windows.Forms.Label Label10;
-        internal System.Windows.Forms.Label lblCaminho;
         private System.Windows.Forms.TabPage tabPaciente;
         internal System.Windows.Forms.TabControl tbPaciente;
         internal System.Windows.Forms.TabPage tbCadastro;
@@ -2503,6 +2534,10 @@ namespace TCC2
         private System.Data.SQLite.SQLiteCommandBuilder sqLiteCommandBuilder1;
         private MaterialSkin.Controls.MaterialComboBox cbxTelaLiberar;
         private MaterialSkin.Controls.MaterialComboBox cbxUsuario;
+        private System.Windows.Forms.Calendar.Calendar calAgendamento;
+        public MaterialSkin.Controls.MaterialTextBox txtCaminhoArquivoExcel;
+        private MaterialSkin.Controls.MaterialComboBox _cbxNomePlanilha;
+        public MaterialSkin.Controls.MaterialTextBox txtNomeTabela;
     }
 }
 

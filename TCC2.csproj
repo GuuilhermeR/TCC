@@ -59,6 +59,10 @@
       <HintPath>..\..\..\OneDrive\Faculdade\TCC\TreeGridview\TreeGridView\bin\Debug\ExpandableGridView.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="MvtCalendario, Version=1.0.6136.29246, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\MovtechFontes\MovtechDLL\MvtCalendario.dll</HintPath>
+    </Reference>
     <Reference Include="MvtWindowsFormsCS">
       <HintPath>D:\MovtechFontes\MovtechDLL\MvtWindowsFormsCS.dll</HintPath>
     </Reference>
@@ -278,6 +282,9 @@
     </PackageReference>
     <PackageReference Include="System.Data.SQLite.Linq">
       <Version>1.0.109</Version>
+    </PackageReference>
+    <PackageReference Include="WindowsFormsCalendar">
+      <Version>1.1.0</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

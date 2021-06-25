@@ -18,6 +18,7 @@ using TCC2.Banco_de_Dados;
 using AdvancedDataGridView;
 using System.Text.RegularExpressions;
 using DAO;
+using WindowsFormsCalendar;
 
 namespace TCC2
 {
@@ -555,63 +556,6 @@ namespace TCC2
 
         }
 
-        private void _cbxNomePlanilha_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            List<DataGridViewColumn> colunasDescartadas = new List<DataGridViewColumn>();
-            var dt = tables[_cbxNomePlanilha.SelectedItem.ToString().Replace(",", ".")];
-            dtgDadosImportados.DataSource = dt;
-            foreach (DataGridViewColumn column in dtgDadosImportados.Columns)
-            {
-                Boolean existe = false;
-                if ((column.HeaderText.ToUpper()).Contains("alimento".ToUpper()))
-                {
-                    column.HeaderText = "Alimento";
-                    column.Name = "alimento";
-                    existe = true;
-                }
-                if ((column.HeaderText.ToUpper()).Contains("prot".ToUpper()))
-                {
-                    column.HeaderText = "Proteína";
-                    column.Name = "prot";
-                    existe = true;
-                }
-                if ((column.HeaderText.ToUpper()).Contains("carb".ToUpper()))
-                {
-                    column.HeaderText = "Carboidrato";
-                    column.Name = "carb";
-                    existe = true;
-                }
-                if ((column.HeaderText.ToUpper()).Contains("lip".ToUpper()) || ((column.HeaderText.ToUpper()).Contains("total".ToUpper())))
-                {
-                    column.HeaderText = "Lipídio";
-                    column.Name = "lip";
-                    existe = true;
-                }
-                if ((column.HeaderText.ToUpper()).Contains("kcal".ToUpper()))
-                {
-                    column.HeaderText = "KCal";
-                    column.Name = "kcal";
-                    existe = true;
-                }
-                if ((column.HeaderText.ToUpper()).Contains("qtd".ToUpper()) || ((column.HeaderText.ToUpper()).Contains("pl".ToUpper())) || ((column.HeaderText.ToUpper()).Contains("Quantidade".ToUpper())))
-                {
-                    column.HeaderText = "Quantidade";
-                    column.Name = "qtd";
-                    existe = true;
-                }
-                if (!existe)
-                {
-                    colunasDescartadas.Add(column);
-                }
-            }
-
-            colunasDescartadas.ForEach(x =>
-            {
-                dtgDadosImportados.Columns.Remove(x);
-            });
-
-        }
-
         private void _btnBuscarPlanilha_Click(object sender, EventArgs e)
         {
             using (var ofd = new OpenFileDialog() { Filter = "Excel Workbook|*.xlsx|Excel 97-2003 Workbook|*.xls" })
@@ -675,6 +619,62 @@ namespace TCC2
             }
         }
 
+        private void _cbxNomePlanilha_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            List<DataGridViewColumn> colunasDescartadas = new List<DataGridViewColumn>();
+            var dt = tables[_cbxNomePlanilha.SelectedItem.ToString().Replace(",", ".")];
+            dtgDadosImportados.DataSource = dt;
+            foreach (DataGridViewColumn column in dtgDadosImportados.Columns)
+            {
+                Boolean existe = false;
+                if ((column.HeaderText.ToUpper()).Contains("alimento".ToUpper()))
+                {
+                    column.HeaderText = "Alimento";
+                    column.Name = "alimento";
+                    existe = true;
+                }
+                if ((column.HeaderText.ToUpper()).Contains("prot".ToUpper()))
+                {
+                    column.HeaderText = "Proteína";
+                    column.Name = "prot";
+                    existe = true;
+                }
+                if ((column.HeaderText.ToUpper()).Contains("carb".ToUpper()))
+                {
+                    column.HeaderText = "Carboidrato";
+                    column.Name = "carb";
+                    existe = true;
+                }
+                if ((column.HeaderText.ToUpper()).Contains("lip".ToUpper()) || ((column.HeaderText.ToUpper()).Contains("total".ToUpper())))
+                {
+                    column.HeaderText = "Lipídio";
+                    column.Name = "lip";
+                    existe = true;
+                }
+                if ((column.HeaderText.ToUpper()).Contains("kcal".ToUpper()))
+                {
+                    column.HeaderText = "KCal";
+                    column.Name = "kcal";
+                    existe = true;
+                }
+                if ((column.HeaderText.ToUpper()).Contains("qtd".ToUpper()) || ((column.HeaderText.ToUpper()).Contains("pl".ToUpper())) || ((column.HeaderText.ToUpper()).Contains("Quantidade".ToUpper())))
+                {
+                    column.HeaderText = "Quantidade";
+                    column.Name = "qtd";
+                    existe = true;
+                }
+                if (!existe)
+                {
+                    colunasDescartadas.Add(column);
+                }
+            }
+
+            colunasDescartadas.ForEach(x =>
+            {
+                dtgDadosImportados.Columns.Remove(x);
+            });
+        }
+
         private void dtgConAlimento_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyValue == (char)Keys.Delete)
@@ -684,24 +684,24 @@ namespace TCC2
 
         private void tbCadMedCaseira_Enter(object sender, EventArgs e)
         {
-            dtgMedCaseiraAlimentos.DataSource = null;
+            //dtgMedCaseiraAlimentos.DataSource = null;
 
-            var listaAlimentos = alimentoDAO.Buscar("", "");
-            if (listaAlimentos == null)
-                return;
-            DataTable dt = ConvertToDataTable(listaAlimentos);
-            dtgMedCaseiraAlimentos.DataSource = dt;
+            //var listaAlimentos = alimentoDAO.Buscar("", "");
+            //if (listaAlimentos == null)
+            //    return;
+            //DataTable dt = ConvertToDataTable(listaAlimentos);
+            //dtgMedCaseiraAlimentos.DataSource = dt;
 
-            dtgMedCaseiraAlimentos.Columns["codAlimento"].Visible = false;
-            dtgMedCaseiraAlimentos.Columns["qtd"].Visible = false;
-            dtgMedCaseiraAlimentos.Columns["kcal"].Visible = false;
-            dtgMedCaseiraAlimentos.Columns["prot"].Visible = false;
-            dtgMedCaseiraAlimentos.Columns["carbo"].Visible = false;
-            dtgMedCaseiraAlimentos.Columns["lipidio"].Visible = false;
-            dtgMedCaseiraAlimentos.Columns["MedidaCaseira"].Visible = false;
-            dtgMedCaseiraAlimentos.Columns["Cardapio"].Visible = false;
-            dtgMedCaseiraAlimentos.Columns["nomeTabela"].HeaderText = "Tabela";
-            dtgMedCaseiraAlimentos.Columns["nomeAlimento"].HeaderText = "Alimento";
+            //dtgMedCaseiraAlimentos.Columns["codAlimento"].Visible = false;
+            //dtgMedCaseiraAlimentos.Columns["qtd"].Visible = false;
+            //dtgMedCaseiraAlimentos.Columns["kcal"].Visible = false;
+            //dtgMedCaseiraAlimentos.Columns["prot"].Visible = false;
+            //dtgMedCaseiraAlimentos.Columns["carbo"].Visible = false;
+            //dtgMedCaseiraAlimentos.Columns["lipidio"].Visible = false;
+            //dtgMedCaseiraAlimentos.Columns["MedidaCaseira"].Visible = false;
+            //dtgMedCaseiraAlimentos.Columns["Cardapio"].Visible = false;
+            //dtgMedCaseiraAlimentos.Columns["nomeTabela"].HeaderText = "Tabela";
+            //dtgMedCaseiraAlimentos.Columns["nomeAlimento"].HeaderText = "Alimento";
 
         }
         private void dtgMedCaseiraAlimentos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -765,7 +765,7 @@ namespace TCC2
 
         private void txtAlimentoFiltro_Leave(object sender, EventArgs e)
         {
-            if (cbxTabela.Text != "")
+            if (cbxTabela.Text != "" && txtAlimentoFiltro.Text != "")
             {
                 dtgConAlimento.DataSource = null;
                 var listaAlimentos = alimentoDAO.Buscar(txtAlimentoFiltro.Text, cbxTabela.Text);
@@ -785,6 +785,27 @@ namespace TCC2
                 dtgConAlimento.Columns["Cardapio"].Visible = false;
                 return;
             }
+        }
+
+        private void cbxTabela_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dtgConAlimento.DataSource = null;
+            var listaAlimentos = alimentoDAO.Buscar("", cbxTabela.Text);
+            if (listaAlimentos == null)
+                return;
+            DataTable dt = ConvertToDataTable(listaAlimentos);
+            dtgConAlimento.DataSource = dt;
+            dtgConAlimento.Columns["codAlimento"].Visible = false;
+            dtgConAlimento.Columns["nomeAlimento"].HeaderText = "Alimento";
+            dtgConAlimento.Columns["nomeAlimento"].Width = 450;
+            dtgConAlimento.Columns["qtd"].HeaderText = "Qtde";
+            dtgConAlimento.Columns["prot"].HeaderText = "Proteína";
+            dtgConAlimento.Columns["carbo"].HeaderText = "Carboidrato";
+            dtgConAlimento.Columns["lipidio"].HeaderText = "Lipídio";
+            dtgConAlimento.Columns["nomeTabela"].Visible = false;
+            dtgConAlimento.Columns["MedidaCaseira"].Visible = false;
+            dtgConAlimento.Columns["Cardapio"].Visible = false;
+            return;
         }
         #endregion
 
@@ -1521,9 +1542,10 @@ namespace TCC2
         {
             cbxTabela.SelectedIndex = -1;
             txtAlimentoFiltro.Text = "";
-            dtgConAlimento.DataSource = null;
-            dtgConAlimento.Rows.Clear();
-            dtgConAlimento.Columns.Clear();
+            if (dtgConAlimento.Rows.Count > 0)
+                dtgConAlimento.Rows.Clear();
+            if (dtgConAlimento.Columns.Count > 0)
+                dtgConAlimento.Columns.Clear();
         }
         #endregion
 
@@ -1604,8 +1626,9 @@ namespace TCC2
         {
             permissaoDAO.AdicionarPermissao(Convert.ToString(cbxUsuario.Text), Convert.ToString(cbxTelaLiberar.Text));
         }
+
         #endregion
 
-        
+
     }
 }

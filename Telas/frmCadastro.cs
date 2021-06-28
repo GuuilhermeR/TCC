@@ -16,6 +16,9 @@ namespace TCC2.Telas
 {
     public partial class frmCadastro : MaterialForm
     {
+
+        public UsuarioDAO usuarioDAO = new UsuarioDAO();
+
         public frmCadastro()
         {
             InitializeComponent();
@@ -32,6 +35,21 @@ namespace TCC2.Telas
         private void mBtnCadastrar_Click(object sender, EventArgs e)
         {
 
+            string tipoPerfil = "";
+
+            if (mchkEstudante.Checked)
+                tipoPerfil = "Estudante";
+            else
+                tipoPerfil = "Nutricionista";
+
+            usuarioDAO.CriarUsuario(Convert.ToString(mLblUsuario.Text), 
+                                                  Convert.ToString(mLblSenha.Text), 
+                                                  Convert.ToString(mLblNome.Text),
+                                                  Convert.ToString(mLblEmail.Text),
+                                                  tipoPerfil,
+                                                  "ATIVO", 
+                                                  false, 
+                                                  Convert.ToString(mLblCRN.Text));
         }
     }
 }

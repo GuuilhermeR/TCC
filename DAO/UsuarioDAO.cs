@@ -6,6 +6,7 @@ using System.Linq;
 using Microsoft.VisualBasic;
 using System.Collections.Generic;
 using TCC2.Banco_de_Dados;
+using Classes;
 
 namespace TCC2
 {
@@ -13,6 +14,8 @@ namespace TCC2
     {
         public UsuarioDAO()
         { }
+
+        private Criptografador cript = new Criptografador();
 
         private string usuario;
         private string senha;
@@ -59,6 +62,8 @@ namespace TCC2
 
         public bool validarLogin(string usuarioLogado, string senha)
         {
+
+           senha = cript.DescriptPassword(senha);
             try
             {
                 var usuarioLog = (from c in TCC2.BancoDadosSingleton.Instance.Login where c.usuario == usuarioLogado && c.senha == senha select c).ToList();
@@ -153,8 +158,12 @@ namespace TCC2
             }
         }
 
-        public void CriarUsuario(string usuario, string senha, string nome, string email, string situacao, string tipoUsuario, bool alterarSenha)
+        public void CriarUsuario(string usuario, string senha, string nome, string email, string situacao, string tipoUsuario, bool alterarSenha, string crm)
         {
+
+            //CRYPTOGRAFAR SENHA
+            senha = cript.Criptografar(senha);
+
             try
             {
                 Login loginInsert = new Login();
@@ -165,6 +174,7 @@ namespace TCC2
                 loginInsert.email = email;
                 loginInsert.situacao = situacao;
                 loginInsert.perfil = tipoUsuario;
+                //loginInsert.CRM = crm;
 
                 BancoDadosSingleton.Instance.Login.Add(loginInsert);
                 BancoDadosSingleton.Instance.SaveChanges();

@@ -31,11 +31,6 @@ namespace TCC2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange1 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange2 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange3 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange4 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange5 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenuPrincipal));
@@ -58,7 +53,6 @@ namespace TCC2
             this.pbxLogoGrande = new System.Windows.Forms.PictureBox();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.tabAgenda = new System.Windows.Forms.TabPage();
-            this.calAgendamento = new System.Windows.Forms.Calendar.Calendar();
             this.btnSalvarAgenda = new System.Windows.Forms.Button();
             this.lblDataAtual = new System.Windows.Forms.Label();
             this.dtgAgenda = new System.Windows.Forms.DataGridView();
@@ -492,7 +486,6 @@ namespace TCC2
             // 
             // tabAgenda
             // 
-            this.tabAgenda.Controls.Add(this.calAgendamento);
             this.tabAgenda.Controls.Add(this.btnSalvarAgenda);
             this.tabAgenda.Controls.Add(this.lblDataAtual);
             this.tabAgenda.Controls.Add(this.dtgAgenda);
@@ -507,37 +500,6 @@ namespace TCC2
             this.tabAgenda.Text = "Agenda";
             this.tabAgenda.UseVisualStyleBackColor = true;
             this.tabAgenda.Enter += new System.EventHandler(this.tabAgenda_Enter);
-            // 
-            // calAgendamento
-            // 
-            this.calAgendamento.Font = new System.Drawing.Font("Segoe UI", 9F);
-            calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange1.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange1.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange2.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange2.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange2.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange3.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange3.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange3.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange4.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange4.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange4.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange5.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange5.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange5.StartTime = System.TimeSpan.Parse("08:00:00");
-            this.calAgendamento.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
-        calendarHighlightRange1,
-        calendarHighlightRange2,
-        calendarHighlightRange3,
-        calendarHighlightRange4,
-        calendarHighlightRange5};
-            this.calAgendamento.ItemsTimeFormat = "hh:mm";
-            this.calAgendamento.Location = new System.Drawing.Point(6, 86);
-            this.calAgendamento.Name = "calAgendamento";
-            this.calAgendamento.Size = new System.Drawing.Size(1217, 599);
-            this.calAgendamento.TabIndex = 55;
-            this.calAgendamento.TimeScale = System.Windows.Forms.Calendar.CalendarTimeScale.SixtyMinutes;
             // 
             // btnSalvarAgenda
             // 
@@ -1432,6 +1394,7 @@ namespace TCC2
             this.txtPacienteConsultaCardapio.TabIndex = 318;
             this.txtPacienteConsultaCardapio.Text = "";
             this.txtPacienteConsultaCardapio.TrailingIcon = null;
+            this.txtPacienteConsultaCardapio.TextChanged += new System.EventHandler(this.txtPacienteConsultaCardapio_TextChanged);
             // 
             // trwDadosCard
             // 
@@ -2534,7 +2497,6 @@ namespace TCC2
         private System.Data.SQLite.SQLiteCommandBuilder sqLiteCommandBuilder1;
         private MaterialSkin.Controls.MaterialComboBox cbxTelaLiberar;
         private MaterialSkin.Controls.MaterialComboBox cbxUsuario;
-        private System.Windows.Forms.Calendar.Calendar calAgendamento;
         public MaterialSkin.Controls.MaterialTextBox txtCaminhoArquivoExcel;
         private MaterialSkin.Controls.MaterialComboBox _cbxNomePlanilha;
         public MaterialSkin.Controls.MaterialTextBox txtNomeTabela;

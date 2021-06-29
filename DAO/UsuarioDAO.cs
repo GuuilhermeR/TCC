@@ -7,6 +7,7 @@ using Microsoft.VisualBasic;
 using System.Collections.Generic;
 using TCC2.Banco_de_Dados;
 using Classes;
+using System.Web.Security;
 
 namespace TCC2
 {
@@ -60,10 +61,11 @@ namespace TCC2
             senha = senhaatual;
         }
 
+        [Obsolete]
         public bool validarLogin(string usuarioLogado, string senha)
         {
 
-           senha = cript.DescriptPassword(senha);
+            senha = FormsAuthentication.HashPasswordForStoringInConfigFile(senha, "MD5");
             try
             {
                 var usuarioLog = (from c in TCC2.BancoDadosSingleton.Instance.Login where c.usuario == usuarioLogado && c.senha == senha select c).ToList();
@@ -114,6 +116,7 @@ namespace TCC2
 
         }
 
+        [Obsolete]
         public void AlterarUsuario(string usuario, string senha, string nome, string email, string situacao, string tipoUsuario, bool alterarSenha)
         {
             SQLiteCommand cmd;
@@ -126,7 +129,7 @@ namespace TCC2
                 {
 
                     var usuUpdate = (from usu in BancoDadosSingleton.Instance.Login where usu.usuario == usuario select usu).Single();
-
+                    senha = FormsAuthentication.HashPasswordForStoringInConfigFile(senha, "MD5");
                     usuUpdate.nome = nome;
                     usuUpdate.senha = senha;
                     usuUpdate.email = email;
@@ -158,11 +161,12 @@ namespace TCC2
             }
         }
 
+        [Obsolete]
         public void CriarUsuario(string usuario, string senha, string nome, string email, string situacao, string tipoUsuario, bool alterarSenha, string crm)
         {
 
             //CRYPTOGRAFAR SENHA
-            senha = cript.Criptografar(senha);
+            senha = FormsAuthentication.HashPasswordForStoringInConfigFile(senha, "MD5");
 
             try
             {

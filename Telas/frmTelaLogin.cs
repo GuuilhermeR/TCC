@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using TCC2.Telas;
 
 namespace TCC2
 {
@@ -30,6 +31,7 @@ namespace TCC2
             this.MaximizeBox = false;
         }
 
+        [Obsolete]
         private void btnLogar_Click(object sender, EventArgs e)
         {
             
@@ -53,7 +55,7 @@ namespace TCC2
             {
                 usuario.setUsuario(txtUsuario.Text);
                 usuario.setNomeUsuario(txtUsuario.Text);
-                usuario.setUsuarioSenha(descriptografar.DescriptPassword(txtSenha.Text));
+                usuario.setUsuarioSenha(txtSenha.Text);
                 var usuarioLogado = usuario.getUsuario();
                 frmMenuPrincipal menu = new frmMenuPrincipal(usuarioLogado.ToString());
                 menu.Show();
@@ -67,6 +69,7 @@ namespace TCC2
             }                        
         }
 
+        [Obsolete]
         private void txtSenha_Leave(object sender, EventArgs e)
         {
             if (txtUsuario.Text != "")
@@ -74,9 +77,10 @@ namespace TCC2
                     btnLogar_Click(sender, e);
         }
 
-      
-
-        
-
+        private void mLblCriarConta_Click(object sender, EventArgs e)
+        {
+            frmCadastro cadastrar = new frmCadastro();
+            cadastrar.Show();
+        }
     }
 }

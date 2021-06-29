@@ -32,24 +32,72 @@ namespace TCC2.Telas
 
         }
 
+        [Obsolete]
         private void mBtnCadastrar_Click(object sender, EventArgs e)
         {
 
             string tipoPerfil = "";
 
             if (mchkEstudante.Checked)
+            {
                 tipoPerfil = "Estudante";
-            else
+            }
+            else if (mchkNutricionista.Checked)
+            {
                 tipoPerfil = "Nutricionista";
+            }
+            else
+            {
+                MessageBox.Show("É necessário informar se você é Estudante/Nutricionista");
+                return;
+            }
 
-            usuarioDAO.CriarUsuario(Convert.ToString(mLblUsuario.Text), 
+            //if (mLblNome.Text == "")
+            
+            //if (mLblSenha.Text == "")
+
+            //if (mchkNutricionista.Checked)
+            //            if (mtxtCRN.Text =="")
+
+                usuarioDAO.CriarUsuario(Convert.ToString(mLblUsuario.Text), 
                                                   Convert.ToString(mLblSenha.Text), 
-                                                  Convert.ToString(mLblNome.Text),
+                                                  Convert.ToString(mTxtNome.Text),
                                                   Convert.ToString(mLblEmail.Text),
                                                   tipoPerfil,
                                                   "ATIVO", 
                                                   false, 
-                                                  Convert.ToString(mLblCRN.Text));
+                                                  Convert.ToString(mtxtCRN.Text));
+            this.Close();
         }
+
+        private void mchkEstudante_CheckedChanged(object sender, EventArgs e)
+        {
+            if (mchkEstudante.Checked)
+                mtxtCRN.Visible = false;
+            else
+                mtxtCRN.Visible = true;
+        }
+
+        private void mLblUsuario_Leave(object sender, EventArgs e)
+        {
+            if (mLblUsuario.Text == "")
+                mLblUsuario.Text = RandomString();
+        }
+
+        private readonly Random _rng = new Random();
+
+        private string RandomString()
+        {
+            string nomeUsuario = mTxtNome.Text.ToString();
+            nomeUsuario = nomeUsuario.Trim();
+            char[] buffer = new char[5];
+
+            for (int i = 0; i < 5; i++)
+            {
+                buffer[i] = nomeUsuario[_rng.Next(nomeUsuario.Length)];
+            }
+            return new string(buffer).ToLower();
+        }
+
     }
 }

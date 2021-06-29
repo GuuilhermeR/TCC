@@ -29,36 +29,36 @@ namespace TCC2.Telas
         /// </summary>
         private void InitializeComponent()
         {
-            this.mLblNome = new MaterialSkin.Controls.MaterialTextBox();
+            this.mTxtNome = new MaterialSkin.Controls.MaterialTextBox();
             this.mLblUsuario = new MaterialSkin.Controls.MaterialTextBox();
             this.mLblSenha = new MaterialSkin.Controls.MaterialTextBox();
             this.mLblEmail = new MaterialSkin.Controls.MaterialTextBox();
             this.mBtnCadastrar = new MaterialSkin.Controls.MaterialButton();
             this.mchkNutricionista = new MaterialSkin.Controls.MaterialRadioButton();
             this.mchkEstudante = new MaterialSkin.Controls.MaterialRadioButton();
-            this.mLblCRN = new MaterialSkin.Controls.MaterialTextBox();
+            this.mtxtCRN = new MaterialSkin.Controls.MaterialTextBox();
             this.SuspendLayout();
             // 
-            // mLblNome
+            // mTxtNome
             // 
-            this.mLblNome.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.mTxtNome.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.mLblNome.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.mLblNome.Depth = 0;
-            this.mLblNome.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.mLblNome.Hint = "Nome Completo";
-            this.mLblNome.LeadingIcon = null;
-            this.mLblNome.Location = new System.Drawing.Point(71, 95);
-            this.mLblNome.Margin = new System.Windows.Forms.Padding(2);
-            this.mLblNome.MaxLength = 50;
-            this.mLblNome.MouseState = MaterialSkin.MouseState.OUT;
-            this.mLblNome.Multiline = false;
-            this.mLblNome.Name = "mLblNome";
-            this.mLblNome.Size = new System.Drawing.Size(307, 50);
-            this.mLblNome.TabIndex = 0;
-            this.mLblNome.Text = "";
-            this.mLblNome.TrailingIcon = null;
+            this.mTxtNome.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.mTxtNome.Depth = 0;
+            this.mTxtNome.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.mTxtNome.Hint = "Nome Completo";
+            this.mTxtNome.LeadingIcon = null;
+            this.mTxtNome.Location = new System.Drawing.Point(71, 95);
+            this.mTxtNome.Margin = new System.Windows.Forms.Padding(2);
+            this.mTxtNome.MaxLength = 50;
+            this.mTxtNome.MouseState = MaterialSkin.MouseState.OUT;
+            this.mTxtNome.Multiline = false;
+            this.mTxtNome.Name = "mTxtNome";
+            this.mTxtNome.Size = new System.Drawing.Size(307, 50);
+            this.mTxtNome.TabIndex = 0;
+            this.mTxtNome.Text = "";
+            this.mTxtNome.TrailingIcon = null;
             // 
             // mLblUsuario
             // 
@@ -80,6 +80,7 @@ namespace TCC2.Telas
             this.mLblUsuario.TabIndex = 1;
             this.mLblUsuario.Text = "";
             this.mLblUsuario.TrailingIcon = null;
+            this.mLblUsuario.Leave += new System.EventHandler(this.mLblUsuario_Leave);
             // 
             // mLblSenha
             // 
@@ -177,44 +178,46 @@ namespace TCC2.Telas
             this.mchkEstudante.TabStop = true;
             this.mchkEstudante.Text = "Estudante";
             this.mchkEstudante.UseVisualStyleBackColor = true;
+            this.mchkEstudante.CheckedChanged += new System.EventHandler(this.mchkEstudante_CheckedChanged);
             // 
-            // mLblCRN
+            // mtxtCRN
             // 
-            this.mLblCRN.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.mtxtCRN.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.mLblCRN.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.mLblCRN.Depth = 0;
-            this.mLblCRN.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.mLblCRN.Hint = "CRN";
-            this.mLblCRN.LeadingIcon = null;
-            this.mLblCRN.Location = new System.Drawing.Point(71, 477);
-            this.mLblCRN.Margin = new System.Windows.Forms.Padding(2);
-            this.mLblCRN.MaxLength = 50;
-            this.mLblCRN.MouseState = MaterialSkin.MouseState.OUT;
-            this.mLblCRN.Multiline = false;
-            this.mLblCRN.Name = "mLblCRN";
-            this.mLblCRN.Size = new System.Drawing.Size(307, 50);
-            this.mLblCRN.TabIndex = 7;
-            this.mLblCRN.Text = "";
-            this.mLblCRN.TrailingIcon = null;
+            this.mtxtCRN.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.mtxtCRN.Depth = 0;
+            this.mtxtCRN.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.mtxtCRN.Hint = "CRN";
+            this.mtxtCRN.LeadingIcon = null;
+            this.mtxtCRN.Location = new System.Drawing.Point(71, 477);
+            this.mtxtCRN.Margin = new System.Windows.Forms.Padding(2);
+            this.mtxtCRN.MaxLength = 50;
+            this.mtxtCRN.MouseState = MaterialSkin.MouseState.OUT;
+            this.mtxtCRN.Multiline = false;
+            this.mtxtCRN.Name = "mtxtCRN";
+            this.mtxtCRN.Size = new System.Drawing.Size(307, 50);
+            this.mtxtCRN.TabIndex = 7;
+            this.mtxtCRN.Text = "";
+            this.mtxtCRN.TrailingIcon = null;
             // 
             // frmCadastro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(448, 594);
-            this.Controls.Add(this.mLblCRN);
+            this.Controls.Add(this.mtxtCRN);
             this.Controls.Add(this.mchkEstudante);
             this.Controls.Add(this.mchkNutricionista);
             this.Controls.Add(this.mBtnCadastrar);
             this.Controls.Add(this.mLblEmail);
             this.Controls.Add(this.mLblSenha);
             this.Controls.Add(this.mLblUsuario);
-            this.Controls.Add(this.mLblNome);
+            this.Controls.Add(this.mTxtNome);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmCadastro";
             this.Padding = new System.Windows.Forms.Padding(2);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro Usuário";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -223,13 +226,13 @@ namespace TCC2.Telas
 
         #endregion
 
-        private MaterialSkin.Controls.MaterialTextBox mLblNome;
+        private MaterialSkin.Controls.MaterialTextBox mTxtNome;
         private MaterialSkin.Controls.MaterialTextBox mLblUsuario;
         private MaterialSkin.Controls.MaterialTextBox mLblSenha;
         private MaterialSkin.Controls.MaterialTextBox mLblEmail;
         private MaterialSkin.Controls.MaterialButton mBtnCadastrar;
         private MaterialSkin.Controls.MaterialRadioButton mchkNutricionista;
         private MaterialSkin.Controls.MaterialRadioButton mchkEstudante;
-        private MaterialSkin.Controls.MaterialTextBox mLblCRN;
+        private MaterialSkin.Controls.MaterialTextBox mtxtCRN;
     }
 }

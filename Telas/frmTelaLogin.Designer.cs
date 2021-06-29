@@ -36,6 +36,8 @@ namespace TCC2
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblAviso = new MaterialSkin.Controls.MaterialLabel();
             this.mLblCriarConta = new MaterialSkin.Controls.MaterialLabel();
+            this.materialDivider1 = new MaterialSkin.Controls.MaterialDivider();
+            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,7 +50,7 @@ namespace TCC2
             this.btnLogar.Depth = 0;
             this.btnLogar.HighEmphasis = true;
             this.btnLogar.Icon = null;
-            this.btnLogar.Location = new System.Drawing.Point(177, 477);
+            this.btnLogar.Location = new System.Drawing.Point(179, 467);
             this.btnLogar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnLogar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnLogar.Name = "btnLogar";
@@ -133,21 +135,50 @@ namespace TCC2
             this.mLblCriarConta.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.mLblCriarConta.AutoSize = true;
-            this.mLblCriarConta.BackColor = System.Drawing.SystemColors.Highlight;
+            this.mLblCriarConta.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.mLblCriarConta.Depth = 0;
-            this.mLblCriarConta.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mLblCriarConta.Location = new System.Drawing.Point(59, 519);
+            this.mLblCriarConta.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.mLblCriarConta.Location = new System.Drawing.Point(300, 544);
             this.mLblCriarConta.MouseState = MaterialSkin.MouseState.HOVER;
             this.mLblCriarConta.Name = "mLblCriarConta";
-            this.mLblCriarConta.Size = new System.Drawing.Size(328, 19);
+            this.mLblCriarConta.Size = new System.Drawing.Size(64, 19);
             this.mLblCriarConta.TabIndex = 5;
-            this.mLblCriarConta.Text = "Ainda não possui uma conta? Registre-se aqui";
+            this.mLblCriarConta.Text = "Registrar";
+            this.mLblCriarConta.Click += new System.EventHandler(this.mLblCriarConta_Click);
+            // 
+            // materialDivider1
+            // 
+            this.materialDivider1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialDivider1.Depth = 0;
+            this.materialDivider1.Location = new System.Drawing.Point(27, 518);
+            this.materialDivider1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialDivider1.Name = "materialDivider1";
+            this.materialDivider1.Size = new System.Drawing.Size(386, 3);
+            this.materialDivider1.TabIndex = 6;
+            this.materialDivider1.Text = "materialDivider1";
+            // 
+            // materialLabel1
+            // 
+            this.materialLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.materialLabel1.AutoSize = true;
+            this.materialLabel1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.materialLabel1.Depth = 0;
+            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel1.Location = new System.Drawing.Point(35, 544);
+            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel1.Name = "materialLabel1";
+            this.materialLabel1.Size = new System.Drawing.Size(152, 19);
+            this.materialLabel1.TabIndex = 7;
+            this.materialLabel1.Text = "Esqueci minha senha";
             // 
             // frmTelaLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(447, 548);
+            this.ClientSize = new System.Drawing.Size(447, 584);
+            this.Controls.Add(this.materialLabel1);
+            this.Controls.Add(this.materialDivider1);
             this.Controls.Add(this.mLblCriarConta);
             this.Controls.Add(this.lblAviso);
             this.Controls.Add(this.pictureBox1);
@@ -156,7 +187,7 @@ namespace TCC2
             this.Controls.Add(this.btnLogar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmTelaLogin";
-            this.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Padding = new System.Windows.Forms.Padding(3);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Entrar";
             this.Load += new System.EventHandler(this.frmTelaLogin_Load);
@@ -174,5 +205,7 @@ namespace TCC2
         private System.Windows.Forms.PictureBox pictureBox1;
         private MaterialSkin.Controls.MaterialLabel lblAviso;
         private MaterialSkin.Controls.MaterialLabel mLblCriarConta;
+        private MaterialSkin.Controls.MaterialDivider materialDivider1;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
     }
 }

@@ -182,6 +182,7 @@ namespace TCC2
 
                 BancoDadosSingleton.Instance.Login.Add(loginInsert);
                 BancoDadosSingleton.Instance.SaveChanges();
+                Interaction.MsgBox("O seu usuário foi criado.", MsgBoxStyle.OkOnly, "SALVAR");
             }
             catch (Exception ex)
             {

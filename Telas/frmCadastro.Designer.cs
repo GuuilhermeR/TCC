@@ -162,6 +162,7 @@ namespace TCC2.Telas
             this.mchkNutricionista.TabStop = true;
             this.mchkNutricionista.Text = "Nutricionista";
             this.mchkNutricionista.UseVisualStyleBackColor = true;
+            this.mchkNutricionista.CheckedChanged += new System.EventHandler(this.mchkNutricionista_CheckedChanged);
             // 
             // mchkEstudante
             // 
@@ -200,6 +201,7 @@ namespace TCC2.Telas
             this.mtxtCRN.TabIndex = 7;
             this.mtxtCRN.Text = "";
             this.mtxtCRN.TrailingIcon = null;
+            this.mtxtCRN.Visible = false;
             // 
             // frmCadastro
             // 

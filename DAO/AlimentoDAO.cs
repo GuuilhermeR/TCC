@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Runtime.Remoting.Contexts;
 using System.Transactions;
 using TCC2.Banco_de_Dados;
+using static Classes.ExibidorMensagem;
 
 namespace ProjetoTCC
 {
@@ -34,10 +35,11 @@ namespace ProjetoTCC
 
                 BancoDadosSingleton.Instance.Alimentos.Add(alimentosInsert);
                 BancoDadosSingleton.Instance.SaveChanges();
+                nMensagemAviso("Alimento foi salvo!");
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("Ocorreu um erro ao salvar o Alimento." + '\n' + ex.Message + '\n' + ex.InnerException, Constants.vbOKOnly, "Alerta");
+                nMensagemErro("Ocorreu um erro ao salvar o Alimento." + '\n' + ex.Message + '\n' + ex.InnerException);
             }
         }
 
@@ -57,14 +59,12 @@ namespace ProjetoTCC
 
                 BancoDadosSingleton.Instance.Alimentos.Add(aliUpdate);
                 BancoDadosSingleton.Instance.SaveChanges();
-
+                nMensagemAviso("Alimento foi atualizado!");
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("Ocorreu um erro ao salvar o Alimento." + '\n' + ex.Message + '\n' + ex.InnerException, Constants.vbOKOnly, "Alerta");
-
+                nMensagemErro("Ocorreu um erro ao salvar o Alimento." + '\n' + ex.Message + '\n' + ex.InnerException);
             }
-
         }
         public bool VerificarAlimento(string alimentoVerificar)
         {
@@ -133,7 +133,7 @@ namespace ProjetoTCC
                 delete.ExecuteNonQuery();
                 db.Database.Connection.Close();
             }
-
+            nMensagemErro("Alimento foi excluído");
         }
 
         public List<Alimentos> Buscar(string nomeAlimento, string nomeTabela)

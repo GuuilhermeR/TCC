@@ -1,23 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
+using static Classes.ExibidorMensagem;
 
 namespace TCC2.Telas
 {
     public partial class frmCadastro : MaterialForm
     {
-
         public UsuarioDAO usuarioDAO = new UsuarioDAO();
+        private readonly Random _rng = new Random();
 
         public frmCadastro()
         {
@@ -35,20 +26,15 @@ namespace TCC2.Telas
         [Obsolete]
         private void mBtnCadastrar_Click(object sender, EventArgs e)
         {
-
             string tipoPerfil = "";
 
             if (mchkEstudante.Checked)
-            {
                 tipoPerfil = "Estudante";
-            }
             else if (mchkNutricionista.Checked)
-            {
                 tipoPerfil = "Nutricionista";
-            }
             else
             {
-                MessageBox.Show("É necessário informar se você é Estudante/Nutricionista");
+               nMensagemAlerta("É necessário informar se você é Estudante/Nutricionista");
                 return;
             }
 
@@ -84,14 +70,13 @@ namespace TCC2.Telas
                 mLblUsuario.Text = RandomString();
         }
 
-        private readonly Random _rng = new Random();
-
         private string RandomString()
         {
             string nomeUsuario = mTxtNome.Text.ToString();
-            nomeUsuario = nomeUsuario.Trim();
+            nomeUsuario = nomeUsuario.Replace(" ","");
             char[] buffer = new char[5];
 
+            if(nomeUsuario.Length > 0)
             for (int i = 0; i < 5; i++)
             {
                 buffer[i] = nomeUsuario[_rng.Next(nomeUsuario.Length)];
@@ -99,5 +84,12 @@ namespace TCC2.Telas
             return new string(buffer).ToLower();
         }
 
+        private void mchkNutricionista_CheckedChanged(object sender, EventArgs e)
+        {
+            if (mchkNutricionista.Checked)
+                mtxtCRN.Visible = true;
+            else
+                mtxtCRN.Visible = false;
+        }
     }
 }

@@ -132,12 +132,12 @@ namespace TCC2
             // 
             // mLblCriarConta
             // 
-            this.mLblCriarConta.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.mLblCriarConta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.mLblCriarConta.AutoSize = true;
-            this.mLblCriarConta.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.mLblCriarConta.BackColor = System.Drawing.SystemColors.Desktop;
             this.mLblCriarConta.Depth = 0;
             this.mLblCriarConta.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.mLblCriarConta.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.mLblCriarConta.Location = new System.Drawing.Point(300, 544);
             this.mLblCriarConta.MouseState = MaterialSkin.MouseState.HOVER;
             this.mLblCriarConta.Name = "mLblCriarConta";

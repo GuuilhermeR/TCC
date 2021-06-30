@@ -7,6 +7,7 @@ using Microsoft.VisualBasic;
 using TCC2;
 using System.Collections.Generic;
 using TCC2.Banco_de_Dados;
+using static Classes.ExibidorMensagem;
 
 namespace ProjetoTCC
 {
@@ -74,6 +75,7 @@ namespace ProjetoTCC
                     a.Cancelado = cancelado;
 
                     BancoDadosSingleton.Instance.SaveChanges();
+                    nMensagemAviso("Consulta do paciente atualizado.");
                 }
                 else
                 {
@@ -88,11 +90,13 @@ namespace ProjetoTCC
 
                     BancoDadosSingleton.Instance.Agenda.Add(agendaInsert);
                     BancoDadosSingleton.Instance.SaveChanges();
+                    nMensagemAviso("Consulta do paciente foi agendado.");
+
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Ocorreu um erro ao salvar!" + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException);
+              nMensagemErro("Ocorreu um erro ao salvar!" + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException);
             }            
             
         }
@@ -134,9 +138,10 @@ namespace ProjetoTCC
                         db.Database.Connection.Close();
                     });
                 }
+                nMensagemAviso("Consultas foram removidas.");
             } catch (Exception ex)
             {
-                throw new Exception("Ocorreu um erro ao deletar!" + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException);
+               nMensagemErro("Ocorreu um erro ao deletar!" + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException);
             }
         }
 

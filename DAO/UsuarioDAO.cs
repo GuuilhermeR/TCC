@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Data;
 using System.Data.SQLite;
-using System.Windows.Forms;
 using System.Linq;
 using Microsoft.VisualBasic;
 using System.Collections.Generic;
 using TCC2.Banco_de_Dados;
 using Classes;
 using System.Web.Security;
+using static Classes.ExibidorMensagem;
 
 namespace TCC2
 {
@@ -153,11 +153,11 @@ namespace TCC2
                     BancoDadosSingleton.Instance.SaveChanges();
                 }
 
-                Interaction.MsgBox("Os dados foram Salvos.", MsgBoxStyle.OkOnly, "SALVAR");
+                nMensagemAviso("Os dados foram Salvos.");
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("Ocorreu um erro ao salvar.\n\n" + ex.Message, MsgBoxStyle.OkOnly, "ERRO AO SALVAR");
+                nMensagemErro("Ocorreu um erro ao salvar.\n\n" + ex.Message);
             }
         }
 
@@ -182,11 +182,11 @@ namespace TCC2
 
                 BancoDadosSingleton.Instance.Login.Add(loginInsert);
                 BancoDadosSingleton.Instance.SaveChanges();
-                Interaction.MsgBox("O seu usuário foi criado.", MsgBoxStyle.OkOnly, "SALVAR");
+                nMensagemAviso("O seu usuário foi criado");
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("Ocorreu um erro ao salvar o usuário." + '\n' + ex.Message + '\n' + ex.InnerException, Constants.vbOKOnly, "Alerta");
+                nMensagemErro("Ocorreu um erro ao salvar o usuário." + '\n' + ex.Message + '\n' + ex.InnerException);
             }
         }
 

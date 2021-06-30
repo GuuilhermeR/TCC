@@ -31,11 +31,12 @@ namespace TCC2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenuPrincipal));
             this.TabControlNutreasy = new MaterialSkin.Controls.MaterialTabControl();
             this.tabMenu = new System.Windows.Forms.TabPage();
+            this.btnAtivarModoEscuro = new MaterialSkin.Controls.MaterialSwitch();
             this.mCardAtendimentoAtual = new MaterialSkin.Controls.MaterialCard();
             this.materialButton2 = new MaterialSkin.Controls.MaterialButton();
             this.mcbxCancelar = new MaterialSkin.Controls.MaterialCheckbox();
@@ -53,6 +54,11 @@ namespace TCC2
             this.pbxLogoGrande = new System.Windows.Forms.PictureBox();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.tabAgenda = new System.Windows.Forms.TabPage();
+            this.materialListView1 = new MaterialSkin.Controls.MaterialListView();
+            this.hora = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.paciente = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.pAtendido = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.pRetorno = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnSalvarAgenda = new System.Windows.Forms.Button();
             this.lblDataAtual = new System.Windows.Forms.Label();
             this.dtgAgenda = new System.Windows.Forms.DataGridView();
@@ -167,9 +173,6 @@ namespace TCC2
             this.tbSobre = new System.Windows.Forms.TabPage();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.textBoxContextMenuStrip1 = new MaterialSkin.Controls.TextBoxContextMenuStrip();
-            this.sqLiteCommandBuilder1 = new System.Data.SQLite.SQLiteCommandBuilder();
             this.TabControlNutreasy.SuspendLayout();
             this.tabMenu.SuspendLayout();
             this.mCardAtendimentoAtual.SuspendLayout();
@@ -233,6 +236,7 @@ namespace TCC2
             // 
             // tabMenu
             // 
+            this.tabMenu.Controls.Add(this.btnAtivarModoEscuro);
             this.tabMenu.Controls.Add(this.mCardAtendimentoAtual);
             this.tabMenu.Controls.Add(this.mCardAtendimentoFuturo);
             this.tabMenu.Controls.Add(this.pbxLogoGrande);
@@ -247,6 +251,22 @@ namespace TCC2
             this.tabMenu.UseVisualStyleBackColor = true;
             this.tabMenu.Click += new System.EventHandler(this.tabMenu_Click);
             this.tabMenu.Enter += new System.EventHandler(this.tabMenu_Enter);
+            // 
+            // btnAtivarModoEscuro
+            // 
+            this.btnAtivarModoEscuro.AutoSize = true;
+            this.btnAtivarModoEscuro.Depth = 0;
+            this.btnAtivarModoEscuro.Location = new System.Drawing.Point(484, 103);
+            this.btnAtivarModoEscuro.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAtivarModoEscuro.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.btnAtivarModoEscuro.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnAtivarModoEscuro.Name = "btnAtivarModoEscuro";
+            this.btnAtivarModoEscuro.Ripple = true;
+            this.btnAtivarModoEscuro.Size = new System.Drawing.Size(151, 37);
+            this.btnAtivarModoEscuro.TabIndex = 20;
+            this.btnAtivarModoEscuro.Text = "Modo Escuro";
+            this.btnAtivarModoEscuro.UseVisualStyleBackColor = true;
+            this.btnAtivarModoEscuro.CheckedChanged += new System.EventHandler(this.btnAtivarModoEscuro_CheckedChanged);
             // 
             // mCardAtendimentoAtual
             // 
@@ -486,6 +506,7 @@ namespace TCC2
             // 
             // tabAgenda
             // 
+            this.tabAgenda.Controls.Add(this.materialListView1);
             this.tabAgenda.Controls.Add(this.btnSalvarAgenda);
             this.tabAgenda.Controls.Add(this.lblDataAtual);
             this.tabAgenda.Controls.Add(this.dtgAgenda);
@@ -500,6 +521,47 @@ namespace TCC2
             this.tabAgenda.Text = "Agenda";
             this.tabAgenda.UseVisualStyleBackColor = true;
             this.tabAgenda.Enter += new System.EventHandler(this.tabAgenda_Enter);
+            // 
+            // materialListView1
+            // 
+            this.materialListView1.AutoSizeTable = false;
+            this.materialListView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.materialListView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.materialListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.hora,
+            this.paciente,
+            this.pAtendido,
+            this.pRetorno});
+            this.materialListView1.Depth = 0;
+            this.materialListView1.FullRowSelect = true;
+            this.materialListView1.HideSelection = false;
+            this.materialListView1.LabelEdit = true;
+            this.materialListView1.Location = new System.Drawing.Point(174, 160);
+            this.materialListView1.MinimumSize = new System.Drawing.Size(200, 100);
+            this.materialListView1.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialListView1.MouseState = MaterialSkin.MouseState.OUT;
+            this.materialListView1.Name = "materialListView1";
+            this.materialListView1.OwnerDraw = true;
+            this.materialListView1.Size = new System.Drawing.Size(752, 100);
+            this.materialListView1.TabIndex = 55;
+            this.materialListView1.UseCompatibleStateImageBehavior = false;
+            this.materialListView1.View = System.Windows.Forms.View.Details;
+            // 
+            // hora
+            // 
+            this.hora.Text = "Horário";
+            // 
+            // paciente
+            // 
+            this.paciente.Text = "Paciente";
+            // 
+            // pAtendido
+            // 
+            this.pAtendido.Text = "Atendido?";
+            // 
+            // pRetorno
+            // 
+            this.pRetorno.Text = "Retorno";
             // 
             // btnSalvarAgenda
             // 
@@ -542,24 +604,24 @@ namespace TCC2
             this.atendido,
             this.retorno,
             this.ID});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgAgenda.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgAgenda.DefaultCellStyle = dataGridViewCellStyle3;
             this.dtgAgenda.Location = new System.Drawing.Point(6, 58);
             this.dtgAgenda.Name = "dtgAgenda";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgAgenda.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgAgenda.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dtgAgenda.RowHeadersWidth = 51;
             this.dtgAgenda.Size = new System.Drawing.Size(1219, 659);
             this.dtgAgenda.TabIndex = 52;
@@ -2014,7 +2076,7 @@ namespace TCC2
             this.cbxTipoUsuario.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.cbxTipoUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.cbxTipoUsuario.FormattingEnabled = true;
-            this.cbxTipoUsuario.Hint = "Refeição";
+            this.cbxTipoUsuario.Hint = "Tipo Usuário";
             this.cbxTipoUsuario.IntegralHeight = false;
             this.cbxTipoUsuario.ItemHeight = 43;
             this.cbxTipoUsuario.Items.AddRange(new object[] {
@@ -2040,7 +2102,7 @@ namespace TCC2
             this.cbxSituacao.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.cbxSituacao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.cbxSituacao.FormattingEnabled = true;
-            this.cbxSituacao.Hint = "Refeição";
+            this.cbxSituacao.Hint = "Situação";
             this.cbxSituacao.IntegralHeight = false;
             this.cbxSituacao.ItemHeight = 43;
             this.cbxSituacao.Items.AddRange(new object[] {
@@ -2136,6 +2198,7 @@ namespace TCC2
             this.btnExcluirConfigUsuario.TabIndex = 9;
             this.btnExcluirConfigUsuario.Text = "Excluir";
             this.btnExcluirConfigUsuario.UseVisualStyleBackColor = true;
+            this.btnExcluirConfigUsuario.Click += new System.EventHandler(this.btnExcluirConfigUsuario_Click);
             // 
             // btnSalvarConfigUsuario
             // 
@@ -2283,19 +2346,6 @@ namespace TCC2
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // textBoxContextMenuStrip1
-            // 
-            this.textBoxContextMenuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.textBoxContextMenuStrip1.Depth = 0;
-            this.textBoxContextMenuStrip1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.textBoxContextMenuStrip1.Name = "textBoxContextMenuStrip1";
-            this.textBoxContextMenuStrip1.Size = new System.Drawing.Size(123, 170);
-            // 
-            // sqLiteCommandBuilder1
-            // 
-            this.sqLiteCommandBuilder1.DataAdapter = null;
-            this.sqLiteCommandBuilder1.QuoteSuffix = "]";
-            // 
             // frmMenuPrincipal
             // 
             this.AllowDrop = true;
@@ -2371,7 +2421,6 @@ namespace TCC2
         private System.Windows.Forms.TabPage tabAgenda;
         internal System.Windows.Forms.Button btnSalvarAgenda;
         private System.Windows.Forms.Label lblDataAtual;
-        private System.Windows.Forms.DataGridView dtgAgenda;
         internal System.Windows.Forms.Button btnAvançar;
         internal System.Windows.Forms.Button btnVoltar;
         private System.Windows.Forms.TabPage tabAlimento;
@@ -2402,11 +2451,6 @@ namespace TCC2
         internal System.Windows.Forms.DataGridView dtgUsuarios;
         internal System.Windows.Forms.TabPage tbPermissao;
         private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn horario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nomePaciente;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn atendido;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn retorno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.TabPage tabReceitas;
         public System.Windows.Forms.DataGridView _dtgConsultaPacientes;
         private System.Windows.Forms.DateTimePicker txtDtNasc;
@@ -2449,7 +2493,6 @@ namespace TCC2
         private MaterialSkin.Controls.MaterialLabel mlblNome;
         private MaterialSkin.Controls.MaterialCheckbox mcbxCancelar;
         private MaterialSkin.Controls.MaterialCheckbox mcbxAtendido;
-        private System.Windows.Forms.Timer timer1;
         private MaterialSkin.Controls.MaterialButton materialButton2;
         private MaterialSkin.Controls.MaterialCard mCardAtendimentoFuturo;
         private MaterialSkin.Controls.MaterialButton materialButton1;
@@ -2464,7 +2507,6 @@ namespace TCC2
         internal System.Windows.Forms.DataGridView dataGridView1;
         internal System.Windows.Forms.Button btnSalvarPermissao;
         public MaterialSkin.Controls.MaterialTextBox materialTextBox1;
-        public MaterialSkin.Controls.TextBoxContextMenuStrip textBoxContextMenuStrip1;
         public MaterialSkin.Controls.MaterialTextBox materialTextBox2;
         public MaterialSkin.Controls.MaterialTextBox txtNome;
         public MaterialSkin.Controls.MaterialTextBox txtCPF;
@@ -2494,12 +2536,23 @@ namespace TCC2
         public MaterialSkin.Controls.MaterialTextBox txtConfirmarSenha;
         public MaterialSkin.Controls.MaterialTextBox txtSenha;
         public MaterialSkin.Controls.MaterialTextBox txtNomeUsuarioConfig;
-        private System.Data.SQLite.SQLiteCommandBuilder sqLiteCommandBuilder1;
         private MaterialSkin.Controls.MaterialComboBox cbxTelaLiberar;
         private MaterialSkin.Controls.MaterialComboBox cbxUsuario;
         public MaterialSkin.Controls.MaterialTextBox txtCaminhoArquivoExcel;
         private MaterialSkin.Controls.MaterialComboBox _cbxNomePlanilha;
         public MaterialSkin.Controls.MaterialTextBox txtNomeTabela;
+        private System.Windows.Forms.DataGridView dtgAgenda;
+        private System.Windows.Forms.DataGridViewTextBoxColumn horario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nomePaciente;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn atendido;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn retorno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private MaterialSkin.Controls.MaterialSwitch btnAtivarModoEscuro;
+        public MaterialSkin.Controls.MaterialListView materialListView1;
+        private System.Windows.Forms.ColumnHeader hora;
+        private System.Windows.Forms.ColumnHeader paciente;
+        private System.Windows.Forms.ColumnHeader pAtendido;
+        private System.Windows.Forms.ColumnHeader pRetorno;
     }
 }
 

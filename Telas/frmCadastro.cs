@@ -64,12 +64,6 @@ namespace TCC2.Telas
                 mtxtCRN.Visible = true;
         }
 
-        private void mLblUsuario_Leave(object sender, EventArgs e)
-        {
-            if (mLblUsuario.Text == "")
-                mLblUsuario.Text = RandomString();
-        }
-
         private string RandomString()
         {
             string nomeUsuario = mTxtNome.Text.ToString();
@@ -90,6 +84,13 @@ namespace TCC2.Telas
                 mtxtCRN.Visible = true;
             else
                 mtxtCRN.Visible = false;
+        }
+
+        private void mTxtNome_Leave(object sender, EventArgs e)
+        {
+            mLblUsuario.Text = "";
+            if (mLblUsuario.Text == "")
+                mLblUsuario.Text = RandomString();
         }
     }
 }

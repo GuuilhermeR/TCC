@@ -71,12 +71,12 @@ namespace TCC2
             this.txtUsuario.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtUsuario.Hint = "Usuário";
             this.txtUsuario.LeadingIcon = null;
-            this.txtUsuario.Location = new System.Drawing.Point(113, 284);
+            this.txtUsuario.Location = new System.Drawing.Point(71, 284);
             this.txtUsuario.MaxLength = 50;
             this.txtUsuario.MouseState = MaterialSkin.MouseState.OUT;
             this.txtUsuario.Multiline = false;
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(221, 50);
+            this.txtUsuario.Size = new System.Drawing.Size(303, 50);
             this.txtUsuario.TabIndex = 1;
             this.txtUsuario.Tag = "";
             this.txtUsuario.Text = "";
@@ -91,16 +91,17 @@ namespace TCC2
             this.txtSenha.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtSenha.Hint = "Senha";
             this.txtSenha.LeadingIcon = null;
-            this.txtSenha.Location = new System.Drawing.Point(113, 353);
+            this.txtSenha.Location = new System.Drawing.Point(71, 353);
             this.txtSenha.MaxLength = 50;
             this.txtSenha.MouseState = MaterialSkin.MouseState.OUT;
             this.txtSenha.Multiline = false;
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.Password = true;
-            this.txtSenha.Size = new System.Drawing.Size(221, 50);
+            this.txtSenha.Size = new System.Drawing.Size(303, 50);
             this.txtSenha.TabIndex = 2;
             this.txtSenha.Text = "";
             this.txtSenha.TrailingIcon = null;
+            this.txtSenha.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSenha_KeyPress);
             this.txtSenha.Leave += new System.EventHandler(this.txtSenha_Leave);
             // 
             // pictureBox1
@@ -122,12 +123,13 @@ namespace TCC2
             this.lblAviso.BackColor = System.Drawing.Color.Red;
             this.lblAviso.Depth = 0;
             this.lblAviso.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblAviso.Location = new System.Drawing.Point(164, 418);
+            this.lblAviso.Location = new System.Drawing.Point(149, 418);
             this.lblAviso.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblAviso.Name = "lblAviso";
             this.lblAviso.Size = new System.Drawing.Size(107, 19);
             this.lblAviso.TabIndex = 4;
             this.lblAviso.Text = "materialLabel1";
+            this.lblAviso.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblAviso.Visible = false;
             // 
             // mLblCriarConta

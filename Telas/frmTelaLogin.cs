@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using System.Windows.Forms;
 using TCC2.Telas;
 
 namespace TCC2
@@ -84,6 +85,15 @@ namespace TCC2
         {
             frmCadastro cadastrar = new frmCadastro();
             cadastrar.Show();
+        }
+
+        [Obsolete]
+        private void txtSenha_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                btnLogar_Click(sender, e);
+            }
         }
     }
 }

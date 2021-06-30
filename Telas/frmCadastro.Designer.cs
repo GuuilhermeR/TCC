@@ -59,6 +59,7 @@ namespace TCC2.Telas
             this.mTxtNome.TabIndex = 0;
             this.mTxtNome.Text = "";
             this.mTxtNome.TrailingIcon = null;
+            this.mTxtNome.Leave += new System.EventHandler(this.mTxtNome_Leave);
             // 
             // mLblUsuario
             // 
@@ -80,7 +81,6 @@ namespace TCC2.Telas
             this.mLblUsuario.TabIndex = 1;
             this.mLblUsuario.Text = "";
             this.mLblUsuario.TrailingIcon = null;
-            this.mLblUsuario.Leave += new System.EventHandler(this.mLblUsuario_Leave);
             // 
             // mLblSenha
             // 

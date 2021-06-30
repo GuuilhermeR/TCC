@@ -44,6 +44,7 @@ namespace TCC2
         private double quantidadeAntigaCardapio;
         //Image capturaImagem;
         public string caminhoImagemSalva = null;
+        public MaterialSkinManager materialSkinManager = MaterialSkinManager.Instance;
         #endregion
 
         #region Menu
@@ -55,7 +56,6 @@ namespace TCC2
 
         private void frmMenuPrincipal_Load(object sender, EventArgs e)
         {
-            var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.EnforceBackcolorOnAllComponents = true;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
@@ -70,8 +70,7 @@ namespace TCC2
             }
             else
             {
-                lblUsuario.Text = $"Seja bem vindo(a) ao sistema Guilherme Rüdiger";
-                lblUsuario.Visible = true;
+                lblUsuario.Visible = false;
             }
         }
 
@@ -221,6 +220,29 @@ namespace TCC2
 
         #region Agenda
 
+        //private void LoadAgenda()
+        //{
+
+
+        //for (int i = 0; i < materialListView1.Items.Count; i++)
+        //{
+        //    int ii = 0;
+        //    var agenda = this.agendaDAO.CarregarAgenda(lblDataAtual.Text, materialListView1.Items[i].SubItems[ii].Text);
+        //    if (agenda == null || agenda.Count == 0)
+        //        continue;
+
+        //    agenda.ForEach(x =>
+        //    {
+        //        ii++;
+
+        //        //row.SubItems[1].Text = x.ID.ToString();
+        //        materialListView1.Items[i].SubItems[ii].Text = x.paciente.ToString();
+        //        materialListView1.Items[i].SubItems[ii].Text = x.atendido.ToString();
+        //        materialListView1.Items[i].SubItems[ii].Text = x.retorno.ToString();
+        //    });
+        //}
+        //}
+
         private void LoadAgenda()
         {
             foreach (DataGridViewRow row in dtgAgenda.Rows)
@@ -278,7 +300,8 @@ namespace TCC2
             dtgAgenda.Rows.Clear();
             for (int i = 7; i <= 21; i++)
             {
-                dtgAgenda.Rows.Add(i + ":00");
+                materialListView1.Items.Add(i + ":00");
+                //dtgAgenda.Rows.Add(i + ":00");
             }
         }
 
@@ -286,7 +309,7 @@ namespace TCC2
         {
             dtgAgenda.AutoResizeColumns();
 
-            if (dtgAgenda.Rows[e.RowIndex].Cells["nomePaciente"].Value.ToString() == "" || dtgAgenda.Rows[e.RowIndex].Cells["nomePaciente"].Value.ToString() != null)
+            if (dtgAgenda.Rows[e.RowIndex].Cells["nomePaciente"].Value != null || dtgAgenda.Rows[e.RowIndex].Cells["nomePaciente"].Value.ToString() == "")
                 dtgAgenda.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
 
             dtgAgenda.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Tomato;
@@ -1636,6 +1659,29 @@ namespace TCC2
                         return;
                 }
             });
+        }
+
+        private void btnExcluirConfigUsuario_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAtivarModoEscuro_CheckedChanged(object sender, EventArgs e)
+        {
+            if (btnAtivarModoEscuro.Checked)
+                ModoEscuro();
+            else
+                ModoClaro();
+        }
+
+        private void ModoEscuro()
+        {
+            materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
+        }
+
+        private void ModoClaro()
+        {
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
         }
     }
 }

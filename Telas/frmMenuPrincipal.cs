@@ -20,6 +20,7 @@ using System.Text.RegularExpressions;
 using DAO;
 using WindowsFormsCalendar;
 using Classes;
+using TCC2.Telas;
 
 namespace TCC2
 {
@@ -220,29 +221,6 @@ namespace TCC2
 
         #region Agenda
 
-        //private void LoadAgenda()
-        //{
-
-
-        //for (int i = 0; i < materialListView1.Items.Count; i++)
-        //{
-        //    int ii = 0;
-        //    var agenda = this.agendaDAO.CarregarAgenda(lblDataAtual.Text, materialListView1.Items[i].SubItems[ii].Text);
-        //    if (agenda == null || agenda.Count == 0)
-        //        continue;
-
-        //    agenda.ForEach(x =>
-        //    {
-        //        ii++;
-
-        //        //row.SubItems[1].Text = x.ID.ToString();
-        //        materialListView1.Items[i].SubItems[ii].Text = x.paciente.ToString();
-        //        materialListView1.Items[i].SubItems[ii].Text = x.atendido.ToString();
-        //        materialListView1.Items[i].SubItems[ii].Text = x.retorno.ToString();
-        //    });
-        //}
-        //}
-
         private void LoadAgenda()
         {
             foreach (DataGridViewRow row in dtgAgenda.Rows)
@@ -300,8 +278,7 @@ namespace TCC2
             dtgAgenda.Rows.Clear();
             for (int i = 7; i <= 21; i++)
             {
-                materialListView1.Items.Add(i + ":00");
-                //dtgAgenda.Rows.Add(i + ":00");
+                dtgAgenda.Rows.Add(i + ":00");
             }
         }
 
@@ -317,35 +294,42 @@ namespace TCC2
 
         private void btnSalvarAgenda_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dtgAgenda.Rows)
+            //foreach (DataGridViewRow row in dtgAgenda.Rows)
+            //{
+
+            //    if (row.DefaultCellStyle.BackColor == Color.Tomato)
+            //    {
+            //        int result = DateTime.Compare(Convert.ToDateTime(DateTime.Now.ToString("dd/MM/yyyy HH:mm")), Convert.ToDateTime(lblDataAtual.Text + ' ' + row.Cells["horario"].Value));
+
+            //        if (result == 1)
+            //        {
+            //            MessageBox.Show(this, $"Não é possível agendar consulta para: '{row.Cells["nomePaciente"].Value.ToString().ToUpper()}' em uma data/hora que passou!", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //            tabAgenda_Enter(sender, e);
+            //            return;
+            //        }
+
+            //        agendaDAO.AdicionarPaciente(
+            //            lblDataAtual.Text,
+            //            row.Cells["horario"].Value.ToString(),
+            //            row.Cells["nomePaciente"].Value.ToString(),
+            //            Convert.ToBoolean(row.Cells["atendido"].Value),
+            //            Convert.ToBoolean(row.Cells["retorno"].Value), 0);
+            //    }
+
+            //}
+            //if (deletar.Count > 0)
+            //{
+            //    agendaDAO.DeletarPacienteAgenda(deletar);
+            //}
+            //dtgAgenda.Rows.Clear();
+            //tabAgenda_Enter(sender, e);
+
+            using (frmTelaCarregamento fCarregar = new frmTelaCarregamento())
             {
-
-                if (row.DefaultCellStyle.BackColor == Color.Tomato)
-                {
-                    int result = DateTime.Compare(Convert.ToDateTime(DateTime.Now.ToString("dd/MM/yyyy HH:mm")), Convert.ToDateTime(lblDataAtual.Text + ' ' + row.Cells["horario"].Value));
-
-                    if (result == 1)
-                    {
-                        MessageBox.Show(this, $"Não é possível agendar consulta para: '{row.Cells["nomePaciente"].Value.ToString().ToUpper()}' em uma data/hora que passou!", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        tabAgenda_Enter(sender, e);
-                        return;
-                    }
-
-                    agendaDAO.AdicionarPaciente(
-                        lblDataAtual.Text,
-                        row.Cells["horario"].Value.ToString(),
-                        row.Cells["nomePaciente"].Value.ToString(),
-                        Convert.ToBoolean(row.Cells["atendido"].Value),
-                        Convert.ToBoolean(row.Cells["retorno"].Value), 0);
-                }
-
+                fCarregar.Show();
+                fCarregar.Update();
+                System.Threading.Thread.Sleep(25000);
             }
-            if (deletar.Count > 0)
-            {
-                agendaDAO.DeletarPacienteAgenda(deletar);
-            }
-            dtgAgenda.Rows.Clear();
-            tabAgenda_Enter(sender, e);
         }
 
         private void dtgAgenda_KeyDown(object sender, KeyEventArgs e)

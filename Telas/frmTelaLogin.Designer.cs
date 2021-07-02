@@ -71,7 +71,7 @@ namespace TCC2
             this.txtUsuario.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtUsuario.Hint = "Usuário";
             this.txtUsuario.LeadingIcon = null;
-            this.txtUsuario.Location = new System.Drawing.Point(71, 284);
+            this.txtUsuario.Location = new System.Drawing.Point(71, 305);
             this.txtUsuario.MaxLength = 50;
             this.txtUsuario.MouseState = MaterialSkin.MouseState.OUT;
             this.txtUsuario.Multiline = false;
@@ -91,7 +91,7 @@ namespace TCC2
             this.txtSenha.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtSenha.Hint = "Senha";
             this.txtSenha.LeadingIcon = null;
-            this.txtSenha.Location = new System.Drawing.Point(71, 353);
+            this.txtSenha.Location = new System.Drawing.Point(71, 374);
             this.txtSenha.MaxLength = 50;
             this.txtSenha.MouseState = MaterialSkin.MouseState.OUT;
             this.txtSenha.Multiline = false;
@@ -123,7 +123,7 @@ namespace TCC2
             this.lblAviso.BackColor = System.Drawing.Color.Red;
             this.lblAviso.Depth = 0;
             this.lblAviso.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblAviso.Location = new System.Drawing.Point(149, 418);
+            this.lblAviso.Location = new System.Drawing.Point(149, 439);
             this.lblAviso.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblAviso.Name = "lblAviso";
             this.lblAviso.Size = new System.Drawing.Size(107, 19);
@@ -155,7 +155,7 @@ namespace TCC2
             this.materialDivider1.Location = new System.Drawing.Point(27, 518);
             this.materialDivider1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialDivider1.Name = "materialDivider1";
-            this.materialDivider1.Size = new System.Drawing.Size(386, 3);
+            this.materialDivider1.Size = new System.Drawing.Size(386, 1);
             this.materialDivider1.TabIndex = 6;
             this.materialDivider1.Text = "materialDivider1";
             // 
@@ -187,9 +187,10 @@ namespace TCC2
             this.Controls.Add(this.txtSenha);
             this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.btnLogar);
+            this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.ActionBar_None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmTelaLogin";
-            this.Padding = new System.Windows.Forms.Padding(3);
+            this.Padding = new System.Windows.Forms.Padding(3, 24, 3, 3);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Entrar";
             this.Load += new System.EventHandler(this.frmTelaLogin_Load);

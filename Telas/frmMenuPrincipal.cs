@@ -18,7 +18,6 @@ using TCC2.Banco_de_Dados;
 using AdvancedDataGridView;
 using System.Text.RegularExpressions;
 using DAO;
-using WindowsFormsCalendar;
 using Classes;
 using TCC2.Telas;
 
@@ -244,13 +243,13 @@ namespace TCC2
 
         private void tabAgenda_Enter(object sender, EventArgs e)
         {
-            DateTime hoje = DateTime.Now;
-            lblDataAtual.Text = hoje.ToString("dd/MM/yyyy");
-            CriarHorariosPadrao();
-            dtgAgenda.AutoResizeColumns();
-            dtgAgenda.AutoResizeRows();
-            dtgAgenda.Refresh();
-            LoadAgenda();
+            //DateTime hoje = DateTime.Now;
+            //lblDataAtual.Text = hoje.ToString("dd/MM/yyyy");
+            //CriarHorariosPadrao();
+            //dtgAgenda.AutoResizeColumns();
+            //dtgAgenda.AutoResizeRows();
+            //dtgAgenda.Refresh();
+            //LoadAgenda();
         }
 
         private void btnAvançar_Click(object sender, EventArgs e)
@@ -323,13 +322,6 @@ namespace TCC2
             //}
             //dtgAgenda.Rows.Clear();
             //tabAgenda_Enter(sender, e);
-
-            using (frmTelaCarregamento fCarregar = new frmTelaCarregamento())
-            {
-                fCarregar.Show();
-                fCarregar.Update();
-                System.Threading.Thread.Sleep(25000);
-            }
         }
 
         private void dtgAgenda_KeyDown(object sender, KeyEventArgs e)
@@ -1666,6 +1658,22 @@ namespace TCC2
         private void ModoClaro()
         {
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+        }
+
+        private void calAgendamento_ItemCreated(object sender, System.Windows.Forms.Calendar.CalendarItemCancelEventArgs e)
+        {
+            //var teste = e.Item.Text;
+            //var teste2 = e.Item.StartDate;
+        }
+
+        private void calAgendamento_ItemDatesChanged(object sender, System.Windows.Forms.Calendar.CalendarItemEventArgs e)
+        {
+
+        }
+
+        private void calAgendamento_ItemDeleted(object sender, System.Windows.Forms.Calendar.CalendarItemEventArgs e)
+        {
+
         }
     }
 }

@@ -18,11 +18,11 @@ namespace ProjetoTCC
             
         }
 
-        public List<Agenda> CarregarAgenda(string dataAgenda, string horario)
+        public List<Agenda> CarregarAgenda(string dataAgenda)
         {
             try
             {
-                var agenda = (from a in BancoDadosSingleton.Instance.Agenda where a.data == dataAgenda && a.hora == horario select a).ToList();
+                var agenda = (from a in BancoDadosSingleton.Instance.Agenda where a.data == dataAgenda select a).ToList();
                 if (agenda.Count > 0)
                 {
                     return agenda;
@@ -60,11 +60,11 @@ namespace ProjetoTCC
             }
         }
 
-        public void AdicionarPaciente(string dataAgenda, string horario, string paciente, bool atendido, bool retorno, int cancelado)
+        public void AdicionarPaciente(string dataAgenda, string horario, string paciente, bool atendido, bool retorno, int cancelado, bool ajusteConsulta)
         {
             try
             {
-                if (VerificarPacienteAgendado(paciente, dataAgenda))
+                if (ajusteConsulta || VerificarPacienteAgendado(paciente, dataAgenda))
                 {
                     var a = (from c in BancoDadosSingleton.Instance.Agenda where c.paciente == paciente && c.data == dataAgenda select c).Single();
 
@@ -123,20 +123,17 @@ namespace ProjetoTCC
             return false;
         }
 
-        public void DeletarPacienteAgenda(List<string> ID)
+        public void DeletarPacienteAgenda(string paciente)
         {
             try
             {
                 using (var db = new NutreasyEntities())
                 {
-                    ID.ForEach(x =>
-                    {
                         var delete = db.Database.Connection.CreateCommand();
-                        delete.CommandText = $"DELETE FROM Agenda WHERE ID IN ({x})";
+                        delete.CommandText = $"DELETE FROM Agenda WHERE paciente = '{paciente}'";
                         db.Database.Connection.Open();
                         delete.ExecuteNonQuery();
                         db.Database.Connection.Close();
-                    });
                 }
                 nMensagemAviso("Consultas foram removidas.");
             } catch (Exception ex)

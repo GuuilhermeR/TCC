@@ -18,8 +18,8 @@ using TCC2.Banco_de_Dados;
 using AdvancedDataGridView;
 using System.Text.RegularExpressions;
 using DAO;
-using Classes;
-using TCC2.Telas;
+using static Classes.ExibidorMensagem;
+using System.Windows.Forms.Calendar;
 
 namespace TCC2
 {
@@ -220,119 +220,57 @@ namespace TCC2
 
         #region Agenda
 
-        private void LoadAgenda()
+        private void calAgendamento_ItemCreated(object sender, System.Windows.Forms.Calendar.CalendarItemCancelEventArgs e)
         {
-            foreach (DataGridViewRow row in dtgAgenda.Rows)
-            {
-                var agenda = this.agendaDAO.CarregarAgenda(lblDataAtual.Text, row.Cells["horario"].Value.ToString());
-                if (agenda == null)
-                    continue;
+            if (nMensagemAlerta($"Você deseja agendar o paciente {e.Item.Text} para {e.Item.StartDate}") == DialogResult.Yes)
+                agendaDAO.AdicionarPaciente(
+                            (e.Item.StartDate.ToString()).Substring(0, 10),
+                            (e.Item.StartDate.ToString()).Substring(11, 5),
+                            e.Item.Text.ToString(),
+                            false,
+                            false,
+                            0,
+                            false);
+        }
 
-                if (agenda != null || agenda.Count > 0)
-                {
-                    agenda.ForEach(x =>
-                    {
-                        row.Cells["ID"].Value = x.ID;
-                        row.Cells["nomePaciente"].Value = x.paciente;
-                        row.Cells["atendido"].Value = x.atendido;
-                        row.Cells["retorno"].Value = x.retorno;
-                    });
-                }
+        private void calAgendamento_ItemDatesChanged(object sender, System.Windows.Forms.Calendar.CalendarItemEventArgs e)
+        {
+            if (nMensagemAlerta($"Você deseja alterar o paciente {e.Item.Text.ToString()} para {e.Item.StartDate.ToString()}") == DialogResult.Yes)
+                agendaDAO.AdicionarPaciente(
+                            (e.Item.StartDate.ToString()).Substring(0, 10),
+                            (e.Item.StartDate.ToString()).Substring(11, 5),
+                            e.Item.Text.ToString(),
+                            false,
+                            false,
+                            0,
+                            true);
+        }
+
+        private void calAgendamento_ItemDeleted(object sender, System.Windows.Forms.Calendar.CalendarItemEventArgs e)
+        {
+            if (nMensagemAlerta($"Você deseja excluir a consulta do paciente {e.Item.Text}") == DialogResult.Yes)
+            {
+                agendaDAO.DeletarPacienteAgenda(e.Item.Text);
+            }
+            else
+            {
+
             }
         }
+
 
         private void tabAgenda_Enter(object sender, EventArgs e)
         {
-            //DateTime hoje = DateTime.Now;
-            //lblDataAtual.Text = hoje.ToString("dd/MM/yyyy");
-            //CriarHorariosPadrao();
-            //dtgAgenda.AutoResizeColumns();
-            //dtgAgenda.AutoResizeRows();
-            //dtgAgenda.Refresh();
-            //LoadAgenda();
-        }
+            calAgendamento.Items.Clear();
+            var agendados = agendaDAO.CarregarAgenda(DateTime.Now.ToString("dd/MM/yyyy"));
+            if (agendados.Count == 0)
+                return;
 
-        private void btnAvançar_Click(object sender, EventArgs e)
-        {
-            dtgAgenda.Rows.Clear();
-            CriarHorariosPadrao();
-            var data = Convert.ToDateTime(lblDataAtual.Text);
-            DateTime dataAvançada = data.AddDays(1);
-            lblDataAtual.Text = dataAvançada.ToString("dd/MM/yyyy");
-            LoadAgenda();
-        }
-
-        private void btnVoltar_Click(object sender, EventArgs e)
-        {
-            dtgAgenda.Rows.Clear();
-            CriarHorariosPadrao();
-            var data = Convert.ToDateTime(lblDataAtual.Text);
-            DateTime dataAvançada = data.AddDays(-1);
-            lblDataAtual.Text = dataAvançada.ToString("dd/MM/yyyy");
-            LoadAgenda();
-        }
-
-        private void CriarHorariosPadrao()
-        {
-            dtgAgenda.Rows.Clear();
-            for (int i = 7; i <= 21; i++)
+            agendados.ForEach(x =>
             {
-                dtgAgenda.Rows.Add(i + ":00");
-            }
-        }
-
-        private void dtgAgenda_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            dtgAgenda.AutoResizeColumns();
-
-            if (dtgAgenda.Rows[e.RowIndex].Cells["nomePaciente"].Value != null || dtgAgenda.Rows[e.RowIndex].Cells["nomePaciente"].Value.ToString() == "")
-                dtgAgenda.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
-
-            dtgAgenda.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Tomato;
-        }
-
-        private void btnSalvarAgenda_Click(object sender, EventArgs e)
-        {
-            //foreach (DataGridViewRow row in dtgAgenda.Rows)
-            //{
-
-            //    if (row.DefaultCellStyle.BackColor == Color.Tomato)
-            //    {
-            //        int result = DateTime.Compare(Convert.ToDateTime(DateTime.Now.ToString("dd/MM/yyyy HH:mm")), Convert.ToDateTime(lblDataAtual.Text + ' ' + row.Cells["horario"].Value));
-
-            //        if (result == 1)
-            //        {
-            //            MessageBox.Show(this, $"Não é possível agendar consulta para: '{row.Cells["nomePaciente"].Value.ToString().ToUpper()}' em uma data/hora que passou!", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //            tabAgenda_Enter(sender, e);
-            //            return;
-            //        }
-
-            //        agendaDAO.AdicionarPaciente(
-            //            lblDataAtual.Text,
-            //            row.Cells["horario"].Value.ToString(),
-            //            row.Cells["nomePaciente"].Value.ToString(),
-            //            Convert.ToBoolean(row.Cells["atendido"].Value),
-            //            Convert.ToBoolean(row.Cells["retorno"].Value), 0);
-            //    }
-
-            //}
-            //if (deletar.Count > 0)
-            //{
-            //    agendaDAO.DeletarPacienteAgenda(deletar);
-            //}
-            //dtgAgenda.Rows.Clear();
-            //tabAgenda_Enter(sender, e);
-        }
-
-        private void dtgAgenda_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyValue == (char)Keys.Delete)
-            {
-                deletar.Add(dtgAgenda.CurrentRow.Cells["ID"].Value.ToString());
-                dtgAgenda.CurrentRow.Cells["nomePaciente"].Value = "";
-                dtgAgenda.CurrentRow.Cells["atendido"].Value = false;
-                dtgAgenda.CurrentRow.Cells["retorno"].Value = false;
-            }
+                CalendarItem calAgendamentos = new CalendarItem(calAgendamento, Convert.ToDateTime(x.data + ' ' + x.hora), Convert.ToDateTime(x.data + ' ' + x.hora).AddHours(1),x.paciente);
+                calAgendamento.Items.Add(calAgendamentos);
+            });
         }
 
         private void mcbxCancelar_CheckedChanged(object sender, EventArgs e)
@@ -375,7 +313,7 @@ namespace TCC2
         {
             if (MessageBox.Show(this, "Deseja realmente cancelar esta consulta?", "AVISO", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                agendaDAO.AdicionarPaciente(data.Substring(0, 10), data.Substring(11), paciente, atendido, retorno, 1);
+                agendaDAO.AdicionarPaciente(data.Substring(0, 10), data.Substring(11), paciente, atendido, retorno, 1,true);
             }
         }
 
@@ -383,7 +321,7 @@ namespace TCC2
         {
             if (MessageBox.Show(this, "Deseja realmente finalizar esta consulta?", "AVISO", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                agendaDAO.AdicionarPaciente(data.Substring(0, 10), data.Substring(11), paciente, atendido, retorno, 0);
+                agendaDAO.AdicionarPaciente(data.Substring(0, 10), data.Substring(11), paciente, atendido, retorno, 0,true);
             }
         }
         #endregion
@@ -1658,22 +1596,6 @@ namespace TCC2
         private void ModoClaro()
         {
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-        }
-
-        private void calAgendamento_ItemCreated(object sender, System.Windows.Forms.Calendar.CalendarItemCancelEventArgs e)
-        {
-            //var teste = e.Item.Text;
-            //var teste2 = e.Item.StartDate;
-        }
-
-        private void calAgendamento_ItemDatesChanged(object sender, System.Windows.Forms.Calendar.CalendarItemEventArgs e)
-        {
-
-        }
-
-        private void calAgendamento_ItemDeleted(object sender, System.Windows.Forms.Calendar.CalendarItemEventArgs e)
-        {
-
         }
     }
 }

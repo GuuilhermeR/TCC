@@ -15,7 +15,7 @@ namespace Classes
         }
         public static DialogResult nMensagemAlerta(string mensagem, IWin32Window owner = null)
         {
-            return MessageBox.Show(owner, mensagem, "Nutreasy", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return MessageBox.Show(owner, mensagem, "Nutreasy", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
         }
         public static DialogResult nMensagemAceita(string mensagem, IWin32Window owner = null)
         {

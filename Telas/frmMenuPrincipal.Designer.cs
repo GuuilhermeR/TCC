@@ -36,8 +36,6 @@ namespace TCC2
             System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange3 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange4 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange5 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenuPrincipal));
             this.TabControlNutreasy = new MaterialSkin.Controls.MaterialTabControl();
             this.tabMenu = new System.Windows.Forms.TabPage();
@@ -60,16 +58,6 @@ namespace TCC2
             this.lblUsuario = new System.Windows.Forms.Label();
             this.tabAgenda = new System.Windows.Forms.TabPage();
             this.calAgendamento = new System.Windows.Forms.Calendar.Calendar();
-            this.btnSalvarAgenda = new System.Windows.Forms.Button();
-            this.lblDataAtual = new System.Windows.Forms.Label();
-            this.dtgAgenda = new System.Windows.Forms.DataGridView();
-            this.horario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomePaciente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.atendido = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.retorno = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnAvançar = new System.Windows.Forms.Button();
-            this.btnVoltar = new System.Windows.Forms.Button();
             this.tabAlimento = new System.Windows.Forms.TabPage();
             this.tbAlimento = new System.Windows.Forms.TabControl();
             this._tbConsulta = new System.Windows.Forms.TabPage();
@@ -180,7 +168,6 @@ namespace TCC2
             this.mCardAtendimentoFuturo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxLogoGrande)).BeginInit();
             this.tabAgenda.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgAgenda)).BeginInit();
             this.tabAlimento.SuspendLayout();
             this.tbAlimento.SuspendLayout();
             this._tbConsulta.SuspendLayout();
@@ -509,11 +496,6 @@ namespace TCC2
             // tabAgenda
             // 
             this.tabAgenda.Controls.Add(this.calAgendamento);
-            this.tabAgenda.Controls.Add(this.btnSalvarAgenda);
-            this.tabAgenda.Controls.Add(this.lblDataAtual);
-            this.tabAgenda.Controls.Add(this.dtgAgenda);
-            this.tabAgenda.Controls.Add(this.btnAvançar);
-            this.tabAgenda.Controls.Add(this.btnVoltar);
             this.tabAgenda.ImageKey = "agenda32px.png";
             this.tabAgenda.Location = new System.Drawing.Point(4, 39);
             this.tabAgenda.Name = "tabAgenda";
@@ -528,161 +510,36 @@ namespace TCC2
             // 
             this.calAgendamento.Font = new System.Drawing.Font("Segoe UI", 9F);
             calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange1.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange1.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange1.EndTime = System.TimeSpan.Parse("20:00:00");
+            calendarHighlightRange1.StartTime = System.TimeSpan.Parse("07:00:00");
             calendarHighlightRange2.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange2.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange2.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange2.EndTime = System.TimeSpan.Parse("20:00:00");
+            calendarHighlightRange2.StartTime = System.TimeSpan.Parse("07:00:00");
             calendarHighlightRange3.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange3.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange3.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange3.EndTime = System.TimeSpan.Parse("20:00:00");
+            calendarHighlightRange3.StartTime = System.TimeSpan.Parse("07:00:00");
             calendarHighlightRange4.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange4.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange4.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange4.EndTime = System.TimeSpan.Parse("20:00:00");
+            calendarHighlightRange4.StartTime = System.TimeSpan.Parse("07:00:00");
             calendarHighlightRange5.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange5.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange5.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange5.EndTime = System.TimeSpan.Parse("20:00:00");
+            calendarHighlightRange5.StartTime = System.TimeSpan.Parse("07:00:00");
             this.calAgendamento.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
         calendarHighlightRange1,
         calendarHighlightRange2,
         calendarHighlightRange3,
         calendarHighlightRange4,
         calendarHighlightRange5};
-            this.calAgendamento.Location = new System.Drawing.Point(6, 3);
+            this.calAgendamento.ItemsTimeFormat = "hh:mm";
+            this.calAgendamento.Location = new System.Drawing.Point(3, 6);
             this.calAgendamento.Name = "calAgendamento";
-            this.calAgendamento.Size = new System.Drawing.Size(1223, 653);
+            this.calAgendamento.Size = new System.Drawing.Size(1223, 691);
             this.calAgendamento.TabIndex = 55;
-            this.calAgendamento.Text = "calendar1";
+            this.calAgendamento.Text = "Agendamento";
             this.calAgendamento.TimeScale = System.Windows.Forms.Calendar.CalendarTimeScale.SixtyMinutes;
             this.calAgendamento.ItemCreated += new System.Windows.Forms.Calendar.Calendar.CalendarItemCancelEventHandler(this.calAgendamento_ItemCreated);
             this.calAgendamento.ItemDeleted += new System.Windows.Forms.Calendar.Calendar.CalendarItemEventHandler(this.calAgendamento_ItemDeleted);
             this.calAgendamento.ItemDatesChanged += new System.Windows.Forms.Calendar.Calendar.CalendarItemEventHandler(this.calAgendamento_ItemDatesChanged);
-            // 
-            // btnSalvarAgenda
-            // 
-            this.btnSalvarAgenda.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSalvarAgenda.AutoSize = true;
-            this.btnSalvarAgenda.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
-            this.btnSalvarAgenda.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalvarAgenda.Location = new System.Drawing.Point(1114, 662);
-            this.btnSalvarAgenda.Name = "btnSalvarAgenda";
-            this.btnSalvarAgenda.Size = new System.Drawing.Size(115, 35);
-            this.btnSalvarAgenda.TabIndex = 54;
-            this.btnSalvarAgenda.Text = "Salvar";
-            this.btnSalvarAgenda.UseVisualStyleBackColor = true;
-            this.btnSalvarAgenda.Click += new System.EventHandler(this.btnSalvarAgenda_Click);
-            // 
-            // lblDataAtual
-            // 
-            this.lblDataAtual.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDataAtual.AutoSize = true;
-            this.lblDataAtual.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDataAtual.Location = new System.Drawing.Point(501, 25);
-            this.lblDataAtual.Name = "lblDataAtual";
-            this.lblDataAtual.Size = new System.Drawing.Size(128, 25);
-            this.lblDataAtual.TabIndex = 53;
-            this.lblDataAtual.Text = "dd/MM/yyyy";
-            this.lblDataAtual.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // dtgAgenda
-            // 
-            this.dtgAgenda.AllowUserToAddRows = false;
-            this.dtgAgenda.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtgAgenda.BackgroundColor = System.Drawing.Color.White;
-            this.dtgAgenda.ColumnHeadersHeight = 29;
-            this.dtgAgenda.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.horario,
-            this.nomePaciente,
-            this.atendido,
-            this.retorno,
-            this.ID});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgAgenda.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dtgAgenda.Location = new System.Drawing.Point(6, 58);
-            this.dtgAgenda.Name = "dtgAgenda";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgAgenda.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dtgAgenda.RowHeadersWidth = 51;
-            this.dtgAgenda.Size = new System.Drawing.Size(1225, 574);
-            this.dtgAgenda.TabIndex = 52;
-            this.dtgAgenda.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgAgenda_CellEndEdit);
-            this.dtgAgenda.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtgAgenda_KeyDown);
-            // 
-            // horario
-            // 
-            this.horario.HeaderText = "Horário";
-            this.horario.MinimumWidth = 6;
-            this.horario.Name = "horario";
-            this.horario.ReadOnly = true;
-            this.horario.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.horario.Width = 223;
-            // 
-            // nomePaciente
-            // 
-            this.nomePaciente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nomePaciente.HeaderText = "Paciente";
-            this.nomePaciente.MinimumWidth = 6;
-            this.nomePaciente.Name = "nomePaciente";
-            // 
-            // atendido
-            // 
-            this.atendido.HeaderText = "Atendido?";
-            this.atendido.MinimumWidth = 6;
-            this.atendido.Name = "atendido";
-            this.atendido.Width = 125;
-            // 
-            // retorno
-            // 
-            this.retorno.HeaderText = "Retorno?";
-            this.retorno.MinimumWidth = 6;
-            this.retorno.Name = "retorno";
-            this.retorno.Width = 125;
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.MinimumWidth = 6;
-            this.ID.Name = "ID";
-            this.ID.Visible = false;
-            this.ID.Width = 125;
-            // 
-            // btnAvançar
-            // 
-            this.btnAvançar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAvançar.AutoSize = true;
-            this.btnAvançar.Location = new System.Drawing.Point(1114, 15);
-            this.btnAvançar.Name = "btnAvançar";
-            this.btnAvançar.Size = new System.Drawing.Size(115, 35);
-            this.btnAvançar.TabIndex = 51;
-            this.btnAvançar.Text = "Avançar";
-            this.btnAvançar.UseVisualStyleBackColor = true;
-            this.btnAvançar.Click += new System.EventHandler(this.btnAvançar_Click);
-            // 
-            // btnVoltar
-            // 
-            this.btnVoltar.AutoSize = true;
-            this.btnVoltar.Location = new System.Drawing.Point(6, 17);
-            this.btnVoltar.Name = "btnVoltar";
-            this.btnVoltar.Size = new System.Drawing.Size(115, 35);
-            this.btnVoltar.TabIndex = 50;
-            this.btnVoltar.Text = "Voltar";
-            this.btnVoltar.UseVisualStyleBackColor = true;
-            this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
             // tabAlimento
             // 
@@ -2367,8 +2224,6 @@ namespace TCC2
             this.mCardAtendimentoFuturo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxLogoGrande)).EndInit();
             this.tabAgenda.ResumeLayout(false);
-            this.tabAgenda.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgAgenda)).EndInit();
             this.tabAlimento.ResumeLayout(false);
             this.tbAlimento.ResumeLayout(false);
             this._tbConsulta.ResumeLayout(false);
@@ -2415,10 +2270,6 @@ namespace TCC2
         internal System.Windows.Forms.PictureBox pbxLogoGrande;
         internal System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.TabPage tabAgenda;
-        internal System.Windows.Forms.Button btnSalvarAgenda;
-        private System.Windows.Forms.Label lblDataAtual;
-        internal System.Windows.Forms.Button btnAvançar;
-        internal System.Windows.Forms.Button btnVoltar;
         private System.Windows.Forms.TabPage tabAlimento;
         internal System.Windows.Forms.TabControl tbAlimento;
         private System.Windows.Forms.TabPage _tbConsulta;
@@ -2537,12 +2388,6 @@ namespace TCC2
         public MaterialSkin.Controls.MaterialTextBox txtCaminhoArquivoExcel;
         private MaterialSkin.Controls.MaterialComboBox _cbxNomePlanilha;
         public MaterialSkin.Controls.MaterialTextBox txtNomeTabela;
-        private System.Windows.Forms.DataGridView dtgAgenda;
-        private System.Windows.Forms.DataGridViewTextBoxColumn horario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nomePaciente;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn atendido;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn retorno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private MaterialSkin.Controls.MaterialSwitch btnAtivarModoEscuro;
         private System.Windows.Forms.Calendar.Calendar calAgendamento;
     }

@@ -59,7 +59,7 @@ namespace TCC2
             materialSkinManager.EnforceBackcolorOnAllComponents = true;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.BlueGrey500, Accent.LightGreen200, TextShade.WHITE);
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.BlueGrey500, Accent.LightGreen400, TextShade.WHITE);
 
             this.MaximizeBox = false;
 
@@ -219,6 +219,19 @@ namespace TCC2
         #endregion
 
         #region Agenda
+        private void tabAgenda_Enter(object sender, EventArgs e)
+        {
+            calAgendamento.Items.Clear();
+            var agendados = agendaDAO.CarregarAgenda(DateTime.Now.ToString("dd/MM/yyyy"));
+            if (agendados.Count == 0)
+                return;
+
+            agendados.ForEach(x =>
+            {
+                CalendarItem calAgendamentos = new CalendarItem(calAgendamento, Convert.ToDateTime(x.data + ' ' + x.hora), Convert.ToDateTime(x.data + ' ' + x.hora).AddHours(1), x.paciente);
+                calAgendamento.Items.Add(calAgendamentos);
+            });
+        }
 
         private void calAgendamento_ItemCreated(object sender, System.Windows.Forms.Calendar.CalendarItemCancelEventArgs e)
         {
@@ -254,75 +267,86 @@ namespace TCC2
             }
             else
             {
-
+                tabAgenda_Enter(sender, e);
             }
-        }
-
-
-        private void tabAgenda_Enter(object sender, EventArgs e)
-        {
-            calAgendamento.Items.Clear();
-            var agendados = agendaDAO.CarregarAgenda(DateTime.Now.ToString("dd/MM/yyyy"));
-            if (agendados.Count == 0)
-                return;
-
-            agendados.ForEach(x =>
-            {
-                CalendarItem calAgendamentos = new CalendarItem(calAgendamento, Convert.ToDateTime(x.data + ' ' + x.hora), Convert.ToDateTime(x.data + ' ' + x.hora).AddHours(1),x.paciente);
-                calAgendamento.Items.Add(calAgendamentos);
-            });
         }
 
         private void mcbxCancelar_CheckedChanged(object sender, EventArgs e)
         {
+            if (mcbxCancelar.Checked == false)
+                return;
+
             bool temRetorno = false;
             if (Convert.ToString(mlblObservação.Text) != "")
                 temRetorno = true;
-            CancelarAtendimento(Convert.ToString(mlblHorario.Text), mlblNome.Text, mcbxAtendido.Checked, temRetorno);
+
+            if (nMensagemAlerta("Deseja realmente cancelar esta consulta?") == DialogResult.Yes)
+                CancelarAtendimento(Convert.ToString(mlblHorario.Text), mlblNome.Text, mcbxAtendido.Checked, temRetorno);
+            else
+                mcbxCancelar.Checked = false;
+
             tabMenu_Click(sender, e);
         }
 
         private void mcbxAtendido_CheckedChanged_1(object sender, EventArgs e)
         {
+            if (mcbxAtendido.Checked == false)
+                return;
+
             bool temRetorno = false;
             if (Convert.ToString(mlblObservação.Text) != "")
                 temRetorno = true;
-            FinalizarAtendimento(Convert.ToString(mlblHorario.Text), mlblNome.Text, mcbxAtendido.Checked, temRetorno);
+
+            if (nMensagemAlerta("Deseja realmente finalizar esta consulta?") == DialogResult.Yes)
+                FinalizarAtendimento(Convert.ToString(mlblHorario.Text), mlblNome.Text, mcbxAtendido.Checked, temRetorno);
+            else
+                mcbxAtendido.Checked = false;
+
             tabMenu_Click(sender, e);
         }
 
         private void mcbxAtendidoFuturo_CheckedChanged(object sender, EventArgs e)
         {
+            if (mcbxAtendidoFuturo.Checked == false)
+                return;
+
             bool temRetorno = false;
             if (Convert.ToString(mlblObservação.Text) != "")
                 temRetorno = true;
-            FinalizarAtendimento(Convert.ToString(mlblHoraFutura.Text), mlblNomeFuturo.Text, mcbxAtendidoFuturo.Checked, temRetorno);
+
+            if (nMensagemAlerta("Deseja realmente finalizar esta consulta?") == DialogResult.Yes)
+                FinalizarAtendimento(Convert.ToString(mlblHoraFutura.Text), mlblNomeFuturo.Text, mcbxAtendidoFuturo.Checked, temRetorno);
+            else
+                mcbxAtendidoFuturo.Checked = false;
+
             tabMenu_Click(sender, e);
         }
 
         private void mcbxCancelarFuturo_CheckedChanged(object sender, EventArgs e)
         {
+            if (mcbxCancelarFuturo.Checked == false)
+                return;
+
             bool temRetorno = false;
             if (Convert.ToString(mlblObservação.Text) != "")
                 temRetorno = true;
-            CancelarAtendimento(Convert.ToString(mlblHoraFutura.Text), mlblNomeFuturo.Text, mcbxAtendidoFuturo.Checked, temRetorno);
+
+            if (nMensagemAlerta("Deseja realmente cancelar esta consulta?") == DialogResult.Yes)
+                CancelarAtendimento(Convert.ToString(mlblHoraFutura.Text), mlblNomeFuturo.Text, mcbxAtendidoFuturo.Checked, temRetorno);
+            else
+                mcbxCancelarFuturo.Checked = false;
+
             tabMenu_Click(sender, e);
         }
 
         private void CancelarAtendimento(string data, string paciente, bool atendido, bool retorno)
         {
-            if (MessageBox.Show(this, "Deseja realmente cancelar esta consulta?", "AVISO", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
                 agendaDAO.AdicionarPaciente(data.Substring(0, 10), data.Substring(11), paciente, atendido, retorno, 1,true);
-            }
         }
 
         private void FinalizarAtendimento(string data, string paciente, bool atendido, bool retorno)
         {
-            if (MessageBox.Show(this, "Deseja realmente finalizar esta consulta?", "AVISO", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
                 agendaDAO.AdicionarPaciente(data.Substring(0, 10), data.Substring(11), paciente, atendido, retorno, 0,true);
-            }
         }
         #endregion
 
@@ -1580,22 +1604,9 @@ namespace TCC2
 
         }
 
-        private void btnAtivarModoEscuro_CheckedChanged(object sender, EventArgs e)
+        private void materialButton3_Click(object sender, EventArgs e)
         {
-            if (btnAtivarModoEscuro.Checked)
-                ModoEscuro();
-            else
-                ModoClaro();
-        }
-
-        private void ModoEscuro()
-        {
-            materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
-        }
-
-        private void ModoClaro()
-        {
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            calAgendamento.ViewEnd = DateTime.Now.AddDays(1);
         }
     }
 }

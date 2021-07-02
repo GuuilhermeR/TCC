@@ -31,15 +31,14 @@ namespace TCC2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange1 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange2 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange3 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange4 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange5 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange36 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange37 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange38 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange39 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange40 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenuPrincipal));
             this.TabControlNutreasy = new MaterialSkin.Controls.MaterialTabControl();
             this.tabMenu = new System.Windows.Forms.TabPage();
-            this.btnAtivarModoEscuro = new MaterialSkin.Controls.MaterialSwitch();
             this.mCardAtendimentoAtual = new MaterialSkin.Controls.MaterialCard();
             this.materialButton2 = new MaterialSkin.Controls.MaterialButton();
             this.mcbxCancelar = new MaterialSkin.Controls.MaterialCheckbox();
@@ -140,7 +139,6 @@ namespace TCC2
             this.materialTextBox1 = new MaterialSkin.Controls.MaterialTextBox();
             this.tbAnamnese = new System.Windows.Forms.TabPage();
             this.rtxtAnamnese = new MvtWindowsForms.RitchTextBoxWithToolBar();
-            this.tabReceitas = new System.Windows.Forms.TabPage();
             this.tabConfig = new System.Windows.Forms.TabPage();
             this.tbConfig = new System.Windows.Forms.TabControl();
             this.TabPage1 = new System.Windows.Forms.TabPage();
@@ -162,6 +160,12 @@ namespace TCC2
             this.tbSobre = new System.Windows.Forms.TabPage();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.materialButton3 = new MaterialSkin.Controls.MaterialButton();
+            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialCheckbox1 = new MaterialSkin.Controls.MaterialCheckbox();
             this.TabControlNutreasy.SuspendLayout();
             this.tabMenu.SuspendLayout();
             this.mCardAtendimentoAtual.SuspendLayout();
@@ -198,6 +202,7 @@ namespace TCC2
             ((System.ComponentModel.ISupportInitialize)(this.dtgUsuarios)).BeginInit();
             this.tbPermissao.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.tbSobre.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControlNutreasy
@@ -208,7 +213,6 @@ namespace TCC2
             this.TabControlNutreasy.Controls.Add(this.tabAlimento);
             this.TabControlNutreasy.Controls.Add(this.tabCardapio);
             this.TabControlNutreasy.Controls.Add(this.tabPaciente);
-            this.TabControlNutreasy.Controls.Add(this.tabReceitas);
             this.TabControlNutreasy.Controls.Add(this.tabConfig);
             this.TabControlNutreasy.Controls.Add(this.tbSobre);
             this.TabControlNutreasy.Depth = 0;
@@ -225,7 +229,6 @@ namespace TCC2
             // 
             // tabMenu
             // 
-            this.tabMenu.Controls.Add(this.btnAtivarModoEscuro);
             this.tabMenu.Controls.Add(this.mCardAtendimentoAtual);
             this.tabMenu.Controls.Add(this.mCardAtendimentoFuturo);
             this.tabMenu.Controls.Add(this.pbxLogoGrande);
@@ -240,22 +243,6 @@ namespace TCC2
             this.tabMenu.UseVisualStyleBackColor = true;
             this.tabMenu.Click += new System.EventHandler(this.tabMenu_Click);
             this.tabMenu.Enter += new System.EventHandler(this.tabMenu_Enter);
-            // 
-            // btnAtivarModoEscuro
-            // 
-            this.btnAtivarModoEscuro.AutoSize = true;
-            this.btnAtivarModoEscuro.Depth = 0;
-            this.btnAtivarModoEscuro.Location = new System.Drawing.Point(484, 103);
-            this.btnAtivarModoEscuro.Margin = new System.Windows.Forms.Padding(0);
-            this.btnAtivarModoEscuro.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.btnAtivarModoEscuro.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnAtivarModoEscuro.Name = "btnAtivarModoEscuro";
-            this.btnAtivarModoEscuro.Ripple = true;
-            this.btnAtivarModoEscuro.Size = new System.Drawing.Size(151, 37);
-            this.btnAtivarModoEscuro.TabIndex = 20;
-            this.btnAtivarModoEscuro.Text = "Modo Escuro";
-            this.btnAtivarModoEscuro.UseVisualStyleBackColor = true;
-            this.btnAtivarModoEscuro.CheckedChanged += new System.EventHandler(this.btnAtivarModoEscuro_CheckedChanged);
             // 
             // mCardAtendimentoAtual
             // 
@@ -496,6 +483,7 @@ namespace TCC2
             // tabAgenda
             // 
             this.tabAgenda.Controls.Add(this.calAgendamento);
+            this.tabAgenda.Controls.Add(this.materialButton3);
             this.tabAgenda.ImageKey = "agenda32px.png";
             this.tabAgenda.Location = new System.Drawing.Point(4, 39);
             this.tabAgenda.Name = "tabAgenda";
@@ -508,32 +496,37 @@ namespace TCC2
             // 
             // calAgendamento
             // 
+            this.calAgendamento.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.calAgendamento.BackColor = System.Drawing.SystemColors.Control;
+            this.calAgendamento.FirstDayOfWeek = System.DayOfWeek.Monday;
             this.calAgendamento.Font = new System.Drawing.Font("Segoe UI", 9F);
-            calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange1.EndTime = System.TimeSpan.Parse("20:00:00");
-            calendarHighlightRange1.StartTime = System.TimeSpan.Parse("07:00:00");
-            calendarHighlightRange2.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange2.EndTime = System.TimeSpan.Parse("20:00:00");
-            calendarHighlightRange2.StartTime = System.TimeSpan.Parse("07:00:00");
-            calendarHighlightRange3.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange3.EndTime = System.TimeSpan.Parse("20:00:00");
-            calendarHighlightRange3.StartTime = System.TimeSpan.Parse("07:00:00");
-            calendarHighlightRange4.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange4.EndTime = System.TimeSpan.Parse("20:00:00");
-            calendarHighlightRange4.StartTime = System.TimeSpan.Parse("07:00:00");
-            calendarHighlightRange5.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange5.EndTime = System.TimeSpan.Parse("20:00:00");
-            calendarHighlightRange5.StartTime = System.TimeSpan.Parse("07:00:00");
+            calendarHighlightRange36.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange36.EndTime = System.TimeSpan.Parse("20:00:00");
+            calendarHighlightRange36.StartTime = System.TimeSpan.Parse("07:00:00");
+            calendarHighlightRange37.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange37.EndTime = System.TimeSpan.Parse("20:00:00");
+            calendarHighlightRange37.StartTime = System.TimeSpan.Parse("07:00:00");
+            calendarHighlightRange38.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange38.EndTime = System.TimeSpan.Parse("20:00:00");
+            calendarHighlightRange38.StartTime = System.TimeSpan.Parse("07:00:00");
+            calendarHighlightRange39.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange39.EndTime = System.TimeSpan.Parse("20:00:00");
+            calendarHighlightRange39.StartTime = System.TimeSpan.Parse("07:00:00");
+            calendarHighlightRange40.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange40.EndTime = System.TimeSpan.Parse("20:00:00");
+            calendarHighlightRange40.StartTime = System.TimeSpan.Parse("07:00:00");
             this.calAgendamento.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
-        calendarHighlightRange1,
-        calendarHighlightRange2,
-        calendarHighlightRange3,
-        calendarHighlightRange4,
-        calendarHighlightRange5};
+        calendarHighlightRange36,
+        calendarHighlightRange37,
+        calendarHighlightRange38,
+        calendarHighlightRange39,
+        calendarHighlightRange40};
             this.calAgendamento.ItemsTimeFormat = "hh:mm";
-            this.calAgendamento.Location = new System.Drawing.Point(3, 6);
+            this.calAgendamento.Location = new System.Drawing.Point(3, 61);
             this.calAgendamento.Name = "calAgendamento";
-            this.calAgendamento.Size = new System.Drawing.Size(1223, 691);
+            this.calAgendamento.Size = new System.Drawing.Size(1223, 636);
             this.calAgendamento.TabIndex = 55;
             this.calAgendamento.Text = "Agendamento";
             this.calAgendamento.TimeScale = System.Windows.Forms.Calendar.CalendarTimeScale.SixtyMinutes;
@@ -572,6 +565,7 @@ namespace TCC2
             // 
             // _tbConsulta
             // 
+            this._tbConsulta.Controls.Add(this.materialCheckbox1);
             this._tbConsulta.Controls.Add(this.txtAlimentoFiltro);
             this._tbConsulta.Controls.Add(this.cbxTabela);
             this._tbConsulta.Controls.Add(this.btnCancelarEditAlimentos);
@@ -1844,16 +1838,6 @@ namespace TCC2
             this.rtxtAnamnese.Toolbar.Size = new System.Drawing.Size(1202, 26);
             this.rtxtAnamnese.Toolbar.TabIndex = 0;
             // 
-            // tabReceitas
-            // 
-            this.tabReceitas.ImageKey = "Receitas32px.png";
-            this.tabReceitas.Location = new System.Drawing.Point(4, 39);
-            this.tabReceitas.Name = "tabReceitas";
-            this.tabReceitas.Size = new System.Drawing.Size(1232, 703);
-            this.tabReceitas.TabIndex = 6;
-            this.tabReceitas.Text = "Receitas";
-            this.tabReceitas.UseVisualStyleBackColor = true;
-            // 
             // tabConfig
             // 
             this.tabConfig.Controls.Add(this.tbConfig);
@@ -2173,6 +2157,10 @@ namespace TCC2
             // 
             // tbSobre
             // 
+            this.tbSobre.Controls.Add(this.materialLabel4);
+            this.tbSobre.Controls.Add(this.materialLabel3);
+            this.tbSobre.Controls.Add(this.materialLabel2);
+            this.tbSobre.Controls.Add(this.materialLabel1);
             this.tbSobre.ImageKey = "information.png";
             this.tbSobre.Location = new System.Drawing.Point(4, 39);
             this.tbSobre.Name = "tbSobre";
@@ -2199,6 +2187,90 @@ namespace TCC2
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // materialButton3
+            // 
+            this.materialButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.materialButton3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton3.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton3.Depth = 0;
+            this.materialButton3.HighEmphasis = true;
+            this.materialButton3.Icon = null;
+            this.materialButton3.Location = new System.Drawing.Point(1067, 16);
+            this.materialButton3.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton3.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton3.Name = "materialButton3";
+            this.materialButton3.Size = new System.Drawing.Size(158, 36);
+            this.materialButton3.TabIndex = 56;
+            this.materialButton3.Text = "materialButton3";
+            this.materialButton3.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton3.UseAccentColor = false;
+            this.materialButton3.UseVisualStyleBackColor = true;
+            this.materialButton3.Click += new System.EventHandler(this.materialButton3_Click);
+            // 
+            // materialLabel1
+            // 
+            this.materialLabel1.AutoSize = true;
+            this.materialLabel1.Depth = 0;
+            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel1.Location = new System.Drawing.Point(6, 30);
+            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel1.Name = "materialLabel1";
+            this.materialLabel1.Size = new System.Drawing.Size(43, 19);
+            this.materialLabel1.TabIndex = 0;
+            this.materialLabel1.Text = "Autor:";
+            // 
+            // materialLabel2
+            // 
+            this.materialLabel2.AutoSize = true;
+            this.materialLabel2.Depth = 0;
+            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel2.Location = new System.Drawing.Point(55, 30);
+            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel2.Name = "materialLabel2";
+            this.materialLabel2.Size = new System.Drawing.Size(131, 19);
+            this.materialLabel2.TabIndex = 1;
+            this.materialLabel2.Text = "Guilherme Rüdiger";
+            // 
+            // materialLabel3
+            // 
+            this.materialLabel3.AutoSize = true;
+            this.materialLabel3.Depth = 0;
+            this.materialLabel3.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel3.Location = new System.Drawing.Point(6, 66);
+            this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel3.Name = "materialLabel3";
+            this.materialLabel3.Size = new System.Drawing.Size(77, 19);
+            this.materialLabel3.TabIndex = 2;
+            this.materialLabel3.Text = "Formação:";
+            // 
+            // materialLabel4
+            // 
+            this.materialLabel4.AutoSize = true;
+            this.materialLabel4.Depth = 0;
+            this.materialLabel4.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel4.Location = new System.Drawing.Point(89, 66);
+            this.materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel4.Name = "materialLabel4";
+            this.materialLabel4.Size = new System.Drawing.Size(170, 19);
+            this.materialLabel4.TabIndex = 3;
+            this.materialLabel4.Text = "Engenharia de Software";
+            // 
+            // materialCheckbox1
+            // 
+            this.materialCheckbox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.materialCheckbox1.AutoSize = true;
+            this.materialCheckbox1.Depth = 0;
+            this.materialCheckbox1.Location = new System.Drawing.Point(1050, 87);
+            this.materialCheckbox1.Margin = new System.Windows.Forms.Padding(0);
+            this.materialCheckbox1.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialCheckbox1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialCheckbox1.Name = "materialCheckbox1";
+            this.materialCheckbox1.Ripple = true;
+            this.materialCheckbox1.Size = new System.Drawing.Size(155, 37);
+            this.materialCheckbox1.TabIndex = 323;
+            this.materialCheckbox1.Text = "Criar nova tabela";
+            this.materialCheckbox1.UseVisualStyleBackColor = true;
+            // 
             // frmMenuPrincipal
             // 
             this.AllowDrop = true;
@@ -2224,6 +2296,7 @@ namespace TCC2
             this.mCardAtendimentoFuturo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxLogoGrande)).EndInit();
             this.tabAgenda.ResumeLayout(false);
+            this.tabAgenda.PerformLayout();
             this.tabAlimento.ResumeLayout(false);
             this.tbAlimento.ResumeLayout(false);
             this._tbConsulta.ResumeLayout(false);
@@ -2259,6 +2332,8 @@ namespace TCC2
             ((System.ComponentModel.ISupportInitialize)(this.dtgUsuarios)).EndInit();
             this.tbPermissao.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.tbSobre.ResumeLayout(false);
+            this.tbSobre.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2298,7 +2373,6 @@ namespace TCC2
         internal System.Windows.Forms.DataGridView dtgUsuarios;
         internal System.Windows.Forms.TabPage tbPermissao;
         private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.TabPage tabReceitas;
         public System.Windows.Forms.DataGridView _dtgConsultaPacientes;
         private System.Windows.Forms.DateTimePicker txtDtNasc;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
@@ -2388,8 +2462,13 @@ namespace TCC2
         public MaterialSkin.Controls.MaterialTextBox txtCaminhoArquivoExcel;
         private MaterialSkin.Controls.MaterialComboBox _cbxNomePlanilha;
         public MaterialSkin.Controls.MaterialTextBox txtNomeTabela;
-        private MaterialSkin.Controls.MaterialSwitch btnAtivarModoEscuro;
         private System.Windows.Forms.Calendar.Calendar calAgendamento;
+        private MaterialSkin.Controls.MaterialButton materialButton3;
+        private MaterialSkin.Controls.MaterialLabel materialLabel4;
+        private MaterialSkin.Controls.MaterialLabel materialLabel3;
+        private MaterialSkin.Controls.MaterialLabel materialLabel2;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialCheckbox materialCheckbox1;
     }
 }
 

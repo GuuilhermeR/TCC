@@ -223,7 +223,7 @@ namespace TCC2
         {
             calAgendamento.Items.Clear();
             var agendados = agendaDAO.CarregarAgenda(DateTime.Now.ToString("dd/MM/yyyy"));
-            if (agendados.Count == 0)
+            if (agendados is null || agendados.Count == 0)
                 return;
 
             agendados.ForEach(x =>
@@ -1148,6 +1148,121 @@ namespace TCC2
             }
         }
 
+        private void txtPacienteConsultaCardapio_TextChanged(object sender, EventArgs e)
+        {
+            if (CardapioDAO.codPacienteCard == "")
+                return;
+            var listaCardapio = cardapioDAO.Consultar(Convert.ToInt32(CardapioDAO.codPacienteCard));
+            if (listaCardapio == null)
+                return;
+            else if (listaCardapio.Count == 0)
+                return;
+            trwDadosCard.Nodes.Clear();
+
+            TreeGridColumn refeicaoColumn = new TreeGridColumn();
+
+            refeicaoColumn.DefaultNodeImage = null;
+            refeicaoColumn.FillWeight = 50F;
+            refeicaoColumn.HeaderText = "Refeição";
+            refeicaoColumn.Name = "refeicao";
+            refeicaoColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            trwDadosCard.Columns.Add(refeicaoColumn);
+
+            TreeGridNode rootNode = trwDadosCard.Nodes.Add("Refeições");
+            rootNode.ImageIndex = 0;
+
+            // Cria os nós filhos para o raiz
+            TreeGridNode cafe = rootNode.Nodes.Add("Café da manhã");
+            cafe.ImageIndex = 1;
+            TreeGridNode Lanche = rootNode.Nodes.Add("Lanche");
+            Lanche.ImageIndex = 1;
+            TreeGridNode Almoco = rootNode.Nodes.Add("Almoço");
+            Almoco.ImageIndex = 1;
+            TreeGridNode LancheTarde = rootNode.Nodes.Add("Lanche da tarde");
+            LancheTarde.ImageIndex = 1;
+            TreeGridNode Jantar = rootNode.Nodes.Add("Jantar");
+            Jantar.ImageIndex = 1;
+            TreeGridNode Ceia = rootNode.Nodes.Add("Ceia");
+            Ceia.ImageIndex = 1;
+            listaCardapio.ForEach(card =>
+            {
+                switch (card.Refeicao)
+                {
+                    case "Café da manhã":
+                        TreeGridNode filhoCafe = cafe.Nodes.Add("Alimento: " + card.Alimentos.nomeAlimento);
+                        filhoCafe.ImageIndex = 2;
+                        filhoCafe = cafe.Nodes.Add("Medida Caseira: " + card.medidaCaseiraQtde.ToString());
+                        filhoCafe.ImageIndex = 2;
+                        filhoCafe = cafe.Nodes.Add("KCal: " + card.kcal.ToString());
+                        filhoCafe.ImageIndex = 2;
+                        filhoCafe = cafe.Nodes.Add("Obs: " + card.Obs.ToString());
+                        filhoCafe.ImageIndex = 2;
+                        filhoCafe = cafe.Nodes.Add("");
+                        return;
+
+                    case "Lanche":
+                        TreeGridNode filhoLanche = Lanche.Nodes.Add("Alimento: " + card.Alimentos.nomeAlimento);
+                        filhoLanche.ImageIndex = 2;
+                        filhoLanche = Lanche.Nodes.Add("Medida Caseira: " + card.medidaCaseiraQtde.ToString());
+                        filhoLanche.ImageIndex = 2;
+                        filhoLanche = Lanche.Nodes.Add("KCal: " + card.kcal.ToString());
+                        filhoLanche.ImageIndex = 2;
+                        filhoLanche = Lanche.Nodes.Add("Obs: " + card.Obs.ToString());
+                        filhoLanche.ImageIndex = 2;
+                        filhoLanche = Lanche.Nodes.Add("");
+                        return;
+
+                    case "Almoço":
+                        TreeGridNode filhoAlmoco = Almoco.Nodes.Add("Alimento: " + card.Alimentos.nomeAlimento);
+                        filhoAlmoco.ImageIndex = 2;
+                        filhoAlmoco = Almoco.Nodes.Add("Medida Caseira: " + card.medidaCaseiraQtde.ToString());
+                        filhoAlmoco.ImageIndex = 2;
+                        filhoAlmoco = Almoco.Nodes.Add("KCal: " + card.kcal.ToString());
+                        filhoAlmoco.ImageIndex = 2;
+                        filhoAlmoco = Almoco.Nodes.Add("Obs: " + card.Obs.ToString());
+                        filhoAlmoco.ImageIndex = 2;
+                        filhoAlmoco = Almoco.Nodes.Add("");
+                        return;
+
+                    case "Lanche da tarde":
+                        TreeGridNode filhoLancheTarde = LancheTarde.Nodes.Add("Alimento: " + card.Alimentos.nomeAlimento);
+                        filhoLancheTarde.ImageIndex = 2;
+                        filhoLancheTarde = LancheTarde.Nodes.Add("Medida Caseira: " + card.medidaCaseiraQtde.ToString());
+                        filhoLancheTarde.ImageIndex = 2;
+                        filhoLancheTarde = LancheTarde.Nodes.Add("KCal: " + card.kcal.ToString());
+                        filhoLancheTarde.ImageIndex = 2;
+                        filhoLancheTarde = LancheTarde.Nodes.Add("Obs: " + card.Obs.ToString());
+                        filhoLancheTarde.ImageIndex = 2;
+                        filhoLancheTarde = LancheTarde.Nodes.Add("");
+                        return;
+
+                    case "Jantar":
+                        TreeGridNode filhoJantar = Jantar.Nodes.Add("Alimento: " + card.Alimentos.nomeAlimento);
+                        filhoJantar.ImageIndex = 2;
+                        filhoJantar = Jantar.Nodes.Add("Medida Caseira: " + card.medidaCaseiraQtde.ToString());
+                        filhoJantar.ImageIndex = 2;
+                        filhoJantar = Jantar.Nodes.Add("KCal: " + card.kcal.ToString());
+                        filhoJantar.ImageIndex = 2;
+                        filhoJantar = Jantar.Nodes.Add("Obs: " + card.Obs.ToString());
+                        filhoJantar.ImageIndex = 2;
+                        filhoJantar = Jantar.Nodes.Add("");
+                        return;
+
+                    case "Ceia":
+                        TreeGridNode filhoCeia = Ceia.Nodes.Add("Alimento: " + card.Alimentos.nomeAlimento);
+                        filhoCeia.ImageIndex = 2;
+                        filhoCeia = Ceia.Nodes.Add("Medida Caseira: " + card.medidaCaseiraQtde.ToString());
+                        filhoCeia.ImageIndex = 2;
+                        filhoCeia = Ceia.Nodes.Add("KCal: " + card.kcal.ToString());
+                        filhoCeia.ImageIndex = 2;
+                        filhoCeia = Ceia.Nodes.Add("Obs: " + card.Obs.ToString());
+                        filhoCeia.ImageIndex = 2;
+                        filhoCeia = Ceia.Nodes.Add("");
+                        return;
+                }
+            });
+        }
+
         private void CarregarGrafico(double proteina, double carboidrato, double lipidio)
         {
             graficoMacroNutri.Series = null;
@@ -1404,6 +1519,7 @@ namespace TCC2
         #endregion
 
         #region Configurações
+        [Obsolete]
         private void btnSalvarConfigUsuario_Click(object sender, EventArgs e)
         {
             bool alterarSenha = false;
@@ -1412,27 +1528,24 @@ namespace TCC2
                 Interaction.MsgBox("O usuário não foi informado");
                 return;
             }
-            if (txtSenha.Text == "")
-            {
-                Interaction.MsgBox("O campo senha não foi informado");
-                return;
-            }
+           
             if (txtSenha.Text != txtConfirmarSenha.Text)
             {
                 Interaction.MsgBox("As senhas não conferem");
                 return;
             }
 
-
-            if (usuarioDAO.VerificarExisteUsuario(txtUsuarioConfig.Text) == false)
-            {
-                // usuario.CriarUsuario(txtUsuario.Text, txtSenha.Text, txtNome.Text, txtEmail.Text, cbxSituacao.Text, cbxTipoUsuario.Text);
-            }
-            else
+            if (usuarioDAO.VerificarExisteUsuario(txtUsuarioConfig.Text))
             {
                 if (Interaction.MsgBox("Você deseja alterar a senha do usuário?", MsgBoxStyle.YesNo, "ALTERAÇÃO DE SENHA") == MsgBoxResult.Yes)
                     alterarSenha = true;
-                usuarioDAO.AlterarUsuario(txtUsuarioConfig.Text, txtSenha.Text, txtNome.Text, txtEmail.Text, cbxSituacao.Text, cbxTipoUsuario.Text, alterarSenha);
+                usuarioDAO.AlterarUsuario(txtUsuarioConfig.Text, txtSenha.Text, txtNomeUsuarioConfig.Text, txtEmail.Text, cbxSituacao.Text, cbxTipoUsuario.Text, alterarSenha, txtCRN.Text);
+                tbConfig_Enter(sender, e);
+            }
+            else
+            {
+                usuarioDAO.CriarUsuario(txtUsuarioConfig.Text, txtSenha.Text, txtNomeUsuarioConfig.Text, txtEmail.Text, cbxSituacao.Text, cbxTipoUsuario.Text,txtCRN.Text);
+                tbConfig_Enter(sender, e);
             }
         }
         private void tbConfig_Enter(object sender, EventArgs e)
@@ -1448,6 +1561,8 @@ namespace TCC2
             dtgUsuarios.Columns["situacao"].HeaderText = "Situação";
             dtgUsuarios.Columns["email"].HeaderText = "E-mail";
             dtgUsuarios.Columns["perfil"].HeaderText = "Perfil";
+            dtgUsuarios.Columns["crn"].HeaderText = "CRN";
+            dtgUsuarios.Columns["Permissao"].Visible = false;
             dtgUsuarios.AutoResizeColumns();
         }
         private void dtgUsuarios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -1459,6 +1574,7 @@ namespace TCC2
                 txtEmailConfig.Text = dtgUsuarios.CurrentRow.Cells["email"].Value.ToString();
                 cbxSituacao.Text = dtgUsuarios.CurrentRow.Cells["situacao"].Value.ToString();
                 cbxTipoUsuario.Text = dtgUsuarios.CurrentRow.Cells["perfil"].Value.ToString();
+                txtCRN.Text = dtgUsuarios.CurrentRow.Cells["crn"].Value.ToString();
             }
         }
         private void tbPermissao_Enter(object sender, EventArgs e)
@@ -1468,7 +1584,7 @@ namespace TCC2
             if (listaUsuarios.Count <= 0)
                 return;
 
-            listaUsuarios.ForEach(x => cbxUsuario.Items.Add(x));
+            listaUsuarios.ForEach(x => cbxUsuarioPerm.Items.Add(x));
         }
         private void txtUsuarioConfig_Leave(object sender, EventArgs e)
         {
@@ -1478,135 +1594,36 @@ namespace TCC2
 
         private void btnSalvarPermissao_Click(object sender, EventArgs e)
         {
-            permissaoDAO.AdicionarPermissao(Convert.ToString(cbxUsuario.Text), Convert.ToString(cbxTelaLiberar.Text));
-        }
-
-
-        #endregion
-
-        private void txtPacienteConsultaCardapio_TextChanged(object sender, EventArgs e)
-        {
-            if (CardapioDAO.codPacienteCard == "")
-                return;
-            var listaCardapio = cardapioDAO.Consultar(Convert.ToInt32(CardapioDAO.codPacienteCard));
-            if (listaCardapio == null)
-                return;
-            else if (listaCardapio.Count == 0)
-                return;
-            trwDadosCard.Nodes.Clear();
-
-            TreeGridColumn refeicaoColumn = new TreeGridColumn();
-
-            refeicaoColumn.DefaultNodeImage = null;
-            refeicaoColumn.FillWeight = 50F;
-            refeicaoColumn.HeaderText = "Refeição";
-            refeicaoColumn.Name = "refeicao";
-            refeicaoColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            trwDadosCard.Columns.Add(refeicaoColumn);
-
-            TreeGridNode rootNode = trwDadosCard.Nodes.Add("Refeições");
-            rootNode.ImageIndex = 0;
-
-            // Cria os nós filhos para o raiz
-            TreeGridNode cafe = rootNode.Nodes.Add("Café da manhã");
-            cafe.ImageIndex = 1;
-            TreeGridNode Lanche = rootNode.Nodes.Add("Lanche");
-            Lanche.ImageIndex = 1;
-            TreeGridNode Almoco = rootNode.Nodes.Add("Almoço");
-            Almoco.ImageIndex = 1;
-            TreeGridNode LancheTarde = rootNode.Nodes.Add("Lanche da tarde");
-            LancheTarde.ImageIndex = 1;
-            TreeGridNode Jantar = rootNode.Nodes.Add("Jantar");
-            Jantar.ImageIndex = 1;
-            TreeGridNode Ceia = rootNode.Nodes.Add("Ceia");
-            Ceia.ImageIndex = 1;
-            listaCardapio.ForEach(card =>
-            {
-                switch (card.Refeicao)
-                {
-                    case "Café da manhã":
-                        TreeGridNode filhoCafe = cafe.Nodes.Add("Alimento: " + card.Alimentos.nomeAlimento);
-                        filhoCafe.ImageIndex = 2;
-                        filhoCafe = cafe.Nodes.Add("Medida Caseira: " + card.medidaCaseiraQtde.ToString());
-                        filhoCafe.ImageIndex = 2;
-                        filhoCafe = cafe.Nodes.Add("KCal: " + card.kcal.ToString());
-                        filhoCafe.ImageIndex = 2;
-                        filhoCafe = cafe.Nodes.Add("Obs: " + card.Obs.ToString());
-                        filhoCafe.ImageIndex = 2;
-                        filhoCafe = cafe.Nodes.Add("");
-                        return;
-
-                    case "Lanche":
-                        TreeGridNode filhoLanche = Lanche.Nodes.Add("Alimento: " + card.Alimentos.nomeAlimento);
-                        filhoLanche.ImageIndex = 2;
-                        filhoLanche = Lanche.Nodes.Add("Medida Caseira: " + card.medidaCaseiraQtde.ToString());
-                        filhoLanche.ImageIndex = 2;
-                        filhoLanche = Lanche.Nodes.Add("KCal: " + card.kcal.ToString());
-                        filhoLanche.ImageIndex = 2;
-                        filhoLanche = Lanche.Nodes.Add("Obs: " + card.Obs.ToString());
-                        filhoLanche.ImageIndex = 2;
-                        filhoLanche = Lanche.Nodes.Add("");
-                        return;
-
-                    case "Almoço":
-                        TreeGridNode filhoAlmoco = Almoco.Nodes.Add("Alimento: " + card.Alimentos.nomeAlimento);
-                        filhoAlmoco.ImageIndex = 2;
-                        filhoAlmoco = Almoco.Nodes.Add("Medida Caseira: " + card.medidaCaseiraQtde.ToString());
-                        filhoAlmoco.ImageIndex = 2;
-                        filhoAlmoco = Almoco.Nodes.Add("KCal: " + card.kcal.ToString());
-                        filhoAlmoco.ImageIndex = 2;
-                        filhoAlmoco = Almoco.Nodes.Add("Obs: " + card.Obs.ToString());
-                        filhoAlmoco.ImageIndex = 2;
-                        filhoAlmoco = Almoco.Nodes.Add("");
-                        return;
-
-                    case "Lanche da tarde":
-                        TreeGridNode filhoLancheTarde = LancheTarde.Nodes.Add("Alimento: " + card.Alimentos.nomeAlimento);
-                        filhoLancheTarde.ImageIndex = 2;
-                        filhoLancheTarde = LancheTarde.Nodes.Add("Medida Caseira: " + card.medidaCaseiraQtde.ToString());
-                        filhoLancheTarde.ImageIndex = 2;
-                        filhoLancheTarde = LancheTarde.Nodes.Add("KCal: " + card.kcal.ToString());
-                        filhoLancheTarde.ImageIndex = 2;
-                        filhoLancheTarde = LancheTarde.Nodes.Add("Obs: " + card.Obs.ToString());
-                        filhoLancheTarde.ImageIndex = 2;
-                        filhoLancheTarde = LancheTarde.Nodes.Add("");
-                        return;
-
-                    case "Jantar":
-                        TreeGridNode filhoJantar = Jantar.Nodes.Add("Alimento: " + card.Alimentos.nomeAlimento);
-                        filhoJantar.ImageIndex = 2;
-                        filhoJantar = Jantar.Nodes.Add("Medida Caseira: " + card.medidaCaseiraQtde.ToString());
-                        filhoJantar.ImageIndex = 2;
-                        filhoJantar = Jantar.Nodes.Add("KCal: " + card.kcal.ToString());
-                        filhoJantar.ImageIndex = 2;
-                        filhoJantar = Jantar.Nodes.Add("Obs: " + card.Obs.ToString());
-                        filhoJantar.ImageIndex = 2;
-                        filhoJantar = Jantar.Nodes.Add("");
-                        return;
-
-                    case "Ceia":
-                        TreeGridNode filhoCeia = Ceia.Nodes.Add("Alimento: " + card.Alimentos.nomeAlimento);
-                        filhoCeia.ImageIndex = 2;
-                        filhoCeia = Ceia.Nodes.Add("Medida Caseira: " + card.medidaCaseiraQtde.ToString());
-                        filhoCeia.ImageIndex = 2;
-                        filhoCeia = Ceia.Nodes.Add("KCal: " + card.kcal.ToString());
-                        filhoCeia.ImageIndex = 2;
-                        filhoCeia = Ceia.Nodes.Add("Obs: " + card.Obs.ToString());
-                        filhoCeia.ImageIndex = 2;
-                        filhoCeia = Ceia.Nodes.Add("");
-                        return;
-                }
-            });
+            permissaoDAO.AdicionarPermissao(Convert.ToString(cbxUsuarioPerm.Text), Convert.ToString(cbxTelaLiberarPerm.Text));
         }
 
         private void btnExcluirConfigUsuario_Click(object sender, EventArgs e)
         {
-
+            if (txtUsuarioConfig.Text == "")
+            {
+                nMensagemAlerta("É necessário informar o usuário no campo para remover.");
+                return;
+            }
+            usuarioDAO.Deletar(txtUsuarioConfig.Text);
         }
+
+        private void dtgUsuarios_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                usuarioDAO.Deletar(Convert.ToString(dtgUsuarios.CurrentRow.Cells["usuario"].Value));
+            }
+        }
+        #endregion
 
         private void materialButton3_Click(object sender, EventArgs e)
         {
             calAgendamento.ViewEnd = DateTime.Now.AddDays(1);
+        }
+
+        private void cbxUsuarioPerm_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           // permissaoDAO.
         }
     }
 }

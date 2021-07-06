@@ -34,24 +34,28 @@ namespace TCC2.Telas
                 tipoPerfil = "Nutricionista";
             else
             {
-               nMensagemAlerta("É necessário informar se você é Estudante/Nutricionista");
+               nMensagemAlerta("É necessário informar se você é Nutricionista/Estudante");
                 return;
             }
 
-            //if (mLblNome.Text == "")
+            if (mLblUsuario.Text == "")
+            {
+                nMensagemAlerta("É necessário informar o usuário");
+                return;
+            }
             
-            //if (mLblSenha.Text == "")
+            if (mLblSenha.Text == "")
+            {
+                nMensagemAlerta("É necessário informar uma senha");
+                return;
+            }
 
-            //if (mchkNutricionista.Checked)
-            //            if (mtxtCRN.Text =="")
-
-                usuarioDAO.CriarUsuario(Convert.ToString(mLblUsuario.Text), 
+            usuarioDAO.CriarUsuario(Convert.ToString(mLblUsuario.Text), 
                                                   Convert.ToString(mLblSenha.Text), 
                                                   Convert.ToString(mTxtNome.Text),
                                                   Convert.ToString(mLblEmail.Text),
+                                                  "ATIVO",
                                                   tipoPerfil,
-                                                  "ATIVO", 
-                                                  false, 
                                                   Convert.ToString(mtxtCRN.Text));
             this.Close();
         }

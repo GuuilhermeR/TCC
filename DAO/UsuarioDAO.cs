@@ -68,7 +68,7 @@ namespace TCC2
             senha = FormsAuthentication.HashPasswordForStoringInConfigFile(senha, "MD5");
             try
             {
-                var usuarioLog = (from c in TCC2.BancoDadosSingleton.Instance.Login where c.usuario == usuarioLogado && c.senha == senha select c).ToList();
+                var usuarioLog = (from c in TCC2.BancoDadosSingleton.Instance.Login where c.usuario == usuarioLogado && c.senha == senha && c.situacao.ToLower() == "ativo" select c).ToList();
                 if (usuarioLog.Count > 0)
                 {
                     return true;
@@ -117,7 +117,7 @@ namespace TCC2
         }
 
         [Obsolete]
-        public void AlterarUsuario(string usuario, string senha, string nome, string email, string situacao, string tipoUsuario, bool alterarSenha)
+        public void AlterarUsuario(string usuario, string senha, string nome, string email, string situacao, string tipoUsuario, bool alterarSenha, string crn)
         {
             SQLiteCommand cmd;
             cmd = new SQLiteCommand();
@@ -130,26 +130,28 @@ namespace TCC2
 
                     var usuUpdate = (from usu in BancoDadosSingleton.Instance.Login where usu.usuario == usuario select usu).Single();
                     senha = FormsAuthentication.HashPasswordForStoringInConfigFile(senha, "MD5");
+                    
+                    usuUpdate.usuario = usuario;
                     usuUpdate.nome = nome;
                     usuUpdate.senha = senha;
                     usuUpdate.email = email;
                     usuUpdate.situacao = situacao;
                     usuUpdate.perfil = tipoUsuario;
+                    usuUpdate.CRN = crn;
 
                     BancoDadosSingleton.Instance.Login.Add(usuUpdate);
                     BancoDadosSingleton.Instance.SaveChanges();
-
                 }
                 else
                 {
                     var usuUpdate = (from usu in BancoDadosSingleton.Instance.Login where usu.usuario == usuario select usu).Single();
 
+                    usuUpdate.usuario = usuario;
                     usuUpdate.nome = nome;
                     usuUpdate.email = email;
                     usuUpdate.situacao = situacao;
                     usuUpdate.perfil = tipoUsuario;
-
-                    BancoDadosSingleton.Instance.Login.Add(usuUpdate);
+                    usuUpdate.CRN = crn;
                     BancoDadosSingleton.Instance.SaveChanges();
                 }
 
@@ -162,7 +164,7 @@ namespace TCC2
         }
 
         [Obsolete]
-        public void CriarUsuario(string usuario, string senha, string nome, string email, string situacao, string tipoUsuario, bool alterarSenha, string crm)
+        public void CriarUsuario(string usuario, string senha, string nome, string email, string situacao, string tipoUsuario, string crm)
         {
 
             //CRYPTOGRAFAR SENHA
@@ -199,5 +201,19 @@ namespace TCC2
 
             return false;
         }
+
+        public void Deletar(string usuario)
+        {
+            using (var db = new NutreasyEntities())
+            {
+                var delete = db.Database.Connection.CreateCommand();
+                delete.CommandText = $"DELETE FROM Login WHERE usuario = '{usuario}'";
+                db.Database.Connection.Open();
+                delete.ExecuteNonQuery();
+                db.Database.Connection.Close();
+            }
+            nMensagemErro("Usuário foi excluído");
+        }
+
     }
 }

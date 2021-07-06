@@ -26,6 +26,7 @@ namespace TCC2.Banco_de_Dados
         public string situacao { get; set; }
         public string email { get; set; }
         public string perfil { get; set; }
+        public string CRN { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Permissao> Permissao { get; set; }

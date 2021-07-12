@@ -46,7 +46,7 @@ namespace TCC2
             return nome;
         }
 
-        public object getUsuario()
+        public string getUsuario()
         {
             return usuario;
         }
@@ -137,6 +137,7 @@ namespace TCC2
                     usuUpdate.email = email;
                     usuUpdate.situacao = situacao;
                     usuUpdate.perfil = tipoUsuario;
+                    if(crn != "")
                     usuUpdate.CRN = crn;
 
                     BancoDadosSingleton.Instance.Login.Add(usuUpdate);

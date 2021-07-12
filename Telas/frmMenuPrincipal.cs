@@ -93,6 +93,12 @@ namespace TCC2
 
         private void tabMenu_Enter(object sender, EventArgs e)
         {
+            if (!permissaoDAO.VerificarPermissao(Convert.ToString(usuarioDAO.getUsuario()), tabMenu.Text))
+            {
+                nMensagemAviso("Você não possui permissão nessa tela!");
+                ((Control)this.tabMenu).Enabled = false;
+                return;
+            }
             mCardAtendimentoAtual.BackColor = Color.Red;
             tabMenu_Click(sender, e);
         }
@@ -221,6 +227,13 @@ namespace TCC2
         #region Agenda
         private void tabAgenda_Enter(object sender, EventArgs e)
         {
+            if (!permissaoDAO.VerificarPermissao(Convert.ToString(usuarioDAO.getUsuario()), tabAgenda.Text))
+            {
+                nMensagemAviso("Você não possui permissão nessa tela!");
+                ((Control)this.tabMenu).Enabled = false;
+                return;
+            }
+
             calAgendamento.Items.Clear();
             var agendados = agendaDAO.CarregarAgenda(DateTime.Now.ToString("dd/MM/yyyy"));
             if (agendados is null || agendados.Count == 0)
@@ -351,6 +364,16 @@ namespace TCC2
         #endregion
 
         #region Alimento
+
+        private void tbAlimento_Enter(object sender, EventArgs e)
+        {
+            if (!permissaoDAO.VerificarPermissao(Convert.ToString(usuarioDAO.getUsuario()), tabAgenda.Text))
+            {
+                nMensagemAviso("Você não possui permissão nessa tela!");
+                ((Control)this.tabMenu).Enabled = false;
+                return;
+            }
+        }
         private void btnRecalcular_Click(object sender, EventArgs e)
         {
             if (quantidadeSalva != 0)
@@ -772,7 +795,15 @@ namespace TCC2
         #endregion
 
         #region CadastroPaciente 
-
+        private void tbPaciente_Leave(object sender, EventArgs e)
+        {
+            if (!permissaoDAO.VerificarPermissao(Convert.ToString(usuarioDAO.getUsuario()), tabAgenda.Text))
+            {
+                nMensagemAviso("Você não possui permissão nessa tela!");
+                ((Control)this.tabMenu).Enabled = false;
+                return;
+            }
+        }
         private void limparCamposCadPaciente()
         {
             txtNome.Text = "";
@@ -865,8 +896,9 @@ namespace TCC2
 
         private void _btnSalvar_Click(object sender, EventArgs e)
         {
-            pacienteDAO.Salvar(txtNome.Text, Convert.ToDouble(txtCPF.Text), txtDtNasc.Text, txtEmail.Text, Convert.ToDouble(txtCEP.Text),
-                            Convert.ToDouble(txtNumero.Text), txtTelefone.Text, txtCelular.Text, txtEndereco.Text, txtBairro.Text, txtMunicipio.Text, txtUF.Text, txtComplemento.Text, this.vetorImagens);
+            pacienteDAO.Salvar(Convert.ToString(txtNome.Text), Convert.ToDouble(txtCPF.Text), Convert.ToString(txtDtNasc.Text), Convert.ToString(txtEmail.Text), Convert.ToDouble(txtCEP.Text),
+                            Convert.ToDouble(txtNumero.Text), Convert.ToString(txtTelefone.Text), Convert.ToString(txtCelular.Text), Convert.ToString(txtEndereco.Text), Convert.ToString(txtBairro.Text)
+                            , Convert.ToString(txtMunicipio.Text), Convert.ToString(txtUF.Text), Convert.ToString(txtComplemento.Text), this.vetorImagens);
             tbCadastro_Enter(sender, e);
         }
 
@@ -1077,6 +1109,15 @@ namespace TCC2
         #region Cardápio
         //Ao invés de colocar medida caseira, para finalizar o básico do projeto, será possível apenas colocar quantidade em gramas. O gráfico irá carregar após 
         //informar a quantidade em gramas (evento sair da célula) apenas. Posteriormente, como ajustes será implementado medidas caseiras.
+        private void tbCardapio_Enter(object sender, EventArgs e)
+        {
+            if (!permissaoDAO.VerificarPermissao(Convert.ToString(usuarioDAO.getUsuario()), tabAgenda.Text))
+            {
+                nMensagemAviso("Você não possui permissão nessa tela!");
+                ((Control)this.tabMenu).Enabled = false;
+                return;
+            }
+        }
         private void tabCardapio_Enter(object sender, EventArgs e)
         {
             List<Alimentos> tabela = new List<Alimentos>();
@@ -1550,6 +1591,12 @@ namespace TCC2
         }
         private void tbConfig_Enter(object sender, EventArgs e)
         {
+            if (!permissaoDAO.VerificarPermissao(Convert.ToString(usuarioDAO.getUsuario()), tabAgenda.Text))
+            {
+                nMensagemAviso("Você não possui permissão nessa tela!");
+                ((Control)this.tabMenu).Enabled = false;
+                return;
+            }
             var listaUsuario = usuarioDAO.getUsuario("");
             if (listaUsuario == null)
                 return;
@@ -1605,6 +1652,8 @@ namespace TCC2
                 return;
             }
             usuarioDAO.Deletar(txtUsuarioConfig.Text);
+            tbConfig_Enter(sender, e);
+
         }
 
         private void dtgUsuarios_KeyDown(object sender, KeyEventArgs e)
@@ -1616,6 +1665,16 @@ namespace TCC2
         }
         #endregion
 
+        private void tbSobre_Enter(object sender, EventArgs e)
+        {
+            if (!permissaoDAO.VerificarPermissao(Convert.ToString(usuarioDAO.getUsuario()), tabAgenda.Text))
+            {
+                nMensagemAviso("Você não possui permissão nessa tela!");
+                ((Control)this.tabMenu).Enabled = false;
+                return;
+            }
+        }
+
         private void materialButton3_Click(object sender, EventArgs e)
         {
             calAgendamento.ViewEnd = DateTime.Now.AddDays(1);
@@ -1624,6 +1683,6 @@ namespace TCC2
         private void cbxUsuarioPerm_SelectedIndexChanged(object sender, EventArgs e)
         {
            // permissaoDAO.
-        }
+        }        
     }
 }

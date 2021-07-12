@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TCC2;
 using TCC2.Banco_de_Dados;
+using static Classes.ExibidorMensagem;
 
 namespace DAO
 {
@@ -46,7 +47,7 @@ namespace DAO
             }
             else
             {
-                throw new Exception("Esse usuário ja possui permissão para essa tela");
+                nMensagemErro("Esse usuário ja possui permissão para essa tela");
 
             }
 

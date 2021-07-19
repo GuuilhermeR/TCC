@@ -93,12 +93,7 @@ namespace TCC2
 
         private void tabMenu_Enter(object sender, EventArgs e)
         {
-            if (!permissaoDAO.VerificarPermissao(Convert.ToString(usuarioDAO.getUsuario()), tabMenu.Text))
-            {
-                nMensagemAviso("Você não possui permissão nessa tela!");
-                ((Control)this.tabMenu).Enabled = false;
-                return;
-            }
+            VerificarPermissao(tabMenu.Text);
             mCardAtendimentoAtual.BackColor = Color.Red;
             tabMenu_Click(sender, e);
         }
@@ -227,12 +222,7 @@ namespace TCC2
         #region Agenda
         private void tabAgenda_Enter(object sender, EventArgs e)
         {
-            if (!permissaoDAO.VerificarPermissao(Convert.ToString(usuarioDAO.getUsuario()), tabAgenda.Text))
-            {
-                nMensagemAviso("Você não possui permissão nessa tela!");
-                ((Control)this.tabMenu).Enabled = false;
-                return;
-            }
+            VerificarPermissao(tabAgenda.Text);
 
             calAgendamento.Items.Clear();
             var agendados = agendaDAO.CarregarAgenda(DateTime.Now.ToString("dd/MM/yyyy"));
@@ -365,15 +355,6 @@ namespace TCC2
 
         #region Alimento
 
-        private void tbAlimento_Enter(object sender, EventArgs e)
-        {
-            if (!permissaoDAO.VerificarPermissao(Convert.ToString(usuarioDAO.getUsuario()), tabAgenda.Text))
-            {
-                nMensagemAviso("Você não possui permissão nessa tela!");
-                ((Control)this.tabMenu).Enabled = false;
-                return;
-            }
-        }
         private void btnRecalcular_Click(object sender, EventArgs e)
         {
             if (quantidadeSalva != 0)
@@ -745,6 +726,7 @@ namespace TCC2
         }
         private void _tbConsulta_Enter(object sender, EventArgs e)
         {
+            VerificarPermissao(tabAlimento.Text);
             tabAlimento_Enter(sender, e);
         }
 
@@ -795,14 +777,9 @@ namespace TCC2
         #endregion
 
         #region CadastroPaciente 
-        private void tbPaciente_Leave(object sender, EventArgs e)
+        private void tbPaciente_Enter(object sender, EventArgs e)
         {
-            if (!permissaoDAO.VerificarPermissao(Convert.ToString(usuarioDAO.getUsuario()), tabAgenda.Text))
-            {
-                nMensagemAviso("Você não possui permissão nessa tela!");
-                ((Control)this.tabMenu).Enabled = false;
-                return;
-            }
+            VerificarPermissao(tabPaciente.Text);
         }
         private void limparCamposCadPaciente()
         {
@@ -1111,12 +1088,7 @@ namespace TCC2
         //informar a quantidade em gramas (evento sair da célula) apenas. Posteriormente, como ajustes será implementado medidas caseiras.
         private void tbCardapio_Enter(object sender, EventArgs e)
         {
-            if (!permissaoDAO.VerificarPermissao(Convert.ToString(usuarioDAO.getUsuario()), tabAgenda.Text))
-            {
-                nMensagemAviso("Você não possui permissão nessa tela!");
-                ((Control)this.tabMenu).Enabled = false;
-                return;
-            }
+            VerificarPermissao(tabCardapio.Text);
         }
         private void tabCardapio_Enter(object sender, EventArgs e)
         {
@@ -1591,12 +1563,7 @@ namespace TCC2
         }
         private void tbConfig_Enter(object sender, EventArgs e)
         {
-            if (!permissaoDAO.VerificarPermissao(Convert.ToString(usuarioDAO.getUsuario()), tabAgenda.Text))
-            {
-                nMensagemAviso("Você não possui permissão nessa tela!");
-                ((Control)this.tabMenu).Enabled = false;
-                return;
-            }
+            VerificarPermissao(tabConfig.Text);
             var listaUsuario = usuarioDAO.getUsuario("");
             if (listaUsuario == null)
                 return;
@@ -1627,11 +1594,23 @@ namespace TCC2
         private void tbPermissao_Enter(object sender, EventArgs e)
         {
             var listaUsuarios = usuarioDAO.getAllUsuarios();
-
-            if (listaUsuarios.Count <= 0)
+            if (listaUsuarios == null || listaUsuarios.Count <= 0)
                 return;
-
+            cbxUsuarioPerm.Items.Clear();
             listaUsuarios.ForEach(x => cbxUsuarioPerm.Items.Add(x));
+
+            var listaPermissao = permissaoDAO.getAllPermissao();
+            if (listaPermissao == null || listaPermissao.Count <= 0)
+                return;
+            DataTable dt = ConvertToDataTable(listaPermissao);
+            dtgPermUsuarios.Rows.Clear();
+            dtgPermUsuarios.Columns.Clear();
+            dtgPermUsuarios.DataSource = dt;
+            dtgPermUsuarios.Columns["Login"].Visible = false;
+            dtgPermUsuarios.Columns["ID"].Visible = false;
+            dtgPermUsuarios.Columns["usuario"].HeaderText = "Usuário";
+            dtgPermUsuarios.Columns["programa"].HeaderText = "Tela Permitida";
+            dtgUsuarios.AutoResizeColumns();
         }
         private void txtUsuarioConfig_Leave(object sender, EventArgs e)
         {
@@ -1667,10 +1646,15 @@ namespace TCC2
 
         private void tbSobre_Enter(object sender, EventArgs e)
         {
-            if (!permissaoDAO.VerificarPermissao(Convert.ToString(usuarioDAO.getUsuario()), tabAgenda.Text))
+            VerificarPermissao(tabAgenda.Text);
+        }
+
+        private void VerificarPermissao(string telaPermissao)
+        {
+            if (!permissaoDAO.VerificarPermissao(Convert.ToString(usuarioDAO.getUsuario()), telaPermissao))
             {
                 nMensagemAviso("Você não possui permissão nessa tela!");
-                ((Control)this.tabMenu).Enabled = false;
+                TabControlNutreasy.SelectedTab = tabMenu;
                 return;
             }
         }
@@ -1683,6 +1667,11 @@ namespace TCC2
         private void cbxUsuarioPerm_SelectedIndexChanged(object sender, EventArgs e)
         {
            // permissaoDAO.
-        }        
+        }
+
+        private void btnFindPacienteAnamnese_Click(object sender, EventArgs e)
+        {
+            btnPacienteCardapio_Click(sender, e);
+        }
     }
 }

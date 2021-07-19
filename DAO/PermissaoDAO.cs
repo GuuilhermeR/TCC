@@ -66,5 +66,23 @@ namespace DAO
             }
         }
 
+        public List<Permissao> getAllPermissao()
+        {
+            try
+            {
+                var permUsuario = (from perm in TCC2.BancoDadosSingleton.Instance.Permissao select perm).ToList();
+                if (permUsuario.Count > 0)
+                {
+                    return permUsuario;
+                }
+            }
+            catch
+            {
+                return null;
+
+            }
+            return null;
+        }
+
     }
 }

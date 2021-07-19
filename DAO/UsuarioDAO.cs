@@ -140,7 +140,6 @@ namespace TCC2
                     if(crn != "")
                     usuUpdate.CRN = crn;
 
-                    BancoDadosSingleton.Instance.Login.Add(usuUpdate);
                     BancoDadosSingleton.Instance.SaveChanges();
                 }
                 else

@@ -33,11 +33,11 @@ namespace TCC2
             this.btnLogar = new MaterialSkin.Controls.MaterialButton();
             this.txtUsuario = new MaterialSkin.Controls.MaterialTextBox();
             this.txtSenha = new MaterialSkin.Controls.MaterialTextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblAviso = new MaterialSkin.Controls.MaterialLabel();
             this.mLblCriarConta = new MaterialSkin.Controls.MaterialLabel();
             this.materialDivider1 = new MaterialSkin.Controls.MaterialDivider();
-            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            this.mLblEsqueciSenha = new MaterialSkin.Controls.MaterialLabel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -104,21 +104,8 @@ namespace TCC2
             this.txtSenha.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSenha_KeyPress);
             this.txtSenha.Leave += new System.EventHandler(this.txtSenha_Leave);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::TCC2.Properties.Resources.iconTCC_removebg_preview__1____Copia;
-            this.pictureBox1.Location = new System.Drawing.Point(113, 71);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(221, 195);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            // 
             // lblAviso
             // 
-            this.lblAviso.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblAviso.AutoSize = true;
             this.lblAviso.BackColor = System.Drawing.Color.Red;
             this.lblAviso.Depth = 0;
@@ -159,27 +146,38 @@ namespace TCC2
             this.materialDivider1.TabIndex = 6;
             this.materialDivider1.Text = "materialDivider1";
             // 
-            // materialLabel1
+            // mLblEsqueciSenha
             // 
-            this.materialLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.mLblEsqueciSenha.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialLabel1.AutoSize = true;
-            this.materialLabel1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.materialLabel1.Depth = 0;
-            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel1.Location = new System.Drawing.Point(35, 544);
-            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel1.Name = "materialLabel1";
-            this.materialLabel1.Size = new System.Drawing.Size(152, 19);
-            this.materialLabel1.TabIndex = 7;
-            this.materialLabel1.Text = "Esqueci minha senha";
+            this.mLblEsqueciSenha.AutoSize = true;
+            this.mLblEsqueciSenha.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.mLblEsqueciSenha.Depth = 0;
+            this.mLblEsqueciSenha.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.mLblEsqueciSenha.Location = new System.Drawing.Point(35, 544);
+            this.mLblEsqueciSenha.MouseState = MaterialSkin.MouseState.HOVER;
+            this.mLblEsqueciSenha.Name = "mLblEsqueciSenha";
+            this.mLblEsqueciSenha.Size = new System.Drawing.Size(152, 19);
+            this.mLblEsqueciSenha.TabIndex = 7;
+            this.mLblEsqueciSenha.Text = "Esqueci minha senha";
+            this.mLblEsqueciSenha.Click += new System.EventHandler(this.mLblEsqueciSenha_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::TCC2.Properties.Resources.iconTCC_removebg_preview__1____Copia;
+            this.pictureBox1.Location = new System.Drawing.Point(113, 71);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(221, 195);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
             // 
             // frmTelaLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(447, 584);
-            this.Controls.Add(this.materialLabel1);
+            this.Controls.Add(this.mLblEsqueciSenha);
             this.Controls.Add(this.materialDivider1);
             this.Controls.Add(this.mLblCriarConta);
             this.Controls.Add(this.lblAviso);
@@ -209,6 +207,6 @@ namespace TCC2
         private MaterialSkin.Controls.MaterialLabel lblAviso;
         private MaterialSkin.Controls.MaterialLabel mLblCriarConta;
         private MaterialSkin.Controls.MaterialDivider materialDivider1;
-        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialLabel mLblEsqueciSenha;
     }
 }

@@ -95,5 +95,11 @@ namespace TCC2
                 btnLogar_Click(sender, e);
             }
         }
+
+        private void mLblEsqueciSenha_Click(object sender, EventArgs e)
+        {
+            frmEsqueciSenha esqueciSenha = new frmEsqueciSenha();
+            esqueciSenha.Show();
+        }
     }
 }

@@ -123,6 +123,12 @@
     <Compile Include="Telas\frmCadastro.Designer.cs">
       <DependentUpon>frmCadastro.cs</DependentUpon>
     </Compile>
+    <Compile Include="Telas\frmEsqueciSenha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Telas\frmEsqueciSenha.Designer.cs">
+      <DependentUpon>frmEsqueciSenha.cs</DependentUpon>
+    </Compile>
     <Compile Include="Telas\frmMenuPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\frmCadastro.resx">
       <DependentUpon>frmCadastro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Telas\frmEsqueciSenha.resx">
+      <DependentUpon>frmEsqueciSenha.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\frmMenuPrincipal.resx">
       <DependentUpon>frmMenuPrincipal.cs</DependentUpon>

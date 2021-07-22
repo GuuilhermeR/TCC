@@ -27,20 +27,22 @@ namespace TCC2.Telas
 
         }
 
+        [Obsolete]
         private void mBtnRecuperar_Click(object sender, EventArgs e)
         {
-            EnviarEmail("guilherme.rudiger@catolicasc.edu.br", "", "Alteração de Senha", "Sua nova senha é: 123");
+            EnviarEmail("guilherme.rudiger@catolicasc.edu.br", "", "Alteração de Senha", "Sua nova senha é: ","guilherme");
             var listaUsuarios = usuarioDAO.getEmail((mTxtEmailRecuperar.Text));
             if (listaUsuarios == null || listaUsuarios.Count <= 0)
                 return;
             listaUsuarios.ForEach(x =>
             {
-                EnviarEmail(x.email, "", "Alteração de Senha", "Sua nova senha é: 123");
+                EnviarEmail(x.email, "", "Alteração de Senha", "Sua nova senha é: ",x.usuario);
             });
 
         }
 
-        private string EnviarEmail(string Destinatario, string Remetente, string Assunto, string enviaMensagem)
+        [Obsolete]
+        private string EnviarEmail(string Destinatario, string Remetente, string Assunto, string enviaMensagem, string usuario)
         {
             try
             {
@@ -51,8 +53,10 @@ namespace TCC2.Telas
                 if (bValidaEmail == false)
                     return "Email do destinatário inválido: " + Destinatario;
 
+               string novaSenha = usuarioDAO.GerarNovaSenha(usuario);
+
                 // cria uma mensagem
-                MailMessage mensagemEmail = new MailMessage(Remetente, Destinatario, Assunto, enviaMensagem);
+                MailMessage mensagemEmail = new MailMessage(Remetente, Destinatario, Assunto, enviaMensagem + novaSenha);
 
                 System.Net.Mail.SmtpClient server = new System.Net.Mail.SmtpClient();
 

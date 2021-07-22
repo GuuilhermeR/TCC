@@ -105,6 +105,7 @@
       <DependentUpon>NutreasyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Classes\Criptografador.cs" />
+    <Compile Include="Classes\Crypto.cs" />
     <Compile Include="Classes\ExibidorMensagem.cs" />
     <Compile Include="Classes\FormatadorCampo.cs" />
     <Compile Include="DAO\AgendaDAO.cs" />

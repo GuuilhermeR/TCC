@@ -8,6 +8,7 @@ using TCC2.Banco_de_Dados;
 using Classes;
 using System.Web.Security;
 using static Classes.ExibidorMensagem;
+using TCC2.Classes;
 
 namespace TCC2
 {
@@ -105,7 +106,7 @@ namespace TCC2
             {
                 emailUsuario = ((from c in BancoDadosSingleton.Instance.Login where (c.email.ToUpper()).Contains(email.ToUpper()) select c).Distinct()).ToList();
             }
-            
+
             return emailUsuario;
 
         }
@@ -124,15 +125,15 @@ namespace TCC2
 
                     var usuUpdate = (from usu in BancoDadosSingleton.Instance.Login where usu.usuario == usuario select usu).Single();
                     senha = FormsAuthentication.HashPasswordForStoringInConfigFile(senha, "MD5");
-                    
+
                     usuUpdate.usuario = usuario;
                     usuUpdate.nome = nome;
                     usuUpdate.senha = senha;
                     usuUpdate.email = email;
                     usuUpdate.situacao = situacao;
                     usuUpdate.perfil = tipoUsuario;
-                    if(crn != "")
-                    usuUpdate.CRN = crn;
+                    if (crn != "")
+                        usuUpdate.CRN = crn;
 
                     BancoDadosSingleton.Instance.SaveChanges();
                 }
@@ -207,6 +208,77 @@ namespace TCC2
                 db.Database.Connection.Close();
             }
             nMensagemErro("Usuário foi excluído");
+        }
+
+        [Obsolete]
+        public string GerarNovaSenha(string usuario)
+        {
+            SQLiteCommand cmd;
+            cmd = new SQLiteCommand();
+            string senha = string.Empty;
+
+            string senhaDescrip = GeraSenhaAleatoria();
+            senha = senhaDescrip;
+            var usuUpdate = (from usu in BancoDadosSingleton.Instance.Login where usu.usuario == usuario select usu).Single();
+            senha = FormsAuthentication.HashPasswordForStoringInConfigFile(senha, "MD5");
+
+            usuUpdate.usuario = usuario;
+            usuUpdate.senha = senha;
+            BancoDadosSingleton.Instance.SaveChanges();
+            return senhaDescrip;
+        }
+
+        private string GeraSenhaAleatoria()
+        {
+            const string CAIXA_BAIXA = "abcdefghijklmnopqrstuvwxyz";
+            const string CAIXA_ALTA = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+            const string NUMEROS = "0123456789";
+            const string ESPECIAIS = @"~!@#$%^&*():;[]{}<>,.?/\|";
+
+            // Faz uma lista de caracteres permitidos
+            string permitido = "";
+            permitido += CAIXA_BAIXA;
+            permitido += CAIXA_ALTA;
+            permitido += NUMEROS;
+            permitido += ESPECIAIS;
+            permitido += "_";
+            permitido += " ";
+            // Obtem o numero de caracteres .
+            int caracteres_minimo = 5;
+            int caracteres_maximo = 20;
+            int numero_caracteres = Crypto.RandomInteger(caracteres_minimo, caracteres_maximo);
+            // Satisfaz as definições
+            string _senha = "";
+            _senha += RandomChar(CAIXA_BAIXA);
+            _senha += RandomChar(CAIXA_ALTA);
+            _senha += RandomChar(NUMEROS);
+            _senha += RandomChar(ESPECIAIS);
+            _senha += "_";
+            // adiciona os caracteres restantes aleatorios
+            while (_senha.Length < numero_caracteres)
+                _senha += RandomChar(permitido);
+            // mistura os caracteres requeridos 
+            _senha = RandomizeString(_senha);
+            return _senha;
+        }
+
+        private string RandomChar(string str)
+        {
+            return str.Substring(Crypto.RandomInteger(0, str.Length - 1), 1);
+        }
+
+        private string RandomizeString(string str)
+        {
+            string resultado = "";
+            while (str.Length > 0)
+            {
+                // Pega um numero aleatorio
+                int i = Crypto.RandomInteger(0, str.Length - 1);
+                resultado += str.Substring(i, 1);
+                str = str.Remove(i, 1);
+            }
+            return resultado;
         }
 
     }

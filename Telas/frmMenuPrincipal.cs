@@ -1571,7 +1571,7 @@ namespace TCC2
         }
         private void tbPermissao_Enter(object sender, EventArgs e)
         {
-            var listaUsuarios = usuarioDAO.getAllUsuarios();
+            var listaUsuarios = usuarioDAO.getUsuario("");
             if (listaUsuarios == null || listaUsuarios.Count <= 0)
                 return;
             cbxUsuarioPerm.Items.Clear();

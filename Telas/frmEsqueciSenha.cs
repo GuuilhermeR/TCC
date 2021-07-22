@@ -29,6 +29,14 @@ namespace TCC2.Telas
 
         private void mBtnRecuperar_Click(object sender, EventArgs e)
         {
+            EnviarEmail("guilherme.rudiger@catolicasc.edu.br", "", "Alteração de Senha", "Sua nova senha é: 123");
+            var listaUsuarios = usuarioDAO.getEmail((mTxtEmailRecuperar.Text));
+            if (listaUsuarios == null || listaUsuarios.Count <= 0)
+                return;
+            listaUsuarios.ForEach(x =>
+            {
+                EnviarEmail(x.email, "", "Alteração de Senha", "Sua nova senha é: 123");
+            });
 
         }
 
@@ -46,16 +54,30 @@ namespace TCC2.Telas
                 // cria uma mensagem
                 MailMessage mensagemEmail = new MailMessage(Remetente, Destinatario, Assunto, enviaMensagem);
 
-                SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
-                client.EnableSsl = true;
-                NetworkCredential cred = new NetworkCredential("SEU_EMAIL@gmail.com", "SUA_SENHA");
-                client.Credentials = cred;
+                System.Net.Mail.SmtpClient server = new System.Net.Mail.SmtpClient();
 
-                // inclui as credenciais
-                client.UseDefaultCredentials = true;
+                server.Credentials = new System.Net.NetworkCredential("guilherme.rudiger@catolicasc.org.br", "Guilherme@1");
 
-                // envia a mensagem
-                client.Send(mensagemEmail);
+                server.Host = Remetente;
+                server.Port = 587;
+                try
+                {
+                    server.EnableSsl = true;
+                    server.Send(mensagemEmail);
+                }
+                catch (Exception ex)
+                {
+                    server.Port = 25;
+                    try
+                    {
+                        server.Send(mensagemEmail);
+                    }
+                    catch (Exception ex1)
+                    {
+                        string erro = ex.InnerException.ToString();
+                        return ex.Message.ToString() + erro;
+                    }
+                }
 
                 return "Mensagem enviada para o seu e-mail";
             }
@@ -70,19 +92,15 @@ namespace TCC2.Telas
         {
             try
             {
-                //define a expressão regulara para validar o email
                 string texto_Validar = enderecoEmail;
                 Regex expressaoRegex = new Regex(@"\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}");
 
-                // testa o email com a expressão
                 if (expressaoRegex.IsMatch(texto_Validar))
                 {
-                    // o email é valido
                     return true;
                 }
                 else
                 {
-                    // o email é inválido
                     return false;
                 }
             }

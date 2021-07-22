@@ -82,24 +82,6 @@ namespace TCC2
             return false;
         }
 
-        public List<string> getAllUsuarios()
-        {
-            try
-            {
-                var usuarios = (from c in TCC2.BancoDadosSingleton.Instance.Login select c.usuario).ToList();
-                if (usuarios.Count > 0)
-                {
-                    return usuarios;
-                }
-            }
-            catch
-            {
-                return null;
-
-            }
-            return null;
-        }
-
         public List<Login> getUsuario(string usuario)
         {
             List<Login> usuarios = new List<Login>(); ;
@@ -113,6 +95,18 @@ namespace TCC2
             }
 
             return usuarios;
+
+        }
+
+        public List<Login> getEmail(string email)
+        {
+            List<Login> emailUsuario = new List<Login>(); ;
+            if (email != "")
+            {
+                emailUsuario = ((from c in BancoDadosSingleton.Instance.Login where (c.email.ToUpper()).Contains(email.ToUpper()) select c).Distinct()).ToList();
+            }
+            
+            return emailUsuario;
 
         }
 

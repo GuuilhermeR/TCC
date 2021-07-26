@@ -62,7 +62,7 @@ namespace TCC2.Telas
             this.mBtnRecuperar.Depth = 0;
             this.mBtnRecuperar.HighEmphasis = true;
             this.mBtnRecuperar.Icon = null;
-            this.mBtnRecuperar.Location = new System.Drawing.Point(183, 306);
+            this.mBtnRecuperar.Location = new System.Drawing.Point(208, 288);
             this.mBtnRecuperar.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.mBtnRecuperar.MouseState = MaterialSkin.MouseState.HOVER;
             this.mBtnRecuperar.Name = "mBtnRecuperar";

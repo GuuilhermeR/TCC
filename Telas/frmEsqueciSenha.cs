@@ -35,19 +35,18 @@ namespace TCC2.Telas
             var listaUsuarios = usuarioDAO.getEmail((mTxtEmailRecuperar.Text));
             if (listaUsuarios == null || listaUsuarios.Count <= 0)
                 return;
-            string erro = string.Empty;
-            var Assunto = "";
-
+            string retorno = string.Empty;
+            
             listaUsuarios.ForEach(x =>
             {
-                erro = EnviarEmail(x.email, "nutreasy.suporte@gmail.com", "Recuperação de Senha", "Sua nova senha é: ", x.usuario);
+                retorno = EnviarEmail(x.email, "nutreasy.suporte@gmail.com", "Recuperação de Senha", x.usuario);
             });
-            if (erro != "")
-                nMensagemErro("Ocorreu um erro ao enviar o e-mail:" + Environment.NewLine + erro);
+            if (retorno != "")
+                nMensagemErro( retorno);
         }
 
         [Obsolete]
-        private string EnviarEmail(string para, string Remetente, string Assunto, string enviaMensagem, string usuario)
+        private string EnviarEmail(string para, string Remetente, string Assunto, string usuario)
         {
             try
             {
@@ -57,7 +56,20 @@ namespace TCC2.Telas
                     return "Email do destinatário inválido: " + para;
 
                 string novaSenha = usuarioDAO.GerarNovaSenha();
+                var enviaMensagem = $@"<html>
+                            <head>
+                            <title>Recuperação de senha</title>
+                            </head>
+                            <body>
 
+                            <h1>Recuperação de senha</h1>
+                            <p>Você solicitou sua nova senha para acessar o Nutreasy Software Nutricional, sua nova senha é: {novaSenha}</p>
+
+                            <p>Para acessar novamente o programa, é necessário que você utilize a senha que enviamos para você e após isso, poderá alterar a senha pelo nosso programa.</p>  
+                            <p>Não responda este e-mail.</p>  
+
+                            </body>
+                            </html>";
                 System.Net.Mail.MailMessage objEmail = new System.Net.Mail.MailMessage();
 
                 System.Net.Mail.MailAddress enviadoPor = new System.Net.Mail.MailAddress(Remetente);
@@ -78,7 +90,7 @@ namespace TCC2.Telas
                 {
                     server.EnableSsl = true;
                     server.Send(objEmail);
-                        usuarioDAO.SalvarNovaSenha(usuario, novaSenha);
+                    usuarioDAO.SalvarNovaSenha(usuario, novaSenha);
                 }
                 catch (Exception ex)
                 {
@@ -86,7 +98,7 @@ namespace TCC2.Telas
                     try
                     {
                         server.Send(objEmail);
-                        usuarioDAO.SalvarNovaSenha(usuario);
+                        usuarioDAO.SalvarNovaSenha(usuario, novaSenha);
                     }
                     catch (Exception ex1)
                     {
@@ -94,7 +106,7 @@ namespace TCC2.Telas
                     }
                 }
 
-                return "Mensagem enviada para o seu e-mail";
+                return "A sua nova senha foi enviada para o seu e-mail";
             }
             catch (Exception ex)
             {

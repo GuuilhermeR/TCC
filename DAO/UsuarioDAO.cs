@@ -248,10 +248,9 @@ namespace TCC2
             permitido += NUMEROS;
             permitido += ESPECIAIS;
             permitido += "_";
-            permitido += " ";
             // Obtem o numero de caracteres .
-            int caracteres_minimo = 5;
-            int caracteres_maximo = 20;
+            int caracteres_minimo = 10;
+            int caracteres_maximo = 25;
             int numero_caracteres = Crypto.RandomInteger(caracteres_minimo, caracteres_maximo);
             // Satisfaz as definições
             string _senha = "";

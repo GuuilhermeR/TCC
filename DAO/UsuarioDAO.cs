@@ -99,12 +99,12 @@ namespace TCC2
 
         }
 
-        public List<Login> getEmail(string email)
+        public List<Login> getEmail(string usuario)
         {
             List<Login> emailUsuario = new List<Login>(); ;
-            if (email != "")
+            if (usuario != "")
             {
-                emailUsuario = ((from c in BancoDadosSingleton.Instance.Login where (c.email.ToUpper()).Contains(email.ToUpper()) select c).Distinct()).ToList();
+                emailUsuario = ((from c in BancoDadosSingleton.Instance.Login where (c.usuario.ToUpper()).Contains(usuario.ToUpper()) select c).Distinct()).ToList();
             }
 
             return emailUsuario;
@@ -210,8 +210,7 @@ namespace TCC2
             nMensagemErro("Usuário foi excluído");
         }
 
-        [Obsolete]
-        public string GerarNovaSenha(string usuario)
+        public string GerarNovaSenha()
         {
             SQLiteCommand cmd;
             cmd = new SQLiteCommand();
@@ -219,13 +218,19 @@ namespace TCC2
 
             string senhaDescrip = GeraSenhaAleatoria();
             senha = senhaDescrip;
+            
+            return senhaDescrip;
+        }
+
+        [Obsolete]
+        public void SalvarNovaSenha(string usuario, string senha)
+        {
             var usuUpdate = (from usu in BancoDadosSingleton.Instance.Login where usu.usuario == usuario select usu).Single();
             senha = FormsAuthentication.HashPasswordForStoringInConfigFile(senha, "MD5");
 
             usuUpdate.usuario = usuario;
             usuUpdate.senha = senha;
             BancoDadosSingleton.Instance.SaveChanges();
-            return senhaDescrip;
         }
 
         private string GeraSenhaAleatoria()

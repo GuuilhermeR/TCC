@@ -42,13 +42,15 @@ namespace TCC2.Telas
             this.mTxtEmailRecuperar.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.mTxtEmailRecuperar.Depth = 0;
             this.mTxtEmailRecuperar.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.mTxtEmailRecuperar.Hint = "Digite seu usuário";
             this.mTxtEmailRecuperar.LeadingIcon = null;
-            this.mTxtEmailRecuperar.Location = new System.Drawing.Point(6, 141);
+            this.mTxtEmailRecuperar.Location = new System.Drawing.Point(8, 174);
+            this.mTxtEmailRecuperar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mTxtEmailRecuperar.MaxLength = 50;
             this.mTxtEmailRecuperar.MouseState = MaterialSkin.MouseState.OUT;
             this.mTxtEmailRecuperar.Multiline = false;
             this.mTxtEmailRecuperar.Name = "mTxtEmailRecuperar";
-            this.mTxtEmailRecuperar.Size = new System.Drawing.Size(378, 50);
+            this.mTxtEmailRecuperar.Size = new System.Drawing.Size(504, 50);
             this.mTxtEmailRecuperar.TabIndex = 0;
             this.mTxtEmailRecuperar.Text = "";
             this.mTxtEmailRecuperar.TrailingIcon = null;
@@ -60,8 +62,8 @@ namespace TCC2.Telas
             this.mBtnRecuperar.Depth = 0;
             this.mBtnRecuperar.HighEmphasis = true;
             this.mBtnRecuperar.Icon = null;
-            this.mBtnRecuperar.Location = new System.Drawing.Point(137, 249);
-            this.mBtnRecuperar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.mBtnRecuperar.Location = new System.Drawing.Point(183, 306);
+            this.mBtnRecuperar.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.mBtnRecuperar.MouseState = MaterialSkin.MouseState.HOVER;
             this.mBtnRecuperar.Name = "mBtnRecuperar";
             this.mBtnRecuperar.Size = new System.Drawing.Size(104, 36);
@@ -74,13 +76,16 @@ namespace TCC2.Telas
             // 
             // frmEsqueciSenha
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(390, 335);
+            this.ClientSize = new System.Drawing.Size(520, 412);
             this.Controls.Add(this.mBtnRecuperar);
             this.Controls.Add(this.mTxtEmailRecuperar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmEsqueciSenha";
+            this.Padding = new System.Windows.Forms.Padding(4, 79, 4, 4);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Esqueci minha senha";
             this.Load += new System.EventHandler(this.frmEsqueciSenha_Load);
             this.ResumeLayout(false);

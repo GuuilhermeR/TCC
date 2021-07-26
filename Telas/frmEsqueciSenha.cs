@@ -4,6 +4,7 @@ using System;
 using System.Net;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
+using static Classes.ExibidorMensagem;
 
 namespace TCC2.Telas
 {
@@ -30,56 +31,66 @@ namespace TCC2.Telas
         [Obsolete]
         private void mBtnRecuperar_Click(object sender, EventArgs e)
         {
-            EnviarEmail("guilherme.rudiger@catolicasc.edu.br", "", "Alteração de Senha", "Sua nova senha é: ","guilherme");
+
             var listaUsuarios = usuarioDAO.getEmail((mTxtEmailRecuperar.Text));
             if (listaUsuarios == null || listaUsuarios.Count <= 0)
                 return;
+            string erro = string.Empty;
+            var Assunto = "";
+
             listaUsuarios.ForEach(x =>
             {
-                EnviarEmail(x.email, "", "Alteração de Senha", "Sua nova senha é: ",x.usuario);
+                erro = EnviarEmail(x.email, "nutreasy.suporte@gmail.com", "Recuperação de Senha", "Sua nova senha é: ", x.usuario);
             });
-
+            if (erro != "")
+                nMensagemErro("Ocorreu um erro ao enviar o e-mail:" + Environment.NewLine + erro);
         }
 
         [Obsolete]
-        private string EnviarEmail(string Destinatario, string Remetente, string Assunto, string enviaMensagem, string usuario)
+        private string EnviarEmail(string para, string Remetente, string Assunto, string enviaMensagem, string usuario)
         {
             try
             {
-                // valida o email
-                bool bValidaEmail = ValidaEnderecoEmail(Destinatario);
+                bool bValidaEmail = ValidaEnderecoEmail(para);
 
-                // Se o email não é valido retorna uma mensagem
                 if (bValidaEmail == false)
-                    return "Email do destinatário inválido: " + Destinatario;
+                    return "Email do destinatário inválido: " + para;
 
-               string novaSenha = usuarioDAO.GerarNovaSenha(usuario);
+                string novaSenha = usuarioDAO.GerarNovaSenha();
 
-                // cria uma mensagem
-                MailMessage mensagemEmail = new MailMessage(Remetente, Destinatario, Assunto, enviaMensagem + novaSenha);
+                System.Net.Mail.MailMessage objEmail = new System.Net.Mail.MailMessage();
+
+                System.Net.Mail.MailAddress enviadoPor = new System.Net.Mail.MailAddress(Remetente);
+                objEmail.From = enviadoPor;
+                objEmail.To.Add(para);
+                objEmail.Subject = Assunto;
+                objEmail.Body = enviaMensagem + novaSenha;
+                objEmail.Priority = System.Net.Mail.MailPriority.High;
 
                 System.Net.Mail.SmtpClient server = new System.Net.Mail.SmtpClient();
+                server.UseDefaultCredentials = false;
+                server.Credentials = new NetworkCredential("nutreasy.suporte@gmail.com", "Guilherme@1");
 
-                server.Credentials = new System.Net.NetworkCredential("guilherme.rudiger@catolicasc.org.br", "Guilherme@1");
-
-                server.Host = Remetente;
+                objEmail.IsBodyHtml = true;
+                server.Host = "smtp.gmail.com";
                 server.Port = 587;
                 try
                 {
                     server.EnableSsl = true;
-                    server.Send(mensagemEmail);
+                    server.Send(objEmail);
+                        usuarioDAO.SalvarNovaSenha(usuario, novaSenha);
                 }
                 catch (Exception ex)
                 {
                     server.Port = 25;
                     try
                     {
-                        server.Send(mensagemEmail);
+                        server.Send(objEmail);
+                        usuarioDAO.SalvarNovaSenha(usuario);
                     }
                     catch (Exception ex1)
                     {
-                        string erro = ex.InnerException.ToString();
-                        return ex.Message.ToString() + erro;
+                        return ex1.Message;
                     }
                 }
 

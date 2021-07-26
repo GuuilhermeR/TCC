@@ -42,7 +42,7 @@ namespace TCC2.Telas
                 retorno = EnviarEmail(x.email, "nutreasy.suporte@gmail.com", "Recuperação de Senha", x.usuario);
             });
             if (retorno != "")
-                nMensagemErro( retorno);
+                nMensagemErro(retorno);
         }
 
         [Obsolete]
@@ -56,6 +56,7 @@ namespace TCC2.Telas
                     return "Email do destinatário inválido: " + para;
 
                 string novaSenha = usuarioDAO.GerarNovaSenha();
+
                 var enviaMensagem = $@"<html>
                             <head>
                             <title>Recuperação de senha</title>
@@ -70,6 +71,7 @@ namespace TCC2.Telas
 
                             </body>
                             </html>";
+
                 System.Net.Mail.MailMessage objEmail = new System.Net.Mail.MailMessage();
 
                 System.Net.Mail.MailAddress enviadoPor = new System.Net.Mail.MailAddress(Remetente);

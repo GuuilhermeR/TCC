@@ -1530,12 +1530,12 @@ namespace TCC2
             {
                 if (Interaction.MsgBox("Você deseja alterar a senha do usuário?", MsgBoxStyle.YesNo, "ALTERAÇÃO DE SENHA") == MsgBoxResult.Yes)
                     alterarSenha = true;
-                usuarioDAO.AlterarUsuario(txtUsuarioConfig.Text, txtSenha.Text, txtNomeUsuarioConfig.Text, txtEmail.Text, cbxSituacao.Text, cbxTipoUsuario.Text, alterarSenha, txtCRN.Text);
+                usuarioDAO.AlterarUsuario(txtUsuarioConfig.Text, txtSenha.Text, txtNomeUsuarioConfig.Text, txtEmailConfig.Text, cbxSituacao.Text, cbxTipoUsuario.Text, alterarSenha, txtCRN.Text);
                 tbConfig_Enter(sender, e);
             }
             else
             {
-                usuarioDAO.CriarUsuario(txtUsuarioConfig.Text, txtSenha.Text, txtNomeUsuarioConfig.Text, txtEmail.Text, cbxSituacao.Text, cbxTipoUsuario.Text,txtCRN.Text);
+                usuarioDAO.CriarUsuario(txtUsuarioConfig.Text, txtSenha.Text, txtNomeUsuarioConfig.Text, txtEmailConfig.Text, cbxSituacao.Text, cbxTipoUsuario.Text,txtCRN.Text);
                 tbConfig_Enter(sender, e);
             }
         }

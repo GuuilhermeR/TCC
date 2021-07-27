@@ -235,34 +235,22 @@ namespace TCC2
 
         private string GeraSenhaAleatoria()
         {
-            const string CAIXA_BAIXA = "abcdefghijklmnopqrstuvwxyz";
-            const string CAIXA_ALTA = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const string charPerm = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789!@$?_-";
 
-            const string NUMEROS = "0123456789";
-            const string ESPECIAIS = @"~!@#$%^&*():;[]{}<>,.?/\|";
-
-            // Faz uma lista de caracteres permitidos
+            
             string permitido = "";
-            permitido += CAIXA_BAIXA;
-            permitido += CAIXA_ALTA;
-            permitido += NUMEROS;
-            permitido += ESPECIAIS;
-            permitido += "_";
-            // Obtem o numero de caracteres .
-            int caracteres_minimo = 10;
-            int caracteres_maximo = 25;
+            permitido += charPerm;
+
+            int caracteres_minimo = 5;
+            int caracteres_maximo = 10;
             int numero_caracteres = Crypto.RandomInteger(caracteres_minimo, caracteres_maximo);
-            // Satisfaz as definições
+
             string _senha = "";
-            _senha += RandomChar(CAIXA_BAIXA);
-            _senha += RandomChar(CAIXA_ALTA);
-            _senha += RandomChar(NUMEROS);
-            _senha += RandomChar(ESPECIAIS);
-            _senha += "_";
-            // adiciona os caracteres restantes aleatorios
+            _senha += RandomChar(charPerm);
+
             while (_senha.Length < numero_caracteres)
                 _senha += RandomChar(permitido);
-            // mistura os caracteres requeridos 
+
             _senha = RandomizeString(_senha);
             return _senha;
         }

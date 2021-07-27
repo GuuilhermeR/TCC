@@ -42,7 +42,7 @@ namespace TCC2.Telas
                 retorno = EnviarEmail(x.email, "nutreasy.suporte@gmail.com", "Recuperação de Senha", x.usuario);
             });
             if (retorno != "")
-                nMensagemErro(retorno);
+                nMensagemAlerta(retorno);
         }
 
         [Obsolete]
@@ -64,7 +64,7 @@ namespace TCC2.Telas
                             <body>
 
                             <h1>Recuperação de senha</h1>
-                            <p>Você solicitou sua nova senha para acessar o Nutreasy Software Nutricional, sua nova senha é: {novaSenha}</p>
+                            <p>Você solicitou sua nova senha para acessar o Nutreasy Software Nutricional, sua nova senha é: <b>{novaSenha}</b></p>
 
                             <p>Para acessar novamente o programa, é necessário que você utilize a senha que enviamos para você e após isso, poderá alterar a senha pelo nosso programa.</p>  
                             <p>Não responda este e-mail.</p>  
@@ -78,7 +78,7 @@ namespace TCC2.Telas
                 objEmail.From = enviadoPor;
                 objEmail.To.Add(para);
                 objEmail.Subject = Assunto;
-                objEmail.Body = enviaMensagem + novaSenha;
+                objEmail.Body = enviaMensagem;
                 objEmail.Priority = System.Net.Mail.MailPriority.High;
 
                 System.Net.Mail.SmtpClient server = new System.Net.Mail.SmtpClient();
@@ -108,7 +108,7 @@ namespace TCC2.Telas
                     }
                 }
 
-                return "A sua nova senha foi enviada para o seu e-mail";
+                return "Uma nova senha foi enviado para o seu e-mail";
             }
             catch (Exception ex)
             {

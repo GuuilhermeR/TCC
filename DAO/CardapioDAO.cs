@@ -7,6 +7,7 @@ using Microsoft.VisualBasic;
 using TCC2;
 using System.Collections.Generic;
 using TCC2.Banco_de_Dados;
+using static Classes.ExibidorMensagem;
 
 namespace TCC2
 {
@@ -65,5 +66,22 @@ namespace TCC2
                 return null;
             }
         }
+
+        public void Deletar()
+        {
+            if (!String.IsNullOrEmpty(codPacienteCard))
+            {
+                using (var db = new NutreasyEntities())
+                {
+                    var delete = db.Database.Connection.CreateCommand();
+                    delete.CommandText = $"DELETE FROM Cardapio WHERE codPaciente = {codPacienteCard}";
+                    db.Database.Connection.Open();
+                    delete.ExecuteNonQuery();
+                    db.Database.Connection.Close();
+                }
+                nMensagemErro("Cardápio foi excluído");
+            }
+        }
+
     }
 }

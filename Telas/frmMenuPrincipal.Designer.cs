@@ -31,11 +31,11 @@ namespace TCC2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange1 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange2 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange3 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange4 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange5 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange21 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange22 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange23 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange24 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange25 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenuPrincipal));
             this.TabControlNutreasy = new MaterialSkin.Controls.MaterialTabControl();
             this.tabMenu = new System.Windows.Forms.TabPage();
@@ -56,6 +56,14 @@ namespace TCC2
             this.pbxLogoGrande = new System.Windows.Forms.PictureBox();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.tabAgenda = new System.Windows.Forms.TabPage();
+            this.CalendarioMes = new System.Windows.Forms.Calendar.MonthView();
+            this.GroupBox2 = new System.Windows.Forms.GroupBox();
+            this.rbtDia = new System.Windows.Forms.RadioButton();
+            this.rbtManual = new System.Windows.Forms.RadioButton();
+            this.rbtMes = new System.Windows.Forms.RadioButton();
+            this.btnSalvarAgenda = new System.Windows.Forms.Button();
+            this.txtHoraAgenda = new MaterialSkin.Controls.MaterialTextBox();
+            this.txtDataAgendamento = new MaterialSkin.Controls.MaterialTextBox();
             this.btnBuscarPacienteAgendamento = new System.Windows.Forms.Button();
             this.txtPacienteAgenda = new MaterialSkin.Controls.MaterialTextBox();
             this.calAgendamento = new System.Windows.Forms.Calendar.Calendar();
@@ -175,21 +183,14 @@ namespace TCC2
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.txtDataAgendamento = new MaterialSkin.Controls.MaterialTextBox();
-            this.txtHoraAgenda = new MaterialSkin.Controls.MaterialTextBox();
-            this.btnSalvarAgenda = new System.Windows.Forms.Button();
-            this.GroupBox2 = new System.Windows.Forms.GroupBox();
-            this.rbtDiasUteis = new System.Windows.Forms.RadioButton();
-            this.rbtDia = new System.Windows.Forms.RadioButton();
-            this.rbtManual = new System.Windows.Forms.RadioButton();
-            this.rbtMes = new System.Windows.Forms.RadioButton();
-            this.CalendarioMes = new System.Windows.Forms.Calendar.MonthView();
+            this.btnApagarCardapio = new System.Windows.Forms.Button();
             this.TabControlNutreasy.SuspendLayout();
             this.tabMenu.SuspendLayout();
             this.mCardAtendimentoAtual.SuspendLayout();
             this.mCardAtendimentoFuturo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxLogoGrande)).BeginInit();
             this.tabAgenda.SuspendLayout();
+            this.GroupBox2.SuspendLayout();
             this.tabAlimento.SuspendLayout();
             this.tbAlimento.SuspendLayout();
             this._tbConsulta.SuspendLayout();
@@ -222,7 +223,6 @@ namespace TCC2
             ((System.ComponentModel.ISupportInitialize)(this.dtgPermUsuarios)).BeginInit();
             this.tabHorarioAtendimento.SuspendLayout();
             this.tbSobre.SuspendLayout();
-            this.GroupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControlNutreasy
@@ -531,6 +531,128 @@ namespace TCC2
             this.tabAgenda.UseVisualStyleBackColor = true;
             this.tabAgenda.Enter += new System.EventHandler(this.tabAgenda_Enter);
             // 
+            // CalendarioMes
+            // 
+            this.CalendarioMes.ArrowsColor = System.Drawing.SystemColors.Window;
+            this.CalendarioMes.ArrowsSelectedColor = System.Drawing.Color.Gold;
+            this.CalendarioMes.DayBackgroundColor = System.Drawing.Color.Empty;
+            this.CalendarioMes.DayGrayedText = System.Drawing.SystemColors.GrayText;
+            this.CalendarioMes.DaySelectedBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.CalendarioMes.DaySelectedColor = System.Drawing.SystemColors.WindowText;
+            this.CalendarioMes.DaySelectedTextColor = System.Drawing.SystemColors.HighlightText;
+            this.CalendarioMes.ItemPadding = new System.Windows.Forms.Padding(2);
+            this.CalendarioMes.Location = new System.Drawing.Point(461, 7);
+            this.CalendarioMes.MonthTitleColor = System.Drawing.SystemColors.ActiveCaption;
+            this.CalendarioMes.MonthTitleColorInactive = System.Drawing.SystemColors.InactiveCaption;
+            this.CalendarioMes.MonthTitleTextColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.CalendarioMes.MonthTitleTextColorInactive = System.Drawing.SystemColors.InactiveCaptionText;
+            this.CalendarioMes.Name = "CalendarioMes";
+            this.CalendarioMes.Size = new System.Drawing.Size(230, 162);
+            this.CalendarioMes.TabIndex = 307;
+            this.CalendarioMes.Text = "monthView1";
+            this.CalendarioMes.TodayBorderColor = System.Drawing.Color.Maroon;
+            this.CalendarioMes.Click += new System.EventHandler(this.CalendarioMes_Click);
+            // 
+            // GroupBox2
+            // 
+            this.GroupBox2.Controls.Add(this.rbtDia);
+            this.GroupBox2.Controls.Add(this.rbtManual);
+            this.GroupBox2.Controls.Add(this.rbtMes);
+            this.GroupBox2.Location = new System.Drawing.Point(345, 72);
+            this.GroupBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.GroupBox2.Name = "GroupBox2";
+            this.GroupBox2.Padding = new System.Windows.Forms.Padding(4);
+            this.GroupBox2.Size = new System.Drawing.Size(109, 96);
+            this.GroupBox2.TabIndex = 306;
+            this.GroupBox2.TabStop = false;
+            this.GroupBox2.Text = "Data";
+            // 
+            // rbtDia
+            // 
+            this.rbtDia.AutoSize = true;
+            this.rbtDia.Location = new System.Drawing.Point(8, 69);
+            this.rbtDia.Margin = new System.Windows.Forms.Padding(4);
+            this.rbtDia.Name = "rbtDia";
+            this.rbtDia.Size = new System.Drawing.Size(50, 21);
+            this.rbtDia.TabIndex = 17;
+            this.rbtDia.Text = "Dia";
+            this.rbtDia.UseVisualStyleBackColor = true;
+            this.rbtDia.CheckedChanged += new System.EventHandler(this.rbtDia_CheckedChanged);
+            // 
+            // rbtManual
+            // 
+            this.rbtManual.AutoSize = true;
+            this.rbtManual.Location = new System.Drawing.Point(8, 45);
+            this.rbtManual.Margin = new System.Windows.Forms.Padding(4);
+            this.rbtManual.Name = "rbtManual";
+            this.rbtManual.Size = new System.Drawing.Size(75, 21);
+            this.rbtManual.TabIndex = 16;
+            this.rbtManual.Text = "Manual";
+            this.rbtManual.UseVisualStyleBackColor = true;
+            this.rbtManual.CheckedChanged += new System.EventHandler(this.rbtManual_CheckedChanged);
+            // 
+            // rbtMes
+            // 
+            this.rbtMes.AutoSize = true;
+            this.rbtMes.Location = new System.Drawing.Point(8, 24);
+            this.rbtMes.Margin = new System.Windows.Forms.Padding(4);
+            this.rbtMes.Name = "rbtMes";
+            this.rbtMes.Size = new System.Drawing.Size(55, 21);
+            this.rbtMes.TabIndex = 15;
+            this.rbtMes.Text = "Mês";
+            this.rbtMes.UseVisualStyleBackColor = true;
+            this.rbtMes.CheckedChanged += new System.EventHandler(this.rbtMes_CheckedChanged);
+            // 
+            // btnSalvarAgenda
+            // 
+            this.btnSalvarAgenda.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSalvarAgenda.AutoSize = true;
+            this.btnSalvarAgenda.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
+            this.btnSalvarAgenda.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSalvarAgenda.Location = new System.Drawing.Point(1482, 125);
+            this.btnSalvarAgenda.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSalvarAgenda.Name = "btnSalvarAgenda";
+            this.btnSalvarAgenda.Size = new System.Drawing.Size(153, 43);
+            this.btnSalvarAgenda.TabIndex = 305;
+            this.btnSalvarAgenda.Text = "Salvar";
+            this.btnSalvarAgenda.UseVisualStyleBackColor = true;
+            this.btnSalvarAgenda.Click += new System.EventHandler(this.btnSalvarAgenda_Click);
+            // 
+            // txtHoraAgenda
+            // 
+            this.txtHoraAgenda.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtHoraAgenda.Depth = 0;
+            this.txtHoraAgenda.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtHoraAgenda.Hint = "Hora";
+            this.txtHoraAgenda.LeadingIcon = null;
+            this.txtHoraAgenda.Location = new System.Drawing.Point(7, 119);
+            this.txtHoraAgenda.MaxLength = 50;
+            this.txtHoraAgenda.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtHoraAgenda.Multiline = false;
+            this.txtHoraAgenda.Name = "txtHoraAgenda";
+            this.txtHoraAgenda.Size = new System.Drawing.Size(331, 50);
+            this.txtHoraAgenda.TabIndex = 304;
+            this.txtHoraAgenda.Text = "";
+            this.txtHoraAgenda.TrailingIcon = null;
+            // 
+            // txtDataAgendamento
+            // 
+            this.txtDataAgendamento.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtDataAgendamento.Depth = 0;
+            this.txtDataAgendamento.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtDataAgendamento.Hint = "Data";
+            this.txtDataAgendamento.LeadingIcon = null;
+            this.txtDataAgendamento.Location = new System.Drawing.Point(7, 63);
+            this.txtDataAgendamento.MaxLength = 50;
+            this.txtDataAgendamento.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtDataAgendamento.Multiline = false;
+            this.txtDataAgendamento.Name = "txtDataAgendamento";
+            this.txtDataAgendamento.Size = new System.Drawing.Size(331, 50);
+            this.txtDataAgendamento.TabIndex = 303;
+            this.txtDataAgendamento.Text = "";
+            this.txtDataAgendamento.TrailingIcon = null;
+            this.txtDataAgendamento.Leave += new System.EventHandler(this.txtDataAgendamento_Leave);
+            // 
             // btnBuscarPacienteAgendamento
             // 
             this.btnBuscarPacienteAgendamento.Image = global::TCC2.Properties.Resources.consultar;
@@ -566,27 +688,27 @@ namespace TCC2
             this.calAgendamento.BackColor = System.Drawing.SystemColors.Control;
             this.calAgendamento.FirstDayOfWeek = System.DayOfWeek.Monday;
             this.calAgendamento.Font = new System.Drawing.Font("Segoe UI", 9F);
-            calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange1.EndTime = System.TimeSpan.Parse("21:00:00");
-            calendarHighlightRange1.StartTime = System.TimeSpan.Parse("07:00:00");
-            calendarHighlightRange2.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange2.EndTime = System.TimeSpan.Parse("21:00:00");
-            calendarHighlightRange2.StartTime = System.TimeSpan.Parse("07:00:00");
-            calendarHighlightRange3.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange3.EndTime = System.TimeSpan.Parse("21:00:00");
-            calendarHighlightRange3.StartTime = System.TimeSpan.Parse("07:00:00");
-            calendarHighlightRange4.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange4.EndTime = System.TimeSpan.Parse("21:00:00");
-            calendarHighlightRange4.StartTime = System.TimeSpan.Parse("07:00:00");
-            calendarHighlightRange5.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange5.EndTime = System.TimeSpan.Parse("21:00:00");
-            calendarHighlightRange5.StartTime = System.TimeSpan.Parse("07:00:00");
+            calendarHighlightRange21.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange21.EndTime = System.TimeSpan.Parse("21:00:00");
+            calendarHighlightRange21.StartTime = System.TimeSpan.Parse("07:00:00");
+            calendarHighlightRange22.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange22.EndTime = System.TimeSpan.Parse("21:00:00");
+            calendarHighlightRange22.StartTime = System.TimeSpan.Parse("07:00:00");
+            calendarHighlightRange23.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange23.EndTime = System.TimeSpan.Parse("21:00:00");
+            calendarHighlightRange23.StartTime = System.TimeSpan.Parse("07:00:00");
+            calendarHighlightRange24.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange24.EndTime = System.TimeSpan.Parse("21:00:00");
+            calendarHighlightRange24.StartTime = System.TimeSpan.Parse("07:00:00");
+            calendarHighlightRange25.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange25.EndTime = System.TimeSpan.Parse("21:00:00");
+            calendarHighlightRange25.StartTime = System.TimeSpan.Parse("07:00:00");
             this.calAgendamento.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
-        calendarHighlightRange1,
-        calendarHighlightRange2,
-        calendarHighlightRange3,
-        calendarHighlightRange4,
-        calendarHighlightRange5};
+        calendarHighlightRange21,
+        calendarHighlightRange22,
+        calendarHighlightRange23,
+        calendarHighlightRange24,
+        calendarHighlightRange25};
             this.calAgendamento.ItemsTimeFormat = "hh:mm";
             this.calAgendamento.Location = new System.Drawing.Point(4, 176);
             this.calAgendamento.Margin = new System.Windows.Forms.Padding(4);
@@ -1420,6 +1542,7 @@ namespace TCC2
             // 
             // tbConsultaCardapio
             // 
+            this.tbConsultaCardapio.Controls.Add(this.btnApagarCardapio);
             this.tbConsultaCardapio.Controls.Add(this.txtPacienteConsultaCardapio);
             this.tbConsultaCardapio.Controls.Add(this.trwDadosCard);
             this.tbConsultaCardapio.Controls.Add(this.btnApagar);
@@ -2621,140 +2744,20 @@ namespace TCC2
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // txtDataAgendamento
+            // btnApagarCardapio
             // 
-            this.txtDataAgendamento.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDataAgendamento.Depth = 0;
-            this.txtDataAgendamento.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtDataAgendamento.Hint = "Data";
-            this.txtDataAgendamento.LeadingIcon = null;
-            this.txtDataAgendamento.Location = new System.Drawing.Point(7, 63);
-            this.txtDataAgendamento.MaxLength = 50;
-            this.txtDataAgendamento.MouseState = MaterialSkin.MouseState.OUT;
-            this.txtDataAgendamento.Multiline = false;
-            this.txtDataAgendamento.Name = "txtDataAgendamento";
-            this.txtDataAgendamento.Size = new System.Drawing.Size(331, 50);
-            this.txtDataAgendamento.TabIndex = 303;
-            this.txtDataAgendamento.Text = "";
-            this.txtDataAgendamento.TrailingIcon = null;
-            this.txtDataAgendamento.Leave += new System.EventHandler(this.txtDataAgendamento_Leave);
-            // 
-            // txtHoraAgenda
-            // 
-            this.txtHoraAgenda.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtHoraAgenda.Depth = 0;
-            this.txtHoraAgenda.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtHoraAgenda.Hint = "Hora";
-            this.txtHoraAgenda.LeadingIcon = null;
-            this.txtHoraAgenda.Location = new System.Drawing.Point(7, 119);
-            this.txtHoraAgenda.MaxLength = 50;
-            this.txtHoraAgenda.MouseState = MaterialSkin.MouseState.OUT;
-            this.txtHoraAgenda.Multiline = false;
-            this.txtHoraAgenda.Name = "txtHoraAgenda";
-            this.txtHoraAgenda.Size = new System.Drawing.Size(331, 50);
-            this.txtHoraAgenda.TabIndex = 304;
-            this.txtHoraAgenda.Text = "";
-            this.txtHoraAgenda.TrailingIcon = null;
-            // 
-            // btnSalvarAgenda
-            // 
-            this.btnSalvarAgenda.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSalvarAgenda.AutoSize = true;
-            this.btnSalvarAgenda.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
-            this.btnSalvarAgenda.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalvarAgenda.Location = new System.Drawing.Point(1482, 125);
-            this.btnSalvarAgenda.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSalvarAgenda.Name = "btnSalvarAgenda";
-            this.btnSalvarAgenda.Size = new System.Drawing.Size(153, 43);
-            this.btnSalvarAgenda.TabIndex = 305;
-            this.btnSalvarAgenda.Text = "Salvar";
-            this.btnSalvarAgenda.UseVisualStyleBackColor = true;
-            this.btnSalvarAgenda.Click += new System.EventHandler(this.btnSalvarAgenda_Click);
-            // 
-            // GroupBox2
-            // 
-            this.GroupBox2.Controls.Add(this.rbtDiasUteis);
-            this.GroupBox2.Controls.Add(this.rbtDia);
-            this.GroupBox2.Controls.Add(this.rbtManual);
-            this.GroupBox2.Controls.Add(this.rbtMes);
-            this.GroupBox2.Location = new System.Drawing.Point(345, 56);
-            this.GroupBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.GroupBox2.Name = "GroupBox2";
-            this.GroupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.GroupBox2.Size = new System.Drawing.Size(99, 112);
-            this.GroupBox2.TabIndex = 306;
-            this.GroupBox2.TabStop = false;
-            this.GroupBox2.Text = "Data";
-            // 
-            // rbtDiasUteis
-            // 
-            this.rbtDiasUteis.AutoSize = true;
-            this.rbtDiasUteis.Location = new System.Drawing.Point(8, 66);
-            this.rbtDiasUteis.Margin = new System.Windows.Forms.Padding(4);
-            this.rbtDiasUteis.Name = "rbtDiasUteis";
-            this.rbtDiasUteis.Size = new System.Drawing.Size(93, 21);
-            this.rbtDiasUteis.TabIndex = 18;
-            this.rbtDiasUteis.Text = "Dias Úteis";
-            this.rbtDiasUteis.UseVisualStyleBackColor = true;
-            this.rbtDiasUteis.CheckedChanged += new System.EventHandler(this.rbtDiasUteis_CheckedChanged);
-            // 
-            // rbtDia
-            // 
-            this.rbtDia.AutoSize = true;
-            this.rbtDia.Location = new System.Drawing.Point(8, 88);
-            this.rbtDia.Margin = new System.Windows.Forms.Padding(4);
-            this.rbtDia.Name = "rbtDia";
-            this.rbtDia.Size = new System.Drawing.Size(50, 21);
-            this.rbtDia.TabIndex = 17;
-            this.rbtDia.Text = "Dia";
-            this.rbtDia.UseVisualStyleBackColor = true;
-            this.rbtDia.CheckedChanged += new System.EventHandler(this.rbtDia_CheckedChanged);
-            // 
-            // rbtManual
-            // 
-            this.rbtManual.AutoSize = true;
-            this.rbtManual.Location = new System.Drawing.Point(8, 45);
-            this.rbtManual.Margin = new System.Windows.Forms.Padding(4);
-            this.rbtManual.Name = "rbtManual";
-            this.rbtManual.Size = new System.Drawing.Size(75, 21);
-            this.rbtManual.TabIndex = 16;
-            this.rbtManual.Text = "Manual";
-            this.rbtManual.UseVisualStyleBackColor = true;
-            this.rbtManual.CheckedChanged += new System.EventHandler(this.rbtManual_CheckedChanged);
-            // 
-            // rbtMes
-            // 
-            this.rbtMes.AutoSize = true;
-            this.rbtMes.Location = new System.Drawing.Point(8, 24);
-            this.rbtMes.Margin = new System.Windows.Forms.Padding(4);
-            this.rbtMes.Name = "rbtMes";
-            this.rbtMes.Size = new System.Drawing.Size(55, 21);
-            this.rbtMes.TabIndex = 15;
-            this.rbtMes.Text = "Mês";
-            this.rbtMes.UseVisualStyleBackColor = true;
-            this.rbtMes.CheckedChanged += new System.EventHandler(this.rbtMes_CheckedChanged);
-            // 
-            // CalendarioMes
-            // 
-            this.CalendarioMes.ArrowsColor = System.Drawing.SystemColors.Window;
-            this.CalendarioMes.ArrowsSelectedColor = System.Drawing.Color.Gold;
-            this.CalendarioMes.DayBackgroundColor = System.Drawing.Color.Empty;
-            this.CalendarioMes.DayGrayedText = System.Drawing.SystemColors.GrayText;
-            this.CalendarioMes.DaySelectedBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.CalendarioMes.DaySelectedColor = System.Drawing.SystemColors.WindowText;
-            this.CalendarioMes.DaySelectedTextColor = System.Drawing.SystemColors.HighlightText;
-            this.CalendarioMes.ItemPadding = new System.Windows.Forms.Padding(2);
-            this.CalendarioMes.Location = new System.Drawing.Point(453, 7);
-            this.CalendarioMes.MonthTitleColor = System.Drawing.SystemColors.ActiveCaption;
-            this.CalendarioMes.MonthTitleColorInactive = System.Drawing.SystemColors.InactiveCaption;
-            this.CalendarioMes.MonthTitleTextColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.CalendarioMes.MonthTitleTextColorInactive = System.Drawing.SystemColors.InactiveCaptionText;
-            this.CalendarioMes.Name = "CalendarioMes";
-            this.CalendarioMes.Size = new System.Drawing.Size(230, 162);
-            this.CalendarioMes.TabIndex = 307;
-            this.CalendarioMes.Text = "monthView1";
-            this.CalendarioMes.TodayBorderColor = System.Drawing.Color.Maroon;
-            this.CalendarioMes.Click += new System.EventHandler(this.CalendarioMes_Click);
+            this.btnApagarCardapio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnApagarCardapio.AutoSize = true;
+            this.btnApagarCardapio.Image = global::TCC2.Properties.Resources.DeleteRed;
+            this.btnApagarCardapio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnApagarCardapio.Location = new System.Drawing.Point(1462, 26);
+            this.btnApagarCardapio.Margin = new System.Windows.Forms.Padding(4);
+            this.btnApagarCardapio.Name = "btnApagarCardapio";
+            this.btnApagarCardapio.Size = new System.Drawing.Size(153, 43);
+            this.btnApagarCardapio.TabIndex = 319;
+            this.btnApagarCardapio.Text = "Apagar Cardápio";
+            this.btnApagarCardapio.UseVisualStyleBackColor = true;
+            this.btnApagarCardapio.Click += new System.EventHandler(this.btnApagarCardapio_Click);
             // 
             // frmMenuPrincipal
             // 
@@ -2783,6 +2786,8 @@ namespace TCC2
             ((System.ComponentModel.ISupportInitialize)(this.pbxLogoGrande)).EndInit();
             this.tabAgenda.ResumeLayout(false);
             this.tabAgenda.PerformLayout();
+            this.GroupBox2.ResumeLayout(false);
+            this.GroupBox2.PerformLayout();
             this.tabAlimento.ResumeLayout(false);
             this.tbAlimento.ResumeLayout(false);
             this._tbConsulta.ResumeLayout(false);
@@ -2803,6 +2808,7 @@ namespace TCC2
             ((System.ComponentModel.ISupportInitialize)(this.dtgCardapioAlimentos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgRefeicoes)).EndInit();
             this.tbConsultaCardapio.ResumeLayout(false);
+            this.tbConsultaCardapio.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trwDadosCard)).EndInit();
             this.tabPaciente.ResumeLayout(false);
             this.tbPaciente.ResumeLayout(false);
@@ -2822,8 +2828,6 @@ namespace TCC2
             this.tabHorarioAtendimento.ResumeLayout(false);
             this.tbSobre.ResumeLayout(false);
             this.tbSobre.PerformLayout();
-            this.GroupBox2.ResumeLayout(false);
-            this.GroupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2972,11 +2976,11 @@ namespace TCC2
         private MaterialSkin.Controls.MaterialTextBox txtDataAgendamento;
         internal System.Windows.Forms.Button btnSalvarAgenda;
         internal System.Windows.Forms.GroupBox GroupBox2;
-        internal System.Windows.Forms.RadioButton rbtDiasUteis;
         internal System.Windows.Forms.RadioButton rbtDia;
         internal System.Windows.Forms.RadioButton rbtManual;
         internal System.Windows.Forms.RadioButton rbtMes;
         private System.Windows.Forms.Calendar.MonthView CalendarioMes;
+        public System.Windows.Forms.Button btnApagarCardapio;
     }
 }
 

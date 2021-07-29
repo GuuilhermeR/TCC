@@ -877,7 +877,7 @@ namespace TCC2
             _dtgConsultaPacientes.DataSource = dt;
 
             _dtgConsultaPacientes.Columns["codPaciente"].Visible = false;
-            _dtgConsultaPacientes.Columns["imagem"].HeaderText = "Foto";
+            _dtgConsultaPacientes.Columns["imagem"].Visible = false;
             _dtgConsultaPacientes.Columns["Cardapio"].Visible = false;
             _dtgConsultaPacientes.Columns["nome"].HeaderText = "Nome";
             _dtgConsultaPacientes.Columns["dtNasc"].HeaderText = "Data Nascimento";
@@ -890,6 +890,7 @@ namespace TCC2
             _dtgConsultaPacientes.Columns["complemento"].HeaderText = "Complemento";
             _dtgConsultaPacientes.Columns["telefone"].HeaderText = "Telefone";
             _dtgConsultaPacientes.Columns["celular"].HeaderText = "Celular";
+            _dtgConsultaPacientes.AutoResizeColumns();
 
         }
 
@@ -1740,6 +1741,18 @@ namespace TCC2
         private void btnSalvarAgenda_Click(object sender, EventArgs e)
         {
             //Verificar se existe o paciente, caso não exista ele questiona se quer agendar mesmo assim.
+        }
+
+        private void btnApagarCardapio_Click(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrEmpty(txtPacienteConsultaCardapio.Text))
+            {
+                cardapioDAO.Deletar();
+                trwDadosCard.Nodes.Clear();
+                trwDadosCard.Columns.Clear();
+                trwDadosCard.Refresh();
+                txtPacienteConsultaCardapio_TextChanged(sender, e);
+            }
         }
     }
 }

@@ -20,6 +20,7 @@ using System.Text.RegularExpressions;
 using DAO;
 using static Classes.ExibidorMensagem;
 using System.Windows.Forms.Calendar;
+using System.Globalization;
 
 namespace TCC2
 {
@@ -238,15 +239,15 @@ namespace TCC2
 
         private void calAgendamento_ItemCreated(object sender, System.Windows.Forms.Calendar.CalendarItemCancelEventArgs e)
         {
-            if (nMensagemAlerta($"Você deseja agendar o paciente {e.Item.Text} para {e.Item.StartDate}") == DialogResult.Yes)
-                agendaDAO.AdicionarPaciente(
-                            (e.Item.StartDate.ToString()).Substring(0, 10),
-                            (e.Item.StartDate.ToString()).Substring(11, 5),
-                            e.Item.Text.ToString(),
-                            false,
-                            false,
-                            0,
-                            false);
+            //if (nMensagemAlerta($"Você deseja agendar o paciente {e.Item.Text} para {e.Item.StartDate}") == DialogResult.Yes)
+            //    agendaDAO.AdicionarPaciente(
+            //                (e.Item.StartDate.ToString()).Substring(0, 10),
+            //                (e.Item.StartDate.ToString()).Substring(11, 5),
+            //                e.Item.Text.ToString(),
+            //                false,
+            //                false,
+            //                0,
+            //                false);
         }
 
         private void calAgendamento_ItemDatesChanged(object sender, System.Windows.Forms.Calendar.CalendarItemEventArgs e)
@@ -1637,11 +1638,6 @@ namespace TCC2
             }
         }
 
-        private void materialButton3_Click(object sender, EventArgs e)
-        {
-            calAgendamento.ViewEnd = DateTime.Now.AddDays(1);
-        }
-
         private void cbxUsuarioPerm_SelectedIndexChanged(object sender, EventArgs e)
         {
            // permissaoDAO.
@@ -1685,6 +1681,65 @@ namespace TCC2
                 CarregarAlimentos(mTxtFiltroAlimentoMedCas.Text, mCbxTabelasMedCas.Text);
                 return;
             }
+        }
+
+        private void txtDataAgendamento_Leave(object sender, EventArgs e)
+        {
+            if (txtDataAgendamento.Text != "")
+            {
+                DateTime dt;
+                DateTime.TryParseExact(txtDataAgendamento.Text.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dt);
+
+                if (validarData(dt.ToString("dd/MM/yyyy")))
+                {
+                   txtDataAgendamento.Text = dt.ToString("dd/MM/yyyy");
+                }
+                else
+                {
+                    txtDataAgendamento.Text = String.Empty;
+                }
+            }
+        }
+
+        public static bool validarData(string data)
+        {
+            Regex r = new Regex(@"(\d{2}\/\d{2}\/\d{4})");
+            return r.Match(data).Success;
+        }
+
+        private void calAgendamento_ItemCreating(object sender, CalendarItemCancelEventArgs e)
+        {
+            e.Cancel = true;
+        }
+
+        private void rbtMes_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rbtManual_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rbtDiasUteis_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rbtDia_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CalendarioMes_Click(object sender, EventArgs e)
+        {
+            txtDataAgendamento.Text = CalendarioMes.SelectionStart.ToString("dd/MM/yyyy");
+        }
+
+        private void btnSalvarAgenda_Click(object sender, EventArgs e)
+        {
+            //Verificar se existe o paciente, caso não exista ele questiona se quer agendar mesmo assim.
         }
     }
 }

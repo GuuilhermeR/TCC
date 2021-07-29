@@ -31,11 +31,11 @@ namespace TCC2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange6 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange7 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange8 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange9 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange10 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange1 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange2 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange3 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange4 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange5 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenuPrincipal));
             this.TabControlNutreasy = new MaterialSkin.Controls.MaterialTabControl();
             this.tabMenu = new System.Windows.Forms.TabPage();
@@ -56,6 +56,8 @@ namespace TCC2
             this.pbxLogoGrande = new System.Windows.Forms.PictureBox();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.tabAgenda = new System.Windows.Forms.TabPage();
+            this.btnBuscarPacienteAgendamento = new System.Windows.Forms.Button();
+            this.txtPacienteAgenda = new MaterialSkin.Controls.MaterialTextBox();
             this.calAgendamento = new System.Windows.Forms.Calendar.Calendar();
             this.tabAlimento = new System.Windows.Forms.TabPage();
             this.tbAlimento = new System.Windows.Forms.TabControl();
@@ -161,6 +163,11 @@ namespace TCC2
             this.cbxUsuarioPerm = new MaterialSkin.Controls.MaterialComboBox();
             this.dtgPermUsuarios = new System.Windows.Forms.DataGridView();
             this.btnSalvarPermissao = new System.Windows.Forms.Button();
+            this.tabHorarioAtendimento = new System.Windows.Forms.TabPage();
+            this.txtHoraFim = new MaterialSkin.Controls.MaterialTextBox();
+            this.cbxDiaSemana = new MaterialSkin.Controls.MaterialComboBox();
+            this.txtHoraInicio = new MaterialSkin.Controls.MaterialTextBox();
+            this.cbxUsuNutri = new MaterialSkin.Controls.MaterialComboBox();
             this.tbSobre = new System.Windows.Forms.TabPage();
             this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
@@ -168,11 +175,15 @@ namespace TCC2
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.tabHorarioAtendimento = new System.Windows.Forms.TabPage();
-            this.cbxUsuNutri = new MaterialSkin.Controls.MaterialComboBox();
-            this.txtHoraInicio = new MaterialSkin.Controls.MaterialTextBox();
-            this.cbxDiaSemana = new MaterialSkin.Controls.MaterialComboBox();
-            this.txtHoraFim = new MaterialSkin.Controls.MaterialTextBox();
+            this.txtDataAgendamento = new MaterialSkin.Controls.MaterialTextBox();
+            this.txtHoraAgenda = new MaterialSkin.Controls.MaterialTextBox();
+            this.btnSalvarAgenda = new System.Windows.Forms.Button();
+            this.GroupBox2 = new System.Windows.Forms.GroupBox();
+            this.rbtDiasUteis = new System.Windows.Forms.RadioButton();
+            this.rbtDia = new System.Windows.Forms.RadioButton();
+            this.rbtManual = new System.Windows.Forms.RadioButton();
+            this.rbtMes = new System.Windows.Forms.RadioButton();
+            this.CalendarioMes = new System.Windows.Forms.Calendar.MonthView();
             this.TabControlNutreasy.SuspendLayout();
             this.tabMenu.SuspendLayout();
             this.mCardAtendimentoAtual.SuspendLayout();
@@ -209,8 +220,9 @@ namespace TCC2
             ((System.ComponentModel.ISupportInitialize)(this.dtgUsuarios)).BeginInit();
             this.tbPermissao.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPermUsuarios)).BeginInit();
-            this.tbSobre.SuspendLayout();
             this.tabHorarioAtendimento.SuspendLayout();
+            this.tbSobre.SuspendLayout();
+            this.GroupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControlNutreasy
@@ -500,6 +512,13 @@ namespace TCC2
             // 
             // tabAgenda
             // 
+            this.tabAgenda.Controls.Add(this.CalendarioMes);
+            this.tabAgenda.Controls.Add(this.GroupBox2);
+            this.tabAgenda.Controls.Add(this.btnSalvarAgenda);
+            this.tabAgenda.Controls.Add(this.txtHoraAgenda);
+            this.tabAgenda.Controls.Add(this.txtDataAgendamento);
+            this.tabAgenda.Controls.Add(this.btnBuscarPacienteAgendamento);
+            this.tabAgenda.Controls.Add(this.txtPacienteAgenda);
             this.tabAgenda.Controls.Add(this.calAgendamento);
             this.tabAgenda.ImageKey = "agenda32px.png";
             this.tabAgenda.Location = new System.Drawing.Point(4, 39);
@@ -512,6 +531,33 @@ namespace TCC2
             this.tabAgenda.UseVisualStyleBackColor = true;
             this.tabAgenda.Enter += new System.EventHandler(this.tabAgenda_Enter);
             // 
+            // btnBuscarPacienteAgendamento
+            // 
+            this.btnBuscarPacienteAgendamento.Image = global::TCC2.Properties.Resources.consultar;
+            this.btnBuscarPacienteAgendamento.Location = new System.Drawing.Point(345, 19);
+            this.btnBuscarPacienteAgendamento.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBuscarPacienteAgendamento.Name = "btnBuscarPacienteAgendamento";
+            this.btnBuscarPacienteAgendamento.Size = new System.Drawing.Size(40, 28);
+            this.btnBuscarPacienteAgendamento.TabIndex = 302;
+            this.btnBuscarPacienteAgendamento.UseVisualStyleBackColor = true;
+            // 
+            // txtPacienteAgenda
+            // 
+            this.txtPacienteAgenda.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtPacienteAgenda.Depth = 0;
+            this.txtPacienteAgenda.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtPacienteAgenda.Hint = "Paciente";
+            this.txtPacienteAgenda.LeadingIcon = null;
+            this.txtPacienteAgenda.Location = new System.Drawing.Point(7, 7);
+            this.txtPacienteAgenda.MaxLength = 50;
+            this.txtPacienteAgenda.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtPacienteAgenda.Multiline = false;
+            this.txtPacienteAgenda.Name = "txtPacienteAgenda";
+            this.txtPacienteAgenda.Size = new System.Drawing.Size(331, 50);
+            this.txtPacienteAgenda.TabIndex = 56;
+            this.txtPacienteAgenda.Text = "";
+            this.txtPacienteAgenda.TrailingIcon = null;
+            // 
             // calAgendamento
             // 
             this.calAgendamento.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -520,35 +566,36 @@ namespace TCC2
             this.calAgendamento.BackColor = System.Drawing.SystemColors.Control;
             this.calAgendamento.FirstDayOfWeek = System.DayOfWeek.Monday;
             this.calAgendamento.Font = new System.Drawing.Font("Segoe UI", 9F);
-            calendarHighlightRange6.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange6.EndTime = System.TimeSpan.Parse("21:00:00");
-            calendarHighlightRange6.StartTime = System.TimeSpan.Parse("07:00:00");
-            calendarHighlightRange7.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange7.EndTime = System.TimeSpan.Parse("21:00:00");
-            calendarHighlightRange7.StartTime = System.TimeSpan.Parse("07:00:00");
-            calendarHighlightRange8.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange8.EndTime = System.TimeSpan.Parse("21:00:00");
-            calendarHighlightRange8.StartTime = System.TimeSpan.Parse("07:00:00");
-            calendarHighlightRange9.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange9.EndTime = System.TimeSpan.Parse("21:00:00");
-            calendarHighlightRange9.StartTime = System.TimeSpan.Parse("07:00:00");
-            calendarHighlightRange10.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange10.EndTime = System.TimeSpan.Parse("21:00:00");
-            calendarHighlightRange10.StartTime = System.TimeSpan.Parse("07:00:00");
+            calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange1.EndTime = System.TimeSpan.Parse("21:00:00");
+            calendarHighlightRange1.StartTime = System.TimeSpan.Parse("07:00:00");
+            calendarHighlightRange2.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange2.EndTime = System.TimeSpan.Parse("21:00:00");
+            calendarHighlightRange2.StartTime = System.TimeSpan.Parse("07:00:00");
+            calendarHighlightRange3.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange3.EndTime = System.TimeSpan.Parse("21:00:00");
+            calendarHighlightRange3.StartTime = System.TimeSpan.Parse("07:00:00");
+            calendarHighlightRange4.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange4.EndTime = System.TimeSpan.Parse("21:00:00");
+            calendarHighlightRange4.StartTime = System.TimeSpan.Parse("07:00:00");
+            calendarHighlightRange5.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange5.EndTime = System.TimeSpan.Parse("21:00:00");
+            calendarHighlightRange5.StartTime = System.TimeSpan.Parse("07:00:00");
             this.calAgendamento.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
-        calendarHighlightRange6,
-        calendarHighlightRange7,
-        calendarHighlightRange8,
-        calendarHighlightRange9,
-        calendarHighlightRange10};
+        calendarHighlightRange1,
+        calendarHighlightRange2,
+        calendarHighlightRange3,
+        calendarHighlightRange4,
+        calendarHighlightRange5};
             this.calAgendamento.ItemsTimeFormat = "hh:mm";
-            this.calAgendamento.Location = new System.Drawing.Point(4, 75);
+            this.calAgendamento.Location = new System.Drawing.Point(4, 176);
             this.calAgendamento.Margin = new System.Windows.Forms.Padding(4);
             this.calAgendamento.Name = "calAgendamento";
-            this.calAgendamento.Size = new System.Drawing.Size(1631, 783);
+            this.calAgendamento.Size = new System.Drawing.Size(1631, 682);
             this.calAgendamento.TabIndex = 55;
             this.calAgendamento.Text = "Agendamento";
             this.calAgendamento.TimeScale = System.Windows.Forms.Calendar.CalendarTimeScale.SixtyMinutes;
+            this.calAgendamento.ItemCreating += new System.Windows.Forms.Calendar.Calendar.CalendarItemCancelEventHandler(this.calAgendamento_ItemCreating);
             this.calAgendamento.ItemCreated += new System.Windows.Forms.Calendar.Calendar.CalendarItemCancelEventHandler(this.calAgendamento_ItemCreated);
             this.calAgendamento.ItemDeleted += new System.Windows.Forms.Calendar.Calendar.CalendarItemEventHandler(this.calAgendamento_ItemDeleted);
             this.calAgendamento.ItemDatesChanged += new System.Windows.Forms.Calendar.Calendar.CalendarItemEventHandler(this.calAgendamento_ItemDatesChanged);
@@ -2382,6 +2429,112 @@ namespace TCC2
             this.btnSalvarPermissao.UseVisualStyleBackColor = true;
             this.btnSalvarPermissao.Click += new System.EventHandler(this.btnSalvarPermissao_Click);
             // 
+            // tabHorarioAtendimento
+            // 
+            this.tabHorarioAtendimento.Controls.Add(this.txtHoraFim);
+            this.tabHorarioAtendimento.Controls.Add(this.cbxDiaSemana);
+            this.tabHorarioAtendimento.Controls.Add(this.txtHoraInicio);
+            this.tabHorarioAtendimento.Controls.Add(this.cbxUsuNutri);
+            this.tabHorarioAtendimento.Location = new System.Drawing.Point(4, 25);
+            this.tabHorarioAtendimento.Name = "tabHorarioAtendimento";
+            this.tabHorarioAtendimento.Padding = new System.Windows.Forms.Padding(3);
+            this.tabHorarioAtendimento.Size = new System.Drawing.Size(1623, 821);
+            this.tabHorarioAtendimento.TabIndex = 2;
+            this.tabHorarioAtendimento.Text = "Horário Atendimento";
+            this.tabHorarioAtendimento.UseVisualStyleBackColor = true;
+            // 
+            // txtHoraFim
+            // 
+            this.txtHoraFim.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtHoraFim.Depth = 0;
+            this.txtHoraFim.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtHoraFim.Hint = "Hora Fim";
+            this.txtHoraFim.LeadingIcon = null;
+            this.txtHoraFim.Location = new System.Drawing.Point(7, 179);
+            this.txtHoraFim.Margin = new System.Windows.Forms.Padding(4);
+            this.txtHoraFim.MaxLength = 50;
+            this.txtHoraFim.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtHoraFim.Multiline = false;
+            this.txtHoraFim.Name = "txtHoraFim";
+            this.txtHoraFim.Size = new System.Drawing.Size(373, 50);
+            this.txtHoraFim.TabIndex = 20;
+            this.txtHoraFim.Text = "";
+            this.txtHoraFim.TrailingIcon = null;
+            // 
+            // cbxDiaSemana
+            // 
+            this.cbxDiaSemana.AutoResize = false;
+            this.cbxDiaSemana.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cbxDiaSemana.Depth = 0;
+            this.cbxDiaSemana.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbxDiaSemana.DropDownHeight = 174;
+            this.cbxDiaSemana.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxDiaSemana.DropDownWidth = 121;
+            this.cbxDiaSemana.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cbxDiaSemana.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cbxDiaSemana.FormattingEnabled = true;
+            this.cbxDiaSemana.Hint = "Usuário";
+            this.cbxDiaSemana.IntegralHeight = false;
+            this.cbxDiaSemana.ItemHeight = 43;
+            this.cbxDiaSemana.Items.AddRange(new object[] {
+            "Domingo",
+            "Segunda",
+            "Terça",
+            "Quarta",
+            "Quinta",
+            "Sexta",
+            "Sábado"});
+            this.cbxDiaSemana.Location = new System.Drawing.Point(7, 64);
+            this.cbxDiaSemana.Margin = new System.Windows.Forms.Padding(4);
+            this.cbxDiaSemana.MaxDropDownItems = 4;
+            this.cbxDiaSemana.MouseState = MaterialSkin.MouseState.OUT;
+            this.cbxDiaSemana.Name = "cbxDiaSemana";
+            this.cbxDiaSemana.Size = new System.Drawing.Size(695, 49);
+            this.cbxDiaSemana.StartIndex = 0;
+            this.cbxDiaSemana.TabIndex = 19;
+            // 
+            // txtHoraInicio
+            // 
+            this.txtHoraInicio.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtHoraInicio.Depth = 0;
+            this.txtHoraInicio.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtHoraInicio.Hint = "Hora Inicio";
+            this.txtHoraInicio.LeadingIcon = null;
+            this.txtHoraInicio.Location = new System.Drawing.Point(7, 121);
+            this.txtHoraInicio.Margin = new System.Windows.Forms.Padding(4);
+            this.txtHoraInicio.MaxLength = 50;
+            this.txtHoraInicio.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtHoraInicio.Multiline = false;
+            this.txtHoraInicio.Name = "txtHoraInicio";
+            this.txtHoraInicio.Size = new System.Drawing.Size(373, 50);
+            this.txtHoraInicio.TabIndex = 18;
+            this.txtHoraInicio.Text = "";
+            this.txtHoraInicio.TrailingIcon = null;
+            // 
+            // cbxUsuNutri
+            // 
+            this.cbxUsuNutri.AutoResize = false;
+            this.cbxUsuNutri.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cbxUsuNutri.Depth = 0;
+            this.cbxUsuNutri.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbxUsuNutri.DropDownHeight = 174;
+            this.cbxUsuNutri.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxUsuNutri.DropDownWidth = 121;
+            this.cbxUsuNutri.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cbxUsuNutri.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cbxUsuNutri.FormattingEnabled = true;
+            this.cbxUsuNutri.Hint = "Usuário";
+            this.cbxUsuNutri.IntegralHeight = false;
+            this.cbxUsuNutri.ItemHeight = 43;
+            this.cbxUsuNutri.Location = new System.Drawing.Point(7, 7);
+            this.cbxUsuNutri.Margin = new System.Windows.Forms.Padding(4);
+            this.cbxUsuNutri.MaxDropDownItems = 4;
+            this.cbxUsuNutri.MouseState = MaterialSkin.MouseState.OUT;
+            this.cbxUsuNutri.Name = "cbxUsuNutri";
+            this.cbxUsuNutri.Size = new System.Drawing.Size(695, 49);
+            this.cbxUsuNutri.StartIndex = 0;
+            this.cbxUsuNutri.TabIndex = 17;
+            // 
             // tbSobre
             // 
             this.tbSobre.Controls.Add(this.materialLabel4);
@@ -2468,111 +2621,140 @@ namespace TCC2
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // tabHorarioAtendimento
+            // txtDataAgendamento
             // 
-            this.tabHorarioAtendimento.Controls.Add(this.txtHoraFim);
-            this.tabHorarioAtendimento.Controls.Add(this.cbxDiaSemana);
-            this.tabHorarioAtendimento.Controls.Add(this.txtHoraInicio);
-            this.tabHorarioAtendimento.Controls.Add(this.cbxUsuNutri);
-            this.tabHorarioAtendimento.Location = new System.Drawing.Point(4, 25);
-            this.tabHorarioAtendimento.Name = "tabHorarioAtendimento";
-            this.tabHorarioAtendimento.Padding = new System.Windows.Forms.Padding(3);
-            this.tabHorarioAtendimento.Size = new System.Drawing.Size(1623, 821);
-            this.tabHorarioAtendimento.TabIndex = 2;
-            this.tabHorarioAtendimento.Text = "Horário Atendimento";
-            this.tabHorarioAtendimento.UseVisualStyleBackColor = true;
+            this.txtDataAgendamento.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtDataAgendamento.Depth = 0;
+            this.txtDataAgendamento.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtDataAgendamento.Hint = "Data";
+            this.txtDataAgendamento.LeadingIcon = null;
+            this.txtDataAgendamento.Location = new System.Drawing.Point(7, 63);
+            this.txtDataAgendamento.MaxLength = 50;
+            this.txtDataAgendamento.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtDataAgendamento.Multiline = false;
+            this.txtDataAgendamento.Name = "txtDataAgendamento";
+            this.txtDataAgendamento.Size = new System.Drawing.Size(331, 50);
+            this.txtDataAgendamento.TabIndex = 303;
+            this.txtDataAgendamento.Text = "";
+            this.txtDataAgendamento.TrailingIcon = null;
+            this.txtDataAgendamento.Leave += new System.EventHandler(this.txtDataAgendamento_Leave);
             // 
-            // cbxUsuNutri
+            // txtHoraAgenda
             // 
-            this.cbxUsuNutri.AutoResize = false;
-            this.cbxUsuNutri.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.cbxUsuNutri.Depth = 0;
-            this.cbxUsuNutri.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.cbxUsuNutri.DropDownHeight = 174;
-            this.cbxUsuNutri.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxUsuNutri.DropDownWidth = 121;
-            this.cbxUsuNutri.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.cbxUsuNutri.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.cbxUsuNutri.FormattingEnabled = true;
-            this.cbxUsuNutri.Hint = "Usuário";
-            this.cbxUsuNutri.IntegralHeight = false;
-            this.cbxUsuNutri.ItemHeight = 43;
-            this.cbxUsuNutri.Location = new System.Drawing.Point(7, 7);
-            this.cbxUsuNutri.Margin = new System.Windows.Forms.Padding(4);
-            this.cbxUsuNutri.MaxDropDownItems = 4;
-            this.cbxUsuNutri.MouseState = MaterialSkin.MouseState.OUT;
-            this.cbxUsuNutri.Name = "cbxUsuNutri";
-            this.cbxUsuNutri.Size = new System.Drawing.Size(695, 49);
-            this.cbxUsuNutri.StartIndex = 0;
-            this.cbxUsuNutri.TabIndex = 17;
+            this.txtHoraAgenda.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtHoraAgenda.Depth = 0;
+            this.txtHoraAgenda.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtHoraAgenda.Hint = "Hora";
+            this.txtHoraAgenda.LeadingIcon = null;
+            this.txtHoraAgenda.Location = new System.Drawing.Point(7, 119);
+            this.txtHoraAgenda.MaxLength = 50;
+            this.txtHoraAgenda.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtHoraAgenda.Multiline = false;
+            this.txtHoraAgenda.Name = "txtHoraAgenda";
+            this.txtHoraAgenda.Size = new System.Drawing.Size(331, 50);
+            this.txtHoraAgenda.TabIndex = 304;
+            this.txtHoraAgenda.Text = "";
+            this.txtHoraAgenda.TrailingIcon = null;
             // 
-            // txtHoraInicio
+            // btnSalvarAgenda
             // 
-            this.txtHoraInicio.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtHoraInicio.Depth = 0;
-            this.txtHoraInicio.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtHoraInicio.Hint = "Hora Inicio";
-            this.txtHoraInicio.LeadingIcon = null;
-            this.txtHoraInicio.Location = new System.Drawing.Point(7, 121);
-            this.txtHoraInicio.Margin = new System.Windows.Forms.Padding(4);
-            this.txtHoraInicio.MaxLength = 50;
-            this.txtHoraInicio.MouseState = MaterialSkin.MouseState.OUT;
-            this.txtHoraInicio.Multiline = false;
-            this.txtHoraInicio.Name = "txtHoraInicio";
-            this.txtHoraInicio.Size = new System.Drawing.Size(373, 50);
-            this.txtHoraInicio.TabIndex = 18;
-            this.txtHoraInicio.Text = "";
-            this.txtHoraInicio.TrailingIcon = null;
+            this.btnSalvarAgenda.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSalvarAgenda.AutoSize = true;
+            this.btnSalvarAgenda.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
+            this.btnSalvarAgenda.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSalvarAgenda.Location = new System.Drawing.Point(1482, 125);
+            this.btnSalvarAgenda.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSalvarAgenda.Name = "btnSalvarAgenda";
+            this.btnSalvarAgenda.Size = new System.Drawing.Size(153, 43);
+            this.btnSalvarAgenda.TabIndex = 305;
+            this.btnSalvarAgenda.Text = "Salvar";
+            this.btnSalvarAgenda.UseVisualStyleBackColor = true;
+            this.btnSalvarAgenda.Click += new System.EventHandler(this.btnSalvarAgenda_Click);
             // 
-            // cbxDiaSemana
+            // GroupBox2
             // 
-            this.cbxDiaSemana.AutoResize = false;
-            this.cbxDiaSemana.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.cbxDiaSemana.Depth = 0;
-            this.cbxDiaSemana.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.cbxDiaSemana.DropDownHeight = 174;
-            this.cbxDiaSemana.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxDiaSemana.DropDownWidth = 121;
-            this.cbxDiaSemana.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.cbxDiaSemana.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.cbxDiaSemana.FormattingEnabled = true;
-            this.cbxDiaSemana.Hint = "Usuário";
-            this.cbxDiaSemana.IntegralHeight = false;
-            this.cbxDiaSemana.ItemHeight = 43;
-            this.cbxDiaSemana.Items.AddRange(new object[] {
-            "Domingo",
-            "Segunda",
-            "Terça",
-            "Quarta",
-            "Quinta",
-            "Sexta",
-            "Sábado"});
-            this.cbxDiaSemana.Location = new System.Drawing.Point(7, 64);
-            this.cbxDiaSemana.Margin = new System.Windows.Forms.Padding(4);
-            this.cbxDiaSemana.MaxDropDownItems = 4;
-            this.cbxDiaSemana.MouseState = MaterialSkin.MouseState.OUT;
-            this.cbxDiaSemana.Name = "cbxDiaSemana";
-            this.cbxDiaSemana.Size = new System.Drawing.Size(695, 49);
-            this.cbxDiaSemana.StartIndex = 0;
-            this.cbxDiaSemana.TabIndex = 19;
+            this.GroupBox2.Controls.Add(this.rbtDiasUteis);
+            this.GroupBox2.Controls.Add(this.rbtDia);
+            this.GroupBox2.Controls.Add(this.rbtManual);
+            this.GroupBox2.Controls.Add(this.rbtMes);
+            this.GroupBox2.Location = new System.Drawing.Point(345, 56);
+            this.GroupBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.GroupBox2.Name = "GroupBox2";
+            this.GroupBox2.Padding = new System.Windows.Forms.Padding(4);
+            this.GroupBox2.Size = new System.Drawing.Size(99, 112);
+            this.GroupBox2.TabIndex = 306;
+            this.GroupBox2.TabStop = false;
+            this.GroupBox2.Text = "Data";
             // 
-            // txtHoraFim
+            // rbtDiasUteis
             // 
-            this.txtHoraFim.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtHoraFim.Depth = 0;
-            this.txtHoraFim.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtHoraFim.Hint = "Hora Fim";
-            this.txtHoraFim.LeadingIcon = null;
-            this.txtHoraFim.Location = new System.Drawing.Point(7, 179);
-            this.txtHoraFim.Margin = new System.Windows.Forms.Padding(4);
-            this.txtHoraFim.MaxLength = 50;
-            this.txtHoraFim.MouseState = MaterialSkin.MouseState.OUT;
-            this.txtHoraFim.Multiline = false;
-            this.txtHoraFim.Name = "txtHoraFim";
-            this.txtHoraFim.Size = new System.Drawing.Size(373, 50);
-            this.txtHoraFim.TabIndex = 20;
-            this.txtHoraFim.Text = "";
-            this.txtHoraFim.TrailingIcon = null;
+            this.rbtDiasUteis.AutoSize = true;
+            this.rbtDiasUteis.Location = new System.Drawing.Point(8, 66);
+            this.rbtDiasUteis.Margin = new System.Windows.Forms.Padding(4);
+            this.rbtDiasUteis.Name = "rbtDiasUteis";
+            this.rbtDiasUteis.Size = new System.Drawing.Size(93, 21);
+            this.rbtDiasUteis.TabIndex = 18;
+            this.rbtDiasUteis.Text = "Dias Úteis";
+            this.rbtDiasUteis.UseVisualStyleBackColor = true;
+            this.rbtDiasUteis.CheckedChanged += new System.EventHandler(this.rbtDiasUteis_CheckedChanged);
+            // 
+            // rbtDia
+            // 
+            this.rbtDia.AutoSize = true;
+            this.rbtDia.Location = new System.Drawing.Point(8, 88);
+            this.rbtDia.Margin = new System.Windows.Forms.Padding(4);
+            this.rbtDia.Name = "rbtDia";
+            this.rbtDia.Size = new System.Drawing.Size(50, 21);
+            this.rbtDia.TabIndex = 17;
+            this.rbtDia.Text = "Dia";
+            this.rbtDia.UseVisualStyleBackColor = true;
+            this.rbtDia.CheckedChanged += new System.EventHandler(this.rbtDia_CheckedChanged);
+            // 
+            // rbtManual
+            // 
+            this.rbtManual.AutoSize = true;
+            this.rbtManual.Location = new System.Drawing.Point(8, 45);
+            this.rbtManual.Margin = new System.Windows.Forms.Padding(4);
+            this.rbtManual.Name = "rbtManual";
+            this.rbtManual.Size = new System.Drawing.Size(75, 21);
+            this.rbtManual.TabIndex = 16;
+            this.rbtManual.Text = "Manual";
+            this.rbtManual.UseVisualStyleBackColor = true;
+            this.rbtManual.CheckedChanged += new System.EventHandler(this.rbtManual_CheckedChanged);
+            // 
+            // rbtMes
+            // 
+            this.rbtMes.AutoSize = true;
+            this.rbtMes.Location = new System.Drawing.Point(8, 24);
+            this.rbtMes.Margin = new System.Windows.Forms.Padding(4);
+            this.rbtMes.Name = "rbtMes";
+            this.rbtMes.Size = new System.Drawing.Size(55, 21);
+            this.rbtMes.TabIndex = 15;
+            this.rbtMes.Text = "Mês";
+            this.rbtMes.UseVisualStyleBackColor = true;
+            this.rbtMes.CheckedChanged += new System.EventHandler(this.rbtMes_CheckedChanged);
+            // 
+            // CalendarioMes
+            // 
+            this.CalendarioMes.ArrowsColor = System.Drawing.SystemColors.Window;
+            this.CalendarioMes.ArrowsSelectedColor = System.Drawing.Color.Gold;
+            this.CalendarioMes.DayBackgroundColor = System.Drawing.Color.Empty;
+            this.CalendarioMes.DayGrayedText = System.Drawing.SystemColors.GrayText;
+            this.CalendarioMes.DaySelectedBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.CalendarioMes.DaySelectedColor = System.Drawing.SystemColors.WindowText;
+            this.CalendarioMes.DaySelectedTextColor = System.Drawing.SystemColors.HighlightText;
+            this.CalendarioMes.ItemPadding = new System.Windows.Forms.Padding(2);
+            this.CalendarioMes.Location = new System.Drawing.Point(453, 7);
+            this.CalendarioMes.MonthTitleColor = System.Drawing.SystemColors.ActiveCaption;
+            this.CalendarioMes.MonthTitleColorInactive = System.Drawing.SystemColors.InactiveCaption;
+            this.CalendarioMes.MonthTitleTextColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.CalendarioMes.MonthTitleTextColorInactive = System.Drawing.SystemColors.InactiveCaptionText;
+            this.CalendarioMes.Name = "CalendarioMes";
+            this.CalendarioMes.Size = new System.Drawing.Size(230, 162);
+            this.CalendarioMes.TabIndex = 307;
+            this.CalendarioMes.Text = "monthView1";
+            this.CalendarioMes.TodayBorderColor = System.Drawing.Color.Maroon;
+            this.CalendarioMes.Click += new System.EventHandler(this.CalendarioMes_Click);
             // 
             // frmMenuPrincipal
             // 
@@ -2600,6 +2782,7 @@ namespace TCC2
             this.mCardAtendimentoFuturo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxLogoGrande)).EndInit();
             this.tabAgenda.ResumeLayout(false);
+            this.tabAgenda.PerformLayout();
             this.tabAlimento.ResumeLayout(false);
             this.tbAlimento.ResumeLayout(false);
             this._tbConsulta.ResumeLayout(false);
@@ -2636,9 +2819,11 @@ namespace TCC2
             ((System.ComponentModel.ISupportInitialize)(this.dtgUsuarios)).EndInit();
             this.tbPermissao.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgPermUsuarios)).EndInit();
+            this.tabHorarioAtendimento.ResumeLayout(false);
             this.tbSobre.ResumeLayout(false);
             this.tbSobre.PerformLayout();
-            this.tabHorarioAtendimento.ResumeLayout(false);
+            this.GroupBox2.ResumeLayout(false);
+            this.GroupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2781,6 +2966,17 @@ namespace TCC2
         public MaterialSkin.Controls.MaterialTextBox txtHoraFim;
         private MaterialSkin.Controls.MaterialComboBox cbxDiaSemana;
         public MaterialSkin.Controls.MaterialTextBox txtHoraInicio;
+        private MaterialSkin.Controls.MaterialTextBox txtPacienteAgenda;
+        private System.Windows.Forms.Button btnBuscarPacienteAgendamento;
+        private MaterialSkin.Controls.MaterialTextBox txtHoraAgenda;
+        private MaterialSkin.Controls.MaterialTextBox txtDataAgendamento;
+        internal System.Windows.Forms.Button btnSalvarAgenda;
+        internal System.Windows.Forms.GroupBox GroupBox2;
+        internal System.Windows.Forms.RadioButton rbtDiasUteis;
+        internal System.Windows.Forms.RadioButton rbtDia;
+        internal System.Windows.Forms.RadioButton rbtManual;
+        internal System.Windows.Forms.RadioButton rbtMes;
+        private System.Windows.Forms.Calendar.MonthView CalendarioMes;
     }
 }
 

@@ -177,5 +177,4 @@ C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\MvtWindowsFormsCS.dll
 C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\AdvancedDataGridView.dll
 C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\System.Windows.Forms.Calendar.dll
 C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\System.Windows.Forms.Calendar.pdb
-C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.csprojAssemblyReference.cache
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.Telas.frmEsqueciSenha.resources

@@ -1768,7 +1768,21 @@ namespace TCC2
 
         private void CalendarioMes_Click(object sender, EventArgs e)
         {
+            DateTime dtInicio;
+            DateTime.TryParseExact(CalendarioMes.SelectionStart.ToString("dd/MM/yyyy"),
+                                   "dd/MM/yyyy",
+                                   CultureInfo.InvariantCulture,
+                                   DateTimeStyles.None,
+                                   out dtInicio);
+            DateTime dtFim;
+            DateTime.TryParseExact(CalendarioMes.SelectionStart.AddDays(2).ToString("dd/MM/yyyy"),
+                                   "dd/MM/yyyy",
+                                   CultureInfo.InvariantCulture,
+                                   DateTimeStyles.None,
+                                   out dtFim);
             txtDataAgendamento.Text = CalendarioMes.SelectionStart.ToString("dd/MM/yyyy");
+            calAgendamento.ViewStart = dtInicio;
+            calAgendamento.ViewEnd = dtFim;
         }
 
     }

@@ -1740,7 +1740,15 @@ namespace TCC2
 
         private void btnSalvarAgenda_Click(object sender, EventArgs e)
         {
-            //Verificar se existe o paciente, caso não exista ele questiona se quer agendar mesmo assim.
+            if (nMensagemAlerta($"Você deseja agendar o paciente {txtPacienteAgenda.Text} para {txtDataAgendamento.Text} {txtHoraAgenda.Text}") == DialogResult.Yes)
+                agendaDAO.AdicionarPaciente(
+                            txtDataAgendamento.Text,
+                            txtHoraAgenda.Text,
+                            txtPacienteAgenda.Text,
+                            false,
+                            false,
+                            0,
+                            false);
         }
 
         private void btnApagarCardapio_Click(object sender, EventArgs e)

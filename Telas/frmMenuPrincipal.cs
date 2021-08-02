@@ -73,15 +73,23 @@ namespace TCC2
             {
                 lblUsuario.Visible = false;
             }
+
+            var OpcoesMenu = new ContextMenu();
+            OpcoesMenu.MenuItems.Add(new MenuItem("Deslogar", Deslogar));
+            OpcoesMenu.MenuItems.Add(new MenuItem("Fechar", FecharAplicacao));
+            NutreasyIconNotify.ContextMenu = OpcoesMenu;
+
         }
 
-        private void IsPermitido(string nome)
+        private void FecharAplicacao(object sender, EventArgs e)
         {
-            if (permissaoDAO.temPermissao(usuarioDAO.getUsuario().ToString(),""))
-            {
-                MessageBox.Show($"Você não tem acesso a essa aba: {nome}!","SEM PERMISSÃO",MessageBoxButtons.OK,MessageBoxIcon.Warning,MessageBoxDefaultButton.Button1,MessageBoxOptions.DefaultDesktopOnly);
-                TabControlNutreasy.SelectedTab = tabMenu;
-            }
+            Application.Exit();
+        }
+
+        private void Deslogar(object sender, EventArgs e)
+        {
+            new frmTelaLogin().Show();
+            this.Hide();
         }
 
         private void PermitirApenasNumero(object sender, KeyPressEventArgs e)
@@ -183,6 +191,7 @@ namespace TCC2
                             {
                                 mCardAtendimentoAtual.BackColor = Color.LightGreen;
                             }
+                            NutreasyIconNotify.ShowBalloonTip(15, "Notificação", $"Você possui horário agora com: {x.paciente}", ToolTipIcon.Info);
                         }
                         else if (Convert.ToDateTime(x.data + ' ' + x.hora) > DateTime.Now && x.Cancelado == 0)
                         {
@@ -208,6 +217,7 @@ namespace TCC2
                             {
                                 mCardAtendimentoFuturo.Visible = false;
                             }
+                            NutreasyIconNotify.ShowBalloonTip(15, "Notificação", $"Você possui horário marcado com: {x.paciente} às {x.hora}", ToolTipIcon.Info);
                         }
                         else
                         {
@@ -235,6 +245,19 @@ namespace TCC2
                 CalendarItem calAgendamentos = new CalendarItem(calAgendamento, Convert.ToDateTime(x.data + ' ' + x.hora), Convert.ToDateTime(x.data + ' ' + x.hora).AddHours(1), x.paciente);
                 calAgendamento.Items.Add(calAgendamentos);
             });
+        }
+
+        private void btnSalvarAgenda_Click(object sender, EventArgs e)
+        {
+            if (nMensagemAlerta($"Você deseja agendar o paciente {txtPacienteAgenda.Text} para {txtDataAgendamento.Text} {txtHoraAgenda.Text}") == DialogResult.Yes)
+                agendaDAO.AdicionarPaciente(
+                            txtDataAgendamento.Text,
+                            txtHoraAgenda.Text,
+                            txtPacienteAgenda.Text,
+                            false,
+                            false,
+                            0,
+                            false);
         }
 
         private void calAgendamento_ItemCreated(object sender, System.Windows.Forms.Calendar.CalendarItemCancelEventArgs e)
@@ -536,7 +559,7 @@ namespace TCC2
 
         private void tabAlimento_Enter(object sender, EventArgs e)
         {
-            IsPermitido(tabAlimento.Text.ToString());
+            VerificarPermissao(tabAlimento.Text);
             List<Alimentos> tabela = new List<Alimentos>();
             tabela = (alimentoDAO.BuscarTabelas());
             if (tabela != null)
@@ -1079,7 +1102,17 @@ namespace TCC2
                         cbxTabelaAlimentoCardapio.Items.Add(x.nomeTabela);
                 });
         }
-
+        private void btnApagarCardapio_Click(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrEmpty(txtPacienteConsultaCardapio.Text))
+            {
+                cardapioDAO.Deletar();
+                trwDadosCard.Nodes.Clear();
+                trwDadosCard.Columns.Clear();
+                trwDadosCard.Refresh();
+                txtPacienteConsultaCardapio_TextChanged(sender, e);
+            }
+        }
         private void btnAddAliCard_Click(object sender, EventArgs e)
         {
             if (cbxRefeicao.Text == "")
@@ -1738,29 +1771,5 @@ namespace TCC2
             txtDataAgendamento.Text = CalendarioMes.SelectionStart.ToString("dd/MM/yyyy");
         }
 
-        private void btnSalvarAgenda_Click(object sender, EventArgs e)
-        {
-            if (nMensagemAlerta($"Você deseja agendar o paciente {txtPacienteAgenda.Text} para {txtDataAgendamento.Text} {txtHoraAgenda.Text}") == DialogResult.Yes)
-                agendaDAO.AdicionarPaciente(
-                            txtDataAgendamento.Text,
-                            txtHoraAgenda.Text,
-                            txtPacienteAgenda.Text,
-                            false,
-                            false,
-                            0,
-                            false);
-        }
-
-        private void btnApagarCardapio_Click(object sender, EventArgs e)
-        {
-            if (!String.IsNullOrEmpty(txtPacienteConsultaCardapio.Text))
-            {
-                cardapioDAO.Deletar();
-                trwDadosCard.Nodes.Clear();
-                trwDadosCard.Columns.Clear();
-                trwDadosCard.Refresh();
-                txtPacienteConsultaCardapio_TextChanged(sender, e);
-            }
-        }
     }
 }

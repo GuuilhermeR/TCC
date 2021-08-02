@@ -184,6 +184,7 @@ namespace TCC2
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.NutreasyIconNotify = new System.Windows.Forms.NotifyIcon(this.components);
             this.TabControlNutreasy.SuspendLayout();
             this.tabMenu.SuspendLayout();
             this.mCardAtendimentoAtual.SuspendLayout();
@@ -2642,6 +2643,12 @@ namespace TCC2
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // NutreasyIconNotify
+            // 
+            this.NutreasyIconNotify.Icon = ((System.Drawing.Icon)(resources.GetObject("NutreasyIconNotify.Icon")));
+            this.NutreasyIconNotify.Text = "Nutreasy";
+            this.NutreasyIconNotify.Visible = true;
+            // 
             // frmMenuPrincipal
             // 
             this.AllowDrop = true;
@@ -2863,6 +2870,7 @@ namespace TCC2
         internal System.Windows.Forms.RadioButton rbtMes;
         private System.Windows.Forms.Calendar.MonthView CalendarioMes;
         public System.Windows.Forms.Button btnApagarCardapio;
+        private System.Windows.Forms.NotifyIcon NutreasyIconNotify;
     }
 }
 

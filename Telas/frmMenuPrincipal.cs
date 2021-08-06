@@ -191,7 +191,7 @@ namespace TCC2
                             {
                                 mCardAtendimentoAtual.BackColor = Color.LightGreen;
                             }
-                            NutreasyIconNotify.ShowBalloonTip(15, "Notificação", $"Você possui horário agora com: {x.paciente}", ToolTipIcon.Info);
+                            NutreasyIconNotify.ShowBalloonTip(15, "Consulta atual", $"Você possui horário agora com: {x.paciente}", ToolTipIcon.Info);
                         }
                         else if (Convert.ToDateTime(x.data + ' ' + x.hora) > DateTime.Now && x.Cancelado == 0)
                         {
@@ -217,7 +217,7 @@ namespace TCC2
                             {
                                 mCardAtendimentoFuturo.Visible = false;
                             }
-                            NutreasyIconNotify.ShowBalloonTip(15, "Notificação", $"Você possui horário marcado com: {x.paciente} às {x.hora}", ToolTipIcon.Info);
+                            NutreasyIconNotify.ShowBalloonTip(15, "Consulta Futura", $"Você possui horário marcado com: {x.paciente} às {x.hora}", ToolTipIcon.Info);
                         }
                         else
                         {

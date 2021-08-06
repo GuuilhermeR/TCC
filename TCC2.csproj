@@ -96,6 +96,9 @@
     <Compile Include="Banco de Dados\Alimentos.cs">
       <DependentUpon>NutreasyDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Banco de Dados\AnamnesePaciente.cs">
+      <DependentUpon>NutreasyDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Banco de Dados\Permissao.cs">
       <DependentUpon>NutreasyDB.tt</DependentUpon>
     </Compile>

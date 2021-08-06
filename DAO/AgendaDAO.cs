@@ -38,20 +38,18 @@ namespace ProjetoTCC
             }
         }
 
-        public List<Agenda> CarregarConsultasMenu(string dataAgenda)
+        public List<Agenda> CarregarAgenda()
         {
             try
             {
-                var agenda = (from a in BancoDadosSingleton.Instance.Agenda where a.data == dataAgenda  select a).ToList();
+                var agenda = (from a in BancoDadosSingleton.Instance.Agenda select a).ToList();
                 if (agenda.Count > 0)
                 {
                     return agenda;
-
                 }
                 else
                 {
                     return null;
-
                 }
             }
             catch

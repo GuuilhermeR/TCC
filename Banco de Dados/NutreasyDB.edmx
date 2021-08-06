@@ -11,7 +11,7 @@
           </Key>
           <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="paciente" Type="varchar" MaxLength="2147483647" />
-          <Property Name="data" Type="varchar" MaxLength="2147483647" />
+          <Property Name="data" Type="datetime" />
           <Property Name="retorno" Type="bit" />
           <Property Name="atendido" Type="bit" />
           <Property Name="hora" Type="varchar" MaxLength="2147483647" />
@@ -29,6 +29,14 @@
           <Property Name="carbo" Type="real" />
           <Property Name="lipidio" Type="real" />
           <Property Name="nomeTabela" Type="varchar" MaxLength="2147483647" />
+        </EntityType>
+        <EntityType Name="AnamnesePaciente">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codPaciente" Type="integer" />
+          <Property Name="descAnamnese" Type="nvarchar" MaxLength="2147483647" />
         </EntityType>
         <EntityType Name="Cardapio">
           <Key>
@@ -91,6 +99,18 @@
           <Property Name="usuario" Type="varchar" MaxLength="2147483647" />
           <Property Name="programa" Type="varchar" MaxLength="2147483647" />
         </EntityType>
+        <Association Name="FK_AnamnesePaciente_0_0">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="0..1" />
+          <End Role="AnamnesePaciente" Type="Self.AnamnesePaciente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="codPaciente" />
+            </Principal>
+            <Dependent Role="AnamnesePaciente">
+              <PropertyRef Name="codPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Cardapio_0_0">
           <End Role="Alimentos" Type="Self.Alimentos" Multiplicity="0..1" />
           <End Role="Cardapio" Type="Self.Cardapio" Multiplicity="*" />
@@ -142,11 +162,16 @@
         <EntityContainer Name="mainModelStoreContainer">
           <EntitySet Name="Agenda" EntityType="Self.Agenda" store:Type="Tables" />
           <EntitySet Name="Alimentos" EntityType="Self.Alimentos" store:Type="Tables" />
+          <EntitySet Name="AnamnesePaciente" EntityType="Self.AnamnesePaciente" store:Type="Tables" />
           <EntitySet Name="Cardapio" EntityType="Self.Cardapio" store:Type="Tables" />
           <EntitySet Name="Login" EntityType="Self.Login" store:Type="Tables" />
           <EntitySet Name="MedidaCaseira" EntityType="Self.MedidaCaseira" store:Type="Tables" />
           <EntitySet Name="Paciente" EntityType="Self.Paciente" store:Type="Tables" />
           <EntitySet Name="Permissao" EntityType="Self.Permissao" store:Type="Tables" />
+          <AssociationSet Name="FK_AnamnesePaciente_0_0" Association="Self.FK_AnamnesePaciente_0_0">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="AnamnesePaciente" EntitySet="AnamnesePaciente" />
+          </AssociationSet>
           <AssociationSet Name="FK_Cardapio_0_0" Association="Self.FK_Cardapio_0_0">
             <End Role="Alimentos" EntitySet="Alimentos" />
             <End Role="Cardapio" EntitySet="Cardapio" />
@@ -174,7 +199,7 @@
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="paciente" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
-          <Property Name="data" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="data" Type="String" />
           <Property Name="retorno" Type="Boolean" />
           <Property Name="atendido" Type="Boolean" />
           <Property Name="hora" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
@@ -252,6 +277,7 @@
           <Property Name="celular" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <Property Name="imagem" Type="Binary" MaxLength="2147483647" FixedLength="false" />
           <NavigationProperty Name="Cardapio" Relationship="Self.FK_Cardapio_1_0" FromRole="Paciente" ToRole="Cardapio" />
+          <NavigationProperty Name="AnamnesePaciente" Relationship="mainModel.FK_AnamnesePaciente_0_0" FromRole="Paciente" ToRole="AnamnesePaciente" />
         </EntityType>
         <Association Name="FK_Cardapio_0_0">
           <End Role="Alimentos" Type="Self.Alimentos" Multiplicity="0..1" />
@@ -313,6 +339,11 @@
             <End Role="Login" EntitySet="Login" />
             <End Role="Permissao" EntitySet="Permissao" />
           </AssociationSet>
+          <EntitySet Name="AnamnesePaciente" EntityType="mainModel.AnamnesePaciente" />
+          <AssociationSet Name="FK_AnamnesePaciente_0_0" Association="mainModel.FK_AnamnesePaciente_0_0">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="AnamnesePaciente" EntitySet="AnamnesePaciente" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Permissao">
           <Key>
@@ -332,6 +363,27 @@
             </Principal>
             <Dependent Role="Permissao">
               <PropertyRef Name="usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AnamnesePaciente">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descAnamnese" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="codPaciente" Type="Int64" />
+          <NavigationProperty Name="Paciente" Relationship="mainModel.FK_AnamnesePaciente_0_0" FromRole="AnamnesePaciente" ToRole="Paciente" />
+        </EntityType>
+        <Association Name="FK_AnamnesePaciente_0_0">
+          <End Type="mainModel.Paciente" Role="Paciente" Multiplicity="0..1" />
+          <End Type="mainModel.AnamnesePaciente" Role="AnamnesePaciente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="codPaciente" />
+            </Principal>
+            <Dependent Role="AnamnesePaciente">
+              <PropertyRef Name="codPaciente" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -430,6 +482,15 @@
               <MappingFragment StoreEntitySet="Permissao">
                 <ScalarProperty Name="programa" ColumnName="programa" />
                 <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnamnesePaciente">
+            <EntityTypeMapping TypeName="mainModel.AnamnesePaciente">
+              <MappingFragment StoreEntitySet="AnamnesePaciente">
+                <ScalarProperty Name="codPaciente" ColumnName="codPaciente" />
+                <ScalarProperty Name="descAnamnese" ColumnName="descAnamnese" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

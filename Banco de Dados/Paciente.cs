@@ -18,6 +18,7 @@ namespace TCC2.Banco_de_Dados
         public Paciente()
         {
             this.Cardapio = new HashSet<Cardapio>();
+            this.AnamnesePaciente = new HashSet<AnamnesePaciente>();
         }
     
         public long codPaciente { get; set; }
@@ -38,5 +39,7 @@ namespace TCC2.Banco_de_Dados
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cardapio> Cardapio { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AnamnesePaciente> AnamnesePaciente { get; set; }
     }
 }

@@ -11,7 +11,7 @@
           </Key>
           <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="paciente" Type="varchar" MaxLength="2147483647" />
-          <Property Name="data" Type="datetime" />
+          <Property Name="data" Type="varchar" MaxLength="2147483647" />
           <Property Name="retorno" Type="bit" />
           <Property Name="atendido" Type="bit" />
           <Property Name="hora" Type="varchar" MaxLength="2147483647" />
@@ -49,6 +49,16 @@
           <Property Name="Obs" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="Refeicao" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="kcal" Type="real" />
+        </EntityType>
+        <EntityType Name="ConfiguracoesUsuarios">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codPaciente" Type="integer" />
+          <Property Name="diaSemana" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="horaInicio" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="horaFim" Type="nvarchar" MaxLength="2147483647" />
         </EntityType>
         <EntityType Name="Login">
           <Key>
@@ -135,6 +145,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ConfiguracoesUsuarios_0_0">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="0..1" />
+          <End Role="ConfiguracoesUsuarios" Type="Self.ConfiguracoesUsuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="codPaciente" />
+            </Principal>
+            <Dependent Role="ConfiguracoesUsuarios">
+              <PropertyRef Name="codPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MedidaCaseira_0_0">
           <End Role="Alimentos" Type="Self.Alimentos" Multiplicity="0..1" />
           <End Role="MedidaCaseira" Type="Self.MedidaCaseira" Multiplicity="*" />
@@ -164,6 +186,7 @@
           <EntitySet Name="Alimentos" EntityType="Self.Alimentos" store:Type="Tables" />
           <EntitySet Name="AnamnesePaciente" EntityType="Self.AnamnesePaciente" store:Type="Tables" />
           <EntitySet Name="Cardapio" EntityType="Self.Cardapio" store:Type="Tables" />
+          <EntitySet Name="ConfiguracoesUsuarios" EntityType="Self.ConfiguracoesUsuarios" store:Type="Tables" />
           <EntitySet Name="Login" EntityType="Self.Login" store:Type="Tables" />
           <EntitySet Name="MedidaCaseira" EntityType="Self.MedidaCaseira" store:Type="Tables" />
           <EntitySet Name="Paciente" EntityType="Self.Paciente" store:Type="Tables" />
@@ -179,6 +202,10 @@
           <AssociationSet Name="FK_Cardapio_1_0" Association="Self.FK_Cardapio_1_0">
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="Cardapio" EntitySet="Cardapio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConfiguracoesUsuarios_0_0" Association="Self.FK_ConfiguracoesUsuarios_0_0">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="ConfiguracoesUsuarios" EntitySet="ConfiguracoesUsuarios" />
           </AssociationSet>
           <AssociationSet Name="FK_MedidaCaseira_0_0" Association="Self.FK_MedidaCaseira_0_0">
             <End Role="Alimentos" EntitySet="Alimentos" />
@@ -278,6 +305,7 @@
           <Property Name="imagem" Type="Binary" MaxLength="2147483647" FixedLength="false" />
           <NavigationProperty Name="Cardapio" Relationship="Self.FK_Cardapio_1_0" FromRole="Paciente" ToRole="Cardapio" />
           <NavigationProperty Name="AnamnesePaciente" Relationship="mainModel.FK_AnamnesePaciente_0_0" FromRole="Paciente" ToRole="AnamnesePaciente" />
+          <NavigationProperty Name="ConfiguracoesUsuarios" Relationship="mainModel.FK_ConfiguracoesUsuarios_0_0" FromRole="Paciente" ToRole="ConfiguracoesUsuarios" />
         </EntityType>
         <Association Name="FK_Cardapio_0_0">
           <End Role="Alimentos" Type="Self.Alimentos" Multiplicity="0..1" />
@@ -344,6 +372,11 @@
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="AnamnesePaciente" EntitySet="AnamnesePaciente" />
           </AssociationSet>
+          <EntitySet Name="ConfiguracoesUsuarios" EntityType="mainModel.ConfiguracoesUsuarios" />
+          <AssociationSet Name="FK_ConfiguracoesUsuarios_0_0" Association="mainModel.FK_ConfiguracoesUsuarios_0_0">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="ConfiguracoesUsuarios" EntitySet="ConfiguracoesUsuarios" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Permissao">
           <Key>
@@ -383,6 +416,29 @@
               <PropertyRef Name="codPaciente" />
             </Principal>
             <Dependent Role="AnamnesePaciente">
+              <PropertyRef Name="codPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ConfiguracoesUsuarios">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codPaciente" Type="Int64" />
+          <Property Name="diaSemana" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="horaInicio" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="horaFim" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Paciente" Relationship="mainModel.FK_ConfiguracoesUsuarios_0_0" FromRole="ConfiguracoesUsuarios" ToRole="Paciente" />
+        </EntityType>
+        <Association Name="FK_ConfiguracoesUsuarios_0_0">
+          <End Type="mainModel.Paciente" Role="Paciente" Multiplicity="0..1" />
+          <End Type="mainModel.ConfiguracoesUsuarios" Role="ConfiguracoesUsuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="codPaciente" />
+            </Principal>
+            <Dependent Role="ConfiguracoesUsuarios">
               <PropertyRef Name="codPaciente" />
             </Dependent>
           </ReferentialConstraint>
@@ -491,6 +547,17 @@
               <MappingFragment StoreEntitySet="AnamnesePaciente">
                 <ScalarProperty Name="codPaciente" ColumnName="codPaciente" />
                 <ScalarProperty Name="descAnamnese" ColumnName="descAnamnese" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConfiguracoesUsuarios">
+            <EntityTypeMapping TypeName="mainModel.ConfiguracoesUsuarios">
+              <MappingFragment StoreEntitySet="ConfiguracoesUsuarios">
+                <ScalarProperty Name="horaFim" ColumnName="horaFim" />
+                <ScalarProperty Name="horaInicio" ColumnName="horaInicio" />
+                <ScalarProperty Name="diaSemana" ColumnName="diaSemana" />
+                <ScalarProperty Name="codPaciente" ColumnName="codPaciente" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -169,6 +169,8 @@ namespace TCC2
             this.dtgPermUsuarios = new System.Windows.Forms.DataGridView();
             this.btnSalvarPermissao = new System.Windows.Forms.Button();
             this.tabHorarioAtendimento = new System.Windows.Forms.TabPage();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnSalvarHoraAtend = new System.Windows.Forms.Button();
             this.txtHoraFim = new MaterialSkin.Controls.MaterialTextBox();
             this.cbxDiaSemana = new MaterialSkin.Controls.MaterialComboBox();
             this.txtHoraInicio = new MaterialSkin.Controls.MaterialTextBox();
@@ -218,6 +220,7 @@ namespace TCC2
             this.tbPermissao.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPermUsuarios)).BeginInit();
             this.tabHorarioAtendimento.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tbSobre.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -2410,6 +2413,8 @@ namespace TCC2
             // 
             // tabHorarioAtendimento
             // 
+            this.tabHorarioAtendimento.Controls.Add(this.dataGridView1);
+            this.tabHorarioAtendimento.Controls.Add(this.btnSalvarHoraAtend);
             this.tabHorarioAtendimento.Controls.Add(this.txtHoraFim);
             this.tabHorarioAtendimento.Controls.Add(this.cbxDiaSemana);
             this.tabHorarioAtendimento.Controls.Add(this.txtHoraInicio);
@@ -2422,6 +2427,34 @@ namespace TCC2
             this.tabHorarioAtendimento.TabIndex = 2;
             this.tabHorarioAtendimento.Text = "Horário Atendimento";
             this.tabHorarioAtendimento.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(5, 228);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.Size = new System.Drawing.Size(1203, 432);
+            this.dataGridView1.TabIndex = 22;
+            // 
+            // btnSalvarHoraAtend
+            // 
+            this.btnSalvarHoraAtend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSalvarHoraAtend.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
+            this.btnSalvarHoraAtend.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSalvarHoraAtend.Location = new System.Drawing.Point(1093, 187);
+            this.btnSalvarHoraAtend.Name = "btnSalvarHoraAtend";
+            this.btnSalvarHoraAtend.Size = new System.Drawing.Size(115, 35);
+            this.btnSalvarHoraAtend.TabIndex = 21;
+            this.btnSalvarHoraAtend.Text = "Salvar";
+            this.btnSalvarHoraAtend.UseVisualStyleBackColor = true;
+            this.btnSalvarHoraAtend.Click += new System.EventHandler(this.btnSalvarHoraAtend_Click);
             // 
             // txtHoraFim
             // 
@@ -2662,6 +2695,7 @@ namespace TCC2
             this.tbPermissao.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgPermUsuarios)).EndInit();
             this.tabHorarioAtendimento.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tbSobre.ResumeLayout(false);
             this.tbSobre.PerformLayout();
             this.ResumeLayout(false);
@@ -2814,6 +2848,8 @@ namespace TCC2
         private System.Windows.Forms.Calendar.MonthView CalendarioMes;
         public System.Windows.Forms.Button btnApagarCardapio;
         private System.Windows.Forms.NotifyIcon NutreasyIconNotify;
+        internal System.Windows.Forms.DataGridView dataGridView1;
+        internal System.Windows.Forms.Button btnSalvarHoraAtend;
     }
 }
 

@@ -99,6 +99,9 @@
     <Compile Include="Banco de Dados\AnamnesePaciente.cs">
       <DependentUpon>NutreasyDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Banco de Dados\ConfiguracoesUsuarios.cs">
+      <DependentUpon>NutreasyDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Banco de Dados\Permissao.cs">
       <DependentUpon>NutreasyDB.tt</DependentUpon>
     </Compile>
@@ -114,6 +117,7 @@
     <Compile Include="DAO\AgendaDAO.cs" />
     <Compile Include="DAO\AlimentoDAO.cs" />
     <Compile Include="DAO\CardapioDAO.cs" />
+    <Compile Include="DAO\ConfiguracoesDAO.cs" />
     <Compile Include="DAO\PermissaoDAO.cs" />
     <Compile Include="Telas\frmBuscarPaciente.cs">
       <SubType>Form</SubType>

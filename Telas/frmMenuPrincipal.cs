@@ -236,15 +236,7 @@ namespace TCC2
             VerificarPermissao(tabAgenda.Text);
 
             calAgendamento.Items.Clear();
-            var agendados = agendaDAO.CarregarAgenda(DateTime.Now.ToString("dd/MM/yyyy"));
-            if (agendados is null || agendados.Count == 0)
-                return;
-
-            agendados.ForEach(x =>
-            {
-                CalendarItem calAgendamentos = new CalendarItem(calAgendamento, Convert.ToDateTime(x.data + ' ' + x.hora), Convert.ToDateTime(x.data + ' ' + x.hora).AddHours(1), x.paciente);
-                calAgendamento.Items.Add(calAgendamentos);
-            });
+            BuscarTodasConsultas();
         }
 
 
@@ -1747,7 +1739,6 @@ namespace TCC2
             e.Cancel = true;
         }
 
-
         private void CalendarioMes_Click(object sender, EventArgs e)
         {
             DateTime dtInicio;
@@ -1765,31 +1756,26 @@ namespace TCC2
             txtDataAgendamento.Text = CalendarioMes.SelectionStart.ToString("dd/MM/yyyy");
             calAgendamento.ViewStart = dtInicio;
             calAgendamento.ViewEnd = dtFim;
-            dtFim = dtFim.AddDays(3);
 
-            BuscarTodasConsultas(dtInicio.ToString("dd/MM/yyyy"), dtFim.ToString("dd/MM/yyyy"));
+            BuscarTodasConsultas();
         }
 
-        private void BuscarTodasConsultas(string dataInicio, string dataAte)
+        private void BuscarTodasConsultas()
         {
-            DateTime dtIni = Convert.ToDateTime(dataInicio);
-            DateTime dtFim = Convert.ToDateTime(dataAte);
-
             var agendados = agendaDAO.CarregarAgenda();
             if (agendados is null || agendados.Count == 0)
                 return;
 
             agendados.ForEach(x =>
             {
-                DateTime dt = Convert.ToDateTime(x.data);
-
-                if(dtIni >= dt && dtFim <= dt)
-                {
-                    CalendarItem calAgendamentos = new CalendarItem(calAgendamento, Convert.ToDateTime(x.data + ' ' + x.hora), Convert.ToDateTime(x.data + ' ' + x.hora).AddHours(1), x.paciente);
-                    calAgendamento.Items.Add(calAgendamentos);
-                }                
+                CalendarItem calAgendamentos = new CalendarItem(calAgendamento, Convert.ToDateTime(x.data + ' ' + x.hora), Convert.ToDateTime(x.data + ' ' + x.hora).AddHours(1), x.paciente);
+                calAgendamento.Items.Add(calAgendamentos);
             });
         }
 
+        private void btnSalvarHoraAtend_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -15,11 +15,11 @@ namespace TCC2.Banco_de_Dados
     public partial class ConfiguracoesUsuarios
     {
         public long ID { get; set; }
-        public Nullable<long> codPaciente { get; set; }
+        public string usuario { get; set; }
         public string diaSemana { get; set; }
         public string horaInicio { get; set; }
         public string horaFim { get; set; }
     
-        public virtual Paciente Paciente { get; set; }
+        public virtual Login Login { get; set; }
     }
 }

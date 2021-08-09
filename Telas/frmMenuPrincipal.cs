@@ -21,6 +21,8 @@ using DAO;
 using static Classes.ExibidorMensagem;
 using System.Windows.Forms.Calendar;
 using System.Globalization;
+using TCC2.Telas;
+using TCC2.DAO;
 
 namespace TCC2
 {
@@ -35,6 +37,7 @@ namespace TCC2
         public MedidaCaseiraDAO medidaCaseiraDAO = new MedidaCaseiraDAO();
         public PermissaoDAO permissaoDAO = new PermissaoDAO();
         public CardapioDAO cardapioDAO = new CardapioDAO();
+        public ConfiguracoesDAO configDAO = new ConfiguracoesDAO();
         public BuscadorCEP buscaCEP = new BuscadorCEP();
         private DataTableCollection tables;
         List<string> deletar = new List<string>();
@@ -741,7 +744,7 @@ namespace TCC2
         private void txtAlimentoFiltro_Leave(object sender, EventArgs e)
         {
             if (cbxTabela.Text != "" && txtAlimentoFiltro.Text != "")
-            {
+            {                
                 CarregarAlimentos(txtAlimentoFiltro.Text, cbxTabela.Text);
                 return;
             }
@@ -749,6 +752,8 @@ namespace TCC2
 
         private void cbxTabela_SelectedIndexChanged(object sender, EventArgs e)
         {
+            frmWait wait = new frmWait();
+            wait.Show();
             dtgConAlimento.DataSource = null;
             var listaAlimentos = alimentoDAO.Buscar("", cbxTabela.Text);
             if (listaAlimentos == null)
@@ -766,6 +771,8 @@ namespace TCC2
             dtgConAlimento.Columns["MedidaCaseira"].Visible = false;
             dtgConAlimento.Columns["Cardapio"].Visible = false;
             return;
+            wait.Hide();
+
         }
         #endregion
 
@@ -1603,7 +1610,7 @@ namespace TCC2
             if (listaUsuarios == null || listaUsuarios.Count <= 0)
                 return;
             cbxUsuarioPerm.Items.Clear();
-            listaUsuarios.ForEach(x => cbxUsuarioPerm.Items.Add(x));
+            listaUsuarios.ForEach(x => cbxUsuarioPerm.Items.Add(x.usuario));
 
             var listaPermissao = permissaoDAO.getAllPermissao();
             if (listaPermissao == null || listaPermissao.Count <= 0)
@@ -1772,10 +1779,44 @@ namespace TCC2
                 calAgendamento.Items.Add(calAgendamentos);
             });
         }
+        private void tabHorarioAtendimento_Enter(object sender, EventArgs e)
+        {
+            var listaUsuarios = usuarioDAO.getUsuario("");
+            if (listaUsuarios == null || listaUsuarios.Count <= 0)
+                return;
+            cbxUsuarioPerm.Items.Clear();
+            listaUsuarios.ForEach(x => cbxUsuNutri.Items.Add(x.usuario));
+        }
 
         private void btnSalvarHoraAtend_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(cbxUsuNutri.Text)) { nMensagemAviso("Favor informar o usuário!"); return; }
+            if (string.IsNullOrEmpty(cbxDiaSemana.Text)) { nMensagemAviso("Favor informar o dia da semana!"); return; }
+            if (string.IsNullOrEmpty(txtHoraInicio.Text)) { nMensagemAviso("Favor informar a hora início!"); return; }
+            if (string.IsNullOrEmpty(txtHoraFim.Text)) { nMensagemAviso("Favor informar a hora fim!"); return; }
 
+            configDAO.Salvar(Convert.ToString(cbxUsuNutri.Text),Convert.ToString(cbxDiaSemana.Text),Convert.ToString(txtHoraInicio.Text), Convert.ToString(txtHoraFim.Text));
+            CarregarConfigs();
+        }
+
+        private void CarregarConfigs()
+        {
+            var listaConfigs = configDAO.Consultar();
+            if (listaConfigs == null)
+                return;
+            DataTable dt = ConvertToDataTable(listaConfigs);
+            dtgConfigHorario.DataSource = dt;
+
+            dtgConfigHorario.Columns["ID"].Visible = false;
+            dtgConfigHorario.Columns["Login"].Visible = false;
+            dtgConfigHorario.Columns["diaSemana"].HeaderText = "Semana";
+            dtgConfigHorario.Columns["horaInicio"].HeaderText = "Início";
+            dtgConfigHorario.Columns["horaFim"].HeaderText = "Fim";
+        }
+
+        private void frmMenuPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
         }
     }
 }

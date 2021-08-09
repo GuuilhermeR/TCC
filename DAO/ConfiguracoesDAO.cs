@@ -14,13 +14,12 @@ namespace TCC2.DAO
         public ConfiguracoesDAO() { }
 
 
-        public List<ConfiguracoesUsuarios> Consultar(int codPaciente)
+        public List<ConfiguracoesUsuarios> Consultar()
         {
             try
             {
-                var configs = ((from card in BancoDadosSingleton.Instance.ConfiguracoesUsuarios
-                                where card.codPaciente == codPaciente
-                                 select card).Distinct()).ToList();
+                var configs = ((from config in BancoDadosSingleton.Instance.ConfiguracoesUsuarios
+                                 select config).Distinct()).ToList();
 
                 if (configs.Count > 0)
                 {
@@ -37,23 +36,25 @@ namespace TCC2.DAO
             }
         }
 
-        public void Salvar()
+        public void Salvar(string usuario, string diaSemana, string horaInicio, string horaFim)
         {
             try
             {
                 ConfiguracoesUsuarios configInsert = new ConfiguracoesUsuarios();
 
-               
+                configInsert.usuario = usuario;
+                configInsert.diaSemana = diaSemana;
+                configInsert.horaInicio = horaInicio;
+                configInsert.horaFim = horaFim;
 
                 BancoDadosSingleton.Instance.ConfiguracoesUsuarios.Add(configInsert);
                 BancoDadosSingleton.Instance.SaveChanges();
-
             }
             catch (Exception ex)
             {
                 nMensagemAlerta("Ocorreu um erro ao salvar o Cardápio." + '\n' + ex.Message + '\n' + ex.InnerException);
             }
-        }
+        }        
 
     }
 }

@@ -55,7 +55,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="codPaciente" Type="integer" />
+          <Property Name="usuario" Type="varchar" MaxLength="2147483647" />
           <Property Name="diaSemana" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="horaInicio" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="horaFim" Type="nvarchar" MaxLength="2147483647" />
@@ -146,14 +146,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ConfiguracoesUsuarios_0_0">
-          <End Role="Paciente" Type="Self.Paciente" Multiplicity="0..1" />
+          <End Role="Login" Type="Self.Login" Multiplicity="0..1" />
           <End Role="ConfiguracoesUsuarios" Type="Self.ConfiguracoesUsuarios" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Paciente">
-              <PropertyRef Name="codPaciente" />
+            <Principal Role="Login">
+              <PropertyRef Name="usuario" />
             </Principal>
             <Dependent Role="ConfiguracoesUsuarios">
-              <PropertyRef Name="codPaciente" />
+              <PropertyRef Name="usuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -204,7 +204,7 @@
             <End Role="Cardapio" EntitySet="Cardapio" />
           </AssociationSet>
           <AssociationSet Name="FK_ConfiguracoesUsuarios_0_0" Association="Self.FK_ConfiguracoesUsuarios_0_0">
-            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Login" EntitySet="Login" />
             <End Role="ConfiguracoesUsuarios" EntitySet="ConfiguracoesUsuarios" />
           </AssociationSet>
           <AssociationSet Name="FK_MedidaCaseira_0_0" Association="Self.FK_MedidaCaseira_0_0">
@@ -273,6 +273,7 @@
           <Property Name="perfil" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Permissao" Relationship="mainModel.FK_Permissao_0_0" FromRole="Login" ToRole="Permissao" />
           <Property Name="CRN" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ConfiguracoesUsuarios" Relationship="mainModel.FK_ConfiguracoesUsuarios_0_0" FromRole="Login" ToRole="ConfiguracoesUsuarios" />
         </EntityType>
         <EntityType Name="MedidaCaseira">
           <Key>
@@ -305,7 +306,6 @@
           <Property Name="imagem" Type="Binary" MaxLength="2147483647" FixedLength="false" />
           <NavigationProperty Name="Cardapio" Relationship="Self.FK_Cardapio_1_0" FromRole="Paciente" ToRole="Cardapio" />
           <NavigationProperty Name="AnamnesePaciente" Relationship="mainModel.FK_AnamnesePaciente_0_0" FromRole="Paciente" ToRole="AnamnesePaciente" />
-          <NavigationProperty Name="ConfiguracoesUsuarios" Relationship="mainModel.FK_ConfiguracoesUsuarios_0_0" FromRole="Paciente" ToRole="ConfiguracoesUsuarios" />
         </EntityType>
         <Association Name="FK_Cardapio_0_0">
           <End Role="Alimentos" Type="Self.Alimentos" Multiplicity="0..1" />
@@ -374,10 +374,10 @@
           </AssociationSet>
           <EntitySet Name="ConfiguracoesUsuarios" EntityType="mainModel.ConfiguracoesUsuarios" />
           <AssociationSet Name="FK_ConfiguracoesUsuarios_0_0" Association="mainModel.FK_ConfiguracoesUsuarios_0_0">
-            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Login" EntitySet="Login" />
             <End Role="ConfiguracoesUsuarios" EntitySet="ConfiguracoesUsuarios" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="Permissao">
           <Key>
             <PropertyRef Name="ID" />
@@ -425,25 +425,25 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="codPaciente" Type="Int64" />
+          <Property Name="usuario" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <Property Name="diaSemana" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="horaInicio" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="horaFim" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Paciente" Relationship="mainModel.FK_ConfiguracoesUsuarios_0_0" FromRole="ConfiguracoesUsuarios" ToRole="Paciente" />
+          <NavigationProperty Name="Login" Relationship="mainModel.FK_ConfiguracoesUsuarios_0_0" FromRole="ConfiguracoesUsuarios" ToRole="Login" />
         </EntityType>
         <Association Name="FK_ConfiguracoesUsuarios_0_0">
-          <End Type="mainModel.Paciente" Role="Paciente" Multiplicity="0..1" />
+          <End Type="mainModel.Login" Role="Login" Multiplicity="0..1" />
           <End Type="mainModel.ConfiguracoesUsuarios" Role="ConfiguracoesUsuarios" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Paciente">
-              <PropertyRef Name="codPaciente" />
+            <Principal Role="Login">
+              <PropertyRef Name="usuario" />
             </Principal>
             <Dependent Role="ConfiguracoesUsuarios">
-              <PropertyRef Name="codPaciente" />
+              <PropertyRef Name="usuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -557,7 +557,7 @@
                 <ScalarProperty Name="horaFim" ColumnName="horaFim" />
                 <ScalarProperty Name="horaInicio" ColumnName="horaInicio" />
                 <ScalarProperty Name="diaSemana" ColumnName="diaSemana" />
-                <ScalarProperty Name="codPaciente" ColumnName="codPaciente" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

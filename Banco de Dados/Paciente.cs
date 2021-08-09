@@ -19,7 +19,6 @@ namespace TCC2.Banco_de_Dados
         {
             this.Cardapio = new HashSet<Cardapio>();
             this.AnamnesePaciente = new HashSet<AnamnesePaciente>();
-            this.ConfiguracoesUsuarios = new HashSet<ConfiguracoesUsuarios>();
         }
     
         public long codPaciente { get; set; }
@@ -42,7 +41,5 @@ namespace TCC2.Banco_de_Dados
         public virtual ICollection<Cardapio> Cardapio { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AnamnesePaciente> AnamnesePaciente { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ConfiguracoesUsuarios> ConfiguracoesUsuarios { get; set; }
     }
 }

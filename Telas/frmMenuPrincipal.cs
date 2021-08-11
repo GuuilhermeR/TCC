@@ -23,6 +23,7 @@ using System.Windows.Forms.Calendar;
 using System.Globalization;
 using TCC2.Telas;
 using TCC2.DAO;
+using Calendar = System.Windows.Forms.Calendar.Calendar;
 
 namespace TCC2
 {
@@ -240,8 +241,54 @@ namespace TCC2
 
             calAgendamento.Items.Clear();
             BuscarTodasConsultas();
+            GetConfigAtendimento();
         }
 
+        private void GetConfigAtendimento()
+        {
+            var listaConfigs = configDAO.Consultar();
+            if (listaConfigs == null)
+                return;
+
+            foreach (var config in listaConfigs)
+            {
+                foreach (CalendarHighlightRange teste in calAgendamento.HighlightRanges)
+                {
+                    DayOfWeek dia;
+                    TimeSpan horaIni = TimeSpan.Parse(config.horaInicio);
+                    TimeSpan horaFim = TimeSpan.Parse(config.horaFim);
+                    switch (config.diaSemana)
+                    {
+                        case "Domingo":
+                            dia = DayOfWeek.Sunday;
+                            break;
+                        case "Segunda":
+                            dia = DayOfWeek.Monday;
+                            break;
+                        case "Terça":
+                            dia = DayOfWeek.Tuesday;
+                            break;
+                        case "Quarta":
+                            dia = DayOfWeek.Wednesday;
+                            break;
+                        case "Quinta":
+                            dia = DayOfWeek.Thursday;
+                            break;
+                        case "Sexta":
+                            dia = DayOfWeek.Friday;
+                            break;
+                        case "Sabado":
+                            dia = DayOfWeek.Saturday;
+                            break;
+                        default:
+                            return;
+                    }
+                    teste.DayOfWeek = dia;
+                    teste.StartTime = horaIni;
+                    teste.EndTime = horaFim;
+                }
+            }
+        }
 
         private void btnSalvarAgenda_Click(object sender, EventArgs e)
         {
@@ -1763,8 +1810,9 @@ namespace TCC2
             txtDataAgendamento.Text = CalendarioMes.SelectionStart.ToString("dd/MM/yyyy");
             calAgendamento.ViewStart = dtInicio;
             calAgendamento.ViewEnd = dtFim;
-
+            
             BuscarTodasConsultas();
+            GetConfigAtendimento();
         }
 
         private void BuscarTodasConsultas()
@@ -1786,6 +1834,20 @@ namespace TCC2
                 return;
             cbxUsuarioPerm.Items.Clear();
             listaUsuarios.ForEach(x => cbxUsuNutri.Items.Add(x.usuario));
+
+            var listConfig = configDAO.Consultar();
+            if (listConfig == null)
+                return;
+            DataTable dt = ConvertToDataTable(listConfig);
+            dtgConfigHorario.DataSource = dt;
+
+            dtgConfigHorario.Columns["ID"].Visible = false;
+            dtgConfigHorario.Columns["usuario"].HeaderText = "Usuário";
+            dtgConfigHorario.Columns["diaSemana"].HeaderText = "Semana";
+            dtgConfigHorario.Columns["horaInicio"].HeaderText = "Hora Início";
+            dtgConfigHorario.Columns["horaFim"].HeaderText = "Hora Fim";
+            dtgConfigHorario.Columns["Login"].Visible = false;
+
         }
 
         private void btnSalvarHoraAtend_Click(object sender, EventArgs e)

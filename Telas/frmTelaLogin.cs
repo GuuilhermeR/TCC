@@ -61,7 +61,7 @@ namespace TCC2
                 usuario.setNomeUsuario(txtUsuario.Text);
                 usuario.setUsuarioSenha(txtSenha.Text);
                 var usuarioLogado = usuario.getUsuario();
-                frmMenuPrincipal menu = new frmMenuPrincipal(usuarioLogado.ToString());
+                FrmMenuPrincipal menu = new FrmMenuPrincipal(usuarioLogado.ToString());
                 menu.Show();
                 this.Hide();
             }

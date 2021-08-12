@@ -17,8 +17,6 @@ namespace TCC2
         public UsuarioDAO()
         { }
 
-        private Criptografador cript = new Criptografador();
-
         private string usuario;
         private string senha;
         private string nome;

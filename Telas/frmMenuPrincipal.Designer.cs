@@ -2,7 +2,7 @@
 
 namespace TCC2
 {
-    partial class frmMenuPrincipal
+    partial class FrmMenuPrincipal
     {
         /// <summary>
         /// Required designer variable.
@@ -38,7 +38,7 @@ namespace TCC2
             System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange5 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange6 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange7 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenuPrincipal));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMenuPrincipal));
             this.TabControlNutreasy = new MaterialSkin.Controls.MaterialTabControl();
             this.tabMenu = new System.Windows.Forms.TabPage();
             this.mCardAtendimentoAtual = new MaterialSkin.Controls.MaterialCard();
@@ -144,8 +144,12 @@ namespace TCC2
             this.lblDataNascimento = new System.Windows.Forms.Label();
             this.pbImagem = new System.Windows.Forms.PictureBox();
             this.tbAntropometricos = new System.Windows.Forms.TabPage();
-            this.materialTextBox2 = new MaterialSkin.Controls.MaterialTextBox();
-            this.materialTextBox1 = new MaterialSkin.Controls.MaterialTextBox();
+            this.lblIMC = new MaterialSkin.Controls.MaterialLabel();
+            this.txtPacienteAntro = new MaterialSkin.Controls.MaterialTextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnPacAnt = new System.Windows.Forms.Button();
+            this.txtAltura = new MaterialSkin.Controls.MaterialTextBox();
+            this.txtPeso = new MaterialSkin.Controls.MaterialTextBox();
             this.tbAnamnese = new System.Windows.Forms.TabPage();
             this.txtPacienteAnamnese = new MaterialSkin.Controls.MaterialTextBox();
             this.btnFindPacienteAnamnese = new System.Windows.Forms.Button();
@@ -185,6 +189,16 @@ namespace TCC2
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.NutreasyIconNotify = new System.Windows.Forms.NotifyIcon(this.components);
+            this.gbxEstatura = new System.Windows.Forms.GroupBox();
+            this.gbxCircunferencias = new System.Windows.Forms.GroupBox();
+            this.txtBraco = new MaterialSkin.Controls.MaterialTextBox();
+            this.txtCintura = new MaterialSkin.Controls.MaterialTextBox();
+            this.txtAntebraco = new MaterialSkin.Controls.MaterialTextBox();
+            this.txtQuadril = new MaterialSkin.Controls.MaterialTextBox();
+            this.txtPanturrilha = new MaterialSkin.Controls.MaterialTextBox();
+            this.txtCoxa = new MaterialSkin.Controls.MaterialTextBox();
+            this.txtPunho = new MaterialSkin.Controls.MaterialTextBox();
+            this.txtTorax = new MaterialSkin.Controls.MaterialTextBox();
             this.TabControlNutreasy.SuspendLayout();
             this.tabMenu.SuspendLayout();
             this.mCardAtendimentoAtual.SuspendLayout();
@@ -224,6 +238,8 @@ namespace TCC2
             this.tabHorarioAtendimento.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgConfigHorario)).BeginInit();
             this.tbSobre.SuspendLayout();
+            this.gbxEstatura.SuspendLayout();
+            this.gbxCircunferencias.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControlNutreasy
@@ -602,6 +618,7 @@ namespace TCC2
             this.btnBuscarPacienteAgendamento.Size = new System.Drawing.Size(30, 23);
             this.btnBuscarPacienteAgendamento.TabIndex = 302;
             this.btnBuscarPacienteAgendamento.UseVisualStyleBackColor = true;
+            this.btnBuscarPacienteAgendamento.Click += new System.EventHandler(this.btnBuscarPacienteAgendamento_Click);
             // 
             // txtPacienteAgenda
             // 
@@ -1575,7 +1592,7 @@ namespace TCC2
             this.tbPaciente.Location = new System.Drawing.Point(6, 3);
             this.tbPaciente.Name = "tbPaciente";
             this.tbPaciente.SelectedIndex = 0;
-            this.tbPaciente.Size = new System.Drawing.Size(1220, 671);
+            this.tbPaciente.Size = new System.Drawing.Size(1220, 694);
             this.tbPaciente.TabIndex = 1;
             this.tbPaciente.Enter += new System.EventHandler(this.tbPaciente_Enter);
             // 
@@ -1918,49 +1935,100 @@ namespace TCC2
             // 
             // tbAntropometricos
             // 
-            this.tbAntropometricos.Controls.Add(this.materialTextBox2);
-            this.tbAntropometricos.Controls.Add(this.materialTextBox1);
+            this.tbAntropometricos.Controls.Add(this.gbxCircunferencias);
+            this.tbAntropometricos.Controls.Add(this.gbxEstatura);
+            this.tbAntropometricos.Controls.Add(this.txtPacienteAntro);
+            this.tbAntropometricos.Controls.Add(this.button1);
+            this.tbAntropometricos.Controls.Add(this.btnPacAnt);
             this.tbAntropometricos.Location = new System.Drawing.Point(4, 22);
             this.tbAntropometricos.Name = "tbAntropometricos";
             this.tbAntropometricos.Padding = new System.Windows.Forms.Padding(3);
-            this.tbAntropometricos.Size = new System.Drawing.Size(1212, 645);
+            this.tbAntropometricos.Size = new System.Drawing.Size(1212, 668);
             this.tbAntropometricos.TabIndex = 2;
             this.tbAntropometricos.Text = "Antropometria";
             this.tbAntropometricos.UseVisualStyleBackColor = true;
             // 
-            // materialTextBox2
+            // lblIMC
             // 
-            this.materialTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.materialTextBox2.Depth = 0;
-            this.materialTextBox2.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialTextBox2.Hint = "Altura (cm)";
-            this.materialTextBox2.LeadingIcon = null;
-            this.materialTextBox2.Location = new System.Drawing.Point(18, 98);
-            this.materialTextBox2.MaxLength = 50;
-            this.materialTextBox2.MouseState = MaterialSkin.MouseState.OUT;
-            this.materialTextBox2.Multiline = false;
-            this.materialTextBox2.Name = "materialTextBox2";
-            this.materialTextBox2.Size = new System.Drawing.Size(147, 50);
-            this.materialTextBox2.TabIndex = 12;
-            this.materialTextBox2.Text = "";
-            this.materialTextBox2.TrailingIcon = null;
+            this.lblIMC.AutoSize = true;
+            this.lblIMC.Depth = 0;
+            this.lblIMC.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.lblIMC.Location = new System.Drawing.Point(22, 229);
+            this.lblIMC.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblIMC.Name = "lblIMC";
+            this.lblIMC.Size = new System.Drawing.Size(1, 0);
+            this.lblIMC.TabIndex = 322;
             // 
-            // materialTextBox1
+            // txtPacienteAntro
             // 
-            this.materialTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.materialTextBox1.Depth = 0;
-            this.materialTextBox1.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialTextBox1.Hint = "Peso (kg)";
-            this.materialTextBox1.LeadingIcon = null;
-            this.materialTextBox1.Location = new System.Drawing.Point(18, 17);
-            this.materialTextBox1.MaxLength = 50;
-            this.materialTextBox1.MouseState = MaterialSkin.MouseState.OUT;
-            this.materialTextBox1.Multiline = false;
-            this.materialTextBox1.Name = "materialTextBox1";
-            this.materialTextBox1.Size = new System.Drawing.Size(147, 50);
-            this.materialTextBox1.TabIndex = 11;
-            this.materialTextBox1.Text = "";
-            this.materialTextBox1.TrailingIcon = null;
+            this.txtPacienteAntro.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtPacienteAntro.Depth = 0;
+            this.txtPacienteAntro.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtPacienteAntro.Hint = "Paciente";
+            this.txtPacienteAntro.LeadingIcon = null;
+            this.txtPacienteAntro.Location = new System.Drawing.Point(6, 6);
+            this.txtPacienteAntro.MaxLength = 50;
+            this.txtPacienteAntro.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtPacienteAntro.Multiline = false;
+            this.txtPacienteAntro.Name = "txtPacienteAntro";
+            this.txtPacienteAntro.Size = new System.Drawing.Size(347, 50);
+            this.txtPacienteAntro.TabIndex = 321;
+            this.txtPacienteAntro.Text = "";
+            this.txtPacienteAntro.TrailingIcon = null;
+            // 
+            // button1
+            // 
+            this.button1.Image = global::TCC2.Properties.Resources.DeleteRed;
+            this.button1.Location = new System.Drawing.Point(406, 21);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(30, 23);
+            this.button1.TabIndex = 320;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // btnPacAnt
+            // 
+            this.btnPacAnt.Image = global::TCC2.Properties.Resources.consultar;
+            this.btnPacAnt.Location = new System.Drawing.Point(370, 21);
+            this.btnPacAnt.Name = "btnPacAnt";
+            this.btnPacAnt.Size = new System.Drawing.Size(30, 23);
+            this.btnPacAnt.TabIndex = 319;
+            this.btnPacAnt.UseVisualStyleBackColor = true;
+            this.btnPacAnt.Click += new System.EventHandler(this.btnPacAnt_Click);
+            // 
+            // txtAltura
+            // 
+            this.txtAltura.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtAltura.Depth = 0;
+            this.txtAltura.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtAltura.Hint = "Altura (cm)";
+            this.txtAltura.LeadingIcon = null;
+            this.txtAltura.Location = new System.Drawing.Point(22, 128);
+            this.txtAltura.MaxLength = 50;
+            this.txtAltura.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtAltura.Multiline = false;
+            this.txtAltura.Name = "txtAltura";
+            this.txtAltura.Size = new System.Drawing.Size(225, 50);
+            this.txtAltura.TabIndex = 12;
+            this.txtAltura.Text = "";
+            this.txtAltura.TrailingIcon = null;
+            this.txtAltura.Leave += new System.EventHandler(this.txtAltura_Leave);
+            // 
+            // txtPeso
+            // 
+            this.txtPeso.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtPeso.Depth = 0;
+            this.txtPeso.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtPeso.Hint = "Peso (kg)";
+            this.txtPeso.LeadingIcon = null;
+            this.txtPeso.Location = new System.Drawing.Point(22, 29);
+            this.txtPeso.MaxLength = 50;
+            this.txtPeso.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtPeso.Multiline = false;
+            this.txtPeso.Name = "txtPeso";
+            this.txtPeso.Size = new System.Drawing.Size(225, 50);
+            this.txtPeso.TabIndex = 11;
+            this.txtPeso.Text = "";
+            this.txtPeso.TrailingIcon = null;
             // 
             // tbAnamnese
             // 
@@ -2391,7 +2459,6 @@ namespace TCC2
             this.cbxUsuarioPerm.Size = new System.Drawing.Size(522, 49);
             this.cbxUsuarioPerm.StartIndex = 0;
             this.cbxUsuarioPerm.TabIndex = 16;
-            this.cbxUsuarioPerm.SelectedIndexChanged += new System.EventHandler(this.cbxUsuarioPerm_SelectedIndexChanged);
             // 
             // dtgPermUsuarios
             // 
@@ -2643,7 +2710,176 @@ namespace TCC2
             this.NutreasyIconNotify.Text = "Nutreasy";
             this.NutreasyIconNotify.Visible = true;
             // 
-            // frmMenuPrincipal
+            // gbxEstatura
+            // 
+            this.gbxEstatura.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.gbxEstatura.Controls.Add(this.txtPeso);
+            this.gbxEstatura.Controls.Add(this.lblIMC);
+            this.gbxEstatura.Controls.Add(this.txtAltura);
+            this.gbxEstatura.Location = new System.Drawing.Point(16, 65);
+            this.gbxEstatura.Name = "gbxEstatura";
+            this.gbxEstatura.Size = new System.Drawing.Size(370, 597);
+            this.gbxEstatura.TabIndex = 323;
+            this.gbxEstatura.TabStop = false;
+            this.gbxEstatura.Text = "Estatura";
+            // 
+            // gbxCircunferencias
+            // 
+            this.gbxCircunferencias.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbxCircunferencias.Controls.Add(this.txtTorax);
+            this.gbxCircunferencias.Controls.Add(this.txtPunho);
+            this.gbxCircunferencias.Controls.Add(this.txtCoxa);
+            this.gbxCircunferencias.Controls.Add(this.txtPanturrilha);
+            this.gbxCircunferencias.Controls.Add(this.txtQuadril);
+            this.gbxCircunferencias.Controls.Add(this.txtAntebraco);
+            this.gbxCircunferencias.Controls.Add(this.txtCintura);
+            this.gbxCircunferencias.Controls.Add(this.txtBraco);
+            this.gbxCircunferencias.Location = new System.Drawing.Point(406, 65);
+            this.gbxCircunferencias.Name = "gbxCircunferencias";
+            this.gbxCircunferencias.Size = new System.Drawing.Size(800, 597);
+            this.gbxCircunferencias.TabIndex = 324;
+            this.gbxCircunferencias.TabStop = false;
+            this.gbxCircunferencias.Text = "Circunferências";
+            // 
+            // txtBraco
+            // 
+            this.txtBraco.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtBraco.Depth = 0;
+            this.txtBraco.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtBraco.Hint = "Braço (cm)";
+            this.txtBraco.LeadingIcon = null;
+            this.txtBraco.Location = new System.Drawing.Point(83, 29);
+            this.txtBraco.MaxLength = 50;
+            this.txtBraco.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtBraco.Multiline = false;
+            this.txtBraco.Name = "txtBraco";
+            this.txtBraco.Size = new System.Drawing.Size(225, 50);
+            this.txtBraco.TabIndex = 12;
+            this.txtBraco.Text = "";
+            this.txtBraco.TrailingIcon = null;
+            // 
+            // txtCintura
+            // 
+            this.txtCintura.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtCintura.Depth = 0;
+            this.txtCintura.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtCintura.Hint = "Cintura (cm)";
+            this.txtCintura.LeadingIcon = null;
+            this.txtCintura.Location = new System.Drawing.Point(83, 128);
+            this.txtCintura.MaxLength = 50;
+            this.txtCintura.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtCintura.Multiline = false;
+            this.txtCintura.Name = "txtCintura";
+            this.txtCintura.Size = new System.Drawing.Size(225, 50);
+            this.txtCintura.TabIndex = 13;
+            this.txtCintura.Text = "";
+            this.txtCintura.TrailingIcon = null;
+            // 
+            // txtAntebraco
+            // 
+            this.txtAntebraco.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtAntebraco.Depth = 0;
+            this.txtAntebraco.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtAntebraco.Hint = "Antebraço (cm)";
+            this.txtAntebraco.LeadingIcon = null;
+            this.txtAntebraco.Location = new System.Drawing.Point(83, 326);
+            this.txtAntebraco.MaxLength = 50;
+            this.txtAntebraco.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtAntebraco.Multiline = false;
+            this.txtAntebraco.Name = "txtAntebraco";
+            this.txtAntebraco.Size = new System.Drawing.Size(225, 50);
+            this.txtAntebraco.TabIndex = 14;
+            this.txtAntebraco.Text = "";
+            this.txtAntebraco.TrailingIcon = null;
+            // 
+            // txtQuadril
+            // 
+            this.txtQuadril.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtQuadril.Depth = 0;
+            this.txtQuadril.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtQuadril.Hint = "Quadril (cm)";
+            this.txtQuadril.LeadingIcon = null;
+            this.txtQuadril.Location = new System.Drawing.Point(83, 227);
+            this.txtQuadril.MaxLength = 50;
+            this.txtQuadril.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtQuadril.Multiline = false;
+            this.txtQuadril.Name = "txtQuadril";
+            this.txtQuadril.Size = new System.Drawing.Size(225, 50);
+            this.txtQuadril.TabIndex = 15;
+            this.txtQuadril.Text = "";
+            this.txtQuadril.TrailingIcon = null;
+            // 
+            // txtPanturrilha
+            // 
+            this.txtPanturrilha.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtPanturrilha.Depth = 0;
+            this.txtPanturrilha.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtPanturrilha.Hint = "Panturrilha (cm)";
+            this.txtPanturrilha.LeadingIcon = null;
+            this.txtPanturrilha.Location = new System.Drawing.Point(83, 425);
+            this.txtPanturrilha.MaxLength = 50;
+            this.txtPanturrilha.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtPanturrilha.Multiline = false;
+            this.txtPanturrilha.Name = "txtPanturrilha";
+            this.txtPanturrilha.Size = new System.Drawing.Size(225, 50);
+            this.txtPanturrilha.TabIndex = 16;
+            this.txtPanturrilha.Text = "";
+            this.txtPanturrilha.TrailingIcon = null;
+            // 
+            // txtCoxa
+            // 
+            this.txtCoxa.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtCoxa.Depth = 0;
+            this.txtCoxa.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtCoxa.Hint = "Coxa (cm)";
+            this.txtCoxa.LeadingIcon = null;
+            this.txtCoxa.Location = new System.Drawing.Point(83, 524);
+            this.txtCoxa.MaxLength = 50;
+            this.txtCoxa.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtCoxa.Multiline = false;
+            this.txtCoxa.Name = "txtCoxa";
+            this.txtCoxa.Size = new System.Drawing.Size(225, 50);
+            this.txtCoxa.TabIndex = 17;
+            this.txtCoxa.Text = "";
+            this.txtCoxa.TrailingIcon = null;
+            // 
+            // txtPunho
+            // 
+            this.txtPunho.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtPunho.Depth = 0;
+            this.txtPunho.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtPunho.Hint = "Punho (cm)";
+            this.txtPunho.LeadingIcon = null;
+            this.txtPunho.Location = new System.Drawing.Point(464, 29);
+            this.txtPunho.MaxLength = 50;
+            this.txtPunho.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtPunho.Multiline = false;
+            this.txtPunho.Name = "txtPunho";
+            this.txtPunho.Size = new System.Drawing.Size(225, 50);
+            this.txtPunho.TabIndex = 18;
+            this.txtPunho.Text = "";
+            this.txtPunho.TrailingIcon = null;
+            // 
+            // txtTorax
+            // 
+            this.txtTorax.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtTorax.Depth = 0;
+            this.txtTorax.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtTorax.Hint = "Tórax (cm)";
+            this.txtTorax.LeadingIcon = null;
+            this.txtTorax.Location = new System.Drawing.Point(464, 128);
+            this.txtTorax.MaxLength = 50;
+            this.txtTorax.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtTorax.Multiline = false;
+            this.txtTorax.Name = "txtTorax";
+            this.txtTorax.Size = new System.Drawing.Size(225, 50);
+            this.txtTorax.TabIndex = 19;
+            this.txtTorax.Text = "";
+            this.txtTorax.TrailingIcon = null;
+            // 
+            // FrmMenuPrincipal
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2654,7 +2890,7 @@ namespace TCC2
             this.DrawerTabControl = this.TabControlNutreasy;
             this.DrawerUseColors = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "frmMenuPrincipal";
+            this.Name = "FrmMenuPrincipal";
             this.Padding = new System.Windows.Forms.Padding(0, 64, 3, 3);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nutreasy";
@@ -2711,6 +2947,9 @@ namespace TCC2
             ((System.ComponentModel.ISupportInitialize)(this.dtgConfigHorario)).EndInit();
             this.tbSobre.ResumeLayout(false);
             this.tbSobre.PerformLayout();
+            this.gbxEstatura.ResumeLayout(false);
+            this.gbxEstatura.PerformLayout();
+            this.gbxCircunferencias.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -2798,8 +3037,8 @@ namespace TCC2
         private MvtWindowsForms.RitchTextBoxWithToolBar rtxtAnamnese;
         internal System.Windows.Forms.DataGridView dtgPermUsuarios;
         internal System.Windows.Forms.Button btnSalvarPermissao;
-        public MaterialSkin.Controls.MaterialTextBox materialTextBox1;
-        public MaterialSkin.Controls.MaterialTextBox materialTextBox2;
+        public MaterialSkin.Controls.MaterialTextBox txtPeso;
+        public MaterialSkin.Controls.MaterialTextBox txtAltura;
         public MaterialSkin.Controls.MaterialTextBox txtNome;
         public MaterialSkin.Controls.MaterialTextBox txtCPF;
         public MaterialSkin.Controls.MaterialTextBox txtComplemento;
@@ -2863,6 +3102,20 @@ namespace TCC2
         private System.Windows.Forms.NotifyIcon NutreasyIconNotify;
         internal System.Windows.Forms.DataGridView dtgConfigHorario;
         internal System.Windows.Forms.Button btnSalvarHoraAtend;
+        public MaterialSkin.Controls.MaterialTextBox txtPacienteAntro;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnPacAnt;
+        private MaterialSkin.Controls.MaterialLabel lblIMC;
+        private System.Windows.Forms.GroupBox gbxEstatura;
+        private System.Windows.Forms.GroupBox gbxCircunferencias;
+        public MaterialSkin.Controls.MaterialTextBox txtCoxa;
+        public MaterialSkin.Controls.MaterialTextBox txtPanturrilha;
+        public MaterialSkin.Controls.MaterialTextBox txtQuadril;
+        public MaterialSkin.Controls.MaterialTextBox txtAntebraco;
+        public MaterialSkin.Controls.MaterialTextBox txtCintura;
+        public MaterialSkin.Controls.MaterialTextBox txtBraco;
+        public MaterialSkin.Controls.MaterialTextBox txtTorax;
+        public MaterialSkin.Controls.MaterialTextBox txtPunho;
     }
 }
 

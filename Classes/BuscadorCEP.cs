@@ -11,7 +11,7 @@ namespace TCC2
 
         public BuscadorCEP(){}
 
-        public void buscarEndCep(frmMenuPrincipal menu, string CEP)
+        public void buscarEndCep(FrmMenuPrincipal menu, string CEP)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create($@"https://viacep.com.br/ws/{CEP}/json/");
             request.AllowAutoRedirect = false;

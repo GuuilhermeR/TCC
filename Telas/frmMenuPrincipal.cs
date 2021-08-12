@@ -27,10 +27,10 @@ using Calendar = System.Windows.Forms.Calendar.Calendar;
 
 namespace TCC2
 {
-    public partial class frmMenuPrincipal : MaterialForm
+    public partial class FrmMenuPrincipal : MaterialForm
     {
 
-        #region VariáveisGlobais
+        #region Variáveis Globais
         public PacienteDAO pacienteDAO = new PacienteDAO();
         public UsuarioDAO usuarioDAO = new UsuarioDAO();
         public AlimentoDAO alimentoDAO = new AlimentoDAO();
@@ -41,7 +41,6 @@ namespace TCC2
         public ConfiguracoesDAO configDAO = new ConfiguracoesDAO();
         public BuscadorCEP buscaCEP = new BuscadorCEP();
         private DataTableCollection tables;
-        List<string> deletar = new List<string>();
         List<string> deletarAlimento = new List<string>();
         private object tamanhoArquivoImagem;
         private byte[] vetorImagens;
@@ -53,7 +52,7 @@ namespace TCC2
         #endregion
 
         #region Menu
-        public frmMenuPrincipal(string usuarioLogado)
+        public FrmMenuPrincipal(string usuarioLogado)
         {
             InitializeComponent();
             usuarioDAO.setNomeUsuario(usuarioLogado);
@@ -235,15 +234,14 @@ namespace TCC2
         #endregion
 
         #region Agenda
-
         private void tabAgenda_Enter(object sender, EventArgs e)
         {
             VerificarPermissao(tabAgenda.Text);
+            GetConfigAtendimento();
             calAgendamento.Items.Clear();
             //calAgendamento.ViewStart = RetornaInicioSemana(DateTime.Today);
             //calAgendamento.ViewEnd = RetornaFimSemana(DateTime.Today);
             BuscarTodasConsultas();
-            GetConfigAtendimento();
             calAgendamento.Refresh();
         }
 
@@ -309,6 +307,23 @@ namespace TCC2
                         break;
                     default:
                         return;
+                }
+            }
+        }
+        private void txtDataAgendamento_Leave(object sender, EventArgs e)
+        {
+            if (txtDataAgendamento.Text != "")
+            {
+                DateTime dt;
+                DateTime.TryParseExact(txtDataAgendamento.Text.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dt);
+
+                if (validarData(dt.ToString("dd/MM/yyyy")))
+                {
+                    txtDataAgendamento.Text = dt.ToString("dd/MM/yyyy");
+                }
+                else
+                {
+                    txtDataAgendamento.Text = String.Empty;
                 }
             }
         }
@@ -440,6 +455,47 @@ namespace TCC2
         private void FinalizarAtendimento(string data, string paciente, bool atendido, bool retorno)
         {
             agendaDAO.AdicionarPaciente(data.Substring(0, 10), data.Substring(11), paciente, atendido, retorno, 0, true);
+        }
+
+        private void calAgendamento_ItemCreating(object sender, CalendarItemCancelEventArgs e)
+        {
+            e.Cancel = true;
+        }
+
+        private void CalendarioMes_Click(object sender, EventArgs e)
+        {
+            DateTime dtInicio;
+            DateTime.TryParseExact(CalendarioMes.SelectionStart.ToString("dd/MM/yyyy"),
+                                   "dd/MM/yyyy",
+                                   CultureInfo.InvariantCulture,
+                                   DateTimeStyles.None,
+                                   out dtInicio);
+            DateTime dtFim;
+            DateTime.TryParseExact(CalendarioMes.SelectionStart.AddDays(2).ToString("dd/MM/yyyy"),
+                                   "dd/MM/yyyy",
+                                   CultureInfo.InvariantCulture,
+                                   DateTimeStyles.None,
+                                   out dtFim);
+            txtDataAgendamento.Text = CalendarioMes.SelectionStart.ToString("dd/MM/yyyy");
+
+            calAgendamento.ViewStart = dtInicio;
+            calAgendamento.ViewEnd = dtFim;
+
+            BuscarTodasConsultas();
+            GetConfigAtendimento();
+        }
+
+        private void BuscarTodasConsultas()
+        {
+            var agendados = agendaDAO.CarregarAgenda();
+            if (agendados is null || agendados.Count == 0)
+                return;
+
+            agendados.ForEach(x =>
+            {
+                CalendarItem calAgendamentos = new CalendarItem(calAgendamento, Convert.ToDateTime(x.data + ' ' + x.hora), Convert.ToDateTime(x.data + ' ' + x.hora).AddHours(1), x.paciente);
+                calAgendamento.Items.Add(calAgendamentos);
+            });
         }
         #endregion
 
@@ -844,9 +900,43 @@ namespace TCC2
             wait.Hide();
 
         }
+        private void mCbxTabelasMedCas_SelectedValueChanged(object sender, EventArgs e)
+        {
+            dtgMedCaseiraAlimentos.DataSource = null;
+            CarregarAlimentos("", "");
+        }
+
+        private void CarregarAlimentos(string nomeAlimento, string nomeTabela)
+        {
+            var listaAlimentos = alimentoDAO.Buscar(nomeAlimento, nomeTabela);
+            if (listaAlimentos == null)
+                return;
+            DataTable dt = ConvertToDataTable(listaAlimentos);
+            dtgMedCaseiraAlimentos.DataSource = dt;
+
+            dtgMedCaseiraAlimentos.Columns["codAlimento"].Visible = false;
+            dtgMedCaseiraAlimentos.Columns["qtd"].Visible = false;
+            dtgMedCaseiraAlimentos.Columns["kcal"].Visible = false;
+            dtgMedCaseiraAlimentos.Columns["prot"].Visible = false;
+            dtgMedCaseiraAlimentos.Columns["carbo"].Visible = false;
+            dtgMedCaseiraAlimentos.Columns["lipidio"].Visible = false;
+            dtgMedCaseiraAlimentos.Columns["MedidaCaseira"].Visible = false;
+            dtgMedCaseiraAlimentos.Columns["Cardapio"].Visible = false;
+            dtgMedCaseiraAlimentos.Columns["nomeTabela"].HeaderText = "Tabela";
+            dtgMedCaseiraAlimentos.Columns["nomeAlimento"].HeaderText = "Alimento";
+        }
+
+        private void mTxtFiltroAlimentoMedCas_Leave(object sender, EventArgs e)
+        {
+            if (mTxtFiltroAlimentoMedCas.Text != "")
+            {
+                CarregarAlimentos(mTxtFiltroAlimentoMedCas.Text, mCbxTabelasMedCas.Text);
+                return;
+            }
+        }
         #endregion
 
-        #region CadastroPaciente 
+        #region Paciente 
         private void tbPaciente_Enter(object sender, EventArgs e)
         {
             VerificarPermissao(tabPaciente.Text);
@@ -1151,6 +1241,51 @@ namespace TCC2
         private void txtCelular_KeyPress(object sender, KeyPressEventArgs e)
         {
             PermitirApenasNumero(sender, e);
+        }
+
+        private void txtAltura_Leave(object sender, EventArgs e)
+        {
+            if (txtPeso.Text != "" && txtAltura.Text != "")
+                CalcularIMC(Convert.ToDouble(txtPeso.Text), Convert.ToDouble(txtAltura.Text));
+        }
+
+        private void CalcularIMC(double peso, double altura)
+        {
+            double imc;
+
+            peso = Convert.ToDouble(txtPeso.Text);
+            altura = Convert.ToDouble(txtAltura.Text);
+
+            imc = (peso / (altura * altura));
+
+            if (imc <= 18.5)
+            {
+                lblIMC.Text = ("Peso abaixo do normal.");
+            }
+            else if ((imc > 18.5) && (imc < 25))
+            {
+                lblIMC.Text = ("Peso normal.");
+            }
+            else if ((imc >= 25) && (imc < 30))
+            {
+                lblIMC.Text = ("Sobrepeso.");
+            }
+            else if ((imc >= 30) && (imc < 35))
+            {
+                lblIMC.Text = ("Grau de Obesidade I.");
+            }
+            else if ((imc >= 35) && (imc < 40))
+            {
+                lblIMC.Text = ("Grau de Obesidade II.");
+            }
+            else if (imc >= 40)
+            {
+                lblIMC.Text = ("Obesidade Grau III ou Mórbida.");
+            }
+        }
+        private void btnFindPacienteAnamnese_Click(object sender, EventArgs e)
+        {
+            btnPacienteCardapio_Click(sender, e);
         }
         #endregion
 
@@ -1468,8 +1603,8 @@ namespace TCC2
 
         private void btnPacienteCardapio_Click(object sender, EventArgs e)
         {
-            frmBuscarPaciente buscaPacientes = new frmBuscarPaciente(this);
-            buscaPacientes.ShowDialog();
+            BuscadorPaciente();
+            txtPaciente.Text = CardapioDAO.nomePacienteCard;
         }
 
         private void dtgConAlimento_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
@@ -1686,13 +1821,16 @@ namespace TCC2
             if (listaPermissao == null || listaPermissao.Count <= 0)
                 return;
             DataTable dt = ConvertToDataTable(listaPermissao);
-            dtgPermUsuarios.Rows.Clear();
-            dtgPermUsuarios.Columns.Clear();
+            if (dtgPermUsuarios.Rows.Count > 0 && dtgPermUsuarios.Columns.Count > 0)
+            {
+                dtgPermUsuarios.Rows.Clear();
+                dtgPermUsuarios.Columns.Clear();
+            }
             dtgPermUsuarios.DataSource = dt;
             dtgPermUsuarios.Columns["Login"].Visible = false;
             dtgPermUsuarios.Columns["ID"].Visible = false;
             dtgPermUsuarios.Columns["usuario"].HeaderText = "Usuário";
-            dtgPermUsuarios.Columns["programa"].HeaderText = "Tela Permitida";
+            dtgPermUsuarios.Columns["programa"].HeaderText = "Tela";
             dtgUsuarios.AutoResizeColumns();
         }
         private void txtUsuarioConfig_Leave(object sender, EventArgs e)
@@ -1725,132 +1863,7 @@ namespace TCC2
                 usuarioDAO.Deletar(Convert.ToString(dtgUsuarios.CurrentRow.Cells["usuario"].Value));
             }
         }
-        #endregion
 
-        private void tbSobre_Enter(object sender, EventArgs e)
-        {
-            VerificarPermissao(tabAgenda.Text);
-        }
-
-        private void VerificarPermissao(string telaPermissao)
-        {
-            if (!permissaoDAO.VerificarPermissao(Convert.ToString(usuarioDAO.getUsuario()), telaPermissao))
-            {
-                nMensagemAviso("Você não possui permissão nessa tela!");
-                TabControlNutreasy.SelectedTab = tabMenu;
-                return;
-            }
-        }
-
-        private void cbxUsuarioPerm_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // permissaoDAO.
-        }
-
-        private void btnFindPacienteAnamnese_Click(object sender, EventArgs e)
-        {
-            btnPacienteCardapio_Click(sender, e);
-        }
-
-        private void mCbxTabelasMedCas_SelectedValueChanged(object sender, EventArgs e)
-        {
-            dtgMedCaseiraAlimentos.DataSource = null;
-            CarregarAlimentos("", "");
-        }
-
-        private void CarregarAlimentos(string nomeAlimento, string nomeTabela)
-        {
-            var listaAlimentos = alimentoDAO.Buscar(nomeAlimento, nomeTabela);
-            if (listaAlimentos == null)
-                return;
-            DataTable dt = ConvertToDataTable(listaAlimentos);
-            dtgMedCaseiraAlimentos.DataSource = dt;
-
-            dtgMedCaseiraAlimentos.Columns["codAlimento"].Visible = false;
-            dtgMedCaseiraAlimentos.Columns["qtd"].Visible = false;
-            dtgMedCaseiraAlimentos.Columns["kcal"].Visible = false;
-            dtgMedCaseiraAlimentos.Columns["prot"].Visible = false;
-            dtgMedCaseiraAlimentos.Columns["carbo"].Visible = false;
-            dtgMedCaseiraAlimentos.Columns["lipidio"].Visible = false;
-            dtgMedCaseiraAlimentos.Columns["MedidaCaseira"].Visible = false;
-            dtgMedCaseiraAlimentos.Columns["Cardapio"].Visible = false;
-            dtgMedCaseiraAlimentos.Columns["nomeTabela"].HeaderText = "Tabela";
-            dtgMedCaseiraAlimentos.Columns["nomeAlimento"].HeaderText = "Alimento";
-        }
-
-        private void mTxtFiltroAlimentoMedCas_Leave(object sender, EventArgs e)
-        {
-            if (mTxtFiltroAlimentoMedCas.Text != "")
-            {
-                CarregarAlimentos(mTxtFiltroAlimentoMedCas.Text, mCbxTabelasMedCas.Text);
-                return;
-            }
-        }
-
-        private void txtDataAgendamento_Leave(object sender, EventArgs e)
-        {
-            if (txtDataAgendamento.Text != "")
-            {
-                DateTime dt;
-                DateTime.TryParseExact(txtDataAgendamento.Text.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dt);
-
-                if (validarData(dt.ToString("dd/MM/yyyy")))
-                {
-                    txtDataAgendamento.Text = dt.ToString("dd/MM/yyyy");
-                }
-                else
-                {
-                    txtDataAgendamento.Text = String.Empty;
-                }
-            }
-        }
-
-        public static bool validarData(string data)
-        {
-            Regex r = new Regex(@"(\d{2}\/\d{2}\/\d{4})");
-            return r.Match(data).Success;
-        }
-
-        private void calAgendamento_ItemCreating(object sender, CalendarItemCancelEventArgs e)
-        {
-            e.Cancel = true;
-        }
-
-        private void CalendarioMes_Click(object sender, EventArgs e)
-        {
-            DateTime dtInicio;
-            DateTime.TryParseExact(CalendarioMes.SelectionStart.ToString("dd/MM/yyyy"),
-                                   "dd/MM/yyyy",
-                                   CultureInfo.InvariantCulture,
-                                   DateTimeStyles.None,
-                                   out dtInicio);
-            DateTime dtFim;
-            DateTime.TryParseExact(CalendarioMes.SelectionStart.AddDays(2).ToString("dd/MM/yyyy"),
-                                   "dd/MM/yyyy",
-                                   CultureInfo.InvariantCulture,
-                                   DateTimeStyles.None,
-                                   out dtFim);
-            txtDataAgendamento.Text = CalendarioMes.SelectionStart.ToString("dd/MM/yyyy");
-
-            calAgendamento.ViewStart = dtInicio;
-            calAgendamento.ViewEnd = dtFim;
-
-            BuscarTodasConsultas();
-            GetConfigAtendimento();
-        }
-
-        private void BuscarTodasConsultas()
-        {
-            var agendados = agendaDAO.CarregarAgenda();
-            if (agendados is null || agendados.Count == 0)
-                return;
-
-            agendados.ForEach(x =>
-            {
-                CalendarItem calAgendamentos = new CalendarItem(calAgendamento, Convert.ToDateTime(x.data + ' ' + x.hora), Convert.ToDateTime(x.data + ' ' + x.hora).AddHours(1), x.paciente);
-                calAgendamento.Items.Add(calAgendamentos);
-            });
-        }
         private void tabHorarioAtendimento_Enter(object sender, EventArgs e)
         {
             var listaUsuarios = usuarioDAO.getUsuario("");
@@ -1902,12 +1915,6 @@ namespace TCC2
             GetConfigAtendimento();
         }
 
-        private void frmMenuPrincipal_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
-        }
-
-
         private void dtgConfigHorario_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0 && e.ColumnIndex < 0)
@@ -1918,6 +1925,51 @@ namespace TCC2
             txtHoraInicio.Text = Convert.ToString(dtgConfigHorario.CurrentRow.Cells["horaInicio"].Value);
             txtHoraFim.Text = Convert.ToString(dtgConfigHorario.CurrentRow.Cells["horaFim"].Value);
 
+        }
+        #endregion
+
+        private void tbSobre_Enter(object sender, EventArgs e)
+        {
+            VerificarPermissao(tabAgenda.Text);
+        }
+
+        private void VerificarPermissao(string telaPermissao)
+        {
+            if (!permissaoDAO.VerificarPermissao(Convert.ToString(usuarioDAO.getUsuario()), telaPermissao))
+            {
+                nMensagemAviso("Você não possui permissão nessa tela!");
+                TabControlNutreasy.SelectedTab = tabMenu;
+                return;
+            }
+        }
+
+        public static bool validarData(string data)
+        {
+            Regex r = new Regex(@"(\d{2}\/\d{2}\/\d{4})");
+            return r.Match(data).Success;
+        }
+
+        private void frmMenuPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+        }
+
+        private void btnBuscarPacienteAgendamento_Click(object sender, EventArgs e)
+        {
+            BuscadorPaciente();
+            txtPacienteAgenda.Text = CardapioDAO.nomePacienteCard;
+        }
+
+        private void BuscadorPaciente()
+        {
+            frmBuscarPaciente buscaPacientes = new frmBuscarPaciente(this);
+            buscaPacientes.ShowDialog();
+        }
+
+        private void btnPacAnt_Click(object sender, EventArgs e)
+        {
+            BuscadorPaciente();
+            txtPacienteAntro.Text = CardapioDAO.nomePacienteCard;
         }
     }
 }

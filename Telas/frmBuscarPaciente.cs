@@ -12,9 +12,9 @@ namespace TCC2
         public PacienteDAO pacienteDAO = new PacienteDAO();
         public CardapioDAO cardapioDAO = new CardapioDAO();
 
-        frmMenuPrincipal instanciaMenuPrincipal;
+        FrmMenuPrincipal instanciaMenuPrincipal;
 
-        public frmBuscarPaciente(frmMenuPrincipal menu)
+        public frmBuscarPaciente(FrmMenuPrincipal menu)
         {
             InitializeComponent();
             instanciaMenuPrincipal = menu;
@@ -39,7 +39,7 @@ namespace TCC2
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.BlueGrey500, Accent.LightGreen200, TextShade.WHITE);
 
-            var menu = new frmMenuPrincipal("");
+            var menu = new FrmMenuPrincipal("");
             var listaPaciente = pacienteDAO.Buscar("");
             if (listaPaciente == null)
                 return;
@@ -61,6 +61,7 @@ namespace TCC2
             dtgPacientes.Columns["cpf"].Visible = false;
             dtgPacientes.Columns["cep"].Visible = false;
             dtgPacientes.Columns["Cardapio"].Visible = false;
+            dtgPacientes.Columns["AnamnesePaciente"].Visible = false;
             dtgPacientes.Columns.Add("idade", "Idade");
             foreach (DataGridViewRow row in dtgPacientes.Rows)
             {
@@ -76,10 +77,7 @@ namespace TCC2
                 if (e.ColumnIndex >= 0)
                 {
                     CardapioDAO.codPacienteCard = dtgPacientes.Rows[e.RowIndex].Cells["codPaciente"].Value.ToString();
-                    instanciaMenuPrincipal.txtPaciente.Text = dtgPacientes.Rows[e.RowIndex].Cells["nome"].Value.ToString();
-                    instanciaMenuPrincipal.txtPaciente.Refresh();
-                    instanciaMenuPrincipal.txtPacienteConsultaCardapio.Text = dtgPacientes.Rows[e.RowIndex].Cells["nome"].Value.ToString();
-                    instanciaMenuPrincipal.txtPacienteConsultaCardapio.Refresh();
+                    CardapioDAO.nomePacienteCard = dtgPacientes.Rows[e.RowIndex].Cells["nome"].Value.ToString();
                     frmBuscarPaciente.ActiveForm.Close();
                 }
         }

@@ -235,13 +235,28 @@ namespace TCC2
         #endregion
 
         #region Agenda
+
         private void tabAgenda_Enter(object sender, EventArgs e)
         {
             VerificarPermissao(tabAgenda.Text);
-
             calAgendamento.Items.Clear();
+            //calAgendamento.ViewStart = RetornaInicioSemana(DateTime.Today);
+            //calAgendamento.ViewEnd = RetornaFimSemana(DateTime.Today);
             BuscarTodasConsultas();
             GetConfigAtendimento();
+            calAgendamento.Refresh();
+        }
+
+        private DateTime RetornaInicioSemana(DateTime data)
+        {
+            DateTime monday = DateTime.Today.AddDays(-(int)data.DayOfWeek + (int)DayOfWeek.Monday);
+            return monday;
+        }
+
+        private DateTime RetornaFimSemana(DateTime data)
+        {
+            DateTime friday = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Friday);
+            return friday;
         }
 
         private void GetConfigAtendimento()
@@ -252,40 +267,48 @@ namespace TCC2
 
             foreach (var config in listaConfigs)
             {
-                foreach (CalendarHighlightRange teste in calAgendamento.HighlightRanges)
+                TimeSpan horaIni = TimeSpan.Parse(config.horaInicio);
+                TimeSpan horaFim = TimeSpan.Parse(config.horaFim);
+                var configCalendar = calAgendamento.HighlightRanges;
+                switch (config.diaSemana)
                 {
-                    DayOfWeek dia;
-                    TimeSpan horaIni = TimeSpan.Parse(config.horaInicio);
-                    TimeSpan horaFim = TimeSpan.Parse(config.horaFim);
-                    switch (config.diaSemana)
-                    {
-                        case "Domingo":
-                            dia = DayOfWeek.Sunday;
-                            break;
-                        case "Segunda":
-                            dia = DayOfWeek.Monday;
-                            break;
-                        case "Terça":
-                            dia = DayOfWeek.Tuesday;
-                            break;
-                        case "Quarta":
-                            dia = DayOfWeek.Wednesday;
-                            break;
-                        case "Quinta":
-                            dia = DayOfWeek.Thursday;
-                            break;
-                        case "Sexta":
-                            dia = DayOfWeek.Friday;
-                            break;
-                        case "Sabado":
-                            dia = DayOfWeek.Saturday;
-                            break;
-                        default:
-                            return;
-                    }
-                    teste.DayOfWeek = dia;
-                    teste.StartTime = horaIni;
-                    teste.EndTime = horaFim;
+                    case "Segunda":
+                        configCalendar[0].EndTime = horaFim;
+                        configCalendar[0].StartTime = horaIni;
+                        configCalendar[0].DayOfWeek = DayOfWeek.Monday;
+                        break;
+                    case "Terça":
+                        configCalendar[1].EndTime = horaFim;
+                        configCalendar[1].StartTime = horaIni;
+                        configCalendar[1].DayOfWeek = DayOfWeek.Tuesday;
+                        break;
+                    case "Quarta":
+                        configCalendar[2].EndTime = horaFim;
+                        configCalendar[2].StartTime = horaIni;
+                        configCalendar[2].DayOfWeek = DayOfWeek.Wednesday;
+                        break;
+                    case "Quinta":
+                        configCalendar[3].EndTime = horaFim;
+                        configCalendar[3].StartTime = horaIni;
+                        configCalendar[3].DayOfWeek = DayOfWeek.Thursday;
+                        break;
+                    case "Sexta":
+                        configCalendar[4].EndTime = horaFim;
+                        configCalendar[4].StartTime = horaIni;
+                        configCalendar[4].DayOfWeek = DayOfWeek.Friday;
+                        break;
+                    case "Sábado":
+                        configCalendar[5].EndTime = horaFim;
+                        configCalendar[5].StartTime = horaIni;
+                        configCalendar[5].DayOfWeek = DayOfWeek.Saturday;
+                        break;
+                    case "Domingo":
+                        configCalendar[6].EndTime = horaFim;
+                        configCalendar[6].StartTime = horaIni;
+                        configCalendar[6].DayOfWeek = DayOfWeek.Sunday;
+                        break;
+                    default:
+                        return;
                 }
             }
         }
@@ -411,12 +434,12 @@ namespace TCC2
 
         private void CancelarAtendimento(string data, string paciente, bool atendido, bool retorno)
         {
-                agendaDAO.AdicionarPaciente(data.Substring(0, 10), data.Substring(11), paciente, atendido, retorno, 1,true);
+            agendaDAO.AdicionarPaciente(data.Substring(0, 10), data.Substring(11), paciente, atendido, retorno, 1, true);
         }
 
         private void FinalizarAtendimento(string data, string paciente, bool atendido, bool retorno)
         {
-                agendaDAO.AdicionarPaciente(data.Substring(0, 10), data.Substring(11), paciente, atendido, retorno, 0,true);
+            agendaDAO.AdicionarPaciente(data.Substring(0, 10), data.Substring(11), paciente, atendido, retorno, 0, true);
         }
         #endregion
 
@@ -791,7 +814,7 @@ namespace TCC2
         private void txtAlimentoFiltro_Leave(object sender, EventArgs e)
         {
             if (cbxTabela.Text != "" && txtAlimentoFiltro.Text != "")
-            {                
+            {
                 CarregarAlimentos(txtAlimentoFiltro.Text, cbxTabela.Text);
                 return;
             }
@@ -905,7 +928,7 @@ namespace TCC2
                     txtCEP.Text = Convert.ToUInt64(txtCEP.Text).ToString(@"00000\-000");
                 }
                 catch { }
-            }           
+            }
         }
 
         public static Bitmap ByteToImage(byte[] blob)
@@ -1601,7 +1624,7 @@ namespace TCC2
                 Interaction.MsgBox("O usuário não foi informado");
                 return;
             }
-           
+
             if (txtSenha.Text != txtConfirmarSenha.Text)
             {
                 Interaction.MsgBox("As senhas não conferem");
@@ -1617,7 +1640,7 @@ namespace TCC2
             }
             else
             {
-                usuarioDAO.CriarUsuario(txtUsuarioConfig.Text, txtSenha.Text, txtNomeUsuarioConfig.Text, txtEmailConfig.Text, cbxSituacao.Text, cbxTipoUsuario.Text,txtCRN.Text);
+                usuarioDAO.CriarUsuario(txtUsuarioConfig.Text, txtSenha.Text, txtNomeUsuarioConfig.Text, txtEmailConfig.Text, cbxSituacao.Text, cbxTipoUsuario.Text, txtCRN.Text);
                 tbConfig_Enter(sender, e);
             }
         }
@@ -1721,7 +1744,7 @@ namespace TCC2
 
         private void cbxUsuarioPerm_SelectedIndexChanged(object sender, EventArgs e)
         {
-           // permissaoDAO.
+            // permissaoDAO.
         }
 
         private void btnFindPacienteAnamnese_Click(object sender, EventArgs e)
@@ -1732,7 +1755,7 @@ namespace TCC2
         private void mCbxTabelasMedCas_SelectedValueChanged(object sender, EventArgs e)
         {
             dtgMedCaseiraAlimentos.DataSource = null;
-            CarregarAlimentos("","");
+            CarregarAlimentos("", "");
         }
 
         private void CarregarAlimentos(string nomeAlimento, string nomeTabela)
@@ -1773,7 +1796,7 @@ namespace TCC2
 
                 if (validarData(dt.ToString("dd/MM/yyyy")))
                 {
-                   txtDataAgendamento.Text = dt.ToString("dd/MM/yyyy");
+                    txtDataAgendamento.Text = dt.ToString("dd/MM/yyyy");
                 }
                 else
                 {
@@ -1808,9 +1831,10 @@ namespace TCC2
                                    DateTimeStyles.None,
                                    out dtFim);
             txtDataAgendamento.Text = CalendarioMes.SelectionStart.ToString("dd/MM/yyyy");
+
             calAgendamento.ViewStart = dtInicio;
             calAgendamento.ViewEnd = dtFim;
-            
+
             BuscarTodasConsultas();
             GetConfigAtendimento();
         }
@@ -1857,7 +1881,7 @@ namespace TCC2
             if (string.IsNullOrEmpty(txtHoraInicio.Text)) { nMensagemAviso("Favor informar a hora início!"); return; }
             if (string.IsNullOrEmpty(txtHoraFim.Text)) { nMensagemAviso("Favor informar a hora fim!"); return; }
 
-            configDAO.Salvar(Convert.ToString(cbxUsuNutri.Text),Convert.ToString(cbxDiaSemana.Text),Convert.ToString(txtHoraInicio.Text), Convert.ToString(txtHoraFim.Text));
+            configDAO.Salvar(Convert.ToString(cbxUsuNutri.Text), Convert.ToString(cbxDiaSemana.Text), Convert.ToString(txtHoraInicio.Text), Convert.ToString(txtHoraFim.Text));
             CarregarConfigs();
         }
 
@@ -1874,11 +1898,26 @@ namespace TCC2
             dtgConfigHorario.Columns["diaSemana"].HeaderText = "Semana";
             dtgConfigHorario.Columns["horaInicio"].HeaderText = "Início";
             dtgConfigHorario.Columns["horaFim"].HeaderText = "Fim";
+
+            GetConfigAtendimento();
         }
 
         private void frmMenuPrincipal_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+
+        }
+
+
+        private void dtgConfigHorario_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 && e.ColumnIndex < 0)
+                return;
+
+            cbxUsuarioPerm.SelectedText = Convert.ToString(dtgConfigHorario.CurrentRow.Cells["usuario"].Value);
+            cbxDiaSemana.SelectedText = Convert.ToString(dtgConfigHorario.CurrentRow.Cells["diaSemana"].Value);
+            txtHoraInicio.Text = Convert.ToString(dtgConfigHorario.CurrentRow.Cells["horaInicio"].Value);
+            txtHoraFim.Text = Convert.ToString(dtgConfigHorario.CurrentRow.Cells["horaFim"].Value);
+
         }
     }
 }

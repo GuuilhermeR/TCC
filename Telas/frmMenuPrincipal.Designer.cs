@@ -31,6 +31,13 @@ namespace TCC2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange1 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange2 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange3 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange4 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange5 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange6 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange7 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenuPrincipal));
             this.TabControlNutreasy = new MaterialSkin.Controls.MaterialTabControl();
             this.tabMenu = new System.Windows.Forms.TabPage();
@@ -620,9 +627,37 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.calAgendamento.BackColor = System.Drawing.SystemColors.Control;
-            this.calAgendamento.FirstDayOfWeek = System.DayOfWeek.Monday;
             this.calAgendamento.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.calAgendamento.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[0];
+            calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange1.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange1.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange2.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange2.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange2.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange3.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange3.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange3.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange4.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange4.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange4.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange5.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange5.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange5.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange6.DayOfWeek = System.DayOfWeek.Saturday;
+            calendarHighlightRange6.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange6.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange7.DayOfWeek = System.DayOfWeek.Sunday;
+            calendarHighlightRange7.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange7.StartTime = System.TimeSpan.Parse("00:00:00");
+            this.calAgendamento.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
+        calendarHighlightRange1,
+        calendarHighlightRange2,
+        calendarHighlightRange3,
+        calendarHighlightRange4,
+        calendarHighlightRange5,
+        calendarHighlightRange6,
+        calendarHighlightRange7};
+            this.calAgendamento.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.calAgendamento.ItemsTimeFormat = "hh:mm";
             this.calAgendamento.Location = new System.Drawing.Point(3, 169);
             this.calAgendamento.Name = "calAgendamento";
@@ -2418,6 +2453,7 @@ namespace TCC2
             this.dtgConfigHorario.RowHeadersWidth = 51;
             this.dtgConfigHorario.Size = new System.Drawing.Size(1203, 432);
             this.dtgConfigHorario.TabIndex = 5;
+            this.dtgConfigHorario.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgConfigHorario_CellDoubleClick);
             // 
             // btnSalvarHoraAtend
             // 

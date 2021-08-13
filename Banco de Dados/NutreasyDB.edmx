@@ -38,6 +38,22 @@
           <Property Name="codPaciente" Type="integer" />
           <Property Name="descAnamnese" Type="nvarchar" MaxLength="2147483647" />
         </EntityType>
+        <EntityType Name="Antropometria">
+          <Key>
+            <PropertyRef Name="codPaciente" />
+          </Key>
+          <Property Name="codPaciente" Type="integer" Nullable="false" />
+          <Property Name="peso" Type="real" />
+          <Property Name="altura" Type="real" />
+          <Property Name="braco" Type="real" />
+          <Property Name="punho" Type="real" />
+          <Property Name="cintura" Type="real" />
+          <Property Name="torax" Type="real" />
+          <Property Name="quadril" Type="real" />
+          <Property Name="panturrilha" Type="real" />
+          <Property Name="antebraco" Type="real" />
+          <Property Name="coxa" Type="real" />
+        </EntityType>
         <EntityType Name="Cardapio">
           <Key>
             <PropertyRef Name="ID" />
@@ -121,6 +137,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Antropometria_0_0">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+          <End Role="Antropometria" Type="Self.Antropometria" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="codPaciente" />
+            </Principal>
+            <Dependent Role="Antropometria">
+              <PropertyRef Name="codPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Cardapio_0_0">
           <End Role="Alimentos" Type="Self.Alimentos" Multiplicity="0..1" />
           <End Role="Cardapio" Type="Self.Cardapio" Multiplicity="*" />
@@ -185,6 +213,7 @@
           <EntitySet Name="Agenda" EntityType="Self.Agenda" store:Type="Tables" />
           <EntitySet Name="Alimentos" EntityType="Self.Alimentos" store:Type="Tables" />
           <EntitySet Name="AnamnesePaciente" EntityType="Self.AnamnesePaciente" store:Type="Tables" />
+          <EntitySet Name="Antropometria" EntityType="Self.Antropometria" store:Type="Tables" />
           <EntitySet Name="Cardapio" EntityType="Self.Cardapio" store:Type="Tables" />
           <EntitySet Name="ConfiguracoesUsuarios" EntityType="Self.ConfiguracoesUsuarios" store:Type="Tables" />
           <EntitySet Name="Login" EntityType="Self.Login" store:Type="Tables" />
@@ -194,6 +223,10 @@
           <AssociationSet Name="FK_AnamnesePaciente_0_0" Association="Self.FK_AnamnesePaciente_0_0">
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="AnamnesePaciente" EntitySet="AnamnesePaciente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Antropometria_0_0" Association="Self.FK_Antropometria_0_0">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Antropometria" EntitySet="Antropometria" />
           </AssociationSet>
           <AssociationSet Name="FK_Cardapio_0_0" Association="Self.FK_Cardapio_0_0">
             <End Role="Alimentos" EntitySet="Alimentos" />
@@ -306,6 +339,7 @@
           <Property Name="imagem" Type="Binary" MaxLength="2147483647" FixedLength="false" />
           <NavigationProperty Name="Cardapio" Relationship="Self.FK_Cardapio_1_0" FromRole="Paciente" ToRole="Cardapio" />
           <NavigationProperty Name="AnamnesePaciente" Relationship="mainModel.FK_AnamnesePaciente_0_0" FromRole="Paciente" ToRole="AnamnesePaciente" />
+          <NavigationProperty Name="Antropometria" Relationship="mainModel.FK_Antropometria_0_0" FromRole="Paciente" ToRole="Antropometria" />
         </EntityType>
         <Association Name="FK_Cardapio_0_0">
           <End Role="Alimentos" Type="Self.Alimentos" Multiplicity="0..1" />
@@ -377,6 +411,11 @@
             <End Role="Login" EntitySet="Login" />
             <End Role="ConfiguracoesUsuarios" EntitySet="ConfiguracoesUsuarios" />
           </AssociationSet>
+          <EntitySet Name="Antropometria" EntityType="mainModel.Antropometria" />
+          <AssociationSet Name="FK_Antropometria_0_0" Association="mainModel.FK_Antropometria_0_0">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Antropometria" EntitySet="Antropometria" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Permissao">
           <Key>
@@ -440,6 +479,35 @@
             </Principal>
             <Dependent Role="ConfiguracoesUsuarios">
               <PropertyRef Name="usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Antropometria">
+          <Key>
+            <PropertyRef Name="codPaciente" />
+          </Key>
+          <Property Name="codPaciente" Type="Int64" Nullable="false" />
+          <Property Name="peso" Type="Double" />
+          <Property Name="altura" Type="Double" />
+          <Property Name="braco" Type="Double" />
+          <Property Name="punho" Type="Double" />
+          <Property Name="cintura" Type="Double" />
+          <Property Name="torax" Type="Double" />
+          <Property Name="quadril" Type="Double" />
+          <Property Name="panturrilha" Type="Double" />
+          <Property Name="antebraco" Type="Double" />
+          <Property Name="coxa" Type="Double" />
+          <NavigationProperty Name="Paciente" Relationship="mainModel.FK_Antropometria_0_0" FromRole="Antropometria" ToRole="Paciente" />
+        </EntityType>
+        <Association Name="FK_Antropometria_0_0">
+          <End Type="mainModel.Paciente" Role="Paciente" Multiplicity="1" />
+          <End Type="mainModel.Antropometria" Role="Antropometria" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="codPaciente" />
+            </Principal>
+            <Dependent Role="Antropometria">
+              <PropertyRef Name="codPaciente" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -559,6 +627,23 @@
                 <ScalarProperty Name="diaSemana" ColumnName="diaSemana" />
                 <ScalarProperty Name="usuario" ColumnName="usuario" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Antropometria">
+            <EntityTypeMapping TypeName="mainModel.Antropometria">
+              <MappingFragment StoreEntitySet="Antropometria">
+                <ScalarProperty Name="coxa" ColumnName="coxa" />
+                <ScalarProperty Name="antebraco" ColumnName="antebraco" />
+                <ScalarProperty Name="panturrilha" ColumnName="panturrilha" />
+                <ScalarProperty Name="quadril" ColumnName="quadril" />
+                <ScalarProperty Name="torax" ColumnName="torax" />
+                <ScalarProperty Name="cintura" ColumnName="cintura" />
+                <ScalarProperty Name="punho" ColumnName="punho" />
+                <ScalarProperty Name="braco" ColumnName="braco" />
+                <ScalarProperty Name="altura" ColumnName="altura" />
+                <ScalarProperty Name="peso" ColumnName="peso" />
+                <ScalarProperty Name="codPaciente" ColumnName="codPaciente" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

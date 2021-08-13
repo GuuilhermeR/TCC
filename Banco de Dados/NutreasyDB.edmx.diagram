@@ -20,6 +20,8 @@
         <AssociationConnector Association="mainModel.FK_AnamnesePaciente_0_0" />
         <EntityTypeShape EntityType="mainModel.ConfiguracoesUsuarios" Width="1.5" PointX="20.75" PointY="7.375" />
         <AssociationConnector Association="mainModel.FK_ConfiguracoesUsuarios_0_0" />
+        <EntityTypeShape EntityType="mainModel.Antropometria" Width="1.5" PointX="12.125" PointY="7.75" />
+        <AssociationConnector Association="mainModel.FK_Antropometria_0_0" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

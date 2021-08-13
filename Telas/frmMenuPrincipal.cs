@@ -40,6 +40,8 @@ namespace TCC2
         public CardapioDAO cardapioDAO = new CardapioDAO();
         public ConfiguracoesDAO configDAO = new ConfiguracoesDAO();
         public BuscadorCEP buscaCEP = new BuscadorCEP();
+        public AnamneseDAO anamneseDAO = new AnamneseDAO();
+        public AntropometriaDAO antropometriaDAO = new AntropometriaDAO();
         private DataTableCollection tables;
         List<string> deletarAlimento = new List<string>();
         private object tamanhoArquivoImagem;
@@ -1286,6 +1288,8 @@ namespace TCC2
         private void btnFindPacienteAnamnese_Click(object sender, EventArgs e)
         {
             btnPacienteCardapio_Click(sender, e);
+            txtPacienteAnamnese.Text = CardapioDAO.nomePacienteCard;
+
         }
         #endregion
 
@@ -1971,5 +1975,11 @@ namespace TCC2
             BuscadorPaciente();
             txtPacienteAntro.Text = CardapioDAO.nomePacienteCard;
         }
+
+        private void btnSalvarAnamnese_Click(object sender, EventArgs e)
+        {
+            anamneseDAO.Salvar(Convert.ToInt32(CardapioDAO.codPacienteCard),Convert.ToString(rtxtAnamnese.Text));
+        }
+
     }
 }

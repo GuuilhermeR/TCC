@@ -58,7 +58,12 @@ namespace TCC2
         {
             InitializeComponent();
             usuarioDAO.setNomeUsuario(usuarioLogado);
+            var OpcoesMenu = new ContextMenu();
+            OpcoesMenu.MenuItems.Add(new MenuItem("Deslogar", Deslogar));
+            OpcoesMenu.MenuItems.Add(new MenuItem("Fechar", FecharAplicacao));
+            NutreasyIconNotify.ContextMenu = OpcoesMenu;
         }
+
 
         private void frmMenuPrincipal_Load(object sender, EventArgs e)
         {
@@ -78,11 +83,6 @@ namespace TCC2
             {
                 lblUsuario.Visible = false;
             }
-
-            var OpcoesMenu = new ContextMenu();
-            OpcoesMenu.MenuItems.Add(new MenuItem("Deslogar", Deslogar));
-            OpcoesMenu.MenuItems.Add(new MenuItem("Fechar", FecharAplicacao));
-            NutreasyIconNotify.ContextMenu = OpcoesMenu;
 
         }
 
@@ -1355,18 +1355,20 @@ namespace TCC2
                 dtgRefeicoes.AutoResizeColumns();
             }
 
-            //if(proteina >= 1)
+            lblVlrKcal.Visible = true;
+            //if (proteina >= Convert.ToDouble(txtProteina.Text))
             //{
             //    MessageBox.Show("A proteína atingiu o limite configurado");
             //    dtgRefeicoes.Rows.Remove(linhaAdicionada);
             //    return;
-            //} else if(carboidrato >= 1)
+            //}
+            //else if (carboidrato >= Convert.ToDouble(txtCarboidrato.Text))
             //{
             //    MessageBox.Show("A carboidrato atingiu o limite configurado");
             //    dtgRefeicoes.Rows.Remove(linhaAdicionada);
             //    return;
             //}
-            //else if(lipidio >= 1)
+            //else if (lipidio >= Convert.ToDouble(txtLipidio.Text))
             //{
             //    MessageBox.Show("A lipídio atingiu o limite configurado");
             //    dtgRefeicoes.Rows.Remove(linhaAdicionada);
@@ -1533,7 +1535,25 @@ namespace TCC2
         private DataGridViewRow adicionar(DataGridViewRow row)
         {
             DataGridViewRow newRow = (DataGridViewRow)row.Clone();
-            //var colunaMedidaCaseira = new DataGridViewComboBoxColumn();
+            DataGridViewComboBoxColumn colunaMedidaCaseira = new DataGridViewComboBoxColumn();
+            colunaMedidaCaseira.HeaderText = "Medida Caseira";
+            colunaMedidaCaseira.Name = "medCaseira";
+
+            var medCaseiraItens = medidaCaseiraDAO.Buscar(Convert.ToInt32(row.Cells["codAlimento"].Value));
+
+            if (medCaseiraItens != null)
+            {
+                colunaMedidaCaseira.Items.Clear();
+
+                medCaseiraItens.ForEach(x =>
+                {
+                    foreach (DataGridViewRow linha in dtgCardapioAlimentos.Rows)
+                    {
+                        if (Convert.ToDouble(x.codAlimento) == Convert.ToDouble(dtgCardapioAlimentos.Rows[linha.Index].Cells["codAlimento"].Value))
+                            colunaMedidaCaseira.Items.Add(x.descricao);
+                    }
+                });
+            }
 
             if (dtgRefeicoes.Columns.Count == 0)
             {
@@ -1545,8 +1565,8 @@ namespace TCC2
                 dtgRefeicoes.Columns.Add("carbo", "Carbo");
                 dtgRefeicoes.Columns.Add("lipidio", "Lipidio");
                 dtgRefeicoes.Columns.Add("nomeTabela", "nomeTabela");
-                dtgRefeicoes.Columns.Add("MedidaCaseira", "MedidaCaseira");
                 dtgRefeicoes.Columns.Add("obs", "Observação");
+                dtgRefeicoes.Columns.Add(colunaMedidaCaseira);
                 dtgRefeicoes.Columns["codAlimento"].Visible = false;
                 dtgRefeicoes.Columns["nomeAlimento"].HeaderText = "Alimento";
                 dtgRefeicoes.Columns["kcal"].Visible = false;
@@ -1555,9 +1575,7 @@ namespace TCC2
                 dtgRefeicoes.Columns["carbo"].Visible = false;
                 dtgRefeicoes.Columns["lipidio"].Visible = false;
                 dtgRefeicoes.Columns["nomeTabela"].Visible = false;
-                dtgRefeicoes.Columns["MedidaCaseira"].Visible = false;
             }
-
             newRow.Cells[0].Value = row.Cells["codAlimento"].Value;
             newRow.Cells[1].Value = row.Cells["nomeAlimento"].Value;
             newRow.Cells[2].Value = row.Cells["kcal"].Value;
@@ -1566,18 +1584,6 @@ namespace TCC2
             newRow.Cells[5].Value = row.Cells["carbo"].Value;
             newRow.Cells[6].Value = row.Cells["lipidio"].Value;
 
-            //var medCaseiraItens = medidaCaseiraDAO.Buscar(Convert.ToInt32(row.Cells["codAlimento"].Value));
-
-            //if (medCaseiraItens == null)
-            //return newRow;
-
-            //colunaMedidaCaseira.HeaderText = "Medida Caseira";
-            //colunaMedidaCaseira.Name = "medCaseira";
-            //medCaseiraItens.ForEach(x =>
-            //{
-            //    if (x.codAlimento == x.Alimentos.codAlimento)
-            //        colunaMedidaCaseira.Items.Add(x.descricao);
-            //});
 
             return newRow;
         }
@@ -1978,7 +1984,7 @@ namespace TCC2
 
         private void btnSalvarAnamnese_Click(object sender, EventArgs e)
         {
-            anamneseDAO.Salvar(Convert.ToInt32(CardapioDAO.codPacienteCard),Convert.ToString(rtxtAnamnese.Text));
+            anamneseDAO.Salvar(Convert.ToInt32(CardapioDAO.codPacienteCard), Convert.ToString(rtxtAnamnese.Text));
         }
 
     }

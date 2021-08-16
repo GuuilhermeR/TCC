@@ -42,24 +42,28 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dtgPacientes.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dtgPacientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgPacientes.Location = new System.Drawing.Point(6, 75);
+            this.dtgPacientes.Location = new System.Drawing.Point(4, 61);
+            this.dtgPacientes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dtgPacientes.Name = "dtgPacientes";
             this.dtgPacientes.ReadOnly = true;
             this.dtgPacientes.RowHeadersWidth = 51;
             this.dtgPacientes.RowTemplate.Height = 24;
-            this.dtgPacientes.Size = new System.Drawing.Size(621, 443);
+            this.dtgPacientes.Size = new System.Drawing.Size(466, 360);
             this.dtgPacientes.TabIndex = 0;
             this.dtgPacientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgPacientes_CellDoubleClick);
             // 
             // frmBuscarPaciente
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(633, 524);
+            this.ClientSize = new System.Drawing.Size(475, 426);
             this.Controls.Add(this.dtgPacientes);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.Name = "frmBuscarPaciente";
+            this.Padding = new System.Windows.Forms.Padding(2, 52, 2, 2);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pacientes Cadastrados";
             this.Load += new System.EventHandler(this.frmBuscarPaciente_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgPacientes)).EndInit();

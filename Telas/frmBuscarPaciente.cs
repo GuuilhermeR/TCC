@@ -62,6 +62,7 @@ namespace TCC2
             dtgPacientes.Columns["cep"].Visible = false;
             dtgPacientes.Columns["Cardapio"].Visible = false;
             dtgPacientes.Columns["AnamnesePaciente"].Visible = false;
+            dtgPacientes.Columns["Antropometria"].Visible = false;
             dtgPacientes.Columns.Add("idade", "Idade");
             foreach (DataGridViewRow row in dtgPacientes.Rows)
             {

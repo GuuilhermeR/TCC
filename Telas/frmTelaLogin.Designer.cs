@@ -70,7 +70,7 @@ namespace TCC2
             this.txtUsuario.Depth = 0;
             this.txtUsuario.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtUsuario.Hint = "Usuário";
-            this.txtUsuario.LeadingIcon = null;
+            this.txtUsuario.LeadingIcon = global::TCC2.Properties.Resources._4105938_account_card_id_identification_identity_card_profile_user_profile_113929;
             this.txtUsuario.Location = new System.Drawing.Point(71, 305);
             this.txtUsuario.MaxLength = 50;
             this.txtUsuario.MouseState = MaterialSkin.MouseState.OUT;
@@ -90,7 +90,7 @@ namespace TCC2
             this.txtSenha.Depth = 0;
             this.txtSenha.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtSenha.Hint = "Senha";
-            this.txtSenha.LeadingIcon = null;
+            this.txtSenha.LeadingIcon = global::TCC2.Properties.Resources._4105941_lock_login_password_security_sign_in_sign_out_113932;
             this.txtSenha.Location = new System.Drawing.Point(71, 374);
             this.txtSenha.MaxLength = 50;
             this.txtSenha.MouseState = MaterialSkin.MouseState.OUT;

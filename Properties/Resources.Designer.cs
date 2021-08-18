@@ -73,6 +73,26 @@ namespace TCC2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _4105938_account_card_id_identification_identity_card_profile_user_profile_113929 {
+            get {
+                object obj = ResourceManager.GetObject("4105938-account-card-id-identification-identity-card-profile-user-profile_113929", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _4105941_lock_login_password_security_sign_in_sign_out_113932 {
+            get {
+                object obj = ResourceManager.GetObject("4105941-lock-login-password-security-sign-in-sign-out_113932", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Adicionar {
             get {
                 object obj = ResourceManager.GetObject("Adicionar", resourceCulture);
@@ -176,6 +196,16 @@ namespace TCC2.Properties {
         internal static System.Drawing.Bitmap no_icon_png_6 {
             get {
                 object obj = ResourceManager.GetObject("no-icon-png-6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap user_id_icon_34334 {
+            get {
+                object obj = ResourceManager.GetObject("user-id-icon_34334", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

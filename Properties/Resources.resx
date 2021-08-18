@@ -118,40 +118,49 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="mvtSaveGreen-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mvtSaveGreen-161.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="1486564177-finance-finance-calculator_81497" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1486564177-finance-finance-calculator_81497.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Adicionar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Adicionar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="4105941-lock-login-password-security-sign-in-sign-out_113932" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\4105941-lock-login-password-security-sign-in-sign-out_113932.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="loading (1) (4)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\loading (1) (4).gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="consultar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\consultar2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="CarregarLoading" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CarregarLoading.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="user-id-icon_34334" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\user-id-icon_34334.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DeleteRed" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DeleteRed1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="no-icon-png-6" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\no-icon-png-6.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Adicionar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Adicionar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="1486564177-finance-finance-calculator_81497" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\1486564177-finance-finance-calculator_81497.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="consultar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\consultar2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="arrow-icon-1 - Copia" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\arrow-icon-1 - Copia.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="no-icon-png-6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\no-icon-png-6.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="iconTCC-removebg-preview (1) - Copia" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\iconTCC-removebg-preview (1) - Copia.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="database_import_icon_135719" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\database_import_icon_135719.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="arrow-icon-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\arrow-icon-1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="database_import_icon_135719" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\database_import_icon_135719.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="CarregarLoading" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CarregarLoading.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="loading (1) (4)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\loading (1) (4).gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mvtSaveGreen-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mvtSaveGreen-161.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="4105938-account-card-id-identification-identity-card-profile-user-profile_113929" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\4105938-account-card-id-identification-identity-card-profile-user-profile_113929.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -64,7 +64,6 @@ namespace TCC2
             NutreasyIconNotify.ContextMenu = OpcoesMenu;
         }
 
-
         private void frmMenuPrincipal_Load(object sender, EventArgs e)
         {
             materialSkinManager.EnforceBackcolorOnAllComponents = true;
@@ -238,11 +237,11 @@ namespace TCC2
         #region Agenda
         private void tabAgenda_Enter(object sender, EventArgs e)
         {
+            calAgendamento.Items.Clear();
             VerificarPermissao(tabAgenda.Text);
             GetConfigAtendimento();
-            calAgendamento.Items.Clear();
-            //calAgendamento.ViewStart = RetornaInicioSemana(DateTime.Today);
-            //calAgendamento.ViewEnd = RetornaFimSemana(DateTime.Today);
+            calAgendamento.ViewStart = RetornaInicioSemana(DateTime.Today);
+            calAgendamento.ViewEnd = RetornaFimSemana(DateTime.Today);
             BuscarTodasConsultas();
             calAgendamento.Refresh();
         }
@@ -481,7 +480,9 @@ namespace TCC2
             txtDataAgendamento.Text = CalendarioMes.SelectionStart.ToString("dd/MM/yyyy");
 
             calAgendamento.ViewStart = dtInicio;
-            calAgendamento.ViewEnd = dtFim;
+            //calAgendamento.ViewEnd = dtFim;
+
+            calAgendamento.ViewEnd = RetornaFimSemana(dtInicio);
 
             BuscarTodasConsultas();
             GetConfigAtendimento();
@@ -1341,7 +1342,7 @@ namespace TCC2
                 foreach (DataGridViewRow row in dtgCardapioAlimentos.Rows)
                     if (row.Selected == true || row.Cells["nomeAlimento"].Selected)
                     {
-                        linhaAdicionada = adicionar(row);
+                        linhaAdicionada = Adicionar(row);
                         dtgRefeicoes.Rows.Add(linhaAdicionada);
                     }
 
@@ -1532,31 +1533,15 @@ namespace TCC2
             graficoMacroNutri.LegendLocation = LegendLocation.Right;
         }
 
-        private DataGridViewRow adicionar(DataGridViewRow row)
+        private DataGridViewRow Adicionar(DataGridViewRow row)
         {
-            DataGridViewRow newRow = (DataGridViewRow)row.Clone();
-            DataGridViewComboBoxColumn colunaMedidaCaseira = new DataGridViewComboBoxColumn();
-            colunaMedidaCaseira.HeaderText = "Medida Caseira";
-            colunaMedidaCaseira.Name = "medCaseira";
-
-            var medCaseiraItens = medidaCaseiraDAO.Buscar(Convert.ToInt32(row.Cells["codAlimento"].Value));
-
-            if (medCaseiraItens != null)
-            {
-                colunaMedidaCaseira.Items.Clear();
-
-                medCaseiraItens.ForEach(x =>
-                {
-                    foreach (DataGridViewRow linha in dtgCardapioAlimentos.Rows)
-                    {
-                        if (Convert.ToDouble(x.codAlimento) == Convert.ToDouble(dtgCardapioAlimentos.Rows[linha.Index].Cells["codAlimento"].Value))
-                            colunaMedidaCaseira.Items.Add(x.descricao);
-                    }
-                });
-            }
-
             if (dtgRefeicoes.Columns.Count == 0)
             {
+
+                DataGridViewComboBoxColumn colunaMedidaCaseira = new DataGridViewComboBoxColumn();
+                colunaMedidaCaseira.HeaderText = "Medida Caseira";
+                colunaMedidaCaseira.Name = "medCaseira";
+
                 dtgRefeicoes.Columns.Add("codAlimento", "codAlimento");
                 dtgRefeicoes.Columns.Add("nomeAlimento", "Alimento");
                 dtgRefeicoes.Columns.Add("kcal", "KCal");
@@ -1576,6 +1561,30 @@ namespace TCC2
                 dtgRefeicoes.Columns["lipidio"].Visible = false;
                 dtgRefeicoes.Columns["nomeTabela"].Visible = false;
             }
+
+            DataGridViewRow newRow = (DataGridViewRow)row.Clone();
+
+            DataGridViewComboBoxCell cellCbx = new DataGridViewComboBoxCell();
+            
+            var medCaseiraItens = medidaCaseiraDAO.Buscar(Convert.ToInt32(row.Cells["codAlimento"].Value));
+
+            if (medCaseiraItens != null)
+            {
+                cellCbx.DataSource = null;
+
+                medCaseiraItens.ForEach(x =>
+                {
+                    foreach (DataGridViewRow linha in dtgRefeicoes.Rows)
+                    {
+                        if (Convert.ToDouble(x.codAlimento) == Convert.ToDouble(dtgRefeicoes.Rows[linha.Index].Cells["codAlimento"].Value))
+                        {
+                            cellCbx = (DataGridViewComboBoxCell)linha.Cells["medCaseira"];
+                            cellCbx.Items.Add(x.descricao);
+                        }
+                    }
+                });
+            }
+            
             newRow.Cells[0].Value = row.Cells["codAlimento"].Value;
             newRow.Cells[1].Value = row.Cells["nomeAlimento"].Value;
             newRow.Cells[2].Value = row.Cells["kcal"].Value;
@@ -1583,7 +1592,6 @@ namespace TCC2
             newRow.Cells[4].Value = row.Cells["prot"].Value;
             newRow.Cells[5].Value = row.Cells["carbo"].Value;
             newRow.Cells[6].Value = row.Cells["lipidio"].Value;
-
 
             return newRow;
         }

@@ -471,18 +471,11 @@ namespace TCC2
                                    CultureInfo.InvariantCulture,
                                    DateTimeStyles.None,
                                    out dtInicio);
-            DateTime dtFim;
-            DateTime.TryParseExact(CalendarioMes.SelectionStart.AddDays(2).ToString("dd/MM/yyyy"),
-                                   "dd/MM/yyyy",
-                                   CultureInfo.InvariantCulture,
-                                   DateTimeStyles.None,
-                                   out dtFim);
             txtDataAgendamento.Text = CalendarioMes.SelectionStart.ToString("dd/MM/yyyy");
 
             calAgendamento.ViewStart = dtInicio;
-            //calAgendamento.ViewEnd = dtFim;
 
-            calAgendamento.ViewEnd = RetornaFimSemana(dtInicio);
+            calAgendamento.ViewEnd = dtInicio.AddDays(5);
 
             BuscarTodasConsultas();
             GetConfigAtendimento();
@@ -1681,6 +1674,7 @@ namespace TCC2
         {
             frmBuscarPaciente buscaPacientes = new frmBuscarPaciente(this);
             buscaPacientes.ShowDialog();
+            txtPacienteConsultaCardapio.Text = CardapioDAO.nomePacienteCard;
         }
         private void dtgRefeicoes_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
@@ -1995,5 +1989,13 @@ namespace TCC2
             anamneseDAO.Salvar(Convert.ToInt32(CardapioDAO.codPacienteCard), Convert.ToString(rtxtAnamnese.Text));
         }
 
+        private void txtDtNasc_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtDtNasc.Text = Regex.Replace(txtDtNasc.Text, @"(\d{2}\/\d{2}\/\d{4})","dd/MM/yyyy");
+            }
+            catch { }
+        }
     }
 }

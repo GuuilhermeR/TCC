@@ -25,6 +25,7 @@ namespace TCC2.Banco_de_Dados
         public Nullable<double> panturrilha { get; set; }
         public Nullable<double> antebraco { get; set; }
         public Nullable<double> coxa { get; set; }
+        public string Data { get; set; }
     
         public virtual Paciente Paciente { get; set; }
     }

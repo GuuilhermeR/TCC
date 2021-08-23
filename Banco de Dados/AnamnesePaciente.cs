@@ -17,6 +17,7 @@ namespace TCC2.Banco_de_Dados
         public long ID { get; set; }
         public string descAnamnese { get; set; }
         public Nullable<long> codPaciente { get; set; }
+        public string Data { get; set; }
     
         public virtual Paciente Paciente { get; set; }
     }

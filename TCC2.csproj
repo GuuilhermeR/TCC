@@ -102,7 +102,19 @@
     <Compile Include="Banco de Dados\Antropometria.cs">
       <DependentUpon>NutreasyDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Banco de Dados\Cardapio.cs">
+      <DependentUpon>NutreasyDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Banco de Dados\ConfiguracoesUsuarios.cs">
+      <DependentUpon>NutreasyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Banco de Dados\Login.cs">
+      <DependentUpon>NutreasyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Banco de Dados\MedidaCaseira.cs">
+      <DependentUpon>NutreasyDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Banco de Dados\Paciente.cs">
       <DependentUpon>NutreasyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Banco de Dados\Permissao.cs">
@@ -110,9 +122,6 @@
     </Compile>
     <Compile Include="Classes\BancoDadosSingleton.cs" />
     <Compile Include="Classes\BuscadorCEP.cs" />
-    <Compile Include="Banco de Dados\Cardapio.cs">
-      <DependentUpon>NutreasyDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Classes\Criptografador.cs" />
     <Compile Include="Classes\Crypto.cs" />
     <Compile Include="Classes\ExibidorMensagem.cs" />
@@ -156,12 +165,6 @@
       <DependentUpon>frmTelaLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="DAO\MedidaCaseiraDAO.cs" />
-    <Compile Include="Banco de Dados\Login.cs">
-      <DependentUpon>NutreasyDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Banco de Dados\MedidaCaseira.cs">
-      <DependentUpon>NutreasyDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Banco de Dados\NutreasyDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -176,9 +179,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>NutreasyDB.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Banco de Dados\Paciente.cs">
-      <DependentUpon>NutreasyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Classes\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

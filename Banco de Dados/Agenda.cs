@@ -21,5 +21,6 @@ namespace TCC2.Banco_de_Dados
         public Nullable<bool> atendido { get; set; }
         public string hora { get; set; }
         public Nullable<int> Cancelado { get; set; }
+        public string usuarioResp { get; set; }
     }
 }

@@ -21,6 +21,8 @@ namespace TCC2.Banco_de_Dados
         public string Obs { get; set; }
         public string Refeicao { get; set; }
         public Nullable<double> kcal { get; set; }
+        public string Data { get; set; }
+        public string usuarioResp { get; set; }
     
         public virtual Alimentos Alimentos { get; set; }
         public virtual Paciente Paciente { get; set; }

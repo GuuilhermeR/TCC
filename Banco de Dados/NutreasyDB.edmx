@@ -16,6 +16,7 @@
           <Property Name="atendido" Type="bit" />
           <Property Name="hora" Type="varchar" MaxLength="2147483647" />
           <Property Name="Cancelado" Type="int" />
+          <Property Name="usuarioResp" Type="nvarchar" MaxLength="2147483647" />
         </EntityType>
         <EntityType Name="Alimentos">
           <Key>
@@ -37,6 +38,7 @@
           <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="codPaciente" Type="integer" />
           <Property Name="descAnamnese" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Data" Type="nvarchar" MaxLength="2147483647" />
         </EntityType>
         <EntityType Name="Antropometria">
           <Key>
@@ -53,6 +55,7 @@
           <Property Name="panturrilha" Type="real" />
           <Property Name="antebraco" Type="real" />
           <Property Name="coxa" Type="real" />
+          <Property Name="Data" Type="nvarchar" MaxLength="2147483647" />
         </EntityType>
         <EntityType Name="Cardapio">
           <Key>
@@ -65,6 +68,8 @@
           <Property Name="Obs" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="Refeicao" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="kcal" Type="real" />
+          <Property Name="Data" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="usuarioResp" Type="nvarchar" MaxLength="2147483647" />
         </EntityType>
         <EntityType Name="ConfiguracoesUsuarios">
           <Key>
@@ -125,6 +130,9 @@
           <Property Name="usuario" Type="varchar" MaxLength="2147483647" />
           <Property Name="programa" Type="varchar" MaxLength="2147483647" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_Agenda_0_0' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_Agenda_0_0" />-->
         <Association Name="FK_AnamnesePaciente_0_0">
           <End Role="Paciente" Type="Self.Paciente" Multiplicity="0..1" />
           <End Role="AnamnesePaciente" Type="Self.AnamnesePaciente" Multiplicity="*" />
@@ -253,18 +261,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="mainModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Agenda">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="paciente" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
-          <Property Name="data" Type="String" />
-          <Property Name="retorno" Type="Boolean" />
-          <Property Name="atendido" Type="Boolean" />
-          <Property Name="hora" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
-          <Property Name="Cancelado" Type="Int32" />
-        </EntityType>
         <EntityType Name="Alimentos">
           <Key>
             <PropertyRef Name="codAlimento" />
@@ -277,22 +273,8 @@
           <Property Name="carbo" Type="Double" />
           <Property Name="lipidio" Type="Double" />
           <Property Name="nomeTabela" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Cardapio" Relationship="Self.FK_Cardapio_0_0" FromRole="Alimentos" ToRole="Cardapio" />
           <NavigationProperty Name="MedidaCaseira" Relationship="Self.FK_MedidaCaseira_0_0" FromRole="Alimentos" ToRole="MedidaCaseira" />
-        </EntityType>
-        <EntityType Name="Cardapio">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="codPaciente" Type="Int64" />
-          <Property Name="codAlimento" Type="Int64" />
-          <Property Name="medidaCaseiraQtde" Type="Double" />
-          <Property Name="Obs" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="Refeicao" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="kcal" Type="Double" />
-          <NavigationProperty Name="Alimentos" Relationship="Self.FK_Cardapio_0_0" FromRole="Cardapio" ToRole="Alimentos" />
-          <NavigationProperty Name="Paciente" Relationship="Self.FK_Cardapio_1_0" FromRole="Cardapio" ToRole="Paciente" />
+          <NavigationProperty Name="Cardapio" Relationship="mainModel.FK_Cardapio_0_0" FromRole="Alimentos" ToRole="Cardapio" />
         </EntityType>
         <EntityType Name="Login">
           <Key>
@@ -307,7 +289,7 @@
           <NavigationProperty Name="Permissao" Relationship="mainModel.FK_Permissao_0_0" FromRole="Login" ToRole="Permissao" />
           <Property Name="CRN" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ConfiguracoesUsuarios" Relationship="mainModel.FK_ConfiguracoesUsuarios_0_0" FromRole="Login" ToRole="ConfiguracoesUsuarios" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="MedidaCaseira">
           <Key>
             <PropertyRef Name="ID" />
@@ -337,22 +319,10 @@
           <Property Name="telefone" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <Property Name="celular" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <Property Name="imagem" Type="Binary" MaxLength="2147483647" FixedLength="false" />
-          <NavigationProperty Name="Cardapio" Relationship="Self.FK_Cardapio_1_0" FromRole="Paciente" ToRole="Cardapio" />
           <NavigationProperty Name="AnamnesePaciente" Relationship="mainModel.FK_AnamnesePaciente_0_0" FromRole="Paciente" ToRole="AnamnesePaciente" />
           <NavigationProperty Name="Antropometria" Relationship="mainModel.FK_Antropometria_0_0" FromRole="Paciente" ToRole="Antropometria" />
+          <NavigationProperty Name="Cardapio" Relationship="mainModel.FK_Cardapio_1_0" FromRole="Paciente" ToRole="Cardapio" />
         </EntityType>
-        <Association Name="FK_Cardapio_0_0">
-          <End Role="Alimentos" Type="Self.Alimentos" Multiplicity="0..1" />
-          <End Role="Cardapio" Type="Self.Cardapio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Alimentos">
-              <PropertyRef Name="codAlimento" />
-            </Principal>
-            <Dependent Role="Cardapio">
-              <PropertyRef Name="codAlimento" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_MedidaCaseira_0_0">
           <End Role="Alimentos" Type="Self.Alimentos" Multiplicity="0..1" />
           <End Role="MedidaCaseira" Type="Self.MedidaCaseira" Multiplicity="*" />
@@ -365,36 +335,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Cardapio_1_0">
-          <End Role="Paciente" Type="Self.Paciente" Multiplicity="0..1" />
-          <End Role="Cardapio" Type="Self.Cardapio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Paciente">
-              <PropertyRef Name="codPaciente" />
-            </Principal>
-            <Dependent Role="Cardapio">
-              <PropertyRef Name="codPaciente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="NutreasyEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Agenda" EntityType="Self.Agenda" />
           <EntitySet Name="Alimentos" EntityType="Self.Alimentos" />
-          <EntitySet Name="Cardapio" EntityType="Self.Cardapio" />
           <EntitySet Name="Login" EntityType="Self.Login" />
           <EntitySet Name="MedidaCaseira" EntityType="Self.MedidaCaseira" />
           <EntitySet Name="Paciente" EntityType="Self.Paciente" />
-          <AssociationSet Name="FK_Cardapio_0_0" Association="Self.FK_Cardapio_0_0">
-            <End Role="Alimentos" EntitySet="Alimentos" />
-            <End Role="Cardapio" EntitySet="Cardapio" />
-          </AssociationSet>
           <AssociationSet Name="FK_MedidaCaseira_0_0" Association="Self.FK_MedidaCaseira_0_0">
             <End Role="Alimentos" EntitySet="Alimentos" />
             <End Role="MedidaCaseira" EntitySet="MedidaCaseira" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cardapio_1_0" Association="Self.FK_Cardapio_1_0">
-            <End Role="Paciente" EntitySet="Paciente" />
-            <End Role="Cardapio" EntitySet="Cardapio" />
           </AssociationSet>
           <EntitySet Name="Permissao" EntityType="mainModel.Permissao" />
           <AssociationSet Name="FK_Permissao_0_0" Association="mainModel.FK_Permissao_0_0">
@@ -415,6 +363,16 @@
           <AssociationSet Name="FK_Antropometria_0_0" Association="mainModel.FK_Antropometria_0_0">
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="Antropometria" EntitySet="Antropometria" />
+          </AssociationSet>
+          <EntitySet Name="Agenda" EntityType="mainModel.Agenda" />
+          <EntitySet Name="Cardapio" EntityType="mainModel.Cardapio" />
+          <AssociationSet Name="FK_Cardapio_0_0" Association="mainModel.FK_Cardapio_0_0">
+            <End Role="Alimentos" EntitySet="Alimentos" />
+            <End Role="Cardapio" EntitySet="Cardapio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cardapio_1_0" Association="mainModel.FK_Cardapio_1_0">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Cardapio" EntitySet="Cardapio" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Permissao">
@@ -446,6 +404,7 @@
           <Property Name="descAnamnese" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="codPaciente" Type="Int64" />
           <NavigationProperty Name="Paciente" Relationship="mainModel.FK_AnamnesePaciente_0_0" FromRole="AnamnesePaciente" ToRole="Paciente" />
+          <Property Name="Data" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_AnamnesePaciente_0_0">
           <End Type="mainModel.Paciente" Role="Paciente" Multiplicity="0..1" />
@@ -498,6 +457,7 @@
           <Property Name="antebraco" Type="Double" />
           <Property Name="coxa" Type="Double" />
           <NavigationProperty Name="Paciente" Relationship="mainModel.FK_Antropometria_0_0" FromRole="Antropometria" ToRole="Paciente" />
+          <Property Name="Data" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Antropometria_0_0">
           <End Type="mainModel.Paciente" Role="Paciente" Multiplicity="1" />
@@ -511,25 +471,65 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Agenda">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="paciente" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="data" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="retorno" Type="Boolean" />
+          <Property Name="atendido" Type="Boolean" />
+          <Property Name="hora" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="Cancelado" Type="Int32" />
+          <Property Name="usuarioResp" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Cardapio">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codPaciente" Type="Int64" />
+          <Property Name="codAlimento" Type="Int64" />
+          <Property Name="medidaCaseiraQtde" Type="Double" />
+          <Property Name="Obs" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Refeicao" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="kcal" Type="Double" />
+          <Property Name="Data" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="usuarioResp" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Alimentos" Relationship="mainModel.FK_Cardapio_0_0" FromRole="Cardapio" ToRole="Alimentos" />
+          <NavigationProperty Name="Paciente" Relationship="mainModel.FK_Cardapio_1_0" FromRole="Cardapio" ToRole="Paciente" />
+        </EntityType>
+        <Association Name="FK_Cardapio_0_0">
+          <End Type="mainModel.Alimentos" Role="Alimentos" Multiplicity="0..1" />
+          <End Type="mainModel.Cardapio" Role="Cardapio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alimentos">
+              <PropertyRef Name="codAlimento" />
+            </Principal>
+            <Dependent Role="Cardapio">
+              <PropertyRef Name="codAlimento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cardapio_1_0">
+          <End Type="mainModel.Paciente" Role="Paciente" Multiplicity="0..1" />
+          <End Type="mainModel.Cardapio" Role="Cardapio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="codPaciente" />
+            </Principal>
+            <Dependent Role="Cardapio">
+              <PropertyRef Name="codPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="mainModelStoreContainer" CdmEntityContainer="NutreasyEntities">
-          <EntitySetMapping Name="Agenda">
-            <EntityTypeMapping TypeName="mainModel.Agenda">
-              <MappingFragment StoreEntitySet="Agenda">
-                <ScalarProperty Name="Cancelado" ColumnName="Cancelado" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="paciente" ColumnName="paciente" />
-                <ScalarProperty Name="data" ColumnName="data" />
-                <ScalarProperty Name="retorno" ColumnName="retorno" />
-                <ScalarProperty Name="atendido" ColumnName="atendido" />
-                <ScalarProperty Name="hora" ColumnName="hora" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Alimentos">
             <EntityTypeMapping TypeName="mainModel.Alimentos">
               <MappingFragment StoreEntitySet="Alimentos">
@@ -541,19 +541,6 @@
                 <ScalarProperty Name="carbo" ColumnName="carbo" />
                 <ScalarProperty Name="lipidio" ColumnName="lipidio" />
                 <ScalarProperty Name="nomeTabela" ColumnName="nomeTabela" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Cardapio">
-            <EntityTypeMapping TypeName="mainModel.Cardapio">
-              <MappingFragment StoreEntitySet="Cardapio">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="codPaciente" ColumnName="codPaciente" />
-                <ScalarProperty Name="codAlimento" ColumnName="codAlimento" />
-                <ScalarProperty Name="medidaCaseiraQtde" ColumnName="medidaCaseiraQtde" />
-                <ScalarProperty Name="Obs" ColumnName="Obs" />
-                <ScalarProperty Name="Refeicao" ColumnName="Refeicao" />
-                <ScalarProperty Name="kcal" ColumnName="kcal" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -613,6 +600,7 @@
           <EntitySetMapping Name="AnamnesePaciente">
             <EntityTypeMapping TypeName="mainModel.AnamnesePaciente">
               <MappingFragment StoreEntitySet="AnamnesePaciente">
+                <ScalarProperty Name="Data" ColumnName="Data" />
                 <ScalarProperty Name="codPaciente" ColumnName="codPaciente" />
                 <ScalarProperty Name="descAnamnese" ColumnName="descAnamnese" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -633,6 +621,7 @@
           <EntitySetMapping Name="Antropometria">
             <EntityTypeMapping TypeName="mainModel.Antropometria">
               <MappingFragment StoreEntitySet="Antropometria">
+                <ScalarProperty Name="Data" ColumnName="Data" />
                 <ScalarProperty Name="coxa" ColumnName="coxa" />
                 <ScalarProperty Name="antebraco" ColumnName="antebraco" />
                 <ScalarProperty Name="panturrilha" ColumnName="panturrilha" />
@@ -647,7 +636,36 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="Agenda">
+            <EntityTypeMapping TypeName="mainModel.Agenda">
+              <MappingFragment StoreEntitySet="Agenda">
+                <ScalarProperty Name="usuarioResp" ColumnName="usuarioResp" />
+                <ScalarProperty Name="Cancelado" ColumnName="Cancelado" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
+                <ScalarProperty Name="atendido" ColumnName="atendido" />
+                <ScalarProperty Name="retorno" ColumnName="retorno" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="paciente" ColumnName="paciente" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cardapio">
+            <EntityTypeMapping TypeName="mainModel.Cardapio">
+              <MappingFragment StoreEntitySet="Cardapio">
+                <ScalarProperty Name="usuarioResp" ColumnName="usuarioResp" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="kcal" ColumnName="kcal" />
+                <ScalarProperty Name="Refeicao" ColumnName="Refeicao" />
+                <ScalarProperty Name="Obs" ColumnName="Obs" />
+                <ScalarProperty Name="medidaCaseiraQtde" ColumnName="medidaCaseiraQtde" />
+                <ScalarProperty Name="codAlimento" ColumnName="codAlimento" />
+                <ScalarProperty Name="codPaciente" ColumnName="codPaciente" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

@@ -26,16 +26,28 @@ namespace ProjetoTCC
 
                 anamneseInsert.codPaciente = codPaciente;
                 anamneseInsert.descAnamnese = anamnese;
+                anamneseInsert.Data = DateTime.Now.ToString("dd/MM/yyyy");
 
-                //BancoDadosSingleton.Instance.AnamnesePaciente.Add(anamneseInsert);
-                //BancoDadosSingleton.Instance.SaveChanges();
-                nMensagemAviso("Anamnese foi salvo!");
+                BancoDadosSingleton.Instance.AnamnesePaciente.Add(anamneseInsert);
+                BancoDadosSingleton.Instance.SaveChanges();
+                nMensagemAviso("Anamnese salva!");
             }
             catch (Exception ex)
             {
                 nMensagemErro("Ocorreu um erro ao salvar." + '\n' + ex.Message + '\n' + ex.InnerException);
             }
         }
-
+        public void Deletar(int codPaciente, string data)
+        {
+            using (var db = new NutreasyEntities())
+            {
+                var delete = db.Database.Connection.CreateCommand();
+                delete.CommandText = $"DELETE FROM Antropometria WHERE codPaciente = {codPaciente} AND Data = {data}";
+                db.Database.Connection.Open();
+                delete.ExecuteNonQuery();
+                db.Database.Connection.Close();
+            }
+            nMensagemAviso("Os dados de Anamnese foram excluídos!");
+        }
     }
 }

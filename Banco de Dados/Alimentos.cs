@@ -17,8 +17,8 @@ namespace TCC2.Banco_de_Dados
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Alimentos()
         {
-            this.Cardapio = new HashSet<Cardapio>();
             this.MedidaCaseira = new HashSet<MedidaCaseira>();
+            this.Cardapio = new HashSet<Cardapio>();
         }
     
         public long codAlimento { get; set; }
@@ -31,8 +31,8 @@ namespace TCC2.Banco_de_Dados
         public string nomeTabela { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cardapio> Cardapio { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MedidaCaseira> MedidaCaseira { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cardapio> Cardapio { get; set; }
     }
 }

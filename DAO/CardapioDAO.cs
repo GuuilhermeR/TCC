@@ -20,13 +20,15 @@ namespace TCC2
         {
         }
 
-        public void Salvar(string codPaciente, int codAlimento, string refeicao, double medidaCaseiraQtde, string obs, double kcal)
+        public void Salvar(string codPaciente, int codAlimento, string refeicao, double medidaCaseiraQtde, string obs, double kcal, string usuario)
         {
             try
             {
                 Cardapio cardapioInsert = new Cardapio();
 
                 cardapioInsert.codPaciente = Convert.ToInt32(codPaciente);
+                cardapioInsert.Data = DateTime.Now.ToString("dd/MM/yyyy");
+                cardapioInsert.usuarioResp = usuario;
                 cardapioInsert.codAlimento = codAlimento;
                 cardapioInsert.medidaCaseiraQtde = medidaCaseiraQtde;               
                 cardapioInsert.Refeicao = refeicao;               

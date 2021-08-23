@@ -58,7 +58,7 @@ namespace ProjetoTCC
             }
         }
 
-        public void AdicionarPaciente(string dataAgenda, string horario, string paciente, bool atendido, bool retorno, int cancelado, bool ajusteConsulta)
+        public void AdicionarPaciente(string dataAgenda, string horario, string paciente, bool atendido, bool retorno, int cancelado, bool ajusteConsulta, string usuario)
         {
             try
             {
@@ -71,6 +71,7 @@ namespace ProjetoTCC
                     a.atendido = atendido;
                     a.retorno = retorno;
                     a.Cancelado = cancelado;
+                    a.usuarioResp = usuario;
 
                     BancoDadosSingleton.Instance.SaveChanges();
                     nMensagemAviso("Consulta do paciente atualizado.");
@@ -85,6 +86,7 @@ namespace ProjetoTCC
                     agendaInsert.atendido = atendido;
                     agendaInsert.retorno = retorno;
                     agendaInsert.Cancelado = cancelado;
+                    agendaInsert.usuarioResp = usuario;
 
                     BancoDadosSingleton.Instance.Agenda.Add(agendaInsert);
                     BancoDadosSingleton.Instance.SaveChanges();

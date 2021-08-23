@@ -339,7 +339,8 @@ namespace TCC2
                             false,
                             false,
                             0,
-                            false);
+                            false,
+                            Convert.ToString(usuarioDAO.getUsuario()));
         }
 
         private void calAgendamento_ItemCreated(object sender, System.Windows.Forms.Calendar.CalendarItemCancelEventArgs e)
@@ -365,7 +366,8 @@ namespace TCC2
                             false,
                             false,
                             0,
-                            true);
+                            true,
+                            Convert.ToString(usuarioDAO.getUsuario()));
         }
 
         private void calAgendamento_ItemDeleted(object sender, System.Windows.Forms.Calendar.CalendarItemEventArgs e)
@@ -450,12 +452,12 @@ namespace TCC2
 
         private void CancelarAtendimento(string data, string paciente, bool atendido, bool retorno)
         {
-            agendaDAO.AdicionarPaciente(data.Substring(0, 10), data.Substring(11), paciente, atendido, retorno, 1, true);
+            agendaDAO.AdicionarPaciente(data.Substring(0, 10), data.Substring(11), paciente, atendido, retorno, 1, true, Convert.ToString(usuarioDAO.getUsuario()));
         }
 
         private void FinalizarAtendimento(string data, string paciente, bool atendido, bool retorno)
         {
-            agendaDAO.AdicionarPaciente(data.Substring(0, 10), data.Substring(11), paciente, atendido, retorno, 0, true);
+            agendaDAO.AdicionarPaciente(data.Substring(0, 10), data.Substring(11), paciente, atendido, retorno, 0, true, Convert.ToString(usuarioDAO.getUsuario()));
         }
 
         private void calAgendamento_ItemCreating(object sender, CalendarItemCancelEventArgs e)
@@ -1599,7 +1601,8 @@ namespace TCC2
                                                     Convert.ToString(cbxRefeicao.Text),
                                                     Convert.ToInt32(row.Cells["qtd"].Value),
                                                     Convert.ToString(row.Cells["obs"].Value),
-                                                    Convert.ToDouble(row.Cells["kcal"].Value));
+                                                    Convert.ToDouble(row.Cells["kcal"].Value), 
+                                                    Convert.ToString(usuarioDAO.getUsuario()));
             dtgRefeicoes.DataSource = null;
             graficoMacroNutri.Series = null;
             txtPaciente.Text = null;
@@ -1807,6 +1810,7 @@ namespace TCC2
             dtgUsuarios.Columns["perfil"].HeaderText = "Perfil";
             dtgUsuarios.Columns["crn"].HeaderText = "CRN";
             dtgUsuarios.Columns["Permissao"].Visible = false;
+            dtgUsuarios.Columns["ConfiguracoesUsuarios"].Visible = false;
             dtgUsuarios.AutoResizeColumns();
         }
         private void dtgUsuarios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -1835,7 +1839,6 @@ namespace TCC2
             DataTable dt = ConvertToDataTable(listaPermissao);
             if (dtgPermUsuarios.Rows.Count > 0 && dtgPermUsuarios.Columns.Count > 0)
             {
-                dtgPermUsuarios.Rows.Clear();
                 dtgPermUsuarios.Columns.Clear();
             }
             dtgPermUsuarios.DataSource = dt;
@@ -1996,6 +1999,27 @@ namespace TCC2
                 txtDtNasc.Text = Regex.Replace(txtDtNasc.Text, @"(\d{2}\/\d{2}\/\d{4})","dd/MM/yyyy");
             }
             catch { }
+        }
+
+        private void btnSalvarAntro_Click(object sender, EventArgs e)
+        {
+            if(Convert.ToInt32(CardapioDAO.codPacienteCard) == 0)
+            {
+                nMensagemAlerta("É necessário informar o paciente");
+                return;
+            }
+
+            antropometriaDAO.Salvar(Convert.ToInt32(CardapioDAO.codPacienteCard),
+                Convert.ToDouble(txtAltura.Text), 
+                Convert.ToDouble(txtAntebraco.Text), 
+                Convert.ToDouble(txtBraco.Text), 
+                Convert.ToDouble(txtCintura.Text), 
+                Convert.ToDouble(txtCoxa.Text), 
+                Convert.ToDouble(txtPanturrilha.Text), 
+                Convert.ToDouble(txtPeso.Text), 
+                Convert.ToDouble(txtPunho.Text), 
+                Convert.ToDouble(txtQuadril.Text), 
+                Convert.ToDouble(txtTorax.Text));
         }
     }
 }

@@ -70,7 +70,7 @@ namespace TCC2
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.BlueGrey500, Accent.LightGreen400, TextShade.WHITE);
-
+            calAgendamento.MaximumViewDays = 70000;
             this.MaximizeBox = false;
 
             if (usuarioDAO.getNomeUsuario() != null)
@@ -329,8 +329,55 @@ namespace TCC2
             }
         }
 
+        private bool ValidarAgendamento(DateTime data, string hora)
+        {
+            var configCalendar = calAgendamento.HighlightRanges;
+            TimeSpan horario;
+            horario = TimeSpan.Parse(hora);
+            switch (data.DayOfWeek)
+            {
+                case DayOfWeek.Monday:
+                    if(TimeSpan.Compare(horario, configCalendar[0].StartTime) >= 0  && TimeSpan.Compare(horario, configCalendar[0].EndTime) < 0)
+                        return true;
+                    break;
+                case DayOfWeek.Tuesday:
+                    if (TimeSpan.Compare(horario, configCalendar[0].StartTime) >= 0 && TimeSpan.Compare(horario, configCalendar[0].EndTime) < 0)
+                        return true;
+                    break;
+                case DayOfWeek.Wednesday:
+                    if (TimeSpan.Compare(horario, configCalendar[0].StartTime) >= 0 && TimeSpan.Compare(horario, configCalendar[0].EndTime) < 0)
+                        return true;
+                    break;
+                case DayOfWeek.Thursday:
+                    if (TimeSpan.Compare(horario, configCalendar[0].StartTime) >= 0 && TimeSpan.Compare(horario, configCalendar[0].EndTime) < 0)
+                        return true;
+                    break;
+                case DayOfWeek.Friday:
+                    if (TimeSpan.Compare(horario, configCalendar[0].StartTime) >= 0 && TimeSpan.Compare(horario, configCalendar[0].EndTime) < 0)
+                        return true;
+                    break;
+                case DayOfWeek.Saturday:
+                    if (TimeSpan.Compare(horario, configCalendar[0].StartTime) >= 0 && TimeSpan.Compare(horario, configCalendar[0].EndTime) < 0)
+                        return true;
+                    break;
+                case DayOfWeek.Sunday:
+                    if (TimeSpan.Compare(horario, configCalendar[0].StartTime) >= 0 && TimeSpan.Compare(horario, configCalendar[0].EndTime) < 0)
+                        return true;
+                    break;
+                default:
+                    return false;
+            }
+
+            return false;
+        }
+
         private void btnSalvarAgenda_Click(object sender, EventArgs e)
         {
+            if (!ValidarAgendamento(Convert.ToDateTime(txtDataAgendamento.Text), Convert.ToString(txtHoraAgenda.Text)))
+            {
+                nMensagemAviso("Não é possível agendar uma consulta em um horário não disponível da nutricionista!");
+                return;
+            }
             if (nMensagemAlerta($"Você deseja agendar o paciente {txtPacienteAgenda.Text} para {txtDataAgendamento.Text} {txtHoraAgenda.Text}") == DialogResult.Yes)
                 agendaDAO.AdicionarPaciente(
                             txtDataAgendamento.Text,
@@ -494,6 +541,12 @@ namespace TCC2
                 CalendarItem calAgendamentos = new CalendarItem(calAgendamento, Convert.ToDateTime(x.data + ' ' + x.hora), Convert.ToDateTime(x.data + ' ' + x.hora).AddHours(1), x.paciente);
                 calAgendamento.Items.Add(calAgendamentos);
             });
+        }
+
+        private void btnBuscarPacienteAgendamento_Click(object sender, EventArgs e)
+        {
+            BuscadorPaciente();
+            txtPacienteAgenda.Text = CardapioDAO.nomePacienteCard;
         }
         #endregion
 
@@ -1060,6 +1113,8 @@ namespace TCC2
             _dtgConsultaPacientes.Columns["codPaciente"].Visible = false;
             _dtgConsultaPacientes.Columns["imagem"].Visible = false;
             _dtgConsultaPacientes.Columns["Cardapio"].Visible = false;
+            _dtgConsultaPacientes.Columns["AnamnesePaciente"].Visible = false;
+            _dtgConsultaPacientes.Columns["Antropometria"].Visible = false;
             _dtgConsultaPacientes.Columns["nome"].HeaderText = "Nome";
             _dtgConsultaPacientes.Columns["dtNasc"].HeaderText = "Data Nascimento";
             _dtgConsultaPacientes.Columns["email"].HeaderText = "E-mail";
@@ -1285,7 +1340,51 @@ namespace TCC2
         {
             btnPacienteCardapio_Click(sender, e);
             txtPacienteAnamnese.Text = CardapioDAO.nomePacienteCard;
+        }
+        private void txtUF_Leave(object sender, EventArgs e)
+        {
+            txtUF.Text = txtUF.Text.ToUpper();
+        }
 
+        private void btnPacAnt_Click(object sender, EventArgs e)
+        {
+            BuscadorPaciente();
+            txtPacienteAntro.Text = CardapioDAO.nomePacienteCard;
+        }
+
+        private void btnSalvarAnamnese_Click(object sender, EventArgs e)
+        {
+            anamneseDAO.Salvar(Convert.ToInt32(CardapioDAO.codPacienteCard), Convert.ToString(rtxtAnamnese.Text));
+        }
+
+        private void txtDtNasc_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtDtNasc.Text = Regex.Replace(txtDtNasc.Text, @"(\d{2}\/\d{2}\/\d{4})", "dd/MM/yyyy");
+            }
+            catch { }
+        }
+
+        private void btnSalvarAntro_Click(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(CardapioDAO.codPacienteCard) == 0)
+            {
+                nMensagemAlerta("É necessário informar o paciente");
+                return;
+            }
+
+            antropometriaDAO.Salvar(Convert.ToInt32(CardapioDAO.codPacienteCard),
+                Convert.ToDouble(txtAltura.Text),
+                Convert.ToDouble(txtAntebraco.Text),
+                Convert.ToDouble(txtBraco.Text),
+                Convert.ToDouble(txtCintura.Text),
+                Convert.ToDouble(txtCoxa.Text),
+                Convert.ToDouble(txtPanturrilha.Text),
+                Convert.ToDouble(txtPeso.Text),
+                Convert.ToDouble(txtPunho.Text),
+                Convert.ToDouble(txtQuadril.Text),
+                Convert.ToDouble(txtTorax.Text));
         }
         #endregion
 
@@ -1939,7 +2038,6 @@ namespace TCC2
             cbxDiaSemana.SelectedText = Convert.ToString(dtgConfigHorario.CurrentRow.Cells["diaSemana"].Value);
             txtHoraInicio.Text = Convert.ToString(dtgConfigHorario.CurrentRow.Cells["horaInicio"].Value);
             txtHoraFim.Text = Convert.ToString(dtgConfigHorario.CurrentRow.Cells["horaFim"].Value);
-
         }
         #endregion
 
@@ -1968,58 +2066,11 @@ namespace TCC2
         {
 
         }
-
-        private void btnBuscarPacienteAgendamento_Click(object sender, EventArgs e)
-        {
-            BuscadorPaciente();
-            txtPacienteAgenda.Text = CardapioDAO.nomePacienteCard;
-        }
-
+        
         private void BuscadorPaciente()
         {
             frmBuscarPaciente buscaPacientes = new frmBuscarPaciente(this);
             buscaPacientes.ShowDialog();
-        }
-
-        private void btnPacAnt_Click(object sender, EventArgs e)
-        {
-            BuscadorPaciente();
-            txtPacienteAntro.Text = CardapioDAO.nomePacienteCard;
-        }
-
-        private void btnSalvarAnamnese_Click(object sender, EventArgs e)
-        {
-            anamneseDAO.Salvar(Convert.ToInt32(CardapioDAO.codPacienteCard), Convert.ToString(rtxtAnamnese.Text));
-        }
-
-        private void txtDtNasc_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                txtDtNasc.Text = Regex.Replace(txtDtNasc.Text, @"(\d{2}\/\d{2}\/\d{4})","dd/MM/yyyy");
-            }
-            catch { }
-        }
-
-        private void btnSalvarAntro_Click(object sender, EventArgs e)
-        {
-            if(Convert.ToInt32(CardapioDAO.codPacienteCard) == 0)
-            {
-                nMensagemAlerta("É necessário informar o paciente");
-                return;
-            }
-
-            antropometriaDAO.Salvar(Convert.ToInt32(CardapioDAO.codPacienteCard),
-                Convert.ToDouble(txtAltura.Text), 
-                Convert.ToDouble(txtAntebraco.Text), 
-                Convert.ToDouble(txtBraco.Text), 
-                Convert.ToDouble(txtCintura.Text), 
-                Convert.ToDouble(txtCoxa.Text), 
-                Convert.ToDouble(txtPanturrilha.Text), 
-                Convert.ToDouble(txtPeso.Text), 
-                Convert.ToDouble(txtPunho.Text), 
-                Convert.ToDouble(txtQuadril.Text), 
-                Convert.ToDouble(txtTorax.Text));
         }
     }
 }

@@ -11,11 +11,11 @@ using static Classes.ExibidorMensagem;
 
 namespace ProjetoTCC
 {
-   public class AgendaDAO
+    public class AgendaDAO
     {
         public AgendaDAO()
         {
-            
+
         }
 
         public List<Agenda> CarregarAgenda(string dataAgenda)
@@ -62,43 +62,47 @@ namespace ProjetoTCC
         {
             try
             {
-                if (ajusteConsulta || VerificarPacienteAgendado(paciente, dataAgenda))
-                {
-                    var a = (from c in BancoDadosSingleton.Instance.Agenda where c.paciente == paciente && c.data == dataAgenda select c).Single();
+                var a = (from c in BancoDadosSingleton.Instance.Agenda where c.paciente == paciente && c.data == dataAgenda select c).Single();
 
-                    a.data = dataAgenda;
-                    a.hora = horario;
-                    a.atendido = atendido;
-                    a.retorno = retorno;
-                    a.Cancelado = cancelado;
-                    a.usuarioResp = usuario;
+                a.data = dataAgenda;
+                a.hora = horario;
+                a.atendido = atendido;
+                a.retorno = retorno;
+                a.Cancelado = cancelado;
+                a.usuarioResp = usuario;
 
-                    BancoDadosSingleton.Instance.SaveChanges();
-                    nMensagemAviso("Consulta do paciente atualizado.");
-                }
-                else
-                {
-                    Agenda agendaInsert = new Agenda();
-
-                    agendaInsert.paciente = paciente;
-                    agendaInsert.data = dataAgenda;
-                    agendaInsert.hora = horario;
-                    agendaInsert.atendido = atendido;
-                    agendaInsert.retorno = retorno;
-                    agendaInsert.Cancelado = cancelado;
-                    agendaInsert.usuarioResp = usuario;
-
-                    BancoDadosSingleton.Instance.Agenda.Add(agendaInsert);
-                    BancoDadosSingleton.Instance.SaveChanges();
-                    nMensagemAviso("Consulta do paciente foi agendado.");
-
-                }
+                BancoDadosSingleton.Instance.SaveChanges();
+                nMensagemAviso("Consulta do paciente atualizado.");
             }
             catch (Exception ex)
             {
-              nMensagemErro("Ocorreu um erro ao salvar!" + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException);
-            }            
-            
+                nMensagemErro("Ocorreu um erro ao salvar!" + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException);
+            }
+
+        }
+
+        public void AtualizarPaciente(string dataAgenda, string horario, string paciente, bool atendido, bool retorno, int cancelado, bool ajusteConsulta, string usuario)
+        {
+            try
+            {
+                Agenda agendaInsert = new Agenda();
+
+                agendaInsert.paciente = paciente;
+                agendaInsert.data = dataAgenda;
+                agendaInsert.hora = horario;
+                agendaInsert.atendido = atendido;
+                agendaInsert.retorno = retorno;
+                agendaInsert.Cancelado = cancelado;
+                agendaInsert.usuarioResp = usuario;
+
+                BancoDadosSingleton.Instance.Agenda.Add(agendaInsert);
+                BancoDadosSingleton.Instance.SaveChanges();
+                nMensagemAviso("Consulta do paciente foi agendado.");
+            }
+            catch (Exception ex)
+            {
+                nMensagemErro("Ocorreu um erro ao salvar!" + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException);
+            }
         }
 
         public bool VerificarPacienteAgendado(string pacienteAgendar, string dataAgendada)
@@ -115,12 +119,7 @@ namespace ProjetoTCC
                 return false;
             }
 
-            if (agendado != "")
-            {
-                return true;
-            }
-
-            return false;
+            return Convert.ToBoolean(agendado != "");
         }
 
         public void DeletarPacienteAgenda(string paciente)
@@ -129,16 +128,17 @@ namespace ProjetoTCC
             {
                 using (var db = new NutreasyEntities())
                 {
-                        var delete = db.Database.Connection.CreateCommand();
-                        delete.CommandText = $"DELETE FROM Agenda WHERE paciente = '{paciente}'";
-                        db.Database.Connection.Open();
-                        delete.ExecuteNonQuery();
-                        db.Database.Connection.Close();
+                    var delete = db.Database.Connection.CreateCommand();
+                    delete.CommandText = $"DELETE FROM Agenda WHERE paciente = '{paciente}'";
+                    db.Database.Connection.Open();
+                    delete.ExecuteNonQuery();
+                    db.Database.Connection.Close();
                 }
                 nMensagemAviso("Consultas foram removidas.");
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
-               nMensagemErro("Ocorreu um erro ao deletar!" + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException);
+                nMensagemErro("Ocorreu um erro ao deletar!" + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException);
             }
         }
 

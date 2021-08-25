@@ -50,6 +50,12 @@ namespace TCC2.Telas
                 return;
             }
 
+            if (txtConfirmarSenha.Text.Equals(mLblSenha.Text))
+            {
+                nMensagemAlerta("As senhas não conferem.");
+                return;
+            }
+
             usuarioDAO.CriarUsuario(Convert.ToString(mLblUsuario.Text), 
                                                   Convert.ToString(mLblSenha.Text), 
                                                   Convert.ToString(mTxtNome.Text),

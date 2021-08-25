@@ -37,6 +37,7 @@ namespace TCC2.Telas
             this.mchkNutricionista = new MaterialSkin.Controls.MaterialRadioButton();
             this.mchkEstudante = new MaterialSkin.Controls.MaterialRadioButton();
             this.mtxtCRN = new MaterialSkin.Controls.MaterialTextBox();
+            this.txtConfirmarSenha = new MaterialSkin.Controls.MaterialTextBox();
             this.SuspendLayout();
             // 
             // mTxtNome
@@ -71,7 +72,7 @@ namespace TCC2.Telas
             this.mLblUsuario.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.mLblUsuario.Hint = "Usuário";
             this.mLblUsuario.LeadingIcon = null;
-            this.mLblUsuario.Location = new System.Drawing.Point(71, 167);
+            this.mLblUsuario.Location = new System.Drawing.Point(71, 149);
             this.mLblUsuario.Margin = new System.Windows.Forms.Padding(2);
             this.mLblUsuario.MaxLength = 50;
             this.mLblUsuario.MouseState = MaterialSkin.MouseState.OUT;
@@ -92,7 +93,7 @@ namespace TCC2.Telas
             this.mLblSenha.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.mLblSenha.Hint = "Senha";
             this.mLblSenha.LeadingIcon = null;
-            this.mLblSenha.Location = new System.Drawing.Point(71, 247);
+            this.mLblSenha.Location = new System.Drawing.Point(71, 203);
             this.mLblSenha.Margin = new System.Windows.Forms.Padding(2);
             this.mLblSenha.MaxLength = 50;
             this.mLblSenha.MouseState = MaterialSkin.MouseState.OUT;
@@ -114,14 +115,14 @@ namespace TCC2.Telas
             this.mLblEmail.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.mLblEmail.Hint = "E-mail";
             this.mLblEmail.LeadingIcon = null;
-            this.mLblEmail.Location = new System.Drawing.Point(71, 330);
+            this.mLblEmail.Location = new System.Drawing.Point(71, 311);
             this.mLblEmail.Margin = new System.Windows.Forms.Padding(2);
             this.mLblEmail.MaxLength = 50;
             this.mLblEmail.MouseState = MaterialSkin.MouseState.OUT;
             this.mLblEmail.Multiline = false;
             this.mLblEmail.Name = "mLblEmail";
             this.mLblEmail.Size = new System.Drawing.Size(307, 50);
-            this.mLblEmail.TabIndex = 3;
+            this.mLblEmail.TabIndex = 4;
             this.mLblEmail.Text = "";
             this.mLblEmail.TrailingIcon = null;
             // 
@@ -135,12 +136,12 @@ namespace TCC2.Telas
             this.mBtnCadastrar.Depth = 0;
             this.mBtnCadastrar.HighEmphasis = true;
             this.mBtnCadastrar.Icon = null;
-            this.mBtnCadastrar.Location = new System.Drawing.Point(159, 542);
+            this.mBtnCadastrar.Location = new System.Drawing.Point(159, 533);
             this.mBtnCadastrar.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.mBtnCadastrar.MouseState = MaterialSkin.MouseState.HOVER;
             this.mBtnCadastrar.Name = "mBtnCadastrar";
             this.mBtnCadastrar.Size = new System.Drawing.Size(106, 36);
-            this.mBtnCadastrar.TabIndex = 4;
+            this.mBtnCadastrar.TabIndex = 8;
             this.mBtnCadastrar.Text = "Cadastrar";
             this.mBtnCadastrar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.mBtnCadastrar.UseAccentColor = false;
@@ -149,9 +150,11 @@ namespace TCC2.Telas
             // 
             // mchkNutricionista
             // 
+            this.mchkNutricionista.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.mchkNutricionista.AutoSize = true;
             this.mchkNutricionista.Depth = 0;
-            this.mchkNutricionista.Location = new System.Drawing.Point(140, 389);
+            this.mchkNutricionista.Location = new System.Drawing.Point(140, 377);
             this.mchkNutricionista.Margin = new System.Windows.Forms.Padding(0);
             this.mchkNutricionista.MouseLocation = new System.Drawing.Point(-1, -1);
             this.mchkNutricionista.MouseState = MaterialSkin.MouseState.HOVER;
@@ -166,9 +169,11 @@ namespace TCC2.Telas
             // 
             // mchkEstudante
             // 
+            this.mchkEstudante.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.mchkEstudante.AutoSize = true;
             this.mchkEstudante.Depth = 0;
-            this.mchkEstudante.Location = new System.Drawing.Point(140, 435);
+            this.mchkEstudante.Location = new System.Drawing.Point(140, 424);
             this.mchkEstudante.Margin = new System.Windows.Forms.Padding(0);
             this.mchkEstudante.MouseLocation = new System.Drawing.Point(-1, -1);
             this.mchkEstudante.MouseState = MaterialSkin.MouseState.HOVER;
@@ -191,7 +196,7 @@ namespace TCC2.Telas
             this.mtxtCRN.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.mtxtCRN.Hint = "CRN";
             this.mtxtCRN.LeadingIcon = null;
-            this.mtxtCRN.Location = new System.Drawing.Point(71, 477);
+            this.mtxtCRN.Location = new System.Drawing.Point(71, 476);
             this.mtxtCRN.Margin = new System.Windows.Forms.Padding(2);
             this.mtxtCRN.MaxLength = 50;
             this.mtxtCRN.MouseState = MaterialSkin.MouseState.OUT;
@@ -203,11 +208,34 @@ namespace TCC2.Telas
             this.mtxtCRN.TrailingIcon = null;
             this.mtxtCRN.Visible = false;
             // 
+            // txtConfirmarSenha
+            // 
+            this.txtConfirmarSenha.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtConfirmarSenha.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtConfirmarSenha.Depth = 0;
+            this.txtConfirmarSenha.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtConfirmarSenha.Hint = "Confirmar Senha";
+            this.txtConfirmarSenha.LeadingIcon = null;
+            this.txtConfirmarSenha.Location = new System.Drawing.Point(71, 257);
+            this.txtConfirmarSenha.Margin = new System.Windows.Forms.Padding(2);
+            this.txtConfirmarSenha.MaxLength = 50;
+            this.txtConfirmarSenha.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtConfirmarSenha.Multiline = false;
+            this.txtConfirmarSenha.Name = "txtConfirmarSenha";
+            this.txtConfirmarSenha.Password = true;
+            this.txtConfirmarSenha.Size = new System.Drawing.Size(307, 50);
+            this.txtConfirmarSenha.TabIndex = 3;
+            this.txtConfirmarSenha.Text = "";
+            this.txtConfirmarSenha.TrailingIcon = null;
+            // 
             // frmCadastro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(448, 594);
+            this.Controls.Add(this.txtConfirmarSenha);
             this.Controls.Add(this.mtxtCRN);
             this.Controls.Add(this.mchkEstudante);
             this.Controls.Add(this.mchkNutricionista);
@@ -236,5 +264,6 @@ namespace TCC2.Telas
         private MaterialSkin.Controls.MaterialRadioButton mchkNutricionista;
         private MaterialSkin.Controls.MaterialRadioButton mchkEstudante;
         private MaterialSkin.Controls.MaterialTextBox mtxtCRN;
+        private MaterialSkin.Controls.MaterialTextBox txtConfirmarSenha;
     }
 }

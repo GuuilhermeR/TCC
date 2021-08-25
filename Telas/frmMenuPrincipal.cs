@@ -51,6 +51,7 @@ namespace TCC2
         //Image capturaImagem;
         public string caminhoImagemSalva = null;
         public MaterialSkinManager materialSkinManager = MaterialSkinManager.Instance;
+        public string dataAgendadoAnterior;
         #endregion
 
         #region Menu
@@ -378,16 +379,30 @@ namespace TCC2
                 nMensagemAviso("Não é possível agendar uma consulta em um horário não disponível da nutricionista!");
                 return;
             }
-            if (nMensagemAlerta($"Você deseja agendar o paciente {txtPacienteAgenda.Text} para {txtDataAgendamento.Text} {txtHoraAgenda.Text}") == DialogResult.Yes)
-                agendaDAO.AdicionarPaciente(
-                            txtDataAgendamento.Text,
+            if (agendaDAO.VerificarPacienteAgendado(Convert.ToString(usuarioDAO.getUsuario()), dataAgendadoAnterior))
+            {
+                agendaDAO.AtualizarPaciente(
+                       txtDataAgendamento.Text,
                             txtHoraAgenda.Text,
                             txtPacienteAgenda.Text,
-                            false,
-                            false,
-                            0,
-                            false,
-                            Convert.ToString(usuarioDAO.getUsuario()));
+                       false,
+                       false,
+                       0,
+                       true,
+                       Convert.ToString(usuarioDAO.getUsuario()));
+            }
+            else
+            {
+                agendaDAO.AdicionarPaciente(
+                       txtDataAgendamento.Text,
+                            txtHoraAgenda.Text,
+                            txtPacienteAgenda.Text,
+                       false,
+                       false,
+                       0,
+                       true,
+                       Convert.ToString(usuarioDAO.getUsuario()));
+            }
         }
 
         private void calAgendamento_ItemCreated(object sender, System.Windows.Forms.Calendar.CalendarItemCancelEventArgs e)
@@ -405,16 +420,36 @@ namespace TCC2
 
         private void calAgendamento_ItemDatesChanged(object sender, System.Windows.Forms.Calendar.CalendarItemEventArgs e)
         {
+            if (!ValidarAgendamento(Convert.ToDateTime((e.Item.StartDate.ToString()).Substring(0, 10)), Convert.ToString(e.Item.StartDate.ToString()).Substring(11, 5)))
+            {
+                nMensagemAviso("Não é possível agendar uma consulta em um horário não disponível da nutricionista!");
+                return;
+            }
             if (nMensagemAlerta($"Você deseja alterar o paciente {e.Item.Text.ToString()} para {e.Item.StartDate.ToString()}") == DialogResult.Yes)
-                agendaDAO.AdicionarPaciente(
-                            (e.Item.StartDate.ToString()).Substring(0, 10),
-                            (e.Item.StartDate.ToString()).Substring(11, 5),
-                            e.Item.Text.ToString(),
-                            false,
-                            false,
-                            0,
-                            true,
-                            Convert.ToString(usuarioDAO.getUsuario()));
+                if (agendaDAO.VerificarPacienteAgendado(Convert.ToString(usuarioDAO.getUsuario()), dataAgendadoAnterior))
+                {
+                    agendaDAO.AtualizarPaciente(
+                           (e.Item.StartDate.ToString()).Substring(0, 10),
+                           (e.Item.StartDate.ToString()).Substring(11, 5),
+                           e.Item.Text.ToString(),
+                           false,
+                           false,
+                           0,
+                           true,
+                           Convert.ToString(usuarioDAO.getUsuario()));
+                }
+                else
+                {
+                    agendaDAO.AdicionarPaciente(
+                           (e.Item.StartDate.ToString()).Substring(0, 10),
+                           (e.Item.StartDate.ToString()).Substring(11, 5),
+                           e.Item.Text.ToString(),
+                           false,
+                           false,
+                           0,
+                           true,
+                           Convert.ToString(usuarioDAO.getUsuario()));
+                }
         }
 
         private void calAgendamento_ItemDeleted(object sender, System.Windows.Forms.Calendar.CalendarItemEventArgs e)
@@ -499,16 +534,17 @@ namespace TCC2
 
         private void CancelarAtendimento(string data, string paciente, bool atendido, bool retorno)
         {
-            agendaDAO.AdicionarPaciente(data.Substring(0, 10), data.Substring(11), paciente, atendido, retorno, 1, true, Convert.ToString(usuarioDAO.getUsuario()));
+            agendaDAO.AtualizarPaciente(data.Substring(0, 10), data.Substring(11), paciente, atendido, retorno, 1, true, Convert.ToString(usuarioDAO.getUsuario()));
         }
 
         private void FinalizarAtendimento(string data, string paciente, bool atendido, bool retorno)
         {
-            agendaDAO.AdicionarPaciente(data.Substring(0, 10), data.Substring(11), paciente, atendido, retorno, 0, true, Convert.ToString(usuarioDAO.getUsuario()));
+            agendaDAO.AtualizarPaciente(data.Substring(0, 10), data.Substring(11), paciente, atendido, retorno, 0, true, Convert.ToString(usuarioDAO.getUsuario()));
         }
 
         private void calAgendamento_ItemCreating(object sender, CalendarItemCancelEventArgs e)
         {
+            dataAgendadoAnterior = (e.Item.StartDate.ToString()).Substring(0, 10);
             e.Cancel = true;
         }
 
@@ -2072,5 +2108,6 @@ namespace TCC2
             frmBuscarPaciente buscaPacientes = new frmBuscarPaciente(this);
             buscaPacientes.ShowDialog();
         }
+
     }
 }

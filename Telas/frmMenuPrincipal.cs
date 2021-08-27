@@ -902,69 +902,43 @@ namespace TCC2
                     if (!mCbxTabelasMedCas.Items.Contains(x.nomeTabela))
                         mCbxTabelasMedCas.Items.Add(x.nomeTabela);
                 });
-        }
 
-        private void dtgMedCaseiraAlimentos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-            if (e.RowIndex >= 0 || e.ColumnIndex >= 0)
-            {
-                txtAlimentoMedCaseira.Text = dtgMedCaseiraAlimentos.CurrentRow.Cells["nomeAlimento"].Value.ToString();
-                txtCodAlimentoMedCas.Text = dtgMedCaseiraAlimentos.CurrentRow.Cells["codAlimento"].Value.ToString();
-            }
-
-            dtgSalvarMedCaseira.DataSource = null;
-
-            var listaMedCaseira = medidaCaseiraDAO.Buscar(Convert.ToInt32(txtCodAlimentoMedCas.Text));
+            var listaMedCaseira = medidaCaseiraDAO.Buscar(0);
 
             if (listaMedCaseira == null)
                 return;
 
-            DataTable dt = ConvertToDataTable(listaMedCaseira);
-
-            dtgSalvarMedCaseira.DataSource = dt;
-            dtgSalvarMedCaseira.Columns["ID"].Visible = false;
-            dtgSalvarMedCaseira.Columns["codAlimento"].Visible = false;
-            dtgSalvarMedCaseira.Columns["Alimentos"].Visible = false;
-            dtgSalvarMedCaseira.Columns["descricao"].HeaderText = "Descricao";
-            dtgSalvarMedCaseira.Columns["qtd"].HeaderText = "Quantidade";
-
-            foreach (DataGridViewRow rows in dtgSalvarMedCaseira.Rows)
-            {
-                rows.Cells["salvo"].Value = 1;
-            }
+            foreach (MedidaCaseira medCaseira in listaMedCaseira)
+                dtgSalvarMedCaseira.Rows.Add(medCaseira.codAlimento, medCaseira.Alimentos.nomeAlimento, medCaseira.descricao, medCaseira.qtd, medCaseira.Alimentos.nomeTabela);
         }
-        private void btnAddMedCaseira_Click(object sender, EventArgs e)
+
+        private void dtgMedCaseiraAlimentos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            dtgSalvarMedCaseira.Rows.Add(txtCodAlimentoMedCas.Text,txtAlimentoMedCaseira.Text, txtDescMedCaseira.Text, txtQtdMedCas.Text);
-            txtCodAlimentoMedCas.Text = "";
-            txtAlimentoMedCaseira.Text = "";
-            txtDescMedCaseira.Text = "";
-            txtQtdMedCas.Text = "";
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                return;
+
+            dtgSalvarMedCaseira.Rows.Add(dtgMedCaseiraAlimentos.CurrentRow.Cells["codAlimento"].Value, dtgMedCaseiraAlimentos.CurrentRow.Cells["nomeAlimento"].Value, "", "", dtgMedCaseiraAlimentos.CurrentRow.Cells["nomeTabela"].Value);
+
         }
+
+        //private void btnAddMedCaseira_Click(object sender, EventArgs e)
+        //{
+        //    dtgSalvarMedCaseira.Rows.Add(txtCodAlimentoMedCas.Text,txtAlimentoMedCaseira.Text, txtDescMedCaseira.Text, txtQtdMedCas.Text);
+        //    txtCodAlimentoMedCas.Text = "";
+        //    txtAlimentoMedCaseira.Text = "";
+        //    txtDescMedCaseira.Text = "";
+        //    txtQtdMedCas.Text = "";
+        //}
+
         private void btnSalvarMedCas_Click(object sender, EventArgs e)
         {
+            medidaCaseiraDAO.Deletar();
             foreach (DataGridViewRow rows in dtgSalvarMedCaseira.Rows)
             {
-                if (Convert.ToInt32(rows.Cells["salvo"].Value) != 1)
-                {
-                    medidaCaseiraDAO.Salvar(rows.Cells["desc"].Value.ToString(), Convert.ToDouble(rows.Cells["qtd"].Value), Convert.ToInt32(txtCodAlimentoMedCas.Text));
-                }
-                else
-                {
-
-                }
+                medidaCaseiraDAO.Salvar(rows.Cells["colDescricao"].Value.ToString(), Convert.ToDouble(rows.Cells["colQtd"].Value), Convert.ToInt32(rows.Cells["colCodAlimento"].Value));
             }
-            dtgSalvarMedCaseira.DataSource = null;
-            txtAlimentoMedCaseira.Text = "";
-            txtDescMedCaseira.Text = "";
-            txtQtdMedCas.Text = "";
-            txtCodAlimentoMedCas.Text = "";
         }
-        private void txtAlimentoMedCaseira_Leave(object sender, EventArgs e)
-        {
 
-        }
         private void _tbConsulta_Enter(object sender, EventArgs e)
         {
             VerificarPermissao(tabAlimento.Text);
@@ -1489,8 +1463,20 @@ namespace TCC2
                 foreach (DataGridViewRow row in dtgCardapioAlimentos.Rows)
                     if (row.Selected == true || row.Cells["nomeAlimento"].Selected)
                     {
-                        linhaAdicionada = Adicionar(row);
-                        dtgRefeicoes.Rows.Add(linhaAdicionada);
+                        var medCaseiraItens = medidaCaseiraDAO.Buscar(Convert.ToInt32(row.Cells["codAlimento"].Value));
+                        
+
+                        dtgRefeicoes.Rows.Add(row.Cells["codAlimento"].Value
+                            , row.Cells["nomeAlimento"].Value
+                            , 100
+                            , row.Cells["kcal"].Value
+                            , row.Cells["prot"].Value
+                            , row.Cells["carbo"].Value
+                            , row.Cells["lipidio"].Value
+                            , medCaseiraItens[1].descricao);
+                        //linhaAdicionada = Adicionar(row);
+                        //dtgRefeicoes.Rows.Add(linhaAdicionada);
+
                     }
 
                 foreach (DataGridViewRow row in dtgRefeicoes.Rows)
@@ -1686,7 +1672,7 @@ namespace TCC2
             {
 
                 DataGridViewComboBoxColumn colunaMedidaCaseira = new DataGridViewComboBoxColumn();
-                colunaMedidaCaseira.HeaderText = "Medida Caseira";
+                colunaMedidaCaseira.HeaderText = "TATATATATA";
                 colunaMedidaCaseira.Name = "medCaseira";
 
                 dtgRefeicoes.Columns.Add("codAlimento", "codAlimento");

@@ -31,13 +31,13 @@ namespace TCC2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange29 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange30 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange31 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange32 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange33 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange34 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange35 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange43 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange44 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange45 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange46 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange47 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange48 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange49 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMenuPrincipal));
             this.TabControlNutreasy = new MaterialSkin.Controls.MaterialTabControl();
             this.tabMenu = new System.Windows.Forms.TabPage();
@@ -88,13 +88,8 @@ namespace TCC2
             this.tbCadMedCaseira = new System.Windows.Forms.TabPage();
             this.mTxtFiltroAlimentoMedCas = new MaterialSkin.Controls.MaterialTextBox();
             this.mCbxTabelasMedCas = new MaterialSkin.Controls.MaterialComboBox();
-            this.txtQtdMedCas = new MaterialSkin.Controls.MaterialTextBox();
-            this.txtDescMedCaseira = new MaterialSkin.Controls.MaterialTextBox();
-            this.txtAlimentoMedCaseira = new MaterialSkin.Controls.MaterialTextBox();
-            this.txtCodAlimentoMedCas = new System.Windows.Forms.TextBox();
             this.dtgSalvarMedCaseira = new System.Windows.Forms.DataGridView();
             this.dtgMedCaseiraAlimentos = new System.Windows.Forms.DataGridView();
-            this.btnAddMedCaseira = new System.Windows.Forms.Button();
             this.btnSalvarMedCas = new System.Windows.Forms.Button();
             this.tabCardapio = new System.Windows.Forms.TabPage();
             this.tbCardapio = new System.Windows.Forms.TabControl();
@@ -202,11 +197,19 @@ namespace TCC2
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.NutreasyIconNotify = new System.Windows.Forms.NotifyIcon(this.components);
-            this.salvo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCodAlimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colAlimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDescricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colQtd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTabela = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codAlimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomeAlimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qtd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kcal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prot = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.carbo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lipidio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.medCaseira = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.TabControlNutreasy.SuspendLayout();
             this.tabMenu.SuspendLayout();
             this.mCardAtendimentoAtual.SuspendLayout();
@@ -660,35 +663,35 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.calAgendamento.BackColor = System.Drawing.SystemColors.Control;
             this.calAgendamento.Font = new System.Drawing.Font("Segoe UI", 9F);
-            calendarHighlightRange29.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange29.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange29.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange30.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange30.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange30.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange31.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange31.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange31.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange32.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange32.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange32.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange33.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange33.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange33.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange34.DayOfWeek = System.DayOfWeek.Saturday;
-            calendarHighlightRange34.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange34.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange35.DayOfWeek = System.DayOfWeek.Sunday;
-            calendarHighlightRange35.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange35.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange43.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange43.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange43.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange44.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange44.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange44.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange45.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange45.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange45.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange46.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange46.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange46.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange47.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange47.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange47.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange48.DayOfWeek = System.DayOfWeek.Saturday;
+            calendarHighlightRange48.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange48.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange49.DayOfWeek = System.DayOfWeek.Sunday;
+            calendarHighlightRange49.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange49.StartTime = System.TimeSpan.Parse("00:00:00");
             this.calAgendamento.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
-        calendarHighlightRange29,
-        calendarHighlightRange30,
-        calendarHighlightRange31,
-        calendarHighlightRange32,
-        calendarHighlightRange33,
-        calendarHighlightRange34,
-        calendarHighlightRange35};
+        calendarHighlightRange43,
+        calendarHighlightRange44,
+        calendarHighlightRange45,
+        calendarHighlightRange46,
+        calendarHighlightRange47,
+        calendarHighlightRange48,
+        calendarHighlightRange49};
             this.calAgendamento.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.calAgendamento.ItemsTimeFormat = "hh:mm";
             this.calAgendamento.Location = new System.Drawing.Point(3, 226);
@@ -1021,13 +1024,8 @@ namespace TCC2
             // 
             this.tbCadMedCaseira.Controls.Add(this.mTxtFiltroAlimentoMedCas);
             this.tbCadMedCaseira.Controls.Add(this.mCbxTabelasMedCas);
-            this.tbCadMedCaseira.Controls.Add(this.txtQtdMedCas);
-            this.tbCadMedCaseira.Controls.Add(this.txtDescMedCaseira);
-            this.tbCadMedCaseira.Controls.Add(this.txtAlimentoMedCaseira);
-            this.tbCadMedCaseira.Controls.Add(this.txtCodAlimentoMedCas);
             this.tbCadMedCaseira.Controls.Add(this.dtgSalvarMedCaseira);
             this.tbCadMedCaseira.Controls.Add(this.dtgMedCaseiraAlimentos);
-            this.tbCadMedCaseira.Controls.Add(this.btnAddMedCaseira);
             this.tbCadMedCaseira.Controls.Add(this.btnSalvarMedCas);
             this.tbCadMedCaseira.Location = new System.Drawing.Point(4, 22);
             this.tbCadMedCaseira.Margin = new System.Windows.Forms.Padding(2);
@@ -1081,77 +1079,6 @@ namespace TCC2
             this.mCbxTabelasMedCas.TabIndex = 329;
             this.mCbxTabelasMedCas.SelectedValueChanged += new System.EventHandler(this.mCbxTabelasMedCas_SelectedValueChanged);
             // 
-            // txtQtdMedCas
-            // 
-            this.txtQtdMedCas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtQtdMedCas.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtQtdMedCas.Depth = 0;
-            this.txtQtdMedCas.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtQtdMedCas.Hint = "Qtd (g/ml)";
-            this.txtQtdMedCas.LeadingIcon = null;
-            this.txtQtdMedCas.Location = new System.Drawing.Point(815, 106);
-            this.txtQtdMedCas.MaxLength = 50;
-            this.txtQtdMedCas.MouseState = MaterialSkin.MouseState.OUT;
-            this.txtQtdMedCas.Multiline = false;
-            this.txtQtdMedCas.Name = "txtQtdMedCas";
-            this.txtQtdMedCas.Size = new System.Drawing.Size(309, 50);
-            this.txtQtdMedCas.TabIndex = 328;
-            this.txtQtdMedCas.Text = "";
-            this.txtQtdMedCas.TrailingIcon = null;
-            // 
-            // txtDescMedCaseira
-            // 
-            this.txtDescMedCaseira.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDescMedCaseira.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDescMedCaseira.Depth = 0;
-            this.txtDescMedCaseira.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtDescMedCaseira.Hint = "Descrição";
-            this.txtDescMedCaseira.LeadingIcon = null;
-            this.txtDescMedCaseira.Location = new System.Drawing.Point(361, 106);
-            this.txtDescMedCaseira.MaxLength = 50;
-            this.txtDescMedCaseira.MouseState = MaterialSkin.MouseState.OUT;
-            this.txtDescMedCaseira.Multiline = false;
-            this.txtDescMedCaseira.Name = "txtDescMedCaseira";
-            this.txtDescMedCaseira.Size = new System.Drawing.Size(429, 50);
-            this.txtDescMedCaseira.TabIndex = 327;
-            this.txtDescMedCaseira.Text = "";
-            this.txtDescMedCaseira.TrailingIcon = null;
-            // 
-            // txtAlimentoMedCaseira
-            // 
-            this.txtAlimentoMedCaseira.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAlimentoMedCaseira.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtAlimentoMedCaseira.Depth = 0;
-            this.txtAlimentoMedCaseira.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtAlimentoMedCaseira.Hint = "Alimento";
-            this.txtAlimentoMedCaseira.LeadingIcon = null;
-            this.txtAlimentoMedCaseira.Location = new System.Drawing.Point(361, 20);
-            this.txtAlimentoMedCaseira.MaxLength = 50;
-            this.txtAlimentoMedCaseira.MouseState = MaterialSkin.MouseState.OUT;
-            this.txtAlimentoMedCaseira.Multiline = false;
-            this.txtAlimentoMedCaseira.Name = "txtAlimentoMedCaseira";
-            this.txtAlimentoMedCaseira.ReadOnly = true;
-            this.txtAlimentoMedCaseira.Size = new System.Drawing.Size(577, 50);
-            this.txtAlimentoMedCaseira.TabIndex = 326;
-            this.txtAlimentoMedCaseira.Text = "";
-            this.txtAlimentoMedCaseira.TrailingIcon = null;
-            this.txtAlimentoMedCaseira.Leave += new System.EventHandler(this.txtAlimentoMedCaseira_Leave);
-            // 
-            // txtCodAlimentoMedCas
-            // 
-            this.txtCodAlimentoMedCas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCodAlimentoMedCas.Enabled = false;
-            this.txtCodAlimentoMedCas.Location = new System.Drawing.Point(361, 66);
-            this.txtCodAlimentoMedCas.Margin = new System.Windows.Forms.Padding(2);
-            this.txtCodAlimentoMedCas.Name = "txtCodAlimentoMedCas";
-            this.txtCodAlimentoMedCas.Size = new System.Drawing.Size(93, 20);
-            this.txtCodAlimentoMedCas.TabIndex = 285;
-            this.txtCodAlimentoMedCas.Visible = false;
-            // 
             // dtgSalvarMedCaseira
             // 
             this.dtgSalvarMedCaseira.AllowUserToAddRows = false;
@@ -1161,15 +1088,15 @@ namespace TCC2
             this.dtgSalvarMedCaseira.BackgroundColor = System.Drawing.Color.White;
             this.dtgSalvarMedCaseira.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgSalvarMedCaseira.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.salvo,
             this.colCodAlimento,
             this.colAlimento,
             this.colDescricao,
-            this.colQtd});
-            this.dtgSalvarMedCaseira.Location = new System.Drawing.Point(361, 203);
+            this.colQtd,
+            this.colTabela});
+            this.dtgSalvarMedCaseira.Location = new System.Drawing.Point(361, 18);
             this.dtgSalvarMedCaseira.Name = "dtgSalvarMedCaseira";
             this.dtgSalvarMedCaseira.RowHeadersWidth = 51;
-            this.dtgSalvarMedCaseira.Size = new System.Drawing.Size(765, 434);
+            this.dtgSalvarMedCaseira.Size = new System.Drawing.Size(765, 612);
             this.dtgSalvarMedCaseira.TabIndex = 10;
             // 
             // dtgMedCaseiraAlimentos
@@ -1183,31 +1110,18 @@ namespace TCC2
             this.dtgMedCaseiraAlimentos.Name = "dtgMedCaseiraAlimentos";
             this.dtgMedCaseiraAlimentos.ReadOnly = true;
             this.dtgMedCaseiraAlimentos.RowHeadersWidth = 51;
-            this.dtgMedCaseiraAlimentos.Size = new System.Drawing.Size(348, 520);
+            this.dtgMedCaseiraAlimentos.Size = new System.Drawing.Size(348, 554);
             this.dtgMedCaseiraAlimentos.TabIndex = 3;
             this.dtgMedCaseiraAlimentos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgMedCaseiraAlimentos_CellDoubleClick);
-            // 
-            // btnAddMedCaseira
-            // 
-            this.btnAddMedCaseira.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddMedCaseira.Image = global::TCC2.Properties.Resources.Adicionar;
-            this.btnAddMedCaseira.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddMedCaseira.Location = new System.Drawing.Point(1025, 167);
-            this.btnAddMedCaseira.Name = "btnAddMedCaseira";
-            this.btnAddMedCaseira.Size = new System.Drawing.Size(101, 30);
-            this.btnAddMedCaseira.TabIndex = 284;
-            this.btnAddMedCaseira.Text = "Adicionar";
-            this.btnAddMedCaseira.UseVisualStyleBackColor = true;
-            this.btnAddMedCaseira.Click += new System.EventHandler(this.btnAddMedCaseira_Click);
             // 
             // btnSalvarMedCas
             // 
             this.btnSalvarMedCas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSalvarMedCas.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
             this.btnSalvarMedCas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalvarMedCas.Location = new System.Drawing.Point(1037, 642);
+            this.btnSalvarMedCas.Location = new System.Drawing.Point(1009, 636);
             this.btnSalvarMedCas.Name = "btnSalvarMedCas";
-            this.btnSalvarMedCas.Size = new System.Drawing.Size(89, 30);
+            this.btnSalvarMedCas.Size = new System.Drawing.Size(115, 35);
             this.btnSalvarMedCas.TabIndex = 11;
             this.btnSalvarMedCas.Text = "Salvar";
             this.btnSalvarMedCas.UseVisualStyleBackColor = true;
@@ -1524,6 +1438,15 @@ namespace TCC2
             this.dtgRefeicoes.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dtgRefeicoes.BackgroundColor = System.Drawing.Color.White;
             this.dtgRefeicoes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgRefeicoes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.codAlimento,
+            this.nomeAlimento,
+            this.qtd,
+            this.kcal,
+            this.prot,
+            this.carbo,
+            this.lipidio,
+            this.medCaseira});
             this.dtgRefeicoes.Location = new System.Drawing.Point(618, 117);
             this.dtgRefeicoes.Name = "dtgRefeicoes";
             this.dtgRefeicoes.RowHeadersWidth = 51;
@@ -2978,17 +2901,12 @@ namespace TCC2
             this.NutreasyIconNotify.Text = "Nutreasy";
             this.NutreasyIconNotify.Visible = true;
             // 
-            // salvo
-            // 
-            this.salvo.HeaderText = "salvo";
-            this.salvo.Name = "salvo";
-            this.salvo.Visible = false;
-            // 
             // colCodAlimento
             // 
             this.colCodAlimento.HeaderText = "Código Alimento";
             this.colCodAlimento.MinimumWidth = 6;
             this.colCodAlimento.Name = "colCodAlimento";
+            this.colCodAlimento.ReadOnly = true;
             this.colCodAlimento.Visible = false;
             this.colCodAlimento.Width = 125;
             // 
@@ -2996,6 +2914,7 @@ namespace TCC2
             // 
             this.colAlimento.HeaderText = "Alimento";
             this.colAlimento.Name = "colAlimento";
+            this.colAlimento.ReadOnly = true;
             // 
             // colDescricao
             // 
@@ -3006,6 +2925,65 @@ namespace TCC2
             // 
             this.colQtd.HeaderText = "Quantidade";
             this.colQtd.Name = "colQtd";
+            // 
+            // colTabela
+            // 
+            this.colTabela.HeaderText = "Tabela";
+            this.colTabela.Name = "colTabela";
+            this.colTabela.ReadOnly = true;
+            // 
+            // codAlimento
+            // 
+            this.codAlimento.HeaderText = "Cód Alimento";
+            this.codAlimento.Name = "codAlimento";
+            this.codAlimento.Visible = false;
+            this.codAlimento.Width = 94;
+            // 
+            // nomeAlimento
+            // 
+            this.nomeAlimento.HeaderText = "Alimento";
+            this.nomeAlimento.Name = "nomeAlimento";
+            this.nomeAlimento.Width = 72;
+            // 
+            // qtd
+            // 
+            this.qtd.HeaderText = "Quantidade";
+            this.qtd.Name = "qtd";
+            this.qtd.Width = 87;
+            // 
+            // kcal
+            // 
+            this.kcal.HeaderText = "Kcal";
+            this.kcal.Name = "kcal";
+            this.kcal.Visible = false;
+            this.kcal.Width = 53;
+            // 
+            // prot
+            // 
+            this.prot.HeaderText = "Proteína";
+            this.prot.Name = "prot";
+            this.prot.Visible = false;
+            this.prot.Width = 73;
+            // 
+            // carbo
+            // 
+            this.carbo.HeaderText = "Carboidrato";
+            this.carbo.Name = "carbo";
+            this.carbo.Visible = false;
+            this.carbo.Width = 86;
+            // 
+            // lipidio
+            // 
+            this.lipidio.HeaderText = "Lipídio";
+            this.lipidio.Name = "lipidio";
+            this.lipidio.Visible = false;
+            this.lipidio.Width = 64;
+            // 
+            // medCaseira
+            // 
+            this.medCaseira.HeaderText = "Medida Caseira";
+            this.medCaseira.Name = "medCaseira";
+            this.medCaseira.Width = 77;
             // 
             // FrmMenuPrincipal
             // 
@@ -3043,7 +3021,6 @@ namespace TCC2
             this.tbImportarPlanilha.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDadosImportados)).EndInit();
             this.tbCadMedCaseira.ResumeLayout(false);
-            this.tbCadMedCaseira.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgSalvarMedCaseira)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgMedCaseiraAlimentos)).EndInit();
             this.tabCardapio.ResumeLayout(false);
@@ -3124,8 +3101,6 @@ namespace TCC2
         internal System.Windows.Forms.DataGridView dtgSalvarMedCaseira;
         internal System.Windows.Forms.DataGridView dtgMedCaseiraAlimentos;
         internal System.Windows.Forms.Button btnSalvarMedCas;
-        internal System.Windows.Forms.Button btnAddMedCaseira;
-        private System.Windows.Forms.TextBox txtCodAlimentoMedCas;
         private System.Windows.Forms.TabPage tabCardapio;
         private System.Windows.Forms.TabControl tbCardapio;
         private System.Windows.Forms.TabPage tbCadCardapio;
@@ -3203,9 +3178,6 @@ namespace TCC2
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         public MaterialSkin.Controls.MaterialTextBox txtCRN;
         internal System.Windows.Forms.Button btnSalvarAnamnese;
-        public MaterialSkin.Controls.MaterialTextBox txtAlimentoMedCaseira;
-        public MaterialSkin.Controls.MaterialTextBox txtQtdMedCas;
-        public MaterialSkin.Controls.MaterialTextBox txtDescMedCaseira;
         public MaterialSkin.Controls.MaterialTextBox txtPacienteAnamnese;
         private System.Windows.Forms.Button btnFindPacienteAnamnese;
         private MaterialSkin.Controls.MaterialComboBox mCbxTabelasMedCas;
@@ -3248,11 +3220,19 @@ namespace TCC2
         public MaterialSkin.Controls.MaterialTextBox txtPacienteAgenda;
         public MaterialSkin.Controls.MaterialTextBox txtNutricionista;
         private System.Windows.Forms.Button btnCarregarNutricionistas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn salvo;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCodAlimento;
         private System.Windows.Forms.DataGridViewTextBoxColumn colAlimento;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDescricao;
         private System.Windows.Forms.DataGridViewTextBoxColumn colQtd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTabela;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codAlimento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nomeAlimento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn qtd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn kcal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn prot;
+        private System.Windows.Forms.DataGridViewTextBoxColumn carbo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lipidio;
+        private System.Windows.Forms.DataGridViewComboBoxColumn medCaseira;
     }
 }
 

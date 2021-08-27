@@ -7,6 +7,7 @@ using Microsoft.VisualBasic;
 using TCC2;
 using System.Collections.Generic;
 using TCC2.Banco_de_Dados;
+using static Classes.ExibidorMensagem;
 
 namespace TCC2
 {
@@ -28,12 +29,11 @@ namespace TCC2
 
                 BancoDadosSingleton.Instance.MedidaCaseira.Add(medCasInsert);
                 BancoDadosSingleton.Instance.SaveChanges();
-
+                nMensagemAlerta("Os dados foram salvos!");
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("Ocorreu um erro ao salvar o Alimento." + '\n' + ex.Message + '\n' + ex.InnerException, Constants.vbOKOnly, "Alerta");
-
+                nMensagemAlerta("Ocorreu um erro ao salvar o Alimento." + '\n' + ex.Message + '\n' + ex.InnerException);
             }
         }
 
@@ -41,18 +41,26 @@ namespace TCC2
         {
             try
             {
-                var medCaseira = ((from mc in BancoDadosSingleton.Instance.MedidaCaseira 
-                                   where mc.codAlimento == codAlimento 
+                List<MedidaCaseira> medCaseira = new List<MedidaCaseira>();
+                if (codAlimento > 0)
+                {
+                    medCaseira = ((from mc in BancoDadosSingleton.Instance.MedidaCaseira
+                                   where mc.codAlimento == codAlimento
                                    select mc).Distinct()).ToList();
+                }
+                else if (codAlimento == 0)
+                {
+                    medCaseira = ((from mc in BancoDadosSingleton.Instance.MedidaCaseira
+                                   select mc).Distinct()).ToList();
+                }
+
                 if (medCaseira.Count > 0)
                 {
                     return medCaseira;
-
                 }
                 else
                 {
                     return null;
-
                 }
             }
             catch
@@ -60,5 +68,25 @@ namespace TCC2
                 return null;
             }
         }
+
+        public void Deletar()
+        {
+            try
+            {
+                using (var db = new NutreasyEntities())
+                {
+                    var delete = db.Database.Connection.CreateCommand();
+                    delete.CommandText = $"DELETE FROM MedidaCaseira";
+                    db.Database.Connection.Open();
+                    delete.ExecuteNonQuery();
+                    db.Database.Connection.Close();        
+                }
+            }
+            catch (Exception ex)
+            {
+                nMensagemErro("Ocorreu um erro ao deletar!" + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException);
+            }
+        }
+
     }
 }

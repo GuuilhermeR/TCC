@@ -338,31 +338,31 @@ namespace TCC2
             switch (data.DayOfWeek)
             {
                 case DayOfWeek.Monday:
-                    if(TimeSpan.Compare(horario, configCalendar[0].StartTime) >= 0  && TimeSpan.Compare(horario, configCalendar[0].EndTime) < 0)
+                    if (TimeSpan.Compare(horario, configCalendar[0].StartTime) >= 0 && TimeSpan.Compare(configCalendar[0].EndTime, horario) > 0)
                         return true;
                     break;
                 case DayOfWeek.Tuesday:
-                    if (TimeSpan.Compare(horario, configCalendar[0].StartTime) >= 0 && TimeSpan.Compare(horario, configCalendar[0].EndTime) < 0)
+                    if (TimeSpan.Compare(horario, configCalendar[0].StartTime) >= 0 && TimeSpan.Compare(configCalendar[0].EndTime, horario) > 0)
                         return true;
                     break;
                 case DayOfWeek.Wednesday:
-                    if (TimeSpan.Compare(horario, configCalendar[0].StartTime) >= 0 && TimeSpan.Compare(horario, configCalendar[0].EndTime) < 0)
+                    if (TimeSpan.Compare(horario, configCalendar[0].StartTime) >= 0 && TimeSpan.Compare(configCalendar[0].EndTime, horario) > 0)
                         return true;
                     break;
                 case DayOfWeek.Thursday:
-                    if (TimeSpan.Compare(horario, configCalendar[0].StartTime) >= 0 && TimeSpan.Compare(horario, configCalendar[0].EndTime) < 0)
+                    if (TimeSpan.Compare(horario, configCalendar[0].StartTime) >= 0 && TimeSpan.Compare(configCalendar[0].EndTime, horario) > 0)
                         return true;
                     break;
                 case DayOfWeek.Friday:
-                    if (TimeSpan.Compare(horario, configCalendar[0].StartTime) >= 0 && TimeSpan.Compare(horario, configCalendar[0].EndTime) < 0)
+                    if (TimeSpan.Compare(horario, configCalendar[0].StartTime) >= 0 && TimeSpan.Compare(configCalendar[0].EndTime, horario) > 0)
                         return true;
                     break;
                 case DayOfWeek.Saturday:
-                    if (TimeSpan.Compare(horario, configCalendar[0].StartTime) >= 0 && TimeSpan.Compare(horario, configCalendar[0].EndTime) < 0)
+                    if (TimeSpan.Compare(horario, configCalendar[0].StartTime) >= 0 && TimeSpan.Compare(configCalendar[0].EndTime, horario) > 0)
                         return true;
                     break;
                 case DayOfWeek.Sunday:
-                    if (TimeSpan.Compare(horario, configCalendar[0].StartTime) >= 0 && TimeSpan.Compare(horario, configCalendar[0].EndTime) < 0)
+                    if (TimeSpan.Compare(horario, configCalendar[0].StartTime) >= 0 && TimeSpan.Compare(configCalendar[0].EndTime, horario) > 0)
                         return true;
                     break;
                 default:
@@ -376,10 +376,10 @@ namespace TCC2
         {
             if (!ValidarAgendamento(Convert.ToDateTime(txtDataAgendamento.Text), Convert.ToString(txtHoraAgenda.Text)))
             {
-                nMensagemAviso("Não é possível agendar uma consulta em um horário não disponível da nutricionista!");
+                nMensagemAviso("Não é possível agendar uma consulta em um horário não disponível do nutricionista!");
                 return;
             }
-            if (agendaDAO.VerificarPacienteAgendado(Convert.ToString(usuarioDAO.getUsuario()), dataAgendadoAnterior))
+            if (agendaDAO.VerificarPacienteAgendado(Convert.ToString(usuarioDAO.getUsuario()), txtHoraAgenda.Text))
             {
                 agendaDAO.AtualizarPaciente(
                        txtDataAgendamento.Text,
@@ -422,11 +422,13 @@ namespace TCC2
         {
             if (!ValidarAgendamento(Convert.ToDateTime((e.Item.StartDate.ToString()).Substring(0, 10)), Convert.ToString(e.Item.StartDate.ToString()).Substring(11, 5)))
             {
-                nMensagemAviso("Não é possível agendar uma consulta em um horário não disponível da nutricionista!");
+                nMensagemAviso("Não é possível agendar uma consulta em um horário não disponível do nutricionista!");
+                tabAgenda_Enter(sender, e);
                 return;
             }
             if (nMensagemAlerta($"Você deseja alterar o paciente {e.Item.Text.ToString()} para {e.Item.StartDate.ToString()}") == DialogResult.Yes)
-                if (agendaDAO.VerificarPacienteAgendado(Convert.ToString(usuarioDAO.getUsuario()), dataAgendadoAnterior))
+            {
+                if (agendaDAO.VerificarPacienteAgendado(e.Item.Text.ToString(), dataAgendadoAnterior))
                 {
                     agendaDAO.AtualizarPaciente(
                            (e.Item.StartDate.ToString()).Substring(0, 10),
@@ -440,6 +442,7 @@ namespace TCC2
                 }
                 else
                 {
+                    agendaDAO.DeletarPacienteAgenda(e.Item.Text.ToString(), (e.Item.StartDate.ToString()).Substring(0, 10), (e.Item.StartDate.ToString()).Substring(11, 5));
                     agendaDAO.AdicionarPaciente(
                            (e.Item.StartDate.ToString()).Substring(0, 10),
                            (e.Item.StartDate.ToString()).Substring(11, 5),
@@ -450,13 +453,21 @@ namespace TCC2
                            true,
                            Convert.ToString(usuarioDAO.getUsuario()));
                 }
+            }
+            else
+            {
+                tabAgenda_Enter(sender, e);
+            }
+
         }
 
         private void calAgendamento_ItemDeleted(object sender, System.Windows.Forms.Calendar.CalendarItemEventArgs e)
         {
             if (nMensagemAlerta($"Você deseja excluir a consulta do paciente {e.Item.Text}") == DialogResult.Yes)
             {
-                agendaDAO.DeletarPacienteAgenda(e.Item.Text);
+                agendaDAO.DeletarPacienteAgenda(e.Item.Text.ToString()
+                    , (e.Item.StartDate.ToString()).Substring(0, 10)
+                    , (e.Item.StartDate.ToString()).Substring(11, 5));
             }
             else
             {
@@ -544,7 +555,6 @@ namespace TCC2
 
         private void calAgendamento_ItemCreating(object sender, CalendarItemCancelEventArgs e)
         {
-            dataAgendadoAnterior = (e.Item.StartDate.ToString()).Substring(0, 10);
             e.Cancel = true;
         }
 
@@ -926,7 +936,8 @@ namespace TCC2
         }
         private void btnAddMedCaseira_Click(object sender, EventArgs e)
         {
-            dtgSalvarMedCaseira.Rows.Add(txtAlimentoMedCaseira.Text, txtDescMedCaseira.Text, txtQtdMedCas.Text);
+            dtgSalvarMedCaseira.Rows.Add(txtCodAlimentoMedCas.Text,txtAlimentoMedCaseira.Text, txtDescMedCaseira.Text, txtQtdMedCas.Text);
+            txtCodAlimentoMedCas.Text = "";
             txtAlimentoMedCaseira.Text = "";
             txtDescMedCaseira.Text = "";
             txtQtdMedCas.Text = "";
@@ -936,7 +947,13 @@ namespace TCC2
             foreach (DataGridViewRow rows in dtgSalvarMedCaseira.Rows)
             {
                 if (Convert.ToInt32(rows.Cells["salvo"].Value) != 1)
+                {
                     medidaCaseiraDAO.Salvar(rows.Cells["desc"].Value.ToString(), Convert.ToDouble(rows.Cells["qtd"].Value), Convert.ToInt32(txtCodAlimentoMedCas.Text));
+                }
+                else
+                {
+
+                }
             }
             dtgSalvarMedCaseira.DataSource = null;
             txtAlimentoMedCaseira.Text = "";
@@ -1695,7 +1712,7 @@ namespace TCC2
             DataGridViewRow newRow = (DataGridViewRow)row.Clone();
 
             DataGridViewComboBoxCell cellCbx = new DataGridViewComboBoxCell();
-            
+
             var medCaseiraItens = medidaCaseiraDAO.Buscar(Convert.ToInt32(row.Cells["codAlimento"].Value));
 
             if (medCaseiraItens != null)
@@ -1714,7 +1731,7 @@ namespace TCC2
                     }
                 });
             }
-            
+
             newRow.Cells[0].Value = row.Cells["codAlimento"].Value;
             newRow.Cells[1].Value = row.Cells["nomeAlimento"].Value;
             newRow.Cells[2].Value = row.Cells["kcal"].Value;
@@ -1736,7 +1753,7 @@ namespace TCC2
                                                     Convert.ToString(cbxRefeicao.Text),
                                                     Convert.ToInt32(row.Cells["qtd"].Value),
                                                     Convert.ToString(row.Cells["obs"].Value),
-                                                    Convert.ToDouble(row.Cells["kcal"].Value), 
+                                                    Convert.ToDouble(row.Cells["kcal"].Value),
                                                     Convert.ToString(usuarioDAO.getUsuario()));
             dtgRefeicoes.DataSource = null;
             graficoMacroNutri.Series = null;
@@ -2102,12 +2119,22 @@ namespace TCC2
         {
 
         }
-        
+
         private void BuscadorPaciente()
         {
             frmBuscarPaciente buscaPacientes = new frmBuscarPaciente(this);
             buscaPacientes.ShowDialog();
         }
 
+        private void calAgendamento_ItemsPositioned(object sender, EventArgs e)
+        {
+
+        }
+
+        private void calAgendamento_ItemSelected(object sender, CalendarItemEventArgs e)
+        {
+            dataAgendadoAnterior = (e.Item.StartDate.ToString()).Substring(0, 10);
+
+        }
     }
 }

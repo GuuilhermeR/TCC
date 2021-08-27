@@ -122,19 +122,19 @@ namespace ProjetoTCC
             return Convert.ToBoolean(agendado != "");
         }
 
-        public void DeletarPacienteAgenda(string paciente)
+        public void DeletarPacienteAgenda(string paciente, string data, string hora)
         {
             try
             {
                 using (var db = new NutreasyEntities())
                 {
                     var delete = db.Database.Connection.CreateCommand();
-                    delete.CommandText = $"DELETE FROM Agenda WHERE paciente = '{paciente}'";
+                    delete.CommandText = $"DELETE FROM Agenda WHERE paciente = '{paciente}' AND data = '{data}' AND hora = '{hora}'";
                     db.Database.Connection.Open();
                     delete.ExecuteNonQuery();
                     db.Database.Connection.Close();
                 }
-                nMensagemAviso("Consultas foram removidas.");
+                nMensagemAviso("A consulta foi removida.");
             }
             catch (Exception ex)
             {

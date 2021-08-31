@@ -11,10 +11,9 @@
           </Key>
           <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="paciente" Type="varchar" MaxLength="2147483647" />
-          <Property Name="data" Type="varchar" MaxLength="2147483647" />
+          <Property Name="data" Type="datetime" />
           <Property Name="retorno" Type="bit" />
           <Property Name="atendido" Type="bit" />
-          <Property Name="hora" Type="varchar" MaxLength="2147483647" />
           <Property Name="Cancelado" Type="int" />
           <Property Name="usuarioResp" Type="nvarchar" MaxLength="2147483647" />
         </EntityType>
@@ -477,10 +476,9 @@ warning 6035: The relationship 'FK_Agenda_0_0' has columns that are not part of 
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="paciente" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
-          <Property Name="data" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="data" Type="DateTime" />
           <Property Name="retorno" Type="Boolean" />
           <Property Name="atendido" Type="Boolean" />
-          <Property Name="hora" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <Property Name="Cancelado" Type="Int32" />
           <Property Name="usuarioResp" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -641,7 +639,6 @@ warning 6035: The relationship 'FK_Agenda_0_0' has columns that are not part of 
               <MappingFragment StoreEntitySet="Agenda">
                 <ScalarProperty Name="usuarioResp" ColumnName="usuarioResp" />
                 <ScalarProperty Name="Cancelado" ColumnName="Cancelado" />
-                <ScalarProperty Name="hora" ColumnName="hora" />
                 <ScalarProperty Name="atendido" ColumnName="atendido" />
                 <ScalarProperty Name="retorno" ColumnName="retorno" />
                 <ScalarProperty Name="data" ColumnName="data" />

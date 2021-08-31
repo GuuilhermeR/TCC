@@ -42,7 +42,7 @@ namespace TCC2.Telas
                 retorno = EnviarEmail(x.email, "nutreasy.suporte@gmail.com", "Recuperação de Senha", x.usuario);
             });
             if (retorno != "")
-                nMensagemAlerta(retorno);
+                nMensagemErro(retorno);
         }
 
         [Obsolete]

@@ -8,6 +8,7 @@ using TCC2;
 using System.Collections.Generic;
 using TCC2.Banco_de_Dados;
 using static Classes.ExibidorMensagem;
+using System.Data.Entity;
 
 namespace ProjetoTCC
 {
@@ -20,19 +21,22 @@ namespace ProjetoTCC
 
         public List<Agenda> CarregarAgenda(string dataAgenda)
         {
+            var dataInicio = dataAgenda +" 00:00:00";
+            var dataFim = dataAgenda + " 23:59:59";
+            DateTime dataMarcadasIni = Convert.ToDateTime(dataInicio);
+            DateTime dataMarcadasFim = Convert.ToDateTime(dataFim);
             try
             {
-                var agenda = (from a in BancoDadosSingleton.Instance.Agenda where a.data == dataAgenda select a).ToList();
+                var agenda = BancoDadosSingleton.Instance.Agenda.Where(a => 
+                                    (DateTime.ParseExact(a.data.ToString(), "yyyy-MM-dd HH:mm:ss", null) >= dataMarcadasIni) 
+                                    && (DateTime.ParseExact(a.data.ToString(), "yyyy-MM-dd HH:mm:ss", null) <= dataMarcadasFim)).ToList();
                 if (agenda.Count > 0)
-                {
                     return agenda;
-                }
                 else
-                {
                     return null;
-                }
+
             }
-            catch
+            catch (Exception ex)
             {
                 return null;
             }
@@ -58,14 +62,15 @@ namespace ProjetoTCC
             }
         }
 
-        public void AdicionarPaciente(string dataAgenda, string horario, string paciente, bool atendido, bool retorno, int cancelado, bool ajusteConsulta, string usuario)
+        public void AtualizarPaciente(DateTime dataAgenda, string horario, string paciente, bool atendido, bool retorno, int cancelado, bool ajusteConsulta, string usuario)
         {
+            DateTime dataHoraAgenda = Convert.ToDateTime(dataAgenda + " " + horario + ":00");
             try
             {
-                var a = (from c in BancoDadosSingleton.Instance.Agenda where c.paciente == paciente && c.data == dataAgenda select c).Single();
+                var a = (from c in BancoDadosSingleton.Instance.Agenda where c.paciente == paciente && c.data == dataHoraAgenda select c).Single();
 
                 a.data = dataAgenda;
-                a.hora = horario;
+                //a.hora = horario;
                 a.atendido = atendido;
                 a.retorno = retorno;
                 a.Cancelado = cancelado;
@@ -81,15 +86,15 @@ namespace ProjetoTCC
 
         }
 
-        public void AtualizarPaciente(string dataAgenda, string horario, string paciente, bool atendido, bool retorno, int cancelado, bool ajusteConsulta, string usuario)
+        public void AdicionarPaciente(DateTime dataAgenda, string horario, string paciente, bool atendido, bool retorno, int cancelado, bool ajusteConsulta, string usuario)
         {
             try
             {
                 Agenda agendaInsert = new Agenda();
 
                 agendaInsert.paciente = paciente;
-                agendaInsert.data = dataAgenda;
-                agendaInsert.hora = horario;
+                agendaInsert.data = Convert.ToDateTime(dataAgenda.ToString("dd/MM/yyyy") + " " + horario + ":00");
+                //agendaInsert.hora = horario;
                 agendaInsert.atendido = atendido;
                 agendaInsert.retorno = retorno;
                 agendaInsert.Cancelado = cancelado;
@@ -105,13 +110,18 @@ namespace ProjetoTCC
             }
         }
 
-        public bool VerificarPacienteAgendado(string pacienteAgendar, string dataAgendada)
+        public bool VerificarPacienteAgendado(string pacienteAgendar, DateTime dataAgendada)
         {
-            var paciente = "";
             var agendado = "";
+            var dataSemana = Convert.ToDateTime(dataAgendada).AddDays(7);
             try
             {
-                paciente = (from a in BancoDadosSingleton.Instance.Agenda where a.paciente == pacienteAgendar && a.data == dataAgendada select a.paciente).Single();
+                var paciente = (from a in BancoDadosSingleton.Instance.Agenda 
+                            where a.paciente == pacienteAgendar 
+                            && a.data >= dataAgendada
+                            && a.data <= dataSemana
+                            select a.paciente).ToList();
+
                 agendado = paciente.ToString();
             }
             catch
@@ -124,12 +134,13 @@ namespace ProjetoTCC
 
         public void DeletarPacienteAgenda(string paciente, string data, string hora)
         {
+            DateTime dataHora = Convert.ToDateTime(data + " " + hora + ":00");
             try
             {
                 using (var db = new NutreasyEntities())
                 {
                     var delete = db.Database.Connection.CreateCommand();
-                    delete.CommandText = $"DELETE FROM Agenda WHERE paciente = '{paciente}' AND data = '{data}' AND hora = '{hora}'";
+                    delete.CommandText = $"DELETE FROM Agenda WHERE paciente = '{paciente}' AND data = '{dataHora.ToString("yyyy-MM-dd HH:mm:ss")}' ";
                     db.Database.Connection.Open();
                     delete.ExecuteNonQuery();
                     db.Database.Connection.Close();

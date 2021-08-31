@@ -16,10 +16,9 @@ namespace TCC2.Banco_de_Dados
     {
         public long ID { get; set; }
         public string paciente { get; set; }
-        public string data { get; set; }
+        public Nullable<System.DateTime> data { get; set; }
         public Nullable<bool> retorno { get; set; }
         public Nullable<bool> atendido { get; set; }
-        public string hora { get; set; }
         public Nullable<int> Cancelado { get; set; }
         public string usuarioResp { get; set; }
     }

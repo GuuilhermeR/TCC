@@ -172,19 +172,30 @@ namespace TCC2
 
         private void tabMenu_Click(object sender, EventArgs e)
         {
-            var ConsultasMarcada = this.agendaDAO.CarregarAgenda(DateAndTime.Now.ToString("dd/MM/yyyy"));
+            //******************************************* VERIFICAR CARREGAMENTO DOS DADOS DO DIA CARD MENU PRINCIPAL *******************************************
+            var dataAgenda = DateTime.Now.ToString("dd/MM/yyyy");
+            var dataInicio = dataAgenda + " 00:00:00";
+            var dataFim = dataAgenda + " 23:59:59";
+            DateTime dataMarcadasIni = Convert.ToDateTime(dataInicio);
+            DateTime dataMarcadasFim = Convert.ToDateTime(dataFim);
+            using (var db = new NutreasyEntities())
+            {
+                var selectAgendamento = db.Database.Connection.CreateCommand();
+                selectAgendamento.CommandText = $"SELECT * FROM Agenda WHERE data>='{dataMarcadasIni.ToString("yyyy-MM-dd HH:mm:ss")}' " +
+                    $"AND data<='{dataMarcadasFim.ToString("yyyy-MM-dd HH:mm:ss")}'";
+                db.Database.Connection.Open();
+                IDataReader dr = selectAgendamento.ExecuteReader();
 
-            if (ConsultasMarcada != null)
-                ConsultasMarcada.ForEach(x =>
+                while (dr.Read())
                 {
-                    if (x.data == DateTime.Now.ToString("dd/MM/yyyy") && x.Cancelado == 0)
+                    if (Convert.ToDateTime(dr["data"]).ToString("dd/MM/yyyy") == DateTime.Now.ToString("dd/MM/yyyy") && (int)dr["Cancelado"] == 0)
                     {
-                        if (Convert.ToDateTime(x.data + ' ' + x.hora) <= DateTime.Now && x.atendido != true)
+                        if ((DateTime)dr["data"] <= DateTime.Now && (bool)dr["atendido"] != false)
                         {
                             mCardAtendimentoAtual.Visible = true;
-                            mlblNome.Text = x.paciente;
-                            mlblHorario.Text = x.data + ' ' + x.hora;
-                            if ((bool)x.retorno)
+                            mlblNome.Text = (string)dr["paciente"];
+                            mlblHorario.Text = (string)dr["data"];
+                            if ((bool)dr["retorno"])
                             {
                                 mlblObservação.Text = "Retorno";
                             }
@@ -192,20 +203,20 @@ namespace TCC2
                             {
                                 mlblObservação.Text = "";
                             }
-                            if ((bool)x.atendido)
+                            if ((bool)dr["atendido"])
                             {
                                 mCardAtendimentoAtual.BackColor = Color.LightGreen;
                             }
-                            NutreasyIconNotify.ShowBalloonTip(15, "Consulta atual", $"Você possui horário agora com: {x.paciente}", ToolTipIcon.Info);
+                            // NutreasyIconNotify.ShowBalloonTip(10, "Consulta atual", $"Você possui horário agora com: {x.paciente}", ToolTipIcon.Info);
                         }
-                        else if (Convert.ToDateTime(x.data + ' ' + x.hora) > DateTime.Now && x.Cancelado == 0)
+                        else if ((DateTime)dr["data"] > DateTime.Now && (int)dr["Cancelado"] == 0)
                         {
-                            if (Convert.ToDateTime(x.data + ' ' + x.hora) > DateTime.Now)
+                            if ((DateTime)dr["data"] > DateTime.Now)
                             {
                                 mCardAtendimentoFuturo.Visible = true;
-                                mlblNomeFuturo.Text = x.paciente;
-                                mlblHoraFutura.Text = x.data + ' ' + x.hora;
-                                if ((bool)x.retorno)
+                                mlblNomeFuturo.Text = (string)dr["paciente"];
+                                mlblHoraFutura.Text = (string)dr["data"]; ;
+                                if ((bool)dr["retorno"])
                                 {
                                     mlblObservacaoFuturo.Text = "Retorno";
                                 }
@@ -213,7 +224,7 @@ namespace TCC2
                                 {
                                     mlblObservacaoFuturo.Text = "";
                                 }
-                                if ((bool)x.atendido)
+                                if ((bool)dr["atendido"])
                                 {
                                     mCardAtendimentoFuturo.BackColor = Color.LightGreen;
                                 }
@@ -222,14 +233,76 @@ namespace TCC2
                             {
                                 mCardAtendimentoFuturo.Visible = false;
                             }
-                            NutreasyIconNotify.ShowBalloonTip(15, "Consulta Futura", $"Você possui horário marcado com: {x.paciente} às {x.hora}", ToolTipIcon.Info);
+                            //NutreasyIconNotify.ShowBalloonTip(10, "Consulta às {x.hora}", $"Você possui horário marcado com: {x.paciente} às {x.hora}", ToolTipIcon.Info);
                         }
                         else
                         {
                             mCardAtendimentoAtual.Visible = false;
                         }
                     }
-                });
+                }
+
+                db.Database.Connection.Close();
+            }
+
+            //var ConsultasMarcada = this.agendaDAO.CarregarAgenda(DateTime.Now.ToString("dd/MM/yyyy"));
+
+            //if (ConsultasMarcada != null)
+            //    ConsultasMarcada.ForEach(x =>
+            //    {
+            //        if (x.data == DateTime.Now && x.Cancelado == 0)
+            //        {
+            //            if (Convert.ToDateTime(x.data) <= DateTime.Now && x.atendido != true)
+            //            {
+            //                mCardAtendimentoAtual.Visible = true;
+            //                mlblNome.Text = x.paciente;
+            //                mlblHorario.Text = x.data.ToString();
+            //                if ((bool)x.retorno)
+            //                {
+            //                    mlblObservação.Text = "Retorno";
+            //                }
+            //                else
+            //                {
+            //                    mlblObservação.Text = "";
+            //                }
+            //                if ((bool)x.atendido)
+            //                {
+            //                    mCardAtendimentoAtual.BackColor = Color.LightGreen;
+            //                }
+            //                // NutreasyIconNotify.ShowBalloonTip(10, "Consulta atual", $"Você possui horário agora com: {x.paciente}", ToolTipIcon.Info);
+            //            }
+            //            else if (Convert.ToDateTime(x.data.ToString()) > DateTime.Now && x.Cancelado == 0)
+            //            {
+            //                if (Convert.ToDateTime(x.data.ToString()) > DateTime.Now)
+            //                {
+            //                    mCardAtendimentoFuturo.Visible = true;
+            //                    mlblNomeFuturo.Text = x.paciente;
+            //                    mlblHoraFutura.Text = x.data.ToString();
+            //                    if ((bool)x.retorno)
+            //                    {
+            //                        mlblObservacaoFuturo.Text = "Retorno";
+            //                    }
+            //                    else
+            //                    {
+            //                        mlblObservacaoFuturo.Text = "";
+            //                    }
+            //                    if ((bool)x.atendido)
+            //                    {
+            //                        mCardAtendimentoFuturo.BackColor = Color.LightGreen;
+            //                    }
+            //                }
+            //                else
+            //                {
+            //                    mCardAtendimentoFuturo.Visible = false;
+            //                }
+            //                //NutreasyIconNotify.ShowBalloonTip(10, "Consulta às {x.hora}", $"Você possui horário marcado com: {x.paciente} às {x.hora}", ToolTipIcon.Info);
+            //            }
+            //            else
+            //            {
+            //                mCardAtendimentoAtual.Visible = false;
+            //            }
+            //        }
+            //    });
             //timer1.Enabled = true;
             //mCardConsultas.BackColor = mCardConsultas.BackColor == Color.Red ? Color.White : Color.Red;
         }
@@ -379,10 +452,10 @@ namespace TCC2
                 nMensagemAviso("Não é possível agendar uma consulta em um horário não disponível do nutricionista!");
                 return;
             }
-            if (agendaDAO.VerificarPacienteAgendado(Convert.ToString(usuarioDAO.getUsuario()), txtHoraAgenda.Text))
+            if (agendaDAO.VerificarPacienteAgendado(txtPacienteAgenda.Text, Convert.ToDateTime(txtDataAgendamento.Text)))
             {
                 agendaDAO.AtualizarPaciente(
-                       txtDataAgendamento.Text,
+                       Convert.ToDateTime(txtDataAgendamento.Text),
                             txtHoraAgenda.Text,
                             txtPacienteAgenda.Text,
                        false,
@@ -394,7 +467,7 @@ namespace TCC2
             else
             {
                 agendaDAO.AdicionarPaciente(
-                       txtDataAgendamento.Text,
+                       Convert.ToDateTime(txtDataAgendamento.Text),
                             txtHoraAgenda.Text,
                             txtPacienteAgenda.Text,
                        false,
@@ -428,10 +501,10 @@ namespace TCC2
             }
             if (nMensagemAlerta($"Você deseja alterar o paciente {e.Item.Text.ToString()} para {e.Item.StartDate.ToString()}") == DialogResult.Yes)
             {
-                if (agendaDAO.VerificarPacienteAgendado(e.Item.Text.ToString(), dataAgendadoAnterior))
+                if (agendaDAO.VerificarPacienteAgendado(e.Item.Text.ToString(), Convert.ToDateTime(dataAgendadoAnterior)))
                 {
                     agendaDAO.AtualizarPaciente(
-                           (e.Item.StartDate.ToString()).Substring(0, 10),
+                           Convert.ToDateTime(e.Item.StartDate.ToString().Substring(0, 10)),
                            (e.Item.StartDate.ToString()).Substring(11, 5),
                            e.Item.Text.ToString(),
                            false,
@@ -444,7 +517,7 @@ namespace TCC2
                 {
                     agendaDAO.DeletarPacienteAgenda(e.Item.Text.ToString(), (e.Item.StartDate.ToString()).Substring(0, 10), (e.Item.StartDate.ToString()).Substring(11, 5));
                     agendaDAO.AdicionarPaciente(
-                           (e.Item.StartDate.ToString()).Substring(0, 10),
+                           Convert.ToDateTime(e.Item.StartDate.ToString().Substring(0, 10)),
                            (e.Item.StartDate.ToString()).Substring(11, 5),
                            e.Item.Text.ToString(),
                            false,
@@ -545,12 +618,12 @@ namespace TCC2
 
         private void CancelarAtendimento(string data, string paciente, bool atendido, bool retorno)
         {
-            agendaDAO.AtualizarPaciente(data.Substring(0, 10), data.Substring(11), paciente, atendido, retorno, 1, true, Convert.ToString(usuarioDAO.getUsuario()));
+            agendaDAO.AtualizarPaciente(Convert.ToDateTime(data.Substring(0, 10)), data.Substring(11), paciente, atendido, retorno, 1, true, Convert.ToString(usuarioDAO.getUsuario()));
         }
 
         private void FinalizarAtendimento(string data, string paciente, bool atendido, bool retorno)
         {
-            agendaDAO.AtualizarPaciente(data.Substring(0, 10), data.Substring(11), paciente, atendido, retorno, 0, true, Convert.ToString(usuarioDAO.getUsuario()));
+            agendaDAO.AtualizarPaciente(Convert.ToDateTime(data.Substring(0, 10)), data.Substring(11), paciente, atendido, retorno, 0, true, Convert.ToString(usuarioDAO.getUsuario()));
         }
 
         private void calAgendamento_ItemCreating(object sender, CalendarItemCancelEventArgs e)
@@ -584,7 +657,7 @@ namespace TCC2
 
             agendados.ForEach(x =>
             {
-                CalendarItem calAgendamentos = new CalendarItem(calAgendamento, Convert.ToDateTime(x.data + ' ' + x.hora), Convert.ToDateTime(x.data + ' ' + x.hora).AddHours(1), x.paciente);
+                CalendarItem calAgendamentos = new CalendarItem(calAgendamento, Convert.ToDateTime(x.data.ToString()), Convert.ToDateTime(x.data.ToString()).AddHours(1), x.paciente);
                 calAgendamento.Items.Add(calAgendamentos);
             });
         }
@@ -1464,7 +1537,7 @@ namespace TCC2
                     if (row.Selected == true || row.Cells["nomeAlimento"].Selected)
                     {
                         var medCaseiraItens = medidaCaseiraDAO.Buscar(Convert.ToInt32(row.Cells["codAlimento"].Value));
-                        
+
 
                         dtgRefeicoes.Rows.Add(row.Cells["codAlimento"].Value
                             , row.Cells["nomeAlimento"].Value

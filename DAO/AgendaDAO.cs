@@ -21,14 +21,14 @@ namespace ProjetoTCC
 
         public List<Agenda> CarregarAgenda(string dataAgenda)
         {
-            var dataInicio = dataAgenda +" 00:00:00";
+            var dataInicio = dataAgenda + " 00:00:00";
             var dataFim = dataAgenda + " 23:59:59";
             DateTime dataMarcadasIni = Convert.ToDateTime(dataInicio);
             DateTime dataMarcadasFim = Convert.ToDateTime(dataFim);
             try
             {
-                var agenda = BancoDadosSingleton.Instance.Agenda.Where(a => 
-                                    (DateTime.ParseExact(a.data.ToString(), "yyyy-MM-dd HH:mm:ss", null) >= dataMarcadasIni) 
+                var agenda = BancoDadosSingleton.Instance.Agenda.Where(a =>
+                                    (DateTime.ParseExact(a.data.ToString(), "yyyy-MM-dd HH:mm:ss", null) >= dataMarcadasIni)
                                     && (DateTime.ParseExact(a.data.ToString(), "yyyy-MM-dd HH:mm:ss", null) <= dataMarcadasFim)).ToList();
                 if (agenda.Count > 0)
                     return agenda;
@@ -46,7 +46,7 @@ namespace ProjetoTCC
         {
             try
             {
-                var agenda = (from a in BancoDadosSingleton.Instance.Agenda select a).ToList();
+                var agenda = BancoDadosSingleton.Instance.Agenda.ToList();
                 if (agenda.Count > 0)
                 {
                     return agenda;
@@ -62,28 +62,49 @@ namespace ProjetoTCC
             }
         }
 
-        public void AtualizarPaciente(DateTime dataAgenda, string horario, string paciente, bool atendido, bool retorno, int cancelado, bool ajusteConsulta, string usuario)
+        public void AtualizarPaciente(string dataAgenda, string dataAgendaAntigo, string paciente, bool atendido, bool retorno, int cancelado, bool ajusteConsulta, string usuario)
         {
-            DateTime dataHoraAgenda = Convert.ToDateTime(dataAgenda + " " + horario + ":00");
+            DateTime dataHoraAgenda = Convert.ToDateTime(dataAgenda);
+            DateTime dataHoraAgendaOld = Convert.ToDateTime(dataAgendaAntigo);
+            long ID = 0;
             try
             {
-                var a = (from c in BancoDadosSingleton.Instance.Agenda where c.paciente == paciente && c.data == dataHoraAgenda select c).Single();
+                using (var db = new NutreasyEntities())
+                {
+                    var select = db.Database.Connection.CreateCommand();
+                    select.CommandText = $"SELECT ID, retorno FROM AGENDA WHERE data='{dataHoraAgendaOld.ToString("yyyy-MM-dd HH:mm:ss")}' AND paciente ='{paciente}'";
+                    db.Database.Connection.Open();
+                    select.ExecuteNonQuery();
+                    IDataReader dr = select.ExecuteReader();
+                    if (dr.Read())
+                    {
+                        ID=(long)dr["ID"];
+                        retorno=(bool)dr["retorno"];
+                    }
 
-                a.data = dataAgenda;
-                //a.hora = horario;
-                a.atendido = atendido;
-                a.retorno = retorno;
-                a.Cancelado = cancelado;
-                a.usuarioResp = usuario;
+                    if (ID == 0)
+                    {
+                        db.Database.Connection.Close();
+                        return;
+                    }
 
-                BancoDadosSingleton.Instance.SaveChanges();
+                    var update = db.Database.Connection.CreateCommand();
+                    update.CommandText = $"UPDATE Agenda SET data='{dataHoraAgenda.ToString("yyyy-MM-dd HH:mm:ss")}'" +
+                                                     $", retorno='{retorno}'" +
+                                                     $", atendido='{atendido}'" +
+                                                     $", cancelado='{cancelado}'" +
+                                                     $", usuarioResp='{usuario}' " +
+                                                     $"WHERE ID ={ID} ";
+                    update.ExecuteNonQuery();
+                    db.Database.Connection.Close();
+                }
+
                 nMensagemAviso("Consulta do paciente atualizado.");
             }
             catch (Exception ex)
             {
                 nMensagemErro("Ocorreu um erro ao salvar!" + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException);
             }
-
         }
 
         public void AdicionarPaciente(DateTime dataAgenda, string horario, string paciente, bool atendido, bool retorno, int cancelado, bool ajusteConsulta, string usuario)
@@ -113,14 +134,14 @@ namespace ProjetoTCC
         public bool VerificarPacienteAgendado(string pacienteAgendar, DateTime dataAgendada)
         {
             var agendado = "";
-            var dataSemana = Convert.ToDateTime(dataAgendada).AddDays(7);
+            var dataSemana = Convert.ToDateTime(dataAgendada).AddDays(5);
             try
             {
-                var paciente = (from a in BancoDadosSingleton.Instance.Agenda 
-                            where a.paciente == pacienteAgendar 
-                            && a.data >= dataAgendada
-                            && a.data <= dataSemana
-                            select a.paciente).ToList();
+                var paciente = (from a in BancoDadosSingleton.Instance.Agenda
+                                where a.paciente == pacienteAgendar
+                                && a.data >= dataAgendada
+                                && a.data <= dataSemana
+                                select a.paciente).ToList();
 
                 agendado = paciente.ToString();
             }
@@ -128,7 +149,6 @@ namespace ProjetoTCC
             {
                 return false;
             }
-
             return Convert.ToBoolean(agendado != "");
         }
 

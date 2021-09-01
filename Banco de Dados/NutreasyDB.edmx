@@ -363,7 +363,6 @@ warning 6035: The relationship 'FK_Agenda_0_0' has columns that are not part of 
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="Antropometria" EntitySet="Antropometria" />
           </AssociationSet>
-          <EntitySet Name="Agenda" EntityType="mainModel.Agenda" />
           <EntitySet Name="Cardapio" EntityType="mainModel.Cardapio" />
           <AssociationSet Name="FK_Cardapio_0_0" Association="mainModel.FK_Cardapio_0_0">
             <End Role="Alimentos" EntitySet="Alimentos" />
@@ -373,6 +372,7 @@ warning 6035: The relationship 'FK_Agenda_0_0' has columns that are not part of 
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="Cardapio" EntitySet="Cardapio" />
           </AssociationSet>
+          <EntitySet Name="Agenda" EntityType="mainModel.Agenda" />
           </EntityContainer>
         <EntityType Name="Permissao">
           <Key>
@@ -470,18 +470,6 @@ warning 6035: The relationship 'FK_Agenda_0_0' has columns that are not part of 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Agenda">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="paciente" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
-          <Property Name="data" Type="DateTime" />
-          <Property Name="retorno" Type="Boolean" />
-          <Property Name="atendido" Type="Boolean" />
-          <Property Name="Cancelado" Type="Int32" />
-          <Property Name="usuarioResp" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Cardapio">
           <Key>
             <PropertyRef Name="ID" />
@@ -522,6 +510,18 @@ warning 6035: The relationship 'FK_Agenda_0_0' has columns that are not part of 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Agenda">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="paciente" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="data" Type="DateTime" />
+          <Property Name="retorno" Type="Boolean" />
+          <Property Name="atendido" Type="Boolean" />
+          <Property Name="Cancelado" Type="Int32" />
+          <Property Name="usuarioResp" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -634,19 +634,6 @@ warning 6035: The relationship 'FK_Agenda_0_0' has columns that are not part of 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Agenda">
-            <EntityTypeMapping TypeName="mainModel.Agenda">
-              <MappingFragment StoreEntitySet="Agenda">
-                <ScalarProperty Name="usuarioResp" ColumnName="usuarioResp" />
-                <ScalarProperty Name="Cancelado" ColumnName="Cancelado" />
-                <ScalarProperty Name="atendido" ColumnName="atendido" />
-                <ScalarProperty Name="retorno" ColumnName="retorno" />
-                <ScalarProperty Name="data" ColumnName="data" />
-                <ScalarProperty Name="paciente" ColumnName="paciente" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Cardapio">
             <EntityTypeMapping TypeName="mainModel.Cardapio">
               <MappingFragment StoreEntitySet="Cardapio">
@@ -658,6 +645,19 @@ warning 6035: The relationship 'FK_Agenda_0_0' has columns that are not part of 
                 <ScalarProperty Name="medidaCaseiraQtde" ColumnName="medidaCaseiraQtde" />
                 <ScalarProperty Name="codAlimento" ColumnName="codAlimento" />
                 <ScalarProperty Name="codPaciente" ColumnName="codPaciente" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Agenda">
+            <EntityTypeMapping TypeName="mainModel.Agenda">
+              <MappingFragment StoreEntitySet="Agenda">
+                <ScalarProperty Name="usuarioResp" ColumnName="usuarioResp" />
+                <ScalarProperty Name="Cancelado" ColumnName="Cancelado" />
+                <ScalarProperty Name="atendido" ColumnName="atendido" />
+                <ScalarProperty Name="retorno" ColumnName="retorno" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="paciente" ColumnName="paciente" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

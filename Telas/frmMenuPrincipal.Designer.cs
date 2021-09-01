@@ -31,25 +31,23 @@ namespace TCC2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange1 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange2 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange3 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange4 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange5 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange6 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange7 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange92 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange93 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange94 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange95 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange96 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange97 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange98 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMenuPrincipal));
             this.TabControlNutreasy = new MaterialSkin.Controls.MaterialTabControl();
             this.tabMenu = new System.Windows.Forms.TabPage();
             this.mCardAtendimentoAtual = new MaterialSkin.Controls.MaterialCard();
-            this.materialButton2 = new MaterialSkin.Controls.MaterialButton();
             this.mcbxCancelar = new MaterialSkin.Controls.MaterialCheckbox();
             this.mcbxAtendido = new MaterialSkin.Controls.MaterialCheckbox();
             this.mlblObservação = new MaterialSkin.Controls.MaterialLabel();
             this.mlblHorario = new MaterialSkin.Controls.MaterialLabel();
             this.mlblNome = new MaterialSkin.Controls.MaterialLabel();
             this.mCardAtendimentoFuturo = new MaterialSkin.Controls.MaterialCard();
-            this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
             this.mcbxCancelarFuturo = new MaterialSkin.Controls.MaterialCheckbox();
             this.mcbxAtendidoFuturo = new MaterialSkin.Controls.MaterialCheckbox();
             this.mlblObservacaoFuturo = new MaterialSkin.Controls.MaterialLabel();
@@ -58,6 +56,7 @@ namespace TCC2
             this.pbxLogoGrande = new System.Windows.Forms.PictureBox();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.tabAgenda = new System.Windows.Forms.TabPage();
+            this.cbxRetorno = new MaterialSkin.Controls.MaterialCheckbox();
             this.btnCarregarNutricionistas = new System.Windows.Forms.Button();
             this.txtNutricionista = new MaterialSkin.Controls.MaterialTextBox();
             this.txtPacienteAgenda = new MaterialSkin.Controls.MaterialTextBox();
@@ -297,7 +296,6 @@ namespace TCC2
             // mCardAtendimentoAtual
             // 
             this.mCardAtendimentoAtual.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.mCardAtendimentoAtual.Controls.Add(this.materialButton2);
             this.mCardAtendimentoAtual.Controls.Add(this.mcbxCancelar);
             this.mCardAtendimentoAtual.Controls.Add(this.mcbxAtendido);
             this.mCardAtendimentoAtual.Controls.Add(this.mlblObservação);
@@ -305,32 +303,14 @@ namespace TCC2
             this.mCardAtendimentoAtual.Controls.Add(this.mlblNome);
             this.mCardAtendimentoAtual.Depth = 0;
             this.mCardAtendimentoAtual.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.mCardAtendimentoAtual.Location = new System.Drawing.Point(17, 36);
+            this.mCardAtendimentoAtual.Location = new System.Drawing.Point(17, 68);
             this.mCardAtendimentoAtual.Margin = new System.Windows.Forms.Padding(14);
             this.mCardAtendimentoAtual.MouseState = MaterialSkin.MouseState.HOVER;
             this.mCardAtendimentoAtual.Name = "mCardAtendimentoAtual";
             this.mCardAtendimentoAtual.Padding = new System.Windows.Forms.Padding(14);
-            this.mCardAtendimentoAtual.Size = new System.Drawing.Size(337, 266);
+            this.mCardAtendimentoAtual.Size = new System.Drawing.Size(337, 231);
             this.mCardAtendimentoAtual.TabIndex = 10;
             this.mCardAtendimentoAtual.Visible = false;
-            // 
-            // materialButton2
-            // 
-            this.materialButton2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton2.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.materialButton2.Depth = 0;
-            this.materialButton2.HighEmphasis = true;
-            this.materialButton2.Icon = null;
-            this.materialButton2.Location = new System.Drawing.Point(98, 217);
-            this.materialButton2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialButton2.Name = "materialButton2";
-            this.materialButton2.Size = new System.Drawing.Size(167, 36);
-            this.materialButton2.TabIndex = 17;
-            this.materialButton2.Text = "Lembrar Consulta";
-            this.materialButton2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton2.UseAccentColor = false;
-            this.materialButton2.UseVisualStyleBackColor = true;
             // 
             // mcbxCancelar
             // 
@@ -404,7 +384,6 @@ namespace TCC2
             // 
             this.mCardAtendimentoFuturo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.mCardAtendimentoFuturo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.mCardAtendimentoFuturo.Controls.Add(this.materialButton1);
             this.mCardAtendimentoFuturo.Controls.Add(this.mcbxCancelarFuturo);
             this.mCardAtendimentoFuturo.Controls.Add(this.mcbxAtendidoFuturo);
             this.mCardAtendimentoFuturo.Controls.Add(this.mlblObservacaoFuturo);
@@ -412,32 +391,14 @@ namespace TCC2
             this.mCardAtendimentoFuturo.Controls.Add(this.mlblNomeFuturo);
             this.mCardAtendimentoFuturo.Depth = 0;
             this.mCardAtendimentoFuturo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.mCardAtendimentoFuturo.Location = new System.Drawing.Point(804, 36);
+            this.mCardAtendimentoFuturo.Location = new System.Drawing.Point(796, 68);
             this.mCardAtendimentoFuturo.Margin = new System.Windows.Forms.Padding(14);
             this.mCardAtendimentoFuturo.MouseState = MaterialSkin.MouseState.HOVER;
             this.mCardAtendimentoFuturo.Name = "mCardAtendimentoFuturo";
             this.mCardAtendimentoFuturo.Padding = new System.Windows.Forms.Padding(14);
-            this.mCardAtendimentoFuturo.Size = new System.Drawing.Size(337, 266);
+            this.mCardAtendimentoFuturo.Size = new System.Drawing.Size(337, 231);
             this.mCardAtendimentoFuturo.TabIndex = 18;
             this.mCardAtendimentoFuturo.Visible = false;
-            // 
-            // materialButton1
-            // 
-            this.materialButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.materialButton1.Depth = 0;
-            this.materialButton1.HighEmphasis = true;
-            this.materialButton1.Icon = null;
-            this.materialButton1.Location = new System.Drawing.Point(98, 217);
-            this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialButton1.Name = "materialButton1";
-            this.materialButton1.Size = new System.Drawing.Size(167, 36);
-            this.materialButton1.TabIndex = 17;
-            this.materialButton1.Text = "Lembrar Consulta";
-            this.materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton1.UseAccentColor = false;
-            this.materialButton1.UseVisualStyleBackColor = true;
             // 
             // mcbxCancelarFuturo
             // 
@@ -529,9 +490,11 @@ namespace TCC2
             this.lblUsuario.Size = new System.Drawing.Size(48, 19);
             this.lblUsuario.TabIndex = 9;
             this.lblUsuario.Text = "Label1";
+            this.lblUsuario.Click += new System.EventHandler(this.lblUsuario_Click);
             // 
             // tabAgenda
             // 
+            this.tabAgenda.Controls.Add(this.cbxRetorno);
             this.tabAgenda.Controls.Add(this.btnCarregarNutricionistas);
             this.tabAgenda.Controls.Add(this.txtNutricionista);
             this.tabAgenda.Controls.Add(this.txtPacienteAgenda);
@@ -550,6 +513,21 @@ namespace TCC2
             this.tabAgenda.Text = "Agenda";
             this.tabAgenda.UseVisualStyleBackColor = true;
             this.tabAgenda.Enter += new System.EventHandler(this.tabAgenda_Enter);
+            // 
+            // cbxRetorno
+            // 
+            this.cbxRetorno.AutoSize = true;
+            this.cbxRetorno.Depth = 0;
+            this.cbxRetorno.Location = new System.Drawing.Point(259, 183);
+            this.cbxRetorno.Margin = new System.Windows.Forms.Padding(0);
+            this.cbxRetorno.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.cbxRetorno.MouseState = MaterialSkin.MouseState.HOVER;
+            this.cbxRetorno.Name = "cbxRetorno";
+            this.cbxRetorno.Ripple = true;
+            this.cbxRetorno.Size = new System.Drawing.Size(90, 37);
+            this.cbxRetorno.TabIndex = 321;
+            this.cbxRetorno.Text = "Retorno";
+            this.cbxRetorno.UseVisualStyleBackColor = true;
             // 
             // btnCarregarNutricionistas
             // 
@@ -606,7 +584,7 @@ namespace TCC2
             this.CalendarioMes.DaySelectedColor = System.Drawing.SystemColors.WindowText;
             this.CalendarioMes.DaySelectedTextColor = System.Drawing.SystemColors.HighlightText;
             this.CalendarioMes.ItemPadding = new System.Windows.Forms.Padding(2);
-            this.CalendarioMes.Location = new System.Drawing.Point(366, 15);
+            this.CalendarioMes.Location = new System.Drawing.Point(351, 6);
             this.CalendarioMes.Margin = new System.Windows.Forms.Padding(2);
             this.CalendarioMes.MonthTitleColor = System.Drawing.SystemColors.ActiveCaption;
             this.CalendarioMes.MonthTitleColorInactive = System.Drawing.SystemColors.InactiveCaption;
@@ -663,35 +641,35 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.calAgendamento.BackColor = System.Drawing.SystemColors.Control;
             this.calAgendamento.Font = new System.Drawing.Font("Segoe UI", 9F);
-            calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange1.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange1.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange2.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange2.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange2.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange3.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange3.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange3.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange4.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange4.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange4.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange5.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange5.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange5.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange6.DayOfWeek = System.DayOfWeek.Saturday;
-            calendarHighlightRange6.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange6.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange7.DayOfWeek = System.DayOfWeek.Sunday;
-            calendarHighlightRange7.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange7.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange92.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange92.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange92.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange93.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange93.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange93.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange94.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange94.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange94.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange95.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange95.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange95.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange96.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange96.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange96.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange97.DayOfWeek = System.DayOfWeek.Saturday;
+            calendarHighlightRange97.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange97.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange98.DayOfWeek = System.DayOfWeek.Sunday;
+            calendarHighlightRange98.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange98.StartTime = System.TimeSpan.Parse("00:00:00");
             this.calAgendamento.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
-        calendarHighlightRange1,
-        calendarHighlightRange2,
-        calendarHighlightRange3,
-        calendarHighlightRange4,
-        calendarHighlightRange5,
-        calendarHighlightRange6,
-        calendarHighlightRange7};
+        calendarHighlightRange92,
+        calendarHighlightRange93,
+        calendarHighlightRange94,
+        calendarHighlightRange95,
+        calendarHighlightRange96,
+        calendarHighlightRange97,
+        calendarHighlightRange98};
             this.calAgendamento.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.calAgendamento.ItemsTimeFormat = "hh:mm";
             this.calAgendamento.Location = new System.Drawing.Point(3, 226);
@@ -1726,7 +1704,7 @@ namespace TCC2
             this.txtDtNasc.MouseState = MaterialSkin.MouseState.OUT;
             this.txtDtNasc.Multiline = false;
             this.txtDtNasc.Name = "txtDtNasc";
-            this.txtDtNasc.Size = new System.Drawing.Size(203, 50);
+            this.txtDtNasc.Size = new System.Drawing.Size(187, 50);
             this.txtDtNasc.TabIndex = 285;
             this.txtDtNasc.Text = "";
             this.txtDtNasc.TrailingIcon = null;
@@ -1791,13 +1769,13 @@ namespace TCC2
             // 
             // txtUF
             // 
-            this.txtUF.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtUF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtUF.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtUF.Depth = 0;
             this.txtUF.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtUF.Hint = "UF";
             this.txtUF.LeadingIcon = null;
-            this.txtUF.Location = new System.Drawing.Point(1002, 233);
+            this.txtUF.Location = new System.Drawing.Point(989, 233);
             this.txtUF.MaxLength = 2;
             this.txtUF.MouseState = MaterialSkin.MouseState.OUT;
             this.txtUF.Multiline = false;
@@ -1815,7 +1793,7 @@ namespace TCC2
             this.txtMunicipio.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtMunicipio.Hint = "Município";
             this.txtMunicipio.LeadingIcon = null;
-            this.txtMunicipio.Location = new System.Drawing.Point(542, 233);
+            this.txtMunicipio.Location = new System.Drawing.Point(511, 233);
             this.txtMunicipio.MaxLength = 50;
             this.txtMunicipio.MouseState = MaterialSkin.MouseState.OUT;
             this.txtMunicipio.Multiline = false;
@@ -1832,7 +1810,7 @@ namespace TCC2
             this.txtBairro.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtBairro.Hint = "Bairro";
             this.txtBairro.LeadingIcon = null;
-            this.txtBairro.Location = new System.Drawing.Point(167, 233);
+            this.txtBairro.Location = new System.Drawing.Point(148, 233);
             this.txtBairro.MaxLength = 50;
             this.txtBairro.MouseState = MaterialSkin.MouseState.OUT;
             this.txtBairro.Multiline = false;
@@ -1862,18 +1840,18 @@ namespace TCC2
             // 
             // txtEndereco
             // 
-            this.txtEndereco.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtEndereco.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEndereco.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtEndereco.Depth = 0;
             this.txtEndereco.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtEndereco.Hint = "Endereço";
             this.txtEndereco.LeadingIcon = null;
-            this.txtEndereco.Location = new System.Drawing.Point(716, 122);
+            this.txtEndereco.Location = new System.Drawing.Point(728, 122);
             this.txtEndereco.MaxLength = 50;
             this.txtEndereco.MouseState = MaterialSkin.MouseState.OUT;
             this.txtEndereco.Multiline = false;
             this.txtEndereco.Name = "txtEndereco";
-            this.txtEndereco.Size = new System.Drawing.Size(388, 50);
+            this.txtEndereco.Size = new System.Drawing.Size(363, 50);
             this.txtEndereco.TabIndex = 277;
             this.txtEndereco.Text = "";
             this.txtEndereco.TrailingIcon = null;
@@ -1885,12 +1863,12 @@ namespace TCC2
             this.txtCEP.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtCEP.Hint = "CEP";
             this.txtCEP.LeadingIcon = null;
-            this.txtCEP.Location = new System.Drawing.Point(432, 122);
+            this.txtCEP.Location = new System.Drawing.Point(412, 122);
             this.txtCEP.MaxLength = 50;
             this.txtCEP.MouseState = MaterialSkin.MouseState.OUT;
             this.txtCEP.Multiline = false;
             this.txtCEP.Name = "txtCEP";
-            this.txtCEP.Size = new System.Drawing.Size(259, 50);
+            this.txtCEP.Size = new System.Drawing.Size(237, 50);
             this.txtCEP.TabIndex = 276;
             this.txtCEP.Text = "";
             this.txtCEP.TrailingIcon = null;
@@ -1899,7 +1877,7 @@ namespace TCC2
             // 
             // txtEmail
             // 
-            this.txtEmail.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtEmail.Depth = 0;
             this.txtEmail.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -1973,7 +1951,8 @@ namespace TCC2
             // _dtgConsultaPacientes
             // 
             this._dtgConsultaPacientes.AllowUserToAddRows = false;
-            this._dtgConsultaPacientes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this._dtgConsultaPacientes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this._dtgConsultaPacientes.BackgroundColor = System.Drawing.Color.White;
             this._dtgConsultaPacientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -3125,9 +3104,7 @@ namespace TCC2
         private MaterialSkin.Controls.MaterialLabel mlblNome;
         private MaterialSkin.Controls.MaterialCheckbox mcbxCancelar;
         private MaterialSkin.Controls.MaterialCheckbox mcbxAtendido;
-        private MaterialSkin.Controls.MaterialButton materialButton2;
         private MaterialSkin.Controls.MaterialCard mCardAtendimentoFuturo;
-        private MaterialSkin.Controls.MaterialButton materialButton1;
         private MaterialSkin.Controls.MaterialCheckbox mcbxCancelarFuturo;
         private MaterialSkin.Controls.MaterialCheckbox mcbxAtendidoFuturo;
         private MaterialSkin.Controls.MaterialLabel mlblObservacaoFuturo;
@@ -3233,6 +3210,7 @@ namespace TCC2
         private System.Windows.Forms.DataGridViewTextBoxColumn carbo;
         private System.Windows.Forms.DataGridViewTextBoxColumn lipidio;
         private System.Windows.Forms.DataGridViewComboBoxColumn medCaseira;
+        private MaterialSkin.Controls.MaterialCheckbox cbxRetorno;
     }
 }
 

@@ -51,7 +51,7 @@ namespace TCC2
         //Image capturaImagem;
         public string caminhoImagemSalva = null;
         public MaterialSkinManager materialSkinManager = MaterialSkinManager.Instance;
-        public string dataAgendadoAnterior;
+        public DateTime dataAgendadoAnterior;
         #endregion
 
         #region Menu
@@ -76,7 +76,7 @@ namespace TCC2
 
             if (usuarioDAO.getNomeUsuario() != null)
             {
-                lblUsuario.Text = $"Seja bem vindo(a) ao sistema {usuarioDAO.getNomeUsuario()}";
+                lblUsuario.Text = $"Seja bem vindo(a) ao sistema {usuarioDAO.getNomeUsuario()}, clique aqui caso deseja deslogar do sistema.";
                 lblUsuario.Visible = true;
             }
             else
@@ -171,8 +171,7 @@ namespace TCC2
         }
 
         private void tabMenu_Click(object sender, EventArgs e)
-        {
-            //******************************************* VERIFICAR CARREGAMENTO DOS DADOS DO DIA CARD MENU PRINCIPAL *******************************************
+        {           
             var dataAgenda = DateTime.Now.ToString("dd/MM/yyyy");
             var dataInicio = dataAgenda + " 00:00:00";
             var dataFim = dataAgenda + " 23:59:59";
@@ -181,8 +180,10 @@ namespace TCC2
             using (var db = new NutreasyEntities())
             {
                 var selectAgendamento = db.Database.Connection.CreateCommand();
+
                 selectAgendamento.CommandText = $"SELECT * FROM Agenda WHERE data>='{dataMarcadasIni.ToString("yyyy-MM-dd HH:mm:ss")}' " +
-                    $"AND data<='{dataMarcadasFim.ToString("yyyy-MM-dd HH:mm:ss")}'";
+                                                $"AND data<='{dataMarcadasFim.ToString("yyyy-MM-dd HH:mm:ss")}'";
+
                 db.Database.Connection.Open();
                 IDataReader dr = selectAgendamento.ExecuteReader();
 
@@ -190,11 +191,14 @@ namespace TCC2
                 {
                     if (Convert.ToDateTime(dr["data"]).ToString("dd/MM/yyyy") == DateTime.Now.ToString("dd/MM/yyyy") && (int)dr["Cancelado"] == 0)
                     {
-                        if ((DateTime)dr["data"] <= DateTime.Now && (bool)dr["atendido"] != false)
-                        {
+                        if (mlblNome.Text != "Nome")
+                            return;
+
+                        if ((DateTime)dr["data"] <= DateTime.Now && (bool)dr["atendido"] != true)
+                        {                         
                             mCardAtendimentoAtual.Visible = true;
                             mlblNome.Text = (string)dr["paciente"];
-                            mlblHorario.Text = (string)dr["data"];
+                            mlblHorario.Text = Convert.ToDateTime(dr["data"]).ToString("dd/MM/yyyy HH:mm");
                             if ((bool)dr["retorno"])
                             {
                                 mlblObservação.Text = "Retorno";
@@ -215,7 +219,7 @@ namespace TCC2
                             {
                                 mCardAtendimentoFuturo.Visible = true;
                                 mlblNomeFuturo.Text = (string)dr["paciente"];
-                                mlblHoraFutura.Text = (string)dr["data"]; ;
+                                mlblHoraFutura.Text = Convert.ToDateTime(dr["data"]).ToString("dd/MM/yyyy HH:mm");
                                 if ((bool)dr["retorno"])
                                 {
                                     mlblObservacaoFuturo.Text = "Retorno";
@@ -241,7 +245,6 @@ namespace TCC2
                         }
                     }
                 }
-
                 db.Database.Connection.Close();
             }
 
@@ -441,7 +444,6 @@ namespace TCC2
                 default:
                     return false;
             }
-
             return false;
         }
 
@@ -455,9 +457,9 @@ namespace TCC2
             if (agendaDAO.VerificarPacienteAgendado(txtPacienteAgenda.Text, Convert.ToDateTime(txtDataAgendamento.Text)))
             {
                 agendaDAO.AtualizarPaciente(
-                       Convert.ToDateTime(txtDataAgendamento.Text),
-                            txtHoraAgenda.Text,
-                            txtPacienteAgenda.Text,
+                       Convert.ToString(txtDataAgendamento.Text),
+                       txtHoraAgenda.Text,
+                       txtPacienteAgenda.Text,
                        false,
                        false,
                        0,
@@ -468,14 +470,24 @@ namespace TCC2
             {
                 agendaDAO.AdicionarPaciente(
                        Convert.ToDateTime(txtDataAgendamento.Text),
-                            txtHoraAgenda.Text,
-                            txtPacienteAgenda.Text,
+                       txtHoraAgenda.Text,
+                       txtPacienteAgenda.Text,
                        false,
-                       false,
+                       cbxRetorno.Checked,
                        0,
                        true,
                        Convert.ToString(usuarioDAO.getUsuario()));
             }
+            LimparCamposAgenda();
+        }
+
+        private void LimparCamposAgenda()
+        {
+            txtPacienteAgenda.Text = "";
+            txtNutricionista.Text = "";
+            txtDataAgendamento.Text = "";
+            txtHoraAgenda.Text = "";
+            cbxRetorno.Checked = false;
         }
 
         private void calAgendamento_ItemCreated(object sender, System.Windows.Forms.Calendar.CalendarItemCancelEventArgs e)
@@ -504,8 +516,8 @@ namespace TCC2
                 if (agendaDAO.VerificarPacienteAgendado(e.Item.Text.ToString(), Convert.ToDateTime(dataAgendadoAnterior)))
                 {
                     agendaDAO.AtualizarPaciente(
-                           Convert.ToDateTime(e.Item.StartDate.ToString().Substring(0, 10)),
-                           (e.Item.StartDate.ToString()).Substring(11, 5),
+                           Convert.ToString(e.Item.StartDate.ToString()),
+                           Convert.ToString(dataAgendadoAnterior),
                            e.Item.Text.ToString(),
                            false,
                            false,
@@ -592,7 +604,7 @@ namespace TCC2
                 temRetorno = true;
 
             if (nMensagemAlerta("Deseja realmente finalizar esta consulta?") == DialogResult.Yes)
-                FinalizarAtendimento(Convert.ToString(mlblHoraFutura.Text), mlblNomeFuturo.Text, mcbxAtendidoFuturo.Checked, temRetorno);
+                FinalizarAtendimento(DateTime.Today.ToString(), mlblNomeFuturo.Text, mcbxAtendidoFuturo.Checked, temRetorno);
             else
                 mcbxAtendidoFuturo.Checked = false;
 
@@ -618,12 +630,12 @@ namespace TCC2
 
         private void CancelarAtendimento(string data, string paciente, bool atendido, bool retorno)
         {
-            agendaDAO.AtualizarPaciente(Convert.ToDateTime(data.Substring(0, 10)), data.Substring(11), paciente, atendido, retorno, 1, true, Convert.ToString(usuarioDAO.getUsuario()));
+            agendaDAO.AtualizarPaciente(Convert.ToString(data.Substring(0, 10)), data.Substring(11), paciente, atendido, retorno, 1, true, Convert.ToString(usuarioDAO.getUsuario()));
         }
 
         private void FinalizarAtendimento(string data, string paciente, bool atendido, bool retorno)
         {
-            agendaDAO.AtualizarPaciente(Convert.ToDateTime(data.Substring(0, 10)), data.Substring(11), paciente, atendido, retorno, 0, true, Convert.ToString(usuarioDAO.getUsuario()));
+            agendaDAO.AtualizarPaciente(Convert.ToString(data.Substring(0, 10)), data.Substring(11), paciente, atendido, retorno, 0, true, Convert.ToString(usuarioDAO.getUsuario()));
         }
 
         private void calAgendamento_ItemCreating(object sender, CalendarItemCancelEventArgs e)
@@ -2192,8 +2204,12 @@ namespace TCC2
 
         private void calAgendamento_ItemSelected(object sender, CalendarItemEventArgs e)
         {
-            dataAgendadoAnterior = (e.Item.StartDate.ToString()).Substring(0, 10);
+            dataAgendadoAnterior = e.Item.StartDate;
+        }
 
+        private void lblUsuario_Click(object sender, EventArgs e)
+        {
+            Deslogar(sender, e);
         }
     }
 }

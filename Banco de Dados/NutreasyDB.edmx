@@ -129,9 +129,6 @@
           <Property Name="usuario" Type="varchar" MaxLength="2147483647" />
           <Property Name="programa" Type="varchar" MaxLength="2147483647" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'FK_Agenda_0_0' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK_Agenda_0_0" />-->
         <Association Name="FK_AnamnesePaciente_0_0">
           <End Role="Paciente" Type="Self.Paciente" Multiplicity="0..1" />
           <End Role="AnamnesePaciente" Type="Self.AnamnesePaciente" Multiplicity="*" />

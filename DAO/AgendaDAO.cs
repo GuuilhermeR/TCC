@@ -46,7 +46,7 @@ namespace ProjetoTCC
         {
             try
             {
-                var agenda = BancoDadosSingleton.Instance.Agenda.ToList();
+                var agenda = (from a in BancoDadosSingleton.Instance.Agenda select a).ToList();
                 if (agenda.Count > 0)
                 {
                     return agenda;
@@ -56,7 +56,7 @@ namespace ProjetoTCC
                     return null;
                 }
             }
-            catch
+            catch(Exception ex)
             {
                 return null;
             }
@@ -90,13 +90,14 @@ namespace ProjetoTCC
 
                     var update = db.Database.Connection.CreateCommand();
                     update.CommandText = $"UPDATE Agenda SET data='{dataHoraAgenda.ToString("yyyy-MM-dd HH:mm:ss")}'" +
-                                                     $", retorno='{retorno}'" +
-                                                     $", atendido='{atendido}'" +
+                                                     $", retorno='{Convert.ToInt16(retorno)}'" +
+                                                     $", atendido='{Convert.ToInt16(atendido)}'" +
                                                      $", cancelado='{cancelado}'" +
                                                      $", usuarioResp='{usuario}' " +
                                                      $"WHERE ID ={ID} ";
                     update.ExecuteNonQuery();
                     db.Database.Connection.Close();
+                    BancoDadosSingleton.Instance.SaveChanges();
                 }
 
                 nMensagemAviso("Consulta do paciente atualizado.");
@@ -117,7 +118,7 @@ namespace ProjetoTCC
                 agendaInsert.data = Convert.ToDateTime(dataAgenda.ToString("dd/MM/yyyy") + " " + horario + ":00");
                 //agendaInsert.hora = horario;
                 agendaInsert.atendido = atendido;
-                agendaInsert.retorno = retorno;
+                agendaInsert.retorno = (bool)retorno;
                 agendaInsert.Cancelado = cancelado;
                 agendaInsert.usuarioResp = usuario;
 

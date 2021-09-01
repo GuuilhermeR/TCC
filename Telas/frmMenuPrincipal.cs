@@ -454,7 +454,7 @@ namespace TCC2
                 nMensagemAviso("Não é possível agendar uma consulta em um horário não disponível do nutricionista!");
                 return;
             }
-            if (agendaDAO.VerificarPacienteAgendado(txtPacienteAgenda.Text, Convert.ToDateTime(txtDataAgendamento.Text)))
+            if (!agendaDAO.VerificarPacienteAgendado(txtPacienteAgenda.Text, Convert.ToDateTime(txtDataAgendamento.Text)))
             {
                 agendaDAO.AtualizarPaciente(
                        Convert.ToString(txtDataAgendamento.Text),
@@ -511,7 +511,7 @@ namespace TCC2
                 tabAgenda_Enter(sender, e);
                 return;
             }
-            if (nMensagemAlerta($"Você deseja alterar o paciente {e.Item.Text.ToString()} para {e.Item.StartDate.ToString()}") == DialogResult.Yes)
+            if (nMensagemAlerta($"Você deseja alterar o paciente {e.Item.Text} para {e.Item.StartDate}") == DialogResult.Yes)
             {
                 if (agendaDAO.VerificarPacienteAgendado(e.Item.Text.ToString(), Convert.ToDateTime(dataAgendadoAnterior)))
                 {
@@ -666,7 +666,6 @@ namespace TCC2
             var agendados = agendaDAO.CarregarAgenda();
             if (agendados is null || agendados.Count == 0)
                 return;
-
             agendados.ForEach(x =>
             {
                 CalendarItem calAgendamentos = new CalendarItem(calAgendamento, Convert.ToDateTime(x.data.ToString()), Convert.ToDateTime(x.data.ToString()).AddHours(1), x.paciente);
@@ -712,26 +711,24 @@ namespace TCC2
                 {
                     if (row.Cells["prot"].Value != null)
                     {
-                        decimal ProteinaGramas = 0; //Refazer o cálculo, se for mudar a qtd, teria que ser, ex: 100g - 22g de prot, 50g - x g de prot
-                        ProteinaGramas = Conversions.ToDecimal((Conversions.ToDecimal(row.Cells["qtd"].Value) * Conversions.ToDecimal(row.Cells["prot"].Value)) / Conversions.ToDecimal(qtdSalva));
+                        //Refazer o cálculo, se for mudar a qtd, teria que ser, ex: 100g - 22g de prot, 50g - x g de prot
+                        decimal ProteinaGramas = Conversions.ToDecimal((Conversions.ToDecimal(row.Cells["qtd"].Value) * Conversions.ToDecimal(row.Cells["prot"].Value)) / Conversions.ToDecimal(qtdSalva));
                         ProteinaKcal = ProteinaGramas * 4;
-                        row.Cells["prot"].Value = Conversions.ToDecimal(ProteinaKcal);
+                        row.Cells["prot"].Value = Conversions.ToDecimal(ProteinaGramas);
                     }
 
                     if (row.Cells["carbo"].Value != null)
                     {
-                        decimal CarboidratoGramas = 0;
-                        CarboidratoGramas = Conversions.ToDecimal((Conversions.ToDecimal(row.Cells["qtd"].Value) * Conversions.ToDecimal(row.Cells["carbo"].Value)) / Conversions.ToDecimal(qtdSalva));
+                        decimal CarboidratoGramas = Conversions.ToDecimal((Conversions.ToDecimal(row.Cells["qtd"].Value) * Conversions.ToDecimal(row.Cells["carbo"].Value)) / Conversions.ToDecimal(qtdSalva));
                         CarboidratoKcal = CarboidratoGramas * 4;
-                        row.Cells["carbo"].Value = Conversions.ToDecimal(CarboidratoKcal);
+                        row.Cells["carbo"].Value = Conversions.ToDecimal(CarboidratoGramas);
                     }
 
                     if (row.Cells["lipidio"].Value != null)
                     {
-                        decimal LipidioGramas = 0;
-                        LipidioGramas = Conversions.ToDecimal((Conversions.ToDecimal(row.Cells["qtd"].Value) * Conversions.ToDecimal(row.Cells["lipidio"].Value)) / Conversions.ToDecimal(qtdSalva));
+                        decimal LipidioGramas = Conversions.ToDecimal((Conversions.ToDecimal(row.Cells["qtd"].Value) * Conversions.ToDecimal(row.Cells["lipidio"].Value)) / Conversions.ToDecimal(qtdSalva));
                         LipidioKcal = LipidioGramas * 9;
-                        row.Cells["lipidio"].Value = LipidioKcal;
+                        row.Cells["lipidio"].Value = LipidioGramas;
                     }
 
                     decimal somaTotalCaloria = ProteinaKcal + CarboidratoKcal + LipidioKcal;
@@ -1041,8 +1038,8 @@ namespace TCC2
 
         private void cbxTabela_SelectedIndexChanged(object sender, EventArgs e)
         {
-            frmWait wait = new frmWait();
-            wait.Show();
+            //frmWait wait = new frmWait();
+            //wait.Show();
             dtgConAlimento.DataSource = null;
             var listaAlimentos = alimentoDAO.Buscar("", cbxTabela.Text);
             if (listaAlimentos == null)
@@ -1059,8 +1056,8 @@ namespace TCC2
             dtgConAlimento.Columns["nomeTabela"].Visible = false;
             dtgConAlimento.Columns["MedidaCaseira"].Visible = false;
             dtgConAlimento.Columns["Cardapio"].Visible = false;
+            //wait.Hide();
             return;
-            wait.Hide();
 
         }
         private void mCbxTabelasMedCas_SelectedValueChanged(object sender, EventArgs e)
@@ -1196,10 +1193,30 @@ namespace TCC2
 
         private void _btnSalvar_Click(object sender, EventArgs e)
         {
-            pacienteDAO.Salvar(Convert.ToString(txtNome.Text), Convert.ToDouble(txtCPF.Text), Convert.ToString(txtDtNasc.Text), Convert.ToString(txtEmail.Text), Convert.ToDouble(txtCEP.Text),
+            string CPF = txtCPF.Text.Replace("-","").Replace(".","");
+            string CEP = txtCEP.Text.Replace("-","");
+            pacienteDAO.Salvar(Convert.ToString(txtNome.Text), Convert.ToDouble(CPF), Convert.ToString(txtDtNasc.Text), Convert.ToString(txtEmail.Text), Convert.ToDouble(CEP),
                             Convert.ToDouble(txtNumero.Text), Convert.ToString(txtTelefone.Text), Convert.ToString(txtCelular.Text), Convert.ToString(txtEndereco.Text), Convert.ToString(txtBairro.Text)
                             , Convert.ToString(txtMunicipio.Text), Convert.ToString(txtUF.Text), Convert.ToString(txtComplemento.Text), this.vetorImagens);
+            LimparCamposPaciente();
             tbCadastro_Enter(sender, e);
+        }
+
+        private void LimparCamposPaciente()
+        {
+            txtCodPaciente.Text = "";
+            txtCPF.Text = "";
+            txtEmail.Text = "";
+            txtDtNasc.Text = "";
+            txtCEP.Text = "";
+            txtEndereco.Text = "";
+            txtNumero.Text = "";
+            txtBairro.Text = "";
+            txtMunicipio.Text = "";
+            txtUF.Text = "";
+            txtComplemento.Text = "";
+            txtTelefone.Text = "";
+            txtCelular.Text = "";
         }
 
         private void txtNome_Leave(object sender, EventArgs e)
@@ -2210,6 +2227,11 @@ namespace TCC2
         private void lblUsuario_Click(object sender, EventArgs e)
         {
             Deslogar(sender, e);
+        }
+
+        private void tabAgenda_Leave(object sender, EventArgs e)
+        {
+            calAgendamento.Items.Clear();
         }
     }
 }

@@ -31,13 +31,13 @@ namespace TCC2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange92 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange93 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange94 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange95 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange96 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange97 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange98 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange162 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange163 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange164 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange165 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange166 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange167 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange168 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMenuPrincipal));
             this.TabControlNutreasy = new MaterialSkin.Controls.MaterialTabControl();
             this.tabMenu = new System.Windows.Forms.TabPage();
@@ -513,6 +513,7 @@ namespace TCC2
             this.tabAgenda.Text = "Agenda";
             this.tabAgenda.UseVisualStyleBackColor = true;
             this.tabAgenda.Enter += new System.EventHandler(this.tabAgenda_Enter);
+            this.tabAgenda.Leave += new System.EventHandler(this.tabAgenda_Leave);
             // 
             // cbxRetorno
             // 
@@ -525,7 +526,7 @@ namespace TCC2
             this.cbxRetorno.Name = "cbxRetorno";
             this.cbxRetorno.Ripple = true;
             this.cbxRetorno.Size = new System.Drawing.Size(90, 37);
-            this.cbxRetorno.TabIndex = 321;
+            this.cbxRetorno.TabIndex = 4;
             this.cbxRetorno.Text = "Retorno";
             this.cbxRetorno.UseVisualStyleBackColor = true;
             // 
@@ -552,7 +553,7 @@ namespace TCC2
             this.txtNutricionista.Multiline = false;
             this.txtNutricionista.Name = "txtNutricionista";
             this.txtNutricionista.Size = new System.Drawing.Size(247, 50);
-            this.txtNutricionista.TabIndex = 319;
+            this.txtNutricionista.TabIndex = 1;
             this.txtNutricionista.Text = "";
             this.txtNutricionista.TrailingIcon = null;
             // 
@@ -570,7 +571,7 @@ namespace TCC2
             this.txtPacienteAgenda.Multiline = false;
             this.txtPacienteAgenda.Name = "txtPacienteAgenda";
             this.txtPacienteAgenda.Size = new System.Drawing.Size(247, 50);
-            this.txtPacienteAgenda.TabIndex = 318;
+            this.txtPacienteAgenda.TabIndex = 0;
             this.txtPacienteAgenda.Text = "";
             this.txtPacienteAgenda.TrailingIcon = null;
             // 
@@ -611,7 +612,7 @@ namespace TCC2
             this.txtHoraAgenda.Multiline = false;
             this.txtHoraAgenda.Name = "txtHoraAgenda";
             this.txtHoraAgenda.Size = new System.Drawing.Size(248, 50);
-            this.txtHoraAgenda.TabIndex = 304;
+            this.txtHoraAgenda.TabIndex = 3;
             this.txtHoraAgenda.Text = "";
             this.txtHoraAgenda.TrailingIcon = null;
             // 
@@ -629,7 +630,7 @@ namespace TCC2
             this.txtDataAgendamento.Multiline = false;
             this.txtDataAgendamento.Name = "txtDataAgendamento";
             this.txtDataAgendamento.Size = new System.Drawing.Size(248, 50);
-            this.txtDataAgendamento.TabIndex = 303;
+            this.txtDataAgendamento.TabIndex = 2;
             this.txtDataAgendamento.Text = "";
             this.txtDataAgendamento.TrailingIcon = null;
             this.txtDataAgendamento.Leave += new System.EventHandler(this.txtDataAgendamento_Leave);
@@ -641,35 +642,35 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.calAgendamento.BackColor = System.Drawing.SystemColors.Control;
             this.calAgendamento.Font = new System.Drawing.Font("Segoe UI", 9F);
-            calendarHighlightRange92.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange92.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange92.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange93.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange93.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange93.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange94.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange94.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange94.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange95.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange95.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange95.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange96.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange96.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange96.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange97.DayOfWeek = System.DayOfWeek.Saturday;
-            calendarHighlightRange97.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange97.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange98.DayOfWeek = System.DayOfWeek.Sunday;
-            calendarHighlightRange98.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange98.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange162.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange162.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange162.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange163.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange163.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange163.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange164.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange164.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange164.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange165.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange165.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange165.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange166.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange166.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange166.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange167.DayOfWeek = System.DayOfWeek.Saturday;
+            calendarHighlightRange167.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange167.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange168.DayOfWeek = System.DayOfWeek.Sunday;
+            calendarHighlightRange168.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange168.StartTime = System.TimeSpan.Parse("00:00:00");
             this.calAgendamento.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
-        calendarHighlightRange92,
-        calendarHighlightRange93,
-        calendarHighlightRange94,
-        calendarHighlightRange95,
-        calendarHighlightRange96,
-        calendarHighlightRange97,
-        calendarHighlightRange98};
+        calendarHighlightRange162,
+        calendarHighlightRange163,
+        calendarHighlightRange164,
+        calendarHighlightRange165,
+        calendarHighlightRange166,
+        calendarHighlightRange167,
+        calendarHighlightRange168};
             this.calAgendamento.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.calAgendamento.ItemsTimeFormat = "hh:mm";
             this.calAgendamento.Location = new System.Drawing.Point(3, 226);
@@ -695,7 +696,7 @@ namespace TCC2
             this.btnSalvarAgenda.Location = new System.Drawing.Point(1029, 185);
             this.btnSalvarAgenda.Name = "btnSalvarAgenda";
             this.btnSalvarAgenda.Size = new System.Drawing.Size(115, 35);
-            this.btnSalvarAgenda.TabIndex = 305;
+            this.btnSalvarAgenda.TabIndex = 5;
             this.btnSalvarAgenda.Text = "Salvar";
             this.btnSalvarAgenda.UseVisualStyleBackColor = true;
             this.btnSalvarAgenda.Click += new System.EventHandler(this.btnSalvarAgenda_Click);
@@ -771,7 +772,7 @@ namespace TCC2
             this.txtAlimentoFiltro.Multiline = false;
             this.txtAlimentoFiltro.Name = "txtAlimentoFiltro";
             this.txtAlimentoFiltro.Size = new System.Drawing.Size(659, 50);
-            this.txtAlimentoFiltro.TabIndex = 322;
+            this.txtAlimentoFiltro.TabIndex = 1;
             this.txtAlimentoFiltro.Text = "";
             this.txtAlimentoFiltro.TrailingIcon = null;
             this.txtAlimentoFiltro.Leave += new System.EventHandler(this.txtAlimentoFiltro_Leave);
@@ -797,7 +798,7 @@ namespace TCC2
             this.cbxTabela.Name = "cbxTabela";
             this.cbxTabela.Size = new System.Drawing.Size(659, 49);
             this.cbxTabela.StartIndex = 0;
-            this.cbxTabela.TabIndex = 320;
+            this.cbxTabela.TabIndex = 0;
             this.cbxTabela.SelectedIndexChanged += new System.EventHandler(this.cbxTabela_SelectedIndexChanged);
             // 
             // btnCancelarEditAlimentos
@@ -809,7 +810,7 @@ namespace TCC2
             this.btnCancelarEditAlimentos.Location = new System.Drawing.Point(1008, 635);
             this.btnCancelarEditAlimentos.Name = "btnCancelarEditAlimentos";
             this.btnCancelarEditAlimentos.Size = new System.Drawing.Size(115, 35);
-            this.btnCancelarEditAlimentos.TabIndex = 317;
+            this.btnCancelarEditAlimentos.TabIndex = 5;
             this.btnCancelarEditAlimentos.Text = "Cancelar";
             this.btnCancelarEditAlimentos.UseVisualStyleBackColor = true;
             this.btnCancelarEditAlimentos.Click += new System.EventHandler(this.btnCancelarEditAlimentos_Click);
@@ -907,7 +908,7 @@ namespace TCC2
             this.txtNomeTabela.Multiline = false;
             this.txtNomeTabela.Name = "txtNomeTabela";
             this.txtNomeTabela.Size = new System.Drawing.Size(659, 50);
-            this.txtNomeTabela.TabIndex = 325;
+            this.txtNomeTabela.TabIndex = 3;
             this.txtNomeTabela.Text = "";
             this.txtNomeTabela.TrailingIcon = null;
             // 
@@ -933,7 +934,7 @@ namespace TCC2
             this._cbxNomePlanilha.Name = "_cbxNomePlanilha";
             this._cbxNomePlanilha.Size = new System.Drawing.Size(659, 49);
             this._cbxNomePlanilha.StartIndex = 0;
-            this._cbxNomePlanilha.TabIndex = 324;
+            this._cbxNomePlanilha.TabIndex = 2;
             this._cbxNomePlanilha.SelectedIndexChanged += new System.EventHandler(this._cbxNomePlanilha_SelectedIndexChanged_1);
             // 
             // txtCaminhoArquivoExcel
@@ -951,7 +952,7 @@ namespace TCC2
             this.txtCaminhoArquivoExcel.Name = "txtCaminhoArquivoExcel";
             this.txtCaminhoArquivoExcel.ReadOnly = true;
             this.txtCaminhoArquivoExcel.Size = new System.Drawing.Size(659, 50);
-            this.txtCaminhoArquivoExcel.TabIndex = 323;
+            this.txtCaminhoArquivoExcel.TabIndex = 0;
             this.txtCaminhoArquivoExcel.Text = "";
             this.txtCaminhoArquivoExcel.TrailingIcon = null;
             // 
@@ -981,7 +982,7 @@ namespace TCC2
             this._btnImportar.Location = new System.Drawing.Point(1008, 632);
             this._btnImportar.Name = "_btnImportar";
             this._btnImportar.Size = new System.Drawing.Size(115, 38);
-            this._btnImportar.TabIndex = 269;
+            this._btnImportar.TabIndex = 4;
             this._btnImportar.Text = "Importar";
             this._btnImportar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this._btnImportar.UseVisualStyleBackColor = true;
@@ -994,7 +995,7 @@ namespace TCC2
             this._btnBuscarPlanilha.Location = new System.Drawing.Point(674, 520);
             this._btnBuscarPlanilha.Name = "_btnBuscarPlanilha";
             this._btnBuscarPlanilha.Size = new System.Drawing.Size(27, 26);
-            this._btnBuscarPlanilha.TabIndex = 266;
+            this._btnBuscarPlanilha.TabIndex = 1;
             this._btnBuscarPlanilha.UseVisualStyleBackColor = true;
             this._btnBuscarPlanilha.Click += new System.EventHandler(this._btnBuscarPlanilha_Click);
             // 
@@ -1028,7 +1029,7 @@ namespace TCC2
             this.mTxtFiltroAlimentoMedCas.Multiline = false;
             this.mTxtFiltroAlimentoMedCas.Name = "mTxtFiltroAlimentoMedCas";
             this.mTxtFiltroAlimentoMedCas.Size = new System.Drawing.Size(348, 50);
-            this.mTxtFiltroAlimentoMedCas.TabIndex = 330;
+            this.mTxtFiltroAlimentoMedCas.TabIndex = 1;
             this.mTxtFiltroAlimentoMedCas.Text = "";
             this.mTxtFiltroAlimentoMedCas.TrailingIcon = null;
             this.mTxtFiltroAlimentoMedCas.Leave += new System.EventHandler(this.mTxtFiltroAlimentoMedCas_Leave);
@@ -1054,7 +1055,7 @@ namespace TCC2
             this.mCbxTabelasMedCas.Name = "mCbxTabelasMedCas";
             this.mCbxTabelasMedCas.Size = new System.Drawing.Size(348, 49);
             this.mCbxTabelasMedCas.StartIndex = 0;
-            this.mCbxTabelasMedCas.TabIndex = 329;
+            this.mCbxTabelasMedCas.TabIndex = 0;
             this.mCbxTabelasMedCas.SelectedValueChanged += new System.EventHandler(this.mCbxTabelasMedCas_SelectedValueChanged);
             // 
             // dtgSalvarMedCaseira
@@ -1075,7 +1076,7 @@ namespace TCC2
             this.dtgSalvarMedCaseira.Name = "dtgSalvarMedCaseira";
             this.dtgSalvarMedCaseira.RowHeadersWidth = 51;
             this.dtgSalvarMedCaseira.Size = new System.Drawing.Size(765, 612);
-            this.dtgSalvarMedCaseira.TabIndex = 10;
+            this.dtgSalvarMedCaseira.TabIndex = 2;
             // 
             // colCodAlimento
             // 
@@ -1131,7 +1132,7 @@ namespace TCC2
             this.btnSalvarMedCas.Location = new System.Drawing.Point(1009, 636);
             this.btnSalvarMedCas.Name = "btnSalvarMedCas";
             this.btnSalvarMedCas.Size = new System.Drawing.Size(115, 35);
-            this.btnSalvarMedCas.TabIndex = 11;
+            this.btnSalvarMedCas.TabIndex = 3;
             this.btnSalvarMedCas.Text = "Salvar";
             this.btnSalvarMedCas.UseVisualStyleBackColor = true;
             this.btnSalvarMedCas.Click += new System.EventHandler(this.btnSalvarMedCas_Click);
@@ -1207,7 +1208,7 @@ namespace TCC2
             this.txtLipidio.Multiline = false;
             this.txtLipidio.Name = "txtLipidio";
             this.txtLipidio.Size = new System.Drawing.Size(125, 50);
-            this.txtLipidio.TabIndex = 326;
+            this.txtLipidio.TabIndex = 6;
             this.txtLipidio.Text = "";
             this.txtLipidio.TrailingIcon = null;
             // 
@@ -1225,7 +1226,7 @@ namespace TCC2
             this.txtCarboidrato.Multiline = false;
             this.txtCarboidrato.Name = "txtCarboidrato";
             this.txtCarboidrato.Size = new System.Drawing.Size(125, 50);
-            this.txtCarboidrato.TabIndex = 325;
+            this.txtCarboidrato.TabIndex = 5;
             this.txtCarboidrato.Text = "";
             this.txtCarboidrato.TrailingIcon = null;
             // 
@@ -1243,7 +1244,7 @@ namespace TCC2
             this.txtProteina.Multiline = false;
             this.txtProteina.Name = "txtProteina";
             this.txtProteina.Size = new System.Drawing.Size(125, 50);
-            this.txtProteina.TabIndex = 324;
+            this.txtProteina.TabIndex = 4;
             this.txtProteina.Text = "";
             this.txtProteina.TrailingIcon = null;
             // 
@@ -1284,7 +1285,7 @@ namespace TCC2
             this.txtFiltroAlimento.Multiline = false;
             this.txtFiltroAlimento.Name = "txtFiltroAlimento";
             this.txtFiltroAlimento.Size = new System.Drawing.Size(347, 50);
-            this.txtFiltroAlimento.TabIndex = 321;
+            this.txtFiltroAlimento.TabIndex = 3;
             this.txtFiltroAlimento.Text = "";
             this.txtFiltroAlimento.TrailingIcon = null;
             this.txtFiltroAlimento.Leave += new System.EventHandler(this.txtFiltroAlimento_Leave);
@@ -1310,7 +1311,7 @@ namespace TCC2
             this.cbxTabelaAlimentoCardapio.Name = "cbxTabelaAlimentoCardapio";
             this.cbxTabelaAlimentoCardapio.Size = new System.Drawing.Size(261, 49);
             this.cbxTabelaAlimentoCardapio.StartIndex = 0;
-            this.cbxTabelaAlimentoCardapio.TabIndex = 319;
+            this.cbxTabelaAlimentoCardapio.TabIndex = 2;
             this.cbxTabelaAlimentoCardapio.SelectedIndexChanged += new System.EventHandler(this.cbxTabelaAlimentoCardapio_SelectedIndexChanged);
             // 
             // cbxRefeicao
@@ -1341,7 +1342,7 @@ namespace TCC2
             this.cbxRefeicao.Name = "cbxRefeicao";
             this.cbxRefeicao.Size = new System.Drawing.Size(261, 49);
             this.cbxRefeicao.StartIndex = 0;
-            this.cbxRefeicao.TabIndex = 318;
+            this.cbxRefeicao.TabIndex = 1;
             // 
             // txtPaciente
             // 
@@ -1357,7 +1358,7 @@ namespace TCC2
             this.txtPaciente.Multiline = false;
             this.txtPaciente.Name = "txtPaciente";
             this.txtPaciente.Size = new System.Drawing.Size(188, 50);
-            this.txtPaciente.TabIndex = 317;
+            this.txtPaciente.TabIndex = 0;
             this.txtPaciente.Text = "";
             this.txtPaciente.TrailingIcon = null;
             // 
@@ -1370,7 +1371,7 @@ namespace TCC2
             this.btnCancelarCardapio.Location = new System.Drawing.Point(1014, 635);
             this.btnCancelarCardapio.Name = "btnCancelarCardapio";
             this.btnCancelarCardapio.Size = new System.Drawing.Size(115, 35);
-            this.btnCancelarCardapio.TabIndex = 316;
+            this.btnCancelarCardapio.TabIndex = 10;
             this.btnCancelarCardapio.Text = "Cancelar";
             this.btnCancelarCardapio.UseVisualStyleBackColor = true;
             this.btnCancelarCardapio.Click += new System.EventHandler(this.btnCancelarCardapio_Click);
@@ -1418,7 +1419,7 @@ namespace TCC2
             this.btnPacienteCardapio.Location = new System.Drawing.Point(202, 16);
             this.btnPacienteCardapio.Name = "btnPacienteCardapio";
             this.btnPacienteCardapio.Size = new System.Drawing.Size(30, 23);
-            this.btnPacienteCardapio.TabIndex = 301;
+            this.btnPacienteCardapio.TabIndex = 0;
             this.btnPacienteCardapio.UseVisualStyleBackColor = true;
             this.btnPacienteCardapio.Click += new System.EventHandler(this.btnPacienteCardapio_Click);
             // 
@@ -1436,7 +1437,7 @@ namespace TCC2
             this.dtgCardapioAlimentos.Name = "dtgCardapioAlimentos";
             this.dtgCardapioAlimentos.RowHeadersWidth = 51;
             this.dtgCardapioAlimentos.Size = new System.Drawing.Size(483, 398);
-            this.dtgCardapioAlimentos.TabIndex = 305;
+            this.dtgCardapioAlimentos.TabIndex = 7;
             // 
             // dtgRefeicoes
             // 
@@ -1460,7 +1461,7 @@ namespace TCC2
             this.dtgRefeicoes.Name = "dtgRefeicoes";
             this.dtgRefeicoes.RowHeadersWidth = 51;
             this.dtgRefeicoes.Size = new System.Drawing.Size(511, 398);
-            this.dtgRefeicoes.TabIndex = 304;
+            this.dtgRefeicoes.TabIndex = 8;
             this.dtgRefeicoes.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dtgRefeicoes_CellBeginEdit);
             this.dtgRefeicoes.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgRefeicoes_CellEndEdit);
             // 
@@ -1526,7 +1527,7 @@ namespace TCC2
             this.btnSalvarCardapio.Location = new System.Drawing.Point(892, 635);
             this.btnSalvarCardapio.Name = "btnSalvarCardapio";
             this.btnSalvarCardapio.Size = new System.Drawing.Size(115, 35);
-            this.btnSalvarCardapio.TabIndex = 303;
+            this.btnSalvarCardapio.TabIndex = 9;
             this.btnSalvarCardapio.Text = "Salvar";
             this.btnSalvarCardapio.UseVisualStyleBackColor = true;
             this.btnSalvarCardapio.Click += new System.EventHandler(this.btnSalvarCardapio_Click);
@@ -1554,9 +1555,9 @@ namespace TCC2
             this.btnApagarCardapio.AutoSize = true;
             this.btnApagarCardapio.Image = global::TCC2.Properties.Resources.DeleteRed;
             this.btnApagarCardapio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnApagarCardapio.Location = new System.Drawing.Point(1003, 21);
+            this.btnApagarCardapio.Location = new System.Drawing.Point(980, 21);
             this.btnApagarCardapio.Name = "btnApagarCardapio";
-            this.btnApagarCardapio.Size = new System.Drawing.Size(125, 35);
+            this.btnApagarCardapio.Size = new System.Drawing.Size(148, 35);
             this.btnApagarCardapio.TabIndex = 319;
             this.btnApagarCardapio.Text = "Apagar Cardápio";
             this.btnApagarCardapio.UseVisualStyleBackColor = true;
@@ -1659,7 +1660,7 @@ namespace TCC2
             this.tbPaciente.Name = "tbPaciente";
             this.tbPaciente.SelectedIndex = 0;
             this.tbPaciente.Size = new System.Drawing.Size(1140, 699);
-            this.tbPaciente.TabIndex = 1;
+            this.tbPaciente.TabIndex = 0;
             this.tbPaciente.Enter += new System.EventHandler(this.tbPaciente_Enter);
             // 
             // tbCadastro
@@ -1705,7 +1706,7 @@ namespace TCC2
             this.txtDtNasc.Multiline = false;
             this.txtDtNasc.Name = "txtDtNasc";
             this.txtDtNasc.Size = new System.Drawing.Size(187, 50);
-            this.txtDtNasc.TabIndex = 285;
+            this.txtDtNasc.TabIndex = 3;
             this.txtDtNasc.Text = "";
             this.txtDtNasc.TrailingIcon = null;
             this.txtDtNasc.Leave += new System.EventHandler(this.txtDtNasc_Leave);
@@ -1723,7 +1724,7 @@ namespace TCC2
             this.txtCelular.Multiline = false;
             this.txtCelular.Name = "txtCelular";
             this.txtCelular.Size = new System.Drawing.Size(271, 50);
-            this.txtCelular.TabIndex = 284;
+            this.txtCelular.TabIndex = 12;
             this.txtCelular.Text = "";
             this.txtCelular.TrailingIcon = null;
             this.txtCelular.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCelular_KeyPress);
@@ -1742,7 +1743,7 @@ namespace TCC2
             this.txtTelefone.Multiline = false;
             this.txtTelefone.Name = "txtTelefone";
             this.txtTelefone.Size = new System.Drawing.Size(271, 50);
-            this.txtTelefone.TabIndex = 283;
+            this.txtTelefone.TabIndex = 11;
             this.txtTelefone.Text = "";
             this.txtTelefone.TrailingIcon = null;
             this.txtTelefone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelefone_KeyPress);
@@ -1763,7 +1764,7 @@ namespace TCC2
             this.txtComplemento.Multiline = false;
             this.txtComplemento.Name = "txtComplemento";
             this.txtComplemento.Size = new System.Drawing.Size(1086, 50);
-            this.txtComplemento.TabIndex = 282;
+            this.txtComplemento.TabIndex = 10;
             this.txtComplemento.Text = "";
             this.txtComplemento.TrailingIcon = null;
             // 
@@ -1781,7 +1782,7 @@ namespace TCC2
             this.txtUF.Multiline = false;
             this.txtUF.Name = "txtUF";
             this.txtUF.Size = new System.Drawing.Size(102, 50);
-            this.txtUF.TabIndex = 281;
+            this.txtUF.TabIndex = 9;
             this.txtUF.Text = "";
             this.txtUF.TrailingIcon = null;
             this.txtUF.Leave += new System.EventHandler(this.txtUF_Leave);
@@ -1799,7 +1800,7 @@ namespace TCC2
             this.txtMunicipio.Multiline = false;
             this.txtMunicipio.Name = "txtMunicipio";
             this.txtMunicipio.Size = new System.Drawing.Size(411, 50);
-            this.txtMunicipio.TabIndex = 280;
+            this.txtMunicipio.TabIndex = 8;
             this.txtMunicipio.Text = "";
             this.txtMunicipio.TrailingIcon = null;
             // 
@@ -1816,7 +1817,7 @@ namespace TCC2
             this.txtBairro.Multiline = false;
             this.txtBairro.Name = "txtBairro";
             this.txtBairro.Size = new System.Drawing.Size(329, 50);
-            this.txtBairro.TabIndex = 279;
+            this.txtBairro.TabIndex = 7;
             this.txtBairro.Text = "";
             this.txtBairro.TrailingIcon = null;
             // 
@@ -1833,7 +1834,7 @@ namespace TCC2
             this.txtNumero.Multiline = false;
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(102, 50);
-            this.txtNumero.TabIndex = 278;
+            this.txtNumero.TabIndex = 6;
             this.txtNumero.Text = "";
             this.txtNumero.TrailingIcon = null;
             this.txtNumero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumero_KeyPress);
@@ -1852,7 +1853,7 @@ namespace TCC2
             this.txtEndereco.Multiline = false;
             this.txtEndereco.Name = "txtEndereco";
             this.txtEndereco.Size = new System.Drawing.Size(363, 50);
-            this.txtEndereco.TabIndex = 277;
+            this.txtEndereco.TabIndex = 5;
             this.txtEndereco.Text = "";
             this.txtEndereco.TrailingIcon = null;
             // 
@@ -1869,7 +1870,7 @@ namespace TCC2
             this.txtCEP.Multiline = false;
             this.txtCEP.Name = "txtCEP";
             this.txtCEP.Size = new System.Drawing.Size(237, 50);
-            this.txtCEP.TabIndex = 276;
+            this.txtCEP.TabIndex = 4;
             this.txtCEP.Text = "";
             this.txtCEP.TrailingIcon = null;
             this.txtCEP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCEP_KeyPress_1);
@@ -1889,7 +1890,7 @@ namespace TCC2
             this.txtEmail.Multiline = false;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(301, 50);
-            this.txtEmail.TabIndex = 275;
+            this.txtEmail.TabIndex = 2;
             this.txtEmail.Text = "";
             this.txtEmail.TrailingIcon = null;
             // 
@@ -1900,13 +1901,13 @@ namespace TCC2
             this.txtCPF.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtCPF.Hint = "CPF";
             this.txtCPF.LeadingIcon = null;
-            this.txtCPF.Location = new System.Drawing.Point(566, 27);
+            this.txtCPF.Location = new System.Drawing.Point(538, 27);
             this.txtCPF.MaxLength = 11;
             this.txtCPF.MouseState = MaterialSkin.MouseState.OUT;
             this.txtCPF.Multiline = false;
             this.txtCPF.Name = "txtCPF";
-            this.txtCPF.Size = new System.Drawing.Size(194, 50);
-            this.txtCPF.TabIndex = 274;
+            this.txtCPF.Size = new System.Drawing.Size(161, 50);
+            this.txtCPF.TabIndex = 1;
             this.txtCPF.Text = "";
             this.txtCPF.TrailingIcon = null;
             this.txtCPF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCPF_KeyPress);
@@ -1925,7 +1926,7 @@ namespace TCC2
             this.txtNome.Multiline = false;
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(318, 50);
-            this.txtNome.TabIndex = 273;
+            this.txtNome.TabIndex = 0;
             this.txtNome.Text = "";
             this.txtNome.TrailingIcon = null;
             // 
@@ -1951,8 +1952,7 @@ namespace TCC2
             // _dtgConsultaPacientes
             // 
             this._dtgConsultaPacientes.AllowUserToAddRows = false;
-            this._dtgConsultaPacientes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this._dtgConsultaPacientes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this._dtgConsultaPacientes.BackgroundColor = System.Drawing.Color.White;
             this._dtgConsultaPacientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -1961,7 +1961,7 @@ namespace TCC2
             this._dtgConsultaPacientes.ReadOnly = true;
             this._dtgConsultaPacientes.RowHeadersWidth = 51;
             this._dtgConsultaPacientes.Size = new System.Drawing.Size(1122, 192);
-            this._dtgConsultaPacientes.TabIndex = 266;
+            this._dtgConsultaPacientes.TabIndex = 15;
             this._dtgConsultaPacientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._dtgConsultaPacientes_CellDoubleClick);
             // 
             // _btnExcluir
@@ -1970,10 +1970,10 @@ namespace TCC2
             this._btnExcluir.AutoSize = true;
             this._btnExcluir.Image = global::TCC2.Properties.Resources.DeleteRed;
             this._btnExcluir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._btnExcluir.Location = new System.Drawing.Point(1011, 435);
+            this._btnExcluir.Location = new System.Drawing.Point(1011, 434);
             this._btnExcluir.Name = "_btnExcluir";
             this._btnExcluir.Size = new System.Drawing.Size(115, 35);
-            this._btnExcluir.TabIndex = 242;
+            this._btnExcluir.TabIndex = 14;
             this._btnExcluir.Text = "Excluir";
             this._btnExcluir.UseVisualStyleBackColor = true;
             this._btnExcluir.Click += new System.EventHandler(this._btnExcluir_Click);
@@ -1983,10 +1983,10 @@ namespace TCC2
             this._btnSalvar.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this._btnSalvar.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
             this._btnSalvar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._btnSalvar.Location = new System.Drawing.Point(890, 435);
+            this._btnSalvar.Location = new System.Drawing.Point(890, 434);
             this._btnSalvar.Name = "_btnSalvar";
             this._btnSalvar.Size = new System.Drawing.Size(115, 35);
-            this._btnSalvar.TabIndex = 241;
+            this._btnSalvar.TabIndex = 13;
             this._btnSalvar.Text = "Salvar";
             this._btnSalvar.UseVisualStyleBackColor = true;
             this._btnSalvar.Click += new System.EventHandler(this._btnSalvar_Click);
@@ -2046,7 +2046,7 @@ namespace TCC2
             this.btnSalvarAntro.Location = new System.Drawing.Point(666, 559);
             this.btnSalvarAntro.Name = "btnSalvarAntro";
             this.btnSalvarAntro.Size = new System.Drawing.Size(115, 35);
-            this.btnSalvarAntro.TabIndex = 242;
+            this.btnSalvarAntro.TabIndex = 8;
             this.btnSalvarAntro.Text = "Salvar";
             this.btnSalvarAntro.UseVisualStyleBackColor = true;
             this.btnSalvarAntro.Click += new System.EventHandler(this.btnSalvarAntro_Click);
@@ -2259,7 +2259,8 @@ namespace TCC2
             this.txtPacienteAntro.MouseState = MaterialSkin.MouseState.OUT;
             this.txtPacienteAntro.Multiline = false;
             this.txtPacienteAntro.Name = "txtPacienteAntro";
-            this.txtPacienteAntro.Size = new System.Drawing.Size(347, 50);
+            this.txtPacienteAntro.ReadOnly = true;
+            this.txtPacienteAntro.Size = new System.Drawing.Size(320, 50);
             this.txtPacienteAntro.TabIndex = 0;
             this.txtPacienteAntro.Text = "";
             this.txtPacienteAntro.TrailingIcon = null;
@@ -2267,7 +2268,7 @@ namespace TCC2
             // button1
             // 
             this.button1.Image = global::TCC2.Properties.Resources.DeleteRed;
-            this.button1.Location = new System.Drawing.Point(406, 21);
+            this.button1.Location = new System.Drawing.Point(376, 21);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(30, 23);
             this.button1.TabIndex = 320;
@@ -2276,7 +2277,7 @@ namespace TCC2
             // btnPacAnt
             // 
             this.btnPacAnt.Image = global::TCC2.Properties.Resources.consultar;
-            this.btnPacAnt.Location = new System.Drawing.Point(370, 21);
+            this.btnPacAnt.Location = new System.Drawing.Point(340, 21);
             this.btnPacAnt.Name = "btnPacAnt";
             this.btnPacAnt.Size = new System.Drawing.Size(30, 23);
             this.btnPacAnt.TabIndex = 319;
@@ -2310,8 +2311,9 @@ namespace TCC2
             this.txtPacienteAnamnese.MouseState = MaterialSkin.MouseState.OUT;
             this.txtPacienteAnamnese.Multiline = false;
             this.txtPacienteAnamnese.Name = "txtPacienteAnamnese";
+            this.txtPacienteAnamnese.ReadOnly = true;
             this.txtPacienteAnamnese.Size = new System.Drawing.Size(347, 50);
-            this.txtPacienteAnamnese.TabIndex = 319;
+            this.txtPacienteAnamnese.TabIndex = 0;
             this.txtPacienteAnamnese.Text = "";
             this.txtPacienteAnamnese.TrailingIcon = null;
             // 
@@ -2358,7 +2360,7 @@ namespace TCC2
             this.rtxtAnamnese.Size = new System.Drawing.Size(1122, 565);
             this.rtxtAnamnese.StampAction = MvtWindowsForms.StampActions.EditedBy;
             this.rtxtAnamnese.StampColor = System.Drawing.Color.Blue;
-            this.rtxtAnamnese.TabIndex = 0;
+            this.rtxtAnamnese.TabIndex = 2;
             // 
             // 
             // 
@@ -2378,7 +2380,7 @@ namespace TCC2
             this.btnFindPacienteAnamnese.Location = new System.Drawing.Point(366, 17);
             this.btnFindPacienteAnamnese.Name = "btnFindPacienteAnamnese";
             this.btnFindPacienteAnamnese.Size = new System.Drawing.Size(30, 23);
-            this.btnFindPacienteAnamnese.TabIndex = 318;
+            this.btnFindPacienteAnamnese.TabIndex = 1;
             this.btnFindPacienteAnamnese.UseVisualStyleBackColor = true;
             this.btnFindPacienteAnamnese.Click += new System.EventHandler(this.btnFindPacienteAnamnese_Click);
             // 
@@ -2391,7 +2393,7 @@ namespace TCC2
             this.btnSalvarAnamnese.Location = new System.Drawing.Point(1012, 631);
             this.btnSalvarAnamnese.Name = "btnSalvarAnamnese";
             this.btnSalvarAnamnese.Size = new System.Drawing.Size(115, 35);
-            this.btnSalvarAnamnese.TabIndex = 304;
+            this.btnSalvarAnamnese.TabIndex = 3;
             this.btnSalvarAnamnese.Text = "Salvar";
             this.btnSalvarAnamnese.UseVisualStyleBackColor = true;
             this.btnSalvarAnamnese.Click += new System.EventHandler(this.btnSalvarAnamnese_Click);
@@ -2457,7 +2459,7 @@ namespace TCC2
             this.txtCRN.Multiline = false;
             this.txtCRN.Name = "txtCRN";
             this.txtCRN.Size = new System.Drawing.Size(219, 50);
-            this.txtCRN.TabIndex = 10;
+            this.txtCRN.TabIndex = 7;
             this.txtCRN.Text = "";
             this.txtCRN.TrailingIcon = null;
             // 
@@ -2623,7 +2625,7 @@ namespace TCC2
             this.btnSalvarConfigUsuario.Location = new System.Drawing.Point(894, 178);
             this.btnSalvarConfigUsuario.Name = "btnSalvarConfigUsuario";
             this.btnSalvarConfigUsuario.Size = new System.Drawing.Size(115, 35);
-            this.btnSalvarConfigUsuario.TabIndex = 7;
+            this.btnSalvarConfigUsuario.TabIndex = 8;
             this.btnSalvarConfigUsuario.Text = "Salvar";
             this.btnSalvarConfigUsuario.UseVisualStyleBackColor = true;
             this.btnSalvarConfigUsuario.Click += new System.EventHandler(this.btnSalvarConfigUsuario_Click);
@@ -2641,7 +2643,7 @@ namespace TCC2
             this.dtgUsuarios.ReadOnly = true;
             this.dtgUsuarios.RowHeadersWidth = 51;
             this.dtgUsuarios.Size = new System.Drawing.Size(1125, 447);
-            this.dtgUsuarios.TabIndex = 8;
+            this.dtgUsuarios.TabIndex = 10;
             this.dtgUsuarios.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgUsuarios_CellDoubleClick);
             this.dtgUsuarios.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtgUsuarios_KeyDown);
             // 
@@ -2689,7 +2691,7 @@ namespace TCC2
             this.cbxTelaLiberarPerm.Name = "cbxTelaLiberarPerm";
             this.cbxTelaLiberarPerm.Size = new System.Drawing.Size(522, 49);
             this.cbxTelaLiberarPerm.StartIndex = 0;
-            this.cbxTelaLiberarPerm.TabIndex = 17;
+            this.cbxTelaLiberarPerm.TabIndex = 1;
             // 
             // cbxUsuarioPerm
             // 
@@ -2712,7 +2714,7 @@ namespace TCC2
             this.cbxUsuarioPerm.Name = "cbxUsuarioPerm";
             this.cbxUsuarioPerm.Size = new System.Drawing.Size(522, 49);
             this.cbxUsuarioPerm.StartIndex = 0;
-            this.cbxUsuarioPerm.TabIndex = 16;
+            this.cbxUsuarioPerm.TabIndex = 0;
             // 
             // dtgPermUsuarios
             // 
@@ -2727,7 +2729,7 @@ namespace TCC2
             this.dtgPermUsuarios.ReadOnly = true;
             this.dtgPermUsuarios.RowHeadersWidth = 51;
             this.dtgPermUsuarios.Size = new System.Drawing.Size(1125, 499);
-            this.dtgPermUsuarios.TabIndex = 14;
+            this.dtgPermUsuarios.TabIndex = 3;
             // 
             // btnSalvarPermissao
             // 
@@ -2737,7 +2739,7 @@ namespace TCC2
             this.btnSalvarPermissao.Location = new System.Drawing.Point(1018, 132);
             this.btnSalvarPermissao.Name = "btnSalvarPermissao";
             this.btnSalvarPermissao.Size = new System.Drawing.Size(115, 35);
-            this.btnSalvarPermissao.TabIndex = 12;
+            this.btnSalvarPermissao.TabIndex = 2;
             this.btnSalvarPermissao.Text = "Salvar";
             this.btnSalvarPermissao.UseVisualStyleBackColor = true;
             this.btnSalvarPermissao.Click += new System.EventHandler(this.btnSalvarPermissao_Click);

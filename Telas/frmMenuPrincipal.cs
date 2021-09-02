@@ -484,7 +484,6 @@ namespace TCC2
         private void LimparCamposAgenda()
         {
             txtPacienteAgenda.Text = "";
-            txtNutricionista.Text = "";
             txtDataAgendamento.Text = "";
             txtHoraAgenda.Text = "";
             cbxRetorno.Checked = false;
@@ -666,10 +665,18 @@ namespace TCC2
             var agendados = agendaDAO.CarregarAgenda();
             if (agendados is null || agendados.Count == 0)
                 return;
+            
+            //adicionar para pintar de outra cor o card, caso seja retorno.
             agendados.ForEach(x =>
             {
                 CalendarItem calAgendamentos = new CalendarItem(calAgendamento, Convert.ToDateTime(x.data.ToString()), Convert.ToDateTime(x.data.ToString()).AddHours(1), x.paciente);
                 calAgendamento.Items.Add(calAgendamentos);
+
+                if (Convert.ToBoolean(x.retorno))
+                    calAgendamento.BackColor = Color.LightYellow;
+                else
+                    calAgendamento.BackColor = Color.LightGreen;
+
             });
         }
 

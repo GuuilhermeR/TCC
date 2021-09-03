@@ -27,7 +27,7 @@ namespace TCC2
                 return;
             }
 
-            if (ChecaServidor.StatusCode != HttpStatusCode.OK)
+            if (ChecaServidor.StatusCode == HttpStatusCode.InternalServerError)
             {
                 MessageBox.Show("Você não tem conexão com a internet.");
                 return;

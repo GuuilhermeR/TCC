@@ -319,7 +319,7 @@ namespace TCC2
             GetConfigAtendimento();
             calAgendamento.ViewStart = RetornaInicioSemana(DateTime.Today);
             calAgendamento.ViewEnd = RetornaFimSemana(DateTime.Today);
-            BuscarTodasConsultas();
+            BuscarConsultasAgendadas();
             calAgendamento.Refresh();
         }
 
@@ -656,11 +656,11 @@ namespace TCC2
 
             calAgendamento.ViewEnd = dtInicio.AddDays(5);
 
-            BuscarTodasConsultas();
+            BuscarConsultasAgendadas();
             GetConfigAtendimento();
         }
 
-        private void BuscarTodasConsultas()
+        private void BuscarConsultasAgendadas()
         {
             var agendados = agendaDAO.CarregarAgenda();
             if (agendados is null || agendados.Count == 0)
@@ -676,7 +676,6 @@ namespace TCC2
                     calAgendamento.BackColor = Color.LightYellow;
                 else
                     calAgendamento.BackColor = Color.LightGreen;
-
             });
         }
 
@@ -1572,17 +1571,14 @@ namespace TCC2
                 foreach (DataGridViewRow row in dtgCardapioAlimentos.Rows)
                     if (row.Selected == true || row.Cells["nomeAlimento"].Selected)
                     {
-                        var medCaseiraItens = medidaCaseiraDAO.Buscar(Convert.ToInt32(row.Cells["codAlimento"].Value));
-
-
+                        
                         dtgRefeicoes.Rows.Add(row.Cells["codAlimento"].Value
                             , row.Cells["nomeAlimento"].Value
                             , 100
                             , row.Cells["kcal"].Value
                             , row.Cells["prot"].Value
                             , row.Cells["carbo"].Value
-                            , row.Cells["lipidio"].Value
-                            , medCaseiraItens[1].descricao);
+                            , row.Cells["lipidio"].Value);
                         //linhaAdicionada = Adicionar(row);
                         //dtgRefeicoes.Rows.Add(linhaAdicionada);
 
@@ -1590,10 +1586,25 @@ namespace TCC2
 
                 foreach (DataGridViewRow row in dtgRefeicoes.Rows)
                 {
-                    kcal += (double)row.Cells[2].Value;
-                    proteina += (double)row.Cells["prot"].Value;
-                    carboidrato += (double)row.Cells["carbo"].Value;
-                    lipidio += (double)row.Cells["lipidio"].Value;
+                    var medCaseiraItens = medidaCaseiraDAO.Buscar(Convert.ToInt32(row.Cells["codAlimento"].Value));
+
+                    if (medCaseiraItens is null)
+                        continue;
+
+                    foreach (var teste in medCaseiraItens)
+                    {
+                        if(Convert.ToDouble(row.Cells["codAlimento"].Value) == Convert.ToDouble(teste.codAlimento))
+                        {
+                            cbxMedCaseira.Items.Add(teste.descricao);
+                            row.Cells["cbxMedCaseira"].Value = teste.descricao;
+                            row.Cells["qtd"].Value = teste.qtd;
+                        }
+                    }
+                    //conferir pra carregar por linha e não para todos.
+                    kcal += Convert.ToDouble(row.Cells[2].Value);
+                    proteina += Convert.ToDouble(row.Cells["prot"].Value);
+                    carboidrato += Convert.ToDouble(row.Cells["carbo"].Value);
+                    lipidio += Convert.ToDouble(row.Cells["lipidio"].Value);
                 }
                 dtgRefeicoes.AutoResizeColumns();
             }
@@ -2239,6 +2250,11 @@ namespace TCC2
         private void tabAgenda_Leave(object sender, EventArgs e)
         {
             calAgendamento.Items.Clear();
+        }
+
+        private void dtgRefeicoes_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            e.Cancel=true;
         }
     }
 }

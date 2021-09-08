@@ -2256,5 +2256,17 @@ namespace TCC2
         {
             e.Cancel=true;
         }
+
+        private void btnAnalytics_Click(object sender, EventArgs e)
+        {
+            if (txtPacienteAntro.Text != "")
+            {
+                nMensagemAlerta("É necessário primeiramente informar um pacietne para poder abrir a tela de gráficos.");
+                return;
+            }
+
+
+
+        }
     }
 }

@@ -151,6 +151,12 @@
     <Compile Include="Telas\frmEsqueciSenha.Designer.cs">
       <DependentUpon>frmEsqueciSenha.cs</DependentUpon>
     </Compile>
+    <Compile Include="Telas\frmGraficoPaciente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Telas\frmGraficoPaciente.Designer.cs">
+      <DependentUpon>frmGraficoPaciente.cs</DependentUpon>
+    </Compile>
     <Compile Include="Telas\frmMenuPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\frmEsqueciSenha.resx">
       <DependentUpon>frmEsqueciSenha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Telas\frmGraficoPaciente.resx">
+      <DependentUpon>frmGraficoPaciente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\frmMenuPrincipal.resx">
       <DependentUpon>frmMenuPrincipal.cs</DependentUpon>
@@ -254,6 +263,7 @@
     <Content Include="Resources\2355300-removebg-preview %283%29.png" />
     <None Include="Resources\4105941-lock-login-password-security-sign-in-sign-out_113932.png" />
     <None Include="Resources\4105938-account-card-id-identification-identity-card-profile-user-profile_113929.png" />
+    <None Include="Resources\4230540-analysis-graph-report_115003.png" />
     <Content Include="Resources\5-Icon-Branco.png" />
     <None Include="Resources\database_import_icon_135719.png" />
     <None Include="Resources\user-id-icon_34334.png" />

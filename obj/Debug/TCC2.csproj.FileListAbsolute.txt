@@ -180,3 +180,4 @@ C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\System.Windows.Forms.Calendar.p
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.Telas.frmEsqueciSenha.resources
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.Telas.frmWait.resources
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.csproj.AssemblyReference.cache
+C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.Telas.frmGraficoPaciente.resources

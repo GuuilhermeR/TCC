@@ -57,13 +57,13 @@ namespace TCC2.Telas
             List<double> panturrilha = new List<double>();
             List<double> antebraco = new List<double>();
             List<double> coxa = new List<double>();
+            List<string> data = new List<string>();
             
             var antropometriaLista = antroDAO.Buscar();
             if (antropometriaLista.Count == 0)
                 return;
 
             antropometriaLista.ForEach(x => {
-
                 peso.Add(Convert.ToDouble(x.peso));
                 altura.Add(Convert.ToDouble(x.altura));
                 braco.Add(Convert.ToDouble(x.braco));
@@ -74,33 +74,36 @@ namespace TCC2.Telas
                 panturrilha.Add(Convert.ToDouble(x.panturrilha));
                 antebraco.Add(Convert.ToDouble(x.antebraco));
                 coxa.Add(Convert.ToDouble(x.coxa));
-
-            });
-           
-            configurarGrafico(cartPeso, peso, "Peso");
-            configurarGrafico(cartAltura, altura, "Altura");
-            configurarGrafico(cartBraco, braco, "Braço");
-            configurarGrafico(cartPunho, punho, "Punho");
-            configurarGrafico(cartCintura, cintura, "Cintura");
-            configurarGrafico(cartTorax, torax, "Tórax");
-            configurarGrafico(cartQuadril, quadril, "Quadril");
-            configurarGrafico(cartPanturrilha, panturrilha, "Panturrilha");
-            configurarGrafico(cartAnteBraco, antebraco, "Antebraço");
-            configurarGrafico(cartCoxa, coxa, "Coxa");
-
+                data.Add(x.Data.ToString("dd/MM/yyyy"));
+            });           
+            configurarGrafico(cartPeso, peso, "Peso",data);
+            configurarGrafico(cartAltura, altura, "Altura", data);
+            configurarGrafico(cartBraco, braco, "Braço", data);
+            configurarGrafico(cartPunho, punho, "Punho", data);
+            configurarGrafico(cartCintura, cintura, "Cintura", data);
+            configurarGrafico(cartTorax, torax, "Tórax", data);
+            configurarGrafico(cartQuadril, quadril, "Quadril", data);
+            configurarGrafico(cartPanturrilha, panturrilha, "Panturrilha", data);
+            configurarGrafico(cartAnteBraco, antebraco, "Antebraço", data);
+            configurarGrafico(cartCoxa, coxa, "Coxa", data);
         }
 
-        private void configurarGrafico(LiveCharts.WinForms.CartesianChart grafico, List<double> valor, string titulo)
+        private void configurarGrafico(LiveCharts.WinForms.CartesianChart grafico, List<double> valor, string titulo, List<string> data)
         {
-            var series = new LiveCharts.Wpf.LineSeries()
+            var series = new LineSeries()
             {
                 Title = titulo,
-                Values = new LiveCharts.ChartValues<double>(valor),
-                StrokeThickness = 4,
-                StrokeDashArray = new System.Windows.Media.DoubleCollection(50)
+                Values = new ChartValues<double>(valor),
+                StrokeThickness = 3,
+                StrokeDashArray = new DoubleCollection(20)
             };
+            grafico.AxisX.Add(new Axis
+            {
+                Labels = data
+            });
             grafico.Series.Clear();
-            grafico.Series.Add(series);
+            grafico.Series.Add(series);          
+
         }
 
     }

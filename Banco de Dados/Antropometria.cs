@@ -15,6 +15,7 @@ namespace TCC2.Banco_de_Dados
     public partial class Antropometria
     {
         public long codPaciente { get; set; }
+        public System.DateTime Data { get; set; }
         public Nullable<double> peso { get; set; }
         public Nullable<double> altura { get; set; }
         public Nullable<double> braco { get; set; }
@@ -25,7 +26,6 @@ namespace TCC2.Banco_de_Dados
         public Nullable<double> panturrilha { get; set; }
         public Nullable<double> antebraco { get; set; }
         public Nullable<double> coxa { get; set; }
-        public string Data { get; set; }
     
         public virtual Paciente Paciente { get; set; }
     }

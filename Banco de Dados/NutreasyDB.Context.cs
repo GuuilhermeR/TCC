@@ -32,8 +32,8 @@ namespace TCC2.Banco_de_Dados
         public virtual DbSet<Permissao> Permissao { get; set; }
         public virtual DbSet<AnamnesePaciente> AnamnesePaciente { get; set; }
         public virtual DbSet<ConfiguracoesUsuarios> ConfiguracoesUsuarios { get; set; }
-        public virtual DbSet<Antropometria> Antropometria { get; set; }
         public virtual DbSet<Cardapio> Cardapio { get; set; }
         public virtual DbSet<Agenda> Agenda { get; set; }
+        public virtual DbSet<Antropometria> Antropometria { get; set; }
     }
 }

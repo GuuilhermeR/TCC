@@ -25,7 +25,6 @@ namespace ProjetoTCC
                 Antropometria antropometriaInsert = new Antropometria();
 
                 antropometriaInsert.codPaciente = codPaciente;
-                antropometriaInsert.Data = DateTime.Now.ToString("dd/MM/yyyy");
                 antropometriaInsert.altura = altura;
                 antropometriaInsert.antebraco = antebraco;
                 antropometriaInsert.braco = braco;
@@ -36,6 +35,7 @@ namespace ProjetoTCC
                 antropometriaInsert.punho= punho;
                 antropometriaInsert.quadril= quadril;
                 antropometriaInsert.torax= torax;
+                antropometriaInsert.Data= DateTime.Now;
 
                 BancoDadosSingleton.Instance.Antropometria.Add(antropometriaInsert);
                 BancoDadosSingleton.Instance.SaveChanges();
@@ -60,19 +60,19 @@ namespace ProjetoTCC
             nMensagemAviso("Os dados antropométrico foram excluídos!");
         }
 
-        //public List<Antropometria> Buscar()
-        //{
-        //    try
-        //    {
-        //        List<Antropometria> antropometria = new List<Antropometria>();
-        //        antropometria = ((from a in BancoDadosSingleton.Instance.Antropometria select a).Distinct()).ToList();
-        //        
-        //        return antropometria;
-        //    }
-        //    catch
-        //    {
-        //        return null;
-        //    }
-        //}
+        public List<Antropometria> Buscar()
+        {
+            try
+            {
+                List<Antropometria> antropometria = new List<Antropometria>();
+                antropometria = ((from a in BancoDadosSingleton.Instance.Antropometria select a).Distinct()).ToList();
+
+                return antropometria;
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

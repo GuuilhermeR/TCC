@@ -30,7 +30,7 @@ namespace TCC2.Telas
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGraficoPaciente));
-            this.cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
+            this.cartPanturrilha = new LiveCharts.WinForms.CartesianChart();
             this.gbxPanturrilha = new System.Windows.Forms.GroupBox();
             this.gbxQuadril = new System.Windows.Forms.GroupBox();
             this.cartQuadril = new LiveCharts.WinForms.CartesianChart();
@@ -66,20 +66,20 @@ namespace TCC2.Telas
             this.gbxCoxa.SuspendLayout();
             this.SuspendLayout();
             // 
-            // cartesianChart1
+            // cartPanturrilha
             // 
-            this.cartesianChart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.cartPanturrilha.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.cartesianChart1.Location = new System.Drawing.Point(6, 19);
-            this.cartesianChart1.Name = "cartesianChart1";
-            this.cartesianChart1.Size = new System.Drawing.Size(319, 172);
-            this.cartesianChart1.TabIndex = 0;
-            this.cartesianChart1.Text = "cartesianChart1";
+            this.cartPanturrilha.Location = new System.Drawing.Point(6, 19);
+            this.cartPanturrilha.Name = "cartPanturrilha";
+            this.cartPanturrilha.Size = new System.Drawing.Size(319, 172);
+            this.cartPanturrilha.TabIndex = 0;
+            this.cartPanturrilha.Text = "cartesianChart1";
             // 
             // gbxPanturrilha
             // 
-            this.gbxPanturrilha.Controls.Add(this.cartesianChart1);
+            this.gbxPanturrilha.Controls.Add(this.cartPanturrilha);
             this.gbxPanturrilha.Location = new System.Drawing.Point(6, 676);
             this.gbxPanturrilha.Name = "gbxPanturrilha";
             this.gbxPanturrilha.Size = new System.Drawing.Size(331, 197);
@@ -345,6 +345,7 @@ namespace TCC2.Telas
             this.Controls.Add(this.gbxPanturrilha);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmGraficoPaciente";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gráfico";
             this.Load += new System.EventHandler(this.frmGraficoPaciente_Load);
             this.gbxPanturrilha.ResumeLayout(false);
@@ -364,7 +365,7 @@ namespace TCC2.Telas
 
         #endregion
 
-        private LiveCharts.WinForms.CartesianChart cartesianChart1;
+        private LiveCharts.WinForms.CartesianChart cartPanturrilha;
         private System.Windows.Forms.GroupBox gbxPanturrilha;
         private System.Windows.Forms.GroupBox gbxQuadril;
         private LiveCharts.WinForms.CartesianChart cartQuadril;

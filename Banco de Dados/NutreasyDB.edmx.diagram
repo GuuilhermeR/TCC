@@ -16,12 +16,12 @@
         <AssociationConnector Association="mainModel.FK_AnamnesePaciente_0_0" />
         <EntityTypeShape EntityType="mainModel.ConfiguracoesUsuarios" Width="1.5" PointX="4.75" PointY="5.375" />
         <AssociationConnector Association="mainModel.FK_ConfiguracoesUsuarios_0_0" />
-        <EntityTypeShape EntityType="mainModel.Antropometria" Width="1.5" PointX="12.125" PointY="7.75" />
-        <AssociationConnector Association="mainModel.FK_Antropometria_0_0" />
         <EntityTypeShape EntityType="mainModel.Cardapio" Width="1.5" PointX="9.75" PointY="1.5" />
         <AssociationConnector Association="mainModel.FK_Cardapio_0_0" />
         <AssociationConnector Association="mainModel.FK_Cardapio_1_0" />
         <EntityTypeShape EntityType="mainModel.Agenda" Width="1.5" PointX="7.375" PointY="1.5" />
+        <EntityTypeShape EntityType="mainModel.Antropometria" Width="1.5" PointX="12.125" PointY="8.875" />
+        <AssociationConnector Association="mainModel.FK_Antropometria_0_0" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

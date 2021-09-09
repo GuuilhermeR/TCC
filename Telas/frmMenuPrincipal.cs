@@ -2259,13 +2259,16 @@ namespace TCC2
 
         private void btnAnalytics_Click(object sender, EventArgs e)
         {
-            if (txtPacienteAntro.Text != "")
+            if (txtPacienteAntro.Text == "")
             {
-                nMensagemAlerta("É necessário primeiramente informar um pacietne para poder abrir a tela de gráficos.");
+                nMensagemAviso("É necessário primeiramente informar um pacietne para poder abrir a tela de gráficos.");
                 return;
             }
 
-
+            using (frmGraficoPaciente grafico = new frmGraficoPaciente(Convert.ToInt32(CardapioDAO.codPacienteCard), txtPacienteAntro.Text))
+            {
+                grafico.ShowDialog();
+            }
 
         }
     }

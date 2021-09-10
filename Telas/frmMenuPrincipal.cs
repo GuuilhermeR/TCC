@@ -1564,7 +1564,6 @@ namespace TCC2
             double carboidrato = 0;
             double lipidio = 0;
             double kcal = 0;
-            DataGridViewRow linhaAdicionada = null;
 
             if (dtgCardapioAlimentos.SelectedRows.Count >= 1 || dtgCardapioAlimentos.SelectedCells.Count >= 1)
             {

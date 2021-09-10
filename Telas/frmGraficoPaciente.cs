@@ -99,11 +99,11 @@ namespace TCC2.Telas
             };
             grafico.AxisX.Add(new Axis
             {
-                Labels = data
+                Labels = data,
+                ShowLabels = true
             });
             grafico.Series.Clear();
-            grafico.Series.Add(series);          
-
+            grafico.Series.Add(series);
         }
 
     }

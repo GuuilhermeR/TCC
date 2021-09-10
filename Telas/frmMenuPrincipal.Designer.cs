@@ -126,7 +126,6 @@ namespace TCC2
             this.trwDadosCard = new AdvancedDataGridView.TreeGridView();
             this.btnApagar = new System.Windows.Forms.Button();
             this.btnBuscaPaciente = new System.Windows.Forms.Button();
-            this.tbCadastrarTiposCardapios = new System.Windows.Forms.TabPage();
             this.tabPaciente = new System.Windows.Forms.TabPage();
             this.tbPaciente = new System.Windows.Forms.TabControl();
             this.tbCadastro = new System.Windows.Forms.TabPage();
@@ -1135,7 +1134,6 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbCardapio.Controls.Add(this.tbCadCardapio);
             this.tbCardapio.Controls.Add(this.tbConsultaCardapio);
-            this.tbCardapio.Controls.Add(this.tbCadastrarTiposCardapios);
             this.tbCardapio.Location = new System.Drawing.Point(5, 5);
             this.tbCardapio.Margin = new System.Windows.Forms.Padding(2);
             this.tbCardapio.Name = "tbCardapio";
@@ -1597,17 +1595,6 @@ namespace TCC2
             this.btnBuscaPaciente.TabIndex = 304;
             this.btnBuscaPaciente.UseVisualStyleBackColor = true;
             this.btnBuscaPaciente.Click += new System.EventHandler(this.btnBuscaPaciente_Click);
-            // 
-            // tbCadastrarTiposCardapios
-            // 
-            this.tbCadastrarTiposCardapios.Location = new System.Drawing.Point(4, 22);
-            this.tbCadastrarTiposCardapios.Margin = new System.Windows.Forms.Padding(2);
-            this.tbCadastrarTiposCardapios.Name = "tbCadastrarTiposCardapios";
-            this.tbCadastrarTiposCardapios.Padding = new System.Windows.Forms.Padding(2);
-            this.tbCadastrarTiposCardapios.Size = new System.Drawing.Size(1134, 675);
-            this.tbCadastrarTiposCardapios.TabIndex = 2;
-            this.tbCadastrarTiposCardapios.Text = "Pré Definição Cardápios";
-            this.tbCadastrarTiposCardapios.UseVisualStyleBackColor = true;
             // 
             // tabPaciente
             // 
@@ -3087,7 +3074,6 @@ namespace TCC2
         private System.Windows.Forms.TabPage tbSobre;
         private System.Windows.Forms.Button btnCapturarImagem;
         internal System.Windows.Forms.Label txtCodPaciente;
-        private System.Windows.Forms.TabPage tbCadastrarTiposCardapios;
         private MaterialSkin.Controls.MaterialCard mCardAtendimentoAtual;
         private MaterialSkin.Controls.MaterialLabel mlblObservação;
         private MaterialSkin.Controls.MaterialLabel mlblHorario;

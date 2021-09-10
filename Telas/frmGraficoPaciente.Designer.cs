@@ -228,9 +228,9 @@ namespace TCC2.Telas
             this.cartCintura.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.cartCintura.Location = new System.Drawing.Point(6, 19);
+            this.cartCintura.Location = new System.Drawing.Point(6, 18);
             this.cartCintura.Name = "cartCintura";
-            this.cartCintura.Size = new System.Drawing.Size(319, 172);
+            this.cartCintura.Size = new System.Drawing.Size(319, 173);
             this.cartCintura.TabIndex = 0;
             this.cartCintura.Text = "cartesianChart8";
             // 
@@ -272,7 +272,7 @@ namespace TCC2.Telas
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cartCoxa.Location = new System.Drawing.Point(6, 19);
             this.cartCoxa.Name = "cartCoxa";
-            this.cartCoxa.Size = new System.Drawing.Size(319, 172);
+            this.cartCoxa.Size = new System.Drawing.Size(319, 171);
             this.cartCoxa.TabIndex = 0;
             this.cartCoxa.Text = "cartesianChart7";
             // 
@@ -281,7 +281,7 @@ namespace TCC2.Telas
             this.lblPaciente.AutoSize = true;
             this.lblPaciente.Depth = 0;
             this.lblPaciente.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblPaciente.Location = new System.Drawing.Point(6, 86);
+            this.lblPaciente.Location = new System.Drawing.Point(30, 99);
             this.lblPaciente.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblPaciente.Name = "lblPaciente";
             this.lblPaciente.Size = new System.Drawing.Size(66, 19);
@@ -293,7 +293,7 @@ namespace TCC2.Telas
             this.lblIdade.AutoSize = true;
             this.lblIdade.Depth = 0;
             this.lblIdade.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblIdade.Location = new System.Drawing.Point(6, 117);
+            this.lblIdade.Location = new System.Drawing.Point(30, 130);
             this.lblIdade.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblIdade.Name = "lblIdade";
             this.lblIdade.Size = new System.Drawing.Size(44, 19);
@@ -305,7 +305,7 @@ namespace TCC2.Telas
             this.lblNomePaciente.AutoSize = true;
             this.lblNomePaciente.Depth = 0;
             this.lblNomePaciente.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblNomePaciente.Location = new System.Drawing.Point(78, 86);
+            this.lblNomePaciente.Location = new System.Drawing.Point(102, 99);
             this.lblNomePaciente.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblNomePaciente.Name = "lblNomePaciente";
             this.lblNomePaciente.Size = new System.Drawing.Size(107, 19);
@@ -317,7 +317,7 @@ namespace TCC2.Telas
             this.lblIdadePaciente.AutoSize = true;
             this.lblIdadePaciente.Depth = 0;
             this.lblIdadePaciente.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblIdadePaciente.Location = new System.Drawing.Point(56, 117);
+            this.lblIdadePaciente.Location = new System.Drawing.Point(80, 130);
             this.lblIdadePaciente.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblIdadePaciente.Name = "lblIdadePaciente";
             this.lblIdadePaciente.Size = new System.Drawing.Size(107, 19);

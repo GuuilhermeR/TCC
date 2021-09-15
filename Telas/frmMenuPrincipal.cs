@@ -985,6 +985,7 @@ namespace TCC2
         private void tbCadMedCaseira_Enter(object sender, EventArgs e)
         {
             mCbxTabelasMedCas.Items.Clear();
+            dtgSalvarMedCaseira.Rows.Clear();
             List<Alimentos> tabela = new List<Alimentos>();
             tabela = (alimentoDAO.BuscarTabelas());
             if (tabela != null)

@@ -150,6 +150,7 @@ namespace TCC2
             {
                 Interaction.MsgBox("Ocorreu um erro:" + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException, MsgBoxStyle.Critical, "ERRO AO SALVAR");
             }
+            dtgDadosImportados.AutoResizeColumns();
         }
 
         public DataTable ConvertToDataTable<T>(IList<T> data)
@@ -171,7 +172,7 @@ namespace TCC2
         }
 
         private void tabMenu_Click(object sender, EventArgs e)
-        {           
+        {
             var dataAgenda = DateTime.Now.ToString("dd/MM/yyyy");
             var dataInicio = dataAgenda + " 00:00:00";
             var dataFim = dataAgenda + " 23:59:59";
@@ -195,7 +196,7 @@ namespace TCC2
                             return;
 
                         if ((DateTime)dr["data"] <= DateTime.Now && (bool)dr["atendido"] != true)
-                        {                         
+                        {
                             mCardAtendimentoAtual.Visible = true;
                             mlblNome.Text = (string)dr["paciente"];
                             mlblHorario.Text = Convert.ToDateTime(dr["data"]).ToString("dd/MM/yyyy HH:mm");
@@ -479,6 +480,8 @@ namespace TCC2
                        Convert.ToString(usuarioDAO.getUsuario()));
             }
             LimparCamposAgenda();
+            BuscarConsultasAgendadas();
+
         }
 
         private void LimparCamposAgenda()
@@ -665,7 +668,7 @@ namespace TCC2
             var agendados = agendaDAO.CarregarAgenda();
             if (agendados is null || agendados.Count == 0)
                 return;
-            
+
             //adicionar para pintar de outra cor o card, caso seja retorno.
             agendados.ForEach(x =>
             {
@@ -1199,8 +1202,8 @@ namespace TCC2
 
         private void _btnSalvar_Click(object sender, EventArgs e)
         {
-            string CPF = txtCPF.Text.Replace("-","").Replace(".","");
-            string CEP = txtCEP.Text.Replace("-","");
+            string CPF = txtCPF.Text.Replace("-", "").Replace(".", "");
+            string CEP = txtCEP.Text.Replace("-", "");
             pacienteDAO.Salvar(Convert.ToString(txtNome.Text), Convert.ToDouble(CPF), Convert.ToString(txtDtNasc.Text), Convert.ToString(txtEmail.Text), Convert.ToDouble(CEP),
                             Convert.ToDouble(txtNumero.Text), Convert.ToString(txtTelefone.Text), Convert.ToString(txtCelular.Text), Convert.ToString(txtEndereco.Text), Convert.ToString(txtBairro.Text)
                             , Convert.ToString(txtMunicipio.Text), Convert.ToString(txtUF.Text), Convert.ToString(txtComplemento.Text), this.vetorImagens);
@@ -1556,7 +1559,7 @@ namespace TCC2
         {
             if (cbxRefeicao.Text == "")
             {
-                MessageBox.Show("É necessário informar a descrição do cardápio.");
+                MessageBox.Show("É necessário informar a refeição.");
                 return;
             }
 
@@ -1564,14 +1567,15 @@ namespace TCC2
             double carboidrato = 0;
             double lipidio = 0;
             double kcal = 0;
+            List<DataGridViewRow> linhaAdicionada = new List<DataGridViewRow>();
 
             if (dtgCardapioAlimentos.SelectedRows.Count >= 1 || dtgCardapioAlimentos.SelectedCells.Count >= 1)
             {
                 foreach (DataGridViewRow row in dtgCardapioAlimentos.Rows)
                     if (row.Selected == true || row.Cells["nomeAlimento"].Selected)
                     {
-                        
-                        dtgRefeicoes.Rows.Add(row.Cells["codAlimento"].Value
+
+                       var linha = dtgRefeicoes.Rows.Add(row.Cells["codAlimento"].Value
                             , row.Cells["nomeAlimento"].Value
                             , 100
                             , row.Cells["kcal"].Value
@@ -1580,8 +1584,39 @@ namespace TCC2
                             , row.Cells["lipidio"].Value);
                         //linhaAdicionada = Adicionar(row);
                         //dtgRefeicoes.Rows.Add(linhaAdicionada);
+                        kcal += Convert.ToDouble(row.Cells[2].Value);
+                        proteina += Convert.ToDouble(row.Cells["prot"].Value);
+                        carboidrato += Convert.ToDouble(row.Cells["carbo"].Value);
+                        lipidio += Convert.ToDouble(row.Cells["lipidio"].Value);
+                        linhaAdicionada.Add(dtgRefeicoes.Rows[linha]);
+                        dtgRefeicoes.Rows[linha].Visible = false;
 
                     }
+
+                if(linhaAdicionada != null || linhaAdicionada.Count > 0)
+                foreach (var linhaIndex in linhaAdicionada)
+                {
+                    if (proteina > Convert.ToDouble(txtProteina.Text))
+                    {
+                        nMensagemAlerta("A proteína atingiu o limite configurado!");
+                        dtgRefeicoes.Rows.Remove(linhaIndex);
+                        return;
+                    }
+                    else if (carboidrato > Convert.ToDouble(txtCarboidrato.Text))
+                    {
+                        nMensagemAlerta("O carboidrato atingiu o limite configurado!");
+                        dtgRefeicoes.Rows.Remove(linhaIndex);
+                        return;
+                    }
+                    else if (lipidio > Convert.ToDouble(txtLipidio.Text))
+                    {
+                        nMensagemAlerta("O lipídio atingiu o limite configurado!");
+                        dtgRefeicoes.Rows.Remove(linhaIndex);
+                        return;
+                    }
+                    dtgRefeicoes.Rows[linhaIndex.Index].Visible = true;
+                }
+                dtgRefeicoes.Visible = true;
 
                 foreach (DataGridViewRow row in dtgRefeicoes.Rows)
                 {
@@ -1592,48 +1627,21 @@ namespace TCC2
 
                     foreach (var teste in medCaseiraItens)
                     {
-                        if(Convert.ToDouble(row.Cells["codAlimento"].Value) == Convert.ToDouble(teste.codAlimento))
+                        if (Convert.ToDouble(row.Cells["codAlimento"].Value) == Convert.ToDouble(teste.codAlimento))
                         {
                             cbxMedCaseira.Items.Add(teste.descricao);
                             row.Cells["cbxMedCaseira"].Value = teste.descricao;
                             row.Cells["qtd"].Value = teste.qtd;
                         }
                     }
-                    //conferir pra carregar por linha e não para todos.
-                    kcal += Convert.ToDouble(row.Cells[2].Value);
-                    proteina += Convert.ToDouble(row.Cells["prot"].Value);
-                    carboidrato += Convert.ToDouble(row.Cells["carbo"].Value);
-                    lipidio += Convert.ToDouble(row.Cells["lipidio"].Value);
+
                 }
                 dtgRefeicoes.AutoResizeColumns();
             }
 
             lblVlrKcal.Visible = true;
-            //if (proteina >= Convert.ToDouble(txtProteina.Text))
-            //{
-            //    MessageBox.Show("A proteína atingiu o limite configurado");
-            //    dtgRefeicoes.Rows.Remove(linhaAdicionada);
-            //    return;
-            //}
-            //else if (carboidrato >= Convert.ToDouble(txtCarboidrato.Text))
-            //{
-            //    MessageBox.Show("A carboidrato atingiu o limite configurado");
-            //    dtgRefeicoes.Rows.Remove(linhaAdicionada);
-            //    return;
-            //}
-            //else if (lipidio >= Convert.ToDouble(txtLipidio.Text))
-            //{
-            //    MessageBox.Show("A lipídio atingiu o limite configurado");
-            //    dtgRefeicoes.Rows.Remove(linhaAdicionada);
-            //    return;
-            //}
-
-            if (proteina != 0 || carboidrato != 0 || lipidio != 0)
-            {
-                lblValorKcal.Text = kcal.ToString("N2") + " Kcal";
-
-                CarregarGrafico(proteina, carboidrato, lipidio);
-            }
+            lblValorKcal.Text = kcal.ToString("N2") + " Kcal";
+            CarregarGrafico(proteina, carboidrato, lipidio);
         }
 
         private void txtPacienteConsultaCardapio_TextChanged(object sender, EventArgs e)
@@ -2253,7 +2261,7 @@ namespace TCC2
 
         private void dtgRefeicoes_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
-            e.Cancel=true;
+            e.Cancel = true;
         }
 
         private void btnAnalytics_Click(object sender, EventArgs e)

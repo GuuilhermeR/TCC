@@ -39,10 +39,10 @@ namespace TCC2.Telas
             
             listaUsuarios.ForEach(x =>
             {
-                retorno = EnviarEmail(x.email, "nutreasy.suporte@gmail.com", "Recuperação de Senha", x.usuario);
+                retorno = EnviarEmail(x.email, "nutriez.suporte@gmail.com", "Recuperação de Senha", x.usuario);
             });
             if (retorno != "")
-                nMensagemErro(retorno);
+                nMensagemAviso(retorno);
         }
 
         [Obsolete]
@@ -57,20 +57,26 @@ namespace TCC2.Telas
 
                 string novaSenha = usuarioDAO.GerarNovaSenha();
 
-                var enviaMensagem = $@"<html>
-                            <head>
+                var enviaMensagem = $@"
+                      <html>
+
+                        <head>
                             <title>Recuperação de senha</title>
-                            </head>
-                            <body>
+                        </head>
 
-                            <h1>Recuperação de senha</h1>
-                            <p>Você solicitou sua nova senha para acessar o Nutreasy Software Nutricional, sua nova senha é: <b>{novaSenha}</b></p>
+                       <body>
 
-                            <p>Para acessar novamente o programa, é necessário que você utilize a senha que enviamos para você e após isso, poderá alterar a senha pelo nosso programa.</p>  
-                            <p>Não responda este e-mail.</p>  
+                          <h1>Recuperação de senha</h1>
 
-                            </body>
-                            </html>";
+                          <h4>Você solicitou sua nova senha para acessar o Nutreasy Software Nutricional, sua nova senha é: <h2><b>{novaSenha}</b></h2></h4>
+
+                          <h4>Para acessar novamente o programa, é necessário que você utilize a senha que enviamos para você e após isso, poderá alterar a senha pelo nosso programa.</h4>
+
+
+                          <h4 style=""color:#ff0000;"">Não responda este e-mail.</h4>
+                       </body>
+
+                      </html> ";
 
                 System.Net.Mail.MailMessage objEmail = new System.Net.Mail.MailMessage();
 
@@ -83,18 +89,19 @@ namespace TCC2.Telas
 
                 System.Net.Mail.SmtpClient server = new System.Net.Mail.SmtpClient();
                 server.UseDefaultCredentials = false;
-                server.Credentials = new NetworkCredential("nutreasy.suporte@gmail.com", "Guilherme@1");
+                server.Credentials = new NetworkCredential("nutriez.suporte@gmail.com", "Guilherme@1");
 
                 objEmail.IsBodyHtml = true;
                 server.Host = "smtp.gmail.com";
                 server.Port = 587;
+
                 try
                 {
                     server.EnableSsl = true;
                     server.Send(objEmail);
                     usuarioDAO.SalvarNovaSenha(usuario, novaSenha);
                 }
-                catch (Exception ex)
+                catch
                 {
                     server.Port = 25;
                     try

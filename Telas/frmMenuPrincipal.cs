@@ -919,7 +919,7 @@ namespace TCC2
             }
         }
 
-        private void _cbxNomePlanilha_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void _cbxNomePlanilha_SelectedIndexChanged(object sender, EventArgs e)
         {
             List<DataGridViewColumn> colunasDescartadas = new List<DataGridViewColumn>();
             var dt = tables[_cbxNomePlanilha.SelectedItem.ToString().Replace(",", ".")];
@@ -1037,14 +1037,6 @@ namespace TCC2
             tabAlimento_Enter(sender, e);
         }
 
-        private void txtAlimentoFiltro_Leave(object sender, EventArgs e)
-        {
-            if (cbxTabela.Text != "" && txtAlimentoFiltro.Text != "")
-            {
-                CarregarAlimentos(txtAlimentoFiltro.Text, cbxTabela.Text);
-                return;
-            }
-        }
 
         private void cbxTabela_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1073,34 +1065,46 @@ namespace TCC2
         private void mCbxTabelasMedCas_SelectedValueChanged(object sender, EventArgs e)
         {
             dtgMedCaseiraAlimentos.DataSource = null;
-            CarregarAlimentos("", "");
-        }
-
-        private void CarregarAlimentos(string nomeAlimento, string nomeTabela)
-        {
-            var listaAlimentos = alimentoDAO.Buscar(nomeAlimento, nomeTabela);
-            if (listaAlimentos == null)
-                return;
-            DataTable dt = ConvertToDataTable(listaAlimentos);
-            dtgMedCaseiraAlimentos.DataSource = dt;
-
-            dtgMedCaseiraAlimentos.Columns["codAlimento"].Visible = false;
+            CarregarAlimentos("", "",dtgMedCaseiraAlimentos);
             dtgMedCaseiraAlimentos.Columns["qtd"].Visible = false;
             dtgMedCaseiraAlimentos.Columns["kcal"].Visible = false;
             dtgMedCaseiraAlimentos.Columns["prot"].Visible = false;
             dtgMedCaseiraAlimentos.Columns["carbo"].Visible = false;
             dtgMedCaseiraAlimentos.Columns["lipidio"].Visible = false;
-            dtgMedCaseiraAlimentos.Columns["MedidaCaseira"].Visible = false;
-            dtgMedCaseiraAlimentos.Columns["Cardapio"].Visible = false;
-            dtgMedCaseiraAlimentos.Columns["nomeTabela"].HeaderText = "Tabela";
-            dtgMedCaseiraAlimentos.Columns["nomeAlimento"].HeaderText = "Alimento";
+        }
+
+        private void CarregarAlimentos(string nomeAlimento, string nomeTabela, DataGridView dtg)
+        {
+            var listaAlimentos = alimentoDAO.Buscar(nomeAlimento, nomeTabela);
+            if (listaAlimentos == null)
+                return;
+            DataTable dt = ConvertToDataTable(listaAlimentos);
+            dtg.DataSource = dt;
+
+            dtg.Columns["codAlimento"].Visible = false;
+            dtg.Columns["qtd"].HeaderText = "Quantidade";
+            dtg.Columns["kcal"].HeaderText = "KCal";
+            dtg.Columns["prot"].HeaderText = "Proteína";
+            dtg.Columns["carbo"].HeaderText = "Carboidrato";
+            dtg.Columns["lipidio"].HeaderText = "Lipídio";
+            dtg.Columns["MedidaCaseira"].Visible = false;
+            dtg.Columns["Cardapio"].Visible = false;
+            dtg.Columns["nomeTabela"].HeaderText = "Tabela";
+            dtg.Columns["nomeAlimento"].HeaderText = "Alimento";
+
+            dtg.AutoResizeColumns();
         }
 
         private void mTxtFiltroAlimentoMedCas_Leave(object sender, EventArgs e)
         {
             if (mTxtFiltroAlimentoMedCas.Text != "")
             {
-                CarregarAlimentos(mTxtFiltroAlimentoMedCas.Text, mCbxTabelasMedCas.Text);
+                CarregarAlimentos(mTxtFiltroAlimentoMedCas.Text, mCbxTabelasMedCas.Text, dtgMedCaseiraAlimentos);
+                dtgMedCaseiraAlimentos.Columns["qtd"].Visible = false;
+                dtgMedCaseiraAlimentos.Columns["kcal"].Visible = false;
+                dtgMedCaseiraAlimentos.Columns["prot"].Visible = false;
+                dtgMedCaseiraAlimentos.Columns["carbo"].Visible = false;
+                dtgMedCaseiraAlimentos.Columns["lipidio"].Visible = false;
                 return;
             }
         }
@@ -2279,5 +2283,12 @@ namespace TCC2
             }
 
         }
+
+        private void cbxTabela_SelectedValueChanged(object sender, EventArgs e)
+        {
+                CarregarAlimentos(string.Empty, cbxTabela.Text, dtgConAlimento);
+                return;
+        }
+
     }
 }

@@ -31,13 +31,13 @@ namespace TCC2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange8 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange9 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange10 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange11 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange12 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange13 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange14 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange1 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange2 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange3 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange4 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange5 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange6 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange7 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMenuPrincipal));
             this.TabControlNutreasy = new MaterialSkin.Controls.MaterialTabControl();
             this.tabMenu = new System.Windows.Forms.TabPage();
@@ -611,35 +611,35 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.calAgendamento.BackColor = System.Drawing.SystemColors.Control;
             this.calAgendamento.Font = new System.Drawing.Font("Segoe UI", 9F);
-            calendarHighlightRange8.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange8.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange8.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange9.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange9.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange9.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange10.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange10.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange10.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange11.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange11.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange11.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange12.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange12.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange12.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange13.DayOfWeek = System.DayOfWeek.Saturday;
-            calendarHighlightRange13.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange13.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange14.DayOfWeek = System.DayOfWeek.Sunday;
-            calendarHighlightRange14.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange14.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange1.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange1.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange2.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange2.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange2.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange3.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange3.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange3.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange4.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange4.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange4.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange5.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange5.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange5.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange6.DayOfWeek = System.DayOfWeek.Saturday;
+            calendarHighlightRange6.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange6.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange7.DayOfWeek = System.DayOfWeek.Sunday;
+            calendarHighlightRange7.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange7.StartTime = System.TimeSpan.Parse("00:00:00");
             this.calAgendamento.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
-        calendarHighlightRange8,
-        calendarHighlightRange9,
-        calendarHighlightRange10,
-        calendarHighlightRange11,
-        calendarHighlightRange12,
-        calendarHighlightRange13,
-        calendarHighlightRange14};
+        calendarHighlightRange1,
+        calendarHighlightRange2,
+        calendarHighlightRange3,
+        calendarHighlightRange4,
+        calendarHighlightRange5,
+        calendarHighlightRange6,
+        calendarHighlightRange7};
             this.calAgendamento.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.calAgendamento.ItemsTimeFormat = "hh:mm";
             this.calAgendamento.Location = new System.Drawing.Point(3, 195);
@@ -810,6 +810,7 @@ namespace TCC2
             this.btnRecalcular.Text = "Calcular";
             this.btnRecalcular.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnRecalcular.UseVisualStyleBackColor = true;
+            this.btnRecalcular.Click += new System.EventHandler(this.btnRecalcular_Click);
             // 
             // btnSalvarAlimento
             // 
@@ -837,6 +838,7 @@ namespace TCC2
             this.dtgConAlimento.RowHeadersWidth = 51;
             this.dtgConAlimento.Size = new System.Drawing.Size(1164, 496);
             this.dtgConAlimento.TabIndex = 2;
+            this.dtgConAlimento.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgConAlimento_CellEndEdit);
             // 
             // tbImportarPlanilha
             // 
@@ -1269,7 +1271,7 @@ namespace TCC2
             this.cbxTabelaAlimentoCardapio.Hint = "Tabela";
             this.cbxTabelaAlimentoCardapio.IntegralHeight = false;
             this.cbxTabelaAlimentoCardapio.ItemHeight = 43;
-            this.cbxTabelaAlimentoCardapio.Location = new System.Drawing.Point(808, 6);
+            this.cbxTabelaAlimentoCardapio.Location = new System.Drawing.Point(846, 6);
             this.cbxTabelaAlimentoCardapio.MaxDropDownItems = 4;
             this.cbxTabelaAlimentoCardapio.MouseState = MaterialSkin.MouseState.OUT;
             this.cbxTabelaAlimentoCardapio.Name = "cbxTabelaAlimentoCardapio";
@@ -1300,7 +1302,7 @@ namespace TCC2
             "Lanche da tarde",
             "Jantar",
             "Ceia"});
-            this.cbxRefeicao.Location = new System.Drawing.Point(407, 6);
+            this.cbxRefeicao.Location = new System.Drawing.Point(424, 6);
             this.cbxRefeicao.MaxDropDownItems = 4;
             this.cbxRefeicao.MouseState = MaterialSkin.MouseState.OUT;
             this.cbxRefeicao.Name = "cbxRefeicao";
@@ -1355,7 +1357,7 @@ namespace TCC2
             // 
             this.btnAddAliCard.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnAddAliCard.Image = global::TCC2.Properties.Resources.arrow_icon_1___Copia;
-            this.btnAddAliCard.Location = new System.Drawing.Point(511, 293);
+            this.btnAddAliCard.Location = new System.Drawing.Point(505, 296);
             this.btnAddAliCard.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddAliCard.Name = "btnAddAliCard";
             this.btnAddAliCard.Size = new System.Drawing.Size(56, 55);
@@ -1387,7 +1389,7 @@ namespace TCC2
             this.dtgCardapioAlimentos.Location = new System.Drawing.Point(8, 117);
             this.dtgCardapioAlimentos.Name = "dtgCardapioAlimentos";
             this.dtgCardapioAlimentos.RowHeadersWidth = 51;
-            this.dtgCardapioAlimentos.Size = new System.Drawing.Size(483, 396);
+            this.dtgCardapioAlimentos.Size = new System.Drawing.Size(470, 396);
             this.dtgCardapioAlimentos.TabIndex = 7;
             // 
             // dtgRefeicoes
@@ -1409,10 +1411,10 @@ namespace TCC2
             this.lipidio,
             this.cbxMedCaseira,
             this.obs});
-            this.dtgRefeicoes.Location = new System.Drawing.Point(581, 117);
+            this.dtgRefeicoes.Location = new System.Drawing.Point(590, 117);
             this.dtgRefeicoes.Name = "dtgRefeicoes";
             this.dtgRefeicoes.RowHeadersWidth = 51;
-            this.dtgRefeicoes.Size = new System.Drawing.Size(593, 396);
+            this.dtgRefeicoes.Size = new System.Drawing.Size(584, 396);
             this.dtgRefeicoes.TabIndex = 8;
             this.dtgRefeicoes.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dtgRefeicoes_CellBeginEdit);
             this.dtgRefeicoes.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgRefeicoes_CellEndEdit);

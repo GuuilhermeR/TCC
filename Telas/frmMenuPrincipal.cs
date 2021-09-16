@@ -52,6 +52,7 @@ namespace TCC2
         public string caminhoImagemSalva = null;
         public MaterialSkinManager materialSkinManager = MaterialSkinManager.Instance;
         public DateTime dataAgendadoAnterior;
+        public bool jaIniciou = false;
         #endregion
 
         #region Menu
@@ -70,7 +71,7 @@ namespace TCC2
             materialSkinManager.EnforceBackcolorOnAllComponents = true;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.BlueGrey500, Accent.LightGreen400, TextShade.WHITE);
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.BlueGrey500, Accent.LightGreen200, TextShade.WHITE);
             calAgendamento.MaximumViewDays = 70000;
             this.MaximizeBox = false;
 
@@ -315,13 +316,16 @@ namespace TCC2
         #region Agenda
         private void tabAgenda_Enter(object sender, EventArgs e)
         {
-            calAgendamento.Items.Clear();
             VerificarPermissao(tabAgenda.Text);
-            GetConfigAtendimento();
-            calAgendamento.ViewStart = RetornaInicioSemana(DateTime.Today);
-            calAgendamento.ViewEnd = RetornaFimSemana(DateTime.Today);
-            BuscarConsultasAgendadas();
-            calAgendamento.Refresh();
+            if (!jaIniciou)
+            {
+                calAgendamento.Items.Clear();
+                GetConfigAtendimento();
+                calAgendamento.ViewStart = RetornaInicioSemana(DateTime.Today);
+                calAgendamento.ViewEnd = RetornaFimSemana(DateTime.Today);
+                BuscarConsultasAgendadas();
+                calAgendamento.Refresh();
+            }
         }
 
         private DateTime RetornaInicioSemana(DateTime data)
@@ -513,7 +517,7 @@ namespace TCC2
                 tabAgenda_Enter(sender, e);
                 return;
             }
-            if (nMensagemAlerta($"Você deseja alterar o paciente {e.Item.Text} para {e.Item.StartDate}") == DialogResult.Yes)
+            if (nMensagemAceita($"Você deseja alterar o paciente {e.Item.Text} para {e.Item.StartDate}") == DialogResult.Yes)
             {
                 if (agendaDAO.VerificarPacienteAgendado(e.Item.Text.ToString(), Convert.ToDateTime(dataAgendadoAnterior)))
                 {
@@ -550,15 +554,11 @@ namespace TCC2
 
         private void calAgendamento_ItemDeleted(object sender, System.Windows.Forms.Calendar.CalendarItemEventArgs e)
         {
-            if (nMensagemAlerta($"Você deseja excluir a consulta do paciente {e.Item.Text}") == DialogResult.Yes)
+            if (nMensagemAceita($"Você deseja excluir a consulta do paciente {e.Item.Text}") == DialogResult.Yes)
             {
                 agendaDAO.DeletarPacienteAgenda(e.Item.Text.ToString()
                     , (e.Item.StartDate.ToString()).Substring(0, 10)
                     , (e.Item.StartDate.ToString()).Substring(11, 5));
-            }
-            else
-            {
-                tabAgenda_Enter(sender, e);
             }
         }
 
@@ -679,6 +679,8 @@ namespace TCC2
                     calAgendamento.BackColor = Color.LightYellow;
                 else
                     calAgendamento.BackColor = Color.LightGreen;
+
+                jaIniciou = true;
             });
         }
 
@@ -1065,7 +1067,7 @@ namespace TCC2
         private void mCbxTabelasMedCas_SelectedValueChanged(object sender, EventArgs e)
         {
             dtgMedCaseiraAlimentos.DataSource = null;
-            CarregarAlimentos("", "",dtgMedCaseiraAlimentos);
+            CarregarAlimentos("", "", dtgMedCaseiraAlimentos);
             dtgMedCaseiraAlimentos.Columns["qtd"].Visible = false;
             dtgMedCaseiraAlimentos.Columns["kcal"].Visible = false;
             dtgMedCaseiraAlimentos.Columns["prot"].Visible = false;
@@ -1580,15 +1582,13 @@ namespace TCC2
                     if (row.Selected == true || row.Cells["nomeAlimento"].Selected)
                     {
 
-                       var linha = dtgRefeicoes.Rows.Add(row.Cells["codAlimento"].Value
-                            , row.Cells["nomeAlimento"].Value
-                            , 100
-                            , row.Cells["kcal"].Value
-                            , row.Cells["prot"].Value
-                            , row.Cells["carbo"].Value
-                            , row.Cells["lipidio"].Value);
-                        //linhaAdicionada = Adicionar(row);
-                        //dtgRefeicoes.Rows.Add(linhaAdicionada);
+                        var linha = dtgRefeicoes.Rows.Add(row.Cells["codAlimento"].Value
+                             , row.Cells["nomeAlimento"].Value
+                             , 100
+                             , row.Cells["kcal"].Value
+                             , row.Cells["prot"].Value
+                             , row.Cells["carbo"].Value
+                             , row.Cells["lipidio"].Value);
                         kcal += Convert.ToDouble(row.Cells[2].Value);
                         proteina += Convert.ToDouble(row.Cells["prot"].Value);
                         carboidrato += Convert.ToDouble(row.Cells["carbo"].Value);
@@ -1598,32 +1598,32 @@ namespace TCC2
 
                     }
 
-                if(linhaAdicionada != null || linhaAdicionada.Count > 0)
-                foreach (var linhaIndex in linhaAdicionada)
-                {
-                    if (proteina > Convert.ToDouble(txtProteina.Text))
+                if (linhaAdicionada != null || linhaAdicionada.Count > 0)
+                    foreach (var linhaIndex in linhaAdicionada)
                     {
-                        nMensagemAlerta("A proteína atingiu o limite configurado!");
-                        dtgRefeicoes.Rows.Remove(linhaIndex);
-                        return;
+                        if (proteina > Convert.ToDouble(txtProteina.Text))
+                        {
+                            nMensagemAlerta("A proteína atingiu o limite configurado!");
+                            dtgRefeicoes.Rows.Remove(linhaIndex);
+                            return;
+                        }
+                        else if (carboidrato > Convert.ToDouble(txtCarboidrato.Text))
+                        {
+                            nMensagemAlerta("O carboidrato atingiu o limite configurado!");
+                            dtgRefeicoes.Rows.Remove(linhaIndex);
+                            return;
+                        }
+                        else if (lipidio > Convert.ToDouble(txtLipidio.Text))
+                        {
+                            nMensagemAlerta("O lipídio atingiu o limite configurado!");
+                            dtgRefeicoes.Rows.Remove(linhaIndex);
+                            return;
+                        }
+                        dtgRefeicoes.Rows[linhaIndex.Index].Visible = true;
                     }
-                    else if (carboidrato > Convert.ToDouble(txtCarboidrato.Text))
-                    {
-                        nMensagemAlerta("O carboidrato atingiu o limite configurado!");
-                        dtgRefeicoes.Rows.Remove(linhaIndex);
-                        return;
-                    }
-                    else if (lipidio > Convert.ToDouble(txtLipidio.Text))
-                    {
-                        nMensagemAlerta("O lipídio atingiu o limite configurado!");
-                        dtgRefeicoes.Rows.Remove(linhaIndex);
-                        return;
-                    }
-                    dtgRefeicoes.Rows[linhaIndex.Index].Visible = true;
-                }
                 dtgRefeicoes.Visible = true;
 
-                foreach (DataGridViewRow row in dtgRefeicoes.Rows)
+                foreach (DataGridViewRow row in linhaAdicionada)
                 {
                     var medCaseiraItens = medidaCaseiraDAO.Buscar(Convert.ToInt32(row.Cells["codAlimento"].Value));
 
@@ -1634,7 +1634,9 @@ namespace TCC2
                     {
                         if (Convert.ToDouble(row.Cells["codAlimento"].Value) == Convert.ToDouble(teste.codAlimento))
                         {
-                            cbxMedCaseira.Items.Add(teste.descricao);
+                            DataGridViewComboBoxCell comboCell = dtgRefeicoes.Rows[row.Index].Cells[cbxMedCaseira.Index] as DataGridViewComboBoxCell;
+
+                            comboCell.Items.Add(teste.descricao);
                             row.Cells["cbxMedCaseira"].Value = teste.descricao;
                             row.Cells["qtd"].Value = teste.qtd;
                         }
@@ -1796,69 +1798,6 @@ namespace TCC2
                 };
             graficoMacroNutri.Series = piechartData;
             graficoMacroNutri.LegendLocation = LegendLocation.Right;
-        }
-
-        private DataGridViewRow Adicionar(DataGridViewRow row)
-        {
-            if (dtgRefeicoes.Columns.Count == 0)
-            {
-
-                DataGridViewComboBoxColumn colunaMedidaCaseira = new DataGridViewComboBoxColumn();
-                colunaMedidaCaseira.HeaderText = "TATATATATA";
-                colunaMedidaCaseira.Name = "medCaseira";
-
-                dtgRefeicoes.Columns.Add("codAlimento", "codAlimento");
-                dtgRefeicoes.Columns.Add("nomeAlimento", "Alimento");
-                dtgRefeicoes.Columns.Add("kcal", "KCal");
-                dtgRefeicoes.Columns.Add("qtd", "Qtd");
-                dtgRefeicoes.Columns.Add("prot", "Prot");
-                dtgRefeicoes.Columns.Add("carbo", "Carbo");
-                dtgRefeicoes.Columns.Add("lipidio", "Lipidio");
-                dtgRefeicoes.Columns.Add("nomeTabela", "nomeTabela");
-                dtgRefeicoes.Columns.Add("obs", "Observação");
-                dtgRefeicoes.Columns.Add(colunaMedidaCaseira);
-                dtgRefeicoes.Columns["codAlimento"].Visible = false;
-                dtgRefeicoes.Columns["nomeAlimento"].HeaderText = "Alimento";
-                dtgRefeicoes.Columns["kcal"].Visible = false;
-                dtgRefeicoes.Columns["qtd"].Visible = true;
-                dtgRefeicoes.Columns["prot"].Visible = false;
-                dtgRefeicoes.Columns["carbo"].Visible = false;
-                dtgRefeicoes.Columns["lipidio"].Visible = false;
-                dtgRefeicoes.Columns["nomeTabela"].Visible = false;
-            }
-
-            DataGridViewRow newRow = (DataGridViewRow)row.Clone();
-
-            DataGridViewComboBoxCell cellCbx = new DataGridViewComboBoxCell();
-
-            var medCaseiraItens = medidaCaseiraDAO.Buscar(Convert.ToInt32(row.Cells["codAlimento"].Value));
-
-            if (medCaseiraItens != null)
-            {
-                cellCbx.DataSource = null;
-
-                medCaseiraItens.ForEach(x =>
-                {
-                    foreach (DataGridViewRow linha in dtgRefeicoes.Rows)
-                    {
-                        if (Convert.ToDouble(x.codAlimento) == Convert.ToDouble(dtgRefeicoes.Rows[linha.Index].Cells["codAlimento"].Value))
-                        {
-                            cellCbx = (DataGridViewComboBoxCell)linha.Cells["medCaseira"];
-                            cellCbx.Items.Add(x.descricao);
-                        }
-                    }
-                });
-            }
-
-            newRow.Cells[0].Value = row.Cells["codAlimento"].Value;
-            newRow.Cells[1].Value = row.Cells["nomeAlimento"].Value;
-            newRow.Cells[2].Value = row.Cells["kcal"].Value;
-            newRow.Cells[3].Value = row.Cells["qtd"].Value;
-            newRow.Cells[4].Value = row.Cells["prot"].Value;
-            newRow.Cells[5].Value = row.Cells["carbo"].Value;
-            newRow.Cells[6].Value = row.Cells["lipidio"].Value;
-
-            return newRow;
         }
 
         private void btnSalvarCardapio_Click(object sender, EventArgs e)
@@ -2286,8 +2225,8 @@ namespace TCC2
 
         private void cbxTabela_SelectedValueChanged(object sender, EventArgs e)
         {
-                CarregarAlimentos(string.Empty, cbxTabela.Text, dtgConAlimento);
-                return;
+            CarregarAlimentos(string.Empty, cbxTabela.Text, dtgConAlimento);
+            return;
         }
 
     }

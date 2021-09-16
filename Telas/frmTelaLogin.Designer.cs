@@ -154,6 +154,7 @@ namespace TCC2
             this.mLblEsqueciSenha.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.mLblEsqueciSenha.Depth = 0;
             this.mLblEsqueciSenha.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.mLblEsqueciSenha.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.mLblEsqueciSenha.Location = new System.Drawing.Point(35, 544);
             this.mLblEsqueciSenha.MouseState = MaterialSkin.MouseState.HOVER;
             this.mLblEsqueciSenha.Name = "mLblEsqueciSenha";

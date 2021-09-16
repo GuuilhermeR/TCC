@@ -24,15 +24,13 @@ namespace TCC2
             materialSkinManager.EnforceBackcolorOnAllComponents = true;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.BlueGrey500, Accent.Green700, TextShade.WHITE);
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.BlueGrey500, Accent.LightGreen200, TextShade.WHITE);
 
         }
 
         private void frmTelaLogin_Load(object sender, EventArgs e)
         {
             this.MaximizeBox = false;
-            mLblCriarConta.ForeColor = Color.Red;
-
         }
 
         [Obsolete]
@@ -83,8 +81,10 @@ namespace TCC2
 
         private void mLblCriarConta_Click(object sender, EventArgs e)
         {
-            frmCadastro cadastrar = new frmCadastro();
-            cadastrar.Show();
+            using (frmCadastro cadastrar = new frmCadastro())
+            {
+                cadastrar.ShowDialog();
+            }
         }
 
         [Obsolete]
@@ -98,8 +98,10 @@ namespace TCC2
 
         private void mLblEsqueciSenha_Click(object sender, EventArgs e)
         {
-            frmEsqueciSenha esqueciSenha = new frmEsqueciSenha();
-            esqueciSenha.Show();
+            using (frmEsqueciSenha esqueciSenha = new frmEsqueciSenha())
+            {
+                esqueciSenha.ShowDialog();
+            }
         }
     }
 }

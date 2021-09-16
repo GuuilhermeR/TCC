@@ -68,7 +68,7 @@ namespace TCC2.Telas
 
                           <h1>Recuperação de senha</h1>
 
-                          <h4>Você solicitou sua nova senha para acessar o Nutreasy Software Nutricional, sua nova senha é: <h2><b>{novaSenha}</b></h2></h4>
+                          <h4>Você solicitou sua nova senha para acessar o NutriEz Software Nutricional, sua nova senha é: <h2><b>{novaSenha}</b></h2></h4>
 
                           <h4>Para acessar novamente o programa, é necessário que você utilize a senha que enviamos para você e após isso, poderá alterar a senha pelo nosso programa.</h4>
 

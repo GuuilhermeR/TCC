@@ -98,6 +98,7 @@ namespace ProjetoTCC
                     update.ExecuteNonQuery();
                     db.Database.Connection.Close();
                     BancoDadosSingleton.Instance.SaveChanges();
+                   // BancoDadosSingleton.Instance.Login.Local;
                 }
 
                 nMensagemAviso("Consulta do paciente atualizado.");

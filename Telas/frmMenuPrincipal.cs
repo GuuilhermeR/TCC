@@ -1451,8 +1451,8 @@ namespace TCC2
         {
             double imc;
 
-            peso = Convert.ToDouble(txtPeso.Text);
-            altura = Convert.ToDouble(txtAltura.Text);
+            peso = Math.Round(Convert.ToDouble(txtPeso.Text));
+            altura = Math.Round(Convert.ToDouble(txtAltura.Text));
 
             imc = (peso / (altura * altura));
 
@@ -1581,7 +1581,6 @@ namespace TCC2
                 foreach (DataGridViewRow row in dtgCardapioAlimentos.Rows)
                     if (row.Selected == true || row.Cells["nomeAlimento"].Selected)
                     {
-
                         var linha = dtgRefeicoes.Rows.Add(row.Cells["codAlimento"].Value
                              , row.Cells["nomeAlimento"].Value
                              , 100
@@ -1595,30 +1594,29 @@ namespace TCC2
                         lipidio += Convert.ToDouble(row.Cells["lipidio"].Value);
                         linhaAdicionada.Add(dtgRefeicoes.Rows[linha]);
                         dtgRefeicoes.Rows[linha].Visible = false;
-
                     }
 
-                if (linhaAdicionada != null || linhaAdicionada.Count > 0)
+                if (linhaAdicionada != null || linhaAdicionada.Count > 0 )
                     foreach (var linhaIndex in linhaAdicionada)
                     {
-                        if (proteina > Convert.ToDouble(txtProteina.Text))
-                        {
-                            nMensagemAlerta("A proteína atingiu o limite configurado!");
-                            dtgRefeicoes.Rows.Remove(linhaIndex);
-                            return;
-                        }
-                        else if (carboidrato > Convert.ToDouble(txtCarboidrato.Text))
-                        {
-                            nMensagemAlerta("O carboidrato atingiu o limite configurado!");
-                            dtgRefeicoes.Rows.Remove(linhaIndex);
-                            return;
-                        }
-                        else if (lipidio > Convert.ToDouble(txtLipidio.Text))
-                        {
-                            nMensagemAlerta("O lipídio atingiu o limite configurado!");
-                            dtgRefeicoes.Rows.Remove(linhaIndex);
-                            return;
-                        }
+                        //if (proteina > Convert.ToDouble(txtProteina.Text))
+                        //{
+                        //    nMensagemAlerta("A proteína atingiu o limite configurado!");
+                        //    dtgRefeicoes.Rows.Remove(linhaIndex);
+                        //    return;
+                        //}
+                        //else if (carboidrato > Convert.ToDouble(txtCarboidrato.Text))
+                        //{
+                        //    nMensagemAlerta("O carboidrato atingiu o limite configurado!");
+                        //    dtgRefeicoes.Rows.Remove(linhaIndex);
+                        //    return;
+                        //}
+                        //else if (lipidio > Convert.ToDouble(txtLipidio.Text))
+                        //{
+                        //    nMensagemAlerta("O lipídio atingiu o limite configurado!");
+                        //    dtgRefeicoes.Rows.Remove(linhaIndex);
+                        //    return;
+                        //}
                         dtgRefeicoes.Rows[linhaIndex.Index].Visible = true;
                     }
                 dtgRefeicoes.Visible = true;

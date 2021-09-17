@@ -20,10 +20,11 @@ using System.Text.RegularExpressions;
 using DAO;
 using static Classes.ExibidorMensagem;
 using System.Windows.Forms.Calendar;
-using System.Globalization;
 using TCC2.Telas;
 using TCC2.DAO;
 using Calendar = System.Windows.Forms.Calendar.Calendar;
+using System.Globalization;
+//using Aspose.Cells;
 
 namespace TCC2
 {
@@ -2227,5 +2228,34 @@ namespace TCC2
             return;
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+        //    string arquivo = string.Empty;
+
+        //    using (OpenFileDialog ofd = new OpenFileDialog())
+        //    {
+        //        if (ofd.ShowDialog() == DialogResult.OK)
+        //        {
+        //            arquivo = ofd.FileName;
+
+        //            Workbook wkb = new Workbook(arquivo);
+        //            Worksheet worksheet = wkb.Worksheets.Item(0);
+
+        //            foreach (DataGridViewRow row in dtgDados.Rows)
+        //            {
+        //                foreach (DataGridViewColumn col in dtgDados.Columns)
+        //                {
+        //                    if (col.Index >= 2)
+        //                        dtgDados.Item(col.Index, row.Index).Value = worksheet.Cells.Item(row.Index + 1, col.Index).Value;
+        //                }
+        //            }
+        //        }
+        //    }
+        }
     }
 }

@@ -267,6 +267,7 @@
     <Content Include="Resources\5-Icon-Branco.png" />
     <None Include="Resources\database_import_icon_135719.png" />
     <None Include="Resources\user-id-icon_34334.png" />
+    <None Include="Resources\msexcel_93695.png" />
     <Content Include="Suporte\DirectX.Capture.dll" />
     <Content Include="Suporte\DShowNET.dll" />
     <None Include="Resources\Adicionar.png" />

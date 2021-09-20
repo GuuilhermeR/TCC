@@ -646,18 +646,34 @@ namespace TCC2
             e.Cancel = true;
         }
 
-        private void CalendarioMes_Click(object sender, EventArgs e)
+        //private void CalendarioMes_Click(object sender, EventArgs e)
+        //{
+        //    DateTime dtInicio;
+        //    DateTime.TryParseExact(CalendarioMes.SelectionStart.ToString("dd/MM/yyyy"),
+        //                           "dd/MM/yyyy",
+        //                           CultureInfo.InvariantCulture,
+        //                           DateTimeStyles.None,
+        //                           out dtInicio);
+        //    txtDataAgendamento.Text = CalendarioMes.SelectionStart.ToString("dd/MM/yyyy");
+
+        //    calAgendamento.ViewStart = dtInicio;
+
+        //    calAgendamento.ViewEnd = dtInicio.AddDays(5);
+
+        //    BuscarConsultasAgendadas();
+        //    GetConfigAtendimento();
+        //}
+        private void mCalendar_DateChanged(object sender, DateRangeEventArgs e)
         {
             DateTime dtInicio;
-            DateTime.TryParseExact(CalendarioMes.SelectionStart.ToString("dd/MM/yyyy"),
+            DateTime.TryParseExact(mCalendar.SelectionStart.ToString("dd/MM/yyyy"),
                                    "dd/MM/yyyy",
                                    CultureInfo.InvariantCulture,
                                    DateTimeStyles.None,
                                    out dtInicio);
-            txtDataAgendamento.Text = CalendarioMes.SelectionStart.ToString("dd/MM/yyyy");
+            txtDataAgendamento.Text = mCalendar.SelectionStart.ToString("dd/MM/yyyy");
 
             calAgendamento.ViewStart = dtInicio;
-
             calAgendamento.ViewEnd = dtInicio.AddDays(5);
 
             BuscarConsultasAgendadas();
@@ -1597,7 +1613,7 @@ namespace TCC2
                         dtgRefeicoes.Rows[linha].Visible = false;
                     }
 
-                if (linhaAdicionada != null || linhaAdicionada.Count > 0 )
+                if (linhaAdicionada != null || linhaAdicionada.Count > 0)
                     foreach (var linhaIndex in linhaAdicionada)
                     {
                         //if (proteina > Convert.ToDouble(txtProteina.Text))
@@ -1649,7 +1665,7 @@ namespace TCC2
             lblValorKcal.Text = kcal.ToString("N2") + " Kcal";
             CarregarGrafico(proteina, carboidrato, lipidio);
         }
-        
+
         private void txtPacienteConsultaCardapio_TextChanged(object sender, EventArgs e)
         {
             if (CardapioDAO.codPacienteCard == "")
@@ -2259,27 +2275,27 @@ namespace TCC2
 
         private void btnExportar_Click(object sender, EventArgs e)
         {
-        //    string arquivo = string.Empty;
+            //    string arquivo = string.Empty;
 
-        //    using (OpenFileDialog ofd = new OpenFileDialog())
-        //    {
-        //        if (ofd.ShowDialog() == DialogResult.OK)
-        //        {
-        //            arquivo = ofd.FileName;
+            //    using (OpenFileDialog ofd = new OpenFileDialog())
+            //    {
+            //        if (ofd.ShowDialog() == DialogResult.OK)
+            //        {
+            //            arquivo = ofd.FileName;
 
-        //            Workbook wkb = new Workbook(arquivo);
-        //            Worksheet worksheet = wkb.Worksheets.Item(0);
+            //            Workbook wkb = new Workbook(arquivo);
+            //            Worksheet worksheet = wkb.Worksheets.Item(0);
 
-        //            foreach (DataGridViewRow row in dtgDados.Rows)
-        //            {
-        //                foreach (DataGridViewColumn col in dtgDados.Columns)
-        //                {
-        //                    if (col.Index >= 2)
-        //                        dtgDados.Item(col.Index, row.Index).Value = worksheet.Cells.Item(row.Index + 1, col.Index).Value;
-        //                }
-        //            }
-        //        }
-        //    }
+            //            foreach (DataGridViewRow row in dtgDados.Rows)
+            //            {
+            //                foreach (DataGridViewColumn col in dtgDados.Columns)
+            //                {
+            //                    if (col.Index >= 2)
+            //                        dtgDados.Item(col.Index, row.Index).Value = worksheet.Cells.Item(row.Index + 1, col.Index).Value;
+            //                }
+            //            }
+            //        }
+            //    }
         }
 
     }

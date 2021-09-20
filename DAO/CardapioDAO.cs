@@ -46,13 +46,36 @@ namespace TCC2
 
         }
 
-        public List<Cardapio> Consultar(int codPaciente)
+        public List<Cardapio> Consultar(int codPaciente, string data)
         {
             try
             {
                 var cardapio = ((from card in BancoDadosSingleton.Instance.Cardapio
-                                   where card.codPaciente == codPaciente
+                                   where card.codPaciente == codPaciente && card.Data == data
                                  select card).Distinct()).ToList();
+
+                if (cardapio.Count > 0)
+                {
+                    return cardapio;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public List<string> ConsultarDataConsultas(int codPaciente)
+        {
+            try
+            {
+                var cardapio = ((from card in BancoDadosSingleton.Instance.Cardapio
+                                 where card.codPaciente == codPaciente
+                                 select card.Data).Distinct()).ToList();
 
                 if (cardapio.Count > 0)
                 {

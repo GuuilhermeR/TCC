@@ -181,3 +181,5 @@ C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.Telas.frmEsqueciSenha.reso
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.Telas.frmWait.resources
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.Telas.frmGraficoPaciente.resources
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.csproj.AssemblyReference.cache
+C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\MvtWindowsForms.dll
+C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\MvtLib.dll

@@ -56,6 +56,7 @@ namespace TCC2
             this.pbxLogoGrande = new System.Windows.Forms.PictureBox();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.tabAgenda = new System.Windows.Forms.TabPage();
+            this.mCalendar = new System.Windows.Forms.MonthCalendar();
             this.cbxRetorno = new MaterialSkin.Controls.MaterialCheckbox();
             this.txtPacienteAgenda = new MaterialSkin.Controls.MaterialTextBox();
             this.txtHoraAgenda = new MaterialSkin.Controls.MaterialTextBox();
@@ -95,6 +96,7 @@ namespace TCC2
             this.tabCardapio = new System.Windows.Forms.TabPage();
             this.tbCardapio = new System.Windows.Forms.TabControl();
             this.tbCadCardapio = new System.Windows.Forms.TabPage();
+            this.txtDataCardapio = new MaterialSkin.Controls.MaterialTextBox();
             this.txtLipidio = new MaterialSkin.Controls.MaterialTextBox();
             this.txtCarboidrato = new MaterialSkin.Controls.MaterialTextBox();
             this.txtProteina = new MaterialSkin.Controls.MaterialTextBox();
@@ -208,7 +210,12 @@ namespace TCC2
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.NutriEzIconNotify = new System.Windows.Forms.NotifyIcon(this.components);
-            this.mCalendar = new System.Windows.Forms.MonthCalendar();
+            this.dtgCardGrid = new MvtWindowsForms.MvtDataGridView();
+            this.refeicao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.alimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.medidacaseiraqtd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.caloria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.observ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TabControlNutreasy.SuspendLayout();
             this.tabMenu.SuspendLayout();
             this.mCardAtendimentoAtual.SuspendLayout();
@@ -250,6 +257,7 @@ namespace TCC2
             this.tabHorarioAtendimento.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgConfigHorario)).BeginInit();
             this.tbSobre.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgCardGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // TabControlNutreasy
@@ -513,6 +521,19 @@ namespace TCC2
             this.tabAgenda.Enter += new System.EventHandler(this.tabAgenda_Enter);
             this.tabAgenda.Leave += new System.EventHandler(this.tabAgenda_Leave);
             // 
+            // mCalendar
+            // 
+            this.mCalendar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.mCalendar.CalendarDimensions = new System.Drawing.Size(3, 1);
+            this.mCalendar.FirstDayOfWeek = System.Windows.Forms.Day.Sunday;
+            this.mCalendar.Location = new System.Drawing.Point(366, 12);
+            this.mCalendar.MaxSelectionCount = 360;
+            this.mCalendar.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.mCalendar.Name = "mCalendar";
+            this.mCalendar.TabIndex = 0;
+            this.mCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.mCalendar_DateChanged);
+            // 
             // cbxRetorno
             // 
             this.cbxRetorno.AutoSize = true;
@@ -633,7 +654,6 @@ namespace TCC2
             this.calAgendamento.ItemDeleted += new System.Windows.Forms.Calendar.Calendar.CalendarItemEventHandler(this.calAgendamento_ItemDeleted);
             this.calAgendamento.ItemDatesChanged += new System.Windows.Forms.Calendar.Calendar.CalendarItemEventHandler(this.calAgendamento_ItemDatesChanged);
             this.calAgendamento.ItemSelected += new System.Windows.Forms.Calendar.Calendar.CalendarItemEventHandler(this.calAgendamento_ItemSelected);
-            this.calAgendamento.ItemsPositioned += new System.EventHandler(this.calAgendamento_ItemsPositioned);
             // 
             // btnSalvarAgenda
             // 
@@ -1114,6 +1134,7 @@ namespace TCC2
             // 
             // tbCadCardapio
             // 
+            this.tbCadCardapio.Controls.Add(this.txtDataCardapio);
             this.tbCadCardapio.Controls.Add(this.txtLipidio);
             this.tbCadCardapio.Controls.Add(this.txtCarboidrato);
             this.tbCadCardapio.Controls.Add(this.txtProteina);
@@ -1138,6 +1159,24 @@ namespace TCC2
             this.tbCadCardapio.TabIndex = 0;
             this.tbCadCardapio.Text = "Criar Cardápio";
             this.tbCadCardapio.UseVisualStyleBackColor = true;
+            // 
+            // txtDataCardapio
+            // 
+            this.txtDataCardapio.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtDataCardapio.Depth = 0;
+            this.txtDataCardapio.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtDataCardapio.Hint = "Data";
+            this.txtDataCardapio.LeadingIcon = null;
+            this.txtDataCardapio.Location = new System.Drawing.Point(922, 7);
+            this.txtDataCardapio.MaxLength = 50;
+            this.txtDataCardapio.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtDataCardapio.Multiline = false;
+            this.txtDataCardapio.Name = "txtDataCardapio";
+            this.txtDataCardapio.Size = new System.Drawing.Size(187, 50);
+            this.txtDataCardapio.TabIndex = 324;
+            this.txtDataCardapio.Text = "";
+            this.txtDataCardapio.TrailingIcon = null;
+            this.txtDataCardapio.Leave += new System.EventHandler(this.txtDataCardapio_Leave);
             // 
             // txtLipidio
             // 
@@ -1250,7 +1289,7 @@ namespace TCC2
             this.cbxTabelaAlimentoCardapio.Hint = "Tabela";
             this.cbxTabelaAlimentoCardapio.IntegralHeight = false;
             this.cbxTabelaAlimentoCardapio.ItemHeight = 43;
-            this.cbxTabelaAlimentoCardapio.Location = new System.Drawing.Point(846, 6);
+            this.cbxTabelaAlimentoCardapio.Location = new System.Drawing.Point(617, 6);
             this.cbxTabelaAlimentoCardapio.MaxDropDownItems = 4;
             this.cbxTabelaAlimentoCardapio.MouseState = MaterialSkin.MouseState.OUT;
             this.cbxTabelaAlimentoCardapio.Name = "cbxTabelaAlimentoCardapio";
@@ -1281,7 +1320,7 @@ namespace TCC2
             "Lanche da tarde",
             "Jantar",
             "Ceia"});
-            this.cbxRefeicao.Location = new System.Drawing.Point(424, 6);
+            this.cbxRefeicao.Location = new System.Drawing.Point(309, 6);
             this.cbxRefeicao.MaxDropDownItems = 4;
             this.cbxRefeicao.MouseState = MaterialSkin.MouseState.OUT;
             this.cbxRefeicao.Name = "cbxRefeicao";
@@ -1482,6 +1521,7 @@ namespace TCC2
             // 
             // tbConsultaCardapio
             // 
+            this.tbConsultaCardapio.Controls.Add(this.dtgCardGrid);
             this.tbConsultaCardapio.Controls.Add(this.cbxDataConsulta);
             this.tbConsultaCardapio.Controls.Add(this.btnExportar);
             this.tbConsultaCardapio.Controls.Add(this.btnApagarCardapio);
@@ -2961,18 +3001,49 @@ namespace TCC2
             this.NutriEzIconNotify.Text = "NutriEz";
             this.NutriEzIconNotify.Visible = true;
             // 
-            // mCalendar
+            // dtgCardGrid
             // 
-            this.mCalendar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.mCalendar.CalendarDimensions = new System.Drawing.Size(3, 1);
-            this.mCalendar.FirstDayOfWeek = System.Windows.Forms.Day.Sunday;
-            this.mCalendar.Location = new System.Drawing.Point(366, 12);
-            this.mCalendar.MaxSelectionCount = 360;
-            this.mCalendar.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
-            this.mCalendar.Name = "mCalendar";
-            this.mCalendar.TabIndex = 0;
-            this.mCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.mCalendar_DateChanged);
+            this.dtgCardGrid.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dtgCardGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dtgCardGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgCardGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.refeicao,
+            this.alimento,
+            this.medidacaseiraqtd,
+            this.caloria,
+            this.observ});
+            this.dtgCardGrid.Location = new System.Drawing.Point(650, 62);
+            this.dtgCardGrid.Name = "dtgCardGrid";
+            this.dtgCardGrid.RowHeadersWidth = 20;
+            this.dtgCardGrid.Size = new System.Drawing.Size(523, 44);
+            this.dtgCardGrid.TabIndex = 322;
+            this.dtgCardGrid.ValidateFormattedColumns = false;
+            this.dtgCardGrid.Visible = false;
+            // 
+            // refeicao
+            // 
+            this.refeicao.HeaderText = "refeicao";
+            this.refeicao.Name = "refeicao";
+            // 
+            // alimento
+            // 
+            this.alimento.HeaderText = "alimento";
+            this.alimento.Name = "alimento";
+            // 
+            // medidacaseiraqtd
+            // 
+            this.medidacaseiraqtd.HeaderText = "medidacaseiraqtd";
+            this.medidacaseiraqtd.Name = "medidacaseiraqtd";
+            // 
+            // caloria
+            // 
+            this.caloria.HeaderText = "caloria";
+            this.caloria.Name = "caloria";
+            // 
+            // observ
+            // 
+            this.observ.HeaderText = "observ";
+            this.observ.Name = "observ";
             // 
             // FrmMenuPrincipal
             // 
@@ -3045,6 +3116,7 @@ namespace TCC2
             ((System.ComponentModel.ISupportInitialize)(this.dtgConfigHorario)).EndInit();
             this.tbSobre.ResumeLayout(false);
             this.tbSobre.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgCardGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3221,6 +3293,13 @@ namespace TCC2
         public System.Windows.Forms.Button btnExportar;
         private MaterialSkin.Controls.MaterialComboBox cbxDataConsulta;
         private System.Windows.Forms.MonthCalendar mCalendar;
+        public MaterialSkin.Controls.MaterialTextBox txtDataCardapio;
+        private MvtWindowsForms.MvtDataGridView dtgCardGrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn refeicao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn alimento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn medidacaseiraqtd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn caloria;
+        private System.Windows.Forms.DataGridViewTextBoxColumn observ;
     }
 }
 

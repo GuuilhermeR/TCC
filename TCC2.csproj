@@ -59,6 +59,9 @@
       <HintPath>..\..\..\OneDrive\Faculdade\TCC\TreeGridview\TreeGridView\bin\Debug\ExpandableGridView.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="MvtWindowsForms">
+      <HintPath>D:\MovtechFontes\MvtComponentsNew\MovtechDLL2015\MvtWindowsForms.dll</HintPath>
+    </Reference>
     <Reference Include="MvtWindowsFormsCS">
       <HintPath>D:\MovtechFontes\MovtechDLL\MvtWindowsFormsCS.dll</HintPath>
     </Reference>
@@ -126,6 +129,7 @@
     <Compile Include="Classes\Crypto.cs" />
     <Compile Include="Classes\ExibidorMensagem.cs" />
     <Compile Include="Classes\FormatadorCampo.cs" />
+    <Compile Include="Classes\HelperFuncoes.cs" />
     <Compile Include="DAO\AgendaDAO.cs" />
     <Compile Include="DAO\AlimentoDAO.cs" />
     <Compile Include="DAO\AnamneseDAO.cs" />
@@ -133,6 +137,16 @@
     <Compile Include="DAO\CardapioDAO.cs" />
     <Compile Include="DAO\ConfiguracoesDAO.cs" />
     <Compile Include="DAO\PermissaoDAO.cs" />
+    <Compile Include="Model\AgendaModel.cs" />
+    <Compile Include="Model\AlimentoModel.cs" />
+    <Compile Include="Model\AnamnaseModel.cs" />
+    <Compile Include="Model\AntropometriaModel.cs" />
+    <Compile Include="Model\CardapioModel.cs" />
+    <Compile Include="Model\ConfiguracaoModel.cs" />
+    <Compile Include="Model\MedidaCaseiraModel.cs" />
+    <Compile Include="Model\PacienteModel.cs" />
+    <Compile Include="Model\PermissaoModel.cs" />
+    <Compile Include="Model\UsuarioModel.cs" />
     <Compile Include="Telas\frmBuscarPaciente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -297,6 +311,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Aspose.Cells">
+      <Version>21.9.0</Version>
+    </PackageReference>
     <PackageReference Include="DG.AdvancedDataGridView">
       <Version>1.2.25807.2</Version>
     </PackageReference>

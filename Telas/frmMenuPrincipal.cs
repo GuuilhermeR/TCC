@@ -19,12 +19,12 @@ using AdvancedDataGridView;
 using System.Text.RegularExpressions;
 using DAO;
 using static Classes.ExibidorMensagem;
+using static Classes.HelperFuncoes;
 using System.Windows.Forms.Calendar;
 using TCC2.Telas;
 using TCC2.DAO;
-using Calendar = System.Windows.Forms.Calendar.Calendar;
 using System.Globalization;
-//using Aspose.Cells;
+using Aspose.Cells;
 
 namespace TCC2
 {
@@ -87,7 +87,15 @@ namespace TCC2
             }
 
         }
-
+        private void VerificarPermissao(string telaPermissao)
+        {
+            if (!permissaoDAO.VerificarPermissao(Convert.ToString(usuarioDAO.getUsuario()), telaPermissao))
+            {
+                nMensagemAviso("Você não possui permissão nessa tela!");
+                TabControlNutreasy.SelectedTab = tabMenu;
+                return;
+            }
+        }
         private void FecharAplicacao(object sender, EventArgs e)
         {
             Application.Exit();
@@ -401,14 +409,7 @@ namespace TCC2
                 DateTime dt;
                 DateTime.TryParseExact(txtDataAgendamento.Text.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dt);
 
-                if (validarData(dt.ToString("dd/MM/yyyy")))
-                {
-                    txtDataAgendamento.Text = dt.ToString("dd/MM/yyyy");
-                }
-                else
-                {
-                    txtDataAgendamento.Text = String.Empty;
-                }
+                txtDataAgendamento.Text = formataData(txtDataAgendamento.Text);
             }
         }
 
@@ -1521,11 +1522,7 @@ namespace TCC2
 
         private void txtDtNasc_Leave(object sender, EventArgs e)
         {
-            try
-            {
-                txtDtNasc.Text = Regex.Replace(txtDtNasc.Text, @"(\d{2}\/\d{2}\/\d{4})", "dd/MM/yyyy");
-            }
-            catch { }
+            txtDtNasc.Text = formataData(txtDtNasc.Text);
         }
 
         private void btnSalvarAntro_Click(object sender, EventArgs e)
@@ -1547,6 +1544,11 @@ namespace TCC2
                 Convert.ToDouble(txtPunho.Text),
                 Convert.ToDouble(txtQuadril.Text),
                 Convert.ToDouble(txtTorax.Text));
+        }
+        private void BuscadorPaciente()
+        {
+            frmBuscarPaciente buscaPacientes = new frmBuscarPaciente(this);
+            buscaPacientes.ShowDialog();
         }
         #endregion
 
@@ -1727,22 +1729,19 @@ namespace TCC2
         {
             double Kcal = Convert.ToDouble(lblValorKcal.Text.Split(' ')[0]);
 
+            bool Update = Convert.ToBoolean(cardapioDAO.Consultar(Convert.ToInt32(CardapioDAO.codPacienteCard), txtDataCardapio.Text).Count>0);
+
             foreach (DataGridViewRow row in dtgRefeicoes.Rows)
-                cardapioDAO.Salvar(Convert.ToString(CardapioDAO.codPacienteCard),
+                cardapioDAO.Salvar(Convert.ToInt32(CardapioDAO.codPacienteCard),
                                                     Convert.ToInt32(row.Cells["codAlimento"].Value),
                                                     Convert.ToString(cbxRefeicao.Text),
                                                     Convert.ToInt32(row.Cells["qtd"].Value),
                                                     Convert.ToString(row.Cells["obs"].Value),
                                                     Convert.ToDouble(row.Cells["kcal"].Value),
-                                                    Convert.ToString(usuarioDAO.getUsuario()));
-            dtgRefeicoes.DataSource = null;
-            graficoMacroNutri.Series = null;
-            txtPaciente.Text = null;
-            cbxRefeicao.Text = null;
-            lblValorKcal.Text = null;
-            cbxTabelaAlimentoCardapio.SelectedIndex = -1;
-            CardapioDAO.codPacienteCard = null;
-            CardapioDAO.nomePacienteCard = null;
+                                                    Convert.ToString(usuarioDAO.getUsuario()),
+                                                    txtDataCardapio.Text,
+                                                    Update);
+            
             btnApagar_Click(sender, e);
             btnCancelarCardapio_Click(sender, e);
         }
@@ -1805,24 +1804,34 @@ namespace TCC2
             }
             quantidadeAntigaCardapio = 0;
         }
+
         private void btnBuscaPaciente_Click(object sender, EventArgs e)
         {
             frmBuscarPaciente buscaPacientes = new frmBuscarPaciente(this);
             buscaPacientes.ShowDialog();
             txtPacienteConsultaCardapio.Text = CardapioDAO.nomePacienteCard;
         }
+
         private void dtgRefeicoes_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             if (Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["qtd"].Value) != 0)
                 quantidadeAntigaCardapio = Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["qtd"].Value);
 
         }
+
         private void btnApagar_Click(object sender, EventArgs e)
         {
+            dtgRefeicoes.DataSource = null;
+            graficoMacroNutri.Series = null;
+            txtPaciente.Text = null;
+            cbxRefeicao.Text = null;
+            lblValorKcal.Text = null;
+            cbxTabelaAlimentoCardapio.SelectedIndex = -1;
+            CardapioDAO.codPacienteCard = null;
+            CardapioDAO.nomePacienteCard = null;
             txtPacienteConsultaCardapio.Clear();
             trwDadosCard.Nodes.Clear();
         }
-
 
         private void cbxTabelaAlimentoCardapio_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1939,6 +1948,7 @@ namespace TCC2
             Ceia.ImageIndex = 1;
             listaCardapio.ForEach(card =>
             {
+                dtgCardGrid.Rows.Add(card.Refeicao, card.Alimentos.nomeAlimento,card.medidaCaseiraQtde,card.kcal,card.Obs);
                 switch (card.Refeicao)
                 {
                     case "Café da manhã":
@@ -2014,6 +2024,63 @@ namespace TCC2
                         return;
                 }
             });
+        }
+        private void btnAnalytics_Click(object sender, EventArgs e)
+        {
+            if (txtPacienteAntro.Text == "")
+            {
+                nMensagemAviso("É necessário primeiramente informar um paciente para visualizar evolução gráfica!");
+                return;
+            }
+
+            using (frmGraficoPaciente grafico = new frmGraficoPaciente(Convert.ToInt32(CardapioDAO.codPacienteCard), txtPacienteAntro.Text))
+            {
+                grafico.ShowDialog();
+            }
+
+        }
+
+        private void cbxTabela_SelectedValueChanged(object sender, EventArgs e)
+        {
+            CarregarAlimentos(string.Empty, cbxTabela.Text, dtgConAlimento);
+            return;
+        }
+
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+            string arquivo = string.Empty;
+
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    //arquivo = ofd.FileName;
+
+                    //Workbook wkb = new Workbook(arquivo);
+                    //Worksheet worksheet = wkb.Worksheets.Item(0);
+
+                    //foreach (DataGridViewRow row in dtgCardGrid.Rows)
+                    //{
+                    //    foreach (DataGridViewColumn col in dtgCardGrid.Columns)
+                    //    {
+                    //        if (col.Index >= 2)
+                    //            dtgCardGrid.Rows[row.Index].Cells[col.Index].Value = worksheet.Cells.Item(row.Index + 1, col.Index).Value;
+                    //    }
+                    //}
+                }
+            }
+        }
+
+        private void txtDataCardapio_Leave(object sender, EventArgs e)
+        {
+            if (txtDataCardapio.Text == "")
+            {
+                txtDataCardapio.Text = formataData(DateTime.Now.ToString("dd/MM/yyyy"));
+            }
+            else
+            {
+                txtDataCardapio.Text = formataData(txtDataCardapio.Text);
+            }
         }
         #endregion
 
@@ -2200,34 +2267,7 @@ namespace TCC2
             VerificarPermissao(tabAgenda.Text);
         }
 
-        private void VerificarPermissao(string telaPermissao)
-        {
-            if (!permissaoDAO.VerificarPermissao(Convert.ToString(usuarioDAO.getUsuario()), telaPermissao))
-            {
-                nMensagemAviso("Você não possui permissão nessa tela!");
-                TabControlNutreasy.SelectedTab = tabMenu;
-                return;
-            }
-        }
-
-        public static bool validarData(string data)
-        {
-            Regex r = new Regex(@"(\d{2}\/\d{2}\/\d{4})");
-            return r.Match(data).Success;
-        }
-
         private void frmMenuPrincipal_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
-        }
-
-        private void BuscadorPaciente()
-        {
-            frmBuscarPaciente buscaPacientes = new frmBuscarPaciente(this);
-            buscaPacientes.ShowDialog();
-        }
-
-        private void calAgendamento_ItemsPositioned(object sender, EventArgs e)
         {
 
         }
@@ -2251,52 +2291,5 @@ namespace TCC2
         {
             e.Cancel = true;
         }
-
-        private void btnAnalytics_Click(object sender, EventArgs e)
-        {
-            if (txtPacienteAntro.Text == "")
-            {
-                nMensagemAviso("É necessário primeiramente informar um paciente para visualizar evolução gráfica!");
-                return;
-            }
-
-            using (frmGraficoPaciente grafico = new frmGraficoPaciente(Convert.ToInt32(CardapioDAO.codPacienteCard), txtPacienteAntro.Text))
-            {
-                grafico.ShowDialog();
-            }
-
-        }
-
-        private void cbxTabela_SelectedValueChanged(object sender, EventArgs e)
-        {
-            CarregarAlimentos(string.Empty, cbxTabela.Text, dtgConAlimento);
-            return;
-        }
-
-        private void btnExportar_Click(object sender, EventArgs e)
-        {
-            //    string arquivo = string.Empty;
-
-            //    using (OpenFileDialog ofd = new OpenFileDialog())
-            //    {
-            //        if (ofd.ShowDialog() == DialogResult.OK)
-            //        {
-            //            arquivo = ofd.FileName;
-
-            //            Workbook wkb = new Workbook(arquivo);
-            //            Worksheet worksheet = wkb.Worksheets.Item(0);
-
-            //            foreach (DataGridViewRow row in dtgDados.Rows)
-            //            {
-            //                foreach (DataGridViewColumn col in dtgDados.Columns)
-            //                {
-            //                    if (col.Index >= 2)
-            //                        dtgDados.Item(col.Index, row.Index).Value = worksheet.Cells.Item(row.Index + 1, col.Index).Value;
-            //                }
-            //            }
-            //        }
-            //    }
-        }
-
     }
 }

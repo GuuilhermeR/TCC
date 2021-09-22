@@ -20,30 +20,58 @@ namespace TCC2
         {
         }
 
-        public void Salvar(string codPaciente, int codAlimento, string refeicao, double medidaCaseiraQtde, string obs, double kcal, string usuario)
-        {
-            try
+        public void Salvar(int codPaciente, int codAlimento, string refeicao, double medidaCaseiraQtde, string obs, double kcal, string usuario, string data, bool Update)
+        {            
+            if (Update)
             {
-                Cardapio cardapioInsert = new Cardapio();
+                try
+                {
+                    var cardUpdt = (from card in BancoDadosSingleton.Instance.Cardapio
+                                    where card.codPaciente == codPaciente && card.Data == data
+                                    select card).Single();
 
-                cardapioInsert.codPaciente = Convert.ToInt32(codPaciente);
-                cardapioInsert.Data = DateTime.Now.ToString("dd/MM/yyyy");
-                cardapioInsert.usuarioResp = usuario;
-                cardapioInsert.codAlimento = codAlimento;
-                cardapioInsert.medidaCaseiraQtde = medidaCaseiraQtde;               
-                cardapioInsert.Refeicao = refeicao;               
-                cardapioInsert.Obs = obs;               
-                cardapioInsert.kcal = kcal;               
+                    cardUpdt.codPaciente = codPaciente;
+                    cardUpdt.Data = data;
+                    cardUpdt.usuarioResp = usuario;
+                    cardUpdt.codAlimento = codAlimento;
+                    cardUpdt.medidaCaseiraQtde = medidaCaseiraQtde;
+                    cardUpdt.Refeicao = refeicao;
+                    cardUpdt.Obs = obs;
+                    cardUpdt.kcal = kcal;
 
-                BancoDadosSingleton.Instance.Cardapio.Add(cardapioInsert);
-                BancoDadosSingleton.Instance.SaveChanges();
-
+                    BancoDadosSingleton.Instance.Cardapio.Add(cardUpdt);
+                    BancoDadosSingleton.Instance.SaveChanges();
+                    nMensagemAviso("Cardápio foi atualizado!");
+                }
+                catch (Exception ex)
+                {
+                    nMensagemErro("Ocorreu um erro ao salvar o Cardápio." + '\n' + ex.Message + '\n' + ex.InnerException);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                Interaction.MsgBox("Ocorreu um erro ao salvar o Cardápio." + '\n' + ex.Message + '\n' + ex.InnerException, Constants.vbOKOnly, "Alerta");
-            }
+                try
+                {
+                    Cardapio cardapioInsert = new Cardapio();
 
+                    cardapioInsert.codPaciente = codPaciente;
+                    cardapioInsert.Data = data;
+                    cardapioInsert.usuarioResp = usuario;
+                    cardapioInsert.codAlimento = codAlimento;
+                    cardapioInsert.medidaCaseiraQtde = medidaCaseiraQtde;
+                    cardapioInsert.Refeicao = refeicao;
+                    cardapioInsert.Obs = obs;
+                    cardapioInsert.kcal = kcal;
+
+                    BancoDadosSingleton.Instance.Cardapio.Add(cardapioInsert);
+                    BancoDadosSingleton.Instance.SaveChanges();
+
+                }
+                catch (Exception ex)
+                {
+                    Interaction.MsgBox("Ocorreu um erro ao salvar o Cardápio." + '\n' + ex.Message + '\n' + ex.InnerException, Constants.vbOKOnly, "Alerta");
+                }
+            }
         }
 
         public List<Cardapio> Consultar(int codPaciente, string data)
@@ -51,7 +79,7 @@ namespace TCC2
             try
             {
                 var cardapio = ((from card in BancoDadosSingleton.Instance.Cardapio
-                                   where card.codPaciente == codPaciente && card.Data == data
+                                 where card.codPaciente == codPaciente && card.Data == data
                                  select card).Distinct()).ToList();
 
                 if (cardapio.Count > 0)

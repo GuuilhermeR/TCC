@@ -31,13 +31,13 @@ namespace TCC2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange36 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange37 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange38 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange39 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange40 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange41 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange42 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange1 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange2 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange3 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange4 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange5 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange6 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange7 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMenuPrincipal));
             this.TabControlNutreasy = new MaterialSkin.Controls.MaterialTabControl();
             this.tabMenu = new System.Windows.Forms.TabPage();
@@ -123,6 +123,12 @@ namespace TCC2
             this.obs = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSalvarCardapio = new System.Windows.Forms.Button();
             this.tbConsultaCardapio = new System.Windows.Forms.TabPage();
+            this.dtgCardGrid = new MvtWindowsForms.MvtDataGridView();
+            this.refeicao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.alimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.medidacaseiraqtd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.caloria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.observ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cbxDataConsulta = new MaterialSkin.Controls.MaterialComboBox();
             this.btnExportar = new System.Windows.Forms.Button();
             this.btnApagarCardapio = new System.Windows.Forms.Button();
@@ -210,12 +216,6 @@ namespace TCC2
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.NutriEzIconNotify = new System.Windows.Forms.NotifyIcon(this.components);
-            this.dtgCardGrid = new MvtWindowsForms.MvtDataGridView();
-            this.refeicao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.alimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.medidacaseiraqtd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.caloria = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.observ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TabControlNutreasy.SuspendLayout();
             this.tabMenu.SuspendLayout();
             this.mCardAtendimentoAtual.SuspendLayout();
@@ -238,6 +238,7 @@ namespace TCC2
             ((System.ComponentModel.ISupportInitialize)(this.dtgCardapioAlimentos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgRefeicoes)).BeginInit();
             this.tbConsultaCardapio.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgCardGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trwDadosCard)).BeginInit();
             this.tabPaciente.SuspendLayout();
             this.tbPaciente.SuspendLayout();
@@ -257,7 +258,6 @@ namespace TCC2
             this.tabHorarioAtendimento.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgConfigHorario)).BeginInit();
             this.tbSobre.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgCardGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // TabControlNutreasy
@@ -611,35 +611,35 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.calAgendamento.BackColor = System.Drawing.SystemColors.Control;
             this.calAgendamento.Font = new System.Drawing.Font("Segoe UI", 9F);
-            calendarHighlightRange36.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange36.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange36.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange37.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange37.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange37.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange38.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange38.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange38.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange39.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange39.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange39.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange40.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange40.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange40.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange41.DayOfWeek = System.DayOfWeek.Saturday;
-            calendarHighlightRange41.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange41.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange42.DayOfWeek = System.DayOfWeek.Sunday;
-            calendarHighlightRange42.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange42.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange1.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange1.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange2.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange2.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange2.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange3.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange3.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange3.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange4.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange4.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange4.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange5.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange5.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange5.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange6.DayOfWeek = System.DayOfWeek.Saturday;
+            calendarHighlightRange6.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange6.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange7.DayOfWeek = System.DayOfWeek.Sunday;
+            calendarHighlightRange7.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange7.StartTime = System.TimeSpan.Parse("00:00:00");
             this.calAgendamento.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
-        calendarHighlightRange36,
-        calendarHighlightRange37,
-        calendarHighlightRange38,
-        calendarHighlightRange39,
-        calendarHighlightRange40,
-        calendarHighlightRange41,
-        calendarHighlightRange42};
+        calendarHighlightRange1,
+        calendarHighlightRange2,
+        calendarHighlightRange3,
+        calendarHighlightRange4,
+        calendarHighlightRange5,
+        calendarHighlightRange6,
+        calendarHighlightRange7};
             this.calAgendamento.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.calAgendamento.ItemsTimeFormat = "hh:mm";
             this.calAgendamento.Location = new System.Drawing.Point(3, 195);
@@ -1538,6 +1538,50 @@ namespace TCC2
             this.tbConsultaCardapio.UseVisualStyleBackColor = true;
             this.tbConsultaCardapio.Click += new System.EventHandler(this.tbConsultaCardapio_Click);
             this.tbConsultaCardapio.Enter += new System.EventHandler(this.tbConsultaCardapio_Enter);
+            // 
+            // dtgCardGrid
+            // 
+            this.dtgCardGrid.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dtgCardGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dtgCardGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgCardGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.refeicao,
+            this.alimento,
+            this.medidacaseiraqtd,
+            this.caloria,
+            this.observ});
+            this.dtgCardGrid.Location = new System.Drawing.Point(650, 62);
+            this.dtgCardGrid.Name = "dtgCardGrid";
+            this.dtgCardGrid.RowHeadersWidth = 20;
+            this.dtgCardGrid.Size = new System.Drawing.Size(523, 44);
+            this.dtgCardGrid.TabIndex = 322;
+            this.dtgCardGrid.ValidateFormattedColumns = false;
+            this.dtgCardGrid.Visible = false;
+            // 
+            // refeicao
+            // 
+            this.refeicao.HeaderText = "refeicao";
+            this.refeicao.Name = "refeicao";
+            // 
+            // alimento
+            // 
+            this.alimento.HeaderText = "alimento";
+            this.alimento.Name = "alimento";
+            // 
+            // medidacaseiraqtd
+            // 
+            this.medidacaseiraqtd.HeaderText = "medidacaseiraqtd";
+            this.medidacaseiraqtd.Name = "medidacaseiraqtd";
+            // 
+            // caloria
+            // 
+            this.caloria.HeaderText = "caloria";
+            this.caloria.Name = "caloria";
+            // 
+            // observ
+            // 
+            this.observ.HeaderText = "observ";
+            this.observ.Name = "observ";
             // 
             // cbxDataConsulta
             // 
@@ -3001,50 +3045,6 @@ namespace TCC2
             this.NutriEzIconNotify.Text = "NutriEz";
             this.NutriEzIconNotify.Visible = true;
             // 
-            // dtgCardGrid
-            // 
-            this.dtgCardGrid.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.dtgCardGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dtgCardGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgCardGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.refeicao,
-            this.alimento,
-            this.medidacaseiraqtd,
-            this.caloria,
-            this.observ});
-            this.dtgCardGrid.Location = new System.Drawing.Point(650, 62);
-            this.dtgCardGrid.Name = "dtgCardGrid";
-            this.dtgCardGrid.RowHeadersWidth = 20;
-            this.dtgCardGrid.Size = new System.Drawing.Size(523, 44);
-            this.dtgCardGrid.TabIndex = 322;
-            this.dtgCardGrid.ValidateFormattedColumns = false;
-            this.dtgCardGrid.Visible = false;
-            // 
-            // refeicao
-            // 
-            this.refeicao.HeaderText = "refeicao";
-            this.refeicao.Name = "refeicao";
-            // 
-            // alimento
-            // 
-            this.alimento.HeaderText = "alimento";
-            this.alimento.Name = "alimento";
-            // 
-            // medidacaseiraqtd
-            // 
-            this.medidacaseiraqtd.HeaderText = "medidacaseiraqtd";
-            this.medidacaseiraqtd.Name = "medidacaseiraqtd";
-            // 
-            // caloria
-            // 
-            this.caloria.HeaderText = "caloria";
-            this.caloria.Name = "caloria";
-            // 
-            // observ
-            // 
-            this.observ.HeaderText = "observ";
-            this.observ.Name = "observ";
-            // 
             // FrmMenuPrincipal
             // 
             this.AllowDrop = true;
@@ -3092,6 +3092,7 @@ namespace TCC2
             ((System.ComponentModel.ISupportInitialize)(this.dtgRefeicoes)).EndInit();
             this.tbConsultaCardapio.ResumeLayout(false);
             this.tbConsultaCardapio.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgCardGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trwDadosCard)).EndInit();
             this.tabPaciente.ResumeLayout(false);
             this.tbPaciente.ResumeLayout(false);
@@ -3116,7 +3117,6 @@ namespace TCC2
             ((System.ComponentModel.ISupportInitialize)(this.dtgConfigHorario)).EndInit();
             this.tbSobre.ResumeLayout(false);
             this.tbSobre.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgCardGrid)).EndInit();
             this.ResumeLayout(false);
 
         }

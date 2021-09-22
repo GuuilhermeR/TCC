@@ -279,6 +279,7 @@
     <None Include="Resources\4105938-account-card-id-identification-identity-card-profile-user-profile_113929.png" />
     <None Include="Resources\4230540-analysis-graph-report_115003.png" />
     <Content Include="Resources\5-Icon-Branco.png" />
+    <None Include="Resources\CardapioImpressao.xlsx" />
     <None Include="Resources\database_import_icon_135719.png" />
     <None Include="Resources\user-id-icon_34334.png" />
     <None Include="Resources\msexcel_93695.png" />

@@ -178,6 +178,12 @@
       <DependentUpon>frmMenuPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="DAO\PacienteDAO.cs" />
+    <Compile Include="Telas\frmProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Telas\frmProgress.Designer.cs">
+      <DependentUpon>frmProgress.cs</DependentUpon>
+    </Compile>
     <Compile Include="Telas\frmTelaLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -224,6 +230,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\frmMenuPrincipal.resx">
       <DependentUpon>frmMenuPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Telas\frmProgress.resx">
+      <DependentUpon>frmProgress.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\frmTelaLogin.resx">
       <DependentUpon>frmTelaLogin.cs</DependentUpon>
@@ -284,6 +293,8 @@
     <None Include="Resources\user-id-icon_34334.png" />
     <None Include="Resources\msexcel_93695.png" />
     <None Include="Resources\msexcel_93695 %283%29.png" />
+    <None Include="Resources\Spinner-5.gif" />
+    <None Include="Resources\Spinner-5-unscreen.gif" />
     <Content Include="Suporte\DirectX.Capture.dll" />
     <Content Include="Suporte\DShowNET.dll" />
     <None Include="Resources\Adicionar.png" />

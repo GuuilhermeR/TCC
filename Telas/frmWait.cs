@@ -16,21 +16,5 @@ namespace TCC2.Telas
         {
             InitializeComponent();
         }
-        private void Timer1_Tick(System.Object sender, System.EventArgs e)
-        {
-            if (this.pgbProgresso.Value + 1 > this.pgbProgresso.Maximum)
-                this.pgbProgresso.Value = 0;
-            else
-                this.pgbProgresso.Value += 1;
-            this.Refresh();
-            this.pgbProgresso.Show();
-            this.pgbProgresso.Refresh();
-        }
-
-        private void frmWaint_Load(System.Object sender, System.EventArgs e)
-        {
-            this.timer1.Enabled = true;
-            this.ShowInTaskbar = false;
-        }
     }
 }

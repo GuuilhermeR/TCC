@@ -243,6 +243,26 @@ namespace TCC2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Spinner_5 {
+            get {
+                object obj = ResourceManager.GetObject("Spinner-5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Spinner_5_unscreen {
+            get {
+                object obj = ResourceManager.GetObject("Spinner-5-unscreen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap user_id_icon_34334 {
             get {
                 object obj = ResourceManager.GetObject("user-id-icon_34334", resourceCulture);

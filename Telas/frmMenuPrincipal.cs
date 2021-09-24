@@ -2262,6 +2262,7 @@ namespace TCC2
         }
         #endregion
 
+
         private void tbSobre_Enter(object sender, EventArgs e)
         {
             VerificarPermissao(tabAgenda.Text);

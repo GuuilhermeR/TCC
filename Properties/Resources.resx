@@ -121,11 +121,14 @@
   <data name="1486564177-finance-finance-calculator_81497" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1486564177-finance-finance-calculator_81497.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="msexcel_93695" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\msexcel_93695.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="msexcel_93695 (3)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\msexcel_93695 (3).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="4105941-lock-login-password-security-sign-in-sign-out_113932" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\4105941-lock-login-password-security-sign-in-sign-out_113932.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="msexcel_93695" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\msexcel_93695.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DeleteRed" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DeleteRed1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -141,6 +144,9 @@
   </data>
   <data name="consultar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\consultar2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Spinner-5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Spinner-5.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="arrow-icon-1 - Copia" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\arrow-icon-1 - Copia.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -160,19 +166,19 @@
   <data name="loading (1) (4)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\loading (1) (4).gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="mvtSaveGreen-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mvtSaveGreen-161.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="user-id-icon_34334" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\user-id-icon_34334.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="no-icon-png-6" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\no-icon-png-6.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mvtSaveGreen-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mvtSaveGreen-161.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="msexcel_93695 (3)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\msexcel_93695 (3).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="CardapioImpressao" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CardapioImpressao.xlsx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Spinner-5-unscreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Spinner-5-unscreen.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

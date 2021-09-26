@@ -837,6 +837,7 @@ namespace TCC2
             this.dtgConAlimento.RowHeadersWidth = 51;
             this.dtgConAlimento.Size = new System.Drawing.Size(1164, 496);
             this.dtgConAlimento.TabIndex = 2;
+            this.dtgConAlimento.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dtgConAlimento_CellBeginEdit);
             this.dtgConAlimento.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgConAlimento_CellEndEdit);
             // 
             // tbImportarPlanilha

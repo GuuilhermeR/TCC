@@ -18,7 +18,6 @@ using TCC2.Banco_de_Dados;
 using AdvancedDataGridView;
 using System.Text.RegularExpressions;
 using DAO;
-using static Classes.ExibidorMensagem;
 using static Classes.HelperFuncoes;
 using System.Windows.Forms.Calendar;
 using TCC2.Telas;
@@ -69,10 +68,8 @@ namespace TCC2
 
         private void frmMenuPrincipal_Load(object sender, EventArgs e)
         {
-            materialSkinManager.EnforceBackcolorOnAllComponents = true;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.BlueGrey500, Accent.LightGreen200, TextShade.WHITE);
+            FormatView(this);
+
             calAgendamento.MaximumViewDays = 70000;
             this.MaximizeBox = false;
 
@@ -409,7 +406,7 @@ namespace TCC2
                 DateTime dt;
                 DateTime.TryParseExact(txtDataAgendamento.Text.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dt);
 
-                txtDataAgendamento.Text = formataData(txtDataAgendamento.Text);
+                txtDataAgendamento.Text = FormatDate(txtDataAgendamento.Text);
             }
         }
 
@@ -1015,7 +1012,7 @@ namespace TCC2
                         mCbxTabelasMedCas.Items.Add(x.nomeTabela);
                 });
 
-            var listaMedCaseira = medidaCaseiraDAO.Buscar(0);
+            var listaMedCaseira = medidaCaseiraDAO.Buscar(0,string.Empty);
 
             if (listaMedCaseira == null)
                 return;
@@ -1522,7 +1519,7 @@ namespace TCC2
 
         private void txtDtNasc_Leave(object sender, EventArgs e)
         {
-            txtDtNasc.Text = formataData(txtDtNasc.Text);
+            txtDtNasc.Text = FormatDate(txtDtNasc.Text);
         }
 
         private void btnSalvarAntro_Click(object sender, EventArgs e)
@@ -1642,7 +1639,7 @@ namespace TCC2
 
                 foreach (DataGridViewRow row in linhaAdicionada)
                 {
-                    var medCaseiraItens = medidaCaseiraDAO.Buscar(Convert.ToInt32(row.Cells["codAlimento"].Value));
+                    var medCaseiraItens = medidaCaseiraDAO.Buscar(Convert.ToInt32(row.Cells["codAlimento"].Value),string.Empty);
 
                     if (medCaseiraItens is null)
                         continue;
@@ -1794,6 +1791,18 @@ namespace TCC2
         private void dtgRefeicoes_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             dtgRefeicoes.CurrentRow.DefaultCellStyle.BackColor = Color.Red;
+            if(e.ColumnIndex == cbxMedCaseira.Index)
+            {
+                var medCaseira = medidaCaseiraDAO.Buscar(Convert.ToInt32(dtgRefeicoes.Rows[e.RowIndex].Cells[codAlimento.Index].Value)
+                                                        , Convert.ToString(dtgRefeicoes.Rows[e.RowIndex].Cells[cbxMedCaseira.Index].Value));
+                if (medCaseira is null || medCaseira.Count == 0)
+                    return;
+                //Verificar o por quê está dando erro ao selecionar a medida caseira do alimento. Ver para colocar no leave do campo.
+                medCaseira.ForEach(x =>
+                {
+                    dtgMedCaseiraAlimentos.Rows[e.RowIndex].Cells[qtd.Index].Value = Math.Round(Convert.ToDouble(x.qtd),2);
+                });
+            }
             if (Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["qtd"].Value) != quantidadeAntigaCardapio)
             {
                 RecalcularMacroNutrientes(dtgRefeicoes, Convert.ToDecimal(quantidadeAntigaCardapio));
@@ -2075,11 +2084,11 @@ namespace TCC2
         {
             if (txtDataCardapio.Text == "")
             {
-                txtDataCardapio.Text = formataData(DateTime.Now.ToString("dd/MM/yyyy"));
+                txtDataCardapio.Text = FormatDate(DateTime.Now.ToString("dd/MM/yyyy"));
             }
             else
             {
-                txtDataCardapio.Text = formataData(txtDataCardapio.Text);
+                txtDataCardapio.Text = FormatDate(txtDataCardapio.Text);
             }
         }
         #endregion
@@ -2285,12 +2294,13 @@ namespace TCC2
 
         private void tabAgenda_Leave(object sender, EventArgs e)
         {
-            calAgendamento.Items.Clear();
+            //calAgendamento.Items.Clear();
         }
 
         private void dtgRefeicoes_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             e.Cancel = true;
         }
+
     }
 }

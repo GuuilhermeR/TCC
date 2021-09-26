@@ -1,7 +1,7 @@
 ﻿using System;
 using MaterialSkin;
 using MaterialSkin.Controls;
-using static Classes.ExibidorMensagem;
+using static Classes.HelperFuncoes;
 
 namespace TCC2.Telas
 {
@@ -13,14 +13,8 @@ namespace TCC2.Telas
         public frmCadastro()
         {
             InitializeComponent();
-            var materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.EnforceBackcolorOnAllComponents = true;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.BlueGrey500, Accent.LightGreen200, TextShade.WHITE);
-
+            FormatView(this);
             this.MaximizeBox = false;
-
         }
 
         [Obsolete]

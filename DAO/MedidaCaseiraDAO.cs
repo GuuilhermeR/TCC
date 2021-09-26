@@ -7,7 +7,7 @@ using Microsoft.VisualBasic;
 using TCC2;
 using System.Collections.Generic;
 using TCC2.Banco_de_Dados;
-using static Classes.ExibidorMensagem;
+using static Classes.HelperFuncoes;
 
 namespace TCC2
 {
@@ -37,20 +37,26 @@ namespace TCC2
             }
         }
 
-        public List<MedidaCaseira> Buscar(int codAlimento)
+        public List<MedidaCaseira> Buscar(int codAlimento, string descricao)
         {
             try
             {
                 List<MedidaCaseira> medCaseira = new List<MedidaCaseira>();
-                if (codAlimento > 0)
+                if (codAlimento > 0 && string.IsNullOrEmpty(descricao))
                 {
                     medCaseira = ((from mc in BancoDadosSingleton.Instance.MedidaCaseira
                                    where mc.codAlimento == codAlimento
                                    select mc).Distinct()).ToList();
                 }
-                else if (codAlimento == 0)
+                else if (codAlimento == 0 && string.IsNullOrEmpty(descricao))
                 {
                     medCaseira = ((from mc in BancoDadosSingleton.Instance.MedidaCaseira
+                                   select mc).Distinct()).ToList();
+                }
+                else if (codAlimento > 0 && !string.IsNullOrEmpty(descricao))
+                {
+                    medCaseira = ((from mc in BancoDadosSingleton.Instance.MedidaCaseira
+                                   where mc.codAlimento == codAlimento && mc.descricao == descricao
                                    select mc).Distinct()).ToList();
                 }
 

@@ -127,7 +127,6 @@
     <Compile Include="Classes\BuscadorCEP.cs" />
     <Compile Include="Classes\Criptografador.cs" />
     <Compile Include="Classes\Crypto.cs" />
-    <Compile Include="Classes\ExibidorMensagem.cs" />
     <Compile Include="Classes\FormatadorCampo.cs" />
     <Compile Include="Classes\HelperFuncoes.cs" />
     <Compile Include="DAO\AgendaDAO.cs" />

@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Media;
+using static Classes.HelperFuncoes;
 
 namespace TCC2.Telas
 {
@@ -32,11 +33,8 @@ namespace TCC2.Telas
 
         private void frmGraficoPaciente_Load(object sender, EventArgs e)
         {
-            var materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.EnforceBackcolorOnAllComponents = true;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.BlueGrey500, Accent.Green700, TextShade.WHITE);
+            FormatView(this);
+
             this.MaximizeBox = false;
 
             lblNomePaciente.Text = NomePaciente;

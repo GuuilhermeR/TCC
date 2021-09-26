@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Runtime.Remoting.Contexts;
 using System.Transactions;
 using TCC2.Banco_de_Dados;
-using static Classes.ExibidorMensagem;
+using static Classes.HelperFuncoes;
 
 namespace ProjetoTCC
 {

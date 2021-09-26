@@ -4,6 +4,7 @@ using ProjetoTCC;
 using System;
 using System.Data;
 using System.Windows.Forms;
+using static Classes.HelperFuncoes;
 
 namespace TCC2
 {
@@ -33,11 +34,7 @@ namespace TCC2
 
         private void frmBuscarPaciente_Load(object sender, EventArgs e)
         {
-            var materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.EnforceBackcolorOnAllComponents = true;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.BlueGrey500, Accent.LightGreen200, TextShade.WHITE);
+            FormatView(this);
 
             var menu = new FrmMenuPrincipal("");
             var listaPaciente = pacienteDAO.Buscar("");

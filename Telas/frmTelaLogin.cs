@@ -9,6 +9,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
 using TCC2.Telas;
+using static Classes.HelperFuncoes;
 
 namespace TCC2
 {
@@ -20,12 +21,7 @@ namespace TCC2
         public frmTelaLogin()
         {
             InitializeComponent();
-            var materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.EnforceBackcolorOnAllComponents = true;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.BlueGrey500, Accent.LightGreen200, TextShade.WHITE);
-
+            FormatView(this);
         }
 
         private void frmTelaLogin_Load(object sender, EventArgs e)

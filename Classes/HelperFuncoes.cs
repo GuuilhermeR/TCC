@@ -1,9 +1,7 @@
-﻿using Microsoft.VisualBasic;
+﻿using MaterialSkin;
+using Microsoft.VisualBasic;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Classes
 {
@@ -12,7 +10,16 @@ namespace Classes
 
         public HelperFuncoes() { }
 
-        public static string formataData(string Text)
+        public static void FormatView(MaterialSkin.Controls.MaterialForm form)
+        {
+            var materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.EnforceBackcolorOnAllComponents = true;
+            materialSkinManager.AddFormToManage(form);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.BlueGrey500, Accent.LightGreen700, TextShade.WHITE);
+        }
+
+        public static string FormatDate(string Text)
         {
             if (Text == null)
                 Text = string.Empty;
@@ -43,6 +50,23 @@ namespace Classes
             }
             else
                 return "";
+        }
+
+        public static DialogResult nMensagemErro(string mensagem, IWin32Window owner = null)
+        {
+            return MessageBox.Show(owner, mensagem, "NutriEz", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        public static DialogResult nMensagemAviso(string mensagem, IWin32Window owner = null)
+        {
+            return MessageBox.Show(owner, mensagem, "NutriEz", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        public static DialogResult nMensagemAlerta(string mensagem, IWin32Window owner = null)
+        {
+            return MessageBox.Show(owner, mensagem, "NutriEz", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+        public static DialogResult nMensagemAceita(string mensagem, IWin32Window owner = null)
+        {
+            return MessageBox.Show(owner, mensagem, "NutriEz", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
         }
 
     }

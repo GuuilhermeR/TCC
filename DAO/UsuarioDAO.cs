@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using TCC2.Banco_de_Dados;
 using Classes;
 using System.Web.Security;
-using static Classes.ExibidorMensagem;
+using static Classes.HelperFuncoes;
 using TCC2.Classes;
 
 namespace TCC2

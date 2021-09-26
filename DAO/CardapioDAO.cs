@@ -7,7 +7,7 @@ using Microsoft.VisualBasic;
 using TCC2;
 using System.Collections.Generic;
 using TCC2.Banco_de_Dados;
-using static Classes.ExibidorMensagem;
+using static Classes.HelperFuncoes;
 
 namespace TCC2
 {

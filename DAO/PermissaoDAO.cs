@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TCC2;
 using TCC2.Banco_de_Dados;
-using static Classes.ExibidorMensagem;
+using static Classes.HelperFuncoes;
 
 namespace DAO
 {

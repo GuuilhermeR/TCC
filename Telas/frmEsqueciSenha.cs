@@ -4,7 +4,7 @@ using System;
 using System.Net;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
-using static Classes.ExibidorMensagem;
+using static Classes.HelperFuncoes;
 
 namespace TCC2.Telas
 {
@@ -16,11 +16,7 @@ namespace TCC2.Telas
         public frmEsqueciSenha()
         {
             InitializeComponent();
-            var materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.EnforceBackcolorOnAllComponents = true;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.BlueGrey500, Accent.Green700, TextShade.WHITE);
+            FormatView(this);
         }
 
         private void frmEsqueciSenha_Load(object sender, EventArgs e)

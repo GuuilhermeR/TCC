@@ -271,5 +271,25 @@ namespace TCC2
             return resultado;
         }
 
+        public bool CheckAvailable()
+        {
+            using (var db = new NutreasyEntities())
+            {
+                var checkDate = db.Database.Connection.CreateCommand();
+                checkDate.CommandText = $"SELECT CURRENT_DATE AS dataAtual";
+                db.Database.Connection.Open();
+                using (IDataReader dr = checkDate.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        return Convert.ToBoolean(Convert.ToString(dr["dataAtual"])==Convert.ToString(DateTime.Now));
+                    }
+                }
+                    db.Database.Connection.Close();
+            }
+
+            return false;
+        }
+
     }
 }

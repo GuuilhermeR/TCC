@@ -759,6 +759,7 @@ namespace TCC2
 
                     decimal somaTotalCaloria = ProteinaKcal + CarboidratoKcal + LipidioKcal;
                     row.Cells["kcal"].Value = Conversions.ToDecimal(somaTotalCaloria);
+                    lblVlrKcal.Text = Convert.ToString(somaTotalCaloria);
                     row.DefaultCellStyle.BackColor = Color.White;
                 }
             }
@@ -1589,7 +1590,6 @@ namespace TCC2
             double proteina = 0;
             double carboidrato = 0;
             double lipidio = 0;
-            double kcal = 0;
             List<DataGridViewRow> linhaAdicionada = new List<DataGridViewRow>();
 
             if (dtgCardapioAlimentos.SelectedRows.Count >= 1 || dtgCardapioAlimentos.SelectedCells.Count >= 1)
@@ -1604,7 +1604,6 @@ namespace TCC2
                              , row.Cells["prot"].Value
                              , row.Cells["carbo"].Value
                              , row.Cells["lipidio"].Value);
-                        kcal += Convert.ToDouble(row.Cells[2].Value);
                         proteina += Convert.ToDouble(row.Cells["prot"].Value);
                         carboidrato += Convert.ToDouble(row.Cells["carbo"].Value);
                         lipidio += Convert.ToDouble(row.Cells["lipidio"].Value);
@@ -1615,24 +1614,24 @@ namespace TCC2
                 if (linhaAdicionada != null || linhaAdicionada.Count > 0)
                     foreach (var linhaIndex in linhaAdicionada)
                     {
-                        //if (proteina > Convert.ToDouble(txtProteina.Text))
-                        //{
-                        //    nMensagemAlerta("A proteína atingiu o limite configurado!");
-                        //    dtgRefeicoes.Rows.Remove(linhaIndex);
-                        //    return;
-                        //}
-                        //else if (carboidrato > Convert.ToDouble(txtCarboidrato.Text))
-                        //{
-                        //    nMensagemAlerta("O carboidrato atingiu o limite configurado!");
-                        //    dtgRefeicoes.Rows.Remove(linhaIndex);
-                        //    return;
-                        //}
-                        //else if (lipidio > Convert.ToDouble(txtLipidio.Text))
-                        //{
-                        //    nMensagemAlerta("O lipídio atingiu o limite configurado!");
-                        //    dtgRefeicoes.Rows.Remove(linhaIndex);
-                        //    return;
-                        //}
+                        if (!string.IsNullOrEmpty(txtProteina.Text) && Convert.ToDouble(proteina) > Convert.ToDouble(txtProteina.Text))
+                        {
+                            nMensagemAlerta("A proteína atingiu o limite configurado!");
+                            dtgRefeicoes.Rows.Remove(linhaIndex);
+                            return;
+                        }
+                        else if (!string.IsNullOrEmpty(txtCarboidrato.Text) && Convert.ToDouble(carboidrato) > Convert.ToDouble(txtCarboidrato.Text))
+                        {
+                            nMensagemAlerta("O carboidrato atingiu o limite configurado!");
+                            dtgRefeicoes.Rows.Remove(linhaIndex);
+                            return;
+                        }
+                        else if (!string.IsNullOrEmpty(txtLipidio.Text) && Convert.ToDouble(lipidio) > Convert.ToDouble(txtLipidio.Text))
+                        {
+                            nMensagemAlerta("O lipídio atingiu o limite configurado!");
+                            dtgRefeicoes.Rows.Remove(linhaIndex);
+                            return;
+                        }
                         dtgRefeicoes.Rows[linhaIndex.Index].Visible = true;
                     }
                 dtgRefeicoes.Visible = true;
@@ -1661,8 +1660,12 @@ namespace TCC2
             }
 
             lblVlrKcal.Visible = true;
-            lblValorKcal.Text = kcal.ToString("N2") + " Kcal";
-            CarregarGrafico(proteina, carboidrato, lipidio);
+            if (dtgRefeicoes.Rows.Count > 0)
+            {
+                RecalcularMacroNutrientes(dtgConAlimento, quantidadeSalva);
+                CarregarGrafico(proteina, carboidrato, lipidio);
+            }
+
         }
 
         private void txtPacienteConsultaCardapio_TextChanged(object sender, EventArgs e)
@@ -1784,14 +1787,10 @@ namespace TCC2
             }
         }
 
-        private void btnConfigGramasCard_Click(object sender, EventArgs e)
-        {
-
-        }
         private void dtgRefeicoes_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             dtgRefeicoes.CurrentRow.DefaultCellStyle.BackColor = Color.Red;
-            if(e.ColumnIndex == cbxMedCaseira.Index)
+            if (e.ColumnIndex == cbxMedCaseira.Index)
             {
                 var medCaseira = medidaCaseiraDAO.Buscar(Convert.ToInt32(dtgRefeicoes.Rows[e.RowIndex].Cells[codAlimento.Index].Value)
                                                         , Convert.ToString(dtgRefeicoes.Rows[e.RowIndex].Cells[cbxMedCaseira.Index].Value));
@@ -1800,7 +1799,8 @@ namespace TCC2
                 //Verificar o por quê está dando erro ao selecionar a medida caseira do alimento. Ver para colocar no leave do campo.
                 medCaseira.ForEach(x =>
                 {
-                    dtgMedCaseiraAlimentos.Rows[e.RowIndex].Cells[qtd.Index].Value = Math.Round(Convert.ToDouble(x.qtd),2);
+                    if (x.codAlimento == x.codAlimento)
+                        dtgRefeicoes.Rows[e.RowIndex].Cells[qtd.Index].Value = Math.Round(Convert.ToDouble(x.qtd), 2);
                 });
             }
             if (Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["qtd"].Value) != quantidadeAntigaCardapio)
@@ -2302,5 +2302,13 @@ namespace TCC2
             e.Cancel = true;
         }
 
+        private void dtgRefeicoes_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            foreach (DataGridViewRow row in dtgRefeicoes.Rows)
+            {
+                RecalcularMacroNutrientes(dtgRefeicoes, Convert.ToDecimal(row.Cells[qtd.Index].Value));
+                CarregarGrafico(Convert.ToDouble(row.Cells[prot.Index].Value), Convert.ToDouble(row.Cells[carbo.Index].Value), Convert.ToDouble(row.Cells[lipidio.Index].Value));
+            }
+        }
     }
 }

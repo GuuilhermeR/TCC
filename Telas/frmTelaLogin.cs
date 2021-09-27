@@ -32,7 +32,13 @@ namespace TCC2
         [Obsolete]
         private void btnLogar_Click(object sender, EventArgs e)
         {
-            
+
+            if (!usuario.CheckAvailable())
+            {
+                nMensagemAlerta("Seu período de testes acabou!");
+                return;
+            }
+
             lblAviso.Visible = false;   
             if(txtUsuario.Text == "")
             {

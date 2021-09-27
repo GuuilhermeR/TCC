@@ -184,3 +184,4 @@ C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.csproj.CoreCompileInputs.c
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.csproj.CopyComplete
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.exe
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.pdb
+C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.csproj.AssemblyReference.cache

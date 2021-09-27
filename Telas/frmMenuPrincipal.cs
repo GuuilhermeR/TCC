@@ -24,6 +24,7 @@ using TCC2.Telas;
 using TCC2.DAO;
 using System.Globalization;
 using Aspose.Cells;
+using TCC2.Properties;
 
 namespace TCC2
 {
@@ -2057,29 +2058,10 @@ namespace TCC2
 
         private void btnExportar_Click(object sender, EventArgs e)
         {
-            string arquivo = string.Empty;
+            Aspose.Cells.Workbook workbook = new Aspose.Cells.Workbook(new System.IO.MemoryStream(Resources.ImpressaoCardapio));
+            //var worksheet = workbook.Worksheets();
 
-            using (OpenFileDialog ofd = new OpenFileDialog())
-            {
-                if (ofd.ShowDialog() == DialogResult.OK)
-                {
-                    //arquivo = ofd.FileName;
-
-                    //Workbook wkb = new Workbook(arquivo);
-                    //Worksheet worksheet = wkb.Worksheets.Item(0);
-
-                    //foreach (DataGridViewRow row in dtgCardGrid.Rows)
-                    //{
-                    //    foreach (DataGridViewColumn col in dtgCardGrid.Columns)
-                    //    {
-                    //        if (col.Index >= 2)
-                    //            dtgCardGrid.Rows[row.Index].Cells[col.Index].Value = worksheet.Cells.Item(row.Index + 1, col.Index).Value;
-                    //    }
-                    //}
-                }
-            }
         }
-
         private void txtDataCardapio_Leave(object sender, EventArgs e)
         {
             if (txtDataCardapio.Text == "")

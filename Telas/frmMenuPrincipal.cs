@@ -25,6 +25,7 @@ using TCC2.DAO;
 using System.Globalization;
 using Aspose.Cells;
 using TCC2.Properties;
+using System.Threading;
 
 namespace TCC2
 {
@@ -85,14 +86,15 @@ namespace TCC2
             }
 
         }
-        private void VerificarPermissao(string telaPermissao)
+        private bool VerificarPermissao(string telaPermissao)
         {
             if (!permissaoDAO.VerificarPermissao(Convert.ToString(usuarioDAO.getUsuario()), telaPermissao))
             {
                 nMensagemAviso("Você não possui permissão nessa tela!");
                 TabControlNutreasy.SelectedTab = tabMenu;
-                return;
+                return false;
             }
+            return true;
         }
         private void FecharAplicacao(object sender, EventArgs e)
         {
@@ -115,7 +117,10 @@ namespace TCC2
 
         private void tabMenu_Enter(object sender, EventArgs e)
         {
-            VerificarPermissao(tabMenu.Text);
+            if (!VerificarPermissao(tabMenu.Text))
+            {
+                return;
+            };
             mCardAtendimentoAtual.BackColor = Color.Red;
             tabMenu_Click(sender, e);
         }
@@ -321,9 +326,15 @@ namespace TCC2
         #endregion
 
         #region Agenda
+
         private void tabAgenda_Enter(object sender, EventArgs e)
         {
-            VerificarPermissao(tabAgenda.Text);
+            if (!VerificarPermissao(tabAgenda.Text))
+            {
+                return;
+            };
+            loadStart();
+
             if (!jaIniciou)
             {
                 calAgendamento.Items.Clear();
@@ -333,6 +344,8 @@ namespace TCC2
                 BuscarConsultasAgendadas();
                 calAgendamento.Refresh();
             }
+            loadStop();
+
         }
 
         private DateTime RetornaInicioSemana(DateTime data)
@@ -806,7 +819,8 @@ namespace TCC2
                 Interaction.MsgBox("Favor informar a planilha a ser salva.");
                 return;
             }
-            //pbCarregando.Visible = true;
+
+            loadStart();
             using (TransactionScope tscope = new TransactionScope(TransactionScopeOption.Suppress))
             {
                 try
@@ -872,7 +886,7 @@ namespace TCC2
             txtCaminhoArquivoExcel.Text = "";
             _cbxNomePlanilha.Items.Clear();
             txtNomeTabela.Text = "";
-
+            loadStop();
         }
 
         private void _btnBuscarPlanilha_Click(object sender, EventArgs e)
@@ -888,7 +902,10 @@ namespace TCC2
 
         private void tabAlimento_Enter(object sender, EventArgs e)
         {
-            VerificarPermissao(tabAlimento.Text);
+            if (!VerificarPermissao(tabAlimento.Text))
+            {
+                return;
+            };
             List<Alimentos> tabela = new List<Alimentos>();
             tabela = (alimentoDAO.BuscarTabelas());
             if (tabela != null)
@@ -1043,16 +1060,23 @@ namespace TCC2
 
         private void btnSalvarMedCas_Click(object sender, EventArgs e)
         {
+            loadStart();
+
             medidaCaseiraDAO.Deletar();
             foreach (DataGridViewRow rows in dtgSalvarMedCaseira.Rows)
             {
                 medidaCaseiraDAO.Salvar(rows.Cells["colDescricao"].Value.ToString(), Convert.ToDouble(rows.Cells["colQtd"].Value), Convert.ToInt32(rows.Cells["colCodAlimento"].Value));
             }
+
+            loadStop();
         }
 
         private void _tbConsulta_Enter(object sender, EventArgs e)
         {
-            VerificarPermissao(tabAlimento.Text);
+            if (!VerificarPermissao(tabAlimento.Text))
+            {
+                return;
+            };
             tabAlimento_Enter(sender, e);
         }
 
@@ -1094,9 +1118,13 @@ namespace TCC2
 
         private void CarregarAlimentos(string nomeAlimento, string nomeTabela, DataGridView dtg)
         {
+            loadStart();
             var listaAlimentos = alimentoDAO.Buscar(nomeAlimento, nomeTabela);
             if (listaAlimentos == null)
+            {
+                loadStop();
                 return;
+            }
             DataTable dt = ConvertToDataTable(listaAlimentos);
             dtg.DataSource = dt;
 
@@ -1112,6 +1140,7 @@ namespace TCC2
             dtg.Columns["nomeAlimento"].HeaderText = "Alimento";
 
             dtg.AutoResizeColumns();
+            loadStop();
         }
 
         private void mTxtFiltroAlimentoMedCas_Leave(object sender, EventArgs e)
@@ -1132,7 +1161,10 @@ namespace TCC2
         #region Paciente 
         private void tbPaciente_Enter(object sender, EventArgs e)
         {
-            VerificarPermissao(tabPaciente.Text);
+            if (!VerificarPermissao(tabPaciente.Text))
+            {
+                return;
+            };
         }
         private void limparCamposCadPaciente()
         {
@@ -1263,12 +1295,18 @@ namespace TCC2
 
         private void tbCadastro_Enter(object sender, EventArgs e)
         {
+            loadStart();
+
             btnCapturarImagem.Visible = false;
             _dtgConsultaPacientes.DataSource = null;
             var listaPacientes = pacienteDAO.Buscar("");
 
             if (listaPacientes == null)
+            {
+                loadStop();
                 return;
+            }
+
             DataTable dt = ConvertToDataTable(listaPacientes);
             _dtgConsultaPacientes.DataSource = dt;
 
@@ -1290,6 +1328,7 @@ namespace TCC2
             _dtgConsultaPacientes.Columns["celular"].HeaderText = "Celular";
             _dtgConsultaPacientes.AutoResizeColumns();
 
+            loadStop();
         }
 
         private void pbImagem_Click(object sender, EventArgs e)
@@ -1510,8 +1549,10 @@ namespace TCC2
 
         private void btnPacAnt_Click(object sender, EventArgs e)
         {
+            loadStart();
             BuscadorPaciente();
             txtPacienteAntro.Text = CardapioDAO.nomePacienteCard;
+            loadStop();
         }
 
         private void btnSalvarAnamnese_Click(object sender, EventArgs e)
@@ -1556,7 +1597,10 @@ namespace TCC2
         //informar a quantidade em gramas (evento sair da célula) apenas. Posteriormente, como ajustes será implementado medidas caseiras.
         private void tbCardapio_Enter(object sender, EventArgs e)
         {
-            VerificarPermissao(tabCardapio.Text);
+            if (!VerificarPermissao(tabCardapio.Text))
+            {
+                return;
+            };
         }
         private void tabCardapio_Enter(object sender, EventArgs e)
         {
@@ -1728,6 +1772,8 @@ namespace TCC2
 
         private void btnSalvarCardapio_Click(object sender, EventArgs e)
         {
+            loadStart();
+
             double Kcal = Convert.ToDouble(lblValorKcal.Text.Split(' ')[0]);
 
             bool Update = Convert.ToBoolean(cardapioDAO.Consultar(Convert.ToInt32(CardapioDAO.codPacienteCard), txtDataCardapio.Text).Count>0);
@@ -1745,6 +1791,7 @@ namespace TCC2
             
             btnApagar_Click(sender, e);
             btnCancelarCardapio_Click(sender, e);
+            loadStop();
         }
 
         private void btnPacienteCardapio_Click(object sender, EventArgs e)
@@ -1847,9 +1894,16 @@ namespace TCC2
         {
             if (cbxTabelaAlimentoCardapio.Text != "")
             {
+                loadStart();
+
                 var listaAlimentos = alimentoDAO.Buscar("", cbxTabelaAlimentoCardapio.Text);
                 if (listaAlimentos == null)
+                {
+                    loadStop();
                     return;
+                }
+
+
                 DataTable dt = ConvertToDataTable(listaAlimentos);
                 dtgCardapioAlimentos.DataSource = dt;
 
@@ -1865,6 +1919,8 @@ namespace TCC2
                 dtgCardapioAlimentos.Columns["Cardapio"].Visible = false;
                 dtgCardapioAlimentos.AutoResizeColumns();
                 dtgCardapioAlimentos.Columns["nomeAlimento"].ReadOnly = true;
+                loadStop();
+
             }
         }
         private void btnCancelarCardapio_Click(object sender, EventArgs e)
@@ -1921,12 +1977,18 @@ namespace TCC2
                 nMensagemAviso("Selecionar uma data para o carregamento das informações do cardápio!");
                 return;
             }
-
+            loadStart();
             var listaCardapio = cardapioDAO.Consultar(Convert.ToInt32(CardapioDAO.codPacienteCard), Convert.ToString(cbxDataConsulta.Text));
             if (listaCardapio == null)
+            {
+                loadStop();
                 return;
+            }
             else if (listaCardapio.Count == 0)
+            {
+                loadStop();
                 return;
+            }
 
             trwDadosCard.Nodes.Clear();
             trwDadosCard.Columns.Clear();
@@ -2034,6 +2096,7 @@ namespace TCC2
                         return;
                 }
             });
+            loadStop();
         }
         private void btnAnalytics_Click(object sender, EventArgs e)
         {
@@ -2107,10 +2170,19 @@ namespace TCC2
         }
         private void tbConfig_Enter(object sender, EventArgs e)
         {
-            VerificarPermissao(tabConfig.Text);
+            if (!VerificarPermissao(tabConfig.Text))
+            {
+                return;
+            };
+            loadStart();
+
             var listaUsuario = usuarioDAO.getUsuario("");
             if (listaUsuario == null)
+            {
+                loadStop();
                 return;
+            }
+
             DataTable dt = ConvertToDataTable(listaUsuario);
             dtgUsuarios.DataSource = dt;
             dtgUsuarios.Columns["senha"].Visible = false;
@@ -2123,6 +2195,7 @@ namespace TCC2
             dtgUsuarios.Columns["Permissao"].Visible = false;
             dtgUsuarios.Columns["ConfiguracoesUsuarios"].Visible = false;
             dtgUsuarios.AutoResizeColumns();
+            loadStop();
         }
         private void dtgUsuarios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -2138,9 +2211,15 @@ namespace TCC2
         }
         private void tbPermissao_Enter(object sender, EventArgs e)
         {
+            loadStart();
+
             var listaUsuarios = usuarioDAO.getUsuario("");
             if (listaUsuarios == null || listaUsuarios.Count <= 0)
+            {
+                loadStop();
                 return;
+            }
+
             cbxUsuarioPerm.Items.Clear();
             listaUsuarios.ForEach(x => cbxUsuarioPerm.Items.Add(x.usuario));
 
@@ -2158,6 +2237,8 @@ namespace TCC2
             dtgPermUsuarios.Columns["usuario"].HeaderText = "Usuário";
             dtgPermUsuarios.Columns["programa"].HeaderText = "Tela";
             dtgUsuarios.AutoResizeColumns();
+            loadStop();
+
         }
         private void txtUsuarioConfig_Leave(object sender, EventArgs e)
         {
@@ -2192,15 +2273,25 @@ namespace TCC2
 
         private void tabHorarioAtendimento_Enter(object sender, EventArgs e)
         {
+
+            loadStart();
             var listaUsuarios = usuarioDAO.getUsuario("");
             if (listaUsuarios == null || listaUsuarios.Count <= 0)
+            {
+                loadStop();
                 return;
+            }
+
             cbxUsuarioPerm.Items.Clear();
             listaUsuarios.ForEach(x => cbxUsuNutri.Items.Add(x.usuario));
 
             var listConfig = configDAO.Consultar();
             if (listConfig == null)
+            {
+                loadStop();
                 return;
+            }
+
             DataTable dt = ConvertToDataTable(listConfig);
             dtgConfigHorario.DataSource = dt;
 
@@ -2210,7 +2301,7 @@ namespace TCC2
             dtgConfigHorario.Columns["horaInicio"].HeaderText = "Hora Início";
             dtgConfigHorario.Columns["horaFim"].HeaderText = "Hora Fim";
             dtgConfigHorario.Columns["Login"].Visible = false;
-
+            loadStop();
         }
 
         private void btnSalvarHoraAtend_Click(object sender, EventArgs e)
@@ -2253,10 +2344,12 @@ namespace TCC2
         }
         #endregion
 
-
         private void tbSobre_Enter(object sender, EventArgs e)
         {
-            VerificarPermissao(tabAgenda.Text);
+            if (!VerificarPermissao(tabAgenda.Text))
+            {
+                return;
+            };
         }
 
         private void frmMenuPrincipal_FormClosing(object sender, FormClosingEventArgs e)
@@ -2292,5 +2385,6 @@ namespace TCC2
                 CarregarGrafico(Convert.ToDouble(row.Cells[prot.Index].Value), Convert.ToDouble(row.Cells[carbo.Index].Value), Convert.ToDouble(row.Cells[lipidio.Index].Value));
             }
         }
+
     }
 }

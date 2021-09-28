@@ -185,3 +185,4 @@ C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.csproj.CopyComplete
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.exe
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.pdb
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.csproj.AssemblyReference.cache
+C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\Microsoft.Office.Interop.Excel.dll

@@ -184,7 +184,7 @@ namespace TCC2
             this.btnSalvarAnamnese = new System.Windows.Forms.Button();
             this.tabConfig = new System.Windows.Forms.TabPage();
             this.tbConfig = new System.Windows.Forms.TabControl();
-            this.TabPage1 = new System.Windows.Forms.TabPage();
+            this.tbUsuarios = new System.Windows.Forms.TabPage();
             this.txtCRN = new MaterialSkin.Controls.MaterialTextBox();
             this.txtEmailConfig = new MaterialSkin.Controls.MaterialTextBox();
             this.cbxTipoUsuario = new MaterialSkin.Controls.MaterialComboBox();
@@ -251,7 +251,7 @@ namespace TCC2
             this.tbAnamnese.SuspendLayout();
             this.tabConfig.SuspendLayout();
             this.tbConfig.SuspendLayout();
-            this.TabPage1.SuspendLayout();
+            this.tbUsuarios.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgUsuarios)).BeginInit();
             this.tbPermissao.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPermUsuarios)).BeginInit();
@@ -1104,6 +1104,7 @@ namespace TCC2
             this.btnSalvarMedCas.TabIndex = 3;
             this.btnSalvarMedCas.Text = "Salvar";
             this.btnSalvarMedCas.UseVisualStyleBackColor = true;
+            this.btnSalvarMedCas.Click += new System.EventHandler(this.btnSalvarMedCas_Click);
             // 
             // tabCardapio
             // 
@@ -2496,7 +2497,7 @@ namespace TCC2
             this.tbConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbConfig.Controls.Add(this.TabPage1);
+            this.tbConfig.Controls.Add(this.tbUsuarios);
             this.tbConfig.Controls.Add(this.tbPermissao);
             this.tbConfig.Controls.Add(this.tabHorarioAtendimento);
             this.tbConfig.Location = new System.Drawing.Point(6, 6);
@@ -2506,26 +2507,26 @@ namespace TCC2
             this.tbConfig.TabIndex = 1;
             this.tbConfig.Enter += new System.EventHandler(this.tbConfig_Enter);
             // 
-            // TabPage1
+            // tbUsuarios
             // 
-            this.TabPage1.Controls.Add(this.txtCRN);
-            this.TabPage1.Controls.Add(this.txtEmailConfig);
-            this.TabPage1.Controls.Add(this.cbxTipoUsuario);
-            this.TabPage1.Controls.Add(this.cbxSituacao);
-            this.TabPage1.Controls.Add(this.txtConfirmarSenha);
-            this.TabPage1.Controls.Add(this.txtSenha);
-            this.TabPage1.Controls.Add(this.txtNomeUsuarioConfig);
-            this.TabPage1.Controls.Add(this.txtUsuarioConfig);
-            this.TabPage1.Controls.Add(this.btnExcluirConfigUsuario);
-            this.TabPage1.Controls.Add(this.btnSalvarConfigUsuario);
-            this.TabPage1.Controls.Add(this.dtgUsuarios);
-            this.TabPage1.Location = new System.Drawing.Point(4, 22);
-            this.TabPage1.Name = "TabPage1";
-            this.TabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.TabPage1.Size = new System.Drawing.Size(1183, 676);
-            this.TabPage1.TabIndex = 0;
-            this.TabPage1.Text = "Usuários";
-            this.TabPage1.UseVisualStyleBackColor = true;
+            this.tbUsuarios.Controls.Add(this.txtCRN);
+            this.tbUsuarios.Controls.Add(this.txtEmailConfig);
+            this.tbUsuarios.Controls.Add(this.cbxTipoUsuario);
+            this.tbUsuarios.Controls.Add(this.cbxSituacao);
+            this.tbUsuarios.Controls.Add(this.txtConfirmarSenha);
+            this.tbUsuarios.Controls.Add(this.txtSenha);
+            this.tbUsuarios.Controls.Add(this.txtNomeUsuarioConfig);
+            this.tbUsuarios.Controls.Add(this.txtUsuarioConfig);
+            this.tbUsuarios.Controls.Add(this.btnExcluirConfigUsuario);
+            this.tbUsuarios.Controls.Add(this.btnSalvarConfigUsuario);
+            this.tbUsuarios.Controls.Add(this.dtgUsuarios);
+            this.tbUsuarios.Location = new System.Drawing.Point(4, 22);
+            this.tbUsuarios.Name = "tbUsuarios";
+            this.tbUsuarios.Padding = new System.Windows.Forms.Padding(3);
+            this.tbUsuarios.Size = new System.Drawing.Size(1183, 676);
+            this.tbUsuarios.TabIndex = 0;
+            this.tbUsuarios.Text = "Usuários";
+            this.tbUsuarios.UseVisualStyleBackColor = true;
             // 
             // txtCRN
             // 
@@ -3111,7 +3112,7 @@ namespace TCC2
             this.tbAnamnese.PerformLayout();
             this.tabConfig.ResumeLayout(false);
             this.tbConfig.ResumeLayout(false);
-            this.TabPage1.ResumeLayout(false);
+            this.tbUsuarios.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgUsuarios)).EndInit();
             this.tbPermissao.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgPermUsuarios)).EndInit();
@@ -3140,7 +3141,7 @@ namespace TCC2
         private System.Windows.Forms.TabPage tbAntropometricos;
         private System.Windows.Forms.TabPage tabConfig;
         internal System.Windows.Forms.TabControl tbConfig;
-        internal System.Windows.Forms.TabPage TabPage1;
+        internal System.Windows.Forms.TabPage tbUsuarios;
         internal System.Windows.Forms.Button btnExcluirConfigUsuario;
         internal System.Windows.Forms.Button btnSalvarConfigUsuario;
         internal System.Windows.Forms.DataGridView dtgUsuarios;

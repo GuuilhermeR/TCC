@@ -341,6 +341,9 @@
     <PackageReference Include="MaterialSkin.2">
       <Version>2.2.1</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.Office.Interop.Excel">
+      <Version>15.0.4795.1000</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualBasic">
       <Version>10.3.0</Version>
     </PackageReference>

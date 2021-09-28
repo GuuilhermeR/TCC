@@ -1,7 +1,9 @@
 ﻿using MaterialSkin;
 using Microsoft.VisualBasic;
 using System;
+using System.Threading;
 using System.Windows.Forms;
+using TCC2.Telas;
 
 namespace Classes
 {
@@ -9,6 +11,39 @@ namespace Classes
     {
 
         public HelperFuncoes() { }
+
+        static Thread tLoad;
+
+        public static void loadStart()
+        {
+            try
+            {
+                tLoad = new Thread(ShowWait);
+                tLoad.Start();
+            }
+            catch{}
+        }
+
+        public static void loadStop()
+        {
+            try
+            {
+                tLoad.Abort();
+            }
+            catch{}
+        }
+
+        public static void ShowWait()
+        {
+            try
+            {
+                using (frmWait wait = new frmWait())
+                {
+                    wait.ShowDialog();
+                }
+            }
+            catch { }            
+        }
 
         public static void FormatView(MaterialSkin.Controls.MaterialForm form)
         {

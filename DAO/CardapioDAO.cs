@@ -120,14 +120,14 @@ namespace TCC2
             }
         }
 
-        public void Deletar()
+        public void Deletar(string data)
         {
             if (!String.IsNullOrEmpty(PacienteModel.codPacienteCard))
             {
                 using (var db = new NutreasyEntities())
                 {
                     var delete = db.Database.Connection.CreateCommand();
-                    delete.CommandText = $"DELETE FROM Cardapio WHERE codPaciente = {PacienteModel.codPacienteCard}";
+                    delete.CommandText = $"DELETE FROM Cardapio WHERE codPaciente = {PacienteModel.codPacienteCard} AND data={data}";
                     db.Database.Connection.Open();
                     delete.ExecuteNonQuery();
                     db.Database.Connection.Close();

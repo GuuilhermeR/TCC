@@ -84,5 +84,25 @@ namespace DAO
             return null;
         }
 
+        public void RemoverPermissao(string usuario, string tela)
+        {
+            try
+            {
+                using (var db = new NutreasyEntities())
+                {
+                    var delete = db.Database.Connection.CreateCommand();
+                    delete.CommandText = $"DELETE FROM Permissao WHERE usuario='{usuario}' AND programa='{tela}' ";
+                    db.Database.Connection.Open();
+                    delete.ExecuteNonQuery();
+                    db.Database.Connection.Close();
+                }
+                nMensagemAviso("A consulta foi removida.");
+            }
+            catch (Exception ex)
+            {
+                nMensagemErro("Ocorreu um erro ao deletar!" + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException);
+            }
+        }
+
     }
 }

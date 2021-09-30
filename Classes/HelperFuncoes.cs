@@ -18,7 +18,14 @@ namespace Classes
         {
             try
             {
-                tLoad = new Thread(ShowWait);
+                if (tLoad == null || !tLoad.ThreadState.Equals(ThreadState.Running) && tLoad.ThreadState.Equals(ThreadState.Aborted))
+                {
+                    tLoad = new Thread(ShowWait,50000);
+                }
+                else if (tLoad.ThreadState.Equals(ThreadState.Running))
+                {
+                    tLoad.Abort();
+                }
                 tLoad.Start();
             }
             catch { }
@@ -37,7 +44,6 @@ namespace Classes
         {
             using (frmWait wait = new frmWait())
             {
-                tLoad.Join();
                 try
                 {
                     wait.ShowDialog();
@@ -103,6 +109,27 @@ namespace Classes
         public static DialogResult nMensagemAceita(string mensagem, IWin32Window owner = null)
         {
             return MessageBox.Show(owner, mensagem, "NutriEz", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        }
+
+        public static string formatarHora(string hora)
+        {
+            if (string.IsNullOrEmpty(hora))
+                return "";
+
+            if (hora.Length.Equals(1))
+            {
+                return hora + "0" + ":" + "00";
+            }
+            else if (hora.Length.Equals(2))
+            {
+                return Strings.Left(hora, 2) + ":" + "00";
+            }
+            else if (hora.Length.Equals(3))
+            {
+                return Strings.Left(hora, 2) + ":" + Strings.Right(hora, 1) + "0";
+            }
+
+            return Strings.Left(hora, 2) + ":" + Strings.Right(hora, 2);
         }
 
     }

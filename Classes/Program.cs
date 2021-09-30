@@ -16,7 +16,7 @@ namespace TCC2
         static void Main()
         {
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+            Application.SetCompatibleTextRenderingDefault(true);
             Application.Run(new FrmMenuPrincipal("guilherme"));
             //Application.Run(new frmTelaLogin());
             //Application.Run(new frmCadastro());

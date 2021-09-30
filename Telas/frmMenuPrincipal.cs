@@ -53,9 +53,10 @@ namespace TCC2
         private double quantidadeAntigaCardapio;
         //Image capturaImagem;
         public string caminhoImagemSalva = null;
-        public MaterialSkinManager materialSkinManager = MaterialSkinManager.Instance;
         public DateTime dataAgendadoAnterior;
         public bool jaIniciou = false;
+        private bool primeiraVez = true;
+        private DateTime dataHoraNotif = DateTime.Now;
         #endregion
 
         #region Menu
@@ -123,7 +124,7 @@ namespace TCC2
                 return;
             };
             mCardAtendimentoAtual.BackColor = Color.Red;
-            tabMenu_Click(sender, e);
+            CarregarCardConsultas();
         }
 
         public void ImporterWorksheet(string caminhoExcel, OpenFileDialog ofd)
@@ -185,7 +186,7 @@ namespace TCC2
             //https://social.msdn.microsoft.com/Forums/vstudio/pt-BR/6ffcb247-77fb-40b4-bcba-08ba377ab9db/converting-a-list-to-datatable?forum=csharpgeneral
         }
 
-        private void tabMenu_Click(object sender, EventArgs e)
+        private void CarregarCardConsultas()
         {
             var dataAgenda = DateTime.Now.ToString("dd/MM/yyyy");
             var dataInicio = dataAgenda + " 00:00:00";
@@ -206,10 +207,10 @@ namespace TCC2
                 {
                     if (Convert.ToDateTime(dr["data"]).ToString("dd/MM/yyyy") == DateTime.Now.ToString("dd/MM/yyyy") && (int)dr["Cancelado"] == 0)
                     {
-                        if (mlblNome.Text != "Nome")
-                            return;
+                        //if (mlblNome.Text != "Nome" || mlblNomeFuturo.Text != "Nome")
+                        //    return;
 
-                        if ((DateTime)dr["data"] <= DateTime.Now && (bool)dr["atendido"] != true)
+                        if ((DateTime)dr["data"] <= DateTime.Now && (bool)dr["atendido"] != true && (int)dr["Cancelado"] == 0)
                         {
                             mCardAtendimentoAtual.Visible = true;
                             mlblNome.Text = (string)dr["paciente"];
@@ -226,41 +227,44 @@ namespace TCC2
                             {
                                 mCardAtendimentoAtual.BackColor = Color.LightGreen;
                             }
-                            // NutreasyIconNotify.ShowBalloonTip(10, "Consulta atual", $"Você possui horário agora com: {x.paciente}", ToolTipIcon.Info);
                         }
-                        else if ((DateTime)dr["data"] > DateTime.Now && (int)dr["Cancelado"] == 0)
+                        else if ((DateTime)dr["data"] < DateTime.Now && (bool)dr["atendido"] != true && (int)dr["Cancelado"] == 0)
                         {
-                            if ((DateTime)dr["data"] > DateTime.Now)
+                            mCardAtendimentoFuturo.Visible = true;
+                            mlblNomeFuturo.Text = (string)dr["paciente"];
+                            mlblHoraFutura.Text = Convert.ToDateTime(dr["data"]).ToString("dd/MM/yyyy HH:mm");
+                            if ((bool)dr["retorno"])
                             {
-                                mCardAtendimentoFuturo.Visible = true;
-                                mlblNomeFuturo.Text = (string)dr["paciente"];
-                                mlblHoraFutura.Text = Convert.ToDateTime(dr["data"]).ToString("dd/MM/yyyy HH:mm");
-                                if ((bool)dr["retorno"])
-                                {
-                                    mlblObservacaoFuturo.Text = "Retorno";
-                                }
-                                else
-                                {
-                                    mlblObservacaoFuturo.Text = "";
-                                }
-                                if ((bool)dr["atendido"])
-                                {
-                                    mCardAtendimentoFuturo.BackColor = Color.LightGreen;
-                                }
+                                mlblObservacaoFuturo.Text = "Retorno";
                             }
                             else
                             {
-                                mCardAtendimentoFuturo.Visible = false;
+                                mlblObservacaoFuturo.Text = "";
                             }
-                            //NutreasyIconNotify.ShowBalloonTip(10, "Consulta às {x.hora}", $"Você possui horário marcado com: {x.paciente} às {x.hora}", ToolTipIcon.Info);
-                        }
-                        else
-                        {
-                            mCardAtendimentoAtual.Visible = false;
+                            if ((bool)dr["atendido"])
+                            {
+                                mCardAtendimentoFuturo.BackColor = Color.LightGreen;
+                            }
                         }
                     }
                 }
                 db.Database.Connection.Close();
+                if (primeiraVez)
+                {
+                    if (Convert.ToDateTime(mlblHorario.Text).AddMinutes(-10) >= DateTime.Now && Convert.ToDateTime(mlblHorario.Text).AddMinutes(10) <= DateTime.Now)
+                    {
+                        NutriEzIconNotify.ShowBalloonTip(10, "Atendimento agora", $"Você possui horário agora com: {Convert.ToString(mlblNome.Text)}", ToolTipIcon.Info);
+                    }
+                    else if (Convert.ToDateTime(mlblHorario.Text) < DateTime.Now)
+                    {
+                        NutriEzIconNotify.ShowBalloonTip(10, $"Atendimento às {Convert.ToDateTime(mlblHoraFutura.Text).ToString("HH:mm")}", $"Você possui horário marcado com: {Convert.ToString(mlblNomeFuturo.Text)} às {mlblHoraFutura.Text}", ToolTipIcon.Info);
+                        dataHoraNotif = DateTime.Now;
+                    }
+                }
+                if (!primeiraVez && dataHoraNotif.AddMinutes(30) >= DateTime.Now)
+                {
+                    NutriEzIconNotify.ShowBalloonTip(10, $"Atendimento às {Convert.ToDateTime(dr["data"]).ToString("HH:mm")}", $"Você possui horário marcado com: {Convert.ToString(mlblNomeFuturo.Text)} às {mlblHoraFutura.Text}", ToolTipIcon.Info);
+                }
             }
 
             //var ConsultasMarcada = this.agendaDAO.CarregarAgenda(DateTime.Now.ToString("dd/MM/yyyy"));
@@ -424,7 +428,26 @@ namespace TCC2
                 txtDataAgendamento.Text = FormatDate(txtDataAgendamento.Text);
             }
         }
+        private void txtHoraAgenda_Validated(object sender, EventArgs e)
+        {
+            txtHoraAgenda.Text = formatarHora(txtHoraAgenda.Text);
+        }
 
+        private void chkPacNew_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkPacNew.Checked)
+            {
+                txtPacienteAgenda.Enabled = true;
+                btnBuscarPacienteAgendamento.Enabled = false;
+                cbxRetorno.Enabled = false;
+            }
+            else
+            {
+                txtPacienteAgenda.Enabled = false;
+                btnBuscarPacienteAgendamento.Enabled = true;
+                cbxRetorno.Enabled = true;
+            }
+        }
         private bool ValidarAgendamento(DateTime data, string hora)
         {
             var configCalendar = calAgendamento.HighlightRanges;
@@ -437,27 +460,27 @@ namespace TCC2
                         return true;
                     break;
                 case DayOfWeek.Tuesday:
-                    if (TimeSpan.Compare(horario, configCalendar[0].StartTime) >= 0 && TimeSpan.Compare(configCalendar[0].EndTime, horario) > 0)
+                    if (TimeSpan.Compare(horario, configCalendar[1].StartTime) >= 0 && TimeSpan.Compare(configCalendar[1].EndTime, horario) > 0)
                         return true;
                     break;
                 case DayOfWeek.Wednesday:
-                    if (TimeSpan.Compare(horario, configCalendar[0].StartTime) >= 0 && TimeSpan.Compare(configCalendar[0].EndTime, horario) > 0)
+                    if (TimeSpan.Compare(horario, configCalendar[2].StartTime) >= 0 && TimeSpan.Compare(configCalendar[2].EndTime, horario) > 0)
                         return true;
                     break;
                 case DayOfWeek.Thursday:
-                    if (TimeSpan.Compare(horario, configCalendar[0].StartTime) >= 0 && TimeSpan.Compare(configCalendar[0].EndTime, horario) > 0)
+                    if (TimeSpan.Compare(horario, configCalendar[3].StartTime) >= 0 && TimeSpan.Compare(configCalendar[3].EndTime, horario) > 0)
                         return true;
                     break;
                 case DayOfWeek.Friday:
-                    if (TimeSpan.Compare(horario, configCalendar[0].StartTime) >= 0 && TimeSpan.Compare(configCalendar[0].EndTime, horario) > 0)
+                    if (TimeSpan.Compare(horario, configCalendar[4].StartTime) >= 0 && TimeSpan.Compare(configCalendar[4].EndTime, horario) > 0)
                         return true;
                     break;
                 case DayOfWeek.Saturday:
-                    if (TimeSpan.Compare(horario, configCalendar[0].StartTime) >= 0 && TimeSpan.Compare(configCalendar[0].EndTime, horario) > 0)
+                    if (TimeSpan.Compare(horario, configCalendar[5].StartTime) >= 0 && TimeSpan.Compare(configCalendar[5].EndTime, horario) > 0)
                         return true;
                     break;
                 case DayOfWeek.Sunday:
-                    if (TimeSpan.Compare(horario, configCalendar[0].StartTime) >= 0 && TimeSpan.Compare(configCalendar[0].EndTime, horario) > 0)
+                    if (TimeSpan.Compare(horario, configCalendar[6].StartTime) >= 0 && TimeSpan.Compare(configCalendar[6].EndTime, horario) > 0)
                         return true;
                     break;
                 default:
@@ -468,6 +491,22 @@ namespace TCC2
 
         private void btnSalvarAgenda_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtPacienteAgenda.Text))
+            {
+                nMensagemAviso("Necessário informar o paciente");
+                return;
+            }
+            if (string.IsNullOrEmpty(txtDataAgendamento.Text))
+            {
+                nMensagemAviso("Necessário informar a data da consulta");
+                return;
+            }
+            if (string.IsNullOrEmpty(txtHoraAgenda.Text))
+            {
+                nMensagemAviso("Necessário informar a hora da consulta");
+                return;
+            }
+
             if (!ValidarAgendamento(Convert.ToDateTime(txtDataAgendamento.Text), Convert.ToString(txtHoraAgenda.Text)))
             {
                 nMensagemAviso("Não é possível agendar uma consulta em um horário não disponível do nutricionista!");
@@ -498,8 +537,6 @@ namespace TCC2
                        Convert.ToString(usuarioDAO.getUsuario()));
             }
             LimparCamposAgenda();
-            BuscarConsultasAgendadas();
-
         }
 
         private void LimparCamposAgenda()
@@ -590,7 +627,7 @@ namespace TCC2
             else
                 mcbxCancelar.Checked = false;
 
-            tabMenu_Click(sender, e);
+            CarregarCardConsultas();
         }
 
         private void mcbxAtendido_CheckedChanged_1(object sender, EventArgs e)
@@ -607,7 +644,7 @@ namespace TCC2
             else
                 mcbxAtendido.Checked = false;
 
-            tabMenu_Click(sender, e);
+            CarregarCardConsultas();
         }
 
         private void mcbxAtendidoFuturo_CheckedChanged(object sender, EventArgs e)
@@ -624,7 +661,7 @@ namespace TCC2
             else
                 mcbxAtendidoFuturo.Checked = false;
 
-            tabMenu_Click(sender, e);
+            CarregarCardConsultas();
         }
 
         private void mcbxCancelarFuturo_CheckedChanged(object sender, EventArgs e)
@@ -641,7 +678,7 @@ namespace TCC2
             else
                 mcbxCancelarFuturo.Checked = false;
 
-            tabMenu_Click(sender, e);
+            CarregarCardConsultas();
         }
 
         private void CancelarAtendimento(string data, string paciente, bool atendido, bool retorno)
@@ -1248,7 +1285,77 @@ namespace TCC2
                 catch { }
             }
         }
+        private void tbAnamnese_Enter(object sender, EventArgs e)
+        {
+            var templates = anamneseDAO.CarregarAnamneseConfig();
 
+            if (templates is null || templates.Count == 0)
+            {
+                return;
+            }
+            cbxCarregarTemplate.Items.Clear();
+            templates.ForEach(x =>
+            {
+                cbxCarregarTemplate.Items.Add(x.Template);
+            });
+        }
+
+        private void cbxCarregarTemplate_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var templates = anamneseDAO.CarregarAnamneseTemplate(cbxCarregarTemplate.Text);
+
+            if (templates is null || templates.Count == 0)
+            {
+                return;
+            }
+
+            templates.ForEach(x =>
+            {
+                rtxtAnamnese.Text = x.Texto;
+            });
+        }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            cbxCarregarTemplate.Text = "";
+        }
+        private void txtPacienteAnamnese_TextChanged(object sender, EventArgs e)
+        {
+            loadStart();
+            var listaCardapio = anamneseDAO.CarregarDataAnamnese(Convert.ToInt32(PacienteModel.codPacienteCard));
+
+            if (listaCardapio == null || listaCardapio.Count == 0)
+            {
+                cbxDataAnamnese.Visible = false;
+                loadStop();
+                return;
+            }
+
+            cbxDataAnamnese.Visible = true;
+
+            listaCardapio.ForEach(x =>
+            {
+                cbxDataAnamnese.Items.Add(x);
+            });
+            loadStop();
+        }
+
+        private void cbxDataAnamnese_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var anamnese = anamneseDAO.CarregarAnamnese(cbxDataAnamnese.Text);
+
+            if (anamnese == null || anamnese.Count <= 0)
+            {
+                return;
+            }
+
+            anamnese.ForEach(x =>
+            {
+
+                rtxtAnamnese.Text = x.descAnamnese;
+
+            });
+        }
         public static Bitmap ByteToImage(byte[] blob)
         {
             MemoryStream mStream = new MemoryStream();
@@ -1261,6 +1368,11 @@ namespace TCC2
 
         private void _btnSalvar_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtNome.Text))
+            {
+                nMensagemAviso("Necessário informar pelo menos o nome!");
+                return;
+            }
             loadStart();
             string CPF = txtCPF.Text.Replace("-", "").Replace(".", "");
             string CEP = txtCEP.Text.Replace("-", "");
@@ -1414,6 +1526,14 @@ namespace TCC2
             //    return;
             //}
         }
+        private void btnConfigAnamnese_Click(object sender, EventArgs e)
+        {
+            using (frmTemplatesAnamnese frm = new frmTemplatesAnamnese())
+            {
+                frm.ShowDialog();
+            }
+        }
+
         private void btnSearchPatient_Click(object sender, EventArgs e)
         {
             pacienteDAO.Buscar(txtNome.Text);
@@ -1593,6 +1713,11 @@ namespace TCC2
                 Convert.ToDouble(txtQuadril.Text),
                 Convert.ToDouble(txtTorax.Text));
 
+            ClearCamposAntro();
+        }
+
+        private void ClearCamposAntro()
+        {
             txtPacienteAntro.Text = string.Empty;
             txtAltura.Text = string.Empty;
             txtAntebraco.Text = string.Empty;
@@ -1605,10 +1730,20 @@ namespace TCC2
             txtQuadril.Text = string.Empty;
             txtTorax.Text = string.Empty;
         }
+
         private void BuscadorPaciente()
         {
             frmBuscarPaciente buscaPacientes = new frmBuscarPaciente(this);
             buscaPacientes.ShowDialog();
+        }
+
+        private void dtgRefeicoes_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            foreach (DataGridViewRow row in dtgRefeicoes.Rows)
+            {
+                RecalcularMacroNutrientes(dtgRefeicoes, Convert.ToDecimal(row.Cells[qtd.Index].Value));
+                CarregarGrafico(Convert.ToDouble(row.Cells[prot.Index].Value), Convert.ToDouble(row.Cells[carbo.Index].Value), Convert.ToDouble(row.Cells[lipidio.Index].Value));
+            }
         }
         #endregion
 
@@ -1635,9 +1770,14 @@ namespace TCC2
         }
         private void btnApagarCardapio_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(cbxDataConsulta.Text))
+            {
+                nMensagemAviso("Informar a data do cardápio a ser deletado", this);
+                return;
+            }
             if (!String.IsNullOrEmpty(txtPacienteConsultaCardapio.Text))
             {
-                cardapioDAO.Deletar();
+                cardapioDAO.Deletar(cbxDataConsulta.Text);
                 trwDadosCard.Nodes.Clear();
                 trwDadosCard.Columns.Clear();
                 trwDadosCard.Refresh();
@@ -2372,6 +2512,29 @@ namespace TCC2
             txtHoraInicio.Text = Convert.ToString(dtgConfigHorario.CurrentRow.Cells["horaInicio"].Value);
             txtHoraFim.Text = Convert.ToString(dtgConfigHorario.CurrentRow.Cells["horaFim"].Value);
         }
+        private void txtHoraInicio_Validated(object sender, EventArgs e)
+        {
+            txtHoraInicio.Text = formatarHora(txtHoraInicio.Text);
+        }
+
+        private void txtHoraFim_Validated(object sender, EventArgs e)
+        {
+            txtHoraInicio.Text = formatarHora(txtHoraInicio.Text);
+        }
+
+        private void btnExcluirPerm_Click(object sender, EventArgs e)
+        {
+            permissaoDAO.RemoverPermissao(cbxUsuarioPerm.Text, cbxTelaLiberarPerm.Text);
+        }
+
+        private void dtgPermUsuarios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 && e.ColumnIndex < 0)
+                return;
+
+            cbxUsuarioPerm.Text = dtgPermUsuarios.Rows[e.RowIndex].Cells["usuario"].Value.ToString();
+            cbxTelaLiberarPerm.Text = dtgPermUsuarios.Rows[e.RowIndex].Cells["programa"].Value.ToString();
+        }
         #endregion
 
         private void tbSobre_Enter(object sender, EventArgs e)
@@ -2407,91 +2570,10 @@ namespace TCC2
             e.Cancel = true;
         }
 
-        private void dtgRefeicoes_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        private void btnClearAntro_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dtgRefeicoes.Rows)
-            {
-                RecalcularMacroNutrientes(dtgRefeicoes, Convert.ToDecimal(row.Cells[qtd.Index].Value));
-                CarregarGrafico(Convert.ToDouble(row.Cells[prot.Index].Value), Convert.ToDouble(row.Cells[carbo.Index].Value), Convert.ToDouble(row.Cells[lipidio.Index].Value));
-            }
+            ClearCamposAntro();
         }
 
-        private void txtPacienteAnamnese_TextChanged(object sender, EventArgs e)
-        {
-            loadStart();
-            var listaCardapio = anamneseDAO.CarregarDataAnamnese(Convert.ToInt32(PacienteModel.codPacienteCard));
-
-            if (listaCardapio == null || listaCardapio.Count == 0)
-            {
-                cbxDataAnamnese.Visible = false;
-                loadStop();
-                return;
-            }
-
-            cbxDataAnamnese.Visible = true;
-
-            listaCardapio.ForEach(x =>
-            {
-                cbxDataAnamnese.Items.Add(x);
-            });
-            loadStop();
-        }
-
-        private void cbxDataAnamnese_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var anamnese = anamneseDAO.CarregarAnamnese(cbxDataAnamnese.Text);
-
-            if (anamnese == null || anamnese.Count <= 0)
-            {
-                return;
-            }
-
-            anamnese.ForEach(x =>
-            {
-
-                rtxtAnamnese.Text = x.descAnamnese;
-
-            });
-        }
-
-        private void btnConfigAnamnese_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tbAnamnese_Enter(object sender, EventArgs e)
-        {            
-            var templates = anamneseDAO.CarregarAnamneseConfig();
-
-            if (templates is null || templates.Count == 0)
-            {
-                return;
-            }
-            cbxCarregarTemplate.Items.Clear();
-            templates.ForEach(x =>
-            {
-                cbxCarregarTemplate.Items.Add(x.Template);
-            });
-        }
-
-        private void cbxCarregarTemplate_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var templates = anamneseDAO.CarregarAnamneseTemplate(cbxCarregarTemplate.Text);
-
-            if (templates is null || templates.Count == 0)
-            {
-                return;
-            }
-
-            templates.ForEach(x =>
-            {
-                rtxtAnamnese.Text = x.Texto;
-            });
-        }
-
-        private void btnLimpar_Click(object sender, EventArgs e)
-        {
-            cbxCarregarTemplate.Text = "";
-        }
     }
 }

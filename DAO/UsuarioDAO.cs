@@ -282,7 +282,7 @@ namespace TCC2
                 {
                     while (dr.Read())
                     {
-                        return Convert.ToBoolean(Convert.ToString(dr["dataAtual"])==Convert.ToString(DateTime.Now));
+                        return Convert.ToBoolean(Convert.ToDateTime(dr["dataAtual"])>=Convert.ToDateTime(DateTime.Now));
                     }
                 }
                     db.Database.Connection.Close();

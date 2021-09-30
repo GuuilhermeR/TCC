@@ -22,6 +22,7 @@ namespace TCC2
             //Application.Run(new frmCadastro());
             //Application.Run(new frmEsqueciSenha());
             //Application.Run(new frmWait());
+            //Application.Run(new frmTemplatesAnamnese());
         }
     }
 }

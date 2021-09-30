@@ -8,13 +8,13 @@ using TCC2;
 using System.Collections.Generic;
 using TCC2.Banco_de_Dados;
 using static Classes.HelperFuncoes;
+using Model;
 
 namespace TCC2
 {
     public class CardapioDAO
     {
-        public static string codPacienteCard = "";
-        public static string nomePacienteCard = "";
+        
 
         public CardapioDAO()
         {
@@ -27,11 +27,11 @@ namespace TCC2
                 try
                 {
                     var cardUpdt = (from card in BancoDadosSingleton.Instance.Cardapio
-                                    where card.codPaciente == codPaciente && card.Data == data
+                                    where card.codPaciente == codPaciente && card.data == data
                                     select card).Single();
 
                     cardUpdt.codPaciente = codPaciente;
-                    cardUpdt.Data = data;
+                    cardUpdt.data = data;
                     cardUpdt.usuarioResp = usuario;
                     cardUpdt.codAlimento = codAlimento;
                     cardUpdt.medidaCaseiraQtde = medidaCaseiraQtde;
@@ -55,7 +55,7 @@ namespace TCC2
                     Cardapio cardapioInsert = new Cardapio();
 
                     cardapioInsert.codPaciente = codPaciente;
-                    cardapioInsert.Data = data;
+                    cardapioInsert.data = data;
                     cardapioInsert.usuarioResp = usuario;
                     cardapioInsert.codAlimento = codAlimento;
                     cardapioInsert.medidaCaseiraQtde = medidaCaseiraQtde;
@@ -79,7 +79,7 @@ namespace TCC2
             try
             {
                 var cardapio = ((from card in BancoDadosSingleton.Instance.Cardapio
-                                 where card.codPaciente == codPaciente && card.Data == data
+                                 where card.codPaciente == codPaciente && card.data == data
                                  select card).Distinct()).ToList();
 
                 if (cardapio.Count > 0)
@@ -103,7 +103,7 @@ namespace TCC2
             {
                 var cardapio = ((from card in BancoDadosSingleton.Instance.Cardapio
                                  where card.codPaciente == codPaciente
-                                 select card.Data).Distinct()).ToList();
+                                 select card.data).Distinct()).ToList();
 
                 if (cardapio.Count > 0)
                 {
@@ -122,12 +122,12 @@ namespace TCC2
 
         public void Deletar()
         {
-            if (!String.IsNullOrEmpty(codPacienteCard))
+            if (!String.IsNullOrEmpty(PacienteModel.codPacienteCard))
             {
                 using (var db = new NutreasyEntities())
                 {
                     var delete = db.Database.Connection.CreateCommand();
-                    delete.CommandText = $"DELETE FROM Cardapio WHERE codPaciente = {codPacienteCard}";
+                    delete.CommandText = $"DELETE FROM Cardapio WHERE codPaciente = {PacienteModel.codPacienteCard}";
                     db.Database.Connection.Open();
                     delete.ExecuteNonQuery();
                     db.Database.Connection.Close();

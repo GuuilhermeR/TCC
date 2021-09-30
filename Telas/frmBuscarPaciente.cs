@@ -1,5 +1,6 @@
 ﻿using MaterialSkin;
 using MaterialSkin.Controls;
+using Model;
 using ProjetoTCC;
 using System;
 using System.Data;
@@ -74,8 +75,8 @@ namespace TCC2
             if (e.RowIndex >= 0)
                 if (e.ColumnIndex >= 0)
                 {
-                    CardapioDAO.codPacienteCard = dtgPacientes.Rows[e.RowIndex].Cells["codPaciente"].Value.ToString();
-                    CardapioDAO.nomePacienteCard = dtgPacientes.Rows[e.RowIndex].Cells["nome"].Value.ToString();
+                    PacienteModel.codPacienteCard = dtgPacientes.Rows[e.RowIndex].Cells["codPaciente"].Value.ToString();
+                    PacienteModel.nomePacienteCard = dtgPacientes.Rows[e.RowIndex].Cells["nome"].Value.ToString();
                     frmBuscarPaciente.ActiveForm.Close();
                 }
         }

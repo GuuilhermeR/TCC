@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    class PacienteModel
+    public class PacienteModel
     {
+
+        public static string codPacienteCard = "";
+        public static string nomePacienteCard = "";
+        public PacienteModel() { }
     }
+
 }

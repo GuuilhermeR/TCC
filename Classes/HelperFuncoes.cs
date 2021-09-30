@@ -21,7 +21,7 @@ namespace Classes
                 tLoad = new Thread(ShowWait);
                 tLoad.Start();
             }
-            catch{}
+            catch { }
         }
 
         public static void loadStop()
@@ -30,19 +30,20 @@ namespace Classes
             {
                 tLoad.Abort();
             }
-            catch{}
+            catch { }
         }
 
         public static void ShowWait()
         {
-            try
+            using (frmWait wait = new frmWait())
             {
-                using (frmWait wait = new frmWait())
+                tLoad.Join();
+                try
                 {
                     wait.ShowDialog();
                 }
+                catch { }
             }
-            catch { }            
         }
 
         public static void FormatView(MaterialSkin.Controls.MaterialForm form)

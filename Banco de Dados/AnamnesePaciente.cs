@@ -15,10 +15,12 @@ namespace TCC2.Banco_de_Dados
     public partial class AnamnesePaciente
     {
         public long ID { get; set; }
-        public string descAnamnese { get; set; }
         public Nullable<long> codPaciente { get; set; }
+        public string descAnamnese { get; set; }
         public string Data { get; set; }
+        public string TemplateConfig { get; set; }
     
+        public virtual AnamneseConfig AnamneseConfig { get; set; }
         public virtual Paciente Paciente { get; set; }
     }
 }

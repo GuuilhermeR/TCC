@@ -5,24 +5,26 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="8f6c9108db964b7b96660290e4821099" Name="Diagram1" ZoomLevel="73">
-        <EntityTypeShape EntityType="mainModel.Alimentos" Width="1.5" PointX="12" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="mainModel.Login" Width="1.5" PointX="7.5" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="mainModel.MedidaCaseira" Width="1.5" PointX="12.125" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="mainModel.Paciente" Width="1.5" PointX="9.875" PointY="5.375" IsExpanded="true" />
-        <AssociationConnector Association="mainModel.FK_MedidaCaseira_0_0" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="mainModel.Permissao" Width="1.5" PointX="4.875" PointY="1.625" />
-        <AssociationConnector Association="mainModel.FK_Permissao_0_0" />
-        <EntityTypeShape EntityType="mainModel.AnamnesePaciente" Width="1.5" PointX="7.5" PointY="9.75" />
-        <AssociationConnector Association="mainModel.FK_AnamnesePaciente_0_0" />
-        <EntityTypeShape EntityType="mainModel.ConfiguracoesUsuarios" Width="1.5" PointX="4.75" PointY="5.375" />
-        <AssociationConnector Association="mainModel.FK_ConfiguracoesUsuarios_0_0" />
-        <EntityTypeShape EntityType="mainModel.Cardapio" Width="1.5" PointX="9.75" PointY="1.5" />
+        <EntityTypeShape EntityType="mainModel.Agenda" Width="1.5" PointX="8.75" PointY="6.75" />
+        <EntityTypeShape EntityType="mainModel.Alimentos" Width="1.5" PointX="3.75" PointY="1.125" />
+        <EntityTypeShape EntityType="mainModel.AnamneseConfig" Width="1.5" PointX="0.75" PointY="1.75" />
+        <EntityTypeShape EntityType="mainModel.AnamnesePaciente" Width="1.5" PointX="3" PointY="5.375" />
+        <EntityTypeShape EntityType="mainModel.Antropometria" Width="1.5" PointX="3" PointY="11.875" />
+        <EntityTypeShape EntityType="mainModel.Cardapio" Width="1.5" PointX="6" PointY="5" />
+        <EntityTypeShape EntityType="mainModel.ConfiguracoesUsuarios" Width="1.5" PointX="11" PointY="1" />
+        <EntityTypeShape EntityType="mainModel.Login" Width="1.5" PointX="8.75" PointY="2" />
+        <EntityTypeShape EntityType="mainModel.MedidaCaseira" Width="1.5" PointX="6" PointY="1.625" />
+        <EntityTypeShape EntityType="mainModel.Paciente" Width="1.5" PointX="0.75" PointY="4.375" />
+        <EntityTypeShape EntityType="mainModel.Permissao" Width="1.5" PointX="11" PointY="4" />
         <AssociationConnector Association="mainModel.FK_Cardapio_0_0" />
-        <AssociationConnector Association="mainModel.FK_Cardapio_1_0" />
-        <EntityTypeShape EntityType="mainModel.Agenda" Width="1.5" PointX="7.375" PointY="1.5" />
-        <EntityTypeShape EntityType="mainModel.Antropometria" Width="1.5" PointX="12.125" PointY="8.875" />
+        <AssociationConnector Association="mainModel.FK_MedidaCaseira_0_0" />
+        <AssociationConnector Association="mainModel.FK_AnamnesePaciente_0_0" />
+        <AssociationConnector Association="mainModel.FK_AnamnesePaciente_1_0" />
         <AssociationConnector Association="mainModel.FK_Antropometria_0_0" />
-        </Diagram>
+        <AssociationConnector Association="mainModel.FK_Cardapio_1_0" />
+        <AssociationConnector Association="mainModel.FK_ConfiguracoesUsuarios_0_0" />
+        <AssociationConnector Association="mainModel.FK_Permissao_0_0" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

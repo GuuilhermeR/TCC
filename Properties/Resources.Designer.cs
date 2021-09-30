@@ -173,6 +173,16 @@ namespace TCC2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap diagram_43_24474__1_ {
+            get {
+                object obj = ResourceManager.GetObject("diagram-43_24474 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap iconTCC_removebg_preview__1____Copia {
             get {
                 object obj = ResourceManager.GetObject("iconTCC-removebg-preview (1) - Copia", resourceCulture);

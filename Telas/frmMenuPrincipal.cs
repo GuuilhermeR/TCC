@@ -26,6 +26,7 @@ using System.Globalization;
 using Aspose.Cells;
 using TCC2.Properties;
 using System.Threading;
+using Model;
 
 namespace TCC2
 {
@@ -716,7 +717,7 @@ namespace TCC2
         private void btnBuscarPacienteAgendamento_Click(object sender, EventArgs e)
         {
             BuscadorPaciente();
-            txtPacienteAgenda.Text = CardapioDAO.nomePacienteCard;
+            txtPacienteAgenda.Text = PacienteModel.nomePacienteCard;
         }
         #endregion
 
@@ -1031,7 +1032,7 @@ namespace TCC2
                         mCbxTabelasMedCas.Items.Add(x.nomeTabela);
                 });
 
-            var listaMedCaseira = medidaCaseiraDAO.Buscar(0,string.Empty);
+            var listaMedCaseira = medidaCaseiraDAO.Buscar(0, string.Empty);
 
             if (listaMedCaseira == null)
                 return;
@@ -1198,6 +1199,7 @@ namespace TCC2
         {
             if (e.RowIndex >= 0 & e.ColumnIndex >= 0)
             {
+                loadStart();
                 txtCodPaciente.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["codPaciente"].Value);
                 txtNome.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["nome"].Value);
                 txtCPF.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["CPF"].Value);
@@ -1218,6 +1220,7 @@ namespace TCC2
                 }
                 tbPaciente.SelectedTab = tbCadastro;
                 FormatarCampos();
+                loadStop();
             }
         }
 
@@ -1258,12 +1261,14 @@ namespace TCC2
 
         private void _btnSalvar_Click(object sender, EventArgs e)
         {
+            loadStart();
             string CPF = txtCPF.Text.Replace("-", "").Replace(".", "");
             string CEP = txtCEP.Text.Replace("-", "");
             pacienteDAO.Salvar(Convert.ToString(txtNome.Text), Convert.ToDouble(CPF), Convert.ToString(txtDtNasc.Text), Convert.ToString(txtEmail.Text), Convert.ToDouble(CEP),
                             Convert.ToDouble(txtNumero.Text), Convert.ToString(txtTelefone.Text), Convert.ToString(txtCelular.Text), Convert.ToString(txtEndereco.Text), Convert.ToString(txtBairro.Text)
                             , Convert.ToString(txtMunicipio.Text), Convert.ToString(txtUF.Text), Convert.ToString(txtComplemento.Text), this.vetorImagens);
             LimparCamposPaciente();
+            loadStop();
             tbCadastro_Enter(sender, e);
         }
 
@@ -1540,7 +1545,7 @@ namespace TCC2
         private void btnFindPacienteAnamnese_Click(object sender, EventArgs e)
         {
             btnPacienteCardapio_Click(sender, e);
-            txtPacienteAnamnese.Text = CardapioDAO.nomePacienteCard;
+            txtPacienteAnamnese.Text = PacienteModel.nomePacienteCard;
         }
         private void txtUF_Leave(object sender, EventArgs e)
         {
@@ -1551,13 +1556,16 @@ namespace TCC2
         {
             loadStart();
             BuscadorPaciente();
-            txtPacienteAntro.Text = CardapioDAO.nomePacienteCard;
+            txtPacienteAntro.Text = PacienteModel.nomePacienteCard;
             loadStop();
         }
 
         private void btnSalvarAnamnese_Click(object sender, EventArgs e)
         {
-            anamneseDAO.Salvar(Convert.ToInt32(CardapioDAO.codPacienteCard), Convert.ToString(rtxtAnamnese.Text));
+            anamneseDAO.Salvar(Convert.ToInt32(PacienteModel.codPacienteCard), Convert.ToString(rtxtAnamnese.Text));
+            txtPaciente.Text = string.Empty;
+            cbxDataAnamnese.Items.Clear();
+            cbxCarregarTemplate.Items.Clear();
         }
 
         private void txtDtNasc_Leave(object sender, EventArgs e)
@@ -1567,13 +1575,13 @@ namespace TCC2
 
         private void btnSalvarAntro_Click(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(CardapioDAO.codPacienteCard) == 0)
+            if (Convert.ToInt32(PacienteModel.codPacienteCard) == 0)
             {
                 nMensagemAlerta("É necessário informar o paciente");
                 return;
             }
 
-            antropometriaDAO.Salvar(Convert.ToInt32(CardapioDAO.codPacienteCard),
+            antropometriaDAO.Salvar(Convert.ToInt32(PacienteModel.codPacienteCard),
                 Convert.ToDouble(txtAltura.Text),
                 Convert.ToDouble(txtAntebraco.Text),
                 Convert.ToDouble(txtBraco.Text),
@@ -1584,6 +1592,18 @@ namespace TCC2
                 Convert.ToDouble(txtPunho.Text),
                 Convert.ToDouble(txtQuadril.Text),
                 Convert.ToDouble(txtTorax.Text));
+
+            txtPacienteAntro.Text = string.Empty;
+            txtAltura.Text = string.Empty;
+            txtAntebraco.Text = string.Empty;
+            txtBraco.Text = string.Empty;
+            txtCintura.Text = string.Empty;
+            txtCoxa.Text = string.Empty;
+            txtPanturrilha.Text = string.Empty;
+            txtPeso.Text = string.Empty;
+            txtPunho.Text = string.Empty;
+            txtQuadril.Text = string.Empty;
+            txtTorax.Text = string.Empty;
         }
         private void BuscadorPaciente()
         {
@@ -1683,7 +1703,7 @@ namespace TCC2
 
                 foreach (DataGridViewRow row in linhaAdicionada)
                 {
-                    var medCaseiraItens = medidaCaseiraDAO.Buscar(Convert.ToInt32(row.Cells["codAlimento"].Value),string.Empty);
+                    var medCaseiraItens = medidaCaseiraDAO.Buscar(Convert.ToInt32(row.Cells["codAlimento"].Value), string.Empty);
 
                     if (medCaseiraItens is null)
                         continue;
@@ -1715,10 +1735,10 @@ namespace TCC2
 
         private void txtPacienteConsultaCardapio_TextChanged(object sender, EventArgs e)
         {
-            if (CardapioDAO.codPacienteCard == "")
+            if (PacienteModel.codPacienteCard == "")
                 return;
 
-            var listaCardapio = cardapioDAO.ConsultarDataConsultas(Convert.ToInt32(CardapioDAO.codPacienteCard));
+            var listaCardapio = cardapioDAO.ConsultarDataConsultas(Convert.ToInt32(PacienteModel.codPacienteCard));
 
             if (listaCardapio == null)
             {
@@ -1776,10 +1796,10 @@ namespace TCC2
 
             double Kcal = Convert.ToDouble(lblValorKcal.Text.Split(' ')[0]);
 
-            bool Update = Convert.ToBoolean(cardapioDAO.Consultar(Convert.ToInt32(CardapioDAO.codPacienteCard), txtDataCardapio.Text).Count>0);
+            bool Update = Convert.ToBoolean(cardapioDAO.Consultar(Convert.ToInt32(PacienteModel.codPacienteCard), txtDataCardapio.Text).Count > 0);
 
             foreach (DataGridViewRow row in dtgRefeicoes.Rows)
-                cardapioDAO.Salvar(Convert.ToInt32(CardapioDAO.codPacienteCard),
+                cardapioDAO.Salvar(Convert.ToInt32(PacienteModel.codPacienteCard),
                                                     Convert.ToInt32(row.Cells["codAlimento"].Value),
                                                     Convert.ToString(cbxRefeicao.Text),
                                                     Convert.ToInt32(row.Cells["qtd"].Value),
@@ -1788,7 +1808,7 @@ namespace TCC2
                                                     Convert.ToString(usuarioDAO.getUsuario()),
                                                     txtDataCardapio.Text,
                                                     Update);
-            
+
             btnApagar_Click(sender, e);
             btnCancelarCardapio_Click(sender, e);
             loadStop();
@@ -1797,7 +1817,7 @@ namespace TCC2
         private void btnPacienteCardapio_Click(object sender, EventArgs e)
         {
             BuscadorPaciente();
-            txtPaciente.Text = CardapioDAO.nomePacienteCard;
+            txtPaciente.Text = PacienteModel.nomePacienteCard;
         }
 
         private void dtgConAlimento_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
@@ -1866,7 +1886,7 @@ namespace TCC2
         {
             frmBuscarPaciente buscaPacientes = new frmBuscarPaciente(this);
             buscaPacientes.ShowDialog();
-            txtPacienteConsultaCardapio.Text = CardapioDAO.nomePacienteCard;
+            txtPacienteConsultaCardapio.Text = PacienteModel.nomePacienteCard;
         }
 
         private void dtgRefeicoes_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
@@ -1884,8 +1904,8 @@ namespace TCC2
             cbxRefeicao.Text = null;
             lblValorKcal.Text = null;
             cbxTabelaAlimentoCardapio.SelectedIndex = -1;
-            CardapioDAO.codPacienteCard = null;
-            CardapioDAO.nomePacienteCard = null;
+            PacienteModel.codPacienteCard = null;
+            PacienteModel.nomePacienteCard = null;
             txtPacienteConsultaCardapio.Clear();
             trwDadosCard.Nodes.Clear();
         }
@@ -1926,8 +1946,8 @@ namespace TCC2
         private void btnCancelarCardapio_Click(object sender, EventArgs e)
         {
             txtPaciente.Text = "";
-            CardapioDAO.codPacienteCard = "";
-            CardapioDAO.nomePacienteCard = "";
+            PacienteModel.codPacienteCard = "";
+            PacienteModel.nomePacienteCard = "";
             txtPacienteConsultaCardapio.Text = "";
             dtgRefeicoes.DataSource = null;
             dtgRefeicoes.Rows.Clear();
@@ -1978,7 +1998,7 @@ namespace TCC2
                 return;
             }
             loadStart();
-            var listaCardapio = cardapioDAO.Consultar(Convert.ToInt32(CardapioDAO.codPacienteCard), Convert.ToString(cbxDataConsulta.Text));
+            var listaCardapio = cardapioDAO.Consultar(Convert.ToInt32(PacienteModel.codPacienteCard), Convert.ToString(cbxDataConsulta.Text));
             if (listaCardapio == null)
             {
                 loadStop();
@@ -2020,7 +2040,7 @@ namespace TCC2
             Ceia.ImageIndex = 1;
             listaCardapio.ForEach(card =>
             {
-                dtgCardGrid.Rows.Add(card.Refeicao, card.Alimentos.nomeAlimento,card.medidaCaseiraQtde,card.kcal,card.Obs);
+                dtgCardGrid.Rows.Add(card.Refeicao, card.Alimentos.nomeAlimento, card.medidaCaseiraQtde, card.kcal, card.Obs);
                 switch (card.Refeicao)
                 {
                     case "Café da manhã":
@@ -2106,7 +2126,7 @@ namespace TCC2
                 return;
             }
 
-            using (frmGraficoPaciente grafico = new frmGraficoPaciente(Convert.ToInt32(CardapioDAO.codPacienteCard), txtPacienteAntro.Text))
+            using (frmGraficoPaciente grafico = new frmGraficoPaciente(Convert.ToInt32(PacienteModel.codPacienteCard), txtPacienteAntro.Text))
             {
                 grafico.ShowDialog();
             }
@@ -2209,6 +2229,7 @@ namespace TCC2
                 txtCRN.Text = dtgUsuarios.CurrentRow.Cells["crn"].Value.ToString();
             }
         }
+
         private void tbPermissao_Enter(object sender, EventArgs e)
         {
             loadStart();
@@ -2238,8 +2259,8 @@ namespace TCC2
             dtgPermUsuarios.Columns["programa"].HeaderText = "Tela";
             dtgUsuarios.AutoResizeColumns();
             loadStop();
-
         }
+
         private void txtUsuarioConfig_Leave(object sender, EventArgs e)
         {
             if (txtUsuarioConfig.Text != "")
@@ -2258,16 +2279,19 @@ namespace TCC2
                 nMensagemAlerta("É necessário informar o usuário no campo para remover.");
                 return;
             }
+            loadStart();
             usuarioDAO.Deletar(txtUsuarioConfig.Text);
+            loadStop();
             tbConfig_Enter(sender, e);
-
         }
 
         private void dtgUsuarios_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Delete)
             {
+                loadStart();
                 usuarioDAO.Deletar(Convert.ToString(dtgUsuarios.CurrentRow.Cells["usuario"].Value));
+                loadStop();
             }
         }
 
@@ -2317,9 +2341,13 @@ namespace TCC2
 
         private void CarregarConfigs()
         {
+            loadStart();
             var listaConfigs = configDAO.Consultar();
             if (listaConfigs == null)
+            {
+                loadStop();
                 return;
+            }
             DataTable dt = ConvertToDataTable(listaConfigs);
             dtgConfigHorario.DataSource = dt;
 
@@ -2330,6 +2358,8 @@ namespace TCC2
             dtgConfigHorario.Columns["horaFim"].HeaderText = "Fim";
 
             GetConfigAtendimento();
+            loadStop();
+
         }
 
         private void dtgConfigHorario_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -2346,7 +2376,7 @@ namespace TCC2
 
         private void tbSobre_Enter(object sender, EventArgs e)
         {
-            if (!VerificarPermissao(tabAgenda.Text))
+            if (!VerificarPermissao(tbSobre.Text))
             {
                 return;
             };
@@ -2386,5 +2416,82 @@ namespace TCC2
             }
         }
 
+        private void txtPacienteAnamnese_TextChanged(object sender, EventArgs e)
+        {
+            loadStart();
+            var listaCardapio = anamneseDAO.CarregarDataAnamnese(Convert.ToInt32(PacienteModel.codPacienteCard));
+
+            if (listaCardapio == null || listaCardapio.Count == 0)
+            {
+                cbxDataAnamnese.Visible = false;
+                loadStop();
+                return;
+            }
+
+            cbxDataAnamnese.Visible = true;
+
+            listaCardapio.ForEach(x =>
+            {
+                cbxDataAnamnese.Items.Add(x);
+            });
+            loadStop();
+        }
+
+        private void cbxDataAnamnese_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var anamnese = anamneseDAO.CarregarAnamnese(cbxDataAnamnese.Text);
+
+            if (anamnese == null || anamnese.Count <= 0)
+            {
+                return;
+            }
+
+            anamnese.ForEach(x =>
+            {
+
+                rtxtAnamnese.Text = x.descAnamnese;
+
+            });
+        }
+
+        private void btnConfigAnamnese_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbAnamnese_Enter(object sender, EventArgs e)
+        {            
+            var templates = anamneseDAO.CarregarAnamneseConfig();
+
+            if (templates is null || templates.Count == 0)
+            {
+                return;
+            }
+            cbxCarregarTemplate.Items.Clear();
+            templates.ForEach(x =>
+            {
+                cbxCarregarTemplate.Items.Add(x.Template);
+            });
+        }
+
+        private void cbxCarregarTemplate_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var templates = anamneseDAO.CarregarAnamneseTemplate(cbxCarregarTemplate.Text);
+
+            if (templates is null || templates.Count == 0)
+            {
+                return;
+            }
+
+            templates.ForEach(x =>
+            {
+                rtxtAnamnese.Text = x.Texto;
+            });
+        }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            cbxCarregarTemplate.Text = "";
+        }
     }
 }

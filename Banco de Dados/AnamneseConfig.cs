@@ -12,26 +12,18 @@ namespace TCC2.Banco_de_Dados
     using System;
     using System.Collections.Generic;
     
-    public partial class Login
+    public partial class AnamneseConfig
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Login()
+        public AnamneseConfig()
         {
-            this.ConfiguracoesUsuarios = new HashSet<ConfiguracoesUsuarios>();
-            this.Permissao = new HashSet<Permissao>();
+            this.AnamnesePaciente = new HashSet<AnamnesePaciente>();
         }
     
-        public string usuario { get; set; }
-        public string senha { get; set; }
-        public string nome { get; set; }
-        public string situacao { get; set; }
-        public string email { get; set; }
-        public string perfil { get; set; }
-        public string CRN { get; set; }
+        public string Template { get; set; }
+        public string Texto { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ConfiguracoesUsuarios> ConfiguracoesUsuarios { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Permissao> Permissao { get; set; }
+        public virtual ICollection<AnamnesePaciente> AnamnesePaciente { get; set; }
     }
 }

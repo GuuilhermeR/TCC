@@ -123,8 +123,10 @@ namespace TCC2
             {
                 return;
             };
+            loadStart();
             mCardAtendimentoAtual.BackColor = Color.Red;
             CarregarCardConsultas();
+            loadStop();
         }
 
         public void ImporterWorksheet(string caminhoExcel, OpenFileDialog ofd)
@@ -1752,8 +1754,6 @@ namespace TCC2
         #endregion
 
         #region Cardápio
-        //Ao invés de colocar medida caseira, para finalizar o básico do projeto, será possível apenas colocar quantidade em gramas. O gráfico irá carregar após 
-        //informar a quantidade em gramas (evento sair da célula) apenas. Posteriormente, como ajustes será implementado medidas caseiras.
         private void tbCardapio_Enter(object sender, EventArgs e)
         {
             if (!VerificarPermissao(tabCardapio.Text))
@@ -2579,5 +2579,12 @@ namespace TCC2
             ClearCamposAntro();
         }
 
+        private void tbAlimento_Enter(object sender, EventArgs e)
+        {
+            if (!VerificarPermissao("Alimento"))
+            {
+                return;
+            }
+        }
     }
 }

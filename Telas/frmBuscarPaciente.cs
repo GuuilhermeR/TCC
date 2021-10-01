@@ -37,8 +37,8 @@ namespace TCC2
         {
             FormatView(this);
 
-            var menu = new FrmMenuPrincipal("");
-            var listaPaciente = pacienteDAO.Buscar("");
+            var menu = new FrmMenuPrincipal(string.Empty,true);
+            var listaPaciente = pacienteDAO.Buscar(string.Empty);
             if (listaPaciente == null)
                 return;
             DataTable dt = menu.ConvertToDataTable(listaPaciente);

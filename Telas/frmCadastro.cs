@@ -20,7 +20,7 @@ namespace TCC2.Telas
         [Obsolete]
         private void mBtnCadastrar_Click(object sender, EventArgs e)
         {
-            string tipoPerfil = "";
+            string tipoPerfil = string.Empty;
 
             if (mchkEstudante.Checked)
                 tipoPerfil = "Estudante";
@@ -32,13 +32,13 @@ namespace TCC2.Telas
                 return;
             }
 
-            if (mLblUsuario.Text == "")
+            if (mLblUsuario.Text == string.Empty)
             {
                 nMensagemAlerta("É necessário informar o usuário");
                 return;
             }
             
-            if (mLblSenha.Text == "")
+            if (mLblSenha.Text == string.Empty)
             {
                 nMensagemAlerta("É necessário informar uma senha");
                 return;
@@ -71,7 +71,7 @@ namespace TCC2.Telas
         private string RandomString()
         {
             string nomeUsuario = mTxtNome.Text.ToString();
-            nomeUsuario = nomeUsuario.Replace(" ","");
+            nomeUsuario = nomeUsuario.Replace(" ",string.Empty);
             char[] buffer = new char[5];
 
             if(nomeUsuario.Length > 0)
@@ -92,8 +92,8 @@ namespace TCC2.Telas
 
         private void mTxtNome_Leave(object sender, EventArgs e)
         {
-            mLblUsuario.Text = "";
-            if (mLblUsuario.Text == "")
+            mLblUsuario.Text = string.Empty;
+            if (mLblUsuario.Text == string.Empty)
                 mLblUsuario.Text = RandomString();
         }
     }

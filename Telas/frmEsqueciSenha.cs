@@ -37,7 +37,7 @@ namespace TCC2.Telas
             {
                 retorno = EnviarEmail(x.email, "nutriez.suporte@gmail.com", "Recuperação de Senha", x.usuario);
             });
-            if (retorno != "")
+            if (retorno != string.Empty)
                 nMensagemAviso(retorno);
         }
 
@@ -69,7 +69,7 @@ namespace TCC2.Telas
                           <h4>Para acessar novamente o programa, é necessário que você utilize a senha que enviamos para você e após isso, poderá alterar a senha pelo nosso programa.</h4>
 
 
-                          <h4 style=""color:#ff0000;"">Não responda este e-mail.</h4>
+                          <h4 style=string.Emptycolor:#ff0000;string.Empty>Não responda este e-mail.</h4>
                        </body>
 
                       </html> ";

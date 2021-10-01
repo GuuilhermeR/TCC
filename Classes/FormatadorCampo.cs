@@ -18,7 +18,7 @@ namespace TCC2
             }
             catch
             {
-                return "";
+                return string.Empty;
             }
         }
 

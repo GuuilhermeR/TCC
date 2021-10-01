@@ -51,7 +51,7 @@ namespace TCC2.Telas
             this.mTxtEmailRecuperar.Name = "mTxtEmailRecuperar";
             this.mTxtEmailRecuperar.Size = new System.Drawing.Size(378, 50);
             this.mTxtEmailRecuperar.TabIndex = 0;
-            this.mTxtEmailRecuperar.Text = "";
+            this.mTxtEmailRecuperar.Text = string.Empty;
             this.mTxtEmailRecuperar.TrailingIcon = null;
             // 
             // mBtnRecuperar

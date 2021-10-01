@@ -23,7 +23,7 @@ namespace TCC2
 
         public void setNomeUsuario(string usuarioLogin)
         {
-            if (usuarioLogin == "")
+            if (usuarioLogin == string.Empty)
             {
                 return;
             }
@@ -84,7 +84,7 @@ namespace TCC2
         public List<Login> getUsuario(string usuario)
         {
             List<Login> usuarios = new List<Login>(); ;
-            if (usuario != "")
+            if (usuario != string.Empty)
             {
                 usuarios = ((from c in BancoDadosSingleton.Instance.Login where (c.usuario.ToUpper()).Contains(usuario.ToUpper()) select c).Distinct()).ToList();
             }
@@ -100,7 +100,7 @@ namespace TCC2
         public List<Login> getEmail(string usuario)
         {
             List<Login> emailUsuario = new List<Login>(); ;
-            if (usuario != "")
+            if (usuario != string.Empty)
             {
                 emailUsuario = ((from c in BancoDadosSingleton.Instance.Login where (c.usuario.ToUpper()).Contains(usuario.ToUpper()) select c).Distinct()).ToList();
             }
@@ -130,7 +130,7 @@ namespace TCC2
                     usuUpdate.email = email;
                     usuUpdate.situacao = situacao;
                     usuUpdate.perfil = tipoUsuario;
-                    if (crn != "")
+                    if (crn != string.Empty)
                         usuUpdate.CRN = crn;
 
                     BancoDadosSingleton.Instance.SaveChanges();
@@ -236,14 +236,14 @@ namespace TCC2
             const string charPerm = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789!@$?_-";
 
             
-            string permitido = "";
+            string permitido = string.Empty;
             permitido += charPerm;
 
             int caracteres_minimo = 5;
             int caracteres_maximo = 10;
             int numero_caracteres = Crypto.RandomInteger(caracteres_minimo, caracteres_maximo);
 
-            string _senha = "";
+            string _senha = string.Empty;
             _senha += RandomChar(charPerm);
 
             while (_senha.Length < numero_caracteres)
@@ -260,7 +260,7 @@ namespace TCC2
 
         private string RandomizeString(string str)
         {
-            string resultado = "";
+            string resultado = string.Empty;
             while (str.Length > 0)
             {
                 // Pega um numero aleatorio

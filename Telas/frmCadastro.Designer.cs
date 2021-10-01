@@ -58,7 +58,7 @@ namespace TCC2.Telas
             this.mTxtNome.Name = "mTxtNome";
             this.mTxtNome.Size = new System.Drawing.Size(307, 50);
             this.mTxtNome.TabIndex = 0;
-            this.mTxtNome.Text = "";
+            this.mTxtNome.Text = string.Empty;
             this.mTxtNome.TrailingIcon = null;
             this.mTxtNome.Leave += new System.EventHandler(this.mTxtNome_Leave);
             // 
@@ -80,7 +80,7 @@ namespace TCC2.Telas
             this.mLblUsuario.Name = "mLblUsuario";
             this.mLblUsuario.Size = new System.Drawing.Size(307, 50);
             this.mLblUsuario.TabIndex = 1;
-            this.mLblUsuario.Text = "";
+            this.mLblUsuario.Text = string.Empty;
             this.mLblUsuario.TrailingIcon = null;
             // 
             // mLblSenha
@@ -102,7 +102,7 @@ namespace TCC2.Telas
             this.mLblSenha.Password = true;
             this.mLblSenha.Size = new System.Drawing.Size(307, 50);
             this.mLblSenha.TabIndex = 2;
-            this.mLblSenha.Text = "";
+            this.mLblSenha.Text = string.Empty;
             this.mLblSenha.TrailingIcon = null;
             // 
             // mLblEmail
@@ -123,7 +123,7 @@ namespace TCC2.Telas
             this.mLblEmail.Name = "mLblEmail";
             this.mLblEmail.Size = new System.Drawing.Size(307, 50);
             this.mLblEmail.TabIndex = 4;
-            this.mLblEmail.Text = "";
+            this.mLblEmail.Text = string.Empty;
             this.mLblEmail.TrailingIcon = null;
             // 
             // mBtnCadastrar
@@ -204,7 +204,7 @@ namespace TCC2.Telas
             this.mtxtCRN.Name = "mtxtCRN";
             this.mtxtCRN.Size = new System.Drawing.Size(307, 50);
             this.mtxtCRN.TabIndex = 7;
-            this.mtxtCRN.Text = "";
+            this.mtxtCRN.Text = string.Empty;
             this.mtxtCRN.TrailingIcon = null;
             this.mtxtCRN.Visible = false;
             // 
@@ -227,7 +227,7 @@ namespace TCC2.Telas
             this.txtConfirmarSenha.Password = true;
             this.txtConfirmarSenha.Size = new System.Drawing.Size(307, 50);
             this.txtConfirmarSenha.TabIndex = 3;
-            this.txtConfirmarSenha.Text = "";
+            this.txtConfirmarSenha.Text = string.Empty;
             this.txtConfirmarSenha.TrailingIcon = null;
             // 
             // frmCadastro

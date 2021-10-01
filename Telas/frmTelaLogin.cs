@@ -40,14 +40,14 @@ namespace TCC2
             //}
 
             lblAviso.Visible = false;   
-            if(txtUsuario.Text == "")
+            if(txtUsuario.Text == string.Empty)
             {
                lblAviso.Text = "Informe o usuário.";
                lblAviso.Visible = true;
                lblAviso.ForeColor = Color.Red;
                return;
             }
-            if (txtSenha.Text == "")
+            if (txtSenha.Text == string.Empty)
             {
                 lblAviso.Text = "Informe a senha.";
                 lblAviso.Visible = true;
@@ -61,7 +61,7 @@ namespace TCC2
                 usuario.setNomeUsuario(txtUsuario.Text);
                 usuario.setUsuarioSenha(txtSenha.Text);
                 var usuarioLogado = usuario.getUsuario();
-                FrmMenuPrincipal menu = new FrmMenuPrincipal(usuarioLogado.ToString());
+                FrmMenuPrincipal menu = new FrmMenuPrincipal(usuarioLogado.ToString(),true);
                 menu.Show();
                 this.Hide();
             }
@@ -76,8 +76,8 @@ namespace TCC2
         [Obsolete]
         private void txtSenha_Leave(object sender, EventArgs e)
         {
-            if (txtUsuario.Text != "")
-                if (txtSenha.Text != "")
+            if (txtUsuario.Text != string.Empty)
+                if (txtSenha.Text != string.Empty)
                     btnLogar_Click(sender, e);
         }
 

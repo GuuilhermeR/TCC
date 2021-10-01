@@ -135,7 +135,7 @@ namespace ProjetoTCC
 
         public bool VerificarPacienteAgendado(string pacienteAgendar, DateTime dataAgendada)
         {
-            var agendado = "";
+            var agendado = string.Empty;
             var dataSemana = Convert.ToDateTime(dataAgendada).AddDays(5);
             try
             {
@@ -151,7 +151,7 @@ namespace ProjetoTCC
             {
                 return false;
             }
-            return Convert.ToBoolean(agendado != "");
+            return Convert.ToBoolean(agendado != string.Empty);
         }
 
         public void DeletarPacienteAgenda(string paciente, string data, string hora)

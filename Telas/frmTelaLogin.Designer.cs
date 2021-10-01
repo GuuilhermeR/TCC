@@ -78,8 +78,8 @@ namespace TCC2
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(303, 50);
             this.txtUsuario.TabIndex = 1;
-            this.txtUsuario.Tag = "";
-            this.txtUsuario.Text = "";
+            this.txtUsuario.Tag = string.Empty;
+            this.txtUsuario.Text = string.Empty;
             this.txtUsuario.TrailingIcon = null;
             // 
             // txtSenha
@@ -99,7 +99,7 @@ namespace TCC2
             this.txtSenha.Password = true;
             this.txtSenha.Size = new System.Drawing.Size(303, 50);
             this.txtSenha.TabIndex = 2;
-            this.txtSenha.Text = "";
+            this.txtSenha.Text = string.Empty;
             this.txtSenha.TrailingIcon = null;
             this.txtSenha.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSenha_KeyPress);
             this.txtSenha.Leave += new System.EventHandler(this.txtSenha_Leave);

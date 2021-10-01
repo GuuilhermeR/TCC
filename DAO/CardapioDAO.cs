@@ -14,18 +14,19 @@ namespace TCC2
 {
     public class CardapioDAO
     {
-        
+
 
         public CardapioDAO()
         {
         }
 
-        public void Salvar(int codPaciente, int codAlimento, string refeicao, double medidaCaseiraQtde, string obs, double kcal, string usuario, string data, bool Update)
-        {            
-            if (Update)
+        public string Salvar(int codPaciente, int codAlimento, string refeicao, double medidaCaseiraQtde, string obs, double kcal, string usuario, string data)
+        {
+            if (VerificarExiste(codPaciente, codAlimento,data,refeicao))
             {
                 try
                 {
+                    loadStart();
                     var cardUpdt = (from card in BancoDadosSingleton.Instance.Cardapio
                                     where card.codPaciente == codPaciente && card.data == data
                                     select card).Single();
@@ -41,17 +42,20 @@ namespace TCC2
 
                     BancoDadosSingleton.Instance.Cardapio.Add(cardUpdt);
                     BancoDadosSingleton.Instance.SaveChanges();
-                    nMensagemAviso("Cardápio foi atualizado!");
+                    loadStop();
+
                 }
                 catch (Exception ex)
                 {
-                    nMensagemErro("Ocorreu um erro ao salvar o Cardápio." + '\n' + ex.Message + '\n' + ex.InnerException);
+                    loadStop();
+                    return ("Ocorreu um erro ao salvar o Cardápio." + '\n' + ex.Message + '\n' + ex.InnerException);
                 }
             }
             else
             {
                 try
                 {
+                    loadStart();
                     Cardapio cardapioInsert = new Cardapio();
 
                     cardapioInsert.codPaciente = codPaciente;
@@ -65,22 +69,58 @@ namespace TCC2
 
                     BancoDadosSingleton.Instance.Cardapio.Add(cardapioInsert);
                     BancoDadosSingleton.Instance.SaveChanges();
-
+                    loadStop();
                 }
                 catch (Exception ex)
                 {
-                    Interaction.MsgBox("Ocorreu um erro ao salvar o Cardápio." + '\n' + ex.Message + '\n' + ex.InnerException, Constants.vbOKOnly, "Alerta");
+                    return ("Ocorreu um erro ao salvar o Cardápio." + '\n' + ex.Message + '\n' + ex.InnerException);
                 }
             }
+            return string.Empty;
         }
 
-        public List<Cardapio> Consultar(int codPaciente, string data)
+        public bool VerificarExiste(int codPaciente, int codAlimento, string data, string refeicao)
         {
             try
             {
+
                 var cardapio = ((from card in BancoDadosSingleton.Instance.Cardapio
+                                 where card.codPaciente == codPaciente && card.codAlimento == codAlimento && card.data == data && card.Refeicao == refeicao
+                                 select card).Distinct()).ToList();
+
+                if (cardapio.Count > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public List<Cardapio> Consultar(int codPaciente, string data, string refeicao)
+        {
+            try
+            {
+                List<Cardapio> cardapio = new List<Cardapio>();
+                if (!string.IsNullOrEmpty(refeicao))
+                {
+                    cardapio = ((from card in BancoDadosSingleton.Instance.Cardapio
+                                 where card.codPaciente == codPaciente && card.data == data && card.Refeicao == refeicao
+                                 select card).Distinct()).ToList();
+                }
+                else
+                {
+                    cardapio = ((from card in BancoDadosSingleton.Instance.Cardapio
                                  where card.codPaciente == codPaciente && card.data == data
                                  select card).Distinct()).ToList();
+                }
 
                 if (cardapio.Count > 0)
                 {

@@ -9,8 +9,8 @@ namespace Model
     public class PacienteModel
     {
 
-        public static string codPacienteCard = "";
-        public static string nomePacienteCard = "";
+        public static string codPacienteCard = string.Empty;
+        public static string nomePacienteCard = string.Empty;
         public PacienteModel() { }
     }
 

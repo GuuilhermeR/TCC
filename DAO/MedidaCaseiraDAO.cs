@@ -17,10 +17,12 @@ namespace TCC2
         {
         }
 
-        public void Salvar(string descricao, double qtd, int codAlimento)
+        public string Salvar(string descricao, double qtd, int codAlimento)
         {
             try
             {
+                loadStart();
+
                 MedidaCaseira medCasInsert = new MedidaCaseira();
 
                 medCasInsert.descricao = descricao;
@@ -29,12 +31,13 @@ namespace TCC2
 
                 BancoDadosSingleton.Instance.MedidaCaseira.Add(medCasInsert);
                 BancoDadosSingleton.Instance.SaveChanges();
-                nMensagemAlerta("Os dados foram salvos!");
+                loadStop();
             }
             catch (Exception ex)
             {
-                nMensagemAlerta("Ocorreu um erro ao salvar o Alimento." + '\n' + ex.Message + '\n' + ex.InnerException);
+                return "Ocorreu um erro ao salvar o Alimento." + '\n' + ex.Message + '\n' + ex.InnerException;
             }
+            return string.Empty;
         }
 
         public List<MedidaCaseira> Buscar(int codAlimento, string descricao)
@@ -85,7 +88,7 @@ namespace TCC2
                     delete.CommandText = $"DELETE FROM MedidaCaseira";
                     db.Database.Connection.Open();
                     delete.ExecuteNonQuery();
-                    db.Database.Connection.Close();        
+                    db.Database.Connection.Close();
                 }
             }
             catch (Exception ex)

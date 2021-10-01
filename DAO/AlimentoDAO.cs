@@ -34,8 +34,7 @@ namespace ProjetoTCC
                 alimentosInsert.nomeTabela = nomeTabela;
 
                 BancoDadosSingleton.Instance.Alimentos.Add(alimentosInsert);
-                BancoDadosSingleton.Instance.SaveChanges();
-                nMensagemAviso("Alimento foi salvo!");
+                BancoDadosSingleton.Instance.SaveChanges();                
             }
             catch (Exception ex)
             {
@@ -47,7 +46,7 @@ namespace ProjetoTCC
         {
             try
             {
-                var aliUpdate = (from ali in BancoDadosSingleton.Instance.Alimentos where ali.codAlimento == codAlimento select ali).Single();
+                var aliUpdate = (from ali in BancoDadosSingleton.Instance.Alimentos where ali.codAlimento == codAlimento  && ali.nomeTabela == nomeTabela select ali).Single();
 
                 aliUpdate.nomeAlimento = alimento;
                 aliUpdate.qtd = qtd;
@@ -55,11 +54,9 @@ namespace ProjetoTCC
                 aliUpdate.prot = proteina;
                 aliUpdate.carbo = carboidrato;
                 aliUpdate.lipidio = lipidio;
-                aliUpdate.nomeTabela = nomeTabela;
 
                 BancoDadosSingleton.Instance.Alimentos.Add(aliUpdate);
                 BancoDadosSingleton.Instance.SaveChanges();
-                nMensagemAviso("Alimento foi atualizado!");
             }
             catch (Exception ex)
             {
@@ -68,7 +65,7 @@ namespace ProjetoTCC
         }
         public bool VerificarAlimento(string alimentoVerificar)
         {
-            var alimentoRetorno = "";
+            var alimentoRetorno = string.Empty;
             try
             {
                 var Alimentos = (from ali in BancoDadosSingleton.Instance.Alimentos where (ali.nomeAlimento.ToUpper()).Contains(alimentoVerificar.ToUpper()) select ali).Single();
@@ -79,7 +76,7 @@ namespace ProjetoTCC
                 return false;
             }
 
-            if (alimentoRetorno != "")
+            if (alimentoRetorno != string.Empty)
             {
                 return true;
             }
@@ -136,16 +133,30 @@ namespace ProjetoTCC
             nMensagemErro("Alimento foi excluído");
         }
 
+        public void DeletarTableImportError(string tabela)
+        {
+            loadStart();
+            using (var db = new NutreasyEntities())
+            {
+                var delete = db.Database.Connection.CreateCommand();
+                delete.CommandText = $"DELETE FROM Alimentos WHERE nomeTabela = {tabela}";
+                db.Database.Connection.Open();
+                delete.ExecuteNonQuery();
+                db.Database.Connection.Close();
+            }
+            loadStop();
+        }
+
         public List<Alimentos> Buscar(string nomeAlimento, string nomeTabela)
         {
             try
             {
                 List<Alimentos> agenda = new List<Alimentos>();
-                if (nomeAlimento == "" && nomeTabela == "")
+                if (nomeAlimento == string.Empty && nomeTabela == string.Empty)
                 {
                     agenda = ((from a in BancoDadosSingleton.Instance.Alimentos select a).Distinct()).ToList();
                 }
-                else if (nomeAlimento != "" && nomeTabela != "")
+                else if (nomeAlimento != string.Empty && nomeTabela != string.Empty)
                 {
                     agenda = ((from a in BancoDadosSingleton.Instance.Alimentos where (a.nomeAlimento.ToUpper()).Contains(nomeAlimento.ToUpper()) && (a.nomeTabela.ToUpper()).Contains(nomeTabela.ToUpper()) select a).Distinct()).ToList();
                 }

@@ -67,7 +67,7 @@ namespace ProjetoTCC
 
                     BancoDadosSingleton.Instance.Paciente.Add(pacienteInsert);
                     BancoDadosSingleton.Instance.SaveChanges();
-                    MessageBox.Show($"");
+                    MessageBox.Show($"Paciente foi Salvo");
 
                 }
                 catch (DbEntityValidationException e)
@@ -90,8 +90,8 @@ namespace ProjetoTCC
 
         public bool VerificarPacienteExiste(string pacienteBuscar)
         {
-            var paciente = "";
-            var agendado = "";
+            var paciente = string.Empty;
+            var agendado = string.Empty;
             try
             {
                 paciente = (from a in BancoDadosSingleton.Instance.Agenda where a.paciente == pacienteBuscar select a.paciente).Single();
@@ -102,7 +102,7 @@ namespace ProjetoTCC
                 return false;
             }
 
-            if (agendado != "")
+            if (agendado != string.Empty)
             {
                 return true;
             }
@@ -127,7 +127,7 @@ namespace ProjetoTCC
             List<Paciente> paciente = new List<Paciente>();
             try
             {
-                if (nomePaciente != "")
+                if (nomePaciente != string.Empty)
                 {
                     var pacienteBuscar = (from p in BancoDadosSingleton.Instance.Paciente where (p.nome.ToUpper()).Contains(nomePaciente.ToUpper()) select p).ToList();
                     paciente = pacienteBuscar;

@@ -70,7 +70,7 @@ namespace TCC2.Telas
             // pictureBox1
             // 
             this.pictureBox1.Image = global::TCC2.Properties.Resources.Spinner_5_unscreen;
-            this.pictureBox1.Location = new System.Drawing.Point(59, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(50, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(122, 91);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;

@@ -74,10 +74,10 @@ namespace Classes
             if (Text == null)
                 Text = string.Empty;
             if (Text.Length > 10)
-                Text = "";
-            if (Text == "")
+                Text = string.Empty;
+            if (Text == string.Empty)
                 Text = Convert.ToString(DateTime.Today);
-            if (Text == "")
+            if (Text == string.Empty)
             {
             }
             if (Text.IndexOf("/") < 0)
@@ -85,7 +85,7 @@ namespace Classes
                 if (Text.Length <= 2)
                     Text = Text + "/" + DateTime.Today.Month + "/" + DateTime.Today.Year;
                 else if (Text.Length == 3 | Text.Length == 5 | Text.Length == 7)
-                    Text = "";
+                    Text = string.Empty;
                 else if (Text.Length == 4)
                     Text = (Strings.Left(Text, 2) + "/" + Strings.Right(Text, 2) + "/" + DateTime.Today.Year);
                 else if (Text.Length == 6)
@@ -99,7 +99,7 @@ namespace Classes
                 return Text;
             }
             else
-                return "";
+                return string.Empty;
         }
 
         public static DialogResult nMensagemErro(string mensagem, IWin32Window owner = null)
@@ -122,7 +122,7 @@ namespace Classes
         public static string formatarHora(string hora)
         {
             if (string.IsNullOrEmpty(hora))
-                return "";
+                return string.Empty;
 
             if (hora.Length.Equals(1))
             {

@@ -20,7 +20,7 @@ namespace Classes
             {
                 if (tLoad == null || !tLoad.ThreadState.Equals(ThreadState.Running) && tLoad.ThreadState.Equals(ThreadState.Aborted))
                 {
-                    tLoad = new Thread(ShowWait,50000);
+                    tLoad = new Thread(ShowWait);
                 }
                 else if (tLoad.ThreadState.Equals(ThreadState.Running))
                 {
@@ -28,7 +28,11 @@ namespace Classes
                 }
                 tLoad.Start();
             }
-            catch { }
+            catch
+            {
+                tLoad.Abort();
+                tLoad = new Thread(ShowWait);
+            }
         }
 
         public static void loadStop()
@@ -48,7 +52,11 @@ namespace Classes
                 {
                     wait.ShowDialog();
                 }
-                catch { }
+                catch
+                {
+                    tLoad.Abort();
+                    tLoad = new Thread(ShowWait);
+                }
             }
         }
 

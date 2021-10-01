@@ -205,65 +205,69 @@ namespace TCC2
 
                 while (dr.Read())
                 {
-                    if (Convert.ToDateTime(dr["data"]).ToString("dd/MM/yyyy") == DateTime.Now.ToString("dd/MM/yyyy") && (int)dr["Cancelado"] == 0)
+                    if (Convert.ToDateTime(dr["data"]) <= DateTime.Now || (int)dr["Cancelado"] == 1 || (bool)dr["atendido"] == true)
                     {
-                        //if (mlblNome.Text != "Nome" || mlblNomeFuturo.Text != "Nome")
-                        //    return;
+                        return;
+                    }
 
-                        if ((DateTime)dr["data"] <= DateTime.Now && (bool)dr["atendido"] != true && (int)dr["Cancelado"] == 0)
+                    //if (mlblNome.Text != "Nome" || mlblNomeFuturo.Text != "Nome")
+                    //    return;
+
+                    if ((DateTime)dr["data"] <= DateTime.Now && (bool)dr["atendido"] != true && (int)dr["Cancelado"] == 0)
+                    {
+                        mCardAtendimentoAtual.Visible = true;
+                        mlblNome.Text = (string)dr["paciente"];
+                        mlblHorario.Text = Convert.ToDateTime(dr["data"]).ToString("dd/MM/yyyy HH:mm");
+                        if ((bool)dr["retorno"])
                         {
-                            mCardAtendimentoAtual.Visible = true;
-                            mlblNome.Text = (string)dr["paciente"];
-                            mlblHorario.Text = Convert.ToDateTime(dr["data"]).ToString("dd/MM/yyyy HH:mm");
-                            if ((bool)dr["retorno"])
-                            {
-                                mlblObservação.Text = "Retorno";
-                            }
-                            else
-                            {
-                                mlblObservação.Text = "";
-                            }
-                            if ((bool)dr["atendido"])
-                            {
-                                mCardAtendimentoAtual.BackColor = Color.LightGreen;
-                            }
+                            mlblObservação.Text = "Retorno";
                         }
-                        else if ((DateTime)dr["data"] < DateTime.Now && (bool)dr["atendido"] != true && (int)dr["Cancelado"] == 0)
+                        else
                         {
-                            mCardAtendimentoFuturo.Visible = true;
-                            mlblNomeFuturo.Text = (string)dr["paciente"];
-                            mlblHoraFutura.Text = Convert.ToDateTime(dr["data"]).ToString("dd/MM/yyyy HH:mm");
-                            if ((bool)dr["retorno"])
-                            {
-                                mlblObservacaoFuturo.Text = "Retorno";
-                            }
-                            else
-                            {
-                                mlblObservacaoFuturo.Text = "";
-                            }
-                            if ((bool)dr["atendido"])
-                            {
-                                mCardAtendimentoFuturo.BackColor = Color.LightGreen;
-                            }
+                            mlblObservação.Text = "";
+                        }
+                        if ((bool)dr["atendido"])
+                        {
+                            mCardAtendimentoAtual.BackColor = Color.LightGreen;
+                        }
+                    }
+
+                    if ((DateTime)dr["data"] >= DateTime.Now && (bool)dr["atendido"] != true && (int)dr["Cancelado"] == 0)
+                    {
+                        mCardAtendimentoFuturo.Visible = true;
+                        mlblNomeFuturo.Text = (string)dr["paciente"];
+                        mlblHoraFutura.Text = Convert.ToDateTime(dr["data"]).ToString("dd/MM/yyyy HH:mm");
+                        if ((bool)dr["retorno"])
+                        {
+                            mlblObservacaoFuturo.Text = "Retorno";
+                        }
+                        else
+                        {
+                            mlblObservacaoFuturo.Text = "";
+                        }
+                        if ((bool)dr["atendido"])
+                        {
+                            mCardAtendimentoFuturo.BackColor = Color.LightGreen;
                         }
                     }
                 }
                 db.Database.Connection.Close();
                 if (primeiraVez)
                 {
-                    if (Convert.ToDateTime(mlblHorario.Text).AddMinutes(-10) >= DateTime.Now && Convert.ToDateTime(mlblHorario.Text).AddMinutes(10) <= DateTime.Now)
+                    if (Convert.ToDateTime(mlblHorario.Text).AddMinutes(-10) >= DateTime.Now && Convert.ToDateTime(mlblHorario.Text).AddMinutes(10) <= DateTime.Now && mCardAtendimentoAtual.Visible)
                     {
                         NutriEzIconNotify.ShowBalloonTip(10, "Atendimento agora", $"Você possui horário agora com: {Convert.ToString(mlblNome.Text)}", ToolTipIcon.Info);
                     }
-                    else if (Convert.ToDateTime(mlblHorario.Text) < DateTime.Now)
+                    else if (Convert.ToDateTime(mlblHorario.Text) < DateTime.Now && mCardAtendimentoFuturo.Visible)
                     {
                         NutriEzIconNotify.ShowBalloonTip(10, $"Atendimento às {Convert.ToDateTime(mlblHoraFutura.Text).ToString("HH:mm")}", $"Você possui horário marcado com: {Convert.ToString(mlblNomeFuturo.Text)} às {mlblHoraFutura.Text}", ToolTipIcon.Info);
                         dataHoraNotif = DateTime.Now;
+                        primeiraVez = false;
                     }
                 }
-                if (!primeiraVez && dataHoraNotif.AddMinutes(30) >= DateTime.Now)
+                if (!primeiraVez && dataHoraNotif.AddMinutes(30) >= DateTime.Now && dataHoraNotif.AddMinutes(30) <= DateTime.Now && mCardAtendimentoFuturo.Visible)
                 {
-                    NutriEzIconNotify.ShowBalloonTip(10, $"Atendimento às {Convert.ToDateTime(dr["data"]).ToString("HH:mm")}", $"Você possui horário marcado com: {Convert.ToString(mlblNomeFuturo.Text)} às {mlblHoraFutura.Text}", ToolTipIcon.Info);
+                    NutriEzIconNotify.ShowBalloonTip(10, $"Atendimento às {Convert.ToDateTime(mlblHoraFutura.Text).ToString("HH:mm")}", $"Você possui horário marcado com: {Convert.ToString(mlblNomeFuturo.Text)} às {mlblHoraFutura.Text}", ToolTipIcon.Info);
                 }
             }
 

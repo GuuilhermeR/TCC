@@ -20,11 +20,11 @@ namespace ProjetoTCC
 
         public SQLiteConnection objConexao;
 
-        public void Salvar(string nome, double cpf, string dtNasc, string email, double cep, double num, string telefone, string celular, string endereco, string bairro, string municipio, string uf, string complemento, byte[] vetorIMG)
+        public void Salvar(int codPaciente, string nome, double cpf, string dtNasc, string email, double cep, double num, string telefone, string celular, string endereco, string bairro, string municipio, string uf, string complemento, byte[] vetorIMG)
         {
-            if (VerificarPacienteExiste(nome))
+            if (VerificarPacienteExiste(codPaciente))
             {
-                var pacienteUpdate = (from c in BancoDadosSingleton.Instance.Paciente where c.nome == nome select c).Single();
+                var pacienteUpdate = (from c in BancoDadosSingleton.Instance.Paciente where c.codPaciente == codPaciente select c).Single();
 
                 pacienteUpdate.nome = nome;
                 pacienteUpdate.CPF = (long)cpf;
@@ -88,21 +88,19 @@ namespace ProjetoTCC
 
         }
 
-        public bool VerificarPacienteExiste(string pacienteBuscar)
+        public bool VerificarPacienteExiste(int pacienteBuscar)
         {
             var paciente = string.Empty;
-            var agendado = string.Empty;
             try
             {
-                paciente = (from a in BancoDadosSingleton.Instance.Agenda where a.paciente == pacienteBuscar select a.paciente).Single();
-                agendado = paciente.ToString();
+                paciente = (from a in BancoDadosSingleton.Instance.Paciente where a.codPaciente == pacienteBuscar select a.nome).Single();
             }
             catch
             {
                 return false;
             }
 
-            if (agendado != string.Empty)
+            if (paciente != string.Empty)
             {
                 return true;
             }

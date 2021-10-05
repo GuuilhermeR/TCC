@@ -10,6 +10,7 @@ using System.Runtime.Remoting.Contexts;
 using System.Transactions;
 using TCC2.Banco_de_Dados;
 using static Classes.HelperFuncoes;
+using System.Data.Entity;
 
 namespace ProjetoTCC
 {
@@ -46,17 +47,31 @@ namespace ProjetoTCC
         {
             try
             {
-                var aliUpdate = (from ali in BancoDadosSingleton.Instance.Alimentos where ali.codAlimento == codAlimento  && ali.nomeTabela == nomeTabela select ali).Single();
+                //var aliUpdate = (from ali in BancoDadosSingleton.Instance.Alimentos where ali.codAlimento == codAlimento  && ali.nomeTabela == nomeTabela select ali).Single();
 
-                aliUpdate.nomeAlimento = alimento;
-                aliUpdate.qtd = qtd;
-                aliUpdate.kcal = kCal;
-                aliUpdate.prot = proteina;
-                aliUpdate.carbo = carboidrato;
-                aliUpdate.lipidio = lipidio;
+                //aliUpdate.codAlimento = codAlimento;
+                //aliUpdate.nomeAlimento = alimento;
+                //aliUpdate.qtd = qtd;
+                //aliUpdate.kcal = kCal;
+                //aliUpdate.prot = proteina;
+                //aliUpdate.carbo = carboidrato;
+                //aliUpdate.lipidio = lipidio;
+                //aliUpdate.nomeTabela = nomeTabela;
 
-                BancoDadosSingleton.Instance.Alimentos.Add(aliUpdate);
-                BancoDadosSingleton.Instance.SaveChanges();
+                //BancoDadosSingleton.Instance.Alimentos.Add(aliUpdate);
+                //BancoDadosSingleton.Instance.SaveChanges();
+
+                using (var db = new NutreasyEntities())
+                {
+                    var update = db.Database.Connection.CreateCommand();
+                    update.CommandText = $"UPDATE Alimentos SET kcal={kCal.ToString().Replace(",", ".")}, prot={proteina.ToString().Replace(",", ".")}, carbo={carboidrato.ToString().Replace(",", ".")}" +
+                        $", lipidio={lipidio.ToString().Replace(",", ".")}, qtd={qtd.ToString().Replace(",", ".")}, nomeAlimento='{alimento}', nomeTabela='{nomeTabela}'  WHERE codAlimento = {codAlimento}";
+                    db.Database.Connection.Open();
+                    update.ExecuteNonQuery();
+                    db.SaveChanges();
+                    BancoDadosSingleton.Instance.SaveChanges();
+                    db.Database.Connection.Close();
+                }
             }
             catch (Exception ex)
             {

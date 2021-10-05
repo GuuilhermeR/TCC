@@ -54,6 +54,7 @@
           </Key>
           <Property Name="codPaciente" Type="integer" Nullable="false" />
           <Property Name="Data" Type="datetime" Nullable="false" />
+          <Property Name="nomePaciente" Type="varchar" MaxLength="2147483647" />
           <Property Name="peso" Type="real" />
           <Property Name="altura" Type="real" />
           <Property Name="braco" Type="real" />
@@ -334,7 +335,7 @@
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="paciente" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
-          <Property Name="data" Type="DateTime" />
+          <Property Name="data" Type="DateTime" Precision="3" />
           <Property Name="retorno" Type="Boolean" />
           <Property Name="atendido" Type="Boolean" />
           <Property Name="Cancelado" Type="Int32" />
@@ -381,7 +382,8 @@
             <PropertyRef Name="Data" />
           </Key>
           <Property Name="codPaciente" Type="Int64" Nullable="false" />
-          <Property Name="Data" Type="DateTime" Nullable="false" />
+          <Property Name="Data" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="nomePaciente" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <Property Name="peso" Type="Double" />
           <Property Name="altura" Type="Double" />
           <Property Name="braco" Type="Double" />
@@ -463,7 +465,7 @@
           <Property Name="complemento" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <Property Name="telefone" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <Property Name="celular" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
-          <Property Name="imagem" Type="Binary" MaxLength="2147483647" FixedLength="false" />
+          <Property Name="imagem" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="AnamnesePaciente" Relationship="mainModel.FK_AnamnesePaciente_1_0" FromRole="Paciente" ToRole="AnamnesePaciente" />
           <NavigationProperty Name="Antropometria" Relationship="mainModel.FK_Antropometria_0_0" FromRole="Paciente" ToRole="Antropometria" />
           <NavigationProperty Name="Cardapio" Relationship="mainModel.FK_Cardapio_1_0" FromRole="Paciente" ToRole="Cardapio" />
@@ -638,6 +640,7 @@
                 <ScalarProperty Name="braco" ColumnName="braco" />
                 <ScalarProperty Name="altura" ColumnName="altura" />
                 <ScalarProperty Name="peso" ColumnName="peso" />
+                <ScalarProperty Name="nomePaciente" ColumnName="nomePaciente" />
                 <ScalarProperty Name="Data" ColumnName="Data" />
                 <ScalarProperty Name="codPaciente" ColumnName="codPaciente" />
               </MappingFragment>
@@ -740,6 +743,7 @@
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="SynchronizePropertyFacets" Value="True" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

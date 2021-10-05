@@ -50,7 +50,8 @@ namespace Classes
             {
                 try
                 {
-                    wait.ShowDialog();
+                    wait.Show();
+                    wait.Activate();
                 }
                 catch
                 {

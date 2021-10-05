@@ -988,8 +988,9 @@ namespace TCC2
                 }
                 else if (row.DefaultCellStyle.BackColor == Color.LightSalmon)
                 {
-                    alimentoDAO.Update(Convert.ToInt16(row.Cells["codAlimento"].Value), row.Cells["nomeAlimento"].Value.ToString(), Convert.ToDouble(row.Cells["qtd"].Value),
-                        Convert.ToDouble(row.Cells["kcal"].Value), Convert.ToDouble(row.Cells["prot"].Value), Convert.ToDouble(row.Cells["carbo"].Value), Convert.ToDouble(row.Cells["lipidio"].Value), cbxTabela.Text.ToString());
+                    alimentoDAO.Update(Convert.ToInt16(row.Cells["codAlimento"].Value), row.Cells["nomeAlimento"].Value.ToString(), Convert.ToDouble(row.Cells["qtd"].Value, CultureInfo.InvariantCulture),
+                        Convert.ToDouble(row.Cells["kcal"].Value, CultureInfo.InvariantCulture), Convert.ToDouble(row.Cells["prot"].Value, CultureInfo.InvariantCulture), Convert.ToDouble(row.Cells["carbo"].Value, CultureInfo.InvariantCulture)
+                        , Convert.ToDouble(row.Cells["lipidio"].Value, CultureInfo.InvariantCulture), cbxTabela.Text.ToString());
                 }
             }
 
@@ -1403,7 +1404,8 @@ namespace TCC2
             loadStart();
             string CPF = txtCPF.Text.Replace("-", string.Empty).Replace(".", string.Empty);
             string CEP = txtCEP.Text.Replace("-", string.Empty);
-            pacienteDAO.Salvar(Convert.ToString(txtNome.Text), Convert.ToDouble(CPF), Convert.ToString(txtDtNasc.Text), Convert.ToString(txtEmail.Text), Convert.ToDouble(CEP),
+            int codPaciente = Convert.ToInt32(txtCodPaciente.Text);
+            pacienteDAO.Salvar(codPaciente, Convert.ToString(txtNome.Text), Convert.ToDouble(CPF), Convert.ToString(txtDtNasc.Text), Convert.ToString(txtEmail.Text), Convert.ToDouble(CEP),
                             Convert.ToDouble(txtNumero.Text), Convert.ToString(txtTelefone.Text), Convert.ToString(txtCelular.Text), Convert.ToString(txtEndereco.Text), Convert.ToString(txtBairro.Text)
                             , Convert.ToString(txtMunicipio.Text), Convert.ToString(txtUF.Text), Convert.ToString(txtComplemento.Text), this.vetorImagens);
             LimparCamposPaciente();
@@ -2630,6 +2632,37 @@ namespace TCC2
                              , string.Empty
                              , mCbxTabelasMedCas.Text);
                     }
+            }
+        }
+
+        private void txtAlimentoFiltro_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtAlimentoFiltro.Text))
+            {
+                loadStart();
+                var listaAlimentos = alimentoDAO.Buscar(txtAlimentoFiltro.Text, cbxTabela.Text);
+                if (listaAlimentos == null)
+                {
+                    loadStop();
+                    return;
+                }
+
+                DataTable dt = ConvertToDataTable(listaAlimentos);
+                dtgCardapioAlimentos.DataSource = dt;
+
+                dtgCardapioAlimentos.Columns["codAlimento"].Visible = false;
+                dtgCardapioAlimentos.Columns["nomeAlimento"].HeaderText = "Alimento";
+                dtgCardapioAlimentos.Columns["kcal"].Visible = false;
+                dtgCardapioAlimentos.Columns["qtd"].Visible = false;
+                dtgCardapioAlimentos.Columns["prot"].Visible = false;
+                dtgCardapioAlimentos.Columns["carbo"].Visible = false;
+                dtgCardapioAlimentos.Columns["lipidio"].Visible = false;
+                dtgCardapioAlimentos.Columns["nomeTabela"].Visible = false;
+                dtgCardapioAlimentos.Columns["MedidaCaseira"].Visible = false;
+                dtgCardapioAlimentos.Columns["Cardapio"].Visible = false;
+                dtgCardapioAlimentos.AutoResizeColumns();
+                dtgCardapioAlimentos.Columns["nomeAlimento"].ReadOnly = true;
+                loadStop();
             }
         }
     }

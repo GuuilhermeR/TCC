@@ -16,6 +16,7 @@ namespace TCC2.Banco_de_Dados
     {
         public long codPaciente { get; set; }
         public System.DateTime Data { get; set; }
+        public string nomePaciente { get; set; }
         public Nullable<double> peso { get; set; }
         public Nullable<double> altura { get; set; }
         public Nullable<double> braco { get; set; }

@@ -31,13 +31,13 @@ namespace TCC2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange29 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange30 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange31 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange32 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange33 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange34 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange35 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange8 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange9 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange10 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange11 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange12 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange13 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange14 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMenuPrincipal));
             this.TabControlNutreasy = new MaterialSkin.Controls.MaterialTabControl();
             this.tabMenu = new System.Windows.Forms.TabPage();
@@ -127,6 +127,10 @@ namespace TCC2
             this.tbConsultaCardapio = new System.Windows.Forms.TabPage();
             this.btnConsultarCardapio = new System.Windows.Forms.Button();
             this.dtgCardGrid = new MvtWindowsForms.MvtDataGridView();
+            this.refeicao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.alimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.medidacaseiraqtd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.observ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cbxDataConsulta = new MaterialSkin.Controls.MaterialComboBox();
             this.txtPacienteConsultaCardapio = new MaterialSkin.Controls.MaterialTextBox();
             this.trwDadosCard = new AdvancedDataGridView.TreeGridView();
@@ -219,10 +223,6 @@ namespace TCC2
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.NutriEzIconNotify = new System.Windows.Forms.NotifyIcon(this.components);
-            this.refeicao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.alimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.medidacaseiraqtd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.observ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TabControlNutreasy.SuspendLayout();
             this.tabMenu.SuspendLayout();
             this.mCardAtendimentoAtual.SuspendLayout();
@@ -636,35 +636,35 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.calAgendamento.BackColor = System.Drawing.SystemColors.Control;
             this.calAgendamento.Font = new System.Drawing.Font("Segoe UI", 9F);
-            calendarHighlightRange29.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange29.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange29.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange30.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange30.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange30.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange31.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange31.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange31.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange32.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange32.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange32.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange33.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange33.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange33.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange34.DayOfWeek = System.DayOfWeek.Saturday;
-            calendarHighlightRange34.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange34.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange35.DayOfWeek = System.DayOfWeek.Sunday;
-            calendarHighlightRange35.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange35.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange8.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange8.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange8.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange9.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange9.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange9.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange10.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange10.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange10.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange11.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange11.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange11.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange12.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange12.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange12.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange13.DayOfWeek = System.DayOfWeek.Saturday;
+            calendarHighlightRange13.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange13.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange14.DayOfWeek = System.DayOfWeek.Sunday;
+            calendarHighlightRange14.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange14.StartTime = System.TimeSpan.Parse("00:00:00");
             this.calAgendamento.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
-        calendarHighlightRange29,
-        calendarHighlightRange30,
-        calendarHighlightRange31,
-        calendarHighlightRange32,
-        calendarHighlightRange33,
-        calendarHighlightRange34,
-        calendarHighlightRange35};
+        calendarHighlightRange8,
+        calendarHighlightRange9,
+        calendarHighlightRange10,
+        calendarHighlightRange11,
+        calendarHighlightRange12,
+        calendarHighlightRange13,
+        calendarHighlightRange14};
             this.calAgendamento.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.calAgendamento.ItemsTimeFormat = "hh:mm";
             this.calAgendamento.Location = new System.Drawing.Point(3, 195);
@@ -768,6 +768,7 @@ namespace TCC2
             this.txtAlimentoFiltro.TabIndex = 1;
             this.txtAlimentoFiltro.Text = "";
             this.txtAlimentoFiltro.TrailingIcon = null;
+            this.txtAlimentoFiltro.Leave += new System.EventHandler(this.txtAlimentoFiltro_Leave);
             // 
             // label7
             // 
@@ -1616,6 +1617,26 @@ namespace TCC2
             this.dtgCardGrid.TabIndex = 322;
             this.dtgCardGrid.ValidateFormattedColumns = false;
             this.dtgCardGrid.Visible = false;
+            // 
+            // refeicao
+            // 
+            this.refeicao.HeaderText = "refeicao";
+            this.refeicao.Name = "refeicao";
+            // 
+            // alimento
+            // 
+            this.alimento.HeaderText = "alimento";
+            this.alimento.Name = "alimento";
+            // 
+            // medidacaseiraqtd
+            // 
+            this.medidacaseiraqtd.HeaderText = "medidacaseiraqtd";
+            this.medidacaseiraqtd.Name = "medidacaseiraqtd";
+            // 
+            // observ
+            // 
+            this.observ.HeaderText = "observ";
+            this.observ.Name = "observ";
             // 
             // cbxDataConsulta
             // 
@@ -3179,26 +3200,6 @@ namespace TCC2
             this.NutriEzIconNotify.Icon = ((System.Drawing.Icon)(resources.GetObject("NutriEzIconNotify.Icon")));
             this.NutriEzIconNotify.Text = "NutriEz";
             this.NutriEzIconNotify.Visible = true;
-            // 
-            // refeicao
-            // 
-            this.refeicao.HeaderText = "refeicao";
-            this.refeicao.Name = "refeicao";
-            // 
-            // alimento
-            // 
-            this.alimento.HeaderText = "alimento";
-            this.alimento.Name = "alimento";
-            // 
-            // medidacaseiraqtd
-            // 
-            this.medidacaseiraqtd.HeaderText = "medidacaseiraqtd";
-            this.medidacaseiraqtd.Name = "medidacaseiraqtd";
-            // 
-            // observ
-            // 
-            this.observ.HeaderText = "observ";
-            this.observ.Name = "observ";
             // 
             // FrmMenuPrincipal
             // 

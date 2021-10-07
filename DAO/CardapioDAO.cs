@@ -48,7 +48,7 @@ namespace TCC2
                 catch (Exception ex)
                 {
                     loadStop();
-                    return ("Ocorreu um erro ao salvar o Cardápio." + '\n' + ex.Message + '\n' + ex.InnerException);
+                    return "Ocorreu um erro ao salvar o Cardápio." + '\n' + ex.Message + '\n' + ex.InnerException;
                 }
             }
             else
@@ -73,7 +73,7 @@ namespace TCC2
                 }
                 catch (Exception ex)
                 {
-                    return ("Ocorreu um erro ao salvar o Cardápio." + '\n' + ex.Message + '\n' + ex.InnerException);
+                    return "Ocorreu um erro ao salvar o Cardápio." + '\n' + ex.Message + '\n' + ex.InnerException;
                 }
             }
             return string.Empty;

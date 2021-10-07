@@ -20,7 +20,7 @@ namespace ProjetoTCC
         {
         }
 
-        public void Salvar(string alimento, double qtd, double kCal, double proteina, double carboidrato, double lipidio, string nomeTabela)
+        public bool Salvar(string alimento, double qtd, double kCal, double proteina, double carboidrato, double lipidio, string nomeTabela)
         {
             try
             {
@@ -35,47 +35,40 @@ namespace ProjetoTCC
                 alimentosInsert.nomeTabela = nomeTabela;
 
                 BancoDadosSingleton.Instance.Alimentos.Add(alimentosInsert);
-                BancoDadosSingleton.Instance.SaveChanges();                
+                BancoDadosSingleton.Instance.SaveChanges();
+                return true;
             }
             catch (Exception ex)
             {
                 nMensagemErro("Ocorreu um erro ao salvar o Alimento." + '\n' + ex.Message + '\n' + ex.InnerException);
+                return false;
             }
         }
 
-        public void Update(int codAlimento, string alimento, double qtd, double kCal, double proteina, double carboidrato, double lipidio, string nomeTabela)
+        public bool Update(long codAlimento, string alimento, double qtd, double kCal, double proteina, double carboidrato, double lipidio, string nomeTabela)
         {
             try
             {
-                //var aliUpdate = (from ali in BancoDadosSingleton.Instance.Alimentos where ali.codAlimento == codAlimento  && ali.nomeTabela == nomeTabela select ali).Single();
+                var aliUpdate = (from ali in BancoDadosSingleton.Instance.Alimentos where ali.codAlimento == codAlimento && ali.nomeTabela == nomeTabela select ali).Single();
 
-                //aliUpdate.codAlimento = codAlimento;
-                //aliUpdate.nomeAlimento = alimento;
-                //aliUpdate.qtd = qtd;
-                //aliUpdate.kcal = kCal;
-                //aliUpdate.prot = proteina;
-                //aliUpdate.carbo = carboidrato;
-                //aliUpdate.lipidio = lipidio;
-                //aliUpdate.nomeTabela = nomeTabela;
+                aliUpdate.codAlimento = codAlimento;
+                aliUpdate.nomeAlimento = alimento;
+                aliUpdate.qtd = qtd;
+                aliUpdate.kcal = kCal;
+                aliUpdate.prot = proteina;
+                aliUpdate.carbo = carboidrato;
+                aliUpdate.lipidio = lipidio;
+                aliUpdate.nomeTabela = nomeTabela;
 
-                //BancoDadosSingleton.Instance.Alimentos.Add(aliUpdate);
-                //BancoDadosSingleton.Instance.SaveChanges();
-
-                using (var db = new NutreasyEntities())
-                {
-                    var update = db.Database.Connection.CreateCommand();
-                    update.CommandText = $"UPDATE Alimentos SET kcal={kCal.ToString().Replace(",", ".")}, prot={proteina.ToString().Replace(",", ".")}, carbo={carboidrato.ToString().Replace(",", ".")}" +
-                        $", lipidio={lipidio.ToString().Replace(",", ".")}, qtd={qtd.ToString().Replace(",", ".")}, nomeAlimento='{alimento}', nomeTabela='{nomeTabela}'  WHERE codAlimento = {codAlimento}";
-                    db.Database.Connection.Open();
-                    update.ExecuteNonQuery();
-                    db.SaveChanges();
-                    BancoDadosSingleton.Instance.SaveChanges();
-                    db.Database.Connection.Close();
-                }
+                BancoDadosSingleton.Instance.Alimentos.Add(aliUpdate);
+                BancoDadosSingleton.Instance.Entry(aliUpdate).State = EntityState.Modified;
+                BancoDadosSingleton.Instance.SaveChanges();
+                return true;
             }
             catch (Exception ex)
             {
                 nMensagemErro("Ocorreu um erro ao salvar o Alimento." + '\n' + ex.Message + '\n' + ex.InnerException);
+                return false;
             }
         }
         public bool VerificarAlimento(string alimentoVerificar)
@@ -153,11 +146,18 @@ namespace ProjetoTCC
             loadStart();
             using (var db = new NutreasyEntities())
             {
-                var delete = db.Database.Connection.CreateCommand();
-                delete.CommandText = $"DELETE FROM Alimentos WHERE nomeTabela = {tabela}";
-                db.Database.Connection.Open();
-                delete.ExecuteNonQuery();
-                db.Database.Connection.Close();
+                try
+                {
+                    var delete = db.Database.Connection.CreateCommand();
+                    delete.CommandText = $"DELETE FROM Alimentos WHERE nomeTabela = {tabela}";
+                    db.Database.Connection.Open();
+                    delete.ExecuteNonQuery();
+                    db.Database.Connection.Close();
+                } catch (Exception ex)
+                {
+                    var teste = ex;
+                }
+               
             }
             loadStop();
         }

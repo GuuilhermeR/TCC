@@ -9,13 +9,13 @@
         <EntityTypeShape EntityType="mainModel.Alimentos" Width="1.5" PointX="3.75" PointY="1.25" />
         <EntityTypeShape EntityType="mainModel.AnamneseConfig" Width="1.5" PointX="0.75" PointY="1.875" />
         <EntityTypeShape EntityType="mainModel.AnamnesePaciente" Width="1.5" PointX="3" PointY="5.5" />
-        <EntityTypeShape EntityType="mainModel.Antropometria" Width="1.5" PointX="3.875" PointY="9.625" />
+        <EntityTypeShape EntityType="mainModel.Antropometria" Width="1.5" PointX="3" PointY="11.875" />
         <EntityTypeShape EntityType="mainModel.Cardapio" Width="1.5" PointX="6" PointY="5.125" />
-        <EntityTypeShape EntityType="mainModel.ConfiguracoesUsuarios" Width="1.5" PointX="11" PointY="3.625" />
+        <EntityTypeShape EntityType="mainModel.ConfiguracoesUsuarios" Width="1.5" PointX="11" PointY="1" />
         <EntityTypeShape EntityType="mainModel.Login" Width="1.5" PointX="8.75" PointY="2" />
         <EntityTypeShape EntityType="mainModel.MedidaCaseira" Width="1.5" PointX="6" PointY="1.75" />
-        <EntityTypeShape EntityType="mainModel.Paciente" Width="1.5" PointX="6.5" PointY="9.5" />
-        <EntityTypeShape EntityType="mainModel.Permissao" Width="1.5" PointX="11" PointY="1" />
+        <EntityTypeShape EntityType="mainModel.Paciente" Width="1.5" PointX="0.75" PointY="4.5" />
+        <EntityTypeShape EntityType="mainModel.Permissao" Width="1.5" PointX="11" PointY="4" />
         <AssociationConnector Association="mainModel.FK_Cardapio_0_0" />
         <AssociationConnector Association="mainModel.FK_MedidaCaseira_0_0" />
         <AssociationConnector Association="mainModel.FK_AnamnesePaciente_0_0" />

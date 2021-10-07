@@ -41,7 +41,9 @@ namespace Classes
             {
                 tLoad.Abort();
             }
-            catch { }
+            catch (Exception ex){
+                return;
+            }
         }
 
         public static void ShowWait()
@@ -50,10 +52,10 @@ namespace Classes
             {
                 try
                 {
-                    wait.Show();
+                    wait.ShowDialog();
                     wait.Activate();
                 }
-                catch
+                catch (ThreadAbortException ex)
                 {
                     tLoad.Abort();
                     tLoad = new Thread(ShowWait);

@@ -18,7 +18,7 @@ namespace Classes
         {
             try
             {
-                if (tLoad == null || !tLoad.ThreadState.Equals(ThreadState.Running) && tLoad.ThreadState.Equals(ThreadState.Aborted))
+                if (tLoad == null || !tLoad.ThreadState.Equals(ThreadState.Running) || tLoad.ThreadState.Equals(ThreadState.Aborted))
                 {
                     tLoad = new Thread(ShowWait);
                 }
@@ -28,7 +28,7 @@ namespace Classes
                 }
                 tLoad.Start();
             }
-            catch
+            catch (Exception ex)
             {
                 tLoad.Abort();
                 tLoad = new Thread(ShowWait);
@@ -41,7 +41,8 @@ namespace Classes
             {
                 tLoad.Abort();
             }
-            catch (Exception ex){
+            catch (Exception ex)
+            {
                 return;
             }
         }
@@ -50,8 +51,15 @@ namespace Classes
         {
             using (frmWait wait = new frmWait())
             {
+                bool jaDeuErro = false;
                 try
                 {
+                    if (!jaDeuErro)
+                    {
+                        tLoad.Abort();
+                        tLoad.Start();
+                        return;
+                    }
                     wait.ShowDialog();
                     wait.Activate();
                 }
@@ -59,6 +67,7 @@ namespace Classes
                 {
                     tLoad.Abort();
                     tLoad = new Thread(ShowWait);
+                    jaDeuErro = true;
                 }
             }
         }

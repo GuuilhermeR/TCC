@@ -27,6 +27,7 @@ using Aspose.Cells;
 using TCC2.Properties;
 using System.Threading;
 using Model;
+using System.Diagnostics;
 
 namespace TCC2
 {
@@ -719,16 +720,16 @@ namespace TCC2
         }
 
         private void mCalendar_DateChanged(object sender, DateRangeEventArgs e)
-        {            
+        {
             txtDataAgendamento.Text = mCalendar.SelectionStart.ToString("dd/MM/yyyy");
             try
             {
                 calAgendamento.ViewEnd = mCalendar.SelectionStart.AddDays(5);
                 calAgendamento.ViewStart = mCalendar.SelectionStart;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-            }           
+            }
 
             BuscarConsultasAgendadas();
             GetConfigAtendimento();
@@ -917,7 +918,7 @@ namespace TCC2
                     };
                     //pbCarregando.Visible = false;
                     if (salvou)
-                    nMensagemAviso("Os dados foram Salvos");
+                        nMensagemAviso("Os dados foram Salvos");
 
                 }
                 catch (Exception ex)
@@ -979,7 +980,7 @@ namespace TCC2
                 }
                 else if (row.DefaultCellStyle.BackColor == Color.LightSalmon)
                 {
-                    salvou =  alimentoDAO.Update(Convert.ToInt64(row.Cells["codAlimento"].Value), row.Cells["nomeAlimento"].Value.ToString(), Convert.ToDouble(row.Cells["qtd"].Value, CultureInfo.InvariantCulture),
+                    salvou = alimentoDAO.Update(Convert.ToInt64(row.Cells["codAlimento"].Value), row.Cells["nomeAlimento"].Value.ToString(), Convert.ToDouble(row.Cells["qtd"].Value, CultureInfo.InvariantCulture),
                         Convert.ToDouble(row.Cells["kcal"].Value, CultureInfo.InvariantCulture), Convert.ToDouble(row.Cells["prot"].Value, CultureInfo.InvariantCulture), Convert.ToDouble(row.Cells["carbo"].Value, CultureInfo.InvariantCulture)
                         , Convert.ToDouble(row.Cells["lipidio"].Value, CultureInfo.InvariantCulture), cbxTabela.Text.ToString());
                 }
@@ -1973,17 +1974,22 @@ namespace TCC2
         private void btnSalvarCardapio_Click(object sender, EventArgs e)
         {
             //double Kcal = Convert.ToDouble(lblValorKcal.Text.Split(' ')[0]);
+            if (Convert.ToInt32(PacienteModel.codPacienteCard) == 0)
+            {
+                nMensagemAlerta("Selecione um paciente para atrelar o cardápio");
+                return;
+            }
             string erro = string.Empty;
             foreach (DataGridViewRow row in dtgRefeicoes.Rows)
-               erro = cardapioDAO.Salvar(Convert.ToInt32(PacienteModel.codPacienteCard),
-                                                    Convert.ToInt32(row.Cells["codAlimento"].Value),
-                                                    Convert.ToString(cbxRefeicao.Text),
-                                                    Convert.ToInt32(row.Cells["qtd"].Value),
-                                                    Convert.ToString(row.Cells["obs"].Value),
-                                                    Convert.ToDouble(row.Cells["kcal"].Value),
-                                                    Convert.ToString(usuarioDAO.getUsuario()),
-                                                    txtDataCardapio.Text);
-            
+                erro = cardapioDAO.Salvar(Convert.ToInt32(PacienteModel.codPacienteCard),
+                                                     Convert.ToInt32(row.Cells["codAlimento"].Value),
+                                                     Convert.ToString(cbxRefeicao.Text),
+                                                     Convert.ToInt32(row.Cells["qtd"].Value),
+                                                     Convert.ToString(row.Cells["obs"].Value),
+                                                     Convert.ToDouble(row.Cells["kcal"].Value),
+                                                     Convert.ToString(usuarioDAO.getUsuario()),
+                                                     txtDataCardapio.Text);
+
             if (string.IsNullOrEmpty(erro))
             {
                 nMensagemAviso("Seus dados foram salvos!");
@@ -1994,7 +2000,7 @@ namespace TCC2
             {
                 nMensagemErro(erro);
             }
-            
+
         }
 
         private void btnPacienteCardapio_Click(object sender, EventArgs e)
@@ -2314,9 +2320,55 @@ namespace TCC2
         private void btnExportar_Click(object sender, EventArgs e)
         {
             Aspose.Cells.Workbook workbook = new Aspose.Cells.Workbook(new System.IO.MemoryStream(Resources.ImpressaoCardapio));
-            //var worksheet = workbook.Worksheets();
+            WorksheetCollection worksheets = workbook.Worksheets;
+
+            string ultimaRefeicao = string.Empty;
+            var linha = worksheets.GetRangeByName("colItemRef").FirstRow;
+
+            worksheets.GetRangeByName("paciente").PutValue(txtPacienteConsultaCardapio.Text, false, false);
+            worksheets.GetRangeByName("dataConsulta").PutValue(cbxDataConsulta.Text, false, false);
+
+            foreach (DataGridViewRow row in dtgCardGrid.Rows)
+            {
+                linha += 1;
+
+                if (string.IsNullOrEmpty(ultimaRefeicao) || ultimaRefeicao != Convert.ToString(row.Cells["refeicao"].Value))
+                {
+                    worksheets[0].Cells["A" + (linha + 1)].Value = Convert.ToString(row.Cells["refeicao"].Value);
+                    ultimaRefeicao = Convert.ToString(row.Cells["refeicao"].Value);
+                }
+
+                worksheets[0].Cells["C" + (linha + 1)].Value = Convert.ToString(row.Cells["alimento"].Value);
+                worksheets[0].Cells["I" + (linha + 1)].Value = Convert.ToString(row.Cells["medidacaseiraqtd"].Value);
+                worksheets[0].Cells["N" + (linha + 1)].Value = Convert.ToString(row.Cells["observ"].Value);
+
+
+                Style styles = new Style();
+                styles.Font.Size = 12;
+
+                StyleFlag flags = new Aspose.Cells.StyleFlag();
+                flags.FontSize = true;
+                flags.All = false;
+
+                worksheets[0].Cells.Rows[linha].ApplyStyle(styles, flags);
+
+            }
+
+            AutoFitterOptions opt = new Aspose.Cells.AutoFitterOptions();
+            opt.AutoFitMergedCells = true;
+            opt.OnlyAuto = true;
+            opt.IgnoreHidden = true;
+
+            worksheets[0].AutoFitRows(opt);
+            worksheets[0].AutoFitColumns(opt);
+
+            string tempFile = Path.Combine(Path.GetTempPath(), Path.GetTempFileName().Replace(".tmp", ".pdf"));
+            workbook.Save(tempFile);
+
+            Process.Start(tempFile);
 
         }
+
         private void txtDataCardapio_Leave(object sender, EventArgs e)
         {
             if (txtDataCardapio.Text == string.Empty)

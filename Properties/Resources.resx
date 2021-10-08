@@ -118,9 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="4105938-account-card-id-identification-identity-card-profile-user-profile_113929" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\4105938-account-card-id-identification-identity-card-profile-user-profile_113929.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="1486564177-finance-finance-calculator_81497" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1486564177-finance-finance-calculator_81497.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -133,11 +130,14 @@
   <data name="msexcel_93695" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\msexcel_93695.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="user-id-icon_34334" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\user-id-icon_34334.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="DeleteRed" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DeleteRed1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="diagram-43_24474 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\diagram-43_24474 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="4230540-analysis-graph-report_115003" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\4230540-analysis-graph-report_115003.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Adicionar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Adicionar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -154,8 +154,8 @@
   <data name="ImpressaoCardapio" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ImpressaoCardapio.xlsx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="no-icon-png-6" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\no-icon-png-6.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="loading (1) (4)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\loading (1) (4).gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="iconTCC-removebg-preview (1) - Copia" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\iconTCC-removebg-preview (1) - Copia.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -166,22 +166,28 @@
   <data name="database_import_icon_135719" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\database_import_icon_135719.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="4230540-analysis-graph-report_115003" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\4230540-analysis-graph-report_115003.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="4105938-account-card-id-identification-identity-card-profile-user-profile_113929" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\4105938-account-card-id-identification-identity-card-profile-user-profile_113929.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Spinner-5-unscreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Spinner-5-unscreen.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="BaseImpressaoCardapioSalvo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BaseImpressaoCardapioSalvo.xlsx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="user-id-icon_34334" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\user-id-icon_34334.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="no-icon-png-6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\no-icon-png-6.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="CarregarLoading" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CarregarLoading.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="loading (1) (4)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\loading (1) (4).gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="mvtSaveGreen-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mvtSaveGreen-161.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="diagram-43_24474 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\diagram-43_24474 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="email-envelope-outline-shape-with-rounded-corners_icon-icons.com_56530 (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\email-envelope-outline-shape-with-rounded-corners_icon-icons.com_56530 (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

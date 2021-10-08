@@ -303,6 +303,7 @@
     <None Include="Resources\4105938-account-card-id-identification-identity-card-profile-user-profile_113929.png" />
     <None Include="Resources\4230540-analysis-graph-report_115003.png" />
     <Content Include="Resources\5-Icon-Branco.png" />
+    <None Include="Resources\BaseImpressaoCardapioSalvo.xlsx" />
     <None Include="Resources\CardapioImpressao.xlsx" />
     <None Include="Resources\database_import_icon_135719.png" />
     <None Include="Resources\ImpressaoCardapio.xlsx" />
@@ -312,6 +313,7 @@
     <None Include="Resources\Spinner-5.gif" />
     <None Include="Resources\Spinner-5-unscreen.gif" />
     <None Include="Resources\diagram-43_24474 %281%29.png" />
+    <None Include="Resources\email-envelope-outline-shape-with-rounded-corners_icon-icons.com_56530 %282%29.png" />
     <Content Include="Suporte\DirectX.Capture.dll" />
     <Content Include="Suporte\DShowNET.dll" />
     <None Include="Resources\Adicionar.png" />

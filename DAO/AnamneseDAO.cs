@@ -95,11 +95,11 @@ namespace ProjetoTCC
             }
         }
 
-        public void SalvarConfig(string template, string texto)
+        public void SalvarConfig(string template, string texto, bool existe)
         {
             try
             {
-                if (CarregarAnamneseTemplate(template) is null || CarregarAnamneseTemplate(template).Count == 0)
+                if (!existe)
                 {
                     loadStart();
                     AnamneseConfig anamneseInsert = new AnamneseConfig();

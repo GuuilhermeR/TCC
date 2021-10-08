@@ -131,6 +131,16 @@ namespace TCC2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] BaseImpressaoCardapioSalvo {
+            get {
+                object obj = ResourceManager.GetObject("BaseImpressaoCardapioSalvo", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap CarregarLoading {
@@ -176,6 +186,16 @@ namespace TCC2.Properties {
         internal static System.Drawing.Bitmap diagram_43_24474__1_ {
             get {
                 object obj = ResourceManager.GetObject("diagram-43_24474 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap email_envelope_outline_shape_with_rounded_corners_icon_icons_com_56530__2_ {
+            get {
+                object obj = ResourceManager.GetObject("email-envelope-outline-shape-with-rounded-corners_icon-icons.com_56530 (2)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

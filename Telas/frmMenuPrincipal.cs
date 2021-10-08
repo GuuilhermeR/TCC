@@ -724,11 +724,13 @@ namespace TCC2
             txtDataAgendamento.Text = mCalendar.SelectionStart.ToString("dd/MM/yyyy");
             try
             {
-                calAgendamento.ViewEnd = mCalendar.SelectionStart.AddDays(5);
+                calAgendamento.ViewEnd = Convert.ToDateTime(txtDataAgendamento.Text).AddDays(5);
                 calAgendamento.ViewStart = mCalendar.SelectionStart;
             }
             catch (Exception ex)
             {
+                calAgendamento.ViewStart = mCalendar.SelectionStart;
+                calAgendamento.ViewEnd = Convert.ToDateTime(txtDataAgendamento.Text).AddDays(5);
             }
 
             BuscarConsultasAgendadas();
@@ -905,16 +907,23 @@ namespace TCC2
                         {
                             tabela = Convert.ToString(txtNomeTabela.Text);
                         }
-                        if (!alimentoDAO.ExisteAlimento(alimento, tabela))
+                        try
                         {
-                            salvou = alimentoDAO.Salvar(alimento.Replace("'", string.Empty).Replace("\"", string.Empty), qtd, kcal, Prot, Carb, Lipidios, tabela);
-                            alimentoFail = alimento;
-                        }
-                        else
+                            if (!alimentoDAO.ExisteAlimento(alimento, tabela))
+                            {
+                                salvou = alimentoDAO.Salvar(alimento.Replace("'", string.Empty).Replace("\"", string.Empty), qtd, kcal, Prot, Carb, Lipidios, tabela);
+                                alimentoFail = alimento;
+                            }
+                            else
+                            {
+                                salvou = alimentoDAO.Update(Convert.ToInt64(alimentoDAO.RetornaCodAlimentoExistente(alimento.Replace("'", string.Empty), tabela).ToString().Replace("\"", string.Empty)), alimento.Replace("'", string.Empty).Replace("\"", string.Empty), qtd, kcal, Prot, Carb, Lipidios, tabela);
+                                alimentoFail = alimento;
+                            }
+                        }catch
                         {
-                            salvou = alimentoDAO.Update(Convert.ToInt64(alimentoDAO.RetornaCodAlimentoExistente(alimento.Replace("'", string.Empty), tabela).ToString().Replace("\"", string.Empty)), alimento.Replace("'", string.Empty).Replace("\"", string.Empty), qtd, kcal, Prot, Carb, Lipidios, tabela);
-                            alimentoFail = alimento;
+                            continue;
                         }
+                       
                     };
                     //pbCarregando.Visible = false;
                     if (salvou)
@@ -2217,7 +2226,7 @@ namespace TCC2
             Ceia.ImageIndex = 1;
             listaCardapio.ForEach(card =>
             {
-                dtgCardGrid.Rows.Add(card.Refeicao, card.Alimentos.nomeAlimento, card.medidaCaseiraQtde, card.kcal, card.Obs);
+                dtgCardGrid.Rows.Add(card.Refeicao, card.Alimentos.nomeAlimento, card.medidaCaseiraQtde, card.Obs);
                 switch (card.Refeicao)
                 {
                     case "Café da manhã":
@@ -2308,7 +2317,6 @@ namespace TCC2
             {
                 grafico.ShowDialog();
             }
-
         }
 
         private void cbxTabela_SelectedValueChanged(object sender, EventArgs e)
@@ -2319,11 +2327,11 @@ namespace TCC2
 
         private void btnExportar_Click(object sender, EventArgs e)
         {
-            Aspose.Cells.Workbook workbook = new Aspose.Cells.Workbook(new System.IO.MemoryStream(Resources.ImpressaoCardapio));
+            Aspose.Cells.Workbook workbook = new Aspose.Cells.Workbook(new System.IO.MemoryStream(Resources.BaseImpressaoCardapioSalvo));
             WorksheetCollection worksheets = workbook.Worksheets;
-
+            
             string ultimaRefeicao = string.Empty;
-            var linha = worksheets.GetRangeByName("colItemRef").FirstRow;
+            var linha = worksheets.GetRangeByName("colItem").FirstRow;
 
             worksheets.GetRangeByName("paciente").PutValue(txtPacienteConsultaCardapio.Text, false, false);
             worksheets.GetRangeByName("dataConsulta").PutValue(cbxDataConsulta.Text, false, false);
@@ -2334,24 +2342,23 @@ namespace TCC2
 
                 if (string.IsNullOrEmpty(ultimaRefeicao) || ultimaRefeicao != Convert.ToString(row.Cells["refeicao"].Value))
                 {
-                    worksheets[0].Cells["A" + (linha + 1)].Value = Convert.ToString(row.Cells["refeicao"].Value);
+                    worksheets[0].Cells["B" + (linha + 1)].Value = Convert.ToString(row.Cells["refeicao"].Value);
                     ultimaRefeicao = Convert.ToString(row.Cells["refeicao"].Value);
                 }
 
-                worksheets[0].Cells["C" + (linha + 1)].Value = Convert.ToString(row.Cells["alimento"].Value);
-                worksheets[0].Cells["I" + (linha + 1)].Value = Convert.ToString(row.Cells["medidacaseiraqtd"].Value);
-                worksheets[0].Cells["N" + (linha + 1)].Value = Convert.ToString(row.Cells["observ"].Value);
+                worksheets[0].Cells["C" + (linha + 1)].PutValue(Convert.ToString(row.Cells["alimento"].Value));
+                worksheets[0].Cells["E" + (linha + 1)].PutValue(Convert.ToString(row.Cells["medidacaseiraqtd"].Value));
+                worksheets[0].Cells["G" + (linha + 1)].PutValue(Convert.ToString(row.Cells["observ"].Value));
 
-
+                worksheets[0].Cells.UnhideRow(linha, 17);
                 Style styles = new Style();
-                styles.Font.Size = 12;
+                styles.Font.Size = 11;
 
                 StyleFlag flags = new Aspose.Cells.StyleFlag();
                 flags.FontSize = true;
-                flags.All = false;
+                flags.All = true;
 
                 worksheets[0].Cells.Rows[linha].ApplyStyle(styles, flags);
-
             }
 
             AutoFitterOptions opt = new Aspose.Cells.AutoFitterOptions();
@@ -2364,9 +2371,7 @@ namespace TCC2
 
             string tempFile = Path.Combine(Path.GetTempPath(), Path.GetTempFileName().Replace(".tmp", ".pdf"));
             workbook.Save(tempFile);
-
             Process.Start(tempFile);
-
         }
 
         private void txtDataCardapio_Leave(object sender, EventArgs e)

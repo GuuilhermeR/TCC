@@ -50,7 +50,7 @@ namespace TCC2.Telas
 
         private void btnSalvarAnamnese_Click(object sender, EventArgs e)
         {
-            anamneseDAO.SalvarConfig(txtNomeTemplate.Text, rtxtAnamnese.Text);
+            anamneseDAO.SalvarConfig(txtNomeTemplate.Text, rtxtAnamnese.Text,Convert.ToBoolean(cbxExibirSalvos.Checked));
             CarregarAnamnesesConfigs();
             rtxtAnamnese.Text = string.Empty;
             txtNomeTemplate.Text = string.Empty;

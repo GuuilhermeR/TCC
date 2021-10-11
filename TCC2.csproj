@@ -59,11 +59,13 @@
       <HintPath>..\..\..\OneDrive\Faculdade\TCC\TreeGridview\TreeGridView\bin\Debug\ExpandableGridView.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="MvtWindowsForms">
-      <HintPath>D:\MovtechFontes\MvtComponentsNew\MovtechDLL2015\MvtWindowsForms.dll</HintPath>
+    <Reference Include="MvtWindowsForms, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\MvtWindowsForms.dll</HintPath>
     </Reference>
-    <Reference Include="MvtWindowsFormsCS">
-      <HintPath>D:\MovtechFontes\MovtechDLL\MvtWindowsFormsCS.dll</HintPath>
+    <Reference Include="MvtWindowsFormsCS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\MvtWindowsFormsCS.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -76,8 +78,9 @@
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Windows.Forms.Calendar">
-      <HintPath>..\..\System.Windows.Forms.Calendar\System.Windows.Forms.Calendar\bin\Debug\System.Windows.Forms.Calendar.dll</HintPath>
+    <Reference Include="System.Windows.Forms.Calendar, Version=1.0.7853.22839, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\System.Windows.Forms.Calendar.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xaml" />
@@ -298,6 +301,11 @@
       <LastGenOutput>NutreasyDB.cs</LastGenOutput>
     </Content>
     <None Include="Resources\1486564177-finance-finance-calculator_81497.png" />
+    <Content Include="dlls\Aspose.Cells.dll" />
+    <Content Include="dlls\MvtWindowsForms.dll" />
+    <Content Include="dlls\MvtWindowsFormsCME.dll" />
+    <Content Include="dlls\MvtWindowsFormsCS.dll" />
+    <Content Include="dlls\System.Windows.Forms.Calendar.dll" />
     <Content Include="Resources\2355300-removebg-preview %283%29.png" />
     <None Include="Resources\4105941-lock-login-password-security-sign-in-sign-out_113932.png" />
     <None Include="Resources\4105938-account-card-id-identification-identity-card-profile-user-profile_113929.png" />

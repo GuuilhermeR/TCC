@@ -198,6 +198,7 @@ namespace TCC2
 
         private void CarregarCardConsultas()
         {
+            bool jaEstaNoCard = false;
             var dataAgenda = DateTime.Now.ToString("dd/MM/yyyy");
             var dataInicio = dataAgenda + " 00:00:00";
             var dataFim = dataAgenda + " 23:59:59";
@@ -215,15 +216,16 @@ namespace TCC2
 
                 while (dr.Read())
                 {
-                    if (Convert.ToDateTime(dr["data"]) <= DateTime.Now || (int)dr["Cancelado"] == 1 || (bool)dr["atendido"] == true)
+                    if (Convert.ToDateTime(dr["data"]) <= DateTime.Now.AddHours(-5) && Convert.ToDateTime(dr["data"]) >= DateTime.Now.AddHours(5) || (int)dr["Cancelado"] == 1 || (bool)dr["atendido"] == true)
                     {
                         return;
                     }
 
-                    //if (mlblNome.Text != "Nome" || mlblNomeFuturo.Text != "Nome")
-                    //    return;
+                    var horaAtualArredonda = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+                    horaAtualArredonda = Strings.Left(horaAtualArredonda,13) + ":00";
+                    DateTime dataHoraArredondada = Convert.ToDateTime(horaAtualArredonda);
 
-                    if ((DateTime)dr["data"] <= DateTime.Now && (bool)dr["atendido"] != true && (int)dr["Cancelado"] == 0)
+                    if ((DateTime)dr["data"] <= dataHoraArredondada && (DateTime)dr["data"] <= dataHoraArredondada.AddHours(1))
                     {
                         mCardAtendimentoAtual.Visible = true;
                         mlblNome.Text = (string)dr["paciente"];
@@ -242,7 +244,7 @@ namespace TCC2
                         }
                     }
 
-                    if ((DateTime)dr["data"] >= DateTime.Now && (bool)dr["atendido"] != true && (int)dr["Cancelado"] == 0)
+                    if ((DateTime)dr["data"] >= dataHoraArredondada.AddHours(1))
                     {
                         mCardAtendimentoFuturo.Visible = true;
                         mlblNomeFuturo.Text = (string)dr["paciente"];
@@ -551,6 +553,7 @@ namespace TCC2
                        Convert.ToString(usuarioDAO.getUsuario()));
             }
             LimparCamposAgenda();
+            BuscarConsultasAgendadas();
         }
 
         private void LimparCamposAgenda()
@@ -645,7 +648,7 @@ namespace TCC2
             if (Convert.ToString(mlblObservação.Text) != string.Empty)
                 temRetorno = true;
 
-            if (nMensagemAlerta("Deseja realmente cancelar esta consulta?") == DialogResult.Yes)
+            if (nMensagemAceita("Deseja realmente cancelar esta consulta?") == DialogResult.Yes)
                 CancelarAtendimento(Convert.ToString(mlblHorario.Text), mlblNome.Text, mcbxAtendido.Checked, temRetorno);
             else
                 mcbxCancelar.Checked = false;
@@ -662,7 +665,7 @@ namespace TCC2
             if (Convert.ToString(mlblObservação.Text) != string.Empty)
                 temRetorno = true;
 
-            if (nMensagemAlerta("Deseja realmente finalizar esta consulta?") == DialogResult.Yes)
+            if (nMensagemAceita("Deseja realmente finalizar esta consulta?") == DialogResult.Yes)
                 FinalizarAtendimento(Convert.ToString(mlblHorario.Text), mlblNome.Text, mcbxAtendido.Checked, temRetorno);
             else
                 mcbxAtendido.Checked = false;
@@ -679,7 +682,7 @@ namespace TCC2
             if (Convert.ToString(mlblObservação.Text) != string.Empty)
                 temRetorno = true;
 
-            if (nMensagemAlerta("Deseja realmente finalizar esta consulta?") == DialogResult.Yes)
+            if (nMensagemAceita("Deseja realmente finalizar esta consulta?") == DialogResult.Yes)
                 FinalizarAtendimento(DateTime.Today.ToString(), mlblNomeFuturo.Text, mcbxAtendidoFuturo.Checked, temRetorno);
             else
                 mcbxAtendidoFuturo.Checked = false;
@@ -696,7 +699,7 @@ namespace TCC2
             if (Convert.ToString(mlblObservação.Text) != string.Empty)
                 temRetorno = true;
 
-            if (nMensagemAlerta("Deseja realmente cancelar esta consulta?") == DialogResult.Yes)
+            if (nMensagemAceita("Deseja realmente cancelar esta consulta?") == DialogResult.Yes)
                 CancelarAtendimento(Convert.ToString(mlblHoraFutura.Text), mlblNomeFuturo.Text, mcbxAtendidoFuturo.Checked, temRetorno);
             else
                 mcbxCancelarFuturo.Checked = false;
@@ -706,12 +709,12 @@ namespace TCC2
 
         private void CancelarAtendimento(string data, string paciente, bool atendido, bool retorno)
         {
-            agendaDAO.AtualizarPaciente(Convert.ToString(data.Substring(0, 10)), data.Substring(11), paciente, atendido, retorno, 1, true, Convert.ToString(usuarioDAO.getUsuario()));
+            agendaDAO.AtualizarSituacaoAtendimento(Convert.ToString(data.Substring(0, 10)), data.Substring(11), paciente, atendido, retorno, 1, Convert.ToString(usuarioDAO.getUsuario()));
         }
 
         private void FinalizarAtendimento(string data, string paciente, bool atendido, bool retorno)
         {
-            agendaDAO.AtualizarPaciente(Convert.ToString(data.Substring(0, 10)), data.Substring(11), paciente, atendido, retorno, 0, true, Convert.ToString(usuarioDAO.getUsuario()));
+            agendaDAO.AtualizarSituacaoAtendimento(Convert.ToString(data.Substring(0, 10)), data.Substring(11), paciente, atendido, retorno, 0, Convert.ToString(usuarioDAO.getUsuario()));
         }
 
         private void calAgendamento_ItemCreating(object sender, CalendarItemCancelEventArgs e)
@@ -750,8 +753,11 @@ namespace TCC2
                 calAgendamento.Items.Add(calAgendamentos);
 
                 if (Convert.ToBoolean(x.retorno))
+                    calAgendamento.BackColor = Color.Tomato;
+                else if(!Convert.ToBoolean(x.retorno) && !Convert.ToBoolean(x.atendido))
                     calAgendamento.BackColor = Color.LightYellow;
-                else
+
+                if (Convert.ToBoolean(x.atendido))
                     calAgendamento.BackColor = Color.LightGreen;
 
                 jaIniciou = true;

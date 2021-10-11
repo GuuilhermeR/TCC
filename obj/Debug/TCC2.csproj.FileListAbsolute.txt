@@ -167,7 +167,6 @@ C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\MvtWindowsForms.dll
 C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\MvtWindowsFormsCS.dll
 C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\System.Windows.Forms.Calendar.dll
 C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\MvtLib.dll
-C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\System.Windows.Forms.Calendar.pdb
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.exe.config
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.frmBuscarPaciente.resources
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.Telas.frmCadastro.resources

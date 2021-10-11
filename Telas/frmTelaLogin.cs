@@ -16,7 +16,6 @@ namespace TCC2
     public partial class frmTelaLogin : MaterialForm
     {
         public UsuarioDAO usuario = new UsuarioDAO();
-        public Criptografador descriptografar = new Criptografador();
 
         public frmTelaLogin()
         {

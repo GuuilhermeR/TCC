@@ -198,31 +198,36 @@ namespace TCC2
 
         private void CarregarCardConsultas()
         {
-            bool jaEstaNoCard = false;
+
             var dataAgenda = DateTime.Now.ToString("dd/MM/yyyy");
             var dataInicio = dataAgenda + " 00:00:00";
             var dataFim = dataAgenda + " 23:59:59";
             DateTime dataMarcadasIni = Convert.ToDateTime(dataInicio);
             DateTime dataMarcadasFim = Convert.ToDateTime(dataFim);
+
             using (var db = new NutreasyEntities())
             {
                 var selectAgendamento = db.Database.Connection.CreateCommand();
 
-                selectAgendamento.CommandText = $"SELECT * FROM Agenda WHERE data>='{dataMarcadasIni.ToString("yyyy-MM-dd HH:mm:ss")}' " +
-                                                $"AND data<='{dataMarcadasFim.ToString("yyyy-MM-dd HH:mm:ss")}'";
+                selectAgendamento.CommandText = $"SELECT * FROM Agenda " +
+                    $"WHERE data>='{dataMarcadasIni.ToString("yyyy-MM-dd HH:mm:ss")}' " +
+                    $"AND data<='{dataMarcadasFim.ToString("yyyy-MM-dd HH:mm:ss")}' " +
+                    $"AND cancelado=0 " +
+                    $"AND atendido=0 " +
+                    $"ORDER BY data DESC";
 
                 db.Database.Connection.Open();
                 IDataReader dr = selectAgendamento.ExecuteReader();
 
                 while (dr.Read())
                 {
-                    if (Convert.ToDateTime(dr["data"]) <= DateTime.Now.AddHours(-5) && Convert.ToDateTime(dr["data"]) >= DateTime.Now.AddHours(5) || (int)dr["Cancelado"] == 1 || (bool)dr["atendido"] == true)
+                    if (Convert.ToDateTime(dr["data"]) <= DateTime.Now.AddHours(-3) && Convert.ToDateTime(dr["data"]) <= DateTime.Now.AddHours(3))
                     {
                         return;
                     }
 
                     var horaAtualArredonda = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
-                    horaAtualArredonda = Strings.Left(horaAtualArredonda,13) + ":00";
+                    horaAtualArredonda = Strings.Left(horaAtualArredonda, 13) + ":00";
                     DateTime dataHoraArredondada = Convert.ToDateTime(horaAtualArredonda);
 
                     if ((DateTime)dr["data"] <= dataHoraArredondada && (DateTime)dr["data"] <= dataHoraArredondada.AddHours(1))
@@ -354,6 +359,7 @@ namespace TCC2
             {
                 return;
             };
+            txtDataAgendamento.Text = DateTime.Now.ToString("dd/MM/yyyy");
             loadStart();
 
             if (!jaIniciou)
@@ -553,6 +559,7 @@ namespace TCC2
                        Convert.ToString(usuarioDAO.getUsuario()));
             }
             LimparCamposAgenda();
+            calAgendamento.Items.Clear();
             BuscarConsultasAgendadas();
         }
 
@@ -683,7 +690,7 @@ namespace TCC2
                 temRetorno = true;
 
             if (nMensagemAceita("Deseja realmente finalizar esta consulta?") == DialogResult.Yes)
-                FinalizarAtendimento(DateTime.Today.ToString(), mlblNomeFuturo.Text, mcbxAtendidoFuturo.Checked, temRetorno);
+                FinalizarAtendimento(Convert.ToString(mlblHoraFutura.Text), mlblNomeFuturo.Text, mcbxAtendidoFuturo.Checked, temRetorno);
             else
                 mcbxAtendidoFuturo.Checked = false;
 
@@ -752,13 +759,17 @@ namespace TCC2
                 CalendarItem calAgendamentos = new CalendarItem(calAgendamento, Convert.ToDateTime(x.data.ToString()), Convert.ToDateTime(x.data.ToString()).AddHours(1), x.paciente);
                 calAgendamento.Items.Add(calAgendamentos);
 
-                if (Convert.ToBoolean(x.retorno))
-                    calAgendamento.BackColor = Color.Tomato;
-                else if(!Convert.ToBoolean(x.retorno) && !Convert.ToBoolean(x.atendido))
-                    calAgendamento.BackColor = Color.LightYellow;
+                if (Convert.ToBoolean(x.retorno) && !Convert.ToBoolean(x.atendido) && !Convert.ToBoolean(x.Cancelado))
+                    calAgendamentos.ApplyColor(Color.LightCyan);
 
-                if (Convert.ToBoolean(x.atendido))
-                    calAgendamento.BackColor = Color.LightGreen;
+                if (!Convert.ToBoolean(x.retorno) && !Convert.ToBoolean(x.atendido) && Convert.ToBoolean(x.Cancelado))
+                    calAgendamentos.ApplyColor(Color.Tomato);
+
+                if (Convert.ToBoolean(x.atendido) && !Convert.ToBoolean(x.retorno))
+                    calAgendamentos.ApplyColor(Color.LightGreen);
+
+                if (!Convert.ToBoolean(x.atendido) && !Convert.ToBoolean(x.retorno) && !Convert.ToBoolean(x.Cancelado))
+                    calAgendamentos.ApplyColor(Color.LightYellow);
 
                 jaIniciou = true;
             });
@@ -925,11 +936,12 @@ namespace TCC2
                                 salvou = alimentoDAO.Update(Convert.ToInt64(alimentoDAO.RetornaCodAlimentoExistente(alimento.Replace("'", string.Empty), tabela).ToString().Replace("\"", string.Empty)), alimento.Replace("'", string.Empty).Replace("\"", string.Empty), qtd, kcal, Prot, Carb, Lipidios, tabela);
                                 alimentoFail = alimento;
                             }
-                        }catch
+                        }
+                        catch
                         {
                             continue;
                         }
-                       
+
                     };
                     //pbCarregando.Visible = false;
                     if (salvou)
@@ -947,8 +959,7 @@ namespace TCC2
                 tscope.Complete();
             }
 
-            dtgDadosImportados.Rows.Clear();
-            dtgDadosImportados.Columns.Clear();
+            dtgDadosImportados.DataSource = null;
             txtCaminhoArquivoExcel.Text = string.Empty;
             _cbxNomePlanilha.Items.Clear();
             txtNomeTabela.Text = string.Empty;
@@ -1035,7 +1046,7 @@ namespace TCC2
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
-                if (dtgConAlimento.CurrentRow.Cells["codAlimento"].Value.ToString() != string.Empty && kCalAntiga != 0 && nomeAlimentoAntigo != Convert.ToString(dtgConAlimento.CurrentRow.Cells["nomeAlimento"].Value))
+                if (dtgConAlimento.CurrentRow.Cells["codAlimento"].Value.ToString() != string.Empty || kCalAntiga != 0 || nomeAlimentoAntigo != Convert.ToString(dtgConAlimento.CurrentRow.Cells["nomeAlimento"].Value))
                 {
                     dtgConAlimento.CurrentRow.DefaultCellStyle.BackColor = Color.LightSalmon;
                 }
@@ -2194,11 +2205,9 @@ namespace TCC2
                 nMensagemAviso("Selecionar uma data para o carregamento das informações do cardápio!");
                 return;
             }
-            loadStart();
             var listaCardapio = cardapioDAO.Consultar(Convert.ToInt32(PacienteModel.codPacienteCard), Convert.ToString(cbxDataConsulta.Text), string.Empty);
             if (listaCardapio == null || listaCardapio.Count == 0)
             {
-                loadStop();
                 return;
             }
 
@@ -2308,7 +2317,6 @@ namespace TCC2
                         return;
                 }
             });
-            loadStop();
         }
 
         private void btnAnalytics_Click(object sender, EventArgs e)
@@ -2335,7 +2343,7 @@ namespace TCC2
         {
             Aspose.Cells.Workbook workbook = new Aspose.Cells.Workbook(new System.IO.MemoryStream(Resources.BaseImpressaoCardapioSalvo));
             WorksheetCollection worksheets = workbook.Worksheets;
-            
+
             string ultimaRefeicao = string.Empty;
             var linha = worksheets.GetRangeByName("colItem").FirstRow;
 
@@ -2390,7 +2398,54 @@ namespace TCC2
             {
                 txtDataCardapio.Text = FormatDate(txtDataCardapio.Text);
             }
+
+            CarregarAlimentosCardapioConfig();
         }
+
+        private void CarregarAlimentosCardapioConfig()
+        {
+
+            if(string.IsNullOrEmpty(PacienteModel.codPacienteCard))
+            {
+                return;
+            }
+            if (string.IsNullOrEmpty(txtDataCardapio.Text))
+            {
+                return;
+            }
+            if (string.IsNullOrEmpty(cbxRefeicao.Text))
+            {
+                return;
+            }
+            var carregarAlimentos = cardapioDAO.Consultar(Convert.ToInt32(PacienteModel.codPacienteCard), txtDataCardapio.Text, cbxRefeicao.Text);
+
+            dtgRefeicoes.DataSource = null;
+            dtgRefeicoes.Rows.Clear();
+            if (carregarAlimentos == null || carregarAlimentos.Count == 0)
+                return;
+
+            carregarAlimentos.ForEach(x =>
+            {
+                dtgRefeicoes.Rows.Add(x.codAlimento
+                             , x.Alimentos.nomeAlimento
+                             , x.medidaCaseiraQtde
+                             , x.Alimentos.kcal
+                             , x.Alimentos.prot
+                             , x.Alimentos.carbo
+                             , x.Alimentos.lipidio);
+
+                if (dtgRefeicoes.Rows.Count > 0)
+                {
+                    RecalcularMacroNutrientes(dtgConAlimento, quantidadeSalva);
+                    CarregarGrafico(Convert.ToDouble(x.Alimentos.prot), Convert.ToDouble(x.Alimentos.carbo), Convert.ToDouble(x.Alimentos.lipidio));
+                }
+
+            });
+
+            
+
+        }
+
         #endregion
 
         #region Configurações
@@ -2731,6 +2786,33 @@ namespace TCC2
                 dtgCardapioAlimentos.Columns["nomeAlimento"].ReadOnly = true;
                 loadStop();
             }
+        }
+
+        private void calAgendamento_ItemDoubleClick(object sender, CalendarItemEventArgs e)
+        {
+            if (e.Item.BackgroundColor == Color.LightGreen || e.Item.BackgroundColor == Color.Tomato)
+                return;
+
+            if (nMensagemAceita("Você deseja marcar esta consulta como atendido?") == DialogResult.Yes)
+            {
+                FinalizarAtendimento(Convert.ToString(e.Item.StartDate), e.Item.Text, true, false);
+                e.Item.BackgroundColor = Color.LightGreen;
+            }
+        }
+
+        private void txtDataCardapio_LinkClicked(object sender, LinkClickedEventArgs e)
+        {
+
+        }
+
+        private void cbxRefeicao_SelectedValueChanged(object sender, EventArgs e)
+        {
+            CarregarAlimentosCardapioConfig();
+        }
+
+        private void txtPaciente_TextChanged(object sender, EventArgs e)
+        {
+            CarregarAlimentosCardapioConfig();
         }
     }
 }

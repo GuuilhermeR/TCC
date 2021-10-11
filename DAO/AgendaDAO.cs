@@ -95,9 +95,10 @@ namespace ProjetoTCC
                                                      $", usuarioResp='{usuario}' " +
                                                      $"WHERE ID ={ID} ";
                     update.ExecuteNonQuery();
-                    db.Database.Connection.Close();
                     BancoDadosSingleton.Instance.SaveChanges();
-                    // BancoDadosSingleton.Instance.Login.Local;
+                    BancoDadosSingleton.Instance.Entry(update).State = EntityState.Modified;
+                    db.Database.Connection.Close();
+
                 }
 
                 nMensagemAviso("Consulta do paciente atualizado.");
@@ -143,8 +144,8 @@ namespace ProjetoTCC
                                                      $"WHERE ID ={ID} ";
                     update.ExecuteNonQuery();
                     db.Database.Connection.Close();
+                    BancoDadosSingleton.Instance.Entry(update).State = EntityState.Modified;
                     BancoDadosSingleton.Instance.SaveChanges();
-                   // BancoDadosSingleton.Instance.Login.Local;
                 }
 
                 nMensagemAviso("Consulta do paciente atualizado.");
@@ -170,6 +171,7 @@ namespace ProjetoTCC
                 agendaInsert.usuarioResp = usuario;
 
                 BancoDadosSingleton.Instance.Agenda.Add(agendaInsert);
+                BancoDadosSingleton.Instance.Entry(agendaInsert).State = EntityState.Modified;
                 BancoDadosSingleton.Instance.SaveChanges();
                 nMensagemAviso("Consulta do paciente foi agendado.");
             }

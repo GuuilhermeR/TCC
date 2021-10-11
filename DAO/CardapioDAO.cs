@@ -83,10 +83,17 @@ namespace TCC2
         {
             try
             {
-
-                var cardapio = ((from card in BancoDadosSingleton.Instance.Cardapio
-                                 where card.codPaciente == codPaciente && card.codAlimento == codAlimento && card.data == data && card.Refeicao == refeicao
+                List<Cardapio> cardapio = new List<Cardapio>();
+                if (codAlimento>0)
+                {
+                    cardapio = ((from card in BancoDadosSingleton.Instance.Cardapio
+                                 where card.codPaciente == codPaciente
+                                 && card.codAlimento == codAlimento
+                                 && card.data == data
+                                 && card.Refeicao == refeicao
                                  select card).Distinct()).ToList();
+                } 
+                               
 
                 if (cardapio.Count > 0)
                 {

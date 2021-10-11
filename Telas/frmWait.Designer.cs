@@ -60,12 +60,12 @@ namespace TCC2.Telas
             this.materialLabel1.Depth = 0;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.materialLabel1.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.materialLabel1.Location = new System.Drawing.Point(56, 147);
+            this.materialLabel1.Location = new System.Drawing.Point(43, 147);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
-            this.materialLabel1.Size = new System.Drawing.Size(132, 19);
+            this.materialLabel1.Size = new System.Drawing.Size(143, 19);
             this.materialLabel1.TabIndex = 1;
-            this.materialLabel1.Text = "Buscando dados...";
+            this.materialLabel1.Text = "Carregando dados...";
             // 
             // pictureBox1
             // 

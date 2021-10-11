@@ -131,7 +131,6 @@
     </Compile>
     <Compile Include="Classes\BancoDadosSingleton.cs" />
     <Compile Include="Classes\BuscadorCEP.cs" />
-    <Compile Include="Classes\Criptografador.cs" />
     <Compile Include="Classes\Crypto.cs" />
     <Compile Include="Classes\FormatadorCampo.cs" />
     <Compile Include="Classes\HelperFuncoes.cs" />
@@ -272,6 +271,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>NutreasyDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include=".editorconfig" />
     <None Include="Banco de Dados\NutreasyDB.edmx.diagram">
       <DependentUpon>NutreasyDB.edmx</DependentUpon>
     </None>

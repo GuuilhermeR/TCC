@@ -51,7 +51,7 @@ namespace TCC2.Telas
                 if (bValidaEmail == false)
                     return "Email do destinatário inválido: " + para;
 
-                string novaSenha = usuarioDAO.GerarNovaSenha();
+                string novaSenha = GerarNovaSenha();
 
                 var enviaMensagem = $@"
                       <html>

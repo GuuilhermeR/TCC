@@ -48,7 +48,6 @@ namespace DAO
             else
             {
                 nMensagemErro("Esse usuário ja possui permissão para essa tela");
-
             }
 
         }

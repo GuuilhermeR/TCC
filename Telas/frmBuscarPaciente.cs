@@ -75,8 +75,8 @@ namespace TCC2
             if (e.RowIndex >= 0)
                 if (e.ColumnIndex >= 0)
                 {
-                    PacienteModel.codPacienteCard = dtgPacientes.Rows[e.RowIndex].Cells["codPaciente"].Value.ToString();
-                    PacienteModel.nomePacienteCard = dtgPacientes.Rows[e.RowIndex].Cells["nome"].Value.ToString();
+                    PacienteModel.codPacienteModel = dtgPacientes.Rows[e.RowIndex].Cells["codPaciente"].Value.ToString();
+                    PacienteModel.nomePacienteModel = dtgPacientes.Rows[e.RowIndex].Cells["nome"].Value.ToString();
                     frmBuscarPaciente.ActiveForm.Close();
                 }
         }

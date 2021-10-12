@@ -8,6 +8,8 @@ using System.Security.Cryptography;
 using System.IO;
 using System.Linq;
 using System.Text;
+using TCC2.Classes;
+using System.Data.SQLite;
 
 namespace Classes
 {
@@ -193,7 +195,6 @@ namespace Classes
                 }
             }
         }
-
         public string Criptografar(string texto)
         {
             // Salt and IV is randomly generated each time, but is preprended to encrypted cipher text
@@ -239,6 +240,58 @@ namespace Classes
                 rngCsp.GetBytes(randomBytes);
             }
             return randomBytes;
+        }
+
+        public static string GerarNovaSenha()
+        {
+            SQLiteCommand cmd;
+            cmd = new SQLiteCommand();
+            string senha = string.Empty;
+
+            string senhaDescrip = GeraSenhaAleatoria();
+            senha = senhaDescrip;
+
+            return senhaDescrip;
+        }
+
+        private static string GeraSenhaAleatoria()
+        {
+            const string charPerm = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789!@$?_-";
+
+
+            string permitido = string.Empty;
+            permitido += charPerm;
+
+            int caracteres_minimo = 5;
+            int caracteres_maximo = 10;
+            int numero_caracteres = Crypto.RandomInteger(caracteres_minimo, caracteres_maximo);
+
+            string _senha = string.Empty;
+            _senha += RandomChar(charPerm);
+
+            while (_senha.Length < numero_caracteres)
+                _senha += RandomChar(permitido);
+
+            _senha = RandomizeString(_senha);
+            return _senha;
+        }
+
+        private static string RandomChar(string str)
+        {
+            return str.Substring(Crypto.RandomInteger(0, str.Length - 1), 1);
+        }
+
+        private static string RandomizeString(string str)
+        {
+            string resultado = string.Empty;
+            while (str.Length > 0)
+            {
+                // Pega um numero aleatorio
+                int i = Crypto.RandomInteger(0, str.Length - 1);
+                resultado += str.Substring(i, 1);
+                str = str.Remove(i, 1);
+            }
+            return resultado;
         }
 
     }

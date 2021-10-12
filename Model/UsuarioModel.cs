@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    class UsuarioModel
+    public class UsuarioModel
     {
+
+        public UsuarioModel() { }
+
     }
 }

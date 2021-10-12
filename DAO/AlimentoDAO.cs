@@ -60,9 +60,8 @@ namespace ProjetoTCC
                 aliUpdate.lipidio = lipidio;
                 aliUpdate.nomeTabela = nomeTabela;
 
-                BancoDadosSingleton.Instance.Alimentos.Add(aliUpdate);
-                BancoDadosSingleton.Instance.Entry(aliUpdate).State = EntityState.Modified;
                 BancoDadosSingleton.Instance.SaveChanges();
+                BancoDadosSingleton.Instance.Entry(aliUpdate).State = EntityState.Modified;
                 return true;
             }
             catch (Exception ex)

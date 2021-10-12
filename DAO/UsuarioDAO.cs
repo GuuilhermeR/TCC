@@ -9,6 +9,7 @@ using Classes;
 using System.Web.Security;
 using static Classes.HelperFuncoes;
 using TCC2.Classes;
+using System.Data.Entity;
 
 namespace TCC2
 {
@@ -48,6 +49,19 @@ namespace TCC2
         public string getUsuario()
         {
             return usuario;
+        }
+
+        public void setAcesso(string usuario, DateTime dataHora, bool terminou)
+        {
+            var usuUpdate = (from usu in BancoDadosSingleton.Instance.Login where usu.usuario == usuario select usu).Single();
+
+            usuUpdate.usuario = usuario;
+            usuUpdate.dtHoraUltAcesso = dataHora;
+            if (terminou)
+                usuUpdate.podeLogar = 0;
+
+            BancoDadosSingleton.Instance.SaveChanges();
+            BancoDadosSingleton.Instance.Entry(usuUpdate).State = EntityState.Modified;
         }
 
         public void setUsuario(string usuarioLogado)
@@ -134,7 +148,9 @@ namespace TCC2
                         usuUpdate.CRN = crn;
 
                     BancoDadosSingleton.Instance.SaveChanges();
+                BancoDadosSingleton.Instance.Entry(usuUpdate).State = EntityState.Modified;
                 }
+
                 else
                 {
                     var usuUpdate = (from usu in BancoDadosSingleton.Instance.Login where usu.usuario == usuario select usu).Single();
@@ -146,6 +162,7 @@ namespace TCC2
                     usuUpdate.perfil = tipoUsuario;
                     usuUpdate.CRN = crn;
                     BancoDadosSingleton.Instance.SaveChanges();
+                    BancoDadosSingleton.Instance.Entry(usuUpdate).State = EntityState.Modified;
                 }
 
                 nMensagemAviso("Os dados foram Salvos.");
@@ -178,6 +195,7 @@ namespace TCC2
                 BancoDadosSingleton.Instance.Login.Add(loginInsert);
                 BancoDadosSingleton.Instance.SaveChanges();
                 nMensagemAviso("O seu usuário foi criado");
+                BancoDadosSingleton.Instance.Entry(loginInsert).State = EntityState.Modified;
             }
             catch (Exception ex)
             {
@@ -208,18 +226,6 @@ namespace TCC2
             nMensagemErro("Usuário foi excluído");
         }
 
-        public string GerarNovaSenha()
-        {
-            SQLiteCommand cmd;
-            cmd = new SQLiteCommand();
-            string senha = string.Empty;
-
-            string senhaDescrip = GeraSenhaAleatoria();
-            senha = senhaDescrip;
-            
-            return senhaDescrip;
-        }
-
         [Obsolete]
         public void SalvarNovaSenha(string usuario, string senha)
         {
@@ -231,63 +237,29 @@ namespace TCC2
             BancoDadosSingleton.Instance.SaveChanges();
         }
 
-        private string GeraSenhaAleatoria()
-        {
-            const string charPerm = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789!@$?_-";
-
-            
-            string permitido = string.Empty;
-            permitido += charPerm;
-
-            int caracteres_minimo = 5;
-            int caracteres_maximo = 10;
-            int numero_caracteres = Crypto.RandomInteger(caracteres_minimo, caracteres_maximo);
-
-            string _senha = string.Empty;
-            _senha += RandomChar(charPerm);
-
-            while (_senha.Length < numero_caracteres)
-                _senha += RandomChar(permitido);
-
-            _senha = RandomizeString(_senha);
-            return _senha;
-        }
-
-        private string RandomChar(string str)
-        {
-            return str.Substring(Crypto.RandomInteger(0, str.Length - 1), 1);
-        }
-
-        private string RandomizeString(string str)
-        {
-            string resultado = string.Empty;
-            while (str.Length > 0)
-            {
-                // Pega um numero aleatorio
-                int i = Crypto.RandomInteger(0, str.Length - 1);
-                resultado += str.Substring(i, 1);
-                str = str.Remove(i, 1);
-            }
-            return resultado;
-        }
-
-        public bool CheckAvailable()
+        public bool CheckAvailable(string usuario)
         {
             using (var db = new NutreasyEntities())
             {
                 var checkDate = db.Database.Connection.CreateCommand();
-                checkDate.CommandText = $"SELECT CURRENT_DATE AS dataAtual";
+                checkDate.CommandText = $"SELECT dtHoraUltAcesso, podeLogar FROM Login WHERE usuario='{usuario}'";
                 db.Database.Connection.Open();
                 using (IDataReader dr = checkDate.ExecuteReader())
                 {
                     while (dr.Read())
                     {
-                        return Convert.ToBoolean(Convert.ToDateTime(dr["dataAtual"])>=Convert.ToDateTime(DateTime.Now));
+                        if (Convert.ToBoolean(Convert.ToInt64(dr["podeLogar"]) == 0))
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return Convert.ToBoolean(Convert.ToDateTime(dr["dtHoraUltAcesso"]) > Convert.ToDateTime(DateTime.Now));
+                        }
                     }
                 }
-                    db.Database.Connection.Close();
+                db.Database.Connection.Close();
             }
-
             return false;
         }
 

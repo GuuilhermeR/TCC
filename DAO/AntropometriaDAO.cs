@@ -39,11 +39,29 @@ namespace ProjetoTCC
 
                 BancoDadosSingleton.Instance.Antropometria.Add(antropometriaInsert);
                 BancoDadosSingleton.Instance.SaveChanges();
+                BancoDadosSingleton.Instance.Entry(antropometriaInsert).State = System.Data.Entity.EntityState.Modified;
                 nMensagemAviso("Antropometria foi salvo!");
             }
             catch (Exception ex)
             {
                 nMensagemErro("Ocorreu um erro ao salvar." + '\n' + ex.Message + '\n' + ex.InnerException);
+            }
+        }
+
+        public bool VerificarExisteSalvo(int paciente, DateTime data)
+        {
+            using (var db = new NutreasyEntities())
+            {
+                var select = db.Database.Connection.CreateCommand();
+                select.CommandText = $"SELECT COUNT(0) AS Existe FROM AGENDA WHERE data='{data.ToString("yyyy-MM-dd HH:mm:ss")}' AND paciente ='{paciente}'";
+                db.Database.Connection.Open();
+                select.ExecuteNonQuery();
+                IDataReader dr = select.ExecuteReader();
+                if (dr.Read())
+                {
+                    return (bool)dr["Existe"];
+                }
+                return false;
             }
         }
 
@@ -57,7 +75,7 @@ namespace ProjetoTCC
                 delete.ExecuteNonQuery();
                 db.Database.Connection.Close();
             }
-            nMensagemAviso("Os dados antropométrico foram excluídos!");
+            nMensagemAviso("Os dados antropométricos foram excluídos!");
         }
 
         public List<Antropometria> Buscar()
@@ -66,6 +84,22 @@ namespace ProjetoTCC
             {
                 List<Antropometria> antropometria = new List<Antropometria>();
                 antropometria = ((from a in BancoDadosSingleton.Instance.Antropometria select a).Distinct()).ToList();
+
+                return antropometria;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public List<DateTime> BuscarData(int codPaciente)
+        {
+            try
+            {
+                List<DateTime> antropometria = ((from a in BancoDadosSingleton.Instance.Antropometria 
+                                                 where a.codPaciente == codPaciente 
+                                                 select a.Data).Distinct()).ToList();
 
                 return antropometria;
             }

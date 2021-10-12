@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Data.Entity.SqlServer;
 using TCC2.Banco_de_Dados;
+using System.Data.Entity;
 
 namespace ProjetoTCC
 {
@@ -42,6 +43,7 @@ namespace ProjetoTCC
                     pacienteUpdate.imagem = vetorIMG;
 
                 BancoDadosSingleton.Instance.SaveChanges();
+                BancoDadosSingleton.Instance.Entry(pacienteUpdate).State = EntityState.Modified;
             }
             else
             {

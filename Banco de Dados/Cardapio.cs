@@ -18,11 +18,11 @@ namespace TCC2.Banco_de_Dados
         public Nullable<long> codPaciente { get; set; }
         public Nullable<long> codAlimento { get; set; }
         public Nullable<double> medidaCaseiraQtde { get; set; }
-        public string Obs { get; set; }
         public string Refeicao { get; set; }
         public Nullable<double> kcal { get; set; }
         public string data { get; set; }
         public string usuarioResp { get; set; }
+        public string obs { get; set; }
     
         public virtual Alimentos Alimentos { get; set; }
         public virtual Paciente Paciente { get; set; }

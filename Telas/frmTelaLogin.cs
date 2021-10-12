@@ -31,13 +31,6 @@ namespace TCC2
         [Obsolete]
         private void btnLogar_Click(object sender, EventArgs e)
         {
-
-            //if (!usuario.CheckAvailable())
-            //{
-            //    nMensagemAlerta("Seu período de testes acabou!");
-            //    return;
-            //}
-
             lblAviso.Visible = false;   
             if(txtUsuario.Text == string.Empty)
             {
@@ -60,6 +53,13 @@ namespace TCC2
                 usuario.setNomeUsuario(txtUsuario.Text);
                 usuario.setUsuarioSenha(txtSenha.Text);
                 var usuarioLogado = usuario.getUsuario();
+                usuario.setAcesso(usuarioLogado, DateTime.Now,false);
+                if (usuario.CheckAvailable(usuarioLogado))
+                {
+                    usuario.setAcesso(usuarioLogado, DateTime.Now,true);
+                    nMensagemErro("Seu período de testes terminou, não é mais possível utilizar o programa!");
+                    return;
+                }
                 FrmMenuPrincipal menu = new FrmMenuPrincipal(usuarioLogado.ToString(),true);
                 menu.Show();
                 this.Hide();

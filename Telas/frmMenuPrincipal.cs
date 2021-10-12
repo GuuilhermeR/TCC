@@ -778,7 +778,7 @@ namespace TCC2
         private void btnBuscarPacienteAgendamento_Click(object sender, EventArgs e)
         {
             BuscadorPaciente();
-            txtPacienteAgenda.Text = PacienteModel.nomePacienteCard;
+            txtPacienteAgenda.Text = PacienteModel.nomePacienteModel;
         }
         #endregion
 
@@ -789,7 +789,7 @@ namespace TCC2
             if (quantidadeSalva != 0)
                 if (dtgConAlimento.Rows.Count > 0)
                 {
-                    RecalcularMacroNutrientes(dtgConAlimento, quantidadeSalva);
+                    RecalcularMacroNutrientes(dtgRefeicoes, quantidadeSalva);
                 }
                 else
                 {
@@ -835,7 +835,7 @@ namespace TCC2
 
                     decimal somaTotalCaloria = ProteinaKcal + CarboidratoKcal + LipidioKcal;
                     row.Cells["kcal"].Value = Conversions.ToDecimal(somaTotalCaloria);
-                    lblVlrKcal.Text = Convert.ToString(somaTotalCaloria);
+                    lblValorKcal.Text = somaTotalCaloria.ToString("N2");
                     row.DefaultCellStyle.BackColor = Color.LightSalmon;
                 }
             }
@@ -1391,7 +1391,7 @@ namespace TCC2
         private void txtPacienteAnamnese_TextChanged(object sender, EventArgs e)
         {
             loadStart();
-            var listaCardapio = anamneseDAO.CarregarDataAnamnese(Convert.ToInt32(PacienteModel.codPacienteCard));
+            var listaCardapio = anamneseDAO.CarregarDataAnamnese(Convert.ToInt32(PacienteModel.codPacienteModel));
 
             if (listaCardapio == null || listaCardapio.Count == 0)
             {
@@ -1735,7 +1735,7 @@ namespace TCC2
         private void btnFindPacienteAnamnese_Click(object sender, EventArgs e)
         {
             btnPacienteCardapio_Click(sender, e);
-            txtPacienteAnamnese.Text = PacienteModel.nomePacienteCard;
+            txtPacienteAnamnese.Text = PacienteModel.nomePacienteModel;
         }
         private void txtUF_Leave(object sender, EventArgs e)
         {
@@ -1746,13 +1746,13 @@ namespace TCC2
         {
             loadStart();
             BuscadorPaciente();
-            txtPacienteAntro.Text = PacienteModel.nomePacienteCard;
+            txtPacienteAntro.Text = PacienteModel.nomePacienteModel;
             loadStop();
         }
 
         private void btnSalvarAnamnese_Click(object sender, EventArgs e)
         {
-            anamneseDAO.Salvar(Convert.ToInt32(PacienteModel.codPacienteCard), Convert.ToString(rtxtAnamnese.Text));
+            anamneseDAO.Salvar(Convert.ToInt32(PacienteModel.codPacienteModel), Convert.ToString(rtxtAnamnese.Text));
             txtPaciente.Text = string.Empty;
             cbxDataAnamnese.Items.Clear();
             cbxCarregarTemplate.Items.Clear();
@@ -1765,13 +1765,13 @@ namespace TCC2
 
         private void btnSalvarAntro_Click(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(PacienteModel.codPacienteCard) == 0)
+            if (Convert.ToInt32(PacienteModel.codPacienteModel) == 0)
             {
                 nMensagemAlerta("É necessário informar o paciente");
                 return;
             }
 
-            antropometriaDAO.Salvar(Convert.ToInt32(PacienteModel.codPacienteCard),
+            antropometriaDAO.Salvar(Convert.ToInt32(PacienteModel.codPacienteModel),
                 Convert.ToDouble(txtAltura.Text),
                 Convert.ToDouble(txtAntebraco.Text),
                 Convert.ToDouble(txtBraco.Text),
@@ -1809,10 +1809,16 @@ namespace TCC2
 
         private void dtgRefeicoes_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
+            if (dtgRefeicoes.Rows[e.Row.Index + 1].DefaultCellStyle.BackColor == Color.LightSalmon)
+                return;
+
+            cardapioDAO.RemoverComidaCardapio(cbxRefeicao.Text, txtDataCardapio.Text, Convert.ToInt32(dtgRefeicoes.Rows[e.Row.Index + 1].Cells["codAlimento"].Value));
             foreach (DataGridViewRow row in dtgRefeicoes.Rows)
             {
                 RecalcularMacroNutrientes(dtgRefeicoes, Convert.ToDecimal(row.Cells[qtd.Index].Value));
-                CarregarGrafico(Convert.ToDouble(row.Cells[prot.Index].Value), Convert.ToDouble(row.Cells[carbo.Index].Value), Convert.ToDouble(row.Cells[lipidio.Index].Value));
+                CarregarGrafico(Convert.ToDouble(row.Cells[prot.Index].Value)
+                    , Convert.ToDouble(row.Cells[carbo.Index].Value)
+                    , Convert.ToDouble(row.Cells[lipidio.Index].Value));
             }
         }
         #endregion
@@ -1882,6 +1888,7 @@ namespace TCC2
                         lipidio += Convert.ToDouble(row.Cells["lipidio"].Value);
                         linhaAdicionada.Add(dtgRefeicoes.Rows[linha]);
                         dtgRefeicoes.Rows[linha].Visible = false;
+                        dtgRefeicoes.Rows[linha].DefaultCellStyle.BackColor = Color.LightSalmon;
                     }
 
                 if (linhaAdicionada != null || linhaAdicionada.Count > 0)
@@ -1916,15 +1923,15 @@ namespace TCC2
                     if (medCaseiraItens is null)
                         continue;
 
-                    foreach (var teste in medCaseiraItens)
+                    foreach (var medidaCaseira in medCaseiraItens)
                     {
-                        if (Convert.ToDouble(row.Cells["codAlimento"].Value) == Convert.ToDouble(teste.codAlimento))
+                        if (Convert.ToDouble(row.Cells["codAlimento"].Value) == Convert.ToDouble(medidaCaseira.codAlimento))
                         {
                             DataGridViewComboBoxCell comboCell = dtgRefeicoes.Rows[row.Index].Cells[cbxMedCaseira.Index] as DataGridViewComboBoxCell;
 
-                            comboCell.Items.Add(teste.descricao);
-                            row.Cells["cbxMedCaseira"].Value = teste.descricao;
-                            row.Cells["qtd"].Value = teste.qtd;
+                            comboCell.Items.Add(medidaCaseira.descricao);
+                            row.Cells["cbxMedCaseira"].Value = medidaCaseira.descricao;
+                            row.Cells["qtd"].Value = medidaCaseira.qtd;
                         }
                     }
 
@@ -1935,17 +1942,16 @@ namespace TCC2
             lblVlrKcal.Visible = true;
             if (dtgRefeicoes.Rows.Count > 0)
             {
-                RecalcularMacroNutrientes(dtgConAlimento, quantidadeSalva);
+                RecalcularMacroNutrientes(dtgRefeicoes, 2);
                 CarregarGrafico(proteina, carboidrato, lipidio);
             }
-
         }
 
         private void txtPacienteConsultaCardapio_TextChanged(object sender, EventArgs e)
         {
-            if (PacienteModel.codPacienteCard == string.Empty)
+            if (PacienteModel.codPacienteModel == string.Empty)
                 return;
-            var listaCardapio = cardapioDAO.ConsultarDataConsultas(Convert.ToInt32(PacienteModel.codPacienteCard));
+            var listaCardapio = cardapioDAO.ConsultarDataConsultas(Convert.ToInt32(PacienteModel.codPacienteModel));
 
             if (listaCardapio == null)
             {
@@ -2001,7 +2007,7 @@ namespace TCC2
         private void btnSalvarCardapio_Click(object sender, EventArgs e)
         {
             //double Kcal = Convert.ToDouble(lblValorKcal.Text.Split(' ')[0]);
-            if (Convert.ToInt32(PacienteModel.codPacienteCard) == 0)
+            if (Convert.ToInt32(PacienteModel.codPacienteModel) == 0)
             {
                 nMensagemAlerta("Selecione um paciente para atrelar o cardápio");
                 return;
@@ -2010,34 +2016,34 @@ namespace TCC2
             loadStart();
 
             foreach (DataGridViewRow row in dtgRefeicoes.Rows)
-                erro = cardapioDAO.Salvar(Convert.ToInt32(PacienteModel.codPacienteCard),
+                erro = cardapioDAO.Salvar(Convert.ToInt32(PacienteModel.codPacienteModel),
                                                      Convert.ToInt32(row.Cells["codAlimento"].Value),
                                                      Convert.ToString(cbxRefeicao.Text),
                                                      Convert.ToInt32(row.Cells["qtd"].Value),
-                                                     Convert.ToString(row.Cells["obs"].Value),
                                                      Convert.ToDouble(row.Cells["kcal"].Value),
                                                      Convert.ToString(usuarioDAO.getUsuario()),
-                                                     txtDataCardapio.Text);
+                                                     txtDataCardapio.Text,
+                                                     Convert.ToString(row.Cells["obs"].Value));
 
-            loadStop();
 
             if (string.IsNullOrEmpty(erro))
             {
                 nMensagemAviso("Seus dados foram salvos!");
                 btnApagar_Click(sender, e);
                 btnCancelarCardapio_Click(sender, e);
+                loadStop();
             }
             else
             {
+                loadStop();
                 nMensagemErro(erro);
             }
-
         }
 
         private void btnPacienteCardapio_Click(object sender, EventArgs e)
         {
             BuscadorPaciente();
-            txtPaciente.Text = PacienteModel.nomePacienteCard;
+            txtPaciente.Text = PacienteModel.nomePacienteModel;
         }
 
         private void txtFiltroAlimento_Leave(object sender, EventArgs e)
@@ -2097,14 +2103,13 @@ namespace TCC2
         {
             frmBuscarPaciente buscaPacientes = new frmBuscarPaciente(this);
             buscaPacientes.ShowDialog();
-            txtPacienteConsultaCardapio.Text = PacienteModel.nomePacienteCard;
+            txtPacienteConsultaCardapio.Text = PacienteModel.nomePacienteModel;
         }
 
         private void dtgRefeicoes_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             if (Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["qtd"].Value) != 0)
                 quantidadeAntigaCardapio = Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["qtd"].Value);
-
         }
 
         private void btnApagar_Click(object sender, EventArgs e)
@@ -2114,8 +2119,8 @@ namespace TCC2
             cbxRefeicao.Text = null;
             lblValorKcal.Text = null;
             cbxTabelaAlimentoCardapio.SelectedIndex = -1;
-            PacienteModel.codPacienteCard = null;
-            PacienteModel.nomePacienteCard = null;
+            PacienteModel.codPacienteModel = null;
+            PacienteModel.nomePacienteModel = null;
             txtPacienteConsultaCardapio.Clear();
             trwDadosCard.Nodes.Clear();
         }
@@ -2132,7 +2137,6 @@ namespace TCC2
                     loadStop();
                     return;
                 }
-
 
                 DataTable dt = ConvertToDataTable(listaAlimentos);
                 dtgCardapioAlimentos.DataSource = dt;
@@ -2156,8 +2160,8 @@ namespace TCC2
         private void btnCancelarCardapio_Click(object sender, EventArgs e)
         {
             txtPaciente.Text = string.Empty;
-            PacienteModel.codPacienteCard = string.Empty;
-            PacienteModel.nomePacienteCard = string.Empty;
+            PacienteModel.codPacienteModel = string.Empty;
+            PacienteModel.nomePacienteModel = string.Empty;
             txtPacienteConsultaCardapio.Text = string.Empty;
             dtgRefeicoes.Rows.Clear();
             cbxTabelaAlimentoCardapio.Text = string.Empty;
@@ -2173,19 +2177,10 @@ namespace TCC2
 
         private void tbConsultaCardapio_Click(object sender, EventArgs e)
         {
-
         }
 
         private void tbConsultaCardapio_Enter(object sender, EventArgs e)
         {
-            //var consultaPaciente = cardapioDAO.Consultar(Convert.ToInt32(txtPacienteConsultaCardapio.Text));
-            //if (consultaPaciente is null || consultaPaciente.Count == 0)
-            //    return;
-
-            //consultaPaciente.ForEach(pac =>
-            //{
-            //});
-
         }
 
         private void btnCancelarEditAlimentos_Click(object sender, EventArgs e)
@@ -2210,7 +2205,7 @@ namespace TCC2
                 nMensagemAviso("Selecionar uma data para o carregamento das informações do cardápio!");
                 return;
             }
-            var listaCardapio = cardapioDAO.Consultar(Convert.ToInt32(PacienteModel.codPacienteCard), Convert.ToString(cbxDataConsulta.Text), string.Empty);
+            var listaCardapio = cardapioDAO.Consultar(Convert.ToInt32(PacienteModel.codPacienteModel), Convert.ToString(cbxDataConsulta.Text), string.Empty);
             if (listaCardapio == null || listaCardapio.Count == 0)
             {
                 return;
@@ -2246,7 +2241,7 @@ namespace TCC2
             Ceia.ImageIndex = 1;
             listaCardapio.ForEach(card =>
             {
-                dtgCardGrid.Rows.Add(card.Refeicao, card.Alimentos.nomeAlimento, card.medidaCaseiraQtde, card.Obs);
+                dtgCardGrid.Rows.Add(card.Refeicao, card.Alimentos.nomeAlimento, card.medidaCaseiraQtde, Convert.ToString(card.obs));
                 switch (card.Refeicao)
                 {
                     case "Café da manhã":
@@ -2256,7 +2251,7 @@ namespace TCC2
                         filhoCafe.ImageIndex = 2;
                         filhoCafe = cafe.Nodes.Add("KCal: " + card.kcal.ToString());
                         filhoCafe.ImageIndex = 2;
-                        filhoCafe = cafe.Nodes.Add("Obs: " + card.Obs.ToString());
+                        filhoCafe = cafe.Nodes.Add("Observação: " + card.obs.ToString());
                         filhoCafe.ImageIndex = 2;
                         filhoCafe = cafe.Nodes.Add(string.Empty);
                         return;
@@ -2268,7 +2263,7 @@ namespace TCC2
                         filhoLanche.ImageIndex = 2;
                         filhoLanche = Lanche.Nodes.Add("KCal: " + card.kcal.ToString());
                         filhoLanche.ImageIndex = 2;
-                        filhoLanche = Lanche.Nodes.Add("Obs: " + card.Obs.ToString());
+                        filhoLanche = Lanche.Nodes.Add("Observação: " + Convert.ToString(card.obs));
                         filhoLanche.ImageIndex = 2;
                         filhoLanche = Lanche.Nodes.Add(string.Empty);
                         return;
@@ -2280,7 +2275,7 @@ namespace TCC2
                         filhoAlmoco.ImageIndex = 2;
                         filhoAlmoco = Almoco.Nodes.Add("KCal: " + card.kcal.ToString());
                         filhoAlmoco.ImageIndex = 2;
-                        filhoAlmoco = Almoco.Nodes.Add("Obs: " + card.Obs.ToString());
+                        filhoAlmoco = Almoco.Nodes.Add("Observação: " + Convert.ToString(card.obs));
                         filhoAlmoco.ImageIndex = 2;
                         filhoAlmoco = Almoco.Nodes.Add(string.Empty);
                         return;
@@ -2292,7 +2287,7 @@ namespace TCC2
                         filhoLancheTarde.ImageIndex = 2;
                         filhoLancheTarde = LancheTarde.Nodes.Add("KCal: " + card.kcal.ToString());
                         filhoLancheTarde.ImageIndex = 2;
-                        filhoLancheTarde = LancheTarde.Nodes.Add("Obs: " + card.Obs.ToString());
+                        filhoLancheTarde = LancheTarde.Nodes.Add("Observação: " + Convert.ToString(card.obs));
                         filhoLancheTarde.ImageIndex = 2;
                         filhoLancheTarde = LancheTarde.Nodes.Add(string.Empty);
                         return;
@@ -2304,7 +2299,7 @@ namespace TCC2
                         filhoJantar.ImageIndex = 2;
                         filhoJantar = Jantar.Nodes.Add("KCal: " + card.kcal.ToString());
                         filhoJantar.ImageIndex = 2;
-                        filhoJantar = Jantar.Nodes.Add("Obs: " + card.Obs.ToString());
+                        filhoJantar = Jantar.Nodes.Add("Observação: " + Convert.ToString(card.obs));
                         filhoJantar.ImageIndex = 2;
                         filhoJantar = Jantar.Nodes.Add(string.Empty);
                         return;
@@ -2316,7 +2311,7 @@ namespace TCC2
                         filhoCeia.ImageIndex = 2;
                         filhoCeia = Ceia.Nodes.Add("KCal: " + card.kcal.ToString());
                         filhoCeia.ImageIndex = 2;
-                        filhoCeia = Ceia.Nodes.Add("Obs: " + card.Obs.ToString());
+                        filhoCeia = Ceia.Nodes.Add("Observação: " + Convert.ToString(card.obs));
                         filhoCeia.ImageIndex = 2;
                         filhoCeia = Ceia.Nodes.Add(string.Empty);
                         return;
@@ -2332,7 +2327,7 @@ namespace TCC2
                 return;
             }
 
-            using (frmGraficoPaciente grafico = new frmGraficoPaciente(Convert.ToInt32(PacienteModel.codPacienteCard), txtPacienteAntro.Text))
+            using (frmGraficoPaciente grafico = new frmGraficoPaciente(Convert.ToInt32(PacienteModel.codPacienteModel), txtPacienteAntro.Text))
             {
                 grafico.ShowDialog();
             }
@@ -2346,45 +2341,87 @@ namespace TCC2
 
         private void btnExportar_Click(object sender, EventArgs e)
         {
-            Aspose.Cells.Workbook workbook = new Aspose.Cells.Workbook(new System.IO.MemoryStream(Resources.BaseImpressaoCardapioSalvo));
+            Aspose.Cells.Workbook workbook = new Aspose.Cells.Workbook(new System.IO.MemoryStream(Resources.ImpressaoCardapio));
             WorksheetCollection worksheets = workbook.Worksheets;
 
             string ultimaRefeicao = string.Empty;
-            var linha = worksheets.GetRangeByName("colItem").FirstRow;
+            var linha = worksheets.GetRangeByName("colRefeicao").FirstRow;
 
             worksheets.GetRangeByName("paciente").PutValue(txtPacienteConsultaCardapio.Text, false, false);
             worksheets.GetRangeByName("dataConsulta").PutValue(cbxDataConsulta.Text, false, false);
+
             dtgCardGrid.Sort(dtgCardGrid.Columns["refeicao"], ListSortDirection.Ascending);
+
             foreach (DataGridViewRow row in dtgCardGrid.Rows)
             {
                 linha += 1;
 
-                if (string.IsNullOrEmpty(ultimaRefeicao) || ultimaRefeicao != Convert.ToString(row.Cells["refeicao"].Value))
+                if (string.IsNullOrEmpty(ultimaRefeicao) || ultimaRefeicao != Convert.ToString(row.Cells["refeicao"].Value).ToUpper())
                 {
-                    worksheets[0].Cells["B" + (linha + 1)].Value = Convert.ToString(row.Cells["refeicao"].Value);
-                    ultimaRefeicao = Convert.ToString(row.Cells["refeicao"].Value);
+                    worksheets[0].Cells["A" + (linha + 1)].PutValue(Convert.ToString(row.Cells["refeicao"].Value), false, false);
+                    Style styleCell = worksheets[0].Cells["C" + (linha + 1)].GetStyle();
+                    styleCell.HorizontalAlignment = TextAlignmentType.Center;
+                    styleCell.Font.IsBold = true;
+
+                    ultimaRefeicao = Convert.ToString(row.Cells["refeicao"].Value).ToUpper();
                 }
 
-                worksheets[0].Cells["C" + (linha + 1)].PutValue(Convert.ToString(row.Cells["alimento"].Value));
-                worksheets[0].Cells["D" + (linha + 1)].PutValue(Convert.ToString(row.Cells["medidacaseiraqtd"].Value));
-                worksheets[0].Cells["E" + (linha + 1)].PutValue(Convert.ToString(row.Cells["observ"].Value).Trim());
+                //if (Convert.ToString(row.Cells["alimento"].Value).Length < 15)
+                //{
+                worksheets[0].Cells["D" + (linha + 1)].PutValue(Convert.ToString(row.Cells["alimento"].Value).ToUpper(), false, false);
+                Style styleCellFood = worksheets[0].Cells["D" + (linha + 1)].GetStyle();
+                styleCellFood.VerticalAlignment = TextAlignmentType.Justify;
+                //}
+                //else
+                //{
+                //    var obs = worksheets[0].Cells["C" + (linha + 1)];
+                //    obs.PutValue(Convert.ToString(row.Cells["alimento"].Value).Trim(), false, false);
+                //    decimal lineBreak = Math.Ceiling(Convert.ToDecimal(obs.GetWidthOfValue() / 15));
+                //    obs.Worksheet.Cells.Rows[linha + 1].Height = (double)(15 * lineBreak);
+                //    if (lineBreak > 1)
+                //        obs.Worksheet.Cells.Rows[linha + 1].Height += 3;
+                //}
 
-                worksheets[0].Cells.UnhideRow(linha, 17);
+                worksheets[0].Cells["O" + (linha + 1)].PutValue(Convert.ToString(row.Cells["medidacaseiraqtd"].Value), false, false);
+                Style styleCellMed = worksheets[0].Cells["O" + (linha + 1)].GetStyle();
+                styleCellMed.HorizontalAlignment = TextAlignmentType.Center;
+
+                //if (Convert.ToString(row.Cells["observ"].Value).Length < 20)
+                //{
+                worksheets[0].Cells["P" + (linha + 1)].PutValue(Convert.ToString(row.Cells["observ"].Value).Trim());
+                Style styleCellObs = worksheets[0].Cells["P" + (linha + 1)].GetStyle();
+                styleCellObs.HorizontalAlignment = TextAlignmentType.Justify;
+                //}
+                //else
+                //{
+                //    var obs = worksheets[0].Cells["D" + (linha + 1)];
+                //    obs.PutValue(Convert.ToString(row.Cells["observ"].Value).Trim(), false, false);
+                //    decimal lineBreak = Math.Ceiling(Convert.ToDecimal(obs.GetWidthOfValue() / 75));
+                //    obs.Worksheet.Cells.Rows[linha + 1].Height = (double)(15 * lineBreak);
+                //    if (lineBreak > 1)
+                //        obs.Worksheet.Cells.Rows[linha + 1].Height += 3;
+                //}
+
                 Style styles = new Style();
-                styles.Font.Size = 10;
+                styles.Font.Size = 14;
+                styles.HorizontalAlignment = TextAlignmentType.Justify;
 
-                StyleFlag flags = new Aspose.Cells.StyleFlag();
-                flags.FontSize = true;
-                flags.All = true;
+                StyleFlag flags = new StyleFlag
+                {
+                    FontSize = true,
+                    All = true,
+                    ShrinkToFit = true
+                };
 
                 worksheets[0].Cells.Rows[linha].ApplyStyle(styles, flags);
+                worksheets[0].Cells.UnhideRow(linha, 17);
             }
 
             AutoFitterOptions opt = new Aspose.Cells.AutoFitterOptions();
             opt.OnlyAuto = true;
             opt.IgnoreHidden = true;
 
-            worksheets[0].AutoFitColumns(opt);
+            //worksheets[0].AutoFitColumns(opt);
 
             string tempFile = Path.Combine(Path.GetTempPath(), Path.GetTempFileName().Replace(".tmp", ".pdf"));
             workbook.Save(tempFile);
@@ -2408,7 +2445,7 @@ namespace TCC2
         private void CarregarAlimentosCardapioConfig()
         {
 
-            if(string.IsNullOrEmpty(PacienteModel.codPacienteCard))
+            if (string.IsNullOrEmpty(PacienteModel.codPacienteModel))
             {
                 return;
             }
@@ -2420,7 +2457,7 @@ namespace TCC2
             {
                 return;
             }
-            var carregarAlimentos = cardapioDAO.Consultar(Convert.ToInt32(PacienteModel.codPacienteCard), txtDataCardapio.Text, cbxRefeicao.Text);
+            var carregarAlimentos = cardapioDAO.Consultar(Convert.ToInt32(PacienteModel.codPacienteModel), txtDataCardapio.Text, cbxRefeicao.Text);
 
             dtgRefeicoes.DataSource = null;
             dtgRefeicoes.Rows.Clear();
@@ -2435,18 +2472,33 @@ namespace TCC2
                              , x.Alimentos.kcal
                              , x.Alimentos.prot
                              , x.Alimentos.carbo
-                             , x.Alimentos.lipidio);
+                             , x.Alimentos.lipidio
+                             , x.obs);
 
-                if (dtgRefeicoes.Rows.Count > 0)
-                {
-                    RecalcularMacroNutrientes(dtgConAlimento, quantidadeSalva);
-                    CarregarGrafico(Convert.ToDouble(x.Alimentos.prot), Convert.ToDouble(x.Alimentos.carbo), Convert.ToDouble(x.Alimentos.lipidio));
-                }
-
+                RecalcularMacroNutrientes(dtgRefeicoes, 2);
+                CarregarGrafico(Convert.ToDouble(x.Alimentos.prot), Convert.ToDouble(x.Alimentos.carbo), Convert.ToDouble(x.Alimentos.lipidio));
             });
 
-            
+            foreach (DataGridViewRow row in dtgRefeicoes.Rows)
+            {
+                var medCaseiraItens = medidaCaseiraDAO.Buscar(Convert.ToInt32(row.Cells["codAlimento"].Value), string.Empty);
 
+                if (medCaseiraItens is null)
+                    continue;
+
+                foreach (var medidaCaseira in medCaseiraItens)
+                {
+                    if (Convert.ToDouble(row.Cells["codAlimento"].Value) == Convert.ToDouble(medidaCaseira.codAlimento))
+                    {
+                        DataGridViewComboBoxCell comboCell = dtgRefeicoes.Rows[row.Index].Cells[cbxMedCaseira.Index] as DataGridViewComboBoxCell;
+
+                        comboCell.Items.Add(medidaCaseira.descricao);
+                        row.Cells["cbxMedCaseira"].Value = medidaCaseira.descricao;
+                        row.Cells["qtd"].Value = medidaCaseira.qtd;
+                    }
+                }
+            }
+            dtgRefeicoes.AutoResizeColumns();
         }
 
         #endregion
@@ -2507,6 +2559,8 @@ namespace TCC2
             dtgUsuarios.Columns["crn"].HeaderText = "CRN";
             dtgUsuarios.Columns["Permissao"].Visible = false;
             dtgUsuarios.Columns["ConfiguracoesUsuarios"].Visible = false;
+            dtgUsuarios.Columns["dtHoraUltAcesso"].Visible = false;
+            dtgUsuarios.Columns["podeLogar"].Visible = false;
             dtgUsuarios.AutoResizeColumns();
             loadStop();
         }
@@ -2816,6 +2870,34 @@ namespace TCC2
         private void txtPaciente_TextChanged(object sender, EventArgs e)
         {
             CarregarAlimentosCardapioConfig();
+        }
+
+        private void txtPacienteAntro_TextChanged(object sender, EventArgs e)
+        {
+           var listDates = antropometriaDAO.BuscarData(Convert.ToInt32(PacienteModel.codPacienteModel));
+
+            if (listDates is null)
+            {
+                if (cbxDataAntrop.Visible)
+                {
+                    cbxDataAntrop.Visible = false;
+                }
+                return;
+            }
+
+            cbxDataAntrop.Items.Clear();
+
+            listDates.ForEach(x =>
+           {
+               cbxDataAntrop.Items.Add(x);
+           });
+
+            cbxDataAntrop.Visible = true;
+        }
+
+        private void cbxDataAntrop_SelectedValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -20,14 +20,17 @@ namespace TCC2
         {
         }
 
-        public string Salvar(int codPaciente, int codAlimento, string refeicao, double medidaCaseiraQtde, string obs, double kcal, string usuario, string data)
+        public string Salvar(int codPaciente, int codAlimento, string refeicao, double medidaCaseiraQtde, double kcal, string usuario, string data, string obs)
         {
             if (VerificarExiste(codPaciente, codAlimento,data,refeicao))
             {
                 try
                 {
                     var cardUpdt = (from card in BancoDadosSingleton.Instance.Cardapio
-                                    where card.codPaciente == codPaciente && card.data == data && card.Refeicao == refeicao && card.codAlimento == codAlimento
+                                    where card.codPaciente == codPaciente 
+                                    && card.data == data 
+                                    && card.Refeicao == refeicao 
+                                    && card.codAlimento == codAlimento
                                     select card).Single();
 
                     cardUpdt.codPaciente = codPaciente;
@@ -36,13 +39,11 @@ namespace TCC2
                     cardUpdt.codAlimento = codAlimento;
                     cardUpdt.medidaCaseiraQtde = medidaCaseiraQtde;
                     cardUpdt.Refeicao = refeicao;
-                    cardUpdt.Obs = obs;
                     cardUpdt.kcal = kcal;
-
-                    BancoDadosSingleton.Instance.Cardapio.Add(cardUpdt);
+                    cardUpdt.obs = obs;
+                    
                     BancoDadosSingleton.Instance.SaveChanges();
                     BancoDadosSingleton.Instance.Entry(cardUpdt).State = System.Data.Entity.EntityState.Modified;
-
                 }
                 catch (Exception ex)
                 {
@@ -61,8 +62,8 @@ namespace TCC2
                     cardapioInsert.codAlimento = codAlimento;
                     cardapioInsert.medidaCaseiraQtde = medidaCaseiraQtde;
                     cardapioInsert.Refeicao = refeicao;
-                    cardapioInsert.Obs = obs;
                     cardapioInsert.kcal = kcal;
+                    cardapioInsert.obs = obs;
 
                     BancoDadosSingleton.Instance.Cardapio.Add(cardapioInsert);
                     BancoDadosSingleton.Instance.SaveChanges();
@@ -166,12 +167,12 @@ namespace TCC2
 
         public void Deletar(string data)
         {
-            if (!String.IsNullOrEmpty(PacienteModel.codPacienteCard))
+            if (!String.IsNullOrEmpty(PacienteModel.codPacienteModel))
             {
                 using (var db = new NutreasyEntities())
                 {
                     var delete = db.Database.Connection.CreateCommand();
-                    delete.CommandText = $"DELETE FROM Cardapio WHERE codPaciente = {PacienteModel.codPacienteCard} AND data={data}";
+                    delete.CommandText = $"DELETE FROM Cardapio WHERE codPaciente = {PacienteModel.codPacienteModel} AND data={data}";
                     db.Database.Connection.Open();
                     delete.ExecuteNonQuery();
                     db.Database.Connection.Close();
@@ -180,5 +181,24 @@ namespace TCC2
             }
         }
 
+        public void RemoverComidaCardapio(string refeicao, string data, int alimento)
+        {
+            if (!String.IsNullOrEmpty(PacienteModel.codPacienteModel))
+            {
+                using (var db = new NutreasyEntities())
+                {
+                    var delete = db.Database.Connection.CreateCommand();
+                    delete.CommandText = $"DELETE FROM Cardapio " +
+                                         $" WHERE codPaciente={PacienteModel.codPacienteModel}" +
+                                         $" AND Refeicao='{refeicao}'" +
+                                         $" AND data='{data}'" +
+                                         $" AND codAlimento={alimento}";
+                    db.Database.Connection.Open();
+                    delete.ExecuteNonQuery();
+                    BancoDadosSingleton.Instance.Entry(delete).State = System.Data.Entity.EntityState.Modified;
+                    db.Database.Connection.Close();
+                }
+            }
+        }
     }
 }

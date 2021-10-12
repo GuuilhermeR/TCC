@@ -74,11 +74,11 @@
           <Property Name="codPaciente" Type="integer" />
           <Property Name="codAlimento" Type="integer" />
           <Property Name="medidaCaseiraQtde" Type="real" />
-          <Property Name="Obs" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="Refeicao" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="kcal" Type="real" />
           <Property Name="data" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="usuarioResp" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="obs" Type="nvarchar" MaxLength="2147483647" />
         </EntityType>
         <EntityType Name="ConfiguracoesUsuarios">
           <Key>
@@ -101,6 +101,8 @@
           <Property Name="email" Type="varchar" MaxLength="2147483647" />
           <Property Name="perfil" Type="varchar" MaxLength="2147483647" Nullable="false" />
           <Property Name="CRN" Type="varchar" MaxLength="2147483647" />
+          <Property Name="dtHoraUltAcesso" Type="datetime" />
+          <Property Name="podeLogar" Type="integer" />
         </EntityType>
         <EntityType Name="MedidaCaseira">
           <Key>
@@ -404,13 +406,13 @@
           <Property Name="codPaciente" Type="Int64" />
           <Property Name="codAlimento" Type="Int64" />
           <Property Name="medidaCaseiraQtde" Type="Double" />
-          <Property Name="Obs" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Refeicao" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="kcal" Type="Double" />
           <Property Name="data" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="usuarioResp" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Alimentos" Relationship="mainModel.FK_Cardapio_0_0" FromRole="Cardapio" ToRole="Alimentos" />
           <NavigationProperty Name="Paciente" Relationship="mainModel.FK_Cardapio_1_0" FromRole="Cardapio" ToRole="Paciente" />
+          <Property Name="obs" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ConfiguracoesUsuarios">
           <Key>
@@ -436,6 +438,8 @@
           <Property Name="CRN" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ConfiguracoesUsuarios" Relationship="mainModel.FK_ConfiguracoesUsuarios_0_0" FromRole="Login" ToRole="ConfiguracoesUsuarios" />
           <NavigationProperty Name="Permissao" Relationship="mainModel.FK_Permissao_0_0" FromRole="Login" ToRole="Permissao" />
+          <Property Name="dtHoraUltAcesso" Type="DateTime" Precision="3" />
+          <Property Name="podeLogar" Type="Int64" />
         </EntityType>
         <EntityType Name="MedidaCaseira">
           <Key>
@@ -649,11 +653,11 @@
           <EntitySetMapping Name="Cardapio">
             <EntityTypeMapping TypeName="mainModel.Cardapio">
               <MappingFragment StoreEntitySet="Cardapio">
+                <ScalarProperty Name="obs" ColumnName="obs" />
                 <ScalarProperty Name="usuarioResp" ColumnName="usuarioResp" />
                 <ScalarProperty Name="data" ColumnName="data" />
                 <ScalarProperty Name="kcal" ColumnName="kcal" />
                 <ScalarProperty Name="Refeicao" ColumnName="Refeicao" />
-                <ScalarProperty Name="Obs" ColumnName="Obs" />
                 <ScalarProperty Name="medidaCaseiraQtde" ColumnName="medidaCaseiraQtde" />
                 <ScalarProperty Name="codAlimento" ColumnName="codAlimento" />
                 <ScalarProperty Name="codPaciente" ColumnName="codPaciente" />
@@ -675,6 +679,8 @@
           <EntitySetMapping Name="Login">
             <EntityTypeMapping TypeName="mainModel.Login">
               <MappingFragment StoreEntitySet="Login">
+                <ScalarProperty Name="podeLogar" ColumnName="podeLogar" />
+                <ScalarProperty Name="dtHoraUltAcesso" ColumnName="dtHoraUltAcesso" />
                 <ScalarProperty Name="CRN" ColumnName="CRN" />
                 <ScalarProperty Name="perfil" ColumnName="perfil" />
                 <ScalarProperty Name="email" ColumnName="email" />

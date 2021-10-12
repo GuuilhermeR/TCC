@@ -26,9 +26,8 @@ namespace TCC2
             {
                 try
                 {
-                    loadStart();
                     var cardUpdt = (from card in BancoDadosSingleton.Instance.Cardapio
-                                    where card.codPaciente == codPaciente && card.data == data
+                                    where card.codPaciente == codPaciente && card.data == data && card.Refeicao == refeicao && card.codAlimento == codAlimento
                                     select card).Single();
 
                     cardUpdt.codPaciente = codPaciente;
@@ -42,12 +41,11 @@ namespace TCC2
 
                     BancoDadosSingleton.Instance.Cardapio.Add(cardUpdt);
                     BancoDadosSingleton.Instance.SaveChanges();
-                    loadStop();
+                    BancoDadosSingleton.Instance.Entry(cardUpdt).State = System.Data.Entity.EntityState.Modified;
 
                 }
                 catch (Exception ex)
                 {
-                    loadStop();
                     return "Ocorreu um erro ao salvar o Cardápio." + '\n' + ex.Message + '\n' + ex.InnerException;
                 }
             }
@@ -55,7 +53,6 @@ namespace TCC2
             {
                 try
                 {
-                    loadStart();
                     Cardapio cardapioInsert = new Cardapio();
 
                     cardapioInsert.codPaciente = codPaciente;
@@ -69,7 +66,7 @@ namespace TCC2
 
                     BancoDadosSingleton.Instance.Cardapio.Add(cardapioInsert);
                     BancoDadosSingleton.Instance.SaveChanges();
-                    loadStop();
+                    BancoDadosSingleton.Instance.Entry(cardapioInsert).State = System.Data.Entity.EntityState.Modified;
                 }
                 catch (Exception ex)
                 {

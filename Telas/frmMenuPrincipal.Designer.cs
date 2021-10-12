@@ -31,13 +31,13 @@ namespace TCC2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange64 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange65 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange66 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange67 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange68 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange69 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange70 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange1 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange2 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange3 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange4 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange5 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange6 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange7 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMenuPrincipal));
             this.TabControlNutreasy = new MaterialSkin.Controls.MaterialTabControl();
             this.tabMenu = new System.Windows.Forms.TabPage();
@@ -301,7 +301,7 @@ namespace TCC2
             this.tabMenu.ImageKey = "menu32px.png";
             this.tabMenu.Location = new System.Drawing.Point(4, 39);
             this.tabMenu.Name = "tabMenu";
-            this.tabMenu.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabMenu.Padding = new System.Windows.Forms.Padding(3);
             this.tabMenu.Size = new System.Drawing.Size(1195, 711);
             this.tabMenu.TabIndex = 0;
             this.tabMenu.Text = "Home";
@@ -319,10 +319,10 @@ namespace TCC2
             this.mCardAtendimentoAtual.Depth = 0;
             this.mCardAtendimentoAtual.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.mCardAtendimentoAtual.Location = new System.Drawing.Point(17, 68);
-            this.mCardAtendimentoAtual.Margin = new System.Windows.Forms.Padding(14, 14, 14, 14);
+            this.mCardAtendimentoAtual.Margin = new System.Windows.Forms.Padding(14);
             this.mCardAtendimentoAtual.MouseState = MaterialSkin.MouseState.HOVER;
             this.mCardAtendimentoAtual.Name = "mCardAtendimentoAtual";
-            this.mCardAtendimentoAtual.Padding = new System.Windows.Forms.Padding(14, 14, 14, 14);
+            this.mCardAtendimentoAtual.Padding = new System.Windows.Forms.Padding(14);
             this.mCardAtendimentoAtual.Size = new System.Drawing.Size(337, 231);
             this.mCardAtendimentoAtual.TabIndex = 10;
             this.mCardAtendimentoAtual.Visible = false;
@@ -407,10 +407,10 @@ namespace TCC2
             this.mCardAtendimentoFuturo.Depth = 0;
             this.mCardAtendimentoFuturo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.mCardAtendimentoFuturo.Location = new System.Drawing.Point(841, 68);
-            this.mCardAtendimentoFuturo.Margin = new System.Windows.Forms.Padding(14, 14, 14, 14);
+            this.mCardAtendimentoFuturo.Margin = new System.Windows.Forms.Padding(14);
             this.mCardAtendimentoFuturo.MouseState = MaterialSkin.MouseState.HOVER;
             this.mCardAtendimentoFuturo.Name = "mCardAtendimentoFuturo";
-            this.mCardAtendimentoFuturo.Padding = new System.Windows.Forms.Padding(14, 14, 14, 14);
+            this.mCardAtendimentoFuturo.Padding = new System.Windows.Forms.Padding(14);
             this.mCardAtendimentoFuturo.Size = new System.Drawing.Size(337, 231);
             this.mCardAtendimentoFuturo.TabIndex = 18;
             this.mCardAtendimentoFuturo.Visible = false;
@@ -524,7 +524,7 @@ namespace TCC2
             this.tabAgenda.ImageKey = "agenda32px.png";
             this.tabAgenda.Location = new System.Drawing.Point(4, 39);
             this.tabAgenda.Name = "tabAgenda";
-            this.tabAgenda.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabAgenda.Padding = new System.Windows.Forms.Padding(3);
             this.tabAgenda.Size = new System.Drawing.Size(1195, 711);
             this.tabAgenda.TabIndex = 1;
             this.tabAgenda.Text = "Agenda";
@@ -602,7 +602,7 @@ namespace TCC2
             this.txtHoraAgenda.Hint = "Hora";
             this.txtHoraAgenda.LeadingIcon = null;
             this.txtHoraAgenda.Location = new System.Drawing.Point(4, 115);
-            this.txtHoraAgenda.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtHoraAgenda.Margin = new System.Windows.Forms.Padding(2);
             this.txtHoraAgenda.MaxLength = 5;
             this.txtHoraAgenda.MouseState = MaterialSkin.MouseState.OUT;
             this.txtHoraAgenda.Multiline = false;
@@ -621,7 +621,7 @@ namespace TCC2
             this.txtDataAgendamento.Hint = "Data";
             this.txtDataAgendamento.LeadingIcon = null;
             this.txtDataAgendamento.Location = new System.Drawing.Point(5, 61);
-            this.txtDataAgendamento.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtDataAgendamento.Margin = new System.Windows.Forms.Padding(2);
             this.txtDataAgendamento.MaxLength = 10;
             this.txtDataAgendamento.MouseState = MaterialSkin.MouseState.OUT;
             this.txtDataAgendamento.Multiline = false;
@@ -639,36 +639,36 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.calAgendamento.BackColor = System.Drawing.SystemColors.Control;
-            this.calAgendamento.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            calendarHighlightRange64.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange64.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange64.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange65.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange65.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange65.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange66.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange66.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange66.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange67.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange67.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange67.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange68.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange68.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange68.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange69.DayOfWeek = System.DayOfWeek.Saturday;
-            calendarHighlightRange69.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange69.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange70.DayOfWeek = System.DayOfWeek.Sunday;
-            calendarHighlightRange70.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange70.StartTime = System.TimeSpan.Parse("00:00:00");
+            this.calAgendamento.Font = new System.Drawing.Font("Segoe UI", 9F);
+            calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange1.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange1.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange2.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange2.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange2.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange3.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange3.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange3.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange4.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange4.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange4.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange5.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange5.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange5.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange6.DayOfWeek = System.DayOfWeek.Saturday;
+            calendarHighlightRange6.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange6.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange7.DayOfWeek = System.DayOfWeek.Sunday;
+            calendarHighlightRange7.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange7.StartTime = System.TimeSpan.Parse("00:00:00");
             this.calAgendamento.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
-        calendarHighlightRange64,
-        calendarHighlightRange65,
-        calendarHighlightRange66,
-        calendarHighlightRange67,
-        calendarHighlightRange68,
-        calendarHighlightRange69,
-        calendarHighlightRange70};
+        calendarHighlightRange1,
+        calendarHighlightRange2,
+        calendarHighlightRange3,
+        calendarHighlightRange4,
+        calendarHighlightRange5,
+        calendarHighlightRange6,
+        calendarHighlightRange7};
             this.calAgendamento.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.calAgendamento.ItemsTimeFormat = "hh:mm";
             this.calAgendamento.Location = new System.Drawing.Point(3, 195);
@@ -716,7 +716,7 @@ namespace TCC2
             this.tabAlimento.ImageKey = "Alimento32px.png";
             this.tabAlimento.Location = new System.Drawing.Point(4, 39);
             this.tabAlimento.Name = "tabAlimento";
-            this.tabAlimento.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabAlimento.Padding = new System.Windows.Forms.Padding(3);
             this.tabAlimento.Size = new System.Drawing.Size(1195, 711);
             this.tabAlimento.TabIndex = 2;
             this.tabAlimento.Text = "Alimento";
@@ -751,7 +751,7 @@ namespace TCC2
             this._tbConsulta.Controls.Add(this.dtgConAlimento);
             this._tbConsulta.Location = new System.Drawing.Point(4, 22);
             this._tbConsulta.Name = "_tbConsulta";
-            this._tbConsulta.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this._tbConsulta.Padding = new System.Windows.Forms.Padding(3);
             this._tbConsulta.Size = new System.Drawing.Size(1174, 676);
             this._tbConsulta.TabIndex = 1;
             this._tbConsulta.Text = "Cadastro/Consulta";
@@ -885,7 +885,7 @@ namespace TCC2
             this.tbImportarPlanilha.Controls.Add(this._btnBuscarPlanilha);
             this.tbImportarPlanilha.Location = new System.Drawing.Point(4, 22);
             this.tbImportarPlanilha.Name = "tbImportarPlanilha";
-            this.tbImportarPlanilha.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbImportarPlanilha.Padding = new System.Windows.Forms.Padding(3);
             this.tbImportarPlanilha.Size = new System.Drawing.Size(1174, 676);
             this.tbImportarPlanilha.TabIndex = 2;
             this.tbImportarPlanilha.Text = "Importação tabela";
@@ -1004,9 +1004,9 @@ namespace TCC2
             this.tbCadMedCaseira.Controls.Add(this.dtgMedCaseiraAlimentos);
             this.tbCadMedCaseira.Controls.Add(this.btnSalvarMedCas);
             this.tbCadMedCaseira.Location = new System.Drawing.Point(4, 22);
-            this.tbCadMedCaseira.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbCadMedCaseira.Margin = new System.Windows.Forms.Padding(2);
             this.tbCadMedCaseira.Name = "tbCadMedCaseira";
-            this.tbCadMedCaseira.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbCadMedCaseira.Padding = new System.Windows.Forms.Padding(2);
             this.tbCadMedCaseira.Size = new System.Drawing.Size(1174, 676);
             this.tbCadMedCaseira.TabIndex = 3;
             this.tbCadMedCaseira.Text = "Cadastrar Medida Caseira";
@@ -1018,7 +1018,7 @@ namespace TCC2
             this.pbAddMedCaseira.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pbAddMedCaseira.Image = global::TCC2.Properties.Resources.arrow_icon_1___Copia;
             this.pbAddMedCaseira.Location = new System.Drawing.Point(423, 359);
-            this.pbAddMedCaseira.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pbAddMedCaseira.Margin = new System.Windows.Forms.Padding(2);
             this.pbAddMedCaseira.Name = "pbAddMedCaseira";
             this.pbAddMedCaseira.Size = new System.Drawing.Size(56, 55);
             this.pbAddMedCaseira.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1161,7 +1161,7 @@ namespace TCC2
             this.tabCardapio.ImageKey = "Cardapio32px.png";
             this.tabCardapio.Location = new System.Drawing.Point(4, 39);
             this.tabCardapio.Name = "tabCardapio";
-            this.tabCardapio.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabCardapio.Padding = new System.Windows.Forms.Padding(3);
             this.tabCardapio.Size = new System.Drawing.Size(1195, 711);
             this.tabCardapio.TabIndex = 3;
             this.tabCardapio.Text = "Cardápio";
@@ -1176,7 +1176,7 @@ namespace TCC2
             this.tbCardapio.Controls.Add(this.tbCadCardapio);
             this.tbCardapio.Controls.Add(this.tbConsultaCardapio);
             this.tbCardapio.Location = new System.Drawing.Point(5, 5);
-            this.tbCardapio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbCardapio.Margin = new System.Windows.Forms.Padding(2);
             this.tbCardapio.Name = "tbCardapio";
             this.tbCardapio.SelectedIndex = 0;
             this.tbCardapio.Size = new System.Drawing.Size(1187, 701);
@@ -1203,9 +1203,9 @@ namespace TCC2
             this.tbCadCardapio.Controls.Add(this.dtgRefeicoes);
             this.tbCadCardapio.Controls.Add(this.btnSalvarCardapio);
             this.tbCadCardapio.Location = new System.Drawing.Point(4, 22);
-            this.tbCadCardapio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbCadCardapio.Margin = new System.Windows.Forms.Padding(2);
             this.tbCadCardapio.Name = "tbCadCardapio";
-            this.tbCadCardapio.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbCadCardapio.Padding = new System.Windows.Forms.Padding(2);
             this.tbCadCardapio.Size = new System.Drawing.Size(1179, 675);
             this.tbCadCardapio.TabIndex = 0;
             this.tbCadCardapio.Text = "Criar Cardápio";
@@ -1419,7 +1419,7 @@ namespace TCC2
             this.graficoMacroNutri.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.graficoMacroNutri.BackColorTransparent = true;
             this.graficoMacroNutri.Location = new System.Drawing.Point(8, 518);
-            this.graficoMacroNutri.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.graficoMacroNutri.Margin = new System.Windows.Forms.Padding(2);
             this.graficoMacroNutri.Name = "graficoMacroNutri";
             this.graficoMacroNutri.Size = new System.Drawing.Size(360, 150);
             this.graficoMacroNutri.TabIndex = 313;
@@ -1430,7 +1430,7 @@ namespace TCC2
             this.btnAddAliCard.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnAddAliCard.Image = global::TCC2.Properties.Resources.arrow_icon_1___Copia;
             this.btnAddAliCard.Location = new System.Drawing.Point(505, 296);
-            this.btnAddAliCard.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAddAliCard.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddAliCard.Name = "btnAddAliCard";
             this.btnAddAliCard.Size = new System.Drawing.Size(56, 55);
             this.btnAddAliCard.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1553,7 +1553,7 @@ namespace TCC2
             this.cbxMedCaseira.HeaderText = "Medida Caseira";
             this.cbxMedCaseira.MinimumWidth = 6;
             this.cbxMedCaseira.Name = "cbxMedCaseira";
-            this.cbxMedCaseira.Width = 86;
+            this.cbxMedCaseira.Width = 77;
             // 
             // obs
             // 
@@ -1589,7 +1589,7 @@ namespace TCC2
             this.tbConsultaCardapio.Controls.Add(this.btnBuscaPaciente);
             this.tbConsultaCardapio.Location = new System.Drawing.Point(4, 22);
             this.tbConsultaCardapio.Name = "tbConsultaCardapio";
-            this.tbConsultaCardapio.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbConsultaCardapio.Padding = new System.Windows.Forms.Padding(3);
             this.tbConsultaCardapio.Size = new System.Drawing.Size(1179, 675);
             this.tbConsultaCardapio.TabIndex = 1;
             this.tbConsultaCardapio.Text = "Consulta";
@@ -1782,7 +1782,7 @@ namespace TCC2
             this.tabPaciente.ImageKey = "Paciente32px.png";
             this.tabPaciente.Location = new System.Drawing.Point(4, 39);
             this.tabPaciente.Name = "tabPaciente";
-            this.tabPaciente.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPaciente.Padding = new System.Windows.Forms.Padding(3);
             this.tabPaciente.Size = new System.Drawing.Size(1195, 711);
             this.tabPaciente.TabIndex = 4;
             this.tabPaciente.Text = "Paciente";
@@ -1826,7 +1826,7 @@ namespace TCC2
             this.tbCadastro.Controls.Add(this.pbImagem);
             this.tbCadastro.Location = new System.Drawing.Point(4, 22);
             this.tbCadastro.Name = "tbCadastro";
-            this.tbCadastro.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbCadastro.Padding = new System.Windows.Forms.Padding(3);
             this.tbCadastro.Size = new System.Drawing.Size(1177, 673);
             this.tbCadastro.TabIndex = 0;
             this.tbCadastro.Text = "Cadastro";
@@ -2148,7 +2148,7 @@ namespace TCC2
             this.tbAntropometricos.Controls.Add(this.btnPacAnt);
             this.tbAntropometricos.Location = new System.Drawing.Point(4, 22);
             this.tbAntropometricos.Name = "tbAntropometricos";
-            this.tbAntropometricos.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbAntropometricos.Padding = new System.Windows.Forms.Padding(3);
             this.tbAntropometricos.Size = new System.Drawing.Size(1177, 673);
             this.tbAntropometricos.TabIndex = 2;
             this.tbAntropometricos.Text = "Antropometria";
@@ -2448,9 +2448,9 @@ namespace TCC2
             this.tbAnamnese.Controls.Add(this.btnFindPacienteAnamnese);
             this.tbAnamnese.Controls.Add(this.btnSalvarAnamnese);
             this.tbAnamnese.Location = new System.Drawing.Point(4, 22);
-            this.tbAnamnese.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbAnamnese.Margin = new System.Windows.Forms.Padding(2);
             this.tbAnamnese.Name = "tbAnamnese";
-            this.tbAnamnese.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbAnamnese.Padding = new System.Windows.Forms.Padding(2);
             this.tbAnamnese.Size = new System.Drawing.Size(1177, 673);
             this.tbAnamnese.TabIndex = 3;
             this.tbAnamnese.Text = "Anamnese";
@@ -2641,7 +2641,7 @@ namespace TCC2
             this.tabConfig.ImageKey = "settings32px.png";
             this.tabConfig.Location = new System.Drawing.Point(4, 39);
             this.tabConfig.Name = "tabConfig";
-            this.tabConfig.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabConfig.Padding = new System.Windows.Forms.Padding(3);
             this.tabConfig.Size = new System.Drawing.Size(1195, 711);
             this.tabConfig.TabIndex = 5;
             this.tabConfig.Text = "Configurações";
@@ -2677,7 +2677,7 @@ namespace TCC2
             this.tbUsuarios.Controls.Add(this.dtgUsuarios);
             this.tbUsuarios.Location = new System.Drawing.Point(4, 22);
             this.tbUsuarios.Name = "tbUsuarios";
-            this.tbUsuarios.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbUsuarios.Padding = new System.Windows.Forms.Padding(3);
             this.tbUsuarios.Size = new System.Drawing.Size(1183, 676);
             this.tbUsuarios.TabIndex = 0;
             this.tbUsuarios.Text = "Usuários";
@@ -2893,7 +2893,7 @@ namespace TCC2
             this.tbPermissao.Controls.Add(this.btnSalvarPermissao);
             this.tbPermissao.Location = new System.Drawing.Point(4, 22);
             this.tbPermissao.Name = "tbPermissao";
-            this.tbPermissao.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbPermissao.Padding = new System.Windows.Forms.Padding(3);
             this.tbPermissao.Size = new System.Drawing.Size(1183, 676);
             this.tbPermissao.TabIndex = 1;
             this.tbPermissao.Text = "Permissões";
@@ -3005,9 +3005,9 @@ namespace TCC2
             this.tabHorarioAtendimento.Controls.Add(this.cbxUsuNutri);
             this.tabHorarioAtendimento.Controls.Add(this.btnSalvarHoraAtend);
             this.tabHorarioAtendimento.Location = new System.Drawing.Point(4, 22);
-            this.tabHorarioAtendimento.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabHorarioAtendimento.Margin = new System.Windows.Forms.Padding(2);
             this.tabHorarioAtendimento.Name = "tabHorarioAtendimento";
-            this.tabHorarioAtendimento.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabHorarioAtendimento.Padding = new System.Windows.Forms.Padding(2);
             this.tabHorarioAtendimento.Size = new System.Drawing.Size(1183, 676);
             this.tabHorarioAtendimento.TabIndex = 2;
             this.tabHorarioAtendimento.Text = "Horário Atendimento";
@@ -3142,7 +3142,7 @@ namespace TCC2
             this.tbSobre.ImageKey = "information.png";
             this.tbSobre.Location = new System.Drawing.Point(4, 39);
             this.tbSobre.Name = "tbSobre";
-            this.tbSobre.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbSobre.Padding = new System.Windows.Forms.Padding(3);
             this.tbSobre.Size = new System.Drawing.Size(1195, 711);
             this.tbSobre.TabIndex = 7;
             this.tbSobre.Text = "Sobre";

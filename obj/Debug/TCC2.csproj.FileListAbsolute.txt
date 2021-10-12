@@ -166,14 +166,12 @@ C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\DShowNET.dll
 C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\MvtWindowsForms.dll
 C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\MvtWindowsFormsCS.dll
 C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\System.Windows.Forms.Calendar.dll
-C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\MvtLib.dll
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.exe.config
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.frmBuscarPaciente.resources
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.Telas.frmCadastro.resources
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.Telas.frmEsqueciSenha.resources
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.Telas.frmGraficoPaciente.resources
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.FrmMenuPrincipal.resources
-C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.Telas.frmProgress.resources
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.frmTelaLogin.resources
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.Properties.Resources.resources
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.Telas.frmWait.resources
@@ -185,4 +183,3 @@ C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.exe
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.pdb
 C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\Microsoft.Office.Interop.Excel.dll
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.Telas.frmTemplatesAnamnese.resources
-C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.csproj.AssemblyReference.cache

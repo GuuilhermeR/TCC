@@ -1958,6 +1958,7 @@ namespace TCC2
                 return;
             }
             cbxDataConsulta.Visible = true;
+            cbxDataConsulta.Items.Clear();
 
             listaCardapio.ForEach(x =>
             {
@@ -2006,6 +2007,8 @@ namespace TCC2
                 return;
             }
             string erro = string.Empty;
+            loadStart();
+
             foreach (DataGridViewRow row in dtgRefeicoes.Rows)
                 erro = cardapioDAO.Salvar(Convert.ToInt32(PacienteModel.codPacienteCard),
                                                      Convert.ToInt32(row.Cells["codAlimento"].Value),
@@ -2015,6 +2018,8 @@ namespace TCC2
                                                      Convert.ToDouble(row.Cells["kcal"].Value),
                                                      Convert.ToString(usuarioDAO.getUsuario()),
                                                      txtDataCardapio.Text);
+
+            loadStop();
 
             if (string.IsNullOrEmpty(erro))
             {
@@ -2349,7 +2354,7 @@ namespace TCC2
 
             worksheets.GetRangeByName("paciente").PutValue(txtPacienteConsultaCardapio.Text, false, false);
             worksheets.GetRangeByName("dataConsulta").PutValue(cbxDataConsulta.Text, false, false);
-
+            dtgCardGrid.Sort(dtgCardGrid.Columns["refeicao"], ListSortDirection.Ascending);
             foreach (DataGridViewRow row in dtgCardGrid.Rows)
             {
                 linha += 1;
@@ -2361,12 +2366,12 @@ namespace TCC2
                 }
 
                 worksheets[0].Cells["C" + (linha + 1)].PutValue(Convert.ToString(row.Cells["alimento"].Value));
-                worksheets[0].Cells["E" + (linha + 1)].PutValue(Convert.ToString(row.Cells["medidacaseiraqtd"].Value));
-                worksheets[0].Cells["G" + (linha + 1)].PutValue(Convert.ToString(row.Cells["observ"].Value));
+                worksheets[0].Cells["D" + (linha + 1)].PutValue(Convert.ToString(row.Cells["medidacaseiraqtd"].Value));
+                worksheets[0].Cells["E" + (linha + 1)].PutValue(Convert.ToString(row.Cells["observ"].Value).Trim());
 
                 worksheets[0].Cells.UnhideRow(linha, 17);
                 Style styles = new Style();
-                styles.Font.Size = 11;
+                styles.Font.Size = 10;
 
                 StyleFlag flags = new Aspose.Cells.StyleFlag();
                 flags.FontSize = true;
@@ -2376,11 +2381,9 @@ namespace TCC2
             }
 
             AutoFitterOptions opt = new Aspose.Cells.AutoFitterOptions();
-            opt.AutoFitMergedCells = true;
             opt.OnlyAuto = true;
             opt.IgnoreHidden = true;
 
-            worksheets[0].AutoFitRows(opt);
             worksheets[0].AutoFitColumns(opt);
 
             string tempFile = Path.Combine(Path.GetTempPath(), Path.GetTempFileName().Replace(".tmp", ".pdf"));

@@ -37,9 +37,7 @@ namespace TCC2.Telas
 
             this.MaximizeBox = false;
 
-            lblNomePaciente.Text = NomePaciente;
-            lblIdadePaciente.Visible = false;
-            lblIdade.Visible = false;
+            this.Text += $" - {NomePaciente}";
             CarregarGraficos();
         }
 
@@ -55,13 +53,16 @@ namespace TCC2.Telas
             List<double> panturrilha = new List<double>();
             List<double> antebraco = new List<double>();
             List<double> coxa = new List<double>();
+            List<double> pescoco = new List<double>();
+            List<double> abdome = new List<double>();
             List<string> data = new List<string>();
             
             var antropometriaLista = antroDAO.Buscar();
             if (antropometriaLista.Count == 0)
                 return;
 
-            antropometriaLista.ForEach(x => {
+            antropometriaLista.ForEach(x =>
+            {
                 peso.Add(Convert.ToDouble(x.peso));
                 altura.Add(Convert.ToDouble(x.altura));
                 braco.Add(Convert.ToDouble(x.braco));
@@ -72,8 +73,11 @@ namespace TCC2.Telas
                 panturrilha.Add(Convert.ToDouble(x.panturrilha));
                 antebraco.Add(Convert.ToDouble(x.antebraco));
                 coxa.Add(Convert.ToDouble(x.coxa));
+                pescoco.Add(Convert.ToDouble(x.pescoco));
+                abdome.Add(Convert.ToDouble(x.abdome));
                 data.Add(x.Data.ToString("dd/MM/yyyy"));
-            });           
+            });
+
             configurarGrafico(cartPeso, peso, "Peso",data);
             configurarGrafico(cartAltura, altura, "Altura", data);
             configurarGrafico(cartBraco, braco, "Braço", data);
@@ -84,6 +88,8 @@ namespace TCC2.Telas
             configurarGrafico(cartPanturrilha, panturrilha, "Panturrilha", data);
             configurarGrafico(cartAnteBraco, antebraco, "Antebraço", data);
             configurarGrafico(cartCoxa, coxa, "Coxa", data);
+            configurarGrafico(chtPescoco, pescoco, "Pescoço", data);
+            configurarGrafico(chtAbdome, abdome, "Abdome", data);
         }
 
         private void configurarGrafico(LiveCharts.WinForms.CartesianChart grafico, List<double> valor, string titulo, List<string> data)

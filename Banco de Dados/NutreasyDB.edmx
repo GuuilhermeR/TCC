@@ -65,6 +65,8 @@
           <Property Name="panturrilha" Type="real" />
           <Property Name="antebraco" Type="real" />
           <Property Name="coxa" Type="real" />
+          <Property Name="abdome" Type="real" />
+          <Property Name="pescoco" Type="real" />
         </EntityType>
         <EntityType Name="Cardapio">
           <Key>
@@ -291,7 +293,6 @@
           <EntitySet Name="Alimentos" EntityType="mainModel.Alimentos" />
           <EntitySet Name="AnamneseConfig" EntityType="mainModel.AnamneseConfig" />
           <EntitySet Name="AnamnesePaciente" EntityType="mainModel.AnamnesePaciente" />
-          <EntitySet Name="Antropometria" EntityType="mainModel.Antropometria" />
           <EntitySet Name="Cardapio" EntityType="mainModel.Cardapio" />
           <EntitySet Name="ConfiguracoesUsuarios" EntityType="mainModel.ConfiguracoesUsuarios" />
           <EntitySet Name="Login" EntityType="mainModel.Login" />
@@ -314,10 +315,6 @@
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="AnamnesePaciente" EntitySet="AnamnesePaciente" />
           </AssociationSet>
-          <AssociationSet Name="FK_Antropometria_0_0" Association="mainModel.FK_Antropometria_0_0">
-            <End Role="Paciente" EntitySet="Paciente" />
-            <End Role="Antropometria" EntitySet="Antropometria" />
-          </AssociationSet>
           <AssociationSet Name="FK_Cardapio_1_0" Association="mainModel.FK_Cardapio_1_0">
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="Cardapio" EntitySet="Cardapio" />
@@ -329,6 +326,11 @@
           <AssociationSet Name="FK_Permissao_0_0" Association="mainModel.FK_Permissao_0_0">
             <End Role="Login" EntitySet="Login" />
             <End Role="Permissao" EntitySet="Permissao" />
+          </AssociationSet>
+          <EntitySet Name="Antropometria" EntityType="mainModel.Antropometria" />
+          <AssociationSet Name="FK_Antropometria_0_0" Association="mainModel.FK_Antropometria_0_0">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Antropometria" EntitySet="Antropometria" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Agenda">
@@ -377,26 +379,6 @@
           <Property Name="TemplateConfig" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AnamneseConfig" Relationship="mainModel.FK_AnamnesePaciente_0_0" FromRole="AnamnesePaciente" ToRole="AnamneseConfig" />
           <NavigationProperty Name="Paciente" Relationship="mainModel.FK_AnamnesePaciente_1_0" FromRole="AnamnesePaciente" ToRole="Paciente" />
-        </EntityType>
-        <EntityType Name="Antropometria">
-          <Key>
-            <PropertyRef Name="codPaciente" />
-            <PropertyRef Name="Data" />
-          </Key>
-          <Property Name="codPaciente" Type="Int64" Nullable="false" />
-          <Property Name="Data" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="nomePaciente" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
-          <Property Name="peso" Type="Double" />
-          <Property Name="altura" Type="Double" />
-          <Property Name="braco" Type="Double" />
-          <Property Name="punho" Type="Double" />
-          <Property Name="cintura" Type="Double" />
-          <Property Name="torax" Type="Double" />
-          <Property Name="quadril" Type="Double" />
-          <Property Name="panturrilha" Type="Double" />
-          <Property Name="antebraco" Type="Double" />
-          <Property Name="coxa" Type="Double" />
-          <NavigationProperty Name="Paciente" Relationship="mainModel.FK_Antropometria_0_0" FromRole="Antropometria" ToRole="Paciente" />
         </EntityType>
         <EntityType Name="Cardapio">
           <Key>
@@ -471,8 +453,8 @@
           <Property Name="celular" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <Property Name="imagem" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="AnamnesePaciente" Relationship="mainModel.FK_AnamnesePaciente_1_0" FromRole="Paciente" ToRole="AnamnesePaciente" />
-          <NavigationProperty Name="Antropometria" Relationship="mainModel.FK_Antropometria_0_0" FromRole="Paciente" ToRole="Antropometria" />
           <NavigationProperty Name="Cardapio" Relationship="mainModel.FK_Cardapio_1_0" FromRole="Paciente" ToRole="Cardapio" />
+          <NavigationProperty Name="Antropometria" Relationship="mainModel.FK_Antropometria_0_0" FromRole="Paciente" ToRole="Antropometria" />
         </EntityType>
         <EntityType Name="Permissao">
           <Key>
@@ -531,18 +513,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Antropometria_0_0">
-          <End Type="mainModel.Paciente" Role="Paciente" Multiplicity="1" />
-          <End Type="mainModel.Antropometria" Role="Antropometria" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Paciente">
-              <PropertyRef Name="codPaciente" />
-            </Principal>
-            <Dependent Role="Antropometria">
-              <PropertyRef Name="codPaciente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Cardapio_1_0">
           <End Type="mainModel.Paciente" Role="Paciente" Multiplicity="0..1" />
           <End Type="mainModel.Cardapio" Role="Cardapio" Multiplicity="*" />
@@ -576,6 +546,40 @@
             </Principal>
             <Dependent Role="Permissao">
               <PropertyRef Name="usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Antropometria">
+          <Key>
+            <PropertyRef Name="codPaciente" />
+            <PropertyRef Name="Data" />
+          </Key>
+          <Property Name="codPaciente" Type="Int64" Nullable="false" />
+          <Property Name="Data" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="nomePaciente" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="peso" Type="Double" />
+          <Property Name="altura" Type="Double" />
+          <Property Name="braco" Type="Double" />
+          <Property Name="punho" Type="Double" />
+          <Property Name="cintura" Type="Double" />
+          <Property Name="torax" Type="Double" />
+          <Property Name="quadril" Type="Double" />
+          <Property Name="panturrilha" Type="Double" />
+          <Property Name="antebraco" Type="Double" />
+          <Property Name="coxa" Type="Double" />
+          <Property Name="abdome" Type="Double" />
+          <NavigationProperty Name="Paciente" Relationship="mainModel.FK_Antropometria_0_0" FromRole="Antropometria" ToRole="Paciente" />
+          <Property Name="pescoco" Type="Double" />
+        </EntityType>
+        <Association Name="FK_Antropometria_0_0">
+          <End Type="mainModel.Paciente" Role="Paciente" Multiplicity="1" />
+          <End Type="mainModel.Antropometria" Role="Antropometria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="codPaciente" />
+            </Principal>
+            <Dependent Role="Antropometria">
+              <PropertyRef Name="codPaciente" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -628,25 +632,6 @@
                 <ScalarProperty Name="descAnamnese" ColumnName="descAnamnese" />
                 <ScalarProperty Name="codPaciente" ColumnName="codPaciente" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Antropometria">
-            <EntityTypeMapping TypeName="mainModel.Antropometria">
-              <MappingFragment StoreEntitySet="Antropometria">
-                <ScalarProperty Name="coxa" ColumnName="coxa" />
-                <ScalarProperty Name="antebraco" ColumnName="antebraco" />
-                <ScalarProperty Name="panturrilha" ColumnName="panturrilha" />
-                <ScalarProperty Name="quadril" ColumnName="quadril" />
-                <ScalarProperty Name="torax" ColumnName="torax" />
-                <ScalarProperty Name="cintura" ColumnName="cintura" />
-                <ScalarProperty Name="punho" ColumnName="punho" />
-                <ScalarProperty Name="braco" ColumnName="braco" />
-                <ScalarProperty Name="altura" ColumnName="altura" />
-                <ScalarProperty Name="peso" ColumnName="peso" />
-                <ScalarProperty Name="nomePaciente" ColumnName="nomePaciente" />
-                <ScalarProperty Name="Data" ColumnName="Data" />
-                <ScalarProperty Name="codPaciente" ColumnName="codPaciente" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -728,6 +713,27 @@
                 <ScalarProperty Name="programa" ColumnName="programa" />
                 <ScalarProperty Name="usuario" ColumnName="usuario" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Antropometria">
+            <EntityTypeMapping TypeName="mainModel.Antropometria">
+              <MappingFragment StoreEntitySet="Antropometria">
+                <ScalarProperty Name="pescoco" ColumnName="pescoco" />
+                <ScalarProperty Name="abdome" ColumnName="abdome" />
+                <ScalarProperty Name="coxa" ColumnName="coxa" />
+                <ScalarProperty Name="antebraco" ColumnName="antebraco" />
+                <ScalarProperty Name="panturrilha" ColumnName="panturrilha" />
+                <ScalarProperty Name="quadril" ColumnName="quadril" />
+                <ScalarProperty Name="torax" ColumnName="torax" />
+                <ScalarProperty Name="cintura" ColumnName="cintura" />
+                <ScalarProperty Name="punho" ColumnName="punho" />
+                <ScalarProperty Name="braco" ColumnName="braco" />
+                <ScalarProperty Name="altura" ColumnName="altura" />
+                <ScalarProperty Name="peso" ColumnName="peso" />
+                <ScalarProperty Name="nomePaciente" ColumnName="nomePaciente" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="codPaciente" ColumnName="codPaciente" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

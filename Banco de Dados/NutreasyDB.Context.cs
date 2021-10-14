@@ -29,12 +29,12 @@ namespace TCC2.Banco_de_Dados
         public virtual DbSet<Alimentos> Alimentos { get; set; }
         public virtual DbSet<AnamneseConfig> AnamneseConfig { get; set; }
         public virtual DbSet<AnamnesePaciente> AnamnesePaciente { get; set; }
-        public virtual DbSet<Antropometria> Antropometria { get; set; }
         public virtual DbSet<Cardapio> Cardapio { get; set; }
         public virtual DbSet<ConfiguracoesUsuarios> ConfiguracoesUsuarios { get; set; }
         public virtual DbSet<Login> Login { get; set; }
         public virtual DbSet<MedidaCaseira> MedidaCaseira { get; set; }
         public virtual DbSet<Paciente> Paciente { get; set; }
         public virtual DbSet<Permissao> Permissao { get; set; }
+        public virtual DbSet<Antropometria> Antropometria { get; set; }
     }
 }

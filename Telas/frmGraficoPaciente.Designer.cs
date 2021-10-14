@@ -50,10 +50,10 @@ namespace TCC2.Telas
             this.cartPunho = new LiveCharts.WinForms.CartesianChart();
             this.gbxCoxa = new System.Windows.Forms.GroupBox();
             this.cartCoxa = new LiveCharts.WinForms.CartesianChart();
-            this.lblPaciente = new MaterialSkin.Controls.MaterialLabel();
-            this.lblIdade = new MaterialSkin.Controls.MaterialLabel();
-            this.lblNomePaciente = new MaterialSkin.Controls.MaterialLabel();
-            this.lblIdadePaciente = new MaterialSkin.Controls.MaterialLabel();
+            this.gbxPescoco = new System.Windows.Forms.GroupBox();
+            this.chtPescoco = new LiveCharts.WinForms.CartesianChart();
+            this.gbxAbdome = new System.Windows.Forms.GroupBox();
+            this.chtAbdome = new LiveCharts.WinForms.CartesianChart();
             this.gbxPanturrilha.SuspendLayout();
             this.gbxQuadril.SuspendLayout();
             this.gbxTorax.SuspendLayout();
@@ -64,6 +64,8 @@ namespace TCC2.Telas
             this.gbxCintura.SuspendLayout();
             this.gbxPunho.SuspendLayout();
             this.gbxCoxa.SuspendLayout();
+            this.gbxPescoco.SuspendLayout();
+            this.gbxAbdome.SuspendLayout();
             this.SuspendLayout();
             // 
             // cartPanturrilha
@@ -80,7 +82,7 @@ namespace TCC2.Telas
             // gbxPanturrilha
             // 
             this.gbxPanturrilha.Controls.Add(this.cartPanturrilha);
-            this.gbxPanturrilha.Location = new System.Drawing.Point(6, 676);
+            this.gbxPanturrilha.Location = new System.Drawing.Point(688, 474);
             this.gbxPanturrilha.Name = "gbxPanturrilha";
             this.gbxPanturrilha.Size = new System.Drawing.Size(331, 197);
             this.gbxPanturrilha.TabIndex = 1;
@@ -90,7 +92,7 @@ namespace TCC2.Telas
             // gbxQuadril
             // 
             this.gbxQuadril.Controls.Add(this.cartQuadril);
-            this.gbxQuadril.Location = new System.Drawing.Point(680, 473);
+            this.gbxQuadril.Location = new System.Drawing.Point(349, 474);
             this.gbxQuadril.Name = "gbxQuadril";
             this.gbxQuadril.Size = new System.Drawing.Size(331, 197);
             this.gbxQuadril.TabIndex = 2;
@@ -111,7 +113,7 @@ namespace TCC2.Telas
             // gbxTorax
             // 
             this.gbxTorax.Controls.Add(this.cartTorax);
-            this.gbxTorax.Location = new System.Drawing.Point(343, 473);
+            this.gbxTorax.Location = new System.Drawing.Point(12, 677);
             this.gbxTorax.Name = "gbxTorax";
             this.gbxTorax.Size = new System.Drawing.Size(331, 197);
             this.gbxTorax.TabIndex = 3;
@@ -132,7 +134,7 @@ namespace TCC2.Telas
             // gbxBraco
             // 
             this.gbxBraco.Controls.Add(this.cartBraco);
-            this.gbxBraco.Location = new System.Drawing.Point(343, 270);
+            this.gbxBraco.Location = new System.Drawing.Point(345, 271);
             this.gbxBraco.Name = "gbxBraco";
             this.gbxBraco.Size = new System.Drawing.Size(331, 197);
             this.gbxBraco.TabIndex = 6;
@@ -153,7 +155,7 @@ namespace TCC2.Telas
             // gbxAltura
             // 
             this.gbxAltura.Controls.Add(this.cartAltura);
-            this.gbxAltura.Location = new System.Drawing.Point(6, 270);
+            this.gbxAltura.Location = new System.Drawing.Point(349, 67);
             this.gbxAltura.Name = "gbxAltura";
             this.gbxAltura.Size = new System.Drawing.Size(331, 197);
             this.gbxAltura.TabIndex = 5;
@@ -174,7 +176,7 @@ namespace TCC2.Telas
             // gbxPeso
             // 
             this.gbxPeso.Controls.Add(this.cartPeso);
-            this.gbxPeso.Location = new System.Drawing.Point(680, 67);
+            this.gbxPeso.Location = new System.Drawing.Point(6, 67);
             this.gbxPeso.Name = "gbxPeso";
             this.gbxPeso.Size = new System.Drawing.Size(331, 197);
             this.gbxPeso.TabIndex = 4;
@@ -195,7 +197,7 @@ namespace TCC2.Telas
             // gbxAnteBraco
             // 
             this.gbxAnteBraco.Controls.Add(this.cartAnteBraco);
-            this.gbxAnteBraco.Location = new System.Drawing.Point(343, 677);
+            this.gbxAnteBraco.Location = new System.Drawing.Point(8, 271);
             this.gbxAnteBraco.Name = "gbxAnteBraco";
             this.gbxAnteBraco.Size = new System.Drawing.Size(331, 197);
             this.gbxAnteBraco.TabIndex = 9;
@@ -216,7 +218,7 @@ namespace TCC2.Telas
             // gbxCintura
             // 
             this.gbxCintura.Controls.Add(this.cartCintura);
-            this.gbxCintura.Location = new System.Drawing.Point(6, 474);
+            this.gbxCintura.Location = new System.Drawing.Point(688, 271);
             this.gbxCintura.Name = "gbxCintura";
             this.gbxCintura.Size = new System.Drawing.Size(331, 197);
             this.gbxCintura.TabIndex = 8;
@@ -237,7 +239,7 @@ namespace TCC2.Telas
             // gbxPunho
             // 
             this.gbxPunho.Controls.Add(this.cartPunho);
-            this.gbxPunho.Location = new System.Drawing.Point(680, 270);
+            this.gbxPunho.Location = new System.Drawing.Point(349, 677);
             this.gbxPunho.Name = "gbxPunho";
             this.gbxPunho.Size = new System.Drawing.Size(331, 197);
             this.gbxPunho.TabIndex = 7;
@@ -258,7 +260,7 @@ namespace TCC2.Telas
             // gbxCoxa
             // 
             this.gbxCoxa.Controls.Add(this.cartCoxa);
-            this.gbxCoxa.Location = new System.Drawing.Point(680, 677);
+            this.gbxCoxa.Location = new System.Drawing.Point(12, 474);
             this.gbxCoxa.Name = "gbxCoxa";
             this.gbxCoxa.Size = new System.Drawing.Size(331, 197);
             this.gbxCoxa.TabIndex = 10;
@@ -276,63 +278,55 @@ namespace TCC2.Telas
             this.cartCoxa.TabIndex = 0;
             this.cartCoxa.Text = "cartesianChart7";
             // 
-            // lblPaciente
+            // gbxPescoco
             // 
-            this.lblPaciente.AutoSize = true;
-            this.lblPaciente.Depth = 0;
-            this.lblPaciente.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblPaciente.Location = new System.Drawing.Point(30, 99);
-            this.lblPaciente.MouseState = MaterialSkin.MouseState.HOVER;
-            this.lblPaciente.Name = "lblPaciente";
-            this.lblPaciente.Size = new System.Drawing.Size(66, 19);
-            this.lblPaciente.TabIndex = 11;
-            this.lblPaciente.Text = "Paciente:";
+            this.gbxPescoco.Controls.Add(this.chtPescoco);
+            this.gbxPescoco.Location = new System.Drawing.Point(688, 677);
+            this.gbxPescoco.Name = "gbxPescoco";
+            this.gbxPescoco.Size = new System.Drawing.Size(331, 197);
+            this.gbxPescoco.TabIndex = 18;
+            this.gbxPescoco.TabStop = false;
+            this.gbxPescoco.Text = "Pescoço";
             // 
-            // lblIdade
+            // chtPescoco
             // 
-            this.lblIdade.AutoSize = true;
-            this.lblIdade.Depth = 0;
-            this.lblIdade.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblIdade.Location = new System.Drawing.Point(30, 130);
-            this.lblIdade.MouseState = MaterialSkin.MouseState.HOVER;
-            this.lblIdade.Name = "lblIdade";
-            this.lblIdade.Size = new System.Drawing.Size(44, 19);
-            this.lblIdade.TabIndex = 12;
-            this.lblIdade.Text = "Idade:";
+            this.chtPescoco.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.chtPescoco.Location = new System.Drawing.Point(6, 19);
+            this.chtPescoco.Name = "chtPescoco";
+            this.chtPescoco.Size = new System.Drawing.Size(319, 172);
+            this.chtPescoco.TabIndex = 0;
+            this.chtPescoco.Text = "cartesianChart6";
             // 
-            // lblNomePaciente
+            // gbxAbdome
             // 
-            this.lblNomePaciente.AutoSize = true;
-            this.lblNomePaciente.Depth = 0;
-            this.lblNomePaciente.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblNomePaciente.Location = new System.Drawing.Point(102, 99);
-            this.lblNomePaciente.MouseState = MaterialSkin.MouseState.HOVER;
-            this.lblNomePaciente.Name = "lblNomePaciente";
-            this.lblNomePaciente.Size = new System.Drawing.Size(107, 19);
-            this.lblNomePaciente.TabIndex = 13;
-            this.lblNomePaciente.Text = "materialLabel2";
+            this.gbxAbdome.Controls.Add(this.chtAbdome);
+            this.gbxAbdome.Location = new System.Drawing.Point(688, 68);
+            this.gbxAbdome.Name = "gbxAbdome";
+            this.gbxAbdome.Size = new System.Drawing.Size(331, 197);
+            this.gbxAbdome.TabIndex = 19;
+            this.gbxAbdome.TabStop = false;
+            this.gbxAbdome.Text = "Abdome";
             // 
-            // lblIdadePaciente
+            // chtAbdome
             // 
-            this.lblIdadePaciente.AutoSize = true;
-            this.lblIdadePaciente.Depth = 0;
-            this.lblIdadePaciente.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblIdadePaciente.Location = new System.Drawing.Point(80, 130);
-            this.lblIdadePaciente.MouseState = MaterialSkin.MouseState.HOVER;
-            this.lblIdadePaciente.Name = "lblIdadePaciente";
-            this.lblIdadePaciente.Size = new System.Drawing.Size(107, 19);
-            this.lblIdadePaciente.TabIndex = 14;
-            this.lblIdadePaciente.Text = "materialLabel2";
+            this.chtAbdome.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.chtAbdome.Location = new System.Drawing.Point(6, 19);
+            this.chtAbdome.Name = "chtAbdome";
+            this.chtAbdome.Size = new System.Drawing.Size(319, 172);
+            this.chtAbdome.TabIndex = 0;
+            this.chtAbdome.Text = "cartesianChart6";
             // 
             // frmGraficoPaciente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1025, 886);
-            this.Controls.Add(this.lblIdadePaciente);
-            this.Controls.Add(this.lblNomePaciente);
-            this.Controls.Add(this.lblIdade);
-            this.Controls.Add(this.lblPaciente);
+            this.Controls.Add(this.gbxAbdome);
+            this.Controls.Add(this.gbxPescoco);
             this.Controls.Add(this.gbxCoxa);
             this.Controls.Add(this.gbxAnteBraco);
             this.Controls.Add(this.gbxCintura);
@@ -346,7 +340,7 @@ namespace TCC2.Telas
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmGraficoPaciente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Gráfico";
+            this.Text = "Gráfico Antropométrico";
             this.Load += new System.EventHandler(this.frmGraficoPaciente_Load);
             this.gbxPanturrilha.ResumeLayout(false);
             this.gbxQuadril.ResumeLayout(false);
@@ -358,8 +352,9 @@ namespace TCC2.Telas
             this.gbxCintura.ResumeLayout(false);
             this.gbxPunho.ResumeLayout(false);
             this.gbxCoxa.ResumeLayout(false);
+            this.gbxPescoco.ResumeLayout(false);
+            this.gbxAbdome.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -385,9 +380,9 @@ namespace TCC2.Telas
         private LiveCharts.WinForms.CartesianChart cartPunho;
         private System.Windows.Forms.GroupBox gbxCoxa;
         private LiveCharts.WinForms.CartesianChart cartCoxa;
-        private MaterialSkin.Controls.MaterialLabel lblPaciente;
-        private MaterialSkin.Controls.MaterialLabel lblIdade;
-        private MaterialSkin.Controls.MaterialLabel lblNomePaciente;
-        private MaterialSkin.Controls.MaterialLabel lblIdadePaciente;
+        private System.Windows.Forms.GroupBox gbxPescoco;
+        private LiveCharts.WinForms.CartesianChart chtPescoco;
+        private System.Windows.Forms.GroupBox gbxAbdome;
+        private LiveCharts.WinForms.CartesianChart chtAbdome;
     }
 }

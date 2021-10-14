@@ -31,13 +31,13 @@ namespace TCC2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange29 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange30 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange31 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange32 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange33 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange34 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange35 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange57 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange58 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange59 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange60 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange61 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange62 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange63 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMenuPrincipal));
             this.TabControlNutreasy = new MaterialSkin.Controls.MaterialTabControl();
             this.tabMenu = new System.Windows.Forms.TabPage();
@@ -114,6 +114,15 @@ namespace TCC2
             this.btnPacienteCardapio = new System.Windows.Forms.Button();
             this.dtgCardapioAlimentos = new System.Windows.Forms.DataGridView();
             this.dtgRefeicoes = new System.Windows.Forms.DataGridView();
+            this.codAlimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomeAlimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qtd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kcal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prot = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.carbo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lipidio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cbxMedCaseira = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.obs = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSalvarCardapio = new System.Windows.Forms.Button();
             this.tbConsultaCardapio = new System.Windows.Forms.TabPage();
             this.btnConsultarCardapio = new System.Windows.Forms.Button();
@@ -152,6 +161,7 @@ namespace TCC2
             this._btnSalvar = new System.Windows.Forms.Button();
             this.pbImagem = new System.Windows.Forms.PictureBox();
             this.tbAntropometricos = new System.Windows.Forms.TabPage();
+            this.cbxDataAntrop = new MaterialSkin.Controls.MaterialComboBox();
             this.btnAnalytics = new System.Windows.Forms.Button();
             this.gbxCircunferencias = new System.Windows.Forms.GroupBox();
             this.btnSalvarAntro = new System.Windows.Forms.Button();
@@ -214,16 +224,13 @@ namespace TCC2
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.NutriEzIconNotify = new System.Windows.Forms.NotifyIcon(this.components);
-            this.codAlimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomeAlimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.qtd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.kcal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prot = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.carbo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lipidio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cbxMedCaseira = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.obs = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cbxDataAntrop = new MaterialSkin.Controls.MaterialComboBox();
+            this.txtDataAntro = new MaterialSkin.Controls.MaterialTextBox();
+            this.cbxDataExisteAntro = new MaterialSkin.Controls.MaterialCheckbox();
+            this.chkDataExisteCardapio = new MaterialSkin.Controls.MaterialCheckbox();
+            this.cbxDataCardSalvo = new MaterialSkin.Controls.MaterialComboBox();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.txtAbdome = new MaterialSkin.Controls.MaterialTextBox();
+            this.txtPescoco = new MaterialSkin.Controls.MaterialTextBox();
             this.TabControlNutreasy.SuspendLayout();
             this.tabMenu.SuspendLayout();
             this.mCardAtendimentoAtual.SuspendLayout();
@@ -641,35 +648,35 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.calAgendamento.BackColor = System.Drawing.SystemColors.Control;
             this.calAgendamento.Font = new System.Drawing.Font("Segoe UI", 9F);
-            calendarHighlightRange29.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange29.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange29.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange30.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange30.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange30.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange31.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange31.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange31.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange32.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange32.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange32.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange33.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange33.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange33.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange34.DayOfWeek = System.DayOfWeek.Saturday;
-            calendarHighlightRange34.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange34.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange35.DayOfWeek = System.DayOfWeek.Sunday;
-            calendarHighlightRange35.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange35.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange57.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange57.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange57.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange58.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange58.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange58.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange59.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange59.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange59.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange60.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange60.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange60.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange61.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange61.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange61.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange62.DayOfWeek = System.DayOfWeek.Saturday;
+            calendarHighlightRange62.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange62.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange63.DayOfWeek = System.DayOfWeek.Sunday;
+            calendarHighlightRange63.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange63.StartTime = System.TimeSpan.Parse("00:00:00");
             this.calAgendamento.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
-        calendarHighlightRange29,
-        calendarHighlightRange30,
-        calendarHighlightRange31,
-        calendarHighlightRange32,
-        calendarHighlightRange33,
-        calendarHighlightRange34,
-        calendarHighlightRange35};
+        calendarHighlightRange57,
+        calendarHighlightRange58,
+        calendarHighlightRange59,
+        calendarHighlightRange60,
+        calendarHighlightRange61,
+        calendarHighlightRange62,
+        calendarHighlightRange63};
             this.calAgendamento.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.calAgendamento.ItemsTimeFormat = "hh:mm";
             this.calAgendamento.Location = new System.Drawing.Point(3, 195);
@@ -1186,6 +1193,8 @@ namespace TCC2
             // 
             // tbCadCardapio
             // 
+            this.tbCadCardapio.Controls.Add(this.chkDataExisteCardapio);
+            this.tbCadCardapio.Controls.Add(this.cbxDataCardSalvo);
             this.tbCadCardapio.Controls.Add(this.txtDataCardapio);
             this.tbCadCardapio.Controls.Add(this.txtLipidio);
             this.tbCadCardapio.Controls.Add(this.txtCarboidrato);
@@ -1228,6 +1237,7 @@ namespace TCC2
             this.txtDataCardapio.TabIndex = 4;
             this.txtDataCardapio.Text = "";
             this.txtDataCardapio.TrailingIcon = null;
+            this.txtDataCardapio.Visible = false;
             this.txtDataCardapio.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.txtDataCardapio_LinkClicked);
             this.txtDataCardapio.Leave += new System.EventHandler(this.txtDataCardapio_Leave);
             // 
@@ -1495,6 +1505,73 @@ namespace TCC2
             this.dtgRefeicoes.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dtgRefeicoes_DataError);
             this.dtgRefeicoes.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dtgRefeicoes_UserDeletedRow);
             // 
+            // codAlimento
+            // 
+            this.codAlimento.HeaderText = "Cód Alimento";
+            this.codAlimento.MinimumWidth = 6;
+            this.codAlimento.Name = "codAlimento";
+            this.codAlimento.Visible = false;
+            this.codAlimento.Width = 94;
+            // 
+            // nomeAlimento
+            // 
+            this.nomeAlimento.HeaderText = "Alimento";
+            this.nomeAlimento.MinimumWidth = 6;
+            this.nomeAlimento.Name = "nomeAlimento";
+            this.nomeAlimento.Width = 72;
+            // 
+            // qtd
+            // 
+            this.qtd.HeaderText = "Quantidade";
+            this.qtd.MinimumWidth = 6;
+            this.qtd.Name = "qtd";
+            this.qtd.Width = 87;
+            // 
+            // kcal
+            // 
+            this.kcal.HeaderText = "Kcal";
+            this.kcal.MinimumWidth = 6;
+            this.kcal.Name = "kcal";
+            this.kcal.Visible = false;
+            this.kcal.Width = 53;
+            // 
+            // prot
+            // 
+            this.prot.HeaderText = "Proteína";
+            this.prot.MinimumWidth = 6;
+            this.prot.Name = "prot";
+            this.prot.Visible = false;
+            this.prot.Width = 73;
+            // 
+            // carbo
+            // 
+            this.carbo.HeaderText = "Carboidrato";
+            this.carbo.MinimumWidth = 6;
+            this.carbo.Name = "carbo";
+            this.carbo.Visible = false;
+            this.carbo.Width = 86;
+            // 
+            // lipidio
+            // 
+            this.lipidio.HeaderText = "Lipídio";
+            this.lipidio.MinimumWidth = 6;
+            this.lipidio.Name = "lipidio";
+            this.lipidio.Visible = false;
+            this.lipidio.Width = 64;
+            // 
+            // cbxMedCaseira
+            // 
+            this.cbxMedCaseira.HeaderText = "Medida Caseira";
+            this.cbxMedCaseira.MinimumWidth = 6;
+            this.cbxMedCaseira.Name = "cbxMedCaseira";
+            this.cbxMedCaseira.Width = 77;
+            // 
+            // obs
+            // 
+            this.obs.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.obs.HeaderText = "Observação";
+            this.obs.Name = "obs";
+            // 
             // btnSalvarCardapio
             // 
             this.btnSalvarCardapio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -1553,16 +1630,17 @@ namespace TCC2
             this.alimento,
             this.medidacaseiraqtd,
             this.observ});
-            this.dtgCardGrid.Location = new System.Drawing.Point(283, 62);
+            this.dtgCardGrid.Location = new System.Drawing.Point(849, 62);
             this.dtgCardGrid.Name = "dtgCardGrid";
             this.dtgCardGrid.RowHeadersWidth = 20;
             this.dtgCardGrid.RowsLevel = ((Microsoft.VisualBasic.Collection)(resources.GetObject("dtgCardGrid.RowsLevel")));
             this.dtgCardGrid.RowsName = ((Microsoft.VisualBasic.Collection)(resources.GetObject("dtgCardGrid.RowsName")));
             this.dtgCardGrid.ShowHideMenuItemDiferente = false;
             this.dtgCardGrid.ShowHideRowMenuItem = false;
-            this.dtgCardGrid.Size = new System.Drawing.Size(890, 435);
+            this.dtgCardGrid.Size = new System.Drawing.Size(324, 47);
             this.dtgCardGrid.TabIndex = 322;
             this.dtgCardGrid.ValidateFormattedColumns = false;
+            this.dtgCardGrid.Visible = false;
             // 
             // refeicao
             // 
@@ -1607,7 +1685,7 @@ namespace TCC2
             this.cbxDataConsulta.Hint = "Data Consulta";
             this.cbxDataConsulta.IntegralHeight = false;
             this.cbxDataConsulta.ItemHeight = 43;
-            this.cbxDataConsulta.Location = new System.Drawing.Point(370, 7);
+            this.cbxDataConsulta.Location = new System.Drawing.Point(272, 4);
             this.cbxDataConsulta.MaxDropDownItems = 4;
             this.cbxDataConsulta.MouseState = MaterialSkin.MouseState.OUT;
             this.cbxDataConsulta.Name = "cbxDataConsulta";
@@ -1630,7 +1708,7 @@ namespace TCC2
             this.txtPacienteConsultaCardapio.MouseState = MaterialSkin.MouseState.OUT;
             this.txtPacienteConsultaCardapio.Multiline = false;
             this.txtPacienteConsultaCardapio.Name = "txtPacienteConsultaCardapio";
-            this.txtPacienteConsultaCardapio.Size = new System.Drawing.Size(286, 50);
+            this.txtPacienteConsultaCardapio.Size = new System.Drawing.Size(188, 50);
             this.txtPacienteConsultaCardapio.TabIndex = 318;
             this.txtPacienteConsultaCardapio.Text = "";
             this.txtPacienteConsultaCardapio.TrailingIcon = null;
@@ -1691,7 +1769,7 @@ namespace TCC2
             // btnApagar
             // 
             this.btnApagar.Image = global::TCC2.Properties.Resources.DeleteRed;
-            this.btnApagar.Location = new System.Drawing.Point(334, 21);
+            this.btnApagar.Location = new System.Drawing.Point(236, 18);
             this.btnApagar.Name = "btnApagar";
             this.btnApagar.Size = new System.Drawing.Size(30, 23);
             this.btnApagar.TabIndex = 306;
@@ -1701,7 +1779,7 @@ namespace TCC2
             // btnBuscaPaciente
             // 
             this.btnBuscaPaciente.Image = global::TCC2.Properties.Resources.consultar;
-            this.btnBuscaPaciente.Location = new System.Drawing.Point(298, 21);
+            this.btnBuscaPaciente.Location = new System.Drawing.Point(200, 18);
             this.btnBuscaPaciente.Name = "btnBuscaPaciente";
             this.btnBuscaPaciente.Size = new System.Drawing.Size(30, 23);
             this.btnBuscaPaciente.TabIndex = 304;
@@ -1728,7 +1806,7 @@ namespace TCC2
             this.tbPaciente.Controls.Add(this.tbCadastro);
             this.tbPaciente.Controls.Add(this.tbAntropometricos);
             this.tbPaciente.Controls.Add(this.tbAnamnese);
-            this.tbPaciente.Location = new System.Drawing.Point(6, 6);
+            this.tbPaciente.Location = new System.Drawing.Point(7, 6);
             this.tbPaciente.Name = "tbPaciente";
             this.tbPaciente.SelectedIndex = 0;
             this.tbPaciente.Size = new System.Drawing.Size(1185, 699);
@@ -2072,6 +2150,8 @@ namespace TCC2
             // 
             // tbAntropometricos
             // 
+            this.tbAntropometricos.Controls.Add(this.cbxDataExisteAntro);
+            this.tbAntropometricos.Controls.Add(this.txtDataAntro);
             this.tbAntropometricos.Controls.Add(this.cbxDataAntrop);
             this.tbAntropometricos.Controls.Add(this.btnAnalytics);
             this.tbAntropometricos.Controls.Add(this.gbxCircunferencias);
@@ -2086,6 +2166,31 @@ namespace TCC2
             this.tbAntropometricos.TabIndex = 2;
             this.tbAntropometricos.Text = "Antropometria";
             this.tbAntropometricos.UseVisualStyleBackColor = true;
+            // 
+            // cbxDataAntrop
+            // 
+            this.cbxDataAntrop.AutoResize = false;
+            this.cbxDataAntrop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cbxDataAntrop.Depth = 0;
+            this.cbxDataAntrop.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbxDataAntrop.DropDownHeight = 174;
+            this.cbxDataAntrop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxDataAntrop.DropDownWidth = 121;
+            this.cbxDataAntrop.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cbxDataAntrop.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cbxDataAntrop.FormattingEnabled = true;
+            this.cbxDataAntrop.Hint = "Data Consulta";
+            this.cbxDataAntrop.IntegralHeight = false;
+            this.cbxDataAntrop.ItemHeight = 43;
+            this.cbxDataAntrop.Location = new System.Drawing.Point(272, 6);
+            this.cbxDataAntrop.MaxDropDownItems = 4;
+            this.cbxDataAntrop.MouseState = MaterialSkin.MouseState.OUT;
+            this.cbxDataAntrop.Name = "cbxDataAntrop";
+            this.cbxDataAntrop.Size = new System.Drawing.Size(187, 49);
+            this.cbxDataAntrop.StartIndex = 0;
+            this.cbxDataAntrop.TabIndex = 326;
+            this.cbxDataAntrop.Visible = false;
+            this.cbxDataAntrop.SelectedValueChanged += new System.EventHandler(this.cbxDataAntrop_SelectedValueChanged);
             // 
             // btnAnalytics
             // 
@@ -2106,6 +2211,9 @@ namespace TCC2
             this.gbxCircunferencias.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbxCircunferencias.Controls.Add(this.txtAbdome);
+            this.gbxCircunferencias.Controls.Add(this.txtPescoco);
+            this.gbxCircunferencias.Controls.Add(this.btnCancelar);
             this.gbxCircunferencias.Controls.Add(this.btnSalvarAntro);
             this.gbxCircunferencias.Controls.Add(this.txtTorax);
             this.gbxCircunferencias.Controls.Add(this.txtPunho);
@@ -2128,10 +2236,10 @@ namespace TCC2
             this.btnSalvarAntro.AutoSize = true;
             this.btnSalvarAntro.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
             this.btnSalvarAntro.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalvarAntro.Location = new System.Drawing.Point(666, 557);
+            this.btnSalvarAntro.Location = new System.Drawing.Point(544, 559);
             this.btnSalvarAntro.Name = "btnSalvarAntro";
             this.btnSalvarAntro.Size = new System.Drawing.Size(115, 35);
-            this.btnSalvarAntro.TabIndex = 8;
+            this.btnSalvarAntro.TabIndex = 10;
             this.btnSalvarAntro.Text = "Salvar";
             this.btnSalvarAntro.UseVisualStyleBackColor = true;
             this.btnSalvarAntro.Click += new System.EventHandler(this.btnSalvarAntro_Click);
@@ -2143,7 +2251,7 @@ namespace TCC2
             this.txtTorax.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtTorax.Hint = "Tórax (cm)";
             this.txtTorax.LeadingIcon = null;
-            this.txtTorax.Location = new System.Drawing.Point(464, 196);
+            this.txtTorax.Location = new System.Drawing.Point(469, 144);
             this.txtTorax.MaxLength = 50;
             this.txtTorax.MouseState = MaterialSkin.MouseState.OUT;
             this.txtTorax.Multiline = false;
@@ -2160,7 +2268,7 @@ namespace TCC2
             this.txtPunho.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtPunho.Hint = "Punho (cm)";
             this.txtPunho.LeadingIcon = null;
-            this.txtPunho.Location = new System.Drawing.Point(464, 97);
+            this.txtPunho.Location = new System.Drawing.Point(469, 45);
             this.txtPunho.MaxLength = 50;
             this.txtPunho.MouseState = MaterialSkin.MouseState.OUT;
             this.txtPunho.Multiline = false;
@@ -2177,7 +2285,7 @@ namespace TCC2
             this.txtCoxa.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtCoxa.Hint = "Coxa (cm)";
             this.txtCoxa.LeadingIcon = null;
-            this.txtCoxa.Location = new System.Drawing.Point(464, 383);
+            this.txtCoxa.Location = new System.Drawing.Point(469, 331);
             this.txtCoxa.MaxLength = 50;
             this.txtCoxa.MouseState = MaterialSkin.MouseState.OUT;
             this.txtCoxa.Multiline = false;
@@ -2194,7 +2302,7 @@ namespace TCC2
             this.txtPanturrilha.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtPanturrilha.Hint = "Panturrilha (cm)";
             this.txtPanturrilha.LeadingIcon = null;
-            this.txtPanturrilha.Location = new System.Drawing.Point(464, 295);
+            this.txtPanturrilha.Location = new System.Drawing.Point(469, 243);
             this.txtPanturrilha.MaxLength = 50;
             this.txtPanturrilha.MouseState = MaterialSkin.MouseState.OUT;
             this.txtPanturrilha.Multiline = false;
@@ -2211,7 +2319,7 @@ namespace TCC2
             this.txtQuadril.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtQuadril.Hint = "Quadril (cm)";
             this.txtQuadril.LeadingIcon = null;
-            this.txtQuadril.Location = new System.Drawing.Point(83, 295);
+            this.txtQuadril.Location = new System.Drawing.Point(88, 243);
             this.txtQuadril.MaxLength = 50;
             this.txtQuadril.MouseState = MaterialSkin.MouseState.OUT;
             this.txtQuadril.Multiline = false;
@@ -2228,7 +2336,7 @@ namespace TCC2
             this.txtAntebraco.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtAntebraco.Hint = "Antebraço (cm)";
             this.txtAntebraco.LeadingIcon = null;
-            this.txtAntebraco.Location = new System.Drawing.Point(83, 383);
+            this.txtAntebraco.Location = new System.Drawing.Point(88, 331);
             this.txtAntebraco.MaxLength = 50;
             this.txtAntebraco.MouseState = MaterialSkin.MouseState.OUT;
             this.txtAntebraco.Multiline = false;
@@ -2245,7 +2353,7 @@ namespace TCC2
             this.txtCintura.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtCintura.Hint = "Cintura (cm)";
             this.txtCintura.LeadingIcon = null;
-            this.txtCintura.Location = new System.Drawing.Point(83, 196);
+            this.txtCintura.Location = new System.Drawing.Point(88, 144);
             this.txtCintura.MaxLength = 50;
             this.txtCintura.MouseState = MaterialSkin.MouseState.OUT;
             this.txtCintura.Multiline = false;
@@ -2262,7 +2370,7 @@ namespace TCC2
             this.txtBraco.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtBraco.Hint = "Braço (cm)";
             this.txtBraco.LeadingIcon = null;
-            this.txtBraco.Location = new System.Drawing.Point(83, 97);
+            this.txtBraco.Location = new System.Drawing.Point(88, 45);
             this.txtBraco.MaxLength = 50;
             this.txtBraco.MouseState = MaterialSkin.MouseState.OUT;
             this.txtBraco.Multiline = false;
@@ -2346,7 +2454,7 @@ namespace TCC2
             this.txtPacienteAntro.Multiline = false;
             this.txtPacienteAntro.Name = "txtPacienteAntro";
             this.txtPacienteAntro.ReadOnly = true;
-            this.txtPacienteAntro.Size = new System.Drawing.Size(320, 50);
+            this.txtPacienteAntro.Size = new System.Drawing.Size(188, 50);
             this.txtPacienteAntro.TabIndex = 0;
             this.txtPacienteAntro.Text = "";
             this.txtPacienteAntro.TrailingIcon = null;
@@ -2355,7 +2463,7 @@ namespace TCC2
             // btnClearAntro
             // 
             this.btnClearAntro.Image = global::TCC2.Properties.Resources.DeleteRed;
-            this.btnClearAntro.Location = new System.Drawing.Point(376, 21);
+            this.btnClearAntro.Location = new System.Drawing.Point(236, 21);
             this.btnClearAntro.Name = "btnClearAntro";
             this.btnClearAntro.Size = new System.Drawing.Size(30, 23);
             this.btnClearAntro.TabIndex = 320;
@@ -2365,7 +2473,7 @@ namespace TCC2
             // btnPacAnt
             // 
             this.btnPacAnt.Image = global::TCC2.Properties.Resources.consultar;
-            this.btnPacAnt.Location = new System.Drawing.Point(340, 21);
+            this.btnPacAnt.Location = new System.Drawing.Point(200, 21);
             this.btnPacAnt.Name = "btnPacAnt";
             this.btnPacAnt.Size = new System.Drawing.Size(30, 23);
             this.btnPacAnt.TabIndex = 319;
@@ -2395,7 +2503,7 @@ namespace TCC2
             // btnLimpar
             // 
             this.btnLimpar.Image = global::TCC2.Properties.Resources.DeleteRed;
-            this.btnLimpar.Location = new System.Drawing.Point(1068, 21);
+            this.btnLimpar.Location = new System.Drawing.Point(865, 21);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(30, 23);
             this.btnLimpar.TabIndex = 325;
@@ -2419,7 +2527,7 @@ namespace TCC2
             this.cbxCarregarTemplate.ItemHeight = 43;
             this.cbxCarregarTemplate.Items.AddRange(new object[] {
             ""});
-            this.cbxCarregarTemplate.Location = new System.Drawing.Point(760, 6);
+            this.cbxCarregarTemplate.Location = new System.Drawing.Point(557, 6);
             this.cbxCarregarTemplate.MaxDropDownItems = 4;
             this.cbxCarregarTemplate.MouseState = MaterialSkin.MouseState.OUT;
             this.cbxCarregarTemplate.Name = "cbxCarregarTemplate";
@@ -2445,7 +2553,7 @@ namespace TCC2
             this.cbxDataAnamnese.ItemHeight = 43;
             this.cbxDataAnamnese.Items.AddRange(new object[] {
             ""});
-            this.cbxDataAnamnese.Location = new System.Drawing.Point(438, 6);
+            this.cbxDataAnamnese.Location = new System.Drawing.Point(235, 6);
             this.cbxDataAnamnese.MaxDropDownItems = 4;
             this.cbxDataAnamnese.MouseState = MaterialSkin.MouseState.OUT;
             this.cbxDataAnamnese.Name = "cbxDataAnamnese";
@@ -2469,7 +2577,7 @@ namespace TCC2
             this.txtPacienteAnamnese.Multiline = false;
             this.txtPacienteAnamnese.Name = "txtPacienteAnamnese";
             this.txtPacienteAnamnese.ReadOnly = true;
-            this.txtPacienteAnamnese.Size = new System.Drawing.Size(347, 50);
+            this.txtPacienteAnamnese.Size = new System.Drawing.Size(188, 50);
             this.txtPacienteAnamnese.TabIndex = 0;
             this.txtPacienteAnamnese.Text = "";
             this.txtPacienteAnamnese.TrailingIcon = null;
@@ -2549,7 +2657,7 @@ namespace TCC2
             // btnFindPacienteAnamnese
             // 
             this.btnFindPacienteAnamnese.Image = global::TCC2.Properties.Resources.consultar;
-            this.btnFindPacienteAnamnese.Location = new System.Drawing.Point(366, 17);
+            this.btnFindPacienteAnamnese.Location = new System.Drawing.Point(199, 21);
             this.btnFindPacienteAnamnese.Name = "btnFindPacienteAnamnese";
             this.btnFindPacienteAnamnese.Size = new System.Drawing.Size(30, 23);
             this.btnFindPacienteAnamnese.TabIndex = 1;
@@ -3155,97 +3263,128 @@ namespace TCC2
             this.NutriEzIconNotify.Text = "NutriEz";
             this.NutriEzIconNotify.Visible = true;
             // 
-            // codAlimento
+            // txtDataAntro
             // 
-            this.codAlimento.HeaderText = "Cód Alimento";
-            this.codAlimento.MinimumWidth = 6;
-            this.codAlimento.Name = "codAlimento";
-            this.codAlimento.Visible = false;
-            this.codAlimento.Width = 94;
+            this.txtDataAntro.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtDataAntro.Depth = 0;
+            this.txtDataAntro.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtDataAntro.Hint = "Data";
+            this.txtDataAntro.LeadingIcon = null;
+            this.txtDataAntro.Location = new System.Drawing.Point(272, 6);
+            this.txtDataAntro.MaxLength = 10;
+            this.txtDataAntro.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtDataAntro.Multiline = false;
+            this.txtDataAntro.Name = "txtDataAntro";
+            this.txtDataAntro.Size = new System.Drawing.Size(187, 50);
+            this.txtDataAntro.TabIndex = 327;
+            this.txtDataAntro.Text = "";
+            this.txtDataAntro.TrailingIcon = null;
+            this.txtDataAntro.Visible = false;
+            this.txtDataAntro.Leave += new System.EventHandler(this.txtDataAntro_Leave);
             // 
-            // nomeAlimento
+            // cbxDataExisteAntro
             // 
-            this.nomeAlimento.HeaderText = "Alimento";
-            this.nomeAlimento.MinimumWidth = 6;
-            this.nomeAlimento.Name = "nomeAlimento";
-            this.nomeAlimento.Width = 72;
+            this.cbxDataExisteAntro.AutoSize = true;
+            this.cbxDataExisteAntro.Depth = 0;
+            this.cbxDataExisteAntro.Location = new System.Drawing.Point(473, 15);
+            this.cbxDataExisteAntro.Margin = new System.Windows.Forms.Padding(0);
+            this.cbxDataExisteAntro.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.cbxDataExisteAntro.MouseState = MaterialSkin.MouseState.HOVER;
+            this.cbxDataExisteAntro.Name = "cbxDataExisteAntro";
+            this.cbxDataExisteAntro.Ripple = true;
+            this.cbxDataExisteAntro.Size = new System.Drawing.Size(163, 37);
+            this.cbxDataExisteAntro.TabIndex = 328;
+            this.cbxDataExisteAntro.Text = "Utilizar Nova Data";
+            this.cbxDataExisteAntro.UseVisualStyleBackColor = true;
+            this.cbxDataExisteAntro.CheckedChanged += new System.EventHandler(this.cbxDataExisteAntro_CheckedChanged);
             // 
-            // qtd
+            // chkDataExisteCardapio
             // 
-            this.qtd.HeaderText = "Quantidade";
-            this.qtd.MinimumWidth = 6;
-            this.qtd.Name = "qtd";
-            this.qtd.Width = 87;
+            this.chkDataExisteCardapio.AutoSize = true;
+            this.chkDataExisteCardapio.Depth = 0;
+            this.chkDataExisteCardapio.Location = new System.Drawing.Point(922, 61);
+            this.chkDataExisteCardapio.Margin = new System.Windows.Forms.Padding(0);
+            this.chkDataExisteCardapio.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.chkDataExisteCardapio.MouseState = MaterialSkin.MouseState.HOVER;
+            this.chkDataExisteCardapio.Name = "chkDataExisteCardapio";
+            this.chkDataExisteCardapio.Ripple = true;
+            this.chkDataExisteCardapio.Size = new System.Drawing.Size(163, 37);
+            this.chkDataExisteCardapio.TabIndex = 330;
+            this.chkDataExisteCardapio.Text = "Utilizar Nova Data";
+            this.chkDataExisteCardapio.UseVisualStyleBackColor = true;
+            this.chkDataExisteCardapio.CheckedChanged += new System.EventHandler(this.chkDataExisteCardapio_CheckedChanged);
             // 
-            // kcal
+            // cbxDataCardSalvo
             // 
-            this.kcal.HeaderText = "Kcal";
-            this.kcal.MinimumWidth = 6;
-            this.kcal.Name = "kcal";
-            this.kcal.Visible = false;
-            this.kcal.Width = 53;
+            this.cbxDataCardSalvo.AutoResize = false;
+            this.cbxDataCardSalvo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cbxDataCardSalvo.Depth = 0;
+            this.cbxDataCardSalvo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbxDataCardSalvo.DropDownHeight = 174;
+            this.cbxDataCardSalvo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxDataCardSalvo.DropDownWidth = 121;
+            this.cbxDataCardSalvo.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cbxDataCardSalvo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cbxDataCardSalvo.FormattingEnabled = true;
+            this.cbxDataCardSalvo.Hint = "Data Consulta";
+            this.cbxDataCardSalvo.IntegralHeight = false;
+            this.cbxDataCardSalvo.ItemHeight = 43;
+            this.cbxDataCardSalvo.Location = new System.Drawing.Point(922, 9);
+            this.cbxDataCardSalvo.MaxDropDownItems = 4;
+            this.cbxDataCardSalvo.MouseState = MaterialSkin.MouseState.OUT;
+            this.cbxDataCardSalvo.Name = "cbxDataCardSalvo";
+            this.cbxDataCardSalvo.Size = new System.Drawing.Size(187, 49);
+            this.cbxDataCardSalvo.StartIndex = 0;
+            this.cbxDataCardSalvo.TabIndex = 329;
+            this.cbxDataCardSalvo.SelectedValueChanged += new System.EventHandler(this.cbxDataCardSalvo_SelectedValueChanged);
             // 
-            // prot
+            // btnCancelar
             // 
-            this.prot.HeaderText = "Proteína";
-            this.prot.MinimumWidth = 6;
-            this.prot.Name = "prot";
-            this.prot.Visible = false;
-            this.prot.Width = 73;
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.AutoSize = true;
+            this.btnCancelar.Image = global::TCC2.Properties.Resources.DeleteRed;
+            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancelar.Location = new System.Drawing.Point(665, 559);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(115, 35);
+            this.btnCancelar.TabIndex = 11;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // carbo
+            // txtAbdome
             // 
-            this.carbo.HeaderText = "Carboidrato";
-            this.carbo.MinimumWidth = 6;
-            this.carbo.Name = "carbo";
-            this.carbo.Visible = false;
-            this.carbo.Width = 86;
+            this.txtAbdome.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtAbdome.Depth = 0;
+            this.txtAbdome.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtAbdome.Hint = "Abdome (cm)";
+            this.txtAbdome.LeadingIcon = null;
+            this.txtAbdome.Location = new System.Drawing.Point(469, 420);
+            this.txtAbdome.MaxLength = 50;
+            this.txtAbdome.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtAbdome.Multiline = false;
+            this.txtAbdome.Name = "txtAbdome";
+            this.txtAbdome.Size = new System.Drawing.Size(225, 50);
+            this.txtAbdome.TabIndex = 9;
+            this.txtAbdome.Text = "";
+            this.txtAbdome.TrailingIcon = null;
             // 
-            // lipidio
+            // txtPescoco
             // 
-            this.lipidio.HeaderText = "Lipídio";
-            this.lipidio.MinimumWidth = 6;
-            this.lipidio.Name = "lipidio";
-            this.lipidio.Visible = false;
-            this.lipidio.Width = 64;
-            // 
-            // cbxMedCaseira
-            // 
-            this.cbxMedCaseira.HeaderText = "Medida Caseira";
-            this.cbxMedCaseira.MinimumWidth = 6;
-            this.cbxMedCaseira.Name = "cbxMedCaseira";
-            this.cbxMedCaseira.Width = 77;
-            // 
-            // obs
-            // 
-            this.obs.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.obs.HeaderText = "Observação";
-            this.obs.Name = "obs";
-            // 
-            // cbxDataAntrop
-            // 
-            this.cbxDataAntrop.AutoResize = false;
-            this.cbxDataAntrop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.cbxDataAntrop.Depth = 0;
-            this.cbxDataAntrop.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.cbxDataAntrop.DropDownHeight = 174;
-            this.cbxDataAntrop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxDataAntrop.DropDownWidth = 121;
-            this.cbxDataAntrop.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.cbxDataAntrop.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.cbxDataAntrop.FormattingEnabled = true;
-            this.cbxDataAntrop.Hint = "Data Consulta";
-            this.cbxDataAntrop.IntegralHeight = false;
-            this.cbxDataAntrop.ItemHeight = 43;
-            this.cbxDataAntrop.Location = new System.Drawing.Point(412, 7);
-            this.cbxDataAntrop.MaxDropDownItems = 4;
-            this.cbxDataAntrop.MouseState = MaterialSkin.MouseState.OUT;
-            this.cbxDataAntrop.Name = "cbxDataAntrop";
-            this.cbxDataAntrop.Size = new System.Drawing.Size(260, 49);
-            this.cbxDataAntrop.StartIndex = 0;
-            this.cbxDataAntrop.TabIndex = 326;
-            this.cbxDataAntrop.Visible = false;
-            this.cbxDataAntrop.SelectedValueChanged += new System.EventHandler(this.cbxDataAntrop_SelectedValueChanged);
+            this.txtPescoco.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtPescoco.Depth = 0;
+            this.txtPescoco.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtPescoco.Hint = "Pescoço (cm)";
+            this.txtPescoco.LeadingIcon = null;
+            this.txtPescoco.Location = new System.Drawing.Point(88, 420);
+            this.txtPescoco.MaxLength = 50;
+            this.txtPescoco.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtPescoco.Multiline = false;
+            this.txtPescoco.Name = "txtPescoco";
+            this.txtPescoco.Size = new System.Drawing.Size(225, 50);
+            this.txtPescoco.TabIndex = 8;
+            this.txtPescoco.Text = "";
+            this.txtPescoco.TrailingIcon = null;
             // 
             // FrmMenuPrincipal
             // 
@@ -3304,6 +3443,7 @@ namespace TCC2
             ((System.ComponentModel.ISupportInitialize)(this._dtgConsultaPacientes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagem)).EndInit();
             this.tbAntropometricos.ResumeLayout(false);
+            this.tbAntropometricos.PerformLayout();
             this.gbxCircunferencias.ResumeLayout(false);
             this.gbxCircunferencias.PerformLayout();
             this.gbxEstatura.ResumeLayout(false);
@@ -3511,6 +3651,13 @@ namespace TCC2
         private System.Windows.Forms.DataGridViewComboBoxColumn cbxMedCaseira;
         private System.Windows.Forms.DataGridViewTextBoxColumn obs;
         private MaterialSkin.Controls.MaterialComboBox cbxDataAntrop;
+        private MaterialSkin.Controls.MaterialCheckbox cbxDataExisteAntro;
+        public MaterialSkin.Controls.MaterialTextBox txtDataAntro;
+        private MaterialSkin.Controls.MaterialCheckbox chkDataExisteCardapio;
+        private MaterialSkin.Controls.MaterialComboBox cbxDataCardSalvo;
+        public System.Windows.Forms.Button btnCancelar;
+        public MaterialSkin.Controls.MaterialTextBox txtAbdome;
+        public MaterialSkin.Controls.MaterialTextBox txtPescoco;
     }
 }
 

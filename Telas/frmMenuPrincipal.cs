@@ -1739,28 +1739,100 @@ namespace TCC2
 
             if (imc <= 18.5)
             {
-                lblIMC.Text = ("Peso abaixo do normal.");
+                lblIMC.Text = ("Peso abaixo do normal");
             }
             else if ((imc > 18.5) && (imc < 25))
             {
-                lblIMC.Text = ("Peso normal.");
+                lblIMC.Text = ("Peso normal");
             }
             else if ((imc >= 25) && (imc < 30))
             {
-                lblIMC.Text = ("Sobrepeso.");
+                lblIMC.Text = ("Sobrepeso");
             }
             else if ((imc >= 30) && (imc < 35))
             {
-                lblIMC.Text = ("Grau de Obesidade I.");
+                lblIMC.Text = ("Grau de Obesidade I");
             }
             else if ((imc >= 35) && (imc < 40))
             {
-                lblIMC.Text = ("Grau de Obesidade II.");
+                lblIMC.Text = ("Grau de Obesidade II");
             }
             else if (imc >= 40)
             {
-                lblIMC.Text = ("Obesidade Grau III ou Mórbida.");
+                lblIMC.Text = ("Obesidade Grau III ou Mórbida");
             }
+        }
+        private double CalcularHarrisBenedict(string sexo, double peso, double altura, int idade)
+        {
+            if (sexo.Equals('M'))
+            {
+                return (66 + (13.8 * peso) + (5 * altura) + (6.8 * idade));
+            }
+            else if (sexo.Equals('F'))
+            {
+                return (655 + (9.6 * peso) + (1.9 * altura) + (4.7 * idade));
+            }
+            return 0;
+        }
+        //private double CalcularHarrisPraVET()
+        //{
+        //    return CalcularHarrisBenedict() * FA;
+        //}
+        private double CalculaFAOOMS(string sexo, double peso, double altura, int idade)
+        {
+            // FAO/OMS - Já retorna o VET direto
+            if (sexo.Equals('M'))
+            {
+                if (idade >= 10 && idade < 18)
+                {
+                    return ((17.686 * peso) + 658.2);
+                }
+                else if (idade >= 18 && idade < 30)
+                {
+                    return ((15.057 * peso) + 692.2);
+                }
+                else if (idade >= 30 && idade < 60)
+                {
+                    return ((11.472 * peso) + 873.1);
+                }
+                else if (idade >= 60)
+                {
+                    return ((11.711 * peso) + 587.7);
+                }
+            }
+            else if (sexo.Equals('F'))
+            {
+                if (idade >= 10 && idade < 18)
+                {
+                    return ((13.384 * peso) + 692.6);
+                }
+                else if (idade >= 18 && idade < 30)
+                {
+                    return ((14.818 * peso) + 486.6);
+                }
+                else if (idade >= 30 && idade < 60)
+                {
+                    return ((8.126 * peso) + 845.6);
+                }
+                else if (idade >= 60)
+                {
+                    return ((9.082 * peso) + 658.5);
+                }
+            }
+            return 0;
+        }
+        private double CalcularDRI(string sexo, double peso, double altura, int idade, double CAF)
+        {
+            // Retorna VET
+            if (sexo.Equals('M'))
+            {
+                return (662 - (9.53 * idade) + CAF *(15.91 * peso) + (539.6 * altura));
+            }
+            else if (sexo.Equals('F'))
+            {
+                return (354 - (6.91 * idade) + CAF * (9.36 * peso) + (726 * altura));
+            }
+            return 0;
         }
         private void btnClearAntro_Click(object sender, EventArgs e)
         {

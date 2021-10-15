@@ -1476,9 +1476,20 @@ namespace TCC2
             string CPF = txtCPF.Text.Replace("-", string.Empty).Replace(".", string.Empty);
             string CEP = txtCEP.Text.Replace("-", string.Empty);
             int codPaciente = Convert.ToInt32(txtCodPaciente.Text);
+            string sexo = string.Empty;
+
+            if (rbMasculino.Checked)
+            {
+                sexo = "M";
+            }
+            else if (rbFeminino.Checked)
+            {
+                sexo = "F";
+            }
+
             pacienteDAO.Salvar(codPaciente, Convert.ToString(txtNome.Text), Convert.ToDouble(CPF), Convert.ToString(txtDtNasc.Text), Convert.ToString(txtEmail.Text), Convert.ToDouble(CEP),
                             Convert.ToDouble(txtNumero.Text), Convert.ToString(txtTelefone.Text), Convert.ToString(txtCelular.Text), Convert.ToString(txtEndereco.Text), Convert.ToString(txtBairro.Text)
-                            , Convert.ToString(txtMunicipio.Text), Convert.ToString(txtUF.Text), Convert.ToString(txtComplemento.Text), this.vetorImagens);
+                            , Convert.ToString(txtMunicipio.Text), Convert.ToString(txtUF.Text), Convert.ToString(txtComplemento.Text), this.vetorImagens, sexo);
             LimparCamposPaciente();
             loadStop();
             tbCadastro_Enter(sender, e);
@@ -1762,15 +1773,15 @@ namespace TCC2
                 lblIMC.Text = ("Obesidade Grau III ou Mórbida");
             }
         }
-        private double CalcularHarrisBenedict(string sexo, double peso, double altura, int idade)
+        private double CalcularHarrisBenedict(Antropometria antropometria)
         {
-            if (sexo.Equals('M'))
+            if (antropometria.Paciente.sexo.Equals('M'))
             {
-                return (66 + (13.8 * peso) + (5 * altura) + (6.8 * idade));
+                return Math.Round(Convert.ToDouble(66 + (13.8 * antropometria.peso) + (5 * antropometria.peso) + (6.8 * calcularIdade(antropometria.Paciente.dtNasc))),2);
             }
-            else if (sexo.Equals('F'))
+            else if (antropometria.Paciente.sexo.Equals('F'))
             {
-                return (655 + (9.6 * peso) + (1.9 * altura) + (4.7 * idade));
+                return Math.Round(Convert.ToDouble(655 + (9.6 * antropometria.peso) + (1.9 * antropometria.peso) + (4.7 * calcularIdade(antropometria.Paciente.dtNasc))),2);
             }
             return 0;
         }
@@ -2814,6 +2825,29 @@ namespace TCC2
         {
             CarregarAlimentosCardapioConfig();
             CarregarDatasCardapio(cbxDataCardSalvo);
+            if (rbHarrisBenedict.Checked)
+            {
+                lblTMB.Text = Convert.ToString(CalcularHarrisBenedict(CarregaCalculos(Convert.ToInt32(PacienteModel.codPacienteModel))));
+            }
+        }
+
+        private Antropometria CarregaCalculos(int codPaciente)
+        {
+            Antropometria antro = new Antropometria();
+            
+            var listaCardapio = antropometriaDAO.CarregarUltimaAntropometria();
+
+            if (listaCardapio is null || listaCardapio.Count == 0)
+                return null;
+
+            listaCardapio.ForEach(x =>
+            {
+               antro.peso = x.peso;
+               antro.altura = x.altura;
+               antro.Paciente.dtNasc = x.Paciente.dtNasc;
+               antro.Paciente.sexo = x.Paciente.sexo;
+            });
+            return antro;
         }
 
         #endregion
@@ -3090,6 +3124,34 @@ namespace TCC2
         private void dtgRefeicoes_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             e.Cancel = true;
+        }
+
+        private void rbHarrisBenedict_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbHarrisBenedict.Checked)
+            {
+                chkTMB.Visible = true;
+            }
+            else
+            {
+                chkTMB.Visible = false;
+                chkTMB.Checked = false;
+                mlblTMB.Visible = false;
+            }
+        }
+
+        private void chkTMB_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkTMB.Checked)
+            {
+                mlblTMB.Visible = true;
+                lblTMB.Visible = true;
+            }
+            else
+            {
+                mlblTMB.Visible = false;
+                lblTMB.Visible = false;
+            }
         }
     }
 }

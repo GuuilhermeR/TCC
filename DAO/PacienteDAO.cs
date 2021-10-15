@@ -21,7 +21,7 @@ namespace ProjetoTCC
 
         public SQLiteConnection objConexao;
 
-        public void Salvar(int codPaciente, string nome, double cpf, string dtNasc, string email, double cep, double num, string telefone, string celular, string endereco, string bairro, string municipio, string uf, string complemento, byte[] vetorIMG)
+        public void Salvar(int codPaciente, string nome, double cpf, string dtNasc, string email, double cep, double num, string telefone, string celular, string endereco, string bairro, string municipio, string uf, string complemento, byte[] vetorIMG, string sexo)
         {
             if (VerificarPacienteExiste(codPaciente))
             {
@@ -39,6 +39,8 @@ namespace ProjetoTCC
                 pacienteUpdate.UF = uf;
                 pacienteUpdate.complemento = complemento;
                 pacienteUpdate.telefone = telefone;
+                pacienteUpdate.celular = celular;
+                pacienteUpdate.sexo = sexo;
                 if (vetorIMG != null)
                     pacienteUpdate.imagem = vetorIMG;
 
@@ -64,6 +66,7 @@ namespace ProjetoTCC
                     pacienteInsert.complemento = complemento;
                     pacienteInsert.telefone = telefone;
                     pacienteInsert.celular = celular;
+                    pacienteInsert.sexo = sexo;
                     if (vetorIMG != null)
                         pacienteInsert.imagem = vetorIMG;
 

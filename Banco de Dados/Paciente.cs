@@ -37,6 +37,7 @@ namespace TCC2.Banco_de_Dados
         public string telefone { get; set; }
         public string celular { get; set; }
         public byte[] imagem { get; set; }
+        public string sexo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AnamnesePaciente> AnamnesePaciente { get; set; }

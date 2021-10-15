@@ -134,6 +134,7 @@
           <Property Name="telefone" Type="varchar" MaxLength="2147483647" />
           <Property Name="celular" Type="varchar" MaxLength="2147483647" />
           <Property Name="imagem" Type="blob" />
+          <Property Name="sexo" Type="varchar" MaxLength="2" />
         </EntityType>
         <EntityType Name="Permissao">
           <Key>
@@ -455,6 +456,7 @@
           <NavigationProperty Name="AnamnesePaciente" Relationship="mainModel.FK_AnamnesePaciente_1_0" FromRole="Paciente" ToRole="AnamnesePaciente" />
           <NavigationProperty Name="Cardapio" Relationship="mainModel.FK_Cardapio_1_0" FromRole="Paciente" ToRole="Cardapio" />
           <NavigationProperty Name="Antropometria" Relationship="mainModel.FK_Antropometria_0_0" FromRole="Paciente" ToRole="Antropometria" />
+          <Property Name="sexo" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Permissao">
           <Key>
@@ -689,6 +691,7 @@
           <EntitySetMapping Name="Paciente">
             <EntityTypeMapping TypeName="mainModel.Paciente">
               <MappingFragment StoreEntitySet="Paciente">
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
                 <ScalarProperty Name="imagem" ColumnName="imagem" />
                 <ScalarProperty Name="celular" ColumnName="celular" />
                 <ScalarProperty Name="telefone" ColumnName="telefone" />

@@ -20,18 +20,7 @@ namespace TCC2
         {
             InitializeComponent();
             instanciaMenuPrincipal = menu;
-        }
-
-        public static int calcularIdade (string dataNas)
-        {
-            DateTime dataNascimento = Convert.ToDateTime(dataNas);
-            int idade = DateTime.Now.Year - dataNascimento.Year;
-            if (DateTime.Now.DayOfYear < dataNascimento.DayOfYear)
-            {
-                idade -= 1;
-            }
-            return idade;
-        }
+        }        
 
         private void frmBuscarPaciente_Load(object sender, EventArgs e)
         {

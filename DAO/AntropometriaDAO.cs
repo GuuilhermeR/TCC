@@ -11,6 +11,7 @@ using System.Transactions;
 using TCC2.Banco_de_Dados;
 using static Classes.HelperFuncoes;
 using System.Data.Entity;
+using Model;
 
 namespace ProjetoTCC
 {
@@ -145,6 +146,44 @@ namespace ProjetoTCC
             {
                 return null;
             }
+        }
+
+        public List<Antropometria> CarregarUltimaAntropometria()
+        {
+            List<Antropometria> listAntro = new List<Antropometria>();
+            if (!String.IsNullOrEmpty(PacienteModel.codPacienteModel))
+            {
+                using (var db = new NutreasyEntities())
+                {
+                    var select = db.Database.Connection.CreateCommand();
+
+                    select.CommandText = $"SELECT A.peso, A.altura, P.codPaciente, P.dtNasc, P.sexo " +
+                                         $"FROM Antropometria A " +
+                                         $"LEFT JOIN Paciente P " +
+                                         $"ON A.codPaciente=P.codPaciente " +
+                                         $"WHERE A.codPaciente = {PacienteModel.codPacienteModel} " +
+                                         $"AND A.data=(SELECT MAX(An.data) FROM Antropometria An WHERE An.codPaciente = {PacienteModel.codPacienteModel})";
+
+                    db.Database.Connection.Open();
+                    select.ExecuteNonQuery();
+                    IDataReader dr = select.ExecuteReader();
+                    if (dr.Read())
+                    {
+                        Antropometria antropometria = new Antropometria();
+
+                        antropometria.peso = Convert.ToDouble(dr["peso"]);
+                        antropometria.altura = Convert.ToDouble(dr["altura"]);
+                        antropometria.Paciente.codPaciente = Convert.ToInt64(dr["codPaciente"]);
+                        antropometria.Paciente.dtNasc = Convert.ToString(dr["dtNasc"]);
+                        antropometria.Paciente.sexo = Convert.ToString(dr["sexo"]);
+
+                        listAntro.Add(antropometria);
+                    }
+                    dr.Close();
+                    db.Database.Connection.Close();
+                }
+            }
+            return listAntro;
         }
 
         public List<Antropometria> CarregarInfos(int codPaciente, DateTime data)

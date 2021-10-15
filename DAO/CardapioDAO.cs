@@ -22,14 +22,14 @@ namespace TCC2
 
         public string Salvar(int codPaciente, int codAlimento, string refeicao, double medidaCaseiraQtde, double kcal, string usuario, string data, string obs)
         {
-            if (VerificarExiste(codPaciente, codAlimento,data,refeicao))
+            if (VerificarExiste(codPaciente, codAlimento, data, refeicao))
             {
                 try
                 {
                     var cardUpdt = (from card in BancoDadosSingleton.Instance.Cardapio
-                                    where card.codPaciente == codPaciente 
-                                    && card.data == data 
-                                    && card.Refeicao == refeicao 
+                                    where card.codPaciente == codPaciente
+                                    && card.data == data
+                                    && card.Refeicao == refeicao
                                     && card.codAlimento == codAlimento
                                     select card).Single();
 
@@ -41,7 +41,7 @@ namespace TCC2
                     cardUpdt.Refeicao = refeicao;
                     cardUpdt.kcal = kcal;
                     cardUpdt.obs = obs;
-                    
+
                     BancoDadosSingleton.Instance.SaveChanges();
                     BancoDadosSingleton.Instance.Entry(cardUpdt).State = System.Data.Entity.EntityState.Modified;
                 }
@@ -82,7 +82,7 @@ namespace TCC2
             try
             {
                 List<Cardapio> cardapio = new List<Cardapio>();
-                if (codAlimento>0)
+                if (codAlimento > 0)
                 {
                     cardapio = ((from card in BancoDadosSingleton.Instance.Cardapio
                                  where card.codPaciente == codPaciente
@@ -90,8 +90,8 @@ namespace TCC2
                                  && card.data == data
                                  && card.Refeicao == refeicao
                                  select card).Distinct()).ToList();
-                } 
-                               
+                }
+
 
                 if (cardapio.Count > 0)
                 {

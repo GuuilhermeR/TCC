@@ -82,7 +82,16 @@ namespace Classes
                 }
             }
         }
-
+        public static int calcularIdade(string dataNas)
+        {
+            DateTime dataNascimento = Convert.ToDateTime(dataNas);
+            int idade = DateTime.Now.Year - dataNascimento.Year;
+            if (DateTime.Now.DayOfYear < dataNascimento.DayOfYear)
+            {
+                idade -= 1;
+            }
+            return idade;
+        }
         public static void FormatView(MaterialSkin.Controls.MaterialForm form)
         {
             var materialSkinManager = MaterialSkinManager.Instance;

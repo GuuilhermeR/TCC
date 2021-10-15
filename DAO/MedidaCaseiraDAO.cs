@@ -22,7 +22,6 @@ namespace TCC2
         {
             try
             {
-                loadStart();
 
                 MedidaCaseira medCasInsert = new MedidaCaseira();
 
@@ -32,7 +31,6 @@ namespace TCC2
 
                 BancoDadosSingleton.Instance.MedidaCaseira.Add(medCasInsert);
                 BancoDadosSingleton.Instance.SaveChanges();
-                loadStop();
             }
             catch (Exception ex)
             {

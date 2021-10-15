@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using TCC2.Classes;
 using System.Data.SQLite;
+using TCC2;
 
 namespace Classes
 {
@@ -24,42 +25,50 @@ namespace Classes
 
         private const int DerivationIterations = 1000;
 
-        public static void loadStart()
+        public static void loadStart(Form menu)
         {
             try
             {
-                if (tLoad == null || !tLoad.ThreadState.Equals(ThreadState.Running) || tLoad.ThreadState.Equals(ThreadState.Aborted))
+                if (tLoad == null || !tLoad.ThreadState.Equals(ThreadState.Running) || tLoad.ThreadState.Equals(ThreadState.Aborted) || tLoad.ThreadState.Equals(ThreadState.AbortRequested))
                 {
                     tLoad = new Thread(ShowWait);
+                    tLoad.Start();
+                    menu.Enabled = false;
                 }
                 else if (tLoad.ThreadState.Equals(ThreadState.Running))
                 {
                     tLoad.Abort();
+                    tLoad = new Thread(ShowWait);
+                    tLoad.Start();
+                    menu.Enabled = false;
                 }
-                tLoad.Start();
             }
             catch (Exception ex)
             {
                 tLoad.Abort();
                 tLoad = new Thread(ShowWait);
+                tLoad.Start();
+                menu.Enabled = false;
             }
         }
 
-        public static void loadStop()
+        public static void loadStop(Form menu)
         {
             try
             {
                 tLoad.Abort();
+                menu.Enabled = true;
             }
             catch (Exception ex)
             {
+                menu.Enabled = true;
                 return;
             }
         }
 
         public static void ShowWait()
         {
-           bool jaDeuErro = false;
+            bool jaDeuErro = false;
             using (frmWait wait = new frmWait())
             {
                 try
@@ -70,10 +79,21 @@ namespace Classes
                         tLoad.Start();
                         return;
                     }
-                    wait.ShowDialog();
-                    wait.Activate();
+                    if (tLoad.ThreadState != null && !tLoad.ThreadState.Equals(ThreadState.AbortRequested) && tLoad.ThreadState.Equals(ThreadState.Running) && !tLoad.ThreadState.Equals(ThreadState.Aborted))
+                    {
+                        wait.ShowDialog();
+                        wait.Activate();
+
+                    }
                 }
                 catch (ThreadAbortException ex)
+                {
+                    tLoad.Abort();
+                    tLoad = new Thread(ShowWait);
+                    tLoad.Start();
+                    jaDeuErro = true;
+                }
+                catch (Exception ex)
                 {
                     tLoad.Abort();
                     tLoad = new Thread(ShowWait);

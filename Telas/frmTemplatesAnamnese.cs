@@ -26,9 +26,9 @@ namespace TCC2.Telas
 
         private void frmTemplatesAnamnese_Load(object sender, EventArgs e)
         {
-            loadStart();
+            loadStart(this);
             CarregarAnamnesesConfigs();
-            loadStop();
+            loadStop(this);
             this.Activate();
         }
 
@@ -38,7 +38,7 @@ namespace TCC2.Telas
 
             if (templates is null || templates.Count == 0)
             {
-                loadStop();
+                loadStop(this);
                 return;
             }
 
@@ -50,7 +50,12 @@ namespace TCC2.Telas
 
         private void btnSalvarAnamnese_Click(object sender, EventArgs e)
         {
-            anamneseDAO.SalvarConfig(txtNomeTemplate.Text, rtxtAnamnese.Text,Convert.ToBoolean(cbxExibirSalvos.Checked));
+            string erro = anamneseDAO.SalvarConfig(txtNomeTemplate.Text, rtxtAnamnese.Text,Convert.ToBoolean(cbxExibirSalvos.Checked));
+            if (!string.IsNullOrEmpty(erro))
+            {
+                nMensagemAlerta(erro);
+                return;
+            }
             CarregarAnamnesesConfigs();
             rtxtAnamnese.Text = string.Empty;
             txtNomeTemplate.Text = string.Empty;
@@ -74,12 +79,12 @@ namespace TCC2.Telas
 
         private void cbxTempSalvo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            loadStart();
+            loadStart(this);
             var templates = anamneseDAO.CarregarAnamneseTemplate(cbxTempSalvo.Text);
 
             if (templates is null || templates.Count == 0)
             {
-                loadStop();
+                loadStop(this);
                 return;
             }
 
@@ -88,7 +93,7 @@ namespace TCC2.Telas
                 rtxtAnamnese.Text = x.Texto;
             });
 
-            loadStop();
+            loadStop(this);
         }
     }
 }

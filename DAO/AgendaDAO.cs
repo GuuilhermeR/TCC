@@ -171,8 +171,8 @@ namespace ProjetoTCC
                 agendaInsert.usuarioResp = usuario;
 
                 BancoDadosSingleton.Instance.Agenda.Add(agendaInsert);
-                BancoDadosSingleton.Instance.Entry(agendaInsert).State = EntityState.Modified;
                 BancoDadosSingleton.Instance.SaveChanges();
+                BancoDadosSingleton.Instance.Entry(agendaInsert).State = EntityState.Modified;
                 nMensagemAviso("Consulta do paciente foi agendado.");
             }
             catch (Exception ex)

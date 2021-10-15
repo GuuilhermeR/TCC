@@ -18,11 +18,10 @@ namespace ProjetoTCC
 
         public AnamneseDAO() { }
 
-        public void Salvar(int codPaciente, string anamnese)
+        public string Salvar(int codPaciente, string anamnese)
         {
             try
             {
-                loadStart();
                 AnamnesePaciente anamneseInsert = new AnamnesePaciente();
 
                 anamneseInsert.codPaciente = codPaciente;
@@ -31,18 +30,16 @@ namespace ProjetoTCC
 
                 BancoDadosSingleton.Instance.AnamnesePaciente.Add(anamneseInsert);
                 BancoDadosSingleton.Instance.SaveChanges();
-                loadStop();
-                nMensagemAviso("Anamnese salva!");
+                return("Anamnese salva!");
             }
             catch (Exception ex)
             {
-                loadStop();
-                nMensagemErro("Ocorreu um erro ao salvar." + '\n' + ex.Message + '\n' + ex.InnerException);
+                return ("Ocorreu um erro ao salvar." + '\n' + ex.Message + '\n' + ex.InnerException);
             }
         }
+
         public void Deletar(int codPaciente, string data)
         {
-            loadStart();
             using (var db = new NutreasyEntities())
             {
                 var delete = db.Database.Connection.CreateCommand();
@@ -51,7 +48,6 @@ namespace ProjetoTCC
                 delete.ExecuteNonQuery();
                 db.Database.Connection.Close();
             }
-            loadStop();
             nMensagemAviso("Os dados de Anamnese foram excluídos!");
         }
 
@@ -95,13 +91,12 @@ namespace ProjetoTCC
             }
         }
 
-        public void SalvarConfig(string template, string texto, bool existe)
+        public string SalvarConfig(string template, string texto, bool existe)
         {
             try
             {
                 if (!existe)
                 {
-                    loadStart();
                     AnamneseConfig anamneseInsert = new AnamneseConfig();
 
                     anamneseInsert.Template = template;
@@ -109,12 +104,9 @@ namespace ProjetoTCC
 
                     BancoDadosSingleton.Instance.AnamneseConfig.Add(anamneseInsert);
                     BancoDadosSingleton.Instance.SaveChanges();
-                    loadStop();
-                    nMensagemAviso("Template salvo!");
                 }
                 else
                 {                    
-                    loadStart();
                     var anamConfig = (from ali in BancoDadosSingleton.Instance.AnamneseConfig where ali.Template == template select ali).Single();
 
                     anamConfig.Template = template;
@@ -122,20 +114,17 @@ namespace ProjetoTCC
 
                     BancoDadosSingleton.Instance.AnamneseConfig.Add(anamConfig);
                     BancoDadosSingleton.Instance.SaveChanges();
-                    loadStop();
-                    nMensagemAviso("Template foi atualizado!");
                 }
             }
             catch (Exception ex)
             {
-                loadStop();
                 if (ex.Message.ToLower().Contains("pk"))
                 {
-                    nMensagemErro("Já existe uma configuração com esse nome!");
-                    return;
+                    return ("Já existe uma configuração com esse nome!");
                 }
-                nMensagemErro("Ocorreu um erro ao salvar." + '\n' + ex.Message + '\n' + ex.InnerException);
+                return("Ocorreu um erro ao salvar." + '\n' + ex.Message + '\n' + ex.InnerException);
             }
+            return string.Empty;
         }
 
         public List<AnamneseConfig> CarregarAnamneseConfig()

@@ -142,7 +142,6 @@ namespace ProjetoTCC
 
         public void DeletarTableImportError(string tabela)
         {
-            loadStart();
             using (var db = new NutreasyEntities())
             {
                 try
@@ -158,7 +157,6 @@ namespace ProjetoTCC
                 }
                
             }
-            loadStop();
         }
 
         public List<Alimentos> Buscar(string nomeAlimento, string nomeTabela)

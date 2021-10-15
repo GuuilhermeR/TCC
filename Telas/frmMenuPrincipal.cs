@@ -349,6 +349,7 @@ namespace TCC2
             //timer1.Enabled = true;
             //mCardConsultas.BackColor = mCardConsultas.BackColor == Color.Red ? Color.White : Color.Red;
         }
+        
         #endregion
 
         #region Agenda
@@ -360,7 +361,7 @@ namespace TCC2
                 return;
             };
             txtDataAgendamento.Text = DateTime.Now.ToString("dd/MM/yyyy");
-            loadStart();
+            loadStart(this);
 
             if (!jaIniciou)
             {
@@ -371,7 +372,7 @@ namespace TCC2
                 BuscarConsultasAgendadas();
                 calAgendamento.Refresh();
             }
-            loadStop();
+            loadStop(this);
 
         }
 
@@ -894,7 +895,7 @@ namespace TCC2
             var alimentoFail = string.Empty;
             bool salvou = false;
 
-            loadStart();
+            loadStart(this);
             using (TransactionScope tscope = new TransactionScope(TransactionScopeOption.Suppress))
             {
                 try
@@ -961,7 +962,7 @@ namespace TCC2
                 catch (Exception ex)
                 {
                     //pbCarregando.Visible = false;
-                    //loadStop();
+                    //loadStop(this);
                     nMensagemErro($"Ocorreu um erro, no alimento {alimentoFail}, favor verificar nomenclatura da mesma para não possuir caracteres especiais. Erro:" + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException + Environment.NewLine);
                     alimentoDAO.DeletarTableImportError(txtNomeTabela.Text);
                     return;
@@ -973,7 +974,7 @@ namespace TCC2
             txtCaminhoArquivoExcel.Text = string.Empty;
             _cbxNomePlanilha.Items.Clear();
             txtNomeTabela.Text = string.Empty;
-            loadStop();
+            loadStop(this);
         }
 
         private void _btnBuscarPlanilha_Click(object sender, EventArgs e)
@@ -1176,7 +1177,9 @@ namespace TCC2
             medidaCaseiraDAO.Deletar();
             foreach (DataGridViewRow rows in dtgSalvarMedCaseira.Rows)
             {
+                loadStart(this);
                 erro = medidaCaseiraDAO.Salvar(rows.Cells["colDescricao"].Value.ToString(), Convert.ToDouble(rows.Cells["colQtd"].Value), Convert.ToInt32(rows.Cells["colCodAlimento"].Value));
+                loadStop(this);
             }
             if (!string.IsNullOrEmpty(erro))
             {
@@ -1235,11 +1238,11 @@ namespace TCC2
 
         private void CarregarAlimentos(string nomeAlimento, string nomeTabela, DataGridView dtg)
         {
-            loadStart();
+            loadStart(this);
             var listaAlimentos = alimentoDAO.Buscar(nomeAlimento, nomeTabela);
             if (listaAlimentos == null)
             {
-                loadStop();
+                loadStop(this);
                 return;
             }
             DataTable dt = ConvertToDataTable(listaAlimentos);
@@ -1257,7 +1260,7 @@ namespace TCC2
             dtg.Columns["nomeAlimento"].HeaderText = "Alimento";
 
             dtg.AutoResizeColumns();
-            loadStop();
+            loadStop(this);
         }
 
         private void mTxtFiltroAlimentoMedCas_Leave(object sender, EventArgs e)
@@ -1315,7 +1318,7 @@ namespace TCC2
         {
             if (e.RowIndex >= 0 & e.ColumnIndex >= 0)
             {
-                loadStart();
+                loadStart(this);
                 txtCodPaciente.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["codPaciente"].Value);
                 txtNome.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["nome"].Value);
                 txtCPF.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["CPF"].Value);
@@ -1336,7 +1339,7 @@ namespace TCC2
                 }
                 tbPaciente.SelectedTab = tbCadastro;
                 FormatarCampos();
-                loadStop();
+                loadStop(this);
             }
         }
 
@@ -1420,13 +1423,13 @@ namespace TCC2
         }
         private void txtPacienteAnamnese_TextChanged(object sender, EventArgs e)
         {
-            loadStart();
+            loadStart(this);
             var listaCardapio = anamneseDAO.CarregarDataAnamnese(Convert.ToInt32(PacienteModel.codPacienteModel));
 
             if (listaCardapio == null || listaCardapio.Count == 0)
             {
                 cbxDataAnamnese.Visible = false;
-                loadStop();
+                loadStop(this);
                 return;
             }
 
@@ -1436,7 +1439,7 @@ namespace TCC2
             {
                 cbxDataAnamnese.Items.Add(x);
             });
-            loadStop();
+            loadStop(this);
         }
 
         private void cbxDataAnamnese_SelectedIndexChanged(object sender, EventArgs e)
@@ -1472,7 +1475,7 @@ namespace TCC2
                 nMensagemAviso("Necessário informar pelo menos o nome!");
                 return;
             }
-            loadStart();
+            loadStart(this);
             string CPF = txtCPF.Text.Replace("-", string.Empty).Replace(".", string.Empty);
             string CEP = txtCEP.Text.Replace("-", string.Empty);
             int codPaciente = Convert.ToInt32(txtCodPaciente.Text);
@@ -1491,7 +1494,7 @@ namespace TCC2
                             Convert.ToDouble(txtNumero.Text), Convert.ToString(txtTelefone.Text), Convert.ToString(txtCelular.Text), Convert.ToString(txtEndereco.Text), Convert.ToString(txtBairro.Text)
                             , Convert.ToString(txtMunicipio.Text), Convert.ToString(txtUF.Text), Convert.ToString(txtComplemento.Text), this.vetorImagens, sexo);
             LimparCamposPaciente();
-            loadStop();
+            loadStop(this);
             tbCadastro_Enter(sender, e);
         }
 
@@ -1523,7 +1526,7 @@ namespace TCC2
 
         private void tbCadastro_Enter(object sender, EventArgs e)
         {
-            loadStart();
+            loadStart(this);
 
             btnCapturarImagem.Visible = false;
             _dtgConsultaPacientes.DataSource = null;
@@ -1531,7 +1534,7 @@ namespace TCC2
 
             if (listaPacientes == null)
             {
-                loadStop();
+                loadStop(this);
                 return;
             }
 
@@ -1556,7 +1559,7 @@ namespace TCC2
             _dtgConsultaPacientes.Columns["celular"].HeaderText = "Celular";
             _dtgConsultaPacientes.AutoResizeColumns();
 
-            loadStop();
+            loadStop(this);
         }
 
         private void pbImagem_Click(object sender, EventArgs e)
@@ -1775,74 +1778,97 @@ namespace TCC2
         }
         private double CalcularHarrisBenedict(Antropometria antropometria)
         {
-            if (antropometria.Paciente.sexo.Equals('M'))
+            if (antropometria.Paciente.sexo.Equals("M"))
             {
                 return Math.Round(Convert.ToDouble(66 + (13.8 * antropometria.peso) + (5 * antropometria.peso) + (6.8 * calcularIdade(antropometria.Paciente.dtNasc))),2);
             }
-            else if (antropometria.Paciente.sexo.Equals('F'))
+            else if (antropometria.Paciente.sexo.Equals("F"))
             {
                 return Math.Round(Convert.ToDouble(655 + (9.6 * antropometria.peso) + (1.9 * antropometria.peso) + (4.7 * calcularIdade(antropometria.Paciente.dtNasc))),2);
             }
             return 0;
         }
-        //private double CalcularHarrisPraVET()
-        //{
-        //    return CalcularHarrisBenedict() * FA;
-        //}
-        private double CalculaFAOOMS(string sexo, double peso, double altura, int idade)
+        private double CalcularHarrisPraVET(Antropometria antropometria)
+        {
+            double grauAtiv = 0;
+
+            if (antropometria.grauAtividade.ToLower().Contains("sedent"))
+            {
+                grauAtiv = 1;
+            }
+            else if (antropometria.grauAtividade.ToLower().Contains("pouco ativo"))
+            {
+                grauAtiv = 1;
+            }
+            else if (antropometria.grauAtividade.ToLower().Contains("ativo"))
+            {
+                grauAtiv = 1;
+            }
+            else if (antropometria.grauAtividade.ToLower().Contains("muito ativo"))
+            { 
+                grauAtiv = 1;
+            }
+
+            return CalcularHarrisBenedict(antropometria) * grauAtiv;
+        }
+        private double CalculaFAOOMS(Antropometria antropometria)
         {
             // FAO/OMS - Já retorna o VET direto
-            if (sexo.Equals('M'))
+            int idade = calcularIdade(antropometria.Paciente.dtNasc);
+
+            if (antropometria.Paciente.sexo.Equals("M"))
             {
                 if (idade >= 10 && idade < 18)
                 {
-                    return ((17.686 * peso) + 658.2);
+                    return ((double)((17.686 * antropometria.peso) + 658.2));
                 }
                 else if (idade >= 18 && idade < 30)
                 {
-                    return ((15.057 * peso) + 692.2);
+                    return ((double)((15.057 * antropometria.peso) + 692.2));
                 }
                 else if (idade >= 30 && idade < 60)
                 {
-                    return ((11.472 * peso) + 873.1);
+                    return ((double)((11.472 * antropometria.peso) + 873.1));
                 }
                 else if (idade >= 60)
                 {
-                    return ((11.711 * peso) + 587.7);
+                    return ((double)((11.711 * antropometria.peso) + 587.7));
                 }
             }
-            else if (sexo.Equals('F'))
+            else if (antropometria.Paciente.sexo.Equals("F"))
             {
                 if (idade >= 10 && idade < 18)
                 {
-                    return ((13.384 * peso) + 692.6);
+                    return ((double)((13.384 * antropometria.peso) + 692.6));
                 }
                 else if (idade >= 18 && idade < 30)
                 {
-                    return ((14.818 * peso) + 486.6);
+                    return ((double)((14.818 * antropometria.peso) + 486.6));
                 }
                 else if (idade >= 30 && idade < 60)
                 {
-                    return ((8.126 * peso) + 845.6);
+                    return ((double)((8.126 * antropometria.peso) + 845.6));
                 }
                 else if (idade >= 60)
                 {
-                    return ((9.082 * peso) + 658.5);
+                    return ((double)((9.082 * antropometria.peso) + 658.5));
                 }
             }
             return 0;
         }
-        private double CalcularDRI(string sexo, double peso, double altura, int idade, double CAF)
+        private double CalcularDRI(Antropometria antropometria)
         {
             // Retorna VET
-            if (sexo.Equals('M'))
-            {
-                return (662 - (9.53 * idade) + CAF *(15.91 * peso) + (539.6 * altura));
-            }
-            else if (sexo.Equals('F'))
-            {
-                return (354 - (6.91 * idade) + CAF * (9.36 * peso) + (726 * altura));
-            }
+            int idade = calcularIdade(antropometria.Paciente.dtNasc);
+
+            //if (antropometria.Paciente.sexo.Equals("M"))
+            //{
+            //    return (662 - (9.53 * idade) + CAF *(15.91 * antropometria.peso) + (539.6 * antropometria.altura));
+            //}
+            //else if (antropometria.Paciente.sexo.Equals("F"))
+            //{
+            //    return (354 - (6.91 * idade) + CAF * (9.36 * antropometria.peso) + (726 * antropometria.altura));
+            //}
             return 0;
         }
         private void btnClearAntro_Click(object sender, EventArgs e)
@@ -1927,7 +1953,14 @@ namespace TCC2
 
         private void btnSalvarAnamnese_Click(object sender, EventArgs e)
         {
-            anamneseDAO.Salvar(Convert.ToInt32(PacienteModel.codPacienteModel), Convert.ToString(rtxtAnamnese.Text));
+            loadStart(this);
+            string erro = anamneseDAO.Salvar(Convert.ToInt32(PacienteModel.codPacienteModel), Convert.ToString(rtxtAnamnese.Text));
+            loadStop(this);
+            if (string.IsNullOrEmpty(erro))
+            {
+                nMensagemAlerta(erro);
+                return;
+            }
             txtPaciente.Text = string.Empty;
             cbxDataAnamnese.Items.Clear();
             cbxCarregarTemplate.Items.Clear();
@@ -1940,12 +1973,39 @@ namespace TCC2
 
         private void btnSalvarAntro_Click(object sender, EventArgs e)
         {
+            string grauAtividade = string.Empty;
+
+            if (rbSedentario.Checked)
+            {
+                grauAtividade = rbSedentario.Text;
+            }
+            else if (rbPoucoAtivo.Checked)
+            {
+                grauAtividade = rbPoucoAtivo.Text;
+            } 
+            else if (rbAtivo.Checked)
+            {
+                grauAtividade = rbAtivo.Text;
+            }
+            else if (rbMuitoAtivo.Checked)
+            {
+                grauAtividade = rbMuitoAtivo.Text;
+            }
+
             if (Convert.ToInt32(PacienteModel.codPacienteModel) == 0)
             {
-                nMensagemAlerta("É necessário informar o paciente");
+                nMensagemAlerta("É necessário informar o paciente!");
                 return;
             }
+
+            if (!string.IsNullOrEmpty(grauAtividade))
+            {
+                nMensagemAlerta("É necessário informar o grau de atividade!");
+                return;
+            }
+
             string data = string.Empty;
+
             if (cbxDataAntrop.Visible)
             {
                 data = cbxDataAntrop.Text;
@@ -1968,7 +2028,8 @@ namespace TCC2
                 Convert.ToDouble(txtPescoco.Text),
                 Convert.ToDouble(txtAbdome.Text),
                 Convert.ToDouble(txtTorax.Text),
-                data);
+                data,
+                grauAtividade);
             ClearCamposAntro();
         }
 
@@ -2240,7 +2301,7 @@ namespace TCC2
                 return;
             }
             string erro = string.Empty;
-            loadStart();
+            loadStart(this);
             string data = string.Empty;
 
             if (cbxDataCardSalvo.Visible)
@@ -2267,12 +2328,12 @@ namespace TCC2
             {
                 btnApagar_Click(sender, e);
                 btnCancelarCardapio_Click(sender, e);
-                loadStop();
+                loadStop(this);
                 nMensagemAviso("Seus dados foram salvos!");
             }
             else
             {
-                loadStop();
+                loadStop(this);
                 nMensagemErro(erro);
             }
         }
@@ -2368,12 +2429,12 @@ namespace TCC2
         {
             if (cbxTabelaAlimentoCardapio.Text != string.Empty)
             {
-                loadStart();
+                loadStart(this);
 
                 var listaAlimentos = alimentoDAO.Buscar(string.Empty, cbxTabelaAlimentoCardapio.Text);
                 if (listaAlimentos == null)
                 {
-                    loadStop();
+                    loadStop(this);
                     return;
                 }
 
@@ -2392,7 +2453,7 @@ namespace TCC2
                 dtgCardapioAlimentos.Columns["Cardapio"].Visible = false;
                 dtgCardapioAlimentos.AutoResizeColumns();
                 dtgCardapioAlimentos.Columns["nomeAlimento"].ReadOnly = true;
-                loadStop();
+                loadStop(this);
 
             }
         }
@@ -2772,11 +2833,11 @@ namespace TCC2
         {
             if (!string.IsNullOrEmpty(txtAlimentoFiltro.Text))
             {
-                loadStart();
+                loadStart(this);
                 var listaAlimentos = alimentoDAO.Buscar(txtAlimentoFiltro.Text, cbxTabela.Text);
                 if (listaAlimentos == null)
                 {
-                    loadStop();
+                    loadStop(this);
                     return;
                 }
 
@@ -2795,7 +2856,7 @@ namespace TCC2
                 dtgCardapioAlimentos.Columns["Cardapio"].Visible = false;
                 dtgCardapioAlimentos.AutoResizeColumns();
                 dtgCardapioAlimentos.Columns["nomeAlimento"].ReadOnly = true;
-                loadStop();
+                loadStop(this);
             }
         }
 
@@ -2825,15 +2886,30 @@ namespace TCC2
         {
             CarregarAlimentosCardapioConfig();
             CarregarDatasCardapio(cbxDataCardSalvo);
+            CarregarCalculoSelecionado();
+        }
+
+        private void CarregarCalculoSelecionado()
+        {
             if (rbHarrisBenedict.Checked)
             {
                 lblTMB.Text = Convert.ToString(CalcularHarrisBenedict(CarregaCalculos(Convert.ToInt32(PacienteModel.codPacienteModel))));
+                lblVET.Text = Convert.ToString(CalcularHarrisPraVET(CarregaCalculos(Convert.ToInt32(PacienteModel.codPacienteModel))));
+            }
+            else if (rbFAOOMS.Checked)
+            {
+                lblVET.Text = Convert.ToString(CalculaFAOOMS(CarregaCalculos(Convert.ToInt32(PacienteModel.codPacienteModel))));
+            }
+            else if (rbDRI.Checked)
+            {
+                lblVET.Text = Convert.ToString(CalcularDRI(CarregaCalculos(Convert.ToInt32(PacienteModel.codPacienteModel))));
             }
         }
 
         private Antropometria CarregaCalculos(int codPaciente)
         {
             Antropometria antro = new Antropometria();
+            antro.Paciente = new Paciente();
             
             var listaCardapio = antropometriaDAO.CarregarUltimaAntropometria();
 
@@ -2844,12 +2920,57 @@ namespace TCC2
             {
                antro.peso = x.peso;
                antro.altura = x.altura;
+               antro.grauAtividade = x.grauAtividade;
                antro.Paciente.dtNasc = x.Paciente.dtNasc;
                antro.Paciente.sexo = x.Paciente.sexo;
             });
             return antro;
         }
 
+        private void rbHarrisBenedict_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbHarrisBenedict.Checked)
+            {
+                chkTMB.Visible = true;
+                mlblVET.Visible = true;
+                chkTMB_CheckedChanged(sender, e);
+                CarregarCalculoSelecionado();
+            }
+            else
+            {
+                chkTMB.Visible = false;
+                chkTMB.Checked = false;
+                mlblTMB.Visible = false;
+                lblTMB.Visible = false;
+            }
+        }
+
+        private void chkTMB_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkTMB.Checked)
+            {
+                mlblTMB.Visible = true;
+                lblTMB.Visible = true;
+                mlblTMB.Visible = true;
+            }
+            else
+            {
+                mlblTMB.Visible = false;
+                lblTMB.Visible = false;
+            }
+        }
+
+        private void rbFAOOMS_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbFAOOMS.Checked)
+                CarregarCalculoSelecionado();
+        }
+
+        private void rbDRI_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbDRI.Checked)
+                CarregarCalculoSelecionado();
+        }
         #endregion
 
         #region Configurações
@@ -2888,12 +3009,12 @@ namespace TCC2
             {
                 return;
             };
-            loadStart();
+            loadStart(this);
 
             var listaUsuario = usuarioDAO.getUsuario(string.Empty);
             if (listaUsuario == null)
             {
-                loadStop();
+                loadStop(this);
                 return;
             }
 
@@ -2911,7 +3032,7 @@ namespace TCC2
             dtgUsuarios.Columns["dtHoraUltAcesso"].Visible = false;
             dtgUsuarios.Columns["podeLogar"].Visible = false;
             dtgUsuarios.AutoResizeColumns();
-            loadStop();
+            loadStop(this);
         }
         private void dtgUsuarios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -2928,12 +3049,12 @@ namespace TCC2
 
         private void tbPermissao_Enter(object sender, EventArgs e)
         {
-            loadStart();
+            loadStart(this);
 
             var listaUsuarios = usuarioDAO.getUsuario(string.Empty);
             if (listaUsuarios == null || listaUsuarios.Count <= 0)
             {
-                loadStop();
+                loadStop(this);
                 return;
             }
 
@@ -2954,7 +3075,7 @@ namespace TCC2
             dtgPermUsuarios.Columns["usuario"].HeaderText = "Usuário";
             dtgPermUsuarios.Columns["programa"].HeaderText = "Tela";
             dtgUsuarios.AutoResizeColumns();
-            loadStop();
+            loadStop(this);
         }
 
         private void txtUsuarioConfig_Leave(object sender, EventArgs e)
@@ -2966,6 +3087,7 @@ namespace TCC2
         private void btnSalvarPermissao_Click(object sender, EventArgs e)
         {
             permissaoDAO.AdicionarPermissao(Convert.ToString(cbxUsuarioPerm.Text), Convert.ToString(cbxTelaLiberarPerm.Text));
+            tbPermissao_Enter(sender, e);
         }
 
         private void btnExcluirConfigUsuario_Click(object sender, EventArgs e)
@@ -2975,9 +3097,9 @@ namespace TCC2
                 nMensagemAlerta("É necessário informar o usuário no campo para remover.");
                 return;
             }
-            loadStart();
+            loadStart(this);
             usuarioDAO.Deletar(txtUsuarioConfig.Text);
-            loadStop();
+            loadStop(this);
             tbConfig_Enter(sender, e);
         }
 
@@ -2985,20 +3107,20 @@ namespace TCC2
         {
             if (e.KeyCode == Keys.Delete)
             {
-                loadStart();
+                loadStart(this);
                 usuarioDAO.Deletar(Convert.ToString(dtgUsuarios.CurrentRow.Cells["usuario"].Value));
-                loadStop();
+                loadStop(this);
             }
         }
 
         private void tabHorarioAtendimento_Enter(object sender, EventArgs e)
         {
 
-            loadStart();
+            loadStart(this);
             var listaUsuarios = usuarioDAO.getUsuario(string.Empty);
             if (listaUsuarios == null || listaUsuarios.Count <= 0)
             {
-                loadStop();
+                loadStop(this);
                 return;
             }
 
@@ -3008,7 +3130,7 @@ namespace TCC2
             var listConfig = configDAO.Consultar();
             if (listConfig == null)
             {
-                loadStop();
+                loadStop(this);
                 return;
             }
 
@@ -3021,7 +3143,7 @@ namespace TCC2
             dtgConfigHorario.Columns["horaInicio"].HeaderText = "Hora Início";
             dtgConfigHorario.Columns["horaFim"].HeaderText = "Hora Fim";
             dtgConfigHorario.Columns["Login"].Visible = false;
-            loadStop();
+            loadStop(this);
         }
 
         private void btnSalvarHoraAtend_Click(object sender, EventArgs e)
@@ -3037,11 +3159,11 @@ namespace TCC2
 
         private void CarregarConfigs()
         {
-            loadStart();
+            loadStart(this);
             var listaConfigs = configDAO.Consultar();
             if (listaConfigs == null)
             {
-                loadStop();
+                loadStop(this);
                 return;
             }
             DataTable dt = ConvertToDataTable(listaConfigs);
@@ -3054,7 +3176,7 @@ namespace TCC2
             dtgConfigHorario.Columns["horaFim"].HeaderText = "Fim";
 
             GetConfigAtendimento();
-            loadStop();
+            loadStop(this);
 
         }
 
@@ -3063,11 +3185,14 @@ namespace TCC2
             if (e.RowIndex < 0 && e.ColumnIndex < 0)
                 return;
 
-            cbxUsuarioPerm.SelectedText = Convert.ToString(dtgConfigHorario.CurrentRow.Cells["usuario"].Value);
+            cbxUsuNutri.Text = Convert.ToString(dtgConfigHorario.CurrentRow.Cells["usuario"].Value);
             cbxDiaSemana.SelectedText = Convert.ToString(dtgConfigHorario.CurrentRow.Cells["diaSemana"].Value);
             txtHoraInicio.Text = Convert.ToString(dtgConfigHorario.CurrentRow.Cells["horaInicio"].Value);
             txtHoraFim.Text = Convert.ToString(dtgConfigHorario.CurrentRow.Cells["horaFim"].Value);
+            cbxUsuNutri.Refresh();
+            cbxDiaSemana.Refresh();
         }
+
         private void txtHoraInicio_Validated(object sender, EventArgs e)
         {
             txtHoraInicio.Text = formatarHora(txtHoraInicio.Text);
@@ -3090,6 +3215,8 @@ namespace TCC2
 
             cbxUsuarioPerm.Text = dtgPermUsuarios.Rows[e.RowIndex].Cells["usuario"].Value.ToString();
             cbxTelaLiberarPerm.Text = dtgPermUsuarios.Rows[e.RowIndex].Cells["programa"].Value.ToString();
+            cbxUsuarioPerm.Refresh();
+            cbxTelaLiberarPerm.Refresh();
         }
         #endregion
 
@@ -3126,32 +3253,5 @@ namespace TCC2
             e.Cancel = true;
         }
 
-        private void rbHarrisBenedict_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rbHarrisBenedict.Checked)
-            {
-                chkTMB.Visible = true;
-            }
-            else
-            {
-                chkTMB.Visible = false;
-                chkTMB.Checked = false;
-                mlblTMB.Visible = false;
-            }
-        }
-
-        private void chkTMB_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkTMB.Checked)
-            {
-                mlblTMB.Visible = true;
-                lblTMB.Visible = true;
-            }
-            else
-            {
-                mlblTMB.Visible = false;
-                lblTMB.Visible = false;
-            }
-        }
     }
 }

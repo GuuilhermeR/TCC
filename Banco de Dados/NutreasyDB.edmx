@@ -67,6 +67,7 @@
           <Property Name="coxa" Type="real" />
           <Property Name="abdome" Type="real" />
           <Property Name="pescoco" Type="real" />
+          <Property Name="grauAtividade" Type="varchar" MaxLength="2147483647" />
         </EntityType>
         <EntityType Name="Cardapio">
           <Key>
@@ -572,6 +573,7 @@
           <Property Name="abdome" Type="Double" />
           <NavigationProperty Name="Paciente" Relationship="mainModel.FK_Antropometria_0_0" FromRole="Antropometria" ToRole="Paciente" />
           <Property Name="pescoco" Type="Double" />
+          <Property Name="grauAtividade" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Antropometria_0_0">
           <End Type="mainModel.Paciente" Role="Paciente" Multiplicity="1" />
@@ -722,6 +724,7 @@
           <EntitySetMapping Name="Antropometria">
             <EntityTypeMapping TypeName="mainModel.Antropometria">
               <MappingFragment StoreEntitySet="Antropometria">
+                <ScalarProperty Name="grauAtividade" ColumnName="grauAtividade" />
                 <ScalarProperty Name="pescoco" ColumnName="pescoco" />
                 <ScalarProperty Name="abdome" ColumnName="abdome" />
                 <ScalarProperty Name="coxa" ColumnName="coxa" />

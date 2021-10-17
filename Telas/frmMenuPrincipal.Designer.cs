@@ -31,13 +31,13 @@ namespace TCC2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange29 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange30 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange31 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange32 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange33 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange34 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange35 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange1 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange2 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange3 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange4 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange5 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange6 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange7 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMenuPrincipal));
             this.TabControlNutreasy = new MaterialSkin.Controls.MaterialTabControl();
             this.tabMenu = new System.Windows.Forms.TabPage();
@@ -243,10 +243,18 @@ namespace TCC2
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.NutriEzIconNotify = new System.Windows.Forms.NotifyIcon(this.components);
-            this.rbSedentario = new MaterialSkin.Controls.MaterialRadioButton();
-            this.rbPoucoAtivo = new MaterialSkin.Controls.MaterialRadioButton();
-            this.rbAtivo = new MaterialSkin.Controls.MaterialRadioButton();
+            this.tabCalculo = new System.Windows.Forms.TabControl();
+            this.tbDRI = new System.Windows.Forms.TabPage();
+            this.tbHarrisBenedict = new System.Windows.Forms.TabPage();
             this.rbMuitoAtivo = new MaterialSkin.Controls.MaterialRadioButton();
+            this.rbAtivo = new MaterialSkin.Controls.MaterialRadioButton();
+            this.rbPoucoAtivo = new MaterialSkin.Controls.MaterialRadioButton();
+            this.rbSedentario = new MaterialSkin.Controls.MaterialRadioButton();
+            this.materialRadioButton5 = new MaterialSkin.Controls.MaterialRadioButton();
+            this.materialRadioButton1 = new MaterialSkin.Controls.MaterialRadioButton();
+            this.materialRadioButton2 = new MaterialSkin.Controls.MaterialRadioButton();
+            this.materialRadioButton3 = new MaterialSkin.Controls.MaterialRadioButton();
+            this.materialRadioButton4 = new MaterialSkin.Controls.MaterialRadioButton();
             this.TabControlNutreasy.SuspendLayout();
             this.tabMenu.SuspendLayout();
             this.mCardAtendimentoAtual.SuspendLayout();
@@ -290,6 +298,9 @@ namespace TCC2
             this.tabHorarioAtendimento.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgConfigHorario)).BeginInit();
             this.tbSobre.SuspendLayout();
+            this.tabCalculo.SuspendLayout();
+            this.tbDRI.SuspendLayout();
+            this.tbHarrisBenedict.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControlNutreasy
@@ -664,35 +675,35 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.calAgendamento.BackColor = System.Drawing.SystemColors.Control;
             this.calAgendamento.Font = new System.Drawing.Font("Segoe UI", 9F);
-            calendarHighlightRange29.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange29.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange29.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange30.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange30.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange30.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange31.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange31.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange31.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange32.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange32.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange32.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange33.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange33.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange33.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange34.DayOfWeek = System.DayOfWeek.Saturday;
-            calendarHighlightRange34.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange34.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange35.DayOfWeek = System.DayOfWeek.Sunday;
-            calendarHighlightRange35.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange35.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange1.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange1.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange2.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange2.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange2.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange3.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange3.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange3.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange4.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange4.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange4.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange5.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange5.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange5.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange6.DayOfWeek = System.DayOfWeek.Saturday;
+            calendarHighlightRange6.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange6.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange7.DayOfWeek = System.DayOfWeek.Sunday;
+            calendarHighlightRange7.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange7.StartTime = System.TimeSpan.Parse("00:00:00");
             this.calAgendamento.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
-        calendarHighlightRange29,
-        calendarHighlightRange30,
-        calendarHighlightRange31,
-        calendarHighlightRange32,
-        calendarHighlightRange33,
-        calendarHighlightRange34,
-        calendarHighlightRange35};
+        calendarHighlightRange1,
+        calendarHighlightRange2,
+        calendarHighlightRange3,
+        calendarHighlightRange4,
+        calendarHighlightRange5,
+        calendarHighlightRange6,
+        calendarHighlightRange7};
             this.calAgendamento.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.calAgendamento.ItemsTimeFormat = "hh:mm";
             this.calAgendamento.Location = new System.Drawing.Point(3, 195);
@@ -1278,18 +1289,19 @@ namespace TCC2
             this.lblTMB.AutoSize = true;
             this.lblTMB.Depth = 0;
             this.lblTMB.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblTMB.Location = new System.Drawing.Point(411, 608);
+            this.lblTMB.Location = new System.Drawing.Point(410, 606);
             this.lblTMB.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblTMB.Name = "lblTMB";
             this.lblTMB.Size = new System.Drawing.Size(1, 0);
             this.lblTMB.TabIndex = 344;
+            this.lblTMB.Visible = false;
             // 
             // materialLabel7
             // 
             this.materialLabel7.AutoSize = true;
             this.materialLabel7.Depth = 0;
             this.materialLabel7.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel7.Location = new System.Drawing.Point(361, 71);
+            this.materialLabel7.Location = new System.Drawing.Point(361, 75);
             this.materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel7.Name = "materialLabel7";
             this.materialLabel7.Size = new System.Drawing.Size(113, 19);
@@ -1300,7 +1312,7 @@ namespace TCC2
             // 
             this.rbDRI.AutoSize = true;
             this.rbDRI.Depth = 0;
-            this.rbDRI.Location = new System.Drawing.Point(728, 61);
+            this.rbDRI.Location = new System.Drawing.Point(728, 65);
             this.rbDRI.Margin = new System.Windows.Forms.Padding(0);
             this.rbDRI.MouseLocation = new System.Drawing.Point(-1, -1);
             this.rbDRI.MouseState = MaterialSkin.MouseState.HOVER;
@@ -1317,7 +1329,7 @@ namespace TCC2
             // 
             this.rbFAOOMS.AutoSize = true;
             this.rbFAOOMS.Depth = 0;
-            this.rbFAOOMS.Location = new System.Drawing.Point(621, 61);
+            this.rbFAOOMS.Location = new System.Drawing.Point(621, 65);
             this.rbFAOOMS.Margin = new System.Windows.Forms.Padding(0);
             this.rbFAOOMS.MouseLocation = new System.Drawing.Point(-1, -1);
             this.rbFAOOMS.MouseState = MaterialSkin.MouseState.HOVER;
@@ -1335,7 +1347,7 @@ namespace TCC2
             this.rbHarrisBenedict.AutoSize = true;
             this.rbHarrisBenedict.Checked = true;
             this.rbHarrisBenedict.Depth = 0;
-            this.rbHarrisBenedict.Location = new System.Drawing.Point(479, 61);
+            this.rbHarrisBenedict.Location = new System.Drawing.Point(479, 65);
             this.rbHarrisBenedict.Margin = new System.Windows.Forms.Padding(0);
             this.rbHarrisBenedict.MouseLocation = new System.Drawing.Point(-1, -1);
             this.rbHarrisBenedict.MouseState = MaterialSkin.MouseState.HOVER;
@@ -2717,10 +2729,7 @@ namespace TCC2
             // 
             this.gbxEstatura.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.gbxEstatura.Controls.Add(this.rbMuitoAtivo);
-            this.gbxEstatura.Controls.Add(this.rbAtivo);
-            this.gbxEstatura.Controls.Add(this.rbPoucoAtivo);
-            this.gbxEstatura.Controls.Add(this.rbSedentario);
+            this.gbxEstatura.Controls.Add(this.tabCalculo);
             this.gbxEstatura.Controls.Add(this.txtPeso);
             this.gbxEstatura.Controls.Add(this.lblIMC);
             this.gbxEstatura.Controls.Add(this.txtAltura);
@@ -3600,69 +3609,200 @@ namespace TCC2
             this.NutriEzIconNotify.Text = "NutriEz";
             this.NutriEzIconNotify.Visible = true;
             // 
-            // rbSedentario
+            // tabCalculo
             // 
-            this.rbSedentario.AutoSize = true;
-            this.rbSedentario.Depth = 0;
-            this.rbSedentario.Location = new System.Drawing.Point(14, 310);
-            this.rbSedentario.Margin = new System.Windows.Forms.Padding(0);
-            this.rbSedentario.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.rbSedentario.MouseState = MaterialSkin.MouseState.HOVER;
-            this.rbSedentario.Name = "rbSedentario";
-            this.rbSedentario.Ripple = true;
-            this.rbSedentario.Size = new System.Drawing.Size(111, 37);
-            this.rbSedentario.TabIndex = 323;
-            this.rbSedentario.TabStop = true;
-            this.rbSedentario.Text = "Sedentário";
-            this.rbSedentario.UseVisualStyleBackColor = true;
+            this.tabCalculo.Controls.Add(this.tbDRI);
+            this.tabCalculo.Controls.Add(this.tbHarrisBenedict);
+            this.tabCalculo.Location = new System.Drawing.Point(25, 254);
+            this.tabCalculo.Name = "tabCalculo";
+            this.tabCalculo.SelectedIndex = 0;
+            this.tabCalculo.Size = new System.Drawing.Size(200, 319);
+            this.tabCalculo.TabIndex = 12;
             // 
-            // rbPoucoAtivo
+            // tbDRI
             // 
-            this.rbPoucoAtivo.AutoSize = true;
-            this.rbPoucoAtivo.Depth = 0;
-            this.rbPoucoAtivo.Location = new System.Drawing.Point(14, 357);
-            this.rbPoucoAtivo.Margin = new System.Windows.Forms.Padding(0);
-            this.rbPoucoAtivo.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.rbPoucoAtivo.MouseState = MaterialSkin.MouseState.HOVER;
-            this.rbPoucoAtivo.Name = "rbPoucoAtivo";
-            this.rbPoucoAtivo.Ripple = true;
-            this.rbPoucoAtivo.Size = new System.Drawing.Size(120, 37);
-            this.rbPoucoAtivo.TabIndex = 324;
-            this.rbPoucoAtivo.TabStop = true;
-            this.rbPoucoAtivo.Text = "Pouco Ativo";
-            this.rbPoucoAtivo.UseVisualStyleBackColor = true;
+            this.tbDRI.Controls.Add(this.rbMuitoAtivo);
+            this.tbDRI.Controls.Add(this.rbAtivo);
+            this.tbDRI.Controls.Add(this.rbPoucoAtivo);
+            this.tbDRI.Controls.Add(this.rbSedentario);
+            this.tbDRI.Location = new System.Drawing.Point(4, 22);
+            this.tbDRI.Name = "tbDRI";
+            this.tbDRI.Padding = new System.Windows.Forms.Padding(3);
+            this.tbDRI.Size = new System.Drawing.Size(192, 293);
+            this.tbDRI.TabIndex = 0;
+            this.tbDRI.Text = "DRI";
+            this.tbDRI.UseVisualStyleBackColor = true;
             // 
-            // rbAtivo
+            // tbHarrisBenedict
             // 
-            this.rbAtivo.AutoSize = true;
-            this.rbAtivo.Depth = 0;
-            this.rbAtivo.Location = new System.Drawing.Point(14, 403);
-            this.rbAtivo.Margin = new System.Windows.Forms.Padding(0);
-            this.rbAtivo.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.rbAtivo.MouseState = MaterialSkin.MouseState.HOVER;
-            this.rbAtivo.Name = "rbAtivo";
-            this.rbAtivo.Ripple = true;
-            this.rbAtivo.Size = new System.Drawing.Size(71, 37);
-            this.rbAtivo.TabIndex = 325;
-            this.rbAtivo.TabStop = true;
-            this.rbAtivo.Text = "Ativo";
-            this.rbAtivo.UseVisualStyleBackColor = true;
+            this.tbHarrisBenedict.Controls.Add(this.materialRadioButton5);
+            this.tbHarrisBenedict.Controls.Add(this.materialRadioButton1);
+            this.tbHarrisBenedict.Controls.Add(this.materialRadioButton2);
+            this.tbHarrisBenedict.Controls.Add(this.materialRadioButton3);
+            this.tbHarrisBenedict.Controls.Add(this.materialRadioButton4);
+            this.tbHarrisBenedict.Location = new System.Drawing.Point(4, 22);
+            this.tbHarrisBenedict.Name = "tbHarrisBenedict";
+            this.tbHarrisBenedict.Padding = new System.Windows.Forms.Padding(3);
+            this.tbHarrisBenedict.Size = new System.Drawing.Size(192, 293);
+            this.tbHarrisBenedict.TabIndex = 1;
+            this.tbHarrisBenedict.Text = "Harris Benedict";
+            this.tbHarrisBenedict.UseVisualStyleBackColor = true;
             // 
             // rbMuitoAtivo
             // 
+            this.rbMuitoAtivo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.rbMuitoAtivo.AutoSize = true;
             this.rbMuitoAtivo.Depth = 0;
-            this.rbMuitoAtivo.Location = new System.Drawing.Point(14, 451);
+            this.rbMuitoAtivo.Location = new System.Drawing.Point(38, 170);
             this.rbMuitoAtivo.Margin = new System.Windows.Forms.Padding(0);
             this.rbMuitoAtivo.MouseLocation = new System.Drawing.Point(-1, -1);
             this.rbMuitoAtivo.MouseState = MaterialSkin.MouseState.HOVER;
             this.rbMuitoAtivo.Name = "rbMuitoAtivo";
             this.rbMuitoAtivo.Ripple = true;
             this.rbMuitoAtivo.Size = new System.Drawing.Size(116, 37);
-            this.rbMuitoAtivo.TabIndex = 326;
+            this.rbMuitoAtivo.TabIndex = 330;
             this.rbMuitoAtivo.TabStop = true;
             this.rbMuitoAtivo.Text = "Muito Ativo";
             this.rbMuitoAtivo.UseVisualStyleBackColor = true;
+            // 
+            // rbAtivo
+            // 
+            this.rbAtivo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rbAtivo.AutoSize = true;
+            this.rbAtivo.Depth = 0;
+            this.rbAtivo.Location = new System.Drawing.Point(38, 122);
+            this.rbAtivo.Margin = new System.Windows.Forms.Padding(0);
+            this.rbAtivo.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.rbAtivo.MouseState = MaterialSkin.MouseState.HOVER;
+            this.rbAtivo.Name = "rbAtivo";
+            this.rbAtivo.Ripple = true;
+            this.rbAtivo.Size = new System.Drawing.Size(71, 37);
+            this.rbAtivo.TabIndex = 329;
+            this.rbAtivo.TabStop = true;
+            this.rbAtivo.Text = "Ativo";
+            this.rbAtivo.UseVisualStyleBackColor = true;
+            // 
+            // rbPoucoAtivo
+            // 
+            this.rbPoucoAtivo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rbPoucoAtivo.AutoSize = true;
+            this.rbPoucoAtivo.Depth = 0;
+            this.rbPoucoAtivo.Location = new System.Drawing.Point(38, 76);
+            this.rbPoucoAtivo.Margin = new System.Windows.Forms.Padding(0);
+            this.rbPoucoAtivo.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.rbPoucoAtivo.MouseState = MaterialSkin.MouseState.HOVER;
+            this.rbPoucoAtivo.Name = "rbPoucoAtivo";
+            this.rbPoucoAtivo.Ripple = true;
+            this.rbPoucoAtivo.Size = new System.Drawing.Size(120, 37);
+            this.rbPoucoAtivo.TabIndex = 328;
+            this.rbPoucoAtivo.TabStop = true;
+            this.rbPoucoAtivo.Text = "Pouco Ativo";
+            this.rbPoucoAtivo.UseVisualStyleBackColor = true;
+            // 
+            // rbSedentario
+            // 
+            this.rbSedentario.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rbSedentario.AutoSize = true;
+            this.rbSedentario.Depth = 0;
+            this.rbSedentario.Location = new System.Drawing.Point(38, 29);
+            this.rbSedentario.Margin = new System.Windows.Forms.Padding(0);
+            this.rbSedentario.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.rbSedentario.MouseState = MaterialSkin.MouseState.HOVER;
+            this.rbSedentario.Name = "rbSedentario";
+            this.rbSedentario.Ripple = true;
+            this.rbSedentario.Size = new System.Drawing.Size(111, 37);
+            this.rbSedentario.TabIndex = 327;
+            this.rbSedentario.TabStop = true;
+            this.rbSedentario.Text = "Sedentário";
+            this.rbSedentario.UseVisualStyleBackColor = true;
+            // 
+            // materialRadioButton5
+            // 
+            this.materialRadioButton5.AutoSize = true;
+            this.materialRadioButton5.Depth = 0;
+            this.materialRadioButton5.Location = new System.Drawing.Point(38, 217);
+            this.materialRadioButton5.Margin = new System.Windows.Forms.Padding(0);
+            this.materialRadioButton5.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialRadioButton5.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialRadioButton5.Name = "materialRadioButton5";
+            this.materialRadioButton5.Ripple = true;
+            this.materialRadioButton5.Size = new System.Drawing.Size(133, 37);
+            this.materialRadioButton5.TabIndex = 336;
+            this.materialRadioButton5.TabStop = true;
+            this.materialRadioButton5.Text = "Muito Pesado";
+            this.materialRadioButton5.UseVisualStyleBackColor = true;
+            // 
+            // materialRadioButton1
+            // 
+            this.materialRadioButton1.AutoSize = true;
+            this.materialRadioButton1.Depth = 0;
+            this.materialRadioButton1.Location = new System.Drawing.Point(38, 168);
+            this.materialRadioButton1.Margin = new System.Windows.Forms.Padding(0);
+            this.materialRadioButton1.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialRadioButton1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialRadioButton1.Name = "materialRadioButton1";
+            this.materialRadioButton1.Ripple = true;
+            this.materialRadioButton1.Size = new System.Drawing.Size(88, 37);
+            this.materialRadioButton1.TabIndex = 335;
+            this.materialRadioButton1.TabStop = true;
+            this.materialRadioButton1.Text = "Pesado";
+            this.materialRadioButton1.UseVisualStyleBackColor = true;
+            // 
+            // materialRadioButton2
+            // 
+            this.materialRadioButton2.AutoSize = true;
+            this.materialRadioButton2.Depth = 0;
+            this.materialRadioButton2.Location = new System.Drawing.Point(38, 120);
+            this.materialRadioButton2.Margin = new System.Windows.Forms.Padding(0);
+            this.materialRadioButton2.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialRadioButton2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialRadioButton2.Name = "materialRadioButton2";
+            this.materialRadioButton2.Ripple = true;
+            this.materialRadioButton2.Size = new System.Drawing.Size(107, 37);
+            this.materialRadioButton2.TabIndex = 334;
+            this.materialRadioButton2.TabStop = true;
+            this.materialRadioButton2.Text = "Moderado";
+            this.materialRadioButton2.UseVisualStyleBackColor = true;
+            // 
+            // materialRadioButton3
+            // 
+            this.materialRadioButton3.AutoSize = true;
+            this.materialRadioButton3.Depth = 0;
+            this.materialRadioButton3.Location = new System.Drawing.Point(38, 74);
+            this.materialRadioButton3.Margin = new System.Windows.Forms.Padding(0);
+            this.materialRadioButton3.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialRadioButton3.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialRadioButton3.Name = "materialRadioButton3";
+            this.materialRadioButton3.Ripple = true;
+            this.materialRadioButton3.Size = new System.Drawing.Size(68, 37);
+            this.materialRadioButton3.TabIndex = 333;
+            this.materialRadioButton3.TabStop = true;
+            this.materialRadioButton3.Text = "Leve";
+            this.materialRadioButton3.UseVisualStyleBackColor = true;
+            // 
+            // materialRadioButton4
+            // 
+            this.materialRadioButton4.AutoSize = true;
+            this.materialRadioButton4.Depth = 0;
+            this.materialRadioButton4.Location = new System.Drawing.Point(38, 27);
+            this.materialRadioButton4.Margin = new System.Windows.Forms.Padding(0);
+            this.materialRadioButton4.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialRadioButton4.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialRadioButton4.Name = "materialRadioButton4";
+            this.materialRadioButton4.Ripple = true;
+            this.materialRadioButton4.Size = new System.Drawing.Size(111, 37);
+            this.materialRadioButton4.TabIndex = 332;
+            this.materialRadioButton4.TabStop = true;
+            this.materialRadioButton4.Text = "Sedentário";
+            this.materialRadioButton4.UseVisualStyleBackColor = true;
             // 
             // FrmMenuPrincipal
             // 
@@ -3738,6 +3878,11 @@ namespace TCC2
             ((System.ComponentModel.ISupportInitialize)(this.dtgConfigHorario)).EndInit();
             this.tbSobre.ResumeLayout(false);
             this.tbSobre.PerformLayout();
+            this.tabCalculo.ResumeLayout(false);
+            this.tbDRI.ResumeLayout(false);
+            this.tbDRI.PerformLayout();
+            this.tbHarrisBenedict.ResumeLayout(false);
+            this.tbHarrisBenedict.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -3948,10 +4093,18 @@ namespace TCC2
         private MaterialSkin.Controls.MaterialLabel datalbl;
         private MaterialSkin.Controls.MaterialRadioButton rbFeminino;
         private MaterialSkin.Controls.MaterialRadioButton rbMasculino;
+        private System.Windows.Forms.TabControl tabCalculo;
+        private System.Windows.Forms.TabPage tbDRI;
         private MaterialSkin.Controls.MaterialRadioButton rbMuitoAtivo;
         private MaterialSkin.Controls.MaterialRadioButton rbAtivo;
         private MaterialSkin.Controls.MaterialRadioButton rbPoucoAtivo;
         private MaterialSkin.Controls.MaterialRadioButton rbSedentario;
+        private System.Windows.Forms.TabPage tbHarrisBenedict;
+        private MaterialSkin.Controls.MaterialRadioButton materialRadioButton5;
+        private MaterialSkin.Controls.MaterialRadioButton materialRadioButton1;
+        private MaterialSkin.Controls.MaterialRadioButton materialRadioButton2;
+        private MaterialSkin.Controls.MaterialRadioButton materialRadioButton3;
+        private MaterialSkin.Controls.MaterialRadioButton materialRadioButton4;
     }
 }
 

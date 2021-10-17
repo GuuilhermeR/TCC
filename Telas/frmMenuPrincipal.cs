@@ -367,8 +367,16 @@ namespace TCC2
             {
                 calAgendamento.Items.Clear();
                 GetConfigAtendimento();
-                calAgendamento.ViewEnd = RetornaFimSemana(DateTime.Today);
-                calAgendamento.ViewStart = RetornaInicioSemana(DateTime.Today);
+                if(DateTime.Today.DayOfWeek.Equals(DayOfWeek.Saturday) || DateTime.Today.DayOfWeek.Equals(DayOfWeek.Sunday))
+                {
+                    calAgendamento.ViewEnd = DateTime.Today.AddDays(5);
+                    calAgendamento.ViewStart = DateTime.Today;
+                }
+                else
+                {
+                    calAgendamento.ViewEnd = RetornaFimSemana(DateTime.Today);
+                    calAgendamento.ViewStart = RetornaInicioSemana(DateTime.Today);
+                }
                 BuscarConsultasAgendadas();
                 calAgendamento.Refresh();
             }
@@ -1790,26 +1798,30 @@ namespace TCC2
         }
         private double CalcularHarrisPraVET(Antropometria antropometria)
         {
-            double grauAtiv = 0;
+            double fatorAtividade = 0;
 
             if (antropometria.grauAtividade.ToLower().Contains("sedent"))
             {
-                grauAtiv = 1;
+                fatorAtividade = 1.2;
             }
-            else if (antropometria.grauAtividade.ToLower().Contains("pouco ativo"))
+            else if (antropometria.grauAtividade.ToLower().Contains("leve"))
             {
-                grauAtiv = 1;
+                fatorAtividade = 1.375;
             }
-            else if (antropometria.grauAtividade.ToLower().Contains("ativo"))
+            else if (antropometria.grauAtividade.ToLower().Contains("moderado"))
             {
-                grauAtiv = 1;
+                fatorAtividade = 1.55;
             }
-            else if (antropometria.grauAtividade.ToLower().Contains("muito ativo"))
+            else if (antropometria.grauAtividade.ToString().ToLower() == "pesado")
             { 
-                grauAtiv = 1;
+                fatorAtividade = 1.725;
+            }
+            else if (antropometria.grauAtividade.ToLower().Contains("muito pesado"))
+            {
+                fatorAtividade = 1.9;
             }
 
-            return CalcularHarrisBenedict(antropometria) * grauAtiv;
+            return CalcularHarrisBenedict(antropometria) * fatorAtividade;
         }
         private double CalculaFAOOMS(Antropometria antropometria)
         {
@@ -1860,15 +1872,33 @@ namespace TCC2
         {
             // Retorna VET
             int idade = calcularIdade(antropometria.Paciente.dtNasc);
+            double caf = 0;
 
-            //if (antropometria.Paciente.sexo.Equals("M"))
-            //{
-            //    return (662 - (9.53 * idade) + CAF *(15.91 * antropometria.peso) + (539.6 * antropometria.altura));
-            //}
-            //else if (antropometria.Paciente.sexo.Equals("F"))
-            //{
-            //    return (354 - (6.91 * idade) + CAF * (9.36 * antropometria.peso) + (726 * antropometria.altura));
-            //}
+            if (antropometria.grauAtividade.ToLower().Contains("sedentário"))
+            {
+                caf = 1.725;
+            }
+            else if (antropometria.grauAtividade.ToLower().Contains("pouco ativo"))
+            {
+                caf = 1.725;
+            }
+            else if (antropometria.grauAtividade.ToLower().Contains("ativo"))
+            {
+                caf = 1.725;
+            }
+            else if (antropometria.grauAtividade.ToLower().Contains("muito ativo"))
+            {
+                caf = 1.725;
+            }
+
+            if (antropometria.Paciente.sexo.Equals("M"))
+            {
+                return ((double)(662 - (9.53 * idade) + caf * (15.91 * antropometria.peso) + (539.6 * antropometria.altura)));
+            }
+            else if (antropometria.Paciente.sexo.Equals("F"))
+            {
+                return ((double)(354 - (6.91 * idade) + caf * (9.36 * antropometria.peso) + (726 * antropometria.altura)));
+            }
             return 0;
         }
         private void btnClearAntro_Click(object sender, EventArgs e)
@@ -2051,6 +2081,7 @@ namespace TCC2
             cbxDataExisteAntro.Checked = false;
             cbxDataAntrop.Items.Clear();
             cbxDataAntrop.Visible = false;
+            lblIMC.Text = string.Empty;
         }
 
         private void BuscadorPaciente()

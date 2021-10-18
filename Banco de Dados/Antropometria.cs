@@ -30,6 +30,9 @@ namespace TCC2.Banco_de_Dados
         public Nullable<double> abdome { get; set; }
         public Nullable<double> pescoco { get; set; }
         public string grauAtividade { get; set; }
+        public Nullable<long> temGrauAtividade { get; set; }
+        public Nullable<long> temCoefAtividade { get; set; }
+        public string coefAtividade { get; set; }
     
         public virtual Paciente Paciente { get; set; }
     }

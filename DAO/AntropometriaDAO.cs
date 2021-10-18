@@ -20,7 +20,7 @@ namespace ProjetoTCC
 
         public AntropometriaDAO() { }
 
-        public void Salvar(int codPaciente, double altura, double antebraco,double braco,double cintura,double coxa,double panturrilha,double peso, double punho, double quadril, double torax, double pescoco, double abdome, string data, string grauAtividade)
+        public void Salvar(int codPaciente, double altura, double antebraco,double braco,double cintura,double coxa,double panturrilha,double peso, double punho, double quadril, double torax, double pescoco, double abdome, string data, string grauAtividade, int temGrauAtividade, int temCoefAtividade, string coefAtividade)
         {
             DateTime date = Convert.ToDateTime(data);
             try
@@ -43,6 +43,9 @@ namespace ProjetoTCC
                     antropometriaInsert.pescoco = torax;
                     antropometriaInsert.abdome = torax;
                     antropometriaInsert.grauAtividade = grauAtividade;
+                    antropometriaInsert.temGrauAtividade = temGrauAtividade;
+                    antropometriaInsert.temCoefAtividade = temCoefAtividade;
+                    antropometriaInsert.coefAtividade = coefAtividade;
                     antropometriaInsert.Data = Convert.ToDateTime(date.ToString("yyyy-MM-dd HH:mm"));
 
                     BancoDadosSingleton.Instance.Antropometria.Add(antropometriaInsert);
@@ -159,7 +162,8 @@ namespace ProjetoTCC
                 {
                     var select = db.Database.Connection.CreateCommand();
 
-                    select.CommandText = $"SELECT A.peso, A.altura, A.grauAtividade, P.codPaciente, P.dtNasc, P.sexo " +
+                    select.CommandText = $"SELECT A.codPaciente, A.peso, A.altura, A.grauAtividade, A.temGrauAtividade," +
+                                         $" A.temCoefAtividade, A.coefAtividade, P.codPaciente, P.dtNasc, P.sexo " +
                                          $"FROM Antropometria A " +
                                          $"LEFT JOIN Paciente P " +
                                          $"ON A.codPaciente=P.codPaciente " +
@@ -172,12 +176,17 @@ namespace ProjetoTCC
                     if (dr.Read())
                     {
                         Antropometria antropometria = new Antropometria() {
+                            codPaciente = Convert.ToInt64(dr["codPaciente"]),
                             peso = Convert.ToDouble(dr["peso"]),
                             grauAtividade = Convert.ToString(dr["grauAtividade"]),
-                            altura = Convert.ToDouble(dr["altura"])
+                            altura = Convert.ToDouble(dr["altura"]),
+                            temGrauAtividade = Convert.ToInt32(dr["temGrauAtividade"]),
+                            temCoefAtividade = Convert.ToInt32(dr["temCoefAtividade"]),
+                            coefAtividade = Convert.ToString(dr["coefAtividade"])
                         };
                         Paciente paciente = new Paciente
                         {
+                            codPaciente = Convert.ToInt64(dr["codPaciente"]),
                             dtNasc = Convert.ToString(dr["dtNasc"]),
                             sexo = Convert.ToString(dr["sexo"])
                         };

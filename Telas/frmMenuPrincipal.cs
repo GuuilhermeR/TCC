@@ -1747,43 +1747,11 @@ namespace TCC2
         private void txtAltura_Leave(object sender, EventArgs e)
         {
             if (txtPeso.Text != string.Empty && txtAltura.Text != string.Empty)
-                CalcularIMC(Convert.ToDouble(txtPeso.Text), Convert.ToDouble(txtAltura.Text));
+                lblIMC.Text=CalcularIMC(Convert.ToDouble(txtPeso.Text), Convert.ToDouble(txtAltura.Text));
         }
 
-        private void CalcularIMC(double peso, double altura)
-        {
-            double imc;
+        
 
-            peso = Convert.ToDouble(txtPeso.Text);
-            altura = Convert.ToDouble(txtAltura.Text);
-
-            imc = (peso / (Math.Pow(altura,2)))*10000;
-
-            if (imc <= 18.5)
-            {
-                lblIMC.Text = ("Peso abaixo do normal");
-            }
-            else if ((imc > 18.5) && (imc < 25))
-            {
-                lblIMC.Text = ("Peso normal");
-            }
-            else if ((imc >= 25) && (imc < 30))
-            {
-                lblIMC.Text = ("Sobrepeso");
-            }
-            else if ((imc >= 30) && (imc < 35))
-            {
-                lblIMC.Text = ("Grau de Obesidade I");
-            }
-            else if ((imc >= 35) && (imc < 40))
-            {
-                lblIMC.Text = ("Grau de Obesidade II");
-            }
-            else if (imc >= 40)
-            {
-                lblIMC.Text = ("Obesidade Grau III ou Mórbida");
-            }
-        }
         private double CalcularHarrisBenedict(Antropometria antropometria)
         {
             if (antropometria.Paciente.sexo.Equals("M"))
@@ -1796,9 +1764,15 @@ namespace TCC2
             }
             return 0;
         }
+
         private double CalcularHarrisPraVET(Antropometria antropometria)
         {
             double fatorAtividade = 0;
+
+            if(!Convert.ToBoolean(antropometria.temGrauAtividade))
+            {
+                return 0;
+            }
 
             if (antropometria.grauAtividade.ToLower().Contains("sedent"))
             {
@@ -1873,32 +1847,54 @@ namespace TCC2
             // Retorna VET
             int idade = calcularIdade(antropometria.Paciente.dtNasc);
             double caf = 0;
+            string IMC = CalcularIMC(Convert.ToDouble(antropometria.peso), Convert.ToDouble(antropometria.altura));
 
-            if (antropometria.grauAtividade.ToLower().Contains("sedentário"))
+            if (!Convert.ToBoolean(antropometria.temCoefAtividade))
             {
-                caf = 1.725;
-            }
-            else if (antropometria.grauAtividade.ToLower().Contains("pouco ativo"))
-            {
-                caf = 1.725;
-            }
-            else if (antropometria.grauAtividade.ToLower().Contains("ativo"))
-            {
-                caf = 1.725;
-            }
-            else if (antropometria.grauAtividade.ToLower().Contains("muito ativo"))
-            {
-                caf = 1.725;
+                return 0;
             }
 
-            if (antropometria.Paciente.sexo.Equals("M"))
+            if (antropometria.coefAtividade.ToLower().Contains("sedentário"))
             {
-                return ((double)(662 - (9.53 * idade) + caf * (15.91 * antropometria.peso) + (539.6 * antropometria.altura)));
+                caf = 1;
             }
-            else if (antropometria.Paciente.sexo.Equals("F"))
+            else if (antropometria.coefAtividade.ToLower().Contains("pouco ativo"))
             {
-                return ((double)(354 - (6.91 * idade) + caf * (9.36 * antropometria.peso) + (726 * antropometria.altura)));
+                caf = 1.1;
             }
+            else if (antropometria.coefAtividade.ToLower().Contains("ativo"))
+            {
+                caf = 1.25;
+            }
+            else if (antropometria.coefAtividade.ToLower().Contains("muito ativo"))
+            {
+                caf = 1.48;
+            }
+
+            if (IMC == "Sobrepeso" || IMC.Contains("Obesidade"))
+            {
+                if (antropometria.Paciente.sexo.Equals("M"))
+                {
+                    return (double)(1086 * (-10.4 * idade) + caf * (13.7 * antropometria.peso + 416 * antropometria.altura));
+                }
+                else if (antropometria.Paciente.sexo.Equals("F"))
+                {
+                    return (double)(448 * (-7.95 * idade) + caf * (11.4 * antropometria.peso + 619 * antropometria.altura));
+                }
+            }
+            else
+            {
+                if (antropometria.Paciente.sexo.Equals("M"))
+                {
+                    return (double)(662 * (-9.53 * idade) + caf * (15.91 * antropometria.peso + 539.6 * antropometria.altura));
+                }
+                else if (antropometria.Paciente.sexo.Equals("F"))
+                {
+                    return (double)(354 * (-6.91 * idade) + caf * (9.36 * antropometria.peso + 416 * antropometria.altura));
+                }
+            }
+
+           
             return 0;
         }
         private void btnClearAntro_Click(object sender, EventArgs e)
@@ -1949,7 +1945,7 @@ namespace TCC2
                 txtPunho.Text = x.punho.ToString();
                 txtPescoco.Text = x.pescoco.ToString();
                 txtAbdome.Text = x.abdome.ToString();
-                CalcularIMC(Convert.ToDouble(txtPeso.Text), Convert.ToDouble(txtAltura.Text));
+                lblIMC.Text=CalcularIMC(Convert.ToDouble(txtPeso.Text), Convert.ToDouble(txtAltura.Text));
             });
 
         }
@@ -2003,23 +1999,57 @@ namespace TCC2
 
         private void btnSalvarAntro_Click(object sender, EventArgs e)
         {
-            string grauAtividade = string.Empty;
+            //Verificar para fazer o salvamento correto do Fator de Atividade e do Coefeciente do Fator de Atividade.
+            bool existeGaDRI = false;
+            string grauAtividadeDRI = string.Empty;
+            bool existeCAF = false;
+            string coeficienteAtividade = string.Empty;
 
-            if (rbSedentario.Checked)
+            if (rbDRISedentario.Checked)
             {
-                grauAtividade = rbSedentario.Text;
+                grauAtividadeDRI = rbDRISedentario.Text;
+                existeGaDRI = true;
             }
-            else if (rbPoucoAtivo.Checked)
+            else if (rbDRIPoucoAtivo.Checked)
             {
-                grauAtividade = rbPoucoAtivo.Text;
-            } 
-            else if (rbAtivo.Checked)
-            {
-                grauAtividade = rbAtivo.Text;
+                grauAtividadeDRI = rbDRIPoucoAtivo.Text;
+                existeGaDRI = true;
             }
-            else if (rbMuitoAtivo.Checked)
+            else if (rbDRIAtivo.Checked)
             {
-                grauAtividade = rbMuitoAtivo.Text;
+                grauAtividadeDRI = rbDRIAtivo.Text;
+                existeGaDRI = true;
+            }
+            else if (rbDRIMuitoAtivo.Checked)
+            {
+                grauAtividadeDRI = rbDRIMuitoAtivo.Text;
+                existeGaDRI = true;
+            }
+
+            if (rbCAFSedentario.Checked)
+            {
+                coeficienteAtividade = rbCAFSedentario.Text;
+                existeCAF = true;
+            }
+            else if (rbCAFLeve.Checked)
+            {
+                coeficienteAtividade = rbCAFLeve.Text;
+                existeCAF = true;
+            }
+            else if (rbCAFModerado.Checked)
+            {
+                coeficienteAtividade = rbCAFModerado.Text;
+                existeCAF = true;
+            }
+            else if (rbCAFPesado.Checked)
+            {
+                coeficienteAtividade = rbCAFPesado.Text;
+                existeCAF = true;
+            }
+            else if (rbCAFMuitoPesado.Checked)
+            {
+                coeficienteAtividade = rbCAFMuitoPesado.Text;
+                existeCAF = true;
             }
 
             if (Convert.ToInt32(PacienteModel.codPacienteModel) == 0)
@@ -2028,7 +2058,7 @@ namespace TCC2
                 return;
             }
 
-            if (!string.IsNullOrEmpty(grauAtividade))
+            if (!string.IsNullOrEmpty(grauAtividadeDRI))
             {
                 nMensagemAlerta("É necessário informar o grau de atividade!");
                 return;
@@ -2059,7 +2089,10 @@ namespace TCC2
                 Convert.ToDouble(txtAbdome.Text),
                 Convert.ToDouble(txtTorax.Text),
                 data,
-                grauAtividade);
+                grauAtividadeDRI,
+                Convert.ToInt32(existeGaDRI),
+                Convert.ToInt32(existeCAF),
+                coeficienteAtividade);
             ClearCamposAntro();
         }
 
@@ -2922,18 +2955,32 @@ namespace TCC2
 
         private void CarregarCalculoSelecionado()
         {
+            string formatarCampoValor = "###,###,##0.00";
+            var loadCalc = CarregaCalculos(Convert.ToInt32(PacienteModel.codPacienteModel));
             if (rbHarrisBenedict.Checked)
             {
-                lblTMB.Text = Convert.ToString(CalcularHarrisBenedict(CarregaCalculos(Convert.ToInt32(PacienteModel.codPacienteModel))));
-                lblVET.Text = Convert.ToString(CalcularHarrisPraVET(CarregaCalculos(Convert.ToInt32(PacienteModel.codPacienteModel))));
+                lblTMB.Text = string.Empty;
+                lblVET.Text = string.Empty;
+                lblTMB.Text = Convert.ToString(CalcularHarrisBenedict(loadCalc).ToString(formatarCampoValor));
+                lblVET.Text = Convert.ToString(CalcularHarrisPraVET(loadCalc).ToString(formatarCampoValor));
+                if (lblVET.Text == "0")
+                {
+                    lblVET.Text = "Não possui configuração de Grau Atividade.";
+                }
             }
             else if (rbFAOOMS.Checked)
             {
-                lblVET.Text = Convert.ToString(CalculaFAOOMS(CarregaCalculos(Convert.ToInt32(PacienteModel.codPacienteModel))));
+                lblVET.Text = string.Empty;
+                lblVET.Text = Convert.ToString(CalculaFAOOMS(loadCalc).ToString(formatarCampoValor));
             }
             else if (rbDRI.Checked)
             {
-                lblVET.Text = Convert.ToString(CalcularDRI(CarregaCalculos(Convert.ToInt32(PacienteModel.codPacienteModel))));
+                lblVET.Text = string.Empty;
+                lblVET.Text = Convert.ToString(CalcularDRI(loadCalc).ToString(formatarCampoValor));
+                if(lblVET.Text == "0")
+                {
+                    lblVET.Text = "Não possui configuração de CAF.";
+                }
             }
         }
 
@@ -2952,6 +2999,9 @@ namespace TCC2
                antro.peso = x.peso;
                antro.altura = x.altura;
                antro.grauAtividade = x.grauAtividade;
+               antro.temGrauAtividade = x.temGrauAtividade;
+               antro.temCoefAtividade = x.temCoefAtividade;
+               antro.coefAtividade = x.coefAtividade;
                antro.Paciente.dtNasc = x.Paciente.dtNasc;
                antro.Paciente.sexo = x.Paciente.sexo;
             });
@@ -3283,6 +3333,5 @@ namespace TCC2
         {
             e.Cancel = true;
         }
-
     }
 }

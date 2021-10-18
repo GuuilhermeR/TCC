@@ -193,6 +193,18 @@ namespace TCC2
             this.txtCintura = new MaterialSkin.Controls.MaterialTextBox();
             this.txtBraco = new MaterialSkin.Controls.MaterialTextBox();
             this.gbxEstatura = new System.Windows.Forms.GroupBox();
+            this.tabCalculo = new System.Windows.Forms.TabControl();
+            this.tbDRI = new System.Windows.Forms.TabPage();
+            this.rbDRIMuitoAtivo = new MaterialSkin.Controls.MaterialRadioButton();
+            this.rbDRIAtivo = new MaterialSkin.Controls.MaterialRadioButton();
+            this.rbDRIPoucoAtivo = new MaterialSkin.Controls.MaterialRadioButton();
+            this.rbDRISedentario = new MaterialSkin.Controls.MaterialRadioButton();
+            this.tbHarrisBenedict = new System.Windows.Forms.TabPage();
+            this.rbCAFMuitoPesado = new MaterialSkin.Controls.MaterialRadioButton();
+            this.rbCAFPesado = new MaterialSkin.Controls.MaterialRadioButton();
+            this.rbCAFModerado = new MaterialSkin.Controls.MaterialRadioButton();
+            this.rbCAFLeve = new MaterialSkin.Controls.MaterialRadioButton();
+            this.rbCAFSedentario = new MaterialSkin.Controls.MaterialRadioButton();
             this.txtPeso = new MaterialSkin.Controls.MaterialTextBox();
             this.lblIMC = new MaterialSkin.Controls.MaterialLabel();
             this.txtAltura = new MaterialSkin.Controls.MaterialTextBox();
@@ -243,18 +255,6 @@ namespace TCC2
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.NutriEzIconNotify = new System.Windows.Forms.NotifyIcon(this.components);
-            this.tabCalculo = new System.Windows.Forms.TabControl();
-            this.tbDRI = new System.Windows.Forms.TabPage();
-            this.tbHarrisBenedict = new System.Windows.Forms.TabPage();
-            this.rbMuitoAtivo = new MaterialSkin.Controls.MaterialRadioButton();
-            this.rbAtivo = new MaterialSkin.Controls.MaterialRadioButton();
-            this.rbPoucoAtivo = new MaterialSkin.Controls.MaterialRadioButton();
-            this.rbSedentario = new MaterialSkin.Controls.MaterialRadioButton();
-            this.materialRadioButton5 = new MaterialSkin.Controls.MaterialRadioButton();
-            this.materialRadioButton1 = new MaterialSkin.Controls.MaterialRadioButton();
-            this.materialRadioButton2 = new MaterialSkin.Controls.MaterialRadioButton();
-            this.materialRadioButton3 = new MaterialSkin.Controls.MaterialRadioButton();
-            this.materialRadioButton4 = new MaterialSkin.Controls.MaterialRadioButton();
             this.TabControlNutreasy.SuspendLayout();
             this.tabMenu.SuspendLayout();
             this.mCardAtendimentoAtual.SuspendLayout();
@@ -288,6 +288,9 @@ namespace TCC2
             this.tbAntropometricos.SuspendLayout();
             this.gbxCircunferencias.SuspendLayout();
             this.gbxEstatura.SuspendLayout();
+            this.tabCalculo.SuspendLayout();
+            this.tbDRI.SuspendLayout();
+            this.tbHarrisBenedict.SuspendLayout();
             this.tbAnamnese.SuspendLayout();
             this.tabConfig.SuspendLayout();
             this.tbConfig.SuspendLayout();
@@ -298,9 +301,6 @@ namespace TCC2
             this.tabHorarioAtendimento.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgConfigHorario)).BeginInit();
             this.tbSobre.SuspendLayout();
-            this.tabCalculo.SuspendLayout();
-            this.tbDRI.SuspendLayout();
-            this.tbHarrisBenedict.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControlNutreasy
@@ -998,11 +998,13 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dtgDadosImportados.BackgroundColor = System.Drawing.Color.White;
             this.dtgDadosImportados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgDadosImportados.Location = new System.Drawing.Point(9, 3);
+            this.dtgDadosImportados.Location = new System.Drawing.Point(9, 2);
             this.dtgDadosImportados.Name = "dtgDadosImportados";
             this.dtgDadosImportados.RowHeadersWidth = 51;
             this.dtgDadosImportados.Size = new System.Drawing.Size(1164, 496);
             this.dtgDadosImportados.TabIndex = 268;
+            this.dtgDadosImportados.DragDrop += new System.Windows.Forms.DragEventHandler(this.dtgDadosImportados_DragDrop);
+            this.dtgDadosImportados.DragEnter += new System.Windows.Forms.DragEventHandler(this.dtgDadosImportados_DragEnter);
             // 
             // _btnImportar
             // 
@@ -2740,6 +2742,201 @@ namespace TCC2
             this.gbxEstatura.TabStop = false;
             this.gbxEstatura.Text = "Estatura";
             // 
+            // tabCalculo
+            // 
+            this.tabCalculo.Controls.Add(this.tbDRI);
+            this.tabCalculo.Controls.Add(this.tbHarrisBenedict);
+            this.tabCalculo.Location = new System.Drawing.Point(25, 254);
+            this.tabCalculo.Name = "tabCalculo";
+            this.tabCalculo.SelectedIndex = 0;
+            this.tabCalculo.Size = new System.Drawing.Size(200, 319);
+            this.tabCalculo.TabIndex = 12;
+            // 
+            // tbDRI
+            // 
+            this.tbDRI.Controls.Add(this.rbDRIMuitoAtivo);
+            this.tbDRI.Controls.Add(this.rbDRIAtivo);
+            this.tbDRI.Controls.Add(this.rbDRIPoucoAtivo);
+            this.tbDRI.Controls.Add(this.rbDRISedentario);
+            this.tbDRI.Location = new System.Drawing.Point(4, 22);
+            this.tbDRI.Name = "tbDRI";
+            this.tbDRI.Padding = new System.Windows.Forms.Padding(3);
+            this.tbDRI.Size = new System.Drawing.Size(192, 293);
+            this.tbDRI.TabIndex = 0;
+            this.tbDRI.Text = "DRI";
+            this.tbDRI.UseVisualStyleBackColor = true;
+            // 
+            // rbDRIMuitoAtivo
+            // 
+            this.rbDRIMuitoAtivo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rbDRIMuitoAtivo.AutoSize = true;
+            this.rbDRIMuitoAtivo.Depth = 0;
+            this.rbDRIMuitoAtivo.Location = new System.Drawing.Point(38, 170);
+            this.rbDRIMuitoAtivo.Margin = new System.Windows.Forms.Padding(0);
+            this.rbDRIMuitoAtivo.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.rbDRIMuitoAtivo.MouseState = MaterialSkin.MouseState.HOVER;
+            this.rbDRIMuitoAtivo.Name = "rbDRIMuitoAtivo";
+            this.rbDRIMuitoAtivo.Ripple = true;
+            this.rbDRIMuitoAtivo.Size = new System.Drawing.Size(116, 37);
+            this.rbDRIMuitoAtivo.TabIndex = 330;
+            this.rbDRIMuitoAtivo.TabStop = true;
+            this.rbDRIMuitoAtivo.Text = "Muito Ativo";
+            this.rbDRIMuitoAtivo.UseVisualStyleBackColor = true;
+            // 
+            // rbDRIAtivo
+            // 
+            this.rbDRIAtivo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rbDRIAtivo.AutoSize = true;
+            this.rbDRIAtivo.Depth = 0;
+            this.rbDRIAtivo.Location = new System.Drawing.Point(38, 122);
+            this.rbDRIAtivo.Margin = new System.Windows.Forms.Padding(0);
+            this.rbDRIAtivo.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.rbDRIAtivo.MouseState = MaterialSkin.MouseState.HOVER;
+            this.rbDRIAtivo.Name = "rbDRIAtivo";
+            this.rbDRIAtivo.Ripple = true;
+            this.rbDRIAtivo.Size = new System.Drawing.Size(71, 37);
+            this.rbDRIAtivo.TabIndex = 329;
+            this.rbDRIAtivo.TabStop = true;
+            this.rbDRIAtivo.Text = "Ativo";
+            this.rbDRIAtivo.UseVisualStyleBackColor = true;
+            // 
+            // rbDRIPoucoAtivo
+            // 
+            this.rbDRIPoucoAtivo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rbDRIPoucoAtivo.AutoSize = true;
+            this.rbDRIPoucoAtivo.Depth = 0;
+            this.rbDRIPoucoAtivo.Location = new System.Drawing.Point(38, 76);
+            this.rbDRIPoucoAtivo.Margin = new System.Windows.Forms.Padding(0);
+            this.rbDRIPoucoAtivo.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.rbDRIPoucoAtivo.MouseState = MaterialSkin.MouseState.HOVER;
+            this.rbDRIPoucoAtivo.Name = "rbDRIPoucoAtivo";
+            this.rbDRIPoucoAtivo.Ripple = true;
+            this.rbDRIPoucoAtivo.Size = new System.Drawing.Size(120, 37);
+            this.rbDRIPoucoAtivo.TabIndex = 328;
+            this.rbDRIPoucoAtivo.TabStop = true;
+            this.rbDRIPoucoAtivo.Text = "Pouco Ativo";
+            this.rbDRIPoucoAtivo.UseVisualStyleBackColor = true;
+            // 
+            // rbDRISedentario
+            // 
+            this.rbDRISedentario.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rbDRISedentario.AutoSize = true;
+            this.rbDRISedentario.Depth = 0;
+            this.rbDRISedentario.Location = new System.Drawing.Point(38, 29);
+            this.rbDRISedentario.Margin = new System.Windows.Forms.Padding(0);
+            this.rbDRISedentario.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.rbDRISedentario.MouseState = MaterialSkin.MouseState.HOVER;
+            this.rbDRISedentario.Name = "rbDRISedentario";
+            this.rbDRISedentario.Ripple = true;
+            this.rbDRISedentario.Size = new System.Drawing.Size(111, 37);
+            this.rbDRISedentario.TabIndex = 327;
+            this.rbDRISedentario.TabStop = true;
+            this.rbDRISedentario.Text = "Sedentário";
+            this.rbDRISedentario.UseVisualStyleBackColor = true;
+            // 
+            // tbHarrisBenedict
+            // 
+            this.tbHarrisBenedict.Controls.Add(this.rbCAFMuitoPesado);
+            this.tbHarrisBenedict.Controls.Add(this.rbCAFPesado);
+            this.tbHarrisBenedict.Controls.Add(this.rbCAFModerado);
+            this.tbHarrisBenedict.Controls.Add(this.rbCAFLeve);
+            this.tbHarrisBenedict.Controls.Add(this.rbCAFSedentario);
+            this.tbHarrisBenedict.Location = new System.Drawing.Point(4, 22);
+            this.tbHarrisBenedict.Name = "tbHarrisBenedict";
+            this.tbHarrisBenedict.Padding = new System.Windows.Forms.Padding(3);
+            this.tbHarrisBenedict.Size = new System.Drawing.Size(192, 293);
+            this.tbHarrisBenedict.TabIndex = 1;
+            this.tbHarrisBenedict.Text = "Harris Benedict";
+            this.tbHarrisBenedict.UseVisualStyleBackColor = true;
+            // 
+            // rbCAFMuitoPesado
+            // 
+            this.rbCAFMuitoPesado.AutoSize = true;
+            this.rbCAFMuitoPesado.Depth = 0;
+            this.rbCAFMuitoPesado.Location = new System.Drawing.Point(38, 217);
+            this.rbCAFMuitoPesado.Margin = new System.Windows.Forms.Padding(0);
+            this.rbCAFMuitoPesado.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.rbCAFMuitoPesado.MouseState = MaterialSkin.MouseState.HOVER;
+            this.rbCAFMuitoPesado.Name = "rbCAFMuitoPesado";
+            this.rbCAFMuitoPesado.Ripple = true;
+            this.rbCAFMuitoPesado.Size = new System.Drawing.Size(133, 37);
+            this.rbCAFMuitoPesado.TabIndex = 336;
+            this.rbCAFMuitoPesado.TabStop = true;
+            this.rbCAFMuitoPesado.Text = "Muito Pesado";
+            this.rbCAFMuitoPesado.UseVisualStyleBackColor = true;
+            // 
+            // rbCAFPesado
+            // 
+            this.rbCAFPesado.AutoSize = true;
+            this.rbCAFPesado.Depth = 0;
+            this.rbCAFPesado.Location = new System.Drawing.Point(38, 168);
+            this.rbCAFPesado.Margin = new System.Windows.Forms.Padding(0);
+            this.rbCAFPesado.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.rbCAFPesado.MouseState = MaterialSkin.MouseState.HOVER;
+            this.rbCAFPesado.Name = "rbCAFPesado";
+            this.rbCAFPesado.Ripple = true;
+            this.rbCAFPesado.Size = new System.Drawing.Size(88, 37);
+            this.rbCAFPesado.TabIndex = 335;
+            this.rbCAFPesado.TabStop = true;
+            this.rbCAFPesado.Text = "Pesado";
+            this.rbCAFPesado.UseVisualStyleBackColor = true;
+            // 
+            // rbCAFModerado
+            // 
+            this.rbCAFModerado.AutoSize = true;
+            this.rbCAFModerado.Depth = 0;
+            this.rbCAFModerado.Location = new System.Drawing.Point(38, 120);
+            this.rbCAFModerado.Margin = new System.Windows.Forms.Padding(0);
+            this.rbCAFModerado.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.rbCAFModerado.MouseState = MaterialSkin.MouseState.HOVER;
+            this.rbCAFModerado.Name = "rbCAFModerado";
+            this.rbCAFModerado.Ripple = true;
+            this.rbCAFModerado.Size = new System.Drawing.Size(107, 37);
+            this.rbCAFModerado.TabIndex = 334;
+            this.rbCAFModerado.TabStop = true;
+            this.rbCAFModerado.Text = "Moderado";
+            this.rbCAFModerado.UseVisualStyleBackColor = true;
+            // 
+            // rbCAFLeve
+            // 
+            this.rbCAFLeve.AutoSize = true;
+            this.rbCAFLeve.Depth = 0;
+            this.rbCAFLeve.Location = new System.Drawing.Point(38, 74);
+            this.rbCAFLeve.Margin = new System.Windows.Forms.Padding(0);
+            this.rbCAFLeve.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.rbCAFLeve.MouseState = MaterialSkin.MouseState.HOVER;
+            this.rbCAFLeve.Name = "rbCAFLeve";
+            this.rbCAFLeve.Ripple = true;
+            this.rbCAFLeve.Size = new System.Drawing.Size(68, 37);
+            this.rbCAFLeve.TabIndex = 333;
+            this.rbCAFLeve.TabStop = true;
+            this.rbCAFLeve.Text = "Leve";
+            this.rbCAFLeve.UseVisualStyleBackColor = true;
+            // 
+            // rbCAFSedentario
+            // 
+            this.rbCAFSedentario.AutoSize = true;
+            this.rbCAFSedentario.Depth = 0;
+            this.rbCAFSedentario.Location = new System.Drawing.Point(38, 27);
+            this.rbCAFSedentario.Margin = new System.Windows.Forms.Padding(0);
+            this.rbCAFSedentario.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.rbCAFSedentario.MouseState = MaterialSkin.MouseState.HOVER;
+            this.rbCAFSedentario.Name = "rbCAFSedentario";
+            this.rbCAFSedentario.Ripple = true;
+            this.rbCAFSedentario.Size = new System.Drawing.Size(111, 37);
+            this.rbCAFSedentario.TabIndex = 332;
+            this.rbCAFSedentario.TabStop = true;
+            this.rbCAFSedentario.Text = "Sedentário";
+            this.rbCAFSedentario.UseVisualStyleBackColor = true;
+            // 
             // txtPeso
             // 
             this.txtPeso.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -3609,201 +3806,6 @@ namespace TCC2
             this.NutriEzIconNotify.Text = "NutriEz";
             this.NutriEzIconNotify.Visible = true;
             // 
-            // tabCalculo
-            // 
-            this.tabCalculo.Controls.Add(this.tbDRI);
-            this.tabCalculo.Controls.Add(this.tbHarrisBenedict);
-            this.tabCalculo.Location = new System.Drawing.Point(25, 254);
-            this.tabCalculo.Name = "tabCalculo";
-            this.tabCalculo.SelectedIndex = 0;
-            this.tabCalculo.Size = new System.Drawing.Size(200, 319);
-            this.tabCalculo.TabIndex = 12;
-            // 
-            // tbDRI
-            // 
-            this.tbDRI.Controls.Add(this.rbMuitoAtivo);
-            this.tbDRI.Controls.Add(this.rbAtivo);
-            this.tbDRI.Controls.Add(this.rbPoucoAtivo);
-            this.tbDRI.Controls.Add(this.rbSedentario);
-            this.tbDRI.Location = new System.Drawing.Point(4, 22);
-            this.tbDRI.Name = "tbDRI";
-            this.tbDRI.Padding = new System.Windows.Forms.Padding(3);
-            this.tbDRI.Size = new System.Drawing.Size(192, 293);
-            this.tbDRI.TabIndex = 0;
-            this.tbDRI.Text = "DRI";
-            this.tbDRI.UseVisualStyleBackColor = true;
-            // 
-            // tbHarrisBenedict
-            // 
-            this.tbHarrisBenedict.Controls.Add(this.materialRadioButton5);
-            this.tbHarrisBenedict.Controls.Add(this.materialRadioButton1);
-            this.tbHarrisBenedict.Controls.Add(this.materialRadioButton2);
-            this.tbHarrisBenedict.Controls.Add(this.materialRadioButton3);
-            this.tbHarrisBenedict.Controls.Add(this.materialRadioButton4);
-            this.tbHarrisBenedict.Location = new System.Drawing.Point(4, 22);
-            this.tbHarrisBenedict.Name = "tbHarrisBenedict";
-            this.tbHarrisBenedict.Padding = new System.Windows.Forms.Padding(3);
-            this.tbHarrisBenedict.Size = new System.Drawing.Size(192, 293);
-            this.tbHarrisBenedict.TabIndex = 1;
-            this.tbHarrisBenedict.Text = "Harris Benedict";
-            this.tbHarrisBenedict.UseVisualStyleBackColor = true;
-            // 
-            // rbMuitoAtivo
-            // 
-            this.rbMuitoAtivo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbMuitoAtivo.AutoSize = true;
-            this.rbMuitoAtivo.Depth = 0;
-            this.rbMuitoAtivo.Location = new System.Drawing.Point(38, 170);
-            this.rbMuitoAtivo.Margin = new System.Windows.Forms.Padding(0);
-            this.rbMuitoAtivo.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.rbMuitoAtivo.MouseState = MaterialSkin.MouseState.HOVER;
-            this.rbMuitoAtivo.Name = "rbMuitoAtivo";
-            this.rbMuitoAtivo.Ripple = true;
-            this.rbMuitoAtivo.Size = new System.Drawing.Size(116, 37);
-            this.rbMuitoAtivo.TabIndex = 330;
-            this.rbMuitoAtivo.TabStop = true;
-            this.rbMuitoAtivo.Text = "Muito Ativo";
-            this.rbMuitoAtivo.UseVisualStyleBackColor = true;
-            // 
-            // rbAtivo
-            // 
-            this.rbAtivo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbAtivo.AutoSize = true;
-            this.rbAtivo.Depth = 0;
-            this.rbAtivo.Location = new System.Drawing.Point(38, 122);
-            this.rbAtivo.Margin = new System.Windows.Forms.Padding(0);
-            this.rbAtivo.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.rbAtivo.MouseState = MaterialSkin.MouseState.HOVER;
-            this.rbAtivo.Name = "rbAtivo";
-            this.rbAtivo.Ripple = true;
-            this.rbAtivo.Size = new System.Drawing.Size(71, 37);
-            this.rbAtivo.TabIndex = 329;
-            this.rbAtivo.TabStop = true;
-            this.rbAtivo.Text = "Ativo";
-            this.rbAtivo.UseVisualStyleBackColor = true;
-            // 
-            // rbPoucoAtivo
-            // 
-            this.rbPoucoAtivo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbPoucoAtivo.AutoSize = true;
-            this.rbPoucoAtivo.Depth = 0;
-            this.rbPoucoAtivo.Location = new System.Drawing.Point(38, 76);
-            this.rbPoucoAtivo.Margin = new System.Windows.Forms.Padding(0);
-            this.rbPoucoAtivo.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.rbPoucoAtivo.MouseState = MaterialSkin.MouseState.HOVER;
-            this.rbPoucoAtivo.Name = "rbPoucoAtivo";
-            this.rbPoucoAtivo.Ripple = true;
-            this.rbPoucoAtivo.Size = new System.Drawing.Size(120, 37);
-            this.rbPoucoAtivo.TabIndex = 328;
-            this.rbPoucoAtivo.TabStop = true;
-            this.rbPoucoAtivo.Text = "Pouco Ativo";
-            this.rbPoucoAtivo.UseVisualStyleBackColor = true;
-            // 
-            // rbSedentario
-            // 
-            this.rbSedentario.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbSedentario.AutoSize = true;
-            this.rbSedentario.Depth = 0;
-            this.rbSedentario.Location = new System.Drawing.Point(38, 29);
-            this.rbSedentario.Margin = new System.Windows.Forms.Padding(0);
-            this.rbSedentario.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.rbSedentario.MouseState = MaterialSkin.MouseState.HOVER;
-            this.rbSedentario.Name = "rbSedentario";
-            this.rbSedentario.Ripple = true;
-            this.rbSedentario.Size = new System.Drawing.Size(111, 37);
-            this.rbSedentario.TabIndex = 327;
-            this.rbSedentario.TabStop = true;
-            this.rbSedentario.Text = "Sedentário";
-            this.rbSedentario.UseVisualStyleBackColor = true;
-            // 
-            // materialRadioButton5
-            // 
-            this.materialRadioButton5.AutoSize = true;
-            this.materialRadioButton5.Depth = 0;
-            this.materialRadioButton5.Location = new System.Drawing.Point(38, 217);
-            this.materialRadioButton5.Margin = new System.Windows.Forms.Padding(0);
-            this.materialRadioButton5.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.materialRadioButton5.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialRadioButton5.Name = "materialRadioButton5";
-            this.materialRadioButton5.Ripple = true;
-            this.materialRadioButton5.Size = new System.Drawing.Size(133, 37);
-            this.materialRadioButton5.TabIndex = 336;
-            this.materialRadioButton5.TabStop = true;
-            this.materialRadioButton5.Text = "Muito Pesado";
-            this.materialRadioButton5.UseVisualStyleBackColor = true;
-            // 
-            // materialRadioButton1
-            // 
-            this.materialRadioButton1.AutoSize = true;
-            this.materialRadioButton1.Depth = 0;
-            this.materialRadioButton1.Location = new System.Drawing.Point(38, 168);
-            this.materialRadioButton1.Margin = new System.Windows.Forms.Padding(0);
-            this.materialRadioButton1.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.materialRadioButton1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialRadioButton1.Name = "materialRadioButton1";
-            this.materialRadioButton1.Ripple = true;
-            this.materialRadioButton1.Size = new System.Drawing.Size(88, 37);
-            this.materialRadioButton1.TabIndex = 335;
-            this.materialRadioButton1.TabStop = true;
-            this.materialRadioButton1.Text = "Pesado";
-            this.materialRadioButton1.UseVisualStyleBackColor = true;
-            // 
-            // materialRadioButton2
-            // 
-            this.materialRadioButton2.AutoSize = true;
-            this.materialRadioButton2.Depth = 0;
-            this.materialRadioButton2.Location = new System.Drawing.Point(38, 120);
-            this.materialRadioButton2.Margin = new System.Windows.Forms.Padding(0);
-            this.materialRadioButton2.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.materialRadioButton2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialRadioButton2.Name = "materialRadioButton2";
-            this.materialRadioButton2.Ripple = true;
-            this.materialRadioButton2.Size = new System.Drawing.Size(107, 37);
-            this.materialRadioButton2.TabIndex = 334;
-            this.materialRadioButton2.TabStop = true;
-            this.materialRadioButton2.Text = "Moderado";
-            this.materialRadioButton2.UseVisualStyleBackColor = true;
-            // 
-            // materialRadioButton3
-            // 
-            this.materialRadioButton3.AutoSize = true;
-            this.materialRadioButton3.Depth = 0;
-            this.materialRadioButton3.Location = new System.Drawing.Point(38, 74);
-            this.materialRadioButton3.Margin = new System.Windows.Forms.Padding(0);
-            this.materialRadioButton3.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.materialRadioButton3.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialRadioButton3.Name = "materialRadioButton3";
-            this.materialRadioButton3.Ripple = true;
-            this.materialRadioButton3.Size = new System.Drawing.Size(68, 37);
-            this.materialRadioButton3.TabIndex = 333;
-            this.materialRadioButton3.TabStop = true;
-            this.materialRadioButton3.Text = "Leve";
-            this.materialRadioButton3.UseVisualStyleBackColor = true;
-            // 
-            // materialRadioButton4
-            // 
-            this.materialRadioButton4.AutoSize = true;
-            this.materialRadioButton4.Depth = 0;
-            this.materialRadioButton4.Location = new System.Drawing.Point(38, 27);
-            this.materialRadioButton4.Margin = new System.Windows.Forms.Padding(0);
-            this.materialRadioButton4.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.materialRadioButton4.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialRadioButton4.Name = "materialRadioButton4";
-            this.materialRadioButton4.Ripple = true;
-            this.materialRadioButton4.Size = new System.Drawing.Size(111, 37);
-            this.materialRadioButton4.TabIndex = 332;
-            this.materialRadioButton4.TabStop = true;
-            this.materialRadioButton4.Text = "Sedentário";
-            this.materialRadioButton4.UseVisualStyleBackColor = true;
-            // 
             // FrmMenuPrincipal
             // 
             this.AllowDrop = true;
@@ -3866,6 +3868,11 @@ namespace TCC2
             this.gbxCircunferencias.PerformLayout();
             this.gbxEstatura.ResumeLayout(false);
             this.gbxEstatura.PerformLayout();
+            this.tabCalculo.ResumeLayout(false);
+            this.tbDRI.ResumeLayout(false);
+            this.tbDRI.PerformLayout();
+            this.tbHarrisBenedict.ResumeLayout(false);
+            this.tbHarrisBenedict.PerformLayout();
             this.tbAnamnese.ResumeLayout(false);
             this.tbAnamnese.PerformLayout();
             this.tabConfig.ResumeLayout(false);
@@ -3878,11 +3885,6 @@ namespace TCC2
             ((System.ComponentModel.ISupportInitialize)(this.dtgConfigHorario)).EndInit();
             this.tbSobre.ResumeLayout(false);
             this.tbSobre.PerformLayout();
-            this.tabCalculo.ResumeLayout(false);
-            this.tbDRI.ResumeLayout(false);
-            this.tbDRI.PerformLayout();
-            this.tbHarrisBenedict.ResumeLayout(false);
-            this.tbHarrisBenedict.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -4095,16 +4097,16 @@ namespace TCC2
         private MaterialSkin.Controls.MaterialRadioButton rbMasculino;
         private System.Windows.Forms.TabControl tabCalculo;
         private System.Windows.Forms.TabPage tbDRI;
-        private MaterialSkin.Controls.MaterialRadioButton rbMuitoAtivo;
-        private MaterialSkin.Controls.MaterialRadioButton rbAtivo;
-        private MaterialSkin.Controls.MaterialRadioButton rbPoucoAtivo;
-        private MaterialSkin.Controls.MaterialRadioButton rbSedentario;
+        private MaterialSkin.Controls.MaterialRadioButton rbDRIMuitoAtivo;
+        private MaterialSkin.Controls.MaterialRadioButton rbDRIAtivo;
+        private MaterialSkin.Controls.MaterialRadioButton rbDRIPoucoAtivo;
+        private MaterialSkin.Controls.MaterialRadioButton rbDRISedentario;
         private System.Windows.Forms.TabPage tbHarrisBenedict;
-        private MaterialSkin.Controls.MaterialRadioButton materialRadioButton5;
-        private MaterialSkin.Controls.MaterialRadioButton materialRadioButton1;
-        private MaterialSkin.Controls.MaterialRadioButton materialRadioButton2;
-        private MaterialSkin.Controls.MaterialRadioButton materialRadioButton3;
-        private MaterialSkin.Controls.MaterialRadioButton materialRadioButton4;
+        private MaterialSkin.Controls.MaterialRadioButton rbCAFMuitoPesado;
+        private MaterialSkin.Controls.MaterialRadioButton rbCAFPesado;
+        private MaterialSkin.Controls.MaterialRadioButton rbCAFModerado;
+        private MaterialSkin.Controls.MaterialRadioButton rbCAFLeve;
+        private MaterialSkin.Controls.MaterialRadioButton rbCAFSedentario;
     }
 }
 

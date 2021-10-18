@@ -102,6 +102,39 @@ namespace Classes
                 }
             }
         }
+
+        public static string CalcularIMC(double peso, double altura)
+        {
+            double imc;
+
+            imc = (peso / (Math.Pow(altura, 2))) * 10000;
+
+            if (imc <= 18.5)
+            {
+                return ("Peso abaixo do normal");
+            }
+            else if ((imc > 18.5) && (imc < 25))
+            {
+                return ("Peso normal");
+            }
+            else if ((imc >= 25) && (imc < 30))
+            {
+                return ("Sobrepeso");
+            }
+            else if ((imc >= 30) && (imc < 35))
+            {
+                return ("Grau de Obesidade I");
+            }
+            else if ((imc >= 35) && (imc < 40))
+            {
+                return ("Grau de Obesidade II");
+            }
+            else if (imc >= 40)
+            {
+                return ("Obesidade Grau III ou Mórbida");
+            }
+            return string.Empty;
+        }
         public static int calcularIdade(string dataNas)
         {
             DateTime dataNascimento = Convert.ToDateTime(dataNas);

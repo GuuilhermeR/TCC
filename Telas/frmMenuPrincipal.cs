@@ -1875,22 +1875,22 @@ namespace TCC2
             {
                 if (antropometria.Paciente.sexo.Equals("M"))
                 {
-                    return (double)(1086 * (-10.4 * idade) + caf * (13.7 * antropometria.peso + 416 * antropometria.altura));
+                    return (double)(1086 - (10.4 * idade) + caf * (13.7 * antropometria.peso + 416 * (antropometria.altura/100)));
                 }
                 else if (antropometria.Paciente.sexo.Equals("F"))
                 {
-                    return (double)(448 * (-7.95 * idade) + caf * (11.4 * antropometria.peso + 619 * antropometria.altura));
+                    return (double)(448 - (7.95 * idade) + caf * (11.4 * antropometria.peso + 619 * (antropometria.altura/100)));
                 }
             }
             else
             {
                 if (antropometria.Paciente.sexo.Equals("M"))
                 {
-                    return (double)(662 * (-9.53 * idade) + caf * (15.91 * antropometria.peso + 539.6 * antropometria.altura));
+                    return (double)(662 - (9.53 * idade) + caf * (15.91 * antropometria.peso + 539.6 * (antropometria.altura/100)));
                 }
                 else if (antropometria.Paciente.sexo.Equals("F"))
                 {
-                    return (double)(354 * (-6.91 * idade) + caf * (9.36 * antropometria.peso + 416 * antropometria.altura));
+                    return (double)(354 - (6.91 * idade) + caf * (9.36 * antropometria.peso + 416 * (antropometria.altura/100)));
                 }
             }
 

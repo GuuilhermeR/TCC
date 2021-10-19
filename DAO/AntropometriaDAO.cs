@@ -207,7 +207,11 @@ namespace ProjetoTCC
             using (var db = new NutreasyEntities())
             {
                 var select = db.Database.Connection.CreateCommand();
-                select.CommandText = $"SELECT altura, braco, punho, cintura, torax, quadril, panturrilha, antebraco, coxa, peso, pescoco, abdome FROM Antropometria WHERE codPaciente = {codPaciente} AND Data>='{data.ToString("yyyy-MM-dd HH:mm")}' AND data<='{data.AddHours(23).AddMinutes(59).AddSeconds(59).ToString("yyyy-MM-dd HH:mm")}'";
+                select.CommandText = $"SELECT altura, braco, punho, cintura, torax, quadril, panturrilha, " +
+                    $"antebraco, coxa, peso, pescoco, abdome, temCoefAtividade, temGrauAtividade, coefAtividade, grauAtividade" +
+                    $" FROM Antropometria " +
+                    $" WHERE codPaciente = {codPaciente} " +
+                    $" AND Data>='{data.ToString("yyyy-MM-dd HH:mm")}' AND data<='{data.AddHours(23).AddMinutes(59).AddSeconds(59).ToString("yyyy-MM-dd HH:mm")}'";
                 db.Database.Connection.Open();
 
                 select.ExecuteNonQuery();
@@ -228,6 +232,10 @@ namespace ProjetoTCC
                     antrop.torax = (double)(dr["torax"]);
                     antrop.pescoco = (double)(dr["torax"]);
                     antrop.abdome = (double)(dr["torax"]);
+                    antrop.temCoefAtividade = (long)(dr["temCoefAtividade"]);
+                    antrop.temGrauAtividade = (long)(dr["temGrauAtividade"]);
+                    antrop.coefAtividade = (string)(dr["coefAtividade"]);
+                    antrop.grauAtividade = (string)(dr["grauAtividade"]);
 
                     antro.Add(antrop);
                 }

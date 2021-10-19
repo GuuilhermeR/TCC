@@ -1945,6 +1945,48 @@ namespace TCC2
                 txtPunho.Text = x.punho.ToString();
                 txtPescoco.Text = x.pescoco.ToString();
                 txtAbdome.Text = x.abdome.ToString();
+                if (Convert.ToBoolean(x.temGrauAtividade))
+                {
+                    if(x.grauAtividade == rbCAFSedentario.Text)
+                    {
+                        rbCAFSedentario.Checked = true;
+                    }
+                    else if (x.grauAtividade == rbCAFLeve.Text)
+                    {
+                        rbCAFLeve.Checked = true;
+                    }
+                    else if (x.grauAtividade == rbCAFModerado.Text)
+                    {
+                        rbCAFModerado.Checked = true;
+                    }
+                    else if (x.grauAtividade == rbCAFPesado.Text)
+                    {
+                        rbCAFPesado.Checked=true;
+                    }
+                    else if (x.grauAtividade == rbCAFMuitoPesado.Text)
+                    {
+                        rbCAFMuitoPesado.Checked=true;
+                    }
+                }
+                if (Convert.ToBoolean(x.temCoefAtividade))
+                {
+                    if (x.grauAtividade == rbDRISedentario.Text)
+                    {
+                        rbDRISedentario.Checked = true;
+                    }
+                    else if (x.grauAtividade == rbDRIPoucoAtivo.Text)
+                    {
+                        rbDRIPoucoAtivo.Checked = true;
+                    }
+                    else if (x.grauAtividade == rbDRIAtivo.Text)
+                    {
+                        rbDRIAtivo.Checked = true;
+                    }
+                    else if (x.grauAtividade == rbDRIMuitoAtivo.Text)
+                    {
+                        rbDRIMuitoAtivo.Checked = true;
+                    }
+                }
                 lblIMC.Text=CalcularIMC(Convert.ToDouble(txtPeso.Text), Convert.ToDouble(txtAltura.Text));
             });
 

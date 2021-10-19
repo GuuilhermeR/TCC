@@ -31,13 +31,13 @@ namespace TCC2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange1 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange2 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange3 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange4 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange5 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange6 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange7 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange22 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange23 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange24 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange25 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange26 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange27 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange28 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMenuPrincipal));
             this.TabControlNutreasy = new MaterialSkin.Controls.MaterialTabControl();
             this.tabMenu = new System.Windows.Forms.TabPage();
@@ -675,35 +675,35 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.calAgendamento.BackColor = System.Drawing.SystemColors.Control;
             this.calAgendamento.Font = new System.Drawing.Font("Segoe UI", 9F);
-            calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange1.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange1.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange2.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange2.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange2.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange3.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange3.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange3.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange4.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange4.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange4.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange5.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange5.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange5.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange6.DayOfWeek = System.DayOfWeek.Saturday;
-            calendarHighlightRange6.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange6.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange7.DayOfWeek = System.DayOfWeek.Sunday;
-            calendarHighlightRange7.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange7.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange22.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange22.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange22.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange23.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange23.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange23.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange24.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange24.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange24.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange25.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange25.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange25.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange26.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange26.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange26.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange27.DayOfWeek = System.DayOfWeek.Saturday;
+            calendarHighlightRange27.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange27.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange28.DayOfWeek = System.DayOfWeek.Sunday;
+            calendarHighlightRange28.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange28.StartTime = System.TimeSpan.Parse("00:00:00");
             this.calAgendamento.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
-        calendarHighlightRange1,
-        calendarHighlightRange2,
-        calendarHighlightRange3,
-        calendarHighlightRange4,
-        calendarHighlightRange5,
-        calendarHighlightRange6,
-        calendarHighlightRange7};
+        calendarHighlightRange22,
+        calendarHighlightRange23,
+        calendarHighlightRange24,
+        calendarHighlightRange25,
+        calendarHighlightRange26,
+        calendarHighlightRange27,
+        calendarHighlightRange28};
             this.calAgendamento.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.calAgendamento.ItemsTimeFormat = "hh:mm";
             this.calAgendamento.Location = new System.Drawing.Point(3, 195);
@@ -1279,7 +1279,7 @@ namespace TCC2
             this.lblVET.AutoSize = true;
             this.lblVET.Depth = 0;
             this.lblVET.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblVET.Location = new System.Drawing.Point(406, 573);
+            this.lblVET.Location = new System.Drawing.Point(425, 573);
             this.lblVET.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblVET.Name = "lblVET";
             this.lblVET.Size = new System.Drawing.Size(1, 0);
@@ -1291,7 +1291,7 @@ namespace TCC2
             this.lblTMB.AutoSize = true;
             this.lblTMB.Depth = 0;
             this.lblTMB.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblTMB.Location = new System.Drawing.Point(410, 606);
+            this.lblTMB.Location = new System.Drawing.Point(429, 606);
             this.lblTMB.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblTMB.Name = "lblTMB";
             this.lblTMB.Size = new System.Drawing.Size(1, 0);
@@ -1385,7 +1385,7 @@ namespace TCC2
             this.mlblVET.AutoSize = true;
             this.mlblVET.Depth = 0;
             this.mlblVET.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.mlblVET.Location = new System.Drawing.Point(366, 573);
+            this.mlblVET.Location = new System.Drawing.Point(385, 573);
             this.mlblVET.MouseState = MaterialSkin.MouseState.HOVER;
             this.mlblVET.Name = "mlblVET";
             this.mlblVET.Size = new System.Drawing.Size(34, 19);
@@ -1398,7 +1398,7 @@ namespace TCC2
             this.mlblTMB.AutoSize = true;
             this.mlblTMB.Depth = 0;
             this.mlblTMB.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.mlblTMB.Location = new System.Drawing.Point(366, 606);
+            this.mlblTMB.Location = new System.Drawing.Point(385, 606);
             this.mlblTMB.MouseState = MaterialSkin.MouseState.HOVER;
             this.mlblTMB.Name = "mlblTMB";
             this.mlblTMB.Size = new System.Drawing.Size(39, 19);
@@ -1526,7 +1526,7 @@ namespace TCC2
             this.lblValorKcal.AutoSize = true;
             this.lblValorKcal.Depth = 0;
             this.lblValorKcal.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblValorKcal.Location = new System.Drawing.Point(410, 539);
+            this.lblValorKcal.Location = new System.Drawing.Point(429, 539);
             this.lblValorKcal.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblValorKcal.Name = "lblValorKcal";
             this.lblValorKcal.Size = new System.Drawing.Size(1, 0);
@@ -1538,7 +1538,7 @@ namespace TCC2
             this.lblVlrKcal.AutoSize = true;
             this.lblVlrKcal.Depth = 0;
             this.lblVlrKcal.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblVlrKcal.Location = new System.Drawing.Point(366, 539);
+            this.lblVlrKcal.Location = new System.Drawing.Point(385, 539);
             this.lblVlrKcal.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblVlrKcal.Name = "lblVlrKcal";
             this.lblVlrKcal.Size = new System.Drawing.Size(38, 19);

@@ -195,7 +195,6 @@ namespace TCC2
                                          $" AND codAlimento={alimento}";
                     db.Database.Connection.Open();
                     delete.ExecuteNonQuery();
-                    BancoDadosSingleton.Instance.Entry(delete).State = System.Data.Entity.EntityState.Modified;
                     db.Database.Connection.Close();
                 }
             }

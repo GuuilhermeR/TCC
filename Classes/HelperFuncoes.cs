@@ -25,6 +25,8 @@ namespace Classes
 
         private const int DerivationIterations = 1000;
 
+        private const string pass = "30F8HYT85aYDUW";
+
         public static void loadStart(Form menu)
         {
             try
@@ -225,74 +227,54 @@ namespace Classes
             return Strings.Left(hora, 2) + ":" + Strings.Right(hora, 2);
         }
 
-        public string DescriptPassword(string texto)
+        public static string AESEncrypt(string input)
         {
-            var cipherTextBytesWithSaltAndIv = Convert.FromBase64String(texto);
-            var saltStringBytes = cipherTextBytesWithSaltAndIv.Take(Keysize / 8).ToArray();
-            var ivStringBytes = cipherTextBytesWithSaltAndIv.Skip(Keysize / 8).Take(Keysize / 8).ToArray();
-            var cipherTextBytes = cipherTextBytesWithSaltAndIv.Skip((Keysize / 8) * 2).Take(cipherTextBytesWithSaltAndIv.Length - ((Keysize / 8) * 2)).ToArray();
+            System.Security.Cryptography.RijndaelManaged AES = new System.Security.Cryptography.RijndaelManaged();
+            System.Security.Cryptography.MD5CryptoServiceProvider Hash_AES = new System.Security.Cryptography.MD5CryptoServiceProvider();
+            string encrypted = "";
+            try
+            {
+                byte[] hash = new byte[32];
+                byte[] temp = Hash_AES.ComputeHash(System.Text.ASCIIEncoding.ASCII.GetBytes(pass));
+                Array.Copy(temp, 0, hash, 0, 16);
+                Array.Copy(temp, 0, hash, 15, 16);
+                AES.Key = hash;
+                AES.Mode = System.Security.Cryptography.CipherMode.ECB;
+                System.Security.Cryptography.ICryptoTransform DESEncrypter = AES.CreateEncryptor();
+                byte[] Buffer = System.Text.ASCIIEncoding.ASCII.GetBytes(input);
+                encrypted = Convert.ToBase64String(DESEncrypter.TransformFinalBlock(Buffer, 0, Buffer.Length));
+                return encrypted;
+            }
+            catch (Exception ex)
+            {
+            }
+            return string.Empty;
+        }
 
-            using (var password = new Rfc2898DeriveBytes(texto, saltStringBytes, DerivationIterations))
-            {
-                var keyBytes = password.GetBytes(Keysize / 8);
-                using (var symmetricKey = new RijndaelManaged())
-                {
-                    symmetricKey.BlockSize = 256;
-                    symmetricKey.Mode = CipherMode.CBC;
-                    symmetricKey.Padding = PaddingMode.PKCS7;
-                    using (var decryptor = symmetricKey.CreateDecryptor(keyBytes, ivStringBytes))
-                    {
-                        using (var memoryStream = new MemoryStream(cipherTextBytes))
-                        {
-                            using (var cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read))
-                            {
-                                var plainTextBytes = new byte[cipherTextBytes.Length];
-                                var decryptedByteCount = cryptoStream.Read(plainTextBytes, 0, plainTextBytes.Length);
-                                memoryStream.Close();
-                                cryptoStream.Close();
-                                return Encoding.UTF8.GetString(plainTextBytes, 0, decryptedByteCount);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        public string Criptografar(string texto)
+        public static string AESDecrypt(string input)
         {
-            // Salt and IV is randomly generated each time, but is preprended to encrypted cipher text
-            // so that the same Salt and IV values can be used when decrypting.  
-            var saltStringBytes = Generate256BitsOfRandomEntropy();
-            var ivStringBytes = Generate256BitsOfRandomEntropy();
-            var plainTextBytes = Encoding.UTF8.GetBytes(texto);
-            using (var password = new Rfc2898DeriveBytes(texto, saltStringBytes, DerivationIterations))
+            System.Security.Cryptography.RijndaelManaged AES = new System.Security.Cryptography.RijndaelManaged();
+            System.Security.Cryptography.MD5CryptoServiceProvider Hash_AES = new System.Security.Cryptography.MD5CryptoServiceProvider();
+            string decrypted = "";
+            try
             {
-                var keyBytes = password.GetBytes(Keysize / 8);
-                using (var symmetricKey = new RijndaelManaged())
-                {
-                    symmetricKey.BlockSize = 256;
-                    symmetricKey.Mode = CipherMode.CBC;
-                    symmetricKey.Padding = PaddingMode.PKCS7;
-                    using (var encryptor = symmetricKey.CreateEncryptor(keyBytes, ivStringBytes))
-                    {
-                        using (var memoryStream = new MemoryStream())
-                        {
-                            using (var cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write))
-                            {
-                                cryptoStream.Write(plainTextBytes, 0, plainTextBytes.Length);
-                                cryptoStream.FlushFinalBlock();
-                                // Create the final bytes as a concatenation of the random salt bytes, the random iv bytes and the cipher bytes.
-                                var cipherTextBytes = saltStringBytes;
-                                cipherTextBytes = cipherTextBytes.Concat(ivStringBytes).ToArray();
-                                cipherTextBytes = cipherTextBytes.Concat(memoryStream.ToArray()).ToArray();
-                                memoryStream.Close();
-                                cryptoStream.Close();
-                                return Convert.ToBase64String(cipherTextBytes);
-                            }
-                        }
-                    }
-                }
+                byte[] hash = new byte[32];
+                byte[] temp = Hash_AES.ComputeHash(System.Text.ASCIIEncoding.ASCII.GetBytes(pass));
+                Array.Copy(temp, 0, hash, 0, 16);
+                Array.Copy(temp, 0, hash, 15, 16);
+                AES.Key = hash;
+                AES.Mode = System.Security.Cryptography.CipherMode.ECB;
+                System.Security.Cryptography.ICryptoTransform DESDecrypter = AES.CreateDecryptor();
+                byte[] Buffer = Convert.FromBase64String(input);
+                decrypted = System.Text.ASCIIEncoding.ASCII.GetString(DESDecrypter.TransformFinalBlock(Buffer, 0, Buffer.Length));
+                return decrypted;
             }
+            catch (Exception ex)
+            {
+            }
+            return String.Empty;
         }
+
         private static byte[] Generate256BitsOfRandomEntropy()
         {
             var randomBytes = new byte[32]; // 32 Bytes will give us 256 bits.

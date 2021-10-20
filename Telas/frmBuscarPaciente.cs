@@ -35,6 +35,7 @@ namespace TCC2
             dtgPacientes.Columns["codPaciente"].Visible = false;
             dtgPacientes.Columns["imagem"].Visible = false;
             dtgPacientes.Columns["nome"].HeaderText = "Nome";
+            dtgPacientes.Columns["sexo"].HeaderText = "Sexo";
             dtgPacientes.Columns["dtNasc"].Visible = false;
             dtgPacientes.Columns["email"].Visible = false;
             dtgPacientes.Columns["endereco"].Visible = false;
@@ -53,8 +54,7 @@ namespace TCC2
             dtgPacientes.Columns.Add("idade", "Idade");
             foreach (DataGridViewRow row in dtgPacientes.Rows)
             {
-                int idade = calcularIdade(row.Cells["dtNasc"].Value.ToString());
-                row.Cells["idade"].Value = idade;
+                row.Cells["idade"].Value = calcularIdade((row.Cells["dtNasc"].Value.ToString()));
             }
             dtgPacientes.AutoResizeColumns();
         }

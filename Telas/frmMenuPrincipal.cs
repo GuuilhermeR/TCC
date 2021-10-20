@@ -1498,9 +1498,10 @@ namespace TCC2
                 sexo = "F";
             }
 
-            pacienteDAO.Salvar(codPaciente, Convert.ToString(txtNome.Text), Convert.ToDouble(CPF), Convert.ToString(txtDtNasc.Text), Convert.ToString(txtEmail.Text), Convert.ToDouble(CEP),
-                            Convert.ToDouble(txtNumero.Text), Convert.ToString(txtTelefone.Text), Convert.ToString(txtCelular.Text), Convert.ToString(txtEndereco.Text), Convert.ToString(txtBairro.Text)
-                            , Convert.ToString(txtMunicipio.Text), Convert.ToString(txtUF.Text), Convert.ToString(txtComplemento.Text), this.vetorImagens, sexo);
+            pacienteDAO.Salvar(codPaciente, Convert.ToString(txtNome.Text), Convert.ToDouble((CPF)), Convert.ToString((txtDtNasc.Text)), Convert.ToString((txtEmail.Text))
+                , Convert.ToDouble((CEP)), Convert.ToDouble((txtNumero.Text)), Convert.ToString((txtTelefone.Text)), Convert.ToString((txtCelular.Text))
+                , Convert.ToString((txtEndereco.Text)), Convert.ToString((txtBairro.Text)), Convert.ToString((txtMunicipio.Text)), Convert.ToString((txtUF.Text))
+                , Convert.ToString((txtComplemento.Text)), this.vetorImagens, (sexo));
             LimparCamposPaciente();
             loadStop(this);
             tbCadastro_Enter(sender, e);
@@ -1749,8 +1750,7 @@ namespace TCC2
             if (txtPeso.Text != string.Empty && txtAltura.Text != string.Empty)
                 lblIMC.Text=CalcularIMC(Convert.ToDouble(txtPeso.Text), Convert.ToDouble(txtAltura.Text));
         }
-
-        
+                
 
         private double CalcularHarrisBenedict(Antropometria antropometria)
         {
@@ -2167,17 +2167,39 @@ namespace TCC2
 
         private void dtgRefeicoes_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
+            double kcalTotal = 0;
             if (dtgRefeicoes.Rows[e.Row.Index + 1].DefaultCellStyle.BackColor == Color.LightSalmon)
+            {
+                foreach (DataGridViewRow row in dtgRefeicoes.Rows)
+                {
+                    kcalTotal += Convert.ToDouble(row.Cells[kcal.Index].Value);
+                    CarregarGrafico(Convert.ToDouble(row.Cells[prot.Index].Value)
+                        , Convert.ToDouble(row.Cells[carbo.Index].Value)
+                        , Convert.ToDouble(row.Cells[lipidio.Index].Value));
+                }
+                lblValorKcal.Text = kcalTotal.ToString("N2");
                 return;
+            }
+            string data = string.Empty;
 
-            cardapioDAO.RemoverComidaCardapio(cbxRefeicao.Text, txtDataCardapio.Text, Convert.ToInt32(dtgRefeicoes.Rows[e.Row.Index + 1].Cells["codAlimento"].Value));
+            if (!string.IsNullOrEmpty(txtDataCardapio.Text))
+            {
+                data = txtDataCardapio.Text;
+            } 
+            else if (!string.IsNullOrEmpty(cbxDataCardSalvo.Text))
+            {
+                data = cbxDataCardSalvo.Text;
+            }
+
+            cardapioDAO.RemoverComidaCardapio(cbxRefeicao.Text, data, Convert.ToInt32(dtgRefeicoes.Rows[e.Row.Index + 1].Cells["codAlimento"].Value));
             foreach (DataGridViewRow row in dtgRefeicoes.Rows)
             {
-                RecalcularMacroNutrientes(dtgRefeicoes, Convert.ToDecimal(row.Cells[qtd.Index].Value));
+                kcalTotal += Convert.ToDouble(row.Cells[kcal.Index].Value);
                 CarregarGrafico(Convert.ToDouble(row.Cells[prot.Index].Value)
                     , Convert.ToDouble(row.Cells[carbo.Index].Value)
                     , Convert.ToDouble(row.Cells[lipidio.Index].Value));
             }
+            lblValorKcal.Text = kcalTotal.ToString("N2");
         }
         #endregion
 
@@ -2255,6 +2277,7 @@ namespace TCC2
                 return;
             }
 
+            double kcalTotal = 0;
             double proteina = 0;
             double carboidrato = 0;
             double lipidio = 0;
@@ -2278,6 +2301,7 @@ namespace TCC2
                         linhaAdicionada.Add(dtgRefeicoes.Rows[linha]);
                         dtgRefeicoes.Rows[linha].Visible = false;
                         dtgRefeicoes.Rows[linha].DefaultCellStyle.BackColor = Color.LightSalmon;
+                        kcalTotal += Convert.ToDouble(dtgRefeicoes.Rows[linha].Cells[kcal.Index].Value);
                     }
 
                 if (linhaAdicionada != null || linhaAdicionada.Count > 0)
@@ -2327,11 +2351,10 @@ namespace TCC2
                 }
                 dtgRefeicoes.AutoResizeColumns();
             }
-
             lblVlrKcal.Visible = true;
+            lblValorKcal.Text = kcalTotal.ToString("N2");
             if (dtgRefeicoes.Rows.Count > 0)
             {
-                RecalcularMacroNutrientes(dtgRefeicoes, 2);
                 CarregarGrafico(proteina, carboidrato, lipidio);
             }
         }
@@ -2420,15 +2443,14 @@ namespace TCC2
             }
 
             foreach (DataGridViewRow row in dtgRefeicoes.Rows)
-                erro = cardapioDAO.Salvar(Convert.ToInt32(PacienteModel.codPacienteModel),
+                    erro = cardapioDAO.Salvar(Convert.ToInt32(PacienteModel.codPacienteModel),
                                                      Convert.ToInt32(row.Cells["codAlimento"].Value),
                                                      Convert.ToString(cbxRefeicao.Text),
                                                      Convert.ToInt32(row.Cells["qtd"].Value),
                                                      Convert.ToDouble(row.Cells["kcal"].Value),
                                                      Convert.ToString(usuarioDAO.getUsuario()),
                                                      data,
-                                                     Convert.ToString(row.Cells["obs"].Value));
-
+                                                     Convert.ToString(row.Cells["obs"].Value));        
 
             if (string.IsNullOrEmpty(erro))
             {
@@ -2495,7 +2517,6 @@ namespace TCC2
             if (Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["qtd"].Value) != quantidadeAntigaCardapio)
             {
                 RecalcularMacroNutrientes(dtgRefeicoes, Convert.ToDecimal(quantidadeAntigaCardapio));
-
                 CarregarGrafico(Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["prot"].Value),
                                 Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["carbo"].Value),
                                 Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["lipidio"].Value));
@@ -2879,21 +2900,24 @@ namespace TCC2
             if (carregarAlimentos == null || carregarAlimentos.Count == 0)
                 return;
 
+            double kcalTotal = 0;
             carregarAlimentos.ForEach(x =>
             {
-                dtgRefeicoes.Rows.Add(x.codAlimento
+               var linha = dtgRefeicoes.Rows.Add(
+                               x.codAlimento
                              , x.Alimentos.nomeAlimento
                              , x.medidaCaseiraQtde
                              , x.Alimentos.kcal
                              , x.Alimentos.prot
                              , x.Alimentos.carbo
                              , x.Alimentos.lipidio
+                             , string.Empty
                              , x.obs);
 
-                RecalcularMacroNutrientes(dtgRefeicoes, 2);
+                kcalTotal += Convert.ToDouble(dtgRefeicoes.Rows[linha].Cells[kcal.Index].Value);
                 CarregarGrafico(Convert.ToDouble(x.Alimentos.prot), Convert.ToDouble(x.Alimentos.carbo), Convert.ToDouble(x.Alimentos.lipidio));
             });
-
+            lblValorKcal.Text = kcalTotal.ToString("N2");
             foreach (DataGridViewRow row in dtgRefeicoes.Rows)
             {
                 var medCaseiraItens = medidaCaseiraDAO.Buscar(Convert.ToInt32(row.Cells["codAlimento"].Value), string.Empty);
@@ -2998,6 +3022,10 @@ namespace TCC2
         private void CarregarCalculoSelecionado()
         {
             string formatarCampoValor = "###,###,##0.00";
+
+            if (string.IsNullOrEmpty(PacienteModel.codPacienteModel))
+                return;
+
             var loadCalc = CarregaCalculos(Convert.ToInt32(PacienteModel.codPacienteModel));
             if (rbHarrisBenedict.Checked)
             {
@@ -3374,6 +3402,11 @@ namespace TCC2
         private void dtgRefeicoes_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             e.Cancel = true;
+        }
+
+        private void cbxDataCardSalvo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

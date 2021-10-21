@@ -174,7 +174,7 @@ namespace TCC2
         }
 
         [Obsolete]
-        public void CriarUsuario(string usuario, string senha, string nome, string email, string situacao, string tipoUsuario, string crm)
+        public void CriarUsuario(string usuario, string senha, string nome, string email, string situacao, string tipoUsuario, string crn)
         {
 
             //CRYPTOGRAFAR SENHA
@@ -190,7 +190,9 @@ namespace TCC2
                 loginInsert.email = email;
                 loginInsert.situacao = situacao;
                 loginInsert.perfil = tipoUsuario;
-                //loginInsert.CRM = crm;
+                loginInsert.podeLogar = 1;
+                if(!string.IsNullOrEmpty(crn))
+                loginInsert.CRN = crn;
 
                 BancoDadosSingleton.Instance.Login.Add(loginInsert);
                 BancoDadosSingleton.Instance.SaveChanges();

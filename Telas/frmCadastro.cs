@@ -44,7 +44,7 @@ namespace TCC2.Telas
                 return;
             }
 
-            if (txtConfirmarSenha.Text.Equals(mLblSenha.Text))
+            if (!txtConfirmarSenha.Text.Equals(mLblSenha.Text))
             {
                 nMensagemAlerta("As senhas não conferem.");
                 return;

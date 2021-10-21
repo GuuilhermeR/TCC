@@ -54,7 +54,7 @@ namespace DAO
 
         public bool VerificarPermissao(string usuario, string tela)
         {
-            var temPerm = (from p in TCC2.BancoDadosSingleton.Instance.Permissao where p.usuario == usuario && p.programa == tela && p.Login.perfil.ToLower() != "recepcionista" select p).ToList();
+            var temPerm = (from p in TCC2.BancoDadosSingleton.Instance.Permissao where p.usuario == usuario && p.programa == tela && p.Login.perfil.ToLower() != "nutricionista" || p.Login.perfil.ToLower() != "estudante" select p).ToList();
             if (temPerm.Count > 0)
             {
                 return true;

@@ -77,12 +77,11 @@ namespace TCC2
         private void frmMenuPrincipal_Load(object sender, EventArgs e)
         {
             FormatView(this);
-
             if (!usuarioViaLogin)
             {
                 FecharAplicacao(sender, e);
             }
-
+            linkLabel1.Links.Add(0, linkLabel1.Text.Length,"https://www.globo.com/");
             calAgendamento.MaximumViewDays = 70000;
             //this.MaximizeBox = false;
 
@@ -702,7 +701,7 @@ namespace TCC2
                 FinalizarAtendimento(Convert.ToString(mlblHoraFutura.Text), mlblNomeFuturo.Text, mcbxAtendidoFuturo.Checked, temRetorno);
             else
                 mcbxAtendidoFuturo.Checked = false;
-
+            mCardAtendimentoAtual.Visible = false;
             CarregarCardConsultas();
         }
 
@@ -720,6 +719,7 @@ namespace TCC2
             else
                 mcbxCancelarFuturo.Checked = false;
 
+            mCardAtendimentoFuturo.Visible = false;
             CarregarCardConsultas();
         }
 
@@ -3538,6 +3538,11 @@ namespace TCC2
             corpoEmail += $@"<td style='width: 120px;border: 1px solid #ccc'>{quantidade}</td>" + Environment.NewLine;
             corpoEmail += $@"<td style='width: 120px;border: 1px solid #ccc'>{observacao}</td>" + Environment.NewLine;
             return corpoEmail;
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            //System.Diagnostics.Process.Start(e.Link.LinkData.ToString());
         }
     }
 }

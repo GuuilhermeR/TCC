@@ -98,7 +98,6 @@ namespace ProjetoTCC
                     BancoDadosSingleton.Instance.SaveChanges();
                     BancoDadosSingleton.Instance.Entry(update).State = EntityState.Modified;
                     db.Database.Connection.Close();
-
                 }
 
                 nMensagemAviso("Consulta do paciente atualizado.");

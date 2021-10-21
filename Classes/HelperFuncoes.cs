@@ -11,6 +11,7 @@ using System.Text;
 using TCC2.Classes;
 using System.Data.SQLite;
 using TCC2;
+using System.Net;
 
 namespace Classes
 {
@@ -336,6 +337,55 @@ namespace Classes
                 str = str.Remove(i, 1);
             }
             return resultado;
+        }
+
+        public static string SenderMail(string para, string Remetente, string Assunto, string corpo)
+        {
+            try
+            {
+                System.Net.Mail.MailMessage objEmail = new System.Net.Mail.MailMessage();
+
+                System.Net.Mail.MailAddress enviadoPor = new System.Net.Mail.MailAddress(Remetente);
+                objEmail.From = enviadoPor;
+                objEmail.To.Add(para);
+                objEmail.Subject = Assunto;
+                objEmail.Body = corpo;
+                objEmail.Priority = System.Net.Mail.MailPriority.High;
+
+                System.Net.Mail.SmtpClient server = new System.Net.Mail.SmtpClient();
+                server.UseDefaultCredentials = false;
+                server.Credentials = new NetworkCredential("nutriez.suporte@gmail.com", "Guilherme@1");
+
+                objEmail.IsBodyHtml = true;
+                server.Host = "smtp.gmail.com";
+                server.Port = 587;
+
+                try
+                {
+                    server.EnableSsl = true;
+                    server.Send(objEmail);
+                }
+                catch
+                {
+                    server.Port = 25;
+                    try
+                    {
+                        server.Send(objEmail);
+                    }
+                    catch (Exception ex1)
+                    {
+                        return ex1.Message;
+                    }
+                }
+
+                return string.Empty;
+            }
+            catch (Exception ex)
+            {
+                string erro = ex.Message.ToString();
+                return ex.Message.ToString() + erro;
+            }
+
         }
 
     }

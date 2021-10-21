@@ -113,7 +113,7 @@ namespace TCC2
 
         public List<Login> getEmail(string usuario)
         {
-            List<Login> emailUsuario = new List<Login>(); ;
+            List<Login> emailUsuario = new List<Login>();
             if (usuario != string.Empty)
             {
                 emailUsuario = ((from c in BancoDadosSingleton.Instance.Login where (c.usuario.ToUpper()).Contains(usuario.ToUpper()) select c).Distinct()).ToList();

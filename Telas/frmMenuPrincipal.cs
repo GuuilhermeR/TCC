@@ -2768,91 +2768,111 @@ namespace TCC2
 
         private void btnExportar_Click(object sender, EventArgs e)
         {
-            Aspose.Cells.Workbook workbook = new Aspose.Cells.Workbook(new System.IO.MemoryStream(Resources.ImpressaoCardapio));
-            WorksheetCollection worksheets = workbook.Worksheets;
+            //Aspose.Cells.Workbook workbook = new Aspose.Cells.Workbook(new System.IO.MemoryStream(Resources.ImpressaoCardapio));
+            //WorksheetCollection worksheets = workbook.Worksheets;
+            //StyleFlag flags = new StyleFlag
+            //{
+            //    All = true
+            //};
+            //string ultimaRefeicao = string.Empty;
+            //var linha = worksheets.GetRangeByName("colRefeicao").FirstRow;
 
-            string ultimaRefeicao = string.Empty;
-            var linha = worksheets.GetRangeByName("colRefeicao").FirstRow;
+            //worksheets.GetRangeByName("paciente").PutValue(txtPacienteConsultaCardapio.Text, false, false);
+            //Style stylePaciente = worksheets[0].Cells["B3"].GetStyle();
+            ////stylePaciente.HorizontalAlignment = TextAlignmentType.Left;
+            //stylePaciente.Font.IsBold = true;
+            //stylePaciente.Font.Size = 16;
+            //worksheets[0].Cells.Rows[linha].ApplyStyle(stylePaciente, flags);
 
-            worksheets.GetRangeByName("paciente").PutValue(txtPacienteConsultaCardapio.Text, false, false);
-            worksheets.GetRangeByName("dataConsulta").PutValue(cbxDataConsulta.Text, false, false);
+            //worksheets.GetRangeByName("dataConsulta").PutValue(cbxDataConsulta.Text, false, false);
+            //Style styleDataConsulta = worksheets[0].Cells["B3"].GetStyle();
+            ////styleDataConsulta.HorizontalAlignment = TextAlignmentType.Left;
+            //styleDataConsulta.Font.IsBold = true;
+            //styleDataConsulta.Font.Size = 16;
+            //worksheets[0].Cells.Rows[linha].ApplyStyle(styleDataConsulta, flags);
 
-            dtgCardGrid.Sort(dtgCardGrid.Columns["refeicao"], ListSortDirection.Ascending);
+            //dtgCardGrid.Sort(dtgCardGrid.Columns["refeicao"], ListSortDirection.Ascending);
 
-            foreach (DataGridViewRow row in dtgCardGrid.Rows)
-            {
-                linha += 1;
+            //foreach (DataGridViewRow row in dtgCardGrid.Rows)
+            //{            
+            //    linha += 1;
+            //    if (string.IsNullOrEmpty(ultimaRefeicao) || ultimaRefeicao != Convert.ToString(row.Cells["refeicao"].Value).ToUpper())
+            //    {
+            //        worksheets[0].Cells["A" + (linha + 1)].PutValue(Convert.ToString(row.Cells["refeicao"].Value), false, false);
+            //        Style styleCell = worksheets[0].Cells["C" + (linha + 1)].GetStyle();
+            //        //styleCell.HorizontalAlignment = TextAlignmentType.Right;
+            //        styleCell.VerticalAlignment = TextAlignmentType.Right;
+            //        styleCell.Font.IsBold = true;
+            //        worksheets[0].Cells.Rows[linha].ApplyStyle(styleCell, flags);
 
-                if (string.IsNullOrEmpty(ultimaRefeicao) || ultimaRefeicao != Convert.ToString(row.Cells["refeicao"].Value).ToUpper())
-                {
-                    worksheets[0].Cells["A" + (linha + 1)].PutValue(Convert.ToString(row.Cells["refeicao"].Value), false, false);
-                    Style styleCell = worksheets[0].Cells["C" + (linha + 1)].GetStyle();
-                    styleCell.HorizontalAlignment = TextAlignmentType.Center;
-                    styleCell.Font.IsBold = true;
+            //        ultimaRefeicao = Convert.ToString(row.Cells["refeicao"].Value).ToUpper();
+            //    }
 
-                    ultimaRefeicao = Convert.ToString(row.Cells["refeicao"].Value).ToUpper();
-                }
+            //    //if (Convert.ToString(row.Cells["alimento"].Value).Length < 15)
+            //    //{
+            //    worksheets[0].Cells["D" + (linha + 1)].PutValue(Convert.ToString(row.Cells["alimento"].Value).ToUpper(), false, false);
+            //    Style styleCellFood = worksheets[0].Cells["D" + (linha + 1)].GetStyle();
+            //    //styleCellFood.VerticalAlignment = TextAlignmentType.Center;
+            //    worksheets[0].Cells.Rows[linha].ApplyStyle(styleCellFood, flags);
 
-                //if (Convert.ToString(row.Cells["alimento"].Value).Length < 15)
-                //{
-                worksheets[0].Cells["D" + (linha + 1)].PutValue(Convert.ToString(row.Cells["alimento"].Value).ToUpper(), false, false);
-                Style styleCellFood = worksheets[0].Cells["D" + (linha + 1)].GetStyle();
-                styleCellFood.VerticalAlignment = TextAlignmentType.Justify;
-                //}
-                //else
-                //{
-                //    var obs = worksheets[0].Cells["C" + (linha + 1)];
-                //    obs.PutValue(Convert.ToString(row.Cells["alimento"].Value).Trim(), false, false);
-                //    decimal lineBreak = Math.Ceiling(Convert.ToDecimal(obs.GetWidthOfValue() / 15));
-                //    obs.Worksheet.Cells.Rows[linha + 1].Height = (double)(15 * lineBreak);
-                //    if (lineBreak > 1)
-                //        obs.Worksheet.Cells.Rows[linha + 1].Height += 3;
-                //}
+            //    //}
+            //    //else
+            //    //{
+            //    //    var obs = worksheets[0].Cells["C" + (linha + 1)];
+            //    //    obs.PutValue(Convert.ToString(row.Cells["alimento"].Value).Trim(), false, false);
+            //    //    decimal lineBreak = Math.Ceiling(Convert.ToDecimal(obs.GetWidthOfValue() / 15));
+            //    //    obs.Worksheet.Cells.Rows[linha + 1].Height = (double)(15 * lineBreak);
+            //    //    if (lineBreak > 1)
+            //    //        obs.Worksheet.Cells.Rows[linha + 1].Height += 3;
+            //    //}
 
-                worksheets[0].Cells["O" + (linha + 1)].PutValue(Convert.ToString(row.Cells["medidacaseiraqtd"].Value), false, false);
-                Style styleCellMed = worksheets[0].Cells["O" + (linha + 1)].GetStyle();
-                styleCellMed.HorizontalAlignment = TextAlignmentType.Center;
+            //    worksheets[0].Cells["O" + (linha + 1)].PutValue(Convert.ToString(row.Cells["medidacaseiraqtd"].Value), false, false);
+            //    Style styleCellMed = worksheets[0].Cells["O" + (linha + 1)].GetStyle();
+            //    styleCellMed.HorizontalAlignment = TextAlignmentType.Center;
+            //    worksheets[0].Cells.Rows[linha].ApplyStyle(styleCellMed, flags);
 
-                //if (Convert.ToString(row.Cells["observ"].Value).Length < 20)
-                //{
-                worksheets[0].Cells["P" + (linha + 1)].PutValue(Convert.ToString(row.Cells["observ"].Value).Trim());
-                Style styleCellObs = worksheets[0].Cells["P" + (linha + 1)].GetStyle();
-                styleCellObs.HorizontalAlignment = TextAlignmentType.Justify;
-                //}
-                //else
-                //{
-                //    var obs = worksheets[0].Cells["D" + (linha + 1)];
-                //    obs.PutValue(Convert.ToString(row.Cells["observ"].Value).Trim(), false, false);
-                //    decimal lineBreak = Math.Ceiling(Convert.ToDecimal(obs.GetWidthOfValue() / 75));
-                //    obs.Worksheet.Cells.Rows[linha + 1].Height = (double)(15 * lineBreak);
-                //    if (lineBreak > 1)
-                //        obs.Worksheet.Cells.Rows[linha + 1].Height += 3;
-                //}
+            //    //if (Convert.ToString(row.Cells["observ"].Value).Length < 20)
+            //    //{
+            //    worksheets[0].Cells["P" + (linha + 1)].PutValue(Convert.ToString(row.Cells["observ"].Value).Trim());
+            //    Style styleCellObs = worksheets[0].Cells["P" + (linha + 1)].GetStyle();
+            //    styleCellObs.HorizontalAlignment = TextAlignmentType.Left;
+            //    worksheets[0].Cells.Rows[linha].ApplyStyle(styleCellObs, flags);
 
-                Style styles = new Style();
-                styles.Font.Size = 14;
-                styles.HorizontalAlignment = TextAlignmentType.Justify;
+            //    //}
+            //    //else
+            //    //{
+            //    //    var obs = worksheets[0].Cells["D" + (linha + 1)];
+            //    //    obs.PutValue(Convert.ToString(row.Cells["observ"].Value).Trim(), false, false);
+            //    //    decimal lineBreak = Math.Ceiling(Convert.ToDecimal(obs.GetWidthOfValue() / 75));
+            //    //    obs.Worksheet.Cells.Rows[linha + 1].Height = (double)(15 * lineBreak);
+            //    //    if (lineBreak > 1)
+            //    //        obs.Worksheet.Cells.Rows[linha + 1].Height += 3;
+            //    //}
 
-                StyleFlag flags = new StyleFlag
-                {
-                    FontSize = true,
-                    All = true,
-                    ShrinkToFit = true
-                };
+            //    Style styles = new Style();
+            //    styles.Font.Size = 14;
+            //    styles.HorizontalAlignment = TextAlignmentType.Justify;
 
-                worksheets[0].Cells.Rows[linha].ApplyStyle(styles, flags);
-                worksheets[0].Cells.UnhideRow(linha, 17);
-            }
+            //    StyleFlag flagsF = new StyleFlag
+            //    {
+            //        FontSize = true,
+            //        All = true,
+            //        ShrinkToFit = true
+            //    };
 
-            AutoFitterOptions opt = new Aspose.Cells.AutoFitterOptions();
-            opt.OnlyAuto = true;
-            opt.IgnoreHidden = true;
+            //    worksheets[0].Cells.Rows[linha].ApplyStyle(styles, flagsF);
+            //    worksheets[0].Cells.UnhideRow(linha, 17);
+            //}
+
+            //AutoFitterOptions opt = new Aspose.Cells.AutoFitterOptions();
+            //opt.OnlyAuto = true;
+            //opt.IgnoreHidden = true;
 
             //worksheets[0].AutoFitColumns(opt);
 
-            string tempFile = Path.Combine(Path.GetTempPath(), Path.GetTempFileName().Replace(".tmp", ".pdf"));
-            workbook.Save(tempFile);
-            Process.Start(tempFile);
+            //string tempFile = Path.Combine(Path.GetTempPath(), Path.GetTempFileName().Replace(".tmp", ".pdf"));
+            //workbook.Save(tempFile);
+            //Process.Start(tempFile);
         }
 
         private void txtDataCardapio_Leave(object sender, EventArgs e)
@@ -3407,6 +3427,117 @@ namespace TCC2
         private void cbxDataCardSalvo_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnEnviarCardEmail_Click(object sender, EventArgs e)
+        {
+            loadStart(this);
+            var emailPaciente = pacienteDAO.GetEmail(Convert.ToInt32(PacienteModel.codPacienteModel));
+            string para = string.Empty;
+
+            emailPaciente.ForEach(x => {
+                para = x.email;
+            });
+
+            if (string.IsNullOrEmpty(para))
+            {
+                nMensagemAviso("Não é possível enviar o e-mail, pois o paciente não possuí e-mail cadastrado.");
+                return;
+            }
+
+            string dataConsultaCardapio = string.Empty;
+            string corpoEmail = string.Empty;
+            string refeAnte = string.Empty;
+
+            corpoEmail = $@"<h1>Cardápio referente à consulta data {dataConsultaCardapio}</h1>" + Environment.NewLine;
+
+            corpoEmail += $@"<table cellpadding='5' cellspacing='0' style='border: 1px solid #ccc;font-size: 9pt'>" + Environment.NewLine;
+            corpoEmail += $@"<th style='background-color: #33FFAC;border: 1px solid #ccc;width: 200px'> Refeição </th>" + Environment.NewLine;
+            corpoEmail += $@"<th style='background-color: #33FFAC;border: 1px solid #ccc;width: 200px'> Alimento </th>" + Environment.NewLine;
+            corpoEmail += $@"<th style='background-color: #33FFAC;border: 1px solid #ccc;width: 200px'> Quantidade </th>" + Environment.NewLine;
+            corpoEmail += $@"<th style='background-color: #33FFAC;border: 1px solid #ccc;width: 200px'> Observação </th>" + Environment.NewLine;
+
+            foreach (DataGridViewRow row in dtgCardGrid.Rows)
+            {
+                corpoEmail += $@"<tr>" + Environment.NewLine;
+                if (Convert.ToString(row.Cells[refeicao.Index].Value) == "Café da manhã")
+                {
+                    corpoEmail = PreencherCorpoEmail(corpoEmail,Convert.ToString(row.Cells[refeicao.Index].Value),
+                        Convert.ToString(row.Cells[alimento.Index].Value), 
+                        Convert.ToString(row.Cells[medidacaseiraqtd.Index].Value), 
+                        Convert.ToString(row.Cells[observ.Index].Value),
+                        refeAnte);
+                }
+                else if (Convert.ToString(row.Cells[refeicao.Index].Value) == "Lanche")
+                {
+                    corpoEmail = PreencherCorpoEmail(corpoEmail, Convert.ToString(row.Cells[refeicao.Index].Value),
+                       Convert.ToString(row.Cells[alimento.Index].Value),
+                       Convert.ToString(row.Cells[medidacaseiraqtd.Index].Value),
+                       Convert.ToString(row.Cells[observ.Index].Value),
+                       refeAnte);
+                }
+                else if (Convert.ToString(row.Cells[refeicao.Index].Value) == "Almoço")
+                {
+                    corpoEmail = PreencherCorpoEmail(corpoEmail, Convert.ToString(row.Cells[refeicao.Index].Value),
+                        Convert.ToString(row.Cells[alimento.Index].Value),
+                        Convert.ToString(row.Cells[medidacaseiraqtd.Index].Value),
+                        Convert.ToString(row.Cells[observ.Index].Value),
+                        refeAnte);
+                }
+                else if (Convert.ToString(row.Cells[refeicao.Index].Value) == "Lanche da tarde")
+                {
+                    corpoEmail = PreencherCorpoEmail(corpoEmail, Convert.ToString(row.Cells[refeicao.Index].Value),
+                        Convert.ToString(row.Cells[alimento.Index].Value),
+                        Convert.ToString(row.Cells[medidacaseiraqtd.Index].Value),
+                        Convert.ToString(row.Cells[observ.Index].Value),
+                        refeAnte);
+                }
+                else if (Convert.ToString(row.Cells[refeicao.Index].Value) == "Jantar")
+                {
+                    corpoEmail = PreencherCorpoEmail(corpoEmail, Convert.ToString(row.Cells[refeicao.Index].Value),
+                        Convert.ToString(row.Cells[alimento.Index].Value),
+                        Convert.ToString(row.Cells[medidacaseiraqtd.Index].Value),
+                        Convert.ToString(row.Cells[observ.Index].Value),
+                        refeAnte);
+                }
+                else if (Convert.ToString(row.Cells[refeicao.Index].Value) == "Ceia")
+                {
+                    corpoEmail = PreencherCorpoEmail(corpoEmail, Convert.ToString(row.Cells[refeicao.Index].Value),
+                        Convert.ToString(row.Cells[alimento.Index].Value),
+                        Convert.ToString(row.Cells[medidacaseiraqtd.Index].Value),
+                        Convert.ToString(row.Cells[observ.Index].Value),
+                        refeAnte);
+                }
+                refeAnte = Convert.ToString(row.Cells[refeicao.Index].Value);
+                corpoEmail += $@"</tr>" + Environment.NewLine;
+            }
+            corpoEmail += $@"</table>" + Environment.NewLine;
+
+            string erro = SenderMail(para, "nutriez.suporte@gmail.com", "Cardápio", corpoEmail.Replace("'","\""));
+
+            if (!string.IsNullOrEmpty(erro))
+            {
+                loadStop(this);
+                nMensagemErro(erro);
+            }
+
+            loadStop(this);
+        }
+
+        private static string PreencherCorpoEmail(string corpoEmail, string refeicao, string alimento, string quantidade, string observacao, string refeicaoAnterior)
+        {
+            if(string.IsNullOrEmpty(refeicao) || refeicao != refeicaoAnterior)
+            {
+                corpoEmail += $@"<td style='width: 120px; border: 1px solid #ccc'>{refeicao}</td>" + Environment.NewLine;
+            }
+            else
+            {
+                corpoEmail += $@"<td style='width: 120px; border: 1px solid #ccc'> </td>" + Environment.NewLine;
+            }
+            corpoEmail += $@"<td style='width: 120px;border: 1px solid #ccc'>{alimento}</td>" + Environment.NewLine;
+            corpoEmail += $@"<td style='width: 120px;border: 1px solid #ccc'>{quantidade}</td>" + Environment.NewLine;
+            corpoEmail += $@"<td style='width: 120px;border: 1px solid #ccc'>{observacao}</td>" + Environment.NewLine;
+            return corpoEmail;
         }
     }
 }

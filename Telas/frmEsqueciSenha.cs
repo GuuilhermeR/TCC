@@ -31,6 +31,7 @@ namespace TCC2.Telas
             var listaUsuarios = usuarioDAO.getEmail((mTxtEmailRecuperar.Text));
             if (listaUsuarios == null || listaUsuarios.Count <= 0)
                 return;
+
             string retorno = string.Empty;
             
             listaUsuarios.ForEach(x =>
@@ -74,43 +75,14 @@ namespace TCC2.Telas
 
                       </html> ";
 
-                System.Net.Mail.MailMessage objEmail = new System.Net.Mail.MailMessage();
+                string erro = SenderMail(para, Remetente, Assunto, enviaMensagem);
 
-                System.Net.Mail.MailAddress enviadoPor = new System.Net.Mail.MailAddress(Remetente);
-                objEmail.From = enviadoPor;
-                objEmail.To.Add(para);
-                objEmail.Subject = Assunto;
-                objEmail.Body = enviaMensagem;
-                objEmail.Priority = System.Net.Mail.MailPriority.High;
-
-                System.Net.Mail.SmtpClient server = new System.Net.Mail.SmtpClient();
-                server.UseDefaultCredentials = false;
-                server.Credentials = new NetworkCredential("nutriez.suporte@gmail.com", "Guilherme@1");
-
-                objEmail.IsBodyHtml = true;
-                server.Host = "smtp.gmail.com";
-                server.Port = 587;
-
-                try
+                if (!string.IsNullOrEmpty(erro))
                 {
-                    server.EnableSsl = true;
-                    server.Send(objEmail);
-                    usuarioDAO.SalvarNovaSenha(usuario, novaSenha);
-                }
-                catch
-                {
-                    server.Port = 25;
-                    try
-                    {
-                        server.Send(objEmail);
-                        usuarioDAO.SalvarNovaSenha(usuario, novaSenha);
-                    }
-                    catch (Exception ex1)
-                    {
-                        return ex1.Message;
-                    }
+                    return erro;
                 }
 
+                usuarioDAO.SalvarNovaSenha(usuario, novaSenha);
                 return "Uma nova senha foi enviado para o seu e-mail";
             }
             catch (Exception ex)
@@ -118,7 +90,6 @@ namespace TCC2.Telas
                 string erro = ex.InnerException.ToString();
                 return ex.Message.ToString() + erro;
             }
-
         }
         public static bool ValidaEnderecoEmail(string enderecoEmail)
         {

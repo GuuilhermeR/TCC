@@ -154,5 +154,27 @@ namespace ProjetoTCC
                 return null;
             }
         }
+
+        public List<Paciente> GetEmail(int codPaciente)
+        {
+            try
+            {
+                var pacienteBuscar = (from p in BancoDadosSingleton.Instance.Paciente where p.codPaciente == codPaciente select p).ToList();
+
+                if (pacienteBuscar.Count > 0)
+                {
+                    return pacienteBuscar;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
     }
 }

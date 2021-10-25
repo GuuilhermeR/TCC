@@ -159,6 +159,7 @@ C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\LiveCharts.WinForms.pdb
 C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\LiveCharts.Wpf.dll
 C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\LiveCharts.Wpf.pdb
 C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\MaterialSkin.dll
+C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\Microsoft.Office.Interop.Excel.dll
 C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\System.Data.SQLite.dll
 C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\System.Data.SQLite.EF6.dll
 C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\System.Data.SQLite.Linq.dll
@@ -174,6 +175,7 @@ C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.Telas.frmGraficoPaciente.r
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.FrmMenuPrincipal.resources
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.frmTelaLogin.resources
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.Properties.Resources.resources
+C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.Telas.frmTemplatesAnamnese.resources
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.Telas.frmWait.resources
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.csproj.GenerateResource.cache
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.exe.licenses
@@ -181,6 +183,3 @@ C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.csproj.CoreCompileInputs.c
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.csproj.CopyComplete
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.exe
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.pdb
-C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\Microsoft.Office.Interop.Excel.dll
-C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.Telas.frmTemplatesAnamnese.resources
-C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.csproj.AssemblyReference.cache

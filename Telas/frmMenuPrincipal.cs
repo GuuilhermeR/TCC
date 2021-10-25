@@ -62,6 +62,12 @@ namespace TCC2
         private bool usuarioViaLogin = false;
         #endregion
 
+        #region Listas Pré Carregadas
+        List<Alimentos> listaAlimentosCardapio = new List<Alimentos>();
+        List<Alimentos> listaAlimentos = new List<Alimentos>();
+
+        #endregion
+
         #region Menu
         public FrmMenuPrincipal(string usuarioLogado, bool utilizouLogin)
         {
@@ -83,6 +89,7 @@ namespace TCC2
             }
             linkLabel1.Links.Add(0, linkLabel1.Text.Length,"https://www.globo.com/");
             calAgendamento.MaximumViewDays = 70000;
+
             //this.MaximizeBox = false;
 
             if (usuarioDAO.getNomeUsuario() != null)
@@ -1213,24 +1220,24 @@ namespace TCC2
         {
             //frmWait wait = new frmWait();
             //wait.Show();
-            dtgConAlimento.DataSource = null;
-            var listaAlimentos = alimentoDAO.Buscar(string.Empty, cbxTabela.Text);
-            if (listaAlimentos == null)
-                return;
-            DataTable dt = ConvertToDataTable(listaAlimentos);
-            dtgConAlimento.DataSource = dt;
-            dtgConAlimento.Columns["codAlimento"].Visible = false;
-            dtgConAlimento.Columns["nomeAlimento"].HeaderText = "Alimento";
-            dtgConAlimento.Columns["nomeAlimento"].Width = 450;
-            dtgConAlimento.Columns["qtd"].HeaderText = "Qtde";
-            dtgConAlimento.Columns["prot"].HeaderText = "Proteína";
-            dtgConAlimento.Columns["carbo"].HeaderText = "Carboidrato";
-            dtgConAlimento.Columns["lipidio"].HeaderText = "Lipídio";
-            dtgConAlimento.Columns["nomeTabela"].Visible = false;
-            dtgConAlimento.Columns["MedidaCaseira"].Visible = false;
-            dtgConAlimento.Columns["Cardapio"].Visible = false;
+            //dtgConAlimento.DataSource = null;
+            //var listaAlimentos = alimentoDAO.Buscar(string.Empty, cbxTabela.Text);
+            //if (listaAlimentos == null)
+            //    return;
+            //DataTable dt = ConvertToDataTable(listaAlimentos);
+            //dtgConAlimento.DataSource = dt;
+            //dtgConAlimento.Columns["codAlimento"].Visible = false;
+            //dtgConAlimento.Columns["nomeAlimento"].HeaderText = "Alimento";
+            //dtgConAlimento.Columns["nomeAlimento"].Width = 450;
+            //dtgConAlimento.Columns["qtd"].HeaderText = "Qtde";
+            //dtgConAlimento.Columns["prot"].HeaderText = "Proteína";
+            //dtgConAlimento.Columns["carbo"].HeaderText = "Carboidrato";
+            //dtgConAlimento.Columns["lipidio"].HeaderText = "Lipídio";
+            //dtgConAlimento.Columns["nomeTabela"].Visible = false;
+            //dtgConAlimento.Columns["MedidaCaseira"].Visible = false;
+            //dtgConAlimento.Columns["Cardapio"].Visible = false;
             //wait.Hide();
-            return;
+            //return;
 
         }
         private void mCbxTabelasMedCas_SelectedValueChanged(object sender, EventArgs e)
@@ -1243,29 +1250,47 @@ namespace TCC2
             dtgMedCaseiraAlimentos.Columns["carbo"].Visible = false;
             dtgMedCaseiraAlimentos.Columns["lipidio"].Visible = false;
         }
-
         private void CarregarAlimentos(string nomeAlimento, string nomeTabela, DataGridView dtg)
         {
             loadStart(this);
-            var listaAlimentos = alimentoDAO.Buscar(nomeAlimento, nomeTabela);
+            listaAlimentos.Clear();
+            listaAlimentos = alimentoDAO.Buscar(nomeAlimento, nomeTabela);
             if (listaAlimentos == null)
             {
                 loadStop(this);
                 return;
             }
-            DataTable dt = ConvertToDataTable(listaAlimentos);
-            dtg.DataSource = dt;
+            //DataTable dt = ConvertToDataTable(listaAlimentos);
+            //dtg.DataSource = dt;
 
-            dtg.Columns["codAlimento"].Visible = false;
-            dtg.Columns["qtd"].HeaderText = "Quantidade";
-            dtg.Columns["kcal"].HeaderText = "KCal";
-            dtg.Columns["prot"].HeaderText = "Proteína";
-            dtg.Columns["carbo"].HeaderText = "Carboidrato";
-            dtg.Columns["lipidio"].HeaderText = "Lipídio";
-            dtg.Columns["MedidaCaseira"].Visible = false;
-            dtg.Columns["Cardapio"].Visible = false;
-            dtg.Columns["nomeTabela"].HeaderText = "Tabela";
-            dtg.Columns["nomeAlimento"].HeaderText = "Alimento";
+            if(dtg.Columns.Count == 0)
+            {
+                dtg.Columns.Add("codAlimento", "Código");
+                dtg.Columns.Add("nomeAlimento", "Alimento");
+                dtg.Columns.Add("qtd", "Quantidade");
+                dtg.Columns.Add("kcal", "KCal");
+                dtg.Columns.Add("prot", "Proteína");
+                dtg.Columns.Add("carbo", "Carboidrato");
+                dtg.Columns.Add("lipidio", "Lipídio");
+                dtg.Columns.Add("nomeTabela", "Tabela");
+                dtg.Columns["codAlimento"].Visible = false;
+            }
+
+            listaAlimentos.ForEach(x =>
+            {
+                dtg.Rows.Add(x.codAlimento, x.nomeAlimento, x.qtd, x.kcal, x.prot, x.carbo, x.lipidio, x.nomeTabela);
+            });
+
+            //dtg.Columns["codAlimento"].Visible = false;
+            //dtg.Columns["qtd"].HeaderText = "Quantidade";
+            //dtg.Columns["kcal"].HeaderText = "KCal";
+            //dtg.Columns["prot"].HeaderText = "Proteína";
+            //dtg.Columns["carbo"].HeaderText = "Carboidrato";
+            //dtg.Columns["lipidio"].HeaderText = "Lipídio";
+            //dtg.Columns["MedidaCaseira"].Visible = false;
+            //dtg.Columns["Cardapio"].Visible = false;
+            //dtg.Columns["nomeTabela"].HeaderText = "Tabela";
+            //dtg.Columns["nomeAlimento"].HeaderText = "Alimento";
 
             dtg.AutoResizeColumns();
             loadStop(this);
@@ -2474,27 +2499,49 @@ namespace TCC2
 
         private void txtFiltroAlimento_Leave(object sender, EventArgs e)
         {
-            if (txtFiltroAlimento.Text != string.Empty)
+            loadStart(this);
+            if (dtgCardapioAlimentos.Columns.Count == 0)
             {
-                var listaAlimentos = alimentoDAO.Buscar(txtFiltroAlimento.Text, cbxTabelaAlimentoCardapio.Text);
-                if (listaAlimentos == null)
-                    return;
-                else if (listaAlimentos.Count == 0)
-                    return;
-                dtgCardapioAlimentos.DataSource = null;
-                DataTable dt = ConvertToDataTable(listaAlimentos);
-                dtgCardapioAlimentos.DataSource = dt;
+                dtgCardapioAlimentos.Columns.Add("codAlimento", "Código");
+                dtgCardapioAlimentos.Columns.Add("nomeAlimento", "Alimento");
+                dtgCardapioAlimentos.Columns.Add("kcal", "KCal");
+                dtgCardapioAlimentos.Columns.Add("qtd", "Qtd");
+                dtgCardapioAlimentos.Columns.Add("prot", "Prot");
+                dtgCardapioAlimentos.Columns.Add("carbo", "Carbo");
+                dtgCardapioAlimentos.Columns.Add("lipidio", "Lipídio");
                 dtgCardapioAlimentos.Columns["codAlimento"].Visible = false;
-                dtgCardapioAlimentos.Columns["nomeAlimento"].HeaderText = "Alimento";
-                dtgCardapioAlimentos.Columns["kcal"].HeaderText = "KCal";
-                dtgCardapioAlimentos.Columns["qtd"].HeaderText = "Qtd";
-                dtgCardapioAlimentos.Columns["prot"].HeaderText = "Prot";
-                dtgCardapioAlimentos.Columns["carbo"].HeaderText = "Carbo";
-                dtgCardapioAlimentos.Columns["lipidio"].HeaderText = "Lipídio";
-                dtgCardapioAlimentos.Columns["nomeTabela"].Visible = false;
-                dtgCardapioAlimentos.Columns["MedidaCaseira"].Visible = false;
-                dtgCardapioAlimentos.Columns["Cardapio"].Visible = false;
-                dtgCardapioAlimentos.AutoResizeColumns();
+                dtgCardapioAlimentos.Columns["kcal"].Visible = false;
+                dtgCardapioAlimentos.Columns["qtd"].Visible = false;
+                dtgCardapioAlimentos.Columns["prot"].Visible = false;
+                dtgCardapioAlimentos.Columns["carbo"].Visible = false;
+                dtgCardapioAlimentos.Columns["lipidio"].Visible = false;
+            }
+            dtgCardapioAlimentos.Rows.Clear();
+            FiltrarAlimentoTabela(txtFiltroAlimento.Text, cbxTabelaAlimentoCardapio.Text, listaAlimentosCardapio, dtgCardapioAlimentos);
+            dtgCardapioAlimentos.AutoResizeColumns();
+            loadStop(this);
+        }
+
+        private void FiltrarAlimentoTabela(string filtroAlimento, string nomeTabela, List<Alimentos> listaCarregada, DataGridView dtg)
+        {
+            if (filtroAlimento != string.Empty)
+            {
+                string filtro = filtroAlimento.Trim();
+               
+                listaCarregada.ForEach(x =>
+                {
+                    if (x.nomeAlimento.ToUpper().Contains(filtroAlimento.ToUpper().Trim()) && x.nomeTabela.ToUpper().Equals(nomeTabela.ToUpper()))
+                    {
+                        dtg.Rows.Add(x.codAlimento, x.nomeAlimento, x.kcal, x.qtd, x.prot, x.carbo, x.lipidio);
+                    }
+                });
+            }
+            else
+            {
+                listaAlimentosCardapio.ForEach(x =>
+                {
+                    dtg.Rows.Add(x.codAlimento, x.nomeAlimento, x.kcal, x.qtd, x.prot, x.carbo, x.lipidio);
+                });
             }
         }
 
@@ -2557,29 +2604,51 @@ namespace TCC2
             if (cbxTabelaAlimentoCardapio.Text != string.Empty)
             {
                 loadStart(this);
-
-                var listaAlimentos = alimentoDAO.Buscar(string.Empty, cbxTabelaAlimentoCardapio.Text);
-                if (listaAlimentos == null)
+                dtgCardapioAlimentos.Rows.Clear();
+                listaAlimentosCardapio.Clear();
+                listaAlimentosCardapio = alimentoDAO.Buscar(string.Empty, cbxTabelaAlimentoCardapio.Text);
+                if (listaAlimentosCardapio == null)
                 {
                     loadStop(this);
                     return;
                 }
 
-                DataTable dt = ConvertToDataTable(listaAlimentos);
-                dtgCardapioAlimentos.DataSource = dt;
+                //DataTable dt = ConvertToDataTable(listaAlimentosCardápio);
+                //dtgCardapioAlimentos.DataSource = dt;
 
-                dtgCardapioAlimentos.Columns["codAlimento"].Visible = false;
-                dtgCardapioAlimentos.Columns["nomeAlimento"].HeaderText = "Alimento";
-                dtgCardapioAlimentos.Columns["kcal"].Visible = false;
-                dtgCardapioAlimentos.Columns["qtd"].Visible = false;
-                dtgCardapioAlimentos.Columns["prot"].Visible = false;
-                dtgCardapioAlimentos.Columns["carbo"].Visible = false;
-                dtgCardapioAlimentos.Columns["lipidio"].Visible = false;
-                dtgCardapioAlimentos.Columns["nomeTabela"].Visible = false;
-                dtgCardapioAlimentos.Columns["MedidaCaseira"].Visible = false;
-                dtgCardapioAlimentos.Columns["Cardapio"].Visible = false;
-                dtgCardapioAlimentos.AutoResizeColumns();
-                dtgCardapioAlimentos.Columns["nomeAlimento"].ReadOnly = true;
+                if (dtgCardapioAlimentos.Columns.Count == 0)
+                {
+                    dtgCardapioAlimentos.Columns.Add("codAlimento", "Código");
+                    dtgCardapioAlimentos.Columns.Add("nomeAlimento", "Alimento");
+                    dtgCardapioAlimentos.Columns.Add("kcal", "KCal");
+                    dtgCardapioAlimentos.Columns.Add("qtd", "Qtd");
+                    dtgCardapioAlimentos.Columns.Add("prot", "Prot");
+                    dtgCardapioAlimentos.Columns.Add("carbo", "Carbo");
+                    dtgCardapioAlimentos.Columns.Add("lipidio", "Lipídio");
+                    dtgCardapioAlimentos.Columns["codAlimento"].Visible = false;
+                    dtgCardapioAlimentos.Columns["nomeAlimento"].ReadOnly = true;
+                    dtgCardapioAlimentos.Columns["kcal"].Visible = false;
+                    dtgCardapioAlimentos.Columns["qtd"].Visible = false;
+                    dtgCardapioAlimentos.Columns["prot"].Visible = false;
+                    dtgCardapioAlimentos.Columns["carbo"].Visible = false;
+                    dtgCardapioAlimentos.Columns["lipidio"].Visible = false;
+                }
+
+                listaAlimentosCardapio.ForEach(x => {
+                        dtgCardapioAlimentos.Rows.Add(x.codAlimento, x.nomeAlimento, x.kcal, x.qtd, x.prot, x.carbo, x.lipidio);
+                });
+
+                //dtgCardapioAlimentos.Columns["codAlimento"].Visible = false;
+                //dtgCardapioAlimentos.Columns["nomeAlimento"].HeaderText = "Alimento";
+                //dtgCardapioAlimentos.Columns["kcal"].Visible = false;
+                //dtgCardapioAlimentos.Columns["qtd"].Visible = false;
+                //dtgCardapioAlimentos.Columns["prot"].Visible = false;
+                //dtgCardapioAlimentos.Columns["carbo"].Visible = false;
+                //dtgCardapioAlimentos.Columns["lipidio"].Visible = false;
+                //dtgCardapioAlimentos.Columns["nomeTabela"].Visible = false;
+                //dtgCardapioAlimentos.Columns["MedidaCaseira"].Visible = false;
+                //dtgCardapioAlimentos.Columns["Cardapio"].Visible = false;
+                //dtgCardapioAlimentos.AutoResizeColumns();
                 loadStop(this);
 
             }
@@ -2991,21 +3060,40 @@ namespace TCC2
                     return;
                 }
 
-                DataTable dt = ConvertToDataTable(listaAlimentos);
-                dtgCardapioAlimentos.DataSource = dt;
+                if (dtgConAlimento.Columns.Count == 0)
+                {
+                    dtgConAlimento.Columns.Add("codAlimento", "Código");
+                    dtgConAlimento.Columns.Add("nomeAlimento", "Alimento");
+                    dtgConAlimento.Columns.Add("kcal", "KCal");
+                    dtgConAlimento.Columns.Add("qtd", "Qtd");
+                    dtgConAlimento.Columns.Add("prot", "Prot");
+                    dtgConAlimento.Columns.Add("carbo", "Carbo");
+                    dtgConAlimento.Columns.Add("lipidio", "Lipídio");
+                    dtgConAlimento.Columns["codAlimento"].Visible = false;
+                    dtgConAlimento.Columns["nomeAlimento"].ReadOnly = true;
+                    dtgConAlimento.Columns["kcal"].Visible = false;
+                    dtgConAlimento.Columns["qtd"].Visible = false;
+                    dtgConAlimento.Columns["prot"].Visible = false;
+                    dtgConAlimento.Columns["carbo"].Visible = false;
+                    dtgConAlimento.Columns["lipidio"].Visible = false;
+                }
+                dtgConAlimento.Rows.Clear();
+                FiltrarAlimentoTabela(txtAlimentoFiltro.Text, cbxTabela.Text,listaAlimentos, dtgConAlimento);
 
-                dtgCardapioAlimentos.Columns["codAlimento"].Visible = false;
-                dtgCardapioAlimentos.Columns["nomeAlimento"].HeaderText = "Alimento";
-                dtgCardapioAlimentos.Columns["kcal"].Visible = false;
-                dtgCardapioAlimentos.Columns["qtd"].Visible = false;
-                dtgCardapioAlimentos.Columns["prot"].Visible = false;
-                dtgCardapioAlimentos.Columns["carbo"].Visible = false;
-                dtgCardapioAlimentos.Columns["lipidio"].Visible = false;
-                dtgCardapioAlimentos.Columns["nomeTabela"].Visible = false;
-                dtgCardapioAlimentos.Columns["MedidaCaseira"].Visible = false;
-                dtgCardapioAlimentos.Columns["Cardapio"].Visible = false;
-                dtgCardapioAlimentos.AutoResizeColumns();
-                dtgCardapioAlimentos.Columns["nomeAlimento"].ReadOnly = true;
+                //DataTable dt = ConvertToDataTable(listaAlimentos);
+                //dtgCardapioAlimentos.DataSource = dt;
+
+                //dtgCardapioAlimentos.Columns["codAlimento"].Visible = false;
+                //dtgCardapioAlimentos.Columns["nomeAlimento"].HeaderText = "Alimento";
+                //dtgCardapioAlimentos.Columns["kcal"].Visible = false;
+                //dtgCardapioAlimentos.Columns["qtd"].Visible = false;
+                //dtgCardapioAlimentos.Columns["prot"].Visible = false;
+                //dtgCardapioAlimentos.Columns["carbo"].Visible = false;
+                //dtgCardapioAlimentos.Columns["lipidio"].Visible = false;
+                //dtgCardapioAlimentos.Columns["nomeTabela"].Visible = false;
+                //dtgCardapioAlimentos.Columns["MedidaCaseira"].Visible = false;
+                //dtgCardapioAlimentos.Columns["Cardapio"].Visible = false;
+                dtgConAlimento.AutoResizeColumns();
                 loadStop(this);
             }
         }

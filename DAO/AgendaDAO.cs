@@ -143,8 +143,8 @@ namespace ProjetoTCC
                                                      $"WHERE ID ={ID} ";
                     update.ExecuteNonQuery();
                     db.Database.Connection.Close();
-                    BancoDadosSingleton.Instance.Entry(update).State = EntityState.Modified;
                     BancoDadosSingleton.Instance.SaveChanges();
+                    BancoDadosSingleton.Instance.Entry(update).State = EntityState.Modified;
                 }
 
                 nMensagemAviso("Consulta do paciente atualizado.");

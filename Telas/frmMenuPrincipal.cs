@@ -2125,7 +2125,7 @@ namespace TCC2
                 return;
             }
 
-            if (!string.IsNullOrEmpty(grauAtividadeDRI))
+            if (string.IsNullOrEmpty(grauAtividadeDRI))
             {
                 nMensagemAlerta("É necessário informar o grau de atividade!");
                 return;

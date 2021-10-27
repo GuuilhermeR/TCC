@@ -56,32 +56,14 @@ namespace ProjetoTCC
                 {
                     using (var db = new NutreasyEntities())
                     {
-                        var select = db.Database.Connection.CreateCommand();
-                        select.CommandText = $"UPDATE Antropometria SET altura, braco, punho, cintura, torax, quadril, panturrilha, antebraco, coxa, peso, pescoco, abdome " +
+                        var update = db.Database.Connection.CreateCommand();
+                        update.CommandText = $"UPDATE Antropometria SET altura={altura}, braco={braco}, punho={punho}, cintura={cintura}, torax={torax}, quadril={quadril}" +
+                            $", panturrilha={panturrilha}, antebraco={antebraco}, coxa={coxa}, peso={peso}, pescoco={pescoco}, abdome={abdome}, grauAtividade='{grauAtividade}'" +
                             $"WHERE codPaciente = {codPaciente} AND Data='{date.ToString("yyyy-MM-dd HH:mm")}'";
                         db.Database.Connection.Open();
-                        select.ExecuteNonQuery();                        
+                        update.ExecuteNonQuery();                        
                         db.Database.Connection.Close();
                     }
-                    var antroUpdate = (from ali in BancoDadosSingleton.Instance.Antropometria where ali.codPaciente == codPaciente && ali.Data == Convert.ToDateTime(data) select ali).Single();
-
-                    antroUpdate.codPaciente = codPaciente;
-                    antroUpdate.altura = altura;
-                    antroUpdate.antebraco = antebraco;
-                    antroUpdate.braco = braco;
-                    antroUpdate.cintura = cintura;
-                    antroUpdate.coxa = coxa;
-                    antroUpdate.panturrilha = panturrilha;
-                    antroUpdate.peso = peso;
-                    antroUpdate.punho = punho;
-                    antroUpdate.quadril = quadril;
-                    antroUpdate.torax = torax;
-                    antroUpdate.pescoco = pescoco;
-                    antroUpdate.abdome = abdome;
-                    antroUpdate.grauAtividade = grauAtividade;
-
-                    BancoDadosSingleton.Instance.SaveChanges();
-                    BancoDadosSingleton.Instance.Entry(antroUpdate).State = EntityState.Modified;
                 }
                
                 nMensagemAviso("Antropometria foi salvo!");

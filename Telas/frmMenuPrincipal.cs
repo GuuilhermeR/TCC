@@ -3640,5 +3640,13 @@ namespace TCC2
         {
             //System.Diagnostics.Process.Start(e.Link.LinkData.ToString());
         }
+
+        private void dtgConfigHorario_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            //if (!string.IsNullOrEmpty(dtgConfigHorario.SelectedRows.Value.ToString()))
+            //{
+            //    configDAO.RemoverConfig(usuarioDAO.getUsuario(), dtgConfigHorario.Rows[e.Row.Index].Cells["diaSemana"].Value.ToString());
+            //}
+        }
     }
 }

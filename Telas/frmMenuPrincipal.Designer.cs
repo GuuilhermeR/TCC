@@ -31,15 +31,15 @@ namespace TCC2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange8 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange9 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange10 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange11 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange12 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange13 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange14 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange15 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange16 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange17 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange18 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange19 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange20 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange21 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMenuPrincipal));
             this.TabControlNutreasy = new MaterialSkin.Controls.MaterialTabControl();
             this.tabMenu = new System.Windows.Forms.TabPage();
@@ -599,9 +599,10 @@ namespace TCC2
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(1109, 6);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(1082, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(96, 100);
+            this.groupBox1.Size = new System.Drawing.Size(128, 142);
             this.groupBox1.TabIndex = 312;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Legenda";
@@ -612,9 +613,10 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(33, 77);
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(33, 106);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(53, 13);
+            this.label9.Size = new System.Drawing.Size(78, 20);
             this.label9.TabIndex = 319;
             this.label9.Text = "Pendente";
             // 
@@ -624,9 +626,10 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(33, 58);
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(33, 80);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(49, 13);
+            this.label8.Size = new System.Drawing.Size(73, 20);
             this.label8.TabIndex = 318;
             this.label8.Text = "Atendido";
             // 
@@ -636,9 +639,10 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(33, 39);
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(33, 54);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(45, 13);
+            this.label6.Size = new System.Drawing.Size(67, 20);
             this.label6.TabIndex = 317;
             this.label6.Text = "Retorno";
             // 
@@ -648,9 +652,10 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(33, 21);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(33, 24);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 13);
+            this.label5.Size = new System.Drawing.Size(85, 20);
             this.label5.TabIndex = 316;
             this.label5.Text = "Cancelado";
             // 
@@ -661,10 +666,11 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.LightYellow;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(11, 77);
+            this.label4.Location = new System.Drawing.Point(11, 106);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(16, 13);
+            this.label4.Size = new System.Drawing.Size(21, 20);
             this.label4.TabIndex = 315;
             this.label4.Text = "   ";
             // 
@@ -675,10 +681,11 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.LightGreen;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(11, 58);
+            this.label3.Location = new System.Drawing.Point(11, 80);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(16, 13);
+            this.label3.Size = new System.Drawing.Size(21, 20);
             this.label3.TabIndex = 314;
             this.label3.Text = "   ";
             // 
@@ -689,10 +696,11 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.LightCyan;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(11, 39);
+            this.label2.Location = new System.Drawing.Point(11, 54);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(16, 13);
+            this.label2.Size = new System.Drawing.Size(21, 20);
             this.label2.TabIndex = 313;
             this.label2.Text = "   ";
             // 
@@ -703,10 +711,11 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Tomato;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(11, 21);
+            this.label1.Location = new System.Drawing.Point(11, 24);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(16, 13);
+            this.label1.Size = new System.Drawing.Size(21, 20);
             this.label1.TabIndex = 312;
             this.label1.Text = "   ";
             // 
@@ -818,35 +827,35 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.calAgendamento.BackColor = System.Drawing.SystemColors.Control;
             this.calAgendamento.Font = new System.Drawing.Font("Segoe UI", 9F);
-            calendarHighlightRange8.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange8.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange8.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange9.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange9.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange9.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange10.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange10.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange10.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange11.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange11.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange11.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange12.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange12.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange12.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange13.DayOfWeek = System.DayOfWeek.Saturday;
-            calendarHighlightRange13.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange13.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange14.DayOfWeek = System.DayOfWeek.Sunday;
-            calendarHighlightRange14.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange14.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange15.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange15.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange15.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange16.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange16.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange16.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange17.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange17.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange17.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange18.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange18.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange18.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange19.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange19.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange19.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange20.DayOfWeek = System.DayOfWeek.Saturday;
+            calendarHighlightRange20.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange20.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange21.DayOfWeek = System.DayOfWeek.Sunday;
+            calendarHighlightRange21.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange21.StartTime = System.TimeSpan.Parse("00:00:00");
             this.calAgendamento.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
-        calendarHighlightRange8,
-        calendarHighlightRange9,
-        calendarHighlightRange10,
-        calendarHighlightRange11,
-        calendarHighlightRange12,
-        calendarHighlightRange13,
-        calendarHighlightRange14};
+        calendarHighlightRange15,
+        calendarHighlightRange16,
+        calendarHighlightRange17,
+        calendarHighlightRange18,
+        calendarHighlightRange19,
+        calendarHighlightRange20,
+        calendarHighlightRange21};
             this.calAgendamento.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.calAgendamento.ItemsTimeFormat = "hh:mm";
             this.calAgendamento.Location = new System.Drawing.Point(3, 195);
@@ -1141,16 +1150,16 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dtgDadosImportados.BackgroundColor = System.Drawing.Color.White;
             this.dtgDadosImportados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.Format = "N2";
-            dataGridViewCellStyle3.NullValue = "0";
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgDadosImportados.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.Format = "N2";
+            dataGridViewCellStyle5.NullValue = "0";
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgDadosImportados.DefaultCellStyle = dataGridViewCellStyle5;
             this.dtgDadosImportados.Location = new System.Drawing.Point(9, 2);
             this.dtgDadosImportados.Name = "dtgDadosImportados";
             this.dtgDadosImportados.RowHeadersWidth = 51;
@@ -1876,14 +1885,14 @@ namespace TCC2
             this.lipidio,
             this.cbxMedCaseira,
             this.obs});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgRefeicoes.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgRefeicoes.DefaultCellStyle = dataGridViewCellStyle6;
             this.dtgRefeicoes.Location = new System.Drawing.Point(590, 117);
             this.dtgRefeicoes.Name = "dtgRefeicoes";
             this.dtgRefeicoes.RowHeadersWidth = 51;
@@ -3792,6 +3801,7 @@ namespace TCC2
             this.dtgConfigHorario.Size = new System.Drawing.Size(1192, 440);
             this.dtgConfigHorario.TabIndex = 5;
             this.dtgConfigHorario.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgConfigHorario_CellDoubleClick);
+            this.dtgConfigHorario.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dtgConfigHorario_UserDeletedRow);
             // 
             // txtHoraFim
             // 

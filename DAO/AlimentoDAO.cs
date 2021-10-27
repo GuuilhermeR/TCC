@@ -27,11 +27,11 @@ namespace ProjetoTCC
                 Alimentos alimentosInsert = new Alimentos();
 
                 alimentosInsert.nomeAlimento = alimento;
-                alimentosInsert.qtd = qtd;
-                alimentosInsert.kcal = kCal;
-                alimentosInsert.prot = proteina;
-                alimentosInsert.carbo = carboidrato;
-                alimentosInsert.lipidio = lipidio;
+                alimentosInsert.qtd = Math.Round(qtd,2);
+                alimentosInsert.kcal = Math.Round(kCal,2);
+                alimentosInsert.prot = Math.Round(proteina,2);
+                alimentosInsert.carbo = Math.Round(carboidrato,2);
+                alimentosInsert.lipidio = Math.Round(lipidio,2);
                 alimentosInsert.nomeTabela = nomeTabela;
 
                 BancoDadosSingleton.Instance.Alimentos.Add(alimentosInsert);
@@ -53,11 +53,11 @@ namespace ProjetoTCC
 
                 aliUpdate.codAlimento = codAlimento;
                 aliUpdate.nomeAlimento = alimento;
-                aliUpdate.qtd = qtd;
-                aliUpdate.kcal = kCal;
-                aliUpdate.prot = proteina;
-                aliUpdate.carbo = carboidrato;
-                aliUpdate.lipidio = lipidio;
+                aliUpdate.qtd = Math.Round(qtd, 2);
+                aliUpdate.kcal = Math.Round(kCal, 2);
+                aliUpdate.prot = Math.Round(proteina, 2);
+                aliUpdate.carbo = Math.Round(carboidrato, 2);
+                aliUpdate.lipidio = Math.Round(lipidio, 2);
                 aliUpdate.nomeTabela = nomeTabela;
 
                 BancoDadosSingleton.Instance.SaveChanges();

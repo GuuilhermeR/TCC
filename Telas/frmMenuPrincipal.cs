@@ -87,7 +87,7 @@ namespace TCC2
             {
                 FecharAplicacao(sender, e);
             }
-            linkLabel1.Links.Add(0, linkLabel1.Text.Length,"https://www.globo.com/");
+            linkLabel1.Links.Add(0, linkLabel1.Text.Length, "https://www.globo.com/");
             calAgendamento.MaximumViewDays = 70000;
 
             //this.MaximizeBox = false;
@@ -273,6 +273,11 @@ namespace TCC2
                             mCardAtendimentoFuturo.BackColor = Color.LightGreen;
                         }
                     }
+
+                    if (mlblNomeFuturo.Text.Equals(mlblNome.Text))
+                    {
+                        mCardAtendimentoFuturo.Visible = false;
+                    }
                 }
                 db.Database.Connection.Close();
                 if (primeiraVez)
@@ -355,7 +360,7 @@ namespace TCC2
             //timer1.Enabled = true;
             //mCardConsultas.BackColor = mCardConsultas.BackColor == Color.Red ? Color.White : Color.Red;
         }
-        
+
         #endregion
 
         #region Agenda
@@ -373,7 +378,7 @@ namespace TCC2
             {
                 calAgendamento.Items.Clear();
                 GetConfigAtendimento();
-                if(DateTime.Today.DayOfWeek.Equals(DayOfWeek.Saturday) || DateTime.Today.DayOfWeek.Equals(DayOfWeek.Sunday))
+                if (DateTime.Today.DayOfWeek.Equals(DayOfWeek.Saturday) || DateTime.Today.DayOfWeek.Equals(DayOfWeek.Sunday))
                 {
                     calAgendamento.ViewEnd = DateTime.Today.AddDays(5);
                     calAgendamento.ViewStart = DateTime.Today;
@@ -805,7 +810,7 @@ namespace TCC2
             if (quantidadeSalva != 0)
                 if (dtgConAlimento.Rows.Count > 0)
                 {
-                    RecalcularMacroNutrientes(dtgRefeicoes, quantidadeSalva);
+                    RecalcularMacroNutrientes(dtgConAlimento, quantidadeSalva);
                 }
                 else
                 {
@@ -929,10 +934,10 @@ namespace TCC2
                         {
                             alimento = Convert.ToString(row.Cells["Alimento"].Value).Replace("\"", string.Empty);
                             qtd = Convert.ToDouble(row.Cells["qtd"].Value);
-                            kcal = Convert.ToDouble(row.Cells["kcal"].Value);
-                            Prot = Convert.ToDouble(row.Cells["prot"].Value);
-                            Carb = Convert.ToDouble(row.Cells["carb"].Value);
-                            Lipidios = Convert.ToDouble(row.Cells["lip"].Value);
+                            kcal = Math.Round(Convert.ToDouble(row.Cells["kcal"].Value), 2);
+                            Prot = Math.Round(Convert.ToDouble(row.Cells["prot"].Value), 2);
+                            Carb = Math.Round(Convert.ToDouble(row.Cells["carb"].Value), 2);
+                            Lipidios = Math.Round(Convert.ToDouble(row.Cells["lip"].Value), 2);
                         }
                         catch
                         {
@@ -1263,7 +1268,7 @@ namespace TCC2
             //DataTable dt = ConvertToDataTable(listaAlimentos);
             //dtg.DataSource = dt;
 
-            if(dtg.Columns.Count == 0)
+            if (dtg.Columns.Count == 0)
             {
                 dtg.Columns.Add("codAlimento", "Código");
                 dtg.Columns.Add("nomeAlimento", "Alimento");
@@ -1773,19 +1778,19 @@ namespace TCC2
         private void txtAltura_Leave(object sender, EventArgs e)
         {
             if (txtPeso.Text != string.Empty && txtAltura.Text != string.Empty)
-                lblIMC.Text=CalcularIMC(Convert.ToDouble(txtPeso.Text), Convert.ToDouble(txtAltura.Text));
+                lblIMC.Text = CalcularIMC(Convert.ToDouble(txtPeso.Text), Convert.ToDouble(txtAltura.Text));
         }
-                
+
 
         private double CalcularHarrisBenedict(Antropometria antropometria)
         {
             if (antropometria.Paciente.sexo.Equals("M"))
             {
-                return Math.Round(Convert.ToDouble(66 + (13.8 * antropometria.peso) + (5 * antropometria.peso) + (6.8 * calcularIdade(antropometria.Paciente.dtNasc))),2);
+                return Math.Round(Convert.ToDouble(66 + (13.8 * antropometria.peso) + (5 * antropometria.peso) + (6.8 * calcularIdade(antropometria.Paciente.dtNasc))), 2);
             }
             else if (antropometria.Paciente.sexo.Equals("F"))
             {
-                return Math.Round(Convert.ToDouble(655 + (9.6 * antropometria.peso) + (1.9 * antropometria.peso) + (4.7 * calcularIdade(antropometria.Paciente.dtNasc))),2);
+                return Math.Round(Convert.ToDouble(655 + (9.6 * antropometria.peso) + (1.9 * antropometria.peso) + (4.7 * calcularIdade(antropometria.Paciente.dtNasc))), 2);
             }
             return 0;
         }
@@ -1794,7 +1799,7 @@ namespace TCC2
         {
             double fatorAtividade = 0;
 
-            if(!Convert.ToBoolean(antropometria.temGrauAtividade))
+            if (!Convert.ToBoolean(antropometria.temGrauAtividade))
             {
                 return 0;
             }
@@ -1812,7 +1817,7 @@ namespace TCC2
                 fatorAtividade = 1.55;
             }
             else if (antropometria.grauAtividade.ToString().ToLower() == "pesado")
-            { 
+            {
                 fatorAtividade = 1.725;
             }
             else if (antropometria.grauAtividade.ToLower().Contains("muito pesado"))
@@ -1831,38 +1836,38 @@ namespace TCC2
             {
                 if (idade >= 10 && idade < 18)
                 {
-                    return ((double)((17.686 * antropometria.peso) + 658.2));
+                    return Math.Round((double)((17.686 * antropometria.peso) + 658.2), 2);
                 }
                 else if (idade >= 18 && idade < 30)
                 {
-                    return ((double)((15.057 * antropometria.peso) + 692.2));
+                    return Math.Round((double)((15.057 * antropometria.peso) + 692.2), 2);
                 }
                 else if (idade >= 30 && idade < 60)
                 {
-                    return ((double)((11.472 * antropometria.peso) + 873.1));
+                    return Math.Round((double)((11.472 * antropometria.peso) + 873.1), 2);
                 }
                 else if (idade >= 60)
                 {
-                    return ((double)((11.711 * antropometria.peso) + 587.7));
+                    return Math.Round((double)((11.711 * antropometria.peso) + 587.7), 2);
                 }
             }
             else if (antropometria.Paciente.sexo.Equals("F"))
             {
                 if (idade >= 10 && idade < 18)
                 {
-                    return ((double)((13.384 * antropometria.peso) + 692.6));
+                    return Math.Round((double)((13.384 * antropometria.peso) + 692.6), 2);
                 }
                 else if (idade >= 18 && idade < 30)
                 {
-                    return ((double)((14.818 * antropometria.peso) + 486.6));
+                    return Math.Round((double)((14.818 * antropometria.peso) + 486.6), 2);
                 }
                 else if (idade >= 30 && idade < 60)
                 {
-                    return ((double)((8.126 * antropometria.peso) + 845.6));
+                    return Math.Round((double)((8.126 * antropometria.peso) + 845.6), 2);
                 }
                 else if (idade >= 60)
                 {
-                    return ((double)((9.082 * antropometria.peso) + 658.5));
+                    return Math.Round((double)((9.082 * antropometria.peso) + 658.5), 2);
                 }
             }
             return 0;
@@ -1900,26 +1905,26 @@ namespace TCC2
             {
                 if (antropometria.Paciente.sexo.Equals("M"))
                 {
-                    return (double)(1086 - (10.4 * idade) + caf * (13.7 * antropometria.peso + 416 * (antropometria.altura/100)));
+                    return Math.Round((double)(1086 - (10.4 * idade) + caf * (13.7 * antropometria.peso + 416 * (antropometria.altura / 100))), 2);
                 }
                 else if (antropometria.Paciente.sexo.Equals("F"))
                 {
-                    return (double)(448 - (7.95 * idade) + caf * (11.4 * antropometria.peso + 619 * (antropometria.altura/100)));
+                    return Math.Round((double)(448 - (7.95 * idade) + caf * (11.4 * antropometria.peso + 619 * (antropometria.altura / 100))), 2);
                 }
             }
             else
             {
                 if (antropometria.Paciente.sexo.Equals("M"))
                 {
-                    return (double)(662 - (9.53 * idade) + caf * (15.91 * antropometria.peso + 539.6 * (antropometria.altura/100)));
+                    return Math.Round((double)(662 - (9.53 * idade) + caf * (15.91 * antropometria.peso + 539.6 * (antropometria.altura / 100))), 2);
                 }
                 else if (antropometria.Paciente.sexo.Equals("F"))
                 {
-                    return (double)(354 - (6.91 * idade) + caf * (9.36 * antropometria.peso + 416 * (antropometria.altura/100)));
+                    return Math.Round((double)(354 - (6.91 * idade) + caf * (9.36 * antropometria.peso + 416 * (antropometria.altura / 100))), 2);
                 }
             }
 
-           
+
             return 0;
         }
         private void btnClearAntro_Click(object sender, EventArgs e)
@@ -1956,7 +1961,8 @@ namespace TCC2
             if (listAntro is null || listAntro.Count == 0)
                 return;
 
-            listAntro.ForEach(x => {
+            listAntro.ForEach(x =>
+            {
                 txtPeso.Text = x.peso.ToString();
                 txtAltura.Text = x.altura.ToString();
                 txtAntebraco.Text = x.antebraco.ToString();
@@ -1972,7 +1978,7 @@ namespace TCC2
                 txtAbdome.Text = x.abdome.ToString();
                 if (Convert.ToBoolean(x.temGrauAtividade))
                 {
-                    if(x.grauAtividade == rbCAFSedentario.Text)
+                    if (x.grauAtividade == rbCAFSedentario.Text)
                     {
                         rbCAFSedentario.Checked = true;
                     }
@@ -1986,11 +1992,11 @@ namespace TCC2
                     }
                     else if (x.grauAtividade == rbCAFPesado.Text)
                     {
-                        rbCAFPesado.Checked=true;
+                        rbCAFPesado.Checked = true;
                     }
                     else if (x.grauAtividade == rbCAFMuitoPesado.Text)
                     {
-                        rbCAFMuitoPesado.Checked=true;
+                        rbCAFMuitoPesado.Checked = true;
                     }
                 }
                 if (Convert.ToBoolean(x.temCoefAtividade))
@@ -2012,7 +2018,7 @@ namespace TCC2
                         rbDRIMuitoAtivo.Checked = true;
                     }
                 }
-                lblIMC.Text=CalcularIMC(Convert.ToDouble(txtPeso.Text), Convert.ToDouble(txtAltura.Text));
+                lblIMC.Text = CalcularIMC(Convert.ToDouble(txtPeso.Text), Convert.ToDouble(txtAltura.Text));
             });
 
         }
@@ -2210,7 +2216,7 @@ namespace TCC2
             if (!string.IsNullOrEmpty(txtDataCardapio.Text))
             {
                 data = txtDataCardapio.Text;
-            } 
+            }
             else if (!string.IsNullOrEmpty(cbxDataCardSalvo.Text))
             {
                 data = cbxDataCardSalvo.Text;
@@ -2468,14 +2474,14 @@ namespace TCC2
             }
 
             foreach (DataGridViewRow row in dtgRefeicoes.Rows)
-                    erro = cardapioDAO.Salvar(Convert.ToInt32(PacienteModel.codPacienteModel),
-                                                     Convert.ToInt32(row.Cells["codAlimento"].Value),
-                                                     Convert.ToString(cbxRefeicao.Text),
-                                                     Convert.ToInt32(row.Cells["qtd"].Value),
-                                                     Convert.ToDouble(row.Cells["kcal"].Value),
-                                                     Convert.ToString(usuarioDAO.getUsuario()),
-                                                     data,
-                                                     Convert.ToString(row.Cells["obs"].Value));        
+                erro = cardapioDAO.Salvar(Convert.ToInt32(PacienteModel.codPacienteModel),
+                                                 Convert.ToInt32(row.Cells["codAlimento"].Value),
+                                                 Convert.ToString(cbxRefeicao.Text),
+                                                 Convert.ToInt32(row.Cells["qtd"].Value),
+                                                 Convert.ToDouble(row.Cells["kcal"].Value),
+                                                 Convert.ToString(usuarioDAO.getUsuario()),
+                                                 data,
+                                                 Convert.ToString(row.Cells["obs"].Value));
 
             if (string.IsNullOrEmpty(erro))
             {
@@ -2527,7 +2533,7 @@ namespace TCC2
             if (filtroAlimento != string.Empty)
             {
                 string filtro = filtroAlimento.Trim();
-               
+
                 listaCarregada.ForEach(x =>
                 {
                     if (x.nomeAlimento.ToUpper().Contains(filtroAlimento.ToUpper().Trim()) && x.nomeTabela.ToUpper().Equals(nomeTabela.ToUpper()))
@@ -2634,8 +2640,9 @@ namespace TCC2
                     dtgCardapioAlimentos.Columns["lipidio"].Visible = false;
                 }
 
-                listaAlimentosCardapio.ForEach(x => {
-                        dtgCardapioAlimentos.Rows.Add(x.codAlimento, x.nomeAlimento, x.kcal, x.qtd, x.prot, x.carbo, x.lipidio);
+                listaAlimentosCardapio.ForEach(x =>
+                {
+                    dtgCardapioAlimentos.Rows.Add(x.codAlimento, x.nomeAlimento, x.kcal, x.qtd, x.prot, x.carbo, x.lipidio);
                 });
 
                 //dtgCardapioAlimentos.Columns["codAlimento"].Visible = false;
@@ -2980,7 +2987,7 @@ namespace TCC2
             if (string.IsNullOrEmpty(cbxRefeicao.Text))
             {
                 return;
-            }            
+            }
 
             var carregarAlimentos = cardapioDAO.Consultar(Convert.ToInt32(PacienteModel.codPacienteModel), data, cbxRefeicao.Text);
 
@@ -2992,16 +2999,16 @@ namespace TCC2
             double kcalTotal = 0;
             carregarAlimentos.ForEach(x =>
             {
-               var linha = dtgRefeicoes.Rows.Add(
-                               x.codAlimento
-                             , x.Alimentos.nomeAlimento
-                             , x.medidaCaseiraQtde
-                             , x.Alimentos.kcal
-                             , x.Alimentos.prot
-                             , x.Alimentos.carbo
-                             , x.Alimentos.lipidio
-                             , string.Empty
-                             , x.obs);
+                var linha = dtgRefeicoes.Rows.Add(
+                                x.codAlimento
+                              , x.Alimentos.nomeAlimento
+                              , x.medidaCaseiraQtde
+                              , x.Alimentos.kcal
+                              , x.Alimentos.prot
+                              , x.Alimentos.carbo
+                              , x.Alimentos.lipidio
+                              , string.Empty
+                              , x.obs);
 
                 kcalTotal += Convert.ToDouble(dtgRefeicoes.Rows[linha].Cells[kcal.Index].Value);
                 CarregarGrafico(Convert.ToDouble(x.Alimentos.prot), Convert.ToDouble(x.Alimentos.carbo), Convert.ToDouble(x.Alimentos.lipidio));
@@ -3078,7 +3085,7 @@ namespace TCC2
                     dtgConAlimento.Columns["lipidio"].Visible = false;
                 }
                 dtgConAlimento.Rows.Clear();
-                FiltrarAlimentoTabela(txtAlimentoFiltro.Text, cbxTabela.Text,listaAlimentos, dtgConAlimento);
+                FiltrarAlimentoTabela(txtAlimentoFiltro.Text, cbxTabela.Text, listaAlimentos, dtgConAlimento);
 
                 //DataTable dt = ConvertToDataTable(listaAlimentos);
                 //dtgCardapioAlimentos.DataSource = dt;
@@ -3155,7 +3162,7 @@ namespace TCC2
             {
                 lblVET.Text = string.Empty;
                 lblVET.Text = Convert.ToString(CalcularDRI(loadCalc).ToString(formatarCampoValor));
-                if(lblVET.Text == "0")
+                if (lblVET.Text == "0")
                 {
                     lblVET.Text = "Não possui configuração de CAF.";
                 }
@@ -3166,7 +3173,7 @@ namespace TCC2
         {
             Antropometria antro = new Antropometria();
             antro.Paciente = new Paciente();
-            
+
             var listaCardapio = antropometriaDAO.CarregarUltimaAntropometria();
 
             if (listaCardapio is null || listaCardapio.Count == 0)
@@ -3174,14 +3181,14 @@ namespace TCC2
 
             listaCardapio.ForEach(x =>
             {
-               antro.peso = x.peso;
-               antro.altura = x.altura;
-               antro.grauAtividade = x.grauAtividade;
-               antro.temGrauAtividade = x.temGrauAtividade;
-               antro.temCoefAtividade = x.temCoefAtividade;
-               antro.coefAtividade = x.coefAtividade;
-               antro.Paciente.dtNasc = x.Paciente.dtNasc;
-               antro.Paciente.sexo = x.Paciente.sexo;
+                antro.peso = x.peso;
+                antro.altura = x.altura;
+                antro.grauAtividade = x.grauAtividade;
+                antro.temGrauAtividade = x.temGrauAtividade;
+                antro.temCoefAtividade = x.temCoefAtividade;
+                antro.coefAtividade = x.coefAtividade;
+                antro.Paciente.dtNasc = x.Paciente.dtNasc;
+                antro.Paciente.sexo = x.Paciente.sexo;
             });
             return antro;
         }
@@ -3523,7 +3530,8 @@ namespace TCC2
             var emailPaciente = pacienteDAO.GetEmail(Convert.ToInt32(PacienteModel.codPacienteModel));
             string para = string.Empty;
 
-            emailPaciente.ForEach(x => {
+            emailPaciente.ForEach(x =>
+            {
                 para = x.email;
             });
 
@@ -3550,9 +3558,9 @@ namespace TCC2
                 corpoEmail += $@"<tr>" + Environment.NewLine;
                 if (Convert.ToString(row.Cells[refeicao.Index].Value) == "Café da manhã")
                 {
-                    corpoEmail = PreencherCorpoEmail(corpoEmail,Convert.ToString(row.Cells[refeicao.Index].Value),
-                        Convert.ToString(row.Cells[alimento.Index].Value), 
-                        Convert.ToString(row.Cells[medidacaseiraqtd.Index].Value), 
+                    corpoEmail = PreencherCorpoEmail(corpoEmail, Convert.ToString(row.Cells[refeicao.Index].Value),
+                        Convert.ToString(row.Cells[alimento.Index].Value),
+                        Convert.ToString(row.Cells[medidacaseiraqtd.Index].Value),
                         Convert.ToString(row.Cells[observ.Index].Value),
                         refeAnte);
                 }
@@ -3601,7 +3609,7 @@ namespace TCC2
             }
             corpoEmail += $@"</table>" + Environment.NewLine;
 
-            string erro = SenderMail(para, "nutriez.suporte@gmail.com", "Cardápio", corpoEmail.Replace("'","\""));
+            string erro = SenderMail(para, "nutriez.suporte@gmail.com", "Cardápio", corpoEmail.Replace("'", "\""));
 
             if (!string.IsNullOrEmpty(erro))
             {
@@ -3614,7 +3622,7 @@ namespace TCC2
 
         private static string PreencherCorpoEmail(string corpoEmail, string refeicao, string alimento, string quantidade, string observacao, string refeicaoAnterior)
         {
-            if(string.IsNullOrEmpty(refeicao) || refeicao != refeicaoAnterior)
+            if (string.IsNullOrEmpty(refeicao) || refeicao != refeicaoAnterior)
             {
                 corpoEmail += $@"<td style='width: 120px; border: 1px solid #ccc'>{refeicao}</td>" + Environment.NewLine;
             }

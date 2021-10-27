@@ -37,9 +37,9 @@ namespace TCC2
                     cardUpdt.data = data;
                     cardUpdt.usuarioResp = usuario;
                     cardUpdt.codAlimento = codAlimento;
-                    cardUpdt.medidaCaseiraQtde = medidaCaseiraQtde;
+                    cardUpdt.medidaCaseiraQtde = Math.Round(medidaCaseiraQtde,2);
                     cardUpdt.Refeicao = refeicao;
-                    cardUpdt.kcal = kcal;
+                    cardUpdt.kcal = Math.Round(kcal,2);
                     cardUpdt.obs = obs;
 
                     BancoDadosSingleton.Instance.SaveChanges();

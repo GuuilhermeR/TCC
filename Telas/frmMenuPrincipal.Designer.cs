@@ -31,15 +31,15 @@ namespace TCC2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange15 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange16 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange17 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange18 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange19 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange20 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange21 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange36 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange37 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange38 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange39 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange40 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange41 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange42 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMenuPrincipal));
             this.TabControlNutreasy = new MaterialSkin.Controls.MaterialTabControl();
             this.tabMenu = new System.Windows.Forms.TabPage();
@@ -145,6 +145,7 @@ namespace TCC2
             this.carbo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lipidio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cbxMedCaseira = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.colRefeicaoCard = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.obs = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSalvarCardapio = new System.Windows.Forms.Button();
             this.tbConsultaCardapio = new System.Windows.Forms.TabPage();
@@ -585,6 +586,7 @@ namespace TCC2
             this.tabAgenda.Size = new System.Drawing.Size(1222, 717);
             this.tabAgenda.TabIndex = 1;
             this.tabAgenda.Text = "Agenda";
+            this.tabAgenda.Click += new System.EventHandler(this.tabAgenda_Click);
             this.tabAgenda.Enter += new System.EventHandler(this.tabAgenda_Enter);
             this.tabAgenda.Leave += new System.EventHandler(this.tabAgenda_Leave);
             // 
@@ -827,35 +829,35 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.calAgendamento.BackColor = System.Drawing.SystemColors.Control;
             this.calAgendamento.Font = new System.Drawing.Font("Segoe UI", 9F);
-            calendarHighlightRange15.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange15.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange15.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange16.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange16.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange16.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange17.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange17.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange17.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange18.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange18.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange18.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange19.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange19.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange19.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange20.DayOfWeek = System.DayOfWeek.Saturday;
-            calendarHighlightRange20.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange20.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange21.DayOfWeek = System.DayOfWeek.Sunday;
-            calendarHighlightRange21.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange21.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange36.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange36.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange36.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange37.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange37.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange37.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange38.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange38.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange38.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange39.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange39.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange39.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange40.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange40.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange40.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange41.DayOfWeek = System.DayOfWeek.Saturday;
+            calendarHighlightRange41.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange41.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange42.DayOfWeek = System.DayOfWeek.Sunday;
+            calendarHighlightRange42.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange42.StartTime = System.TimeSpan.Parse("00:00:00");
             this.calAgendamento.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
-        calendarHighlightRange15,
-        calendarHighlightRange16,
-        calendarHighlightRange17,
-        calendarHighlightRange18,
-        calendarHighlightRange19,
-        calendarHighlightRange20,
-        calendarHighlightRange21};
+        calendarHighlightRange36,
+        calendarHighlightRange37,
+        calendarHighlightRange38,
+        calendarHighlightRange39,
+        calendarHighlightRange40,
+        calendarHighlightRange41,
+        calendarHighlightRange42};
             this.calAgendamento.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.calAgendamento.ItemsTimeFormat = "hh:mm";
             this.calAgendamento.Location = new System.Drawing.Point(3, 195);
@@ -1150,16 +1152,16 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dtgDadosImportados.BackgroundColor = System.Drawing.Color.White;
             this.dtgDadosImportados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.Format = "N2";
-            dataGridViewCellStyle5.NullValue = "0";
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgDadosImportados.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.Format = "N2";
+            dataGridViewCellStyle11.NullValue = "0";
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgDadosImportados.DefaultCellStyle = dataGridViewCellStyle11;
             this.dtgDadosImportados.Location = new System.Drawing.Point(9, 2);
             this.dtgDadosImportados.Name = "dtgDadosImportados";
             this.dtgDadosImportados.RowHeadersWidth = 51;
@@ -1453,7 +1455,7 @@ namespace TCC2
             this.lblTMB.AutoSize = true;
             this.lblTMB.Depth = 0;
             this.lblTMB.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblTMB.Location = new System.Drawing.Point(429, 605);
+            this.lblTMB.Location = new System.Drawing.Point(429, 604);
             this.lblTMB.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblTMB.Name = "lblTMB";
             this.lblTMB.Size = new System.Drawing.Size(1, 0);
@@ -1560,7 +1562,7 @@ namespace TCC2
             this.mlblTMB.AutoSize = true;
             this.mlblTMB.Depth = 0;
             this.mlblTMB.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.mlblTMB.Location = new System.Drawing.Point(385, 605);
+            this.mlblTMB.Location = new System.Drawing.Point(385, 604);
             this.mlblTMB.MouseState = MaterialSkin.MouseState.HOVER;
             this.mlblTMB.Name = "mlblTMB";
             this.mlblTMB.Size = new System.Drawing.Size(39, 19);
@@ -1779,6 +1781,7 @@ namespace TCC2
             this.cbxRefeicao.Size = new System.Drawing.Size(261, 49);
             this.cbxRefeicao.StartIndex = 0;
             this.cbxRefeicao.TabIndex = 2;
+            this.cbxRefeicao.SelectionChangeCommitted += new System.EventHandler(this.cbxRefeicao_SelectionChangeCommitted);
             this.cbxRefeicao.SelectedValueChanged += new System.EventHandler(this.cbxRefeicao_SelectedValueChanged);
             // 
             // txtPaciente
@@ -1884,15 +1887,16 @@ namespace TCC2
             this.carbo,
             this.lipidio,
             this.cbxMedCaseira,
+            this.colRefeicaoCard,
             this.obs});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgRefeicoes.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgRefeicoes.DefaultCellStyle = dataGridViewCellStyle12;
             this.dtgRefeicoes.Location = new System.Drawing.Point(590, 117);
             this.dtgRefeicoes.Name = "dtgRefeicoes";
             this.dtgRefeicoes.RowHeadersWidth = 51;
@@ -1963,6 +1967,13 @@ namespace TCC2
             this.cbxMedCaseira.MinimumWidth = 6;
             this.cbxMedCaseira.Name = "cbxMedCaseira";
             this.cbxMedCaseira.Width = 77;
+            // 
+            // colRefeicaoCard
+            // 
+            this.colRefeicaoCard.HeaderText = "Refeição";
+            this.colRefeicaoCard.Name = "colRefeicaoCard";
+            this.colRefeicaoCard.ReadOnly = true;
+            this.colRefeicaoCard.Width = 75;
             // 
             // obs
             // 
@@ -4407,15 +4418,6 @@ namespace TCC2
         private MaterialSkin.Controls.MaterialRadioButton rbCAFModerado;
         private MaterialSkin.Controls.MaterialRadioButton rbCAFLeve;
         private MaterialSkin.Controls.MaterialRadioButton rbCAFSedentario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codAlimento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nomeAlimento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn qtd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn kcal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn prot;
-        private System.Windows.Forms.DataGridViewTextBoxColumn carbo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn lipidio;
-        private System.Windows.Forms.DataGridViewComboBoxColumn cbxMedCaseira;
-        private System.Windows.Forms.DataGridViewTextBoxColumn obs;
         public System.Windows.Forms.Button btnEnviarCardEmail;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label9;
@@ -4435,6 +4437,16 @@ namespace TCC2
         private MaterialSkin.Controls.MaterialLabel materialLabel9;
         private MaterialSkin.Controls.MaterialLabel materialLabel8;
         private MaterialSkin.Controls.MaterialLabel materialLabel6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codAlimento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nomeAlimento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn qtd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn kcal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn prot;
+        private System.Windows.Forms.DataGridViewTextBoxColumn carbo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lipidio;
+        private System.Windows.Forms.DataGridViewComboBoxColumn cbxMedCaseira;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colRefeicaoCard;
+        private System.Windows.Forms.DataGridViewTextBoxColumn obs;
     }
 }
 

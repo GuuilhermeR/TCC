@@ -109,23 +109,14 @@ namespace TCC2
             }
         }
 
-        public List<Cardapio> Consultar(int codPaciente, string data, string refeicao)
+        public List<Cardapio> Consultar(int codPaciente, string data)
         {
             try
             {
                 List<Cardapio> cardapio = new List<Cardapio>();
-                if (!string.IsNullOrEmpty(refeicao))
-                {
-                    cardapio = ((from card in BancoDadosSingleton.Instance.Cardapio
-                                 where card.codPaciente == codPaciente && card.data == data && card.Refeicao == refeicao
-                                 select card).Distinct()).ToList();
-                }
-                else
-                {
                     cardapio = ((from card in BancoDadosSingleton.Instance.Cardapio
                                  where card.codPaciente == codPaciente && card.data == data
                                  select card).Distinct()).ToList();
-                }
 
                 if (cardapio.Count > 0)
                 {

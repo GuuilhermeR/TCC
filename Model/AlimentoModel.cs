@@ -8,14 +8,5 @@ namespace Model
 {
     class AlimentoModel
     {
-
-        public AlimentoModel() { }
-
-        public int codAlimento;
-
-        public string nomeAlimento;
-
-
-
     }
 }

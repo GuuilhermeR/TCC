@@ -1912,7 +1912,7 @@ namespace TCC2
 
             // Retorna VET
             int idade = calcularIdade(antropometria.Paciente.dtNasc);
-            double caf = 0;
+            double CAF = 0;
             string IMC = CalcularIMC(Convert.ToDouble(antropometria.peso), Convert.ToDouble(antropometria.altura));
 
             if (!Convert.ToBoolean(antropometria.temCoefAtividade))
@@ -1922,41 +1922,41 @@ namespace TCC2
 
             if (antropometria.coefAtividade.ToLower().Contains("sedentário"))
             {
-                caf = 1;
+                CAF = 1;
             }
             else if (antropometria.coefAtividade.ToLower().Contains("pouco ativo"))
             {
-                caf = 1.1;
+                CAF = 1.1;
             }
             else if (antropometria.coefAtividade.ToLower().Contains("ativo"))
             {
-                caf = 1.25;
+                CAF = 1.25;
             }
             else if (antropometria.coefAtividade.ToLower().Contains("muito ativo"))
             {
-                caf = 1.48;
+                CAF = 1.48;
             }
 
-            if (IMC == "Sobrepeso" || IMC.Contains("Obesidade"))
+            if (IMC.Contains("Sobrepeso") || IMC.Contains("Obesidade"))
             {
                 if (antropometria.Paciente.sexo.Equals("M"))
                 {
-                    return Math.Round((double)(1086 - (10.4 * idade) + caf * (13.7 * antropometria.peso + 416 * (antropometria.altura / 100))), 2);
+                    return Math.Round((double)(1086 - (10.4 * idade) + CAF * (13.7 * antropometria.peso + 416 * (antropometria.altura / 100))), 2);
                 }
                 else if (antropometria.Paciente.sexo.Equals("F"))
                 {
-                    return Math.Round((double)(448 - (7.95 * idade) + caf * (11.4 * antropometria.peso + 619 * (antropometria.altura / 100))), 2);
+                    return Math.Round((double)(448 - (7.95 * idade) + CAF * (11.4 * antropometria.peso + 619 * (antropometria.altura / 100))), 2);
                 }
             }
             else
             {
                 if (antropometria.Paciente.sexo.Equals("M"))
                 {
-                    return Math.Round((double)(662 - (9.53 * idade) + caf * (15.91 * antropometria.peso + 539.6 * (antropometria.altura / 100))), 2);
+                    return Math.Round((double)(662 - (9.53 * idade) + CAF * (15.91 * antropometria.peso + 539.6 * (antropometria.altura / 100))), 2);
                 }
                 else if (antropometria.Paciente.sexo.Equals("F"))
                 {
-                    return Math.Round((double)(354 - (6.91 * idade) + caf * (9.36 * antropometria.peso + 416 * (antropometria.altura / 100))), 2);
+                    return Math.Round((double)(354 - (6.91 * idade) + CAF * (9.36 * antropometria.peso + 416 * (antropometria.altura / 100))), 2);
                 }
             }
 
@@ -2431,7 +2431,6 @@ namespace TCC2
                     }
 
                 }
-                dtgRefeicoes.AutoResizeColumns();
             }
             lblVlrKcal.Visible = true;
             lblValorKcal.Text = kcalTotal.ToString("N2");
@@ -2439,6 +2438,7 @@ namespace TCC2
             {
                 CarregarGrafico(proteina, carboidrato, lipidio);
             }
+            dtgRefeicoes.AutoResizeColumns();
         }
 
         private void txtPacienteConsultaCardapio_TextChanged(object sender, EventArgs e)
@@ -2607,7 +2607,7 @@ namespace TCC2
 
         private void dtgRefeicoes_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            dtgRefeicoes.CurrentRow.DefaultCellStyle.BackColor = Color.Red;
+            //dtgRefeicoes.CurrentRow.DefaultCellStyle.BackColor = Color.Red;
             if (e.ColumnIndex == cbxMedCaseira.Index)
             {
                 var medCaseira = medidaCaseiraDAO.Buscar(Convert.ToInt32(dtgRefeicoes.Rows[e.RowIndex].Cells[codAlimento.Index].Value)

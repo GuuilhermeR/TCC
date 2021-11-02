@@ -792,23 +792,22 @@ namespace NutriEz
             if (agendados is null || agendados.Count == 0)
                 return;
 
-            //adicionar para pintar de outra cor o card, caso seja retorno.
             agendados.ForEach(x =>
             {
                 CalendarItem calAgendamentos = new CalendarItem(calAgendamento, Convert.ToDateTime(x.data.ToString()), Convert.ToDateTime(x.data.ToString()).AddHours(1), x.paciente);
                 calAgendamento.Items.Add(calAgendamentos);
 
                 if (Convert.ToBoolean(x.retorno) && !Convert.ToBoolean(x.atendido) && !Convert.ToBoolean(x.Cancelado))
-                    calAgendamentos.ApplyColor(Color.LightCyan);
+                    calAgendamentos.ApplyColor(Color.Cyan);
 
                 if (!Convert.ToBoolean(x.retorno) && !Convert.ToBoolean(x.atendido) && Convert.ToBoolean(x.Cancelado))
                     calAgendamentos.ApplyColor(Color.Tomato);
 
                 if (Convert.ToBoolean(x.atendido) && !Convert.ToBoolean(x.retorno))
-                    calAgendamentos.ApplyColor(Color.LightGreen);
+                    calAgendamentos.ApplyColor(Color.Green);
 
                 if (!Convert.ToBoolean(x.atendido) && !Convert.ToBoolean(x.retorno) && !Convert.ToBoolean(x.Cancelado))
-                    calAgendamentos.ApplyColor(Color.LightYellow);
+                    calAgendamentos.ApplyColor(Color.Yellow);
 
                 jaIniciou = true;
             });
@@ -3381,7 +3380,10 @@ namespace NutriEz
 
             var listaPermissao = permissaoDAO.getAllPermissao();
             if (listaPermissao == null || listaPermissao.Count <= 0)
+            {
+                loadStop(this);
                 return;
+            }
             DataTable dt = ConvertToDataTable(listaPermissao);
             if (dtgPermUsuarios.Rows.Count > 0 && dtgPermUsuarios.Columns.Count > 0)
             {
@@ -3518,7 +3520,7 @@ namespace NutriEz
 
         private void txtHoraFim_Validated(object sender, EventArgs e)
         {
-            txtHoraInicio.Text = formatarHora(txtHoraInicio.Text);
+            txtHoraFim.Text = formatarHora(txtHoraFim.Text);
         }
 
         private void btnExcluirPerm_Click(object sender, EventArgs e)

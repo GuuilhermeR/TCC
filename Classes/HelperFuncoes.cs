@@ -82,7 +82,7 @@ namespace Classes
                         tLoad.Start();
                         return;
                     }
-                    if (tLoad.ThreadState != null && !tLoad.ThreadState.Equals(ThreadState.AbortRequested) && tLoad.ThreadState.Equals(ThreadState.Running) && !tLoad.ThreadState.Equals(ThreadState.Aborted))
+                    if (tLoad.ThreadState != null && !tLoad.ThreadState.Equals(ThreadState.AbortRequested) && tLoad.ThreadState.Equals(ThreadState.Running) && !tLoad.ThreadState.Equals(ThreadState.Aborted) && !tLoad.ThreadState.Equals(ThreadState.Suspended) && !tLoad.ThreadState.Equals(ThreadState.SuspendRequested))
                     {
                         wait.ShowDialog();
                         wait.Activate();

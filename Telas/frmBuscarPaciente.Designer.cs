@@ -1,5 +1,5 @@
 ﻿
-namespace TCC2
+namespace NutriEz
 {
     partial class frmBuscarPaciente
     {

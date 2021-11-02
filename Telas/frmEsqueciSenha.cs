@@ -6,7 +6,7 @@ using System.Net.Mail;
 using System.Text.RegularExpressions;
 using static Classes.HelperFuncoes;
 
-namespace TCC2.Telas
+namespace NutriEz.Telas
 {
     public partial class frmEsqueciSenha : MaterialForm
     {

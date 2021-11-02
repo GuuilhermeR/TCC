@@ -8,10 +8,10 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
-using TCC2.Telas;
+using NutriEz.Telas;
 using static Classes.HelperFuncoes;
 
-namespace TCC2
+namespace NutriEz
 {
     public partial class frmTelaLogin : MaterialForm
     {

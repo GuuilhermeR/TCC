@@ -6,10 +6,10 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
-using TCC2.Banco_de_Dados;
+using NutriEz.Banco_de_Dados;
 using static Classes.HelperFuncoes;
 
-namespace TCC2
+namespace NutriEz
 {
     public partial class frmBuscarPaciente : MaterialForm
     {

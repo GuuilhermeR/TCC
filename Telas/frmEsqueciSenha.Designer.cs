@@ -1,5 +1,5 @@
 ﻿
-namespace TCC2.Telas
+namespace NutriEz.Telas
 {
     partial class frmEsqueciSenha
     {

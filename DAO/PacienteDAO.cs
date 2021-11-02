@@ -4,11 +4,11 @@ using System.Data.SQLite;
 using System.Windows.Forms;
 using System.Linq;
 using Microsoft.VisualBasic;
-using TCC2;
+using NutriEz;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Data.Entity.SqlServer;
-using TCC2.Banco_de_Dados;
+using NutriEz.Banco_de_Dados;
 using System.Data.Entity;
 
 namespace ProjetoTCC

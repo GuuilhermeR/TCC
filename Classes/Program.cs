@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TCC2.Telas;
+using NutriEz.Telas;
 
-namespace TCC2
+namespace NutriEz
 {
     static class Program
     {

@@ -4,7 +4,7 @@ using System.Net;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace TCC2
+namespace NutriEz
 {
     public class FormatadorCampo
     {

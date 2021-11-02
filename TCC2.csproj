@@ -53,7 +53,7 @@
     <ApplicationIcon>iconTCC.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>TCC2.Program</StartupObject>
+    <StartupObject>NutriEz.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DShowNET, Version=1.0.0.1, Culture=neutral">

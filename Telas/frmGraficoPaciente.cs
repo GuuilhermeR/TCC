@@ -15,7 +15,7 @@ using System.Windows.Forms;
 using System.Windows.Media;
 using static Classes.HelperFuncoes;
 
-namespace TCC2.Telas
+namespace NutriEz.Telas
 {
     public partial class frmGraficoPaciente : MaterialForm
     {

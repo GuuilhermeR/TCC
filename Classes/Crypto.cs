@@ -4,7 +4,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace TCC2.Classes
+namespace NutriEz.Classes
 {
     public static class Crypto
     {

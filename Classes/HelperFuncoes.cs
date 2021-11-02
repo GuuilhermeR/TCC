@@ -3,14 +3,14 @@ using Microsoft.VisualBasic;
 using System;
 using System.Threading;
 using System.Windows.Forms;
-using TCC2.Telas;
+using NutriEz.Telas;
 using System.Security.Cryptography;
 using System.IO;
 using System.Linq;
 using System.Text;
-using TCC2.Classes;
+using NutriEz.Classes;
 using System.Data.SQLite;
-using TCC2;
+using NutriEz;
 using System.Net;
 
 namespace Classes

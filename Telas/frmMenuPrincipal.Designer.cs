@@ -1,6 +1,6 @@
 ﻿using AdvancedDataGridView;
 
-namespace TCC2
+namespace NutriEz
 {
     partial class FrmMenuPrincipal
     {
@@ -545,7 +545,7 @@ namespace TCC2
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pbxLogoGrande.BackColor = System.Drawing.Color.Transparent;
-            this.pbxLogoGrande.Image = global::TCC2.Properties.Resources.iconTCC_removebg_preview__1____Copia;
+            this.pbxLogoGrande.Image = global::NutriEz.Properties.Resources.iconTCC_removebg_preview__1____Copia;
             this.pbxLogoGrande.Location = new System.Drawing.Point(181, 81);
             this.pbxLogoGrande.Name = "pbxLogoGrande";
             this.pbxLogoGrande.Size = new System.Drawing.Size(768, 520);
@@ -878,7 +878,7 @@ namespace TCC2
             // 
             this.btnSalvarAgenda.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSalvarAgenda.AutoSize = true;
-            this.btnSalvarAgenda.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
+            this.btnSalvarAgenda.Image = global::NutriEz.Properties.Resources.mvtSaveGreen_16;
             this.btnSalvarAgenda.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSalvarAgenda.Location = new System.Drawing.Point(1095, 154);
             this.btnSalvarAgenda.Name = "btnSalvarAgenda";
@@ -890,7 +890,7 @@ namespace TCC2
             // 
             // btnBuscarPacienteAgendamento
             // 
-            this.btnBuscarPacienteAgendamento.Image = global::TCC2.Properties.Resources.consultar;
+            this.btnBuscarPacienteAgendamento.Image = global::NutriEz.Properties.Resources.consultar;
             this.btnBuscarPacienteAgendamento.Location = new System.Drawing.Point(200, 18);
             this.btnBuscarPacienteAgendamento.Name = "btnBuscarPacienteAgendamento";
             this.btnBuscarPacienteAgendamento.Size = new System.Drawing.Size(30, 23);
@@ -1008,7 +1008,7 @@ namespace TCC2
             // 
             this.btnCancelarEditAlimentos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancelarEditAlimentos.AutoSize = true;
-            this.btnCancelarEditAlimentos.Image = global::TCC2.Properties.Resources.DeleteRed;
+            this.btnCancelarEditAlimentos.Image = global::NutriEz.Properties.Resources.DeleteRed;
             this.btnCancelarEditAlimentos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancelarEditAlimentos.Location = new System.Drawing.Point(1074, 635);
             this.btnCancelarEditAlimentos.Name = "btnCancelarEditAlimentos";
@@ -1022,7 +1022,7 @@ namespace TCC2
             // 
             this.btnRecalcular.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnRecalcular.AutoSize = true;
-            this.btnRecalcular.Image = global::TCC2.Properties.Resources._1486564177_finance_finance_calculator_81497;
+            this.btnRecalcular.Image = global::NutriEz.Properties.Resources._1486564177_finance_finance_calculator_81497;
             this.btnRecalcular.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRecalcular.Location = new System.Drawing.Point(6, 630);
             this.btnRecalcular.Name = "btnRecalcular";
@@ -1037,7 +1037,7 @@ namespace TCC2
             // 
             this.btnSalvarAlimento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSalvarAlimento.AutoSize = true;
-            this.btnSalvarAlimento.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
+            this.btnSalvarAlimento.Image = global::NutriEz.Properties.Resources.mvtSaveGreen_16;
             this.btnSalvarAlimento.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSalvarAlimento.Location = new System.Drawing.Point(953, 635);
             this.btnSalvarAlimento.Name = "btnSalvarAlimento";
@@ -1174,7 +1174,7 @@ namespace TCC2
             // 
             this._btnImportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnImportar.AutoSize = true;
-            this._btnImportar.Image = global::TCC2.Properties.Resources.database_import_icon_135719;
+            this._btnImportar.Image = global::NutriEz.Properties.Resources.database_import_icon_135719;
             this._btnImportar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._btnImportar.Location = new System.Drawing.Point(1074, 630);
             this._btnImportar.Name = "_btnImportar";
@@ -1188,7 +1188,7 @@ namespace TCC2
             // _btnBuscarPlanilha
             // 
             this._btnBuscarPlanilha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this._btnBuscarPlanilha.Image = global::TCC2.Properties.Resources.consultar;
+            this._btnBuscarPlanilha.Image = global::NutriEz.Properties.Resources.consultar;
             this._btnBuscarPlanilha.Location = new System.Drawing.Point(674, 518);
             this._btnBuscarPlanilha.Name = "_btnBuscarPlanilha";
             this._btnBuscarPlanilha.Size = new System.Drawing.Size(27, 26);
@@ -1217,7 +1217,7 @@ namespace TCC2
             // pbAddMedCaseira
             // 
             this.pbAddMedCaseira.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pbAddMedCaseira.Image = global::TCC2.Properties.Resources.arrow_icon_1___Copia;
+            this.pbAddMedCaseira.Image = global::NutriEz.Properties.Resources.arrow_icon_1___Copia;
             this.pbAddMedCaseira.Location = new System.Drawing.Point(423, 358);
             this.pbAddMedCaseira.Margin = new System.Windows.Forms.Padding(2);
             this.pbAddMedCaseira.Name = "pbAddMedCaseira";
@@ -1346,7 +1346,7 @@ namespace TCC2
             // btnSalvarMedCas
             // 
             this.btnSalvarMedCas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSalvarMedCas.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
+            this.btnSalvarMedCas.Image = global::NutriEz.Properties.Resources.mvtSaveGreen_16;
             this.btnSalvarMedCas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSalvarMedCas.Location = new System.Drawing.Point(1075, 635);
             this.btnSalvarMedCas.Name = "btnSalvarMedCas";
@@ -1807,7 +1807,7 @@ namespace TCC2
             // 
             this.btnCancelarCardapio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancelarCardapio.AutoSize = true;
-            this.btnCancelarCardapio.Image = global::TCC2.Properties.Resources.DeleteRed;
+            this.btnCancelarCardapio.Image = global::NutriEz.Properties.Resources.DeleteRed;
             this.btnCancelarCardapio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancelarCardapio.Location = new System.Drawing.Point(1080, 635);
             this.btnCancelarCardapio.Name = "btnCancelarCardapio";
@@ -1831,7 +1831,7 @@ namespace TCC2
             // btnAddAliCard
             // 
             this.btnAddAliCard.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnAddAliCard.Image = global::TCC2.Properties.Resources.arrow_icon_1___Copia;
+            this.btnAddAliCard.Image = global::NutriEz.Properties.Resources.arrow_icon_1___Copia;
             this.btnAddAliCard.Location = new System.Drawing.Point(505, 296);
             this.btnAddAliCard.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddAliCard.Name = "btnAddAliCard";
@@ -1843,7 +1843,7 @@ namespace TCC2
             // 
             // btnPacienteCardapio
             // 
-            this.btnPacienteCardapio.Image = global::TCC2.Properties.Resources.consultar;
+            this.btnPacienteCardapio.Image = global::NutriEz.Properties.Resources.consultar;
             this.btnPacienteCardapio.Location = new System.Drawing.Point(202, 16);
             this.btnPacienteCardapio.Name = "btnPacienteCardapio";
             this.btnPacienteCardapio.Size = new System.Drawing.Size(30, 23);
@@ -1986,7 +1986,7 @@ namespace TCC2
             // 
             this.btnSalvarCardapio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSalvarCardapio.AutoSize = true;
-            this.btnSalvarCardapio.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
+            this.btnSalvarCardapio.Image = global::NutriEz.Properties.Resources.mvtSaveGreen_16;
             this.btnSalvarCardapio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSalvarCardapio.Location = new System.Drawing.Point(958, 635);
             this.btnSalvarCardapio.Name = "btnSalvarCardapio";
@@ -2022,7 +2022,7 @@ namespace TCC2
             // 
             this.btnEnviarCardEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEnviarCardEmail.AutoSize = true;
-            this.btnEnviarCardEmail.Image = global::TCC2.Properties.Resources.email_envelope_outline_shape_with_rounded_corners_icon_icons_com_56530__2_;
+            this.btnEnviarCardEmail.Image = global::NutriEz.Properties.Resources.email_envelope_outline_shape_with_rounded_corners_icon_icons_com_56530__2_;
             this.btnEnviarCardEmail.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnEnviarCardEmail.Location = new System.Drawing.Point(958, 18);
             this.btnEnviarCardEmail.Name = "btnEnviarCardEmail";
@@ -2035,7 +2035,7 @@ namespace TCC2
             // btnConsultarCardapio
             // 
             this.btnConsultarCardapio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConsultarCardapio.Image = global::TCC2.Properties.Resources.consultar;
+            this.btnConsultarCardapio.Image = global::NutriEz.Properties.Resources.consultar;
             this.btnConsultarCardapio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConsultarCardapio.Location = new System.Drawing.Point(837, 18);
             this.btnConsultarCardapio.Name = "btnConsultarCardapio";
@@ -2167,7 +2167,7 @@ namespace TCC2
             // 
             this.btnExportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExportar.AutoSize = true;
-            this.btnExportar.Image = global::TCC2.Properties.Resources.msexcel_93695__3_;
+            this.btnExportar.Image = global::NutriEz.Properties.Resources.msexcel_93695__3_;
             this.btnExportar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExportar.Location = new System.Drawing.Point(958, 18);
             this.btnExportar.Name = "btnExportar";
@@ -2182,7 +2182,7 @@ namespace TCC2
             // 
             this.btnApagarCardapio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnApagarCardapio.AutoSize = true;
-            this.btnApagarCardapio.Image = global::TCC2.Properties.Resources.DeleteRed;
+            this.btnApagarCardapio.Image = global::NutriEz.Properties.Resources.DeleteRed;
             this.btnApagarCardapio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnApagarCardapio.Location = new System.Drawing.Point(1079, 18);
             this.btnApagarCardapio.Name = "btnApagarCardapio";
@@ -2194,7 +2194,7 @@ namespace TCC2
             // 
             // btnApagar
             // 
-            this.btnApagar.Image = global::TCC2.Properties.Resources.DeleteRed;
+            this.btnApagar.Image = global::NutriEz.Properties.Resources.DeleteRed;
             this.btnApagar.Location = new System.Drawing.Point(236, 18);
             this.btnApagar.Name = "btnApagar";
             this.btnApagar.Size = new System.Drawing.Size(30, 23);
@@ -2204,7 +2204,7 @@ namespace TCC2
             // 
             // btnBuscaPaciente
             // 
-            this.btnBuscaPaciente.Image = global::TCC2.Properties.Resources.consultar;
+            this.btnBuscaPaciente.Image = global::NutriEz.Properties.Resources.consultar;
             this.btnBuscaPaciente.Location = new System.Drawing.Point(200, 18);
             this.btnBuscaPaciente.Name = "btnBuscaPaciente";
             this.btnBuscaPaciente.Size = new System.Drawing.Size(30, 23);
@@ -2575,7 +2575,7 @@ namespace TCC2
             // 
             this._btnExcluir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnExcluir.AutoSize = true;
-            this._btnExcluir.Image = global::TCC2.Properties.Resources.DeleteRed;
+            this._btnExcluir.Image = global::NutriEz.Properties.Resources.DeleteRed;
             this._btnExcluir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._btnExcluir.Location = new System.Drawing.Point(1077, 430);
             this._btnExcluir.Name = "_btnExcluir";
@@ -2588,7 +2588,7 @@ namespace TCC2
             // _btnSalvar
             // 
             this._btnSalvar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._btnSalvar.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
+            this._btnSalvar.Image = global::NutriEz.Properties.Resources.mvtSaveGreen_16;
             this._btnSalvar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._btnSalvar.Location = new System.Drawing.Point(956, 430);
             this._btnSalvar.Name = "_btnSalvar";
@@ -2600,7 +2600,7 @@ namespace TCC2
             // 
             // pbImagem
             // 
-            this.pbImagem.Image = global::TCC2.Properties.Resources.no_icon_png_6;
+            this.pbImagem.Image = global::NutriEz.Properties.Resources.no_icon_png_6;
             this.pbImagem.Location = new System.Drawing.Point(17, 13);
             this.pbImagem.Name = "pbImagem";
             this.pbImagem.Size = new System.Drawing.Size(174, 168);
@@ -2750,7 +2750,7 @@ namespace TCC2
             // 
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancelar.AutoSize = true;
-            this.btnCancelar.Image = global::TCC2.Properties.Resources.DeleteRed;
+            this.btnCancelar.Image = global::NutriEz.Properties.Resources.DeleteRed;
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancelar.Location = new System.Drawing.Point(739, 557);
             this.btnCancelar.Name = "btnCancelar";
@@ -2764,7 +2764,7 @@ namespace TCC2
             // 
             this.btnSalvarAntro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSalvarAntro.AutoSize = true;
-            this.btnSalvarAntro.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
+            this.btnSalvarAntro.Image = global::NutriEz.Properties.Resources.mvtSaveGreen_16;
             this.btnSalvarAntro.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSalvarAntro.Location = new System.Drawing.Point(618, 557);
             this.btnSalvarAntro.Name = "btnSalvarAntro";
@@ -3189,7 +3189,7 @@ namespace TCC2
             // btnAnalytics
             // 
             this.btnAnalytics.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAnalytics.Image = global::TCC2.Properties.Resources._4230540_analysis_graph_report_115003;
+            this.btnAnalytics.Image = global::NutriEz.Properties.Resources._4230540_analysis_graph_report_115003;
             this.btnAnalytics.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAnalytics.Location = new System.Drawing.Point(1078, 24);
             this.btnAnalytics.Name = "btnAnalytics";
@@ -3202,7 +3202,7 @@ namespace TCC2
             // 
             // btnClearAntro
             // 
-            this.btnClearAntro.Image = global::TCC2.Properties.Resources.DeleteRed;
+            this.btnClearAntro.Image = global::NutriEz.Properties.Resources.DeleteRed;
             this.btnClearAntro.Location = new System.Drawing.Point(236, 21);
             this.btnClearAntro.Name = "btnClearAntro";
             this.btnClearAntro.Size = new System.Drawing.Size(30, 23);
@@ -3212,7 +3212,7 @@ namespace TCC2
             // 
             // btnPacAnt
             // 
-            this.btnPacAnt.Image = global::TCC2.Properties.Resources.consultar;
+            this.btnPacAnt.Image = global::NutriEz.Properties.Resources.consultar;
             this.btnPacAnt.Location = new System.Drawing.Point(200, 21);
             this.btnPacAnt.Name = "btnPacAnt";
             this.btnPacAnt.Size = new System.Drawing.Size(30, 23);
@@ -3242,7 +3242,7 @@ namespace TCC2
             // 
             // btnLimpar
             // 
-            this.btnLimpar.Image = global::TCC2.Properties.Resources.DeleteRed;
+            this.btnLimpar.Image = global::NutriEz.Properties.Resources.DeleteRed;
             this.btnLimpar.Location = new System.Drawing.Point(865, 21);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(30, 23);
@@ -3384,7 +3384,7 @@ namespace TCC2
             // 
             this.btnConfigAnamnese.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnConfigAnamnese.AutoSize = true;
-            this.btnConfigAnamnese.Image = global::TCC2.Properties.Resources.diagram_43_24474__1_;
+            this.btnConfigAnamnese.Image = global::NutriEz.Properties.Resources.diagram_43_24474__1_;
             this.btnConfigAnamnese.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConfigAnamnese.Location = new System.Drawing.Point(5, 630);
             this.btnConfigAnamnese.Name = "btnConfigAnamnese";
@@ -3396,7 +3396,7 @@ namespace TCC2
             // 
             // btnFindPacienteAnamnese
             // 
-            this.btnFindPacienteAnamnese.Image = global::TCC2.Properties.Resources.consultar;
+            this.btnFindPacienteAnamnese.Image = global::NutriEz.Properties.Resources.consultar;
             this.btnFindPacienteAnamnese.Location = new System.Drawing.Point(199, 21);
             this.btnFindPacienteAnamnese.Name = "btnFindPacienteAnamnese";
             this.btnFindPacienteAnamnese.Size = new System.Drawing.Size(30, 23);
@@ -3408,7 +3408,7 @@ namespace TCC2
             // 
             this.btnSalvarAnamnese.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSalvarAnamnese.AutoSize = true;
-            this.btnSalvarAnamnese.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
+            this.btnSalvarAnamnese.Image = global::NutriEz.Properties.Resources.mvtSaveGreen_16;
             this.btnSalvarAnamnese.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSalvarAnamnese.Location = new System.Drawing.Point(1078, 630);
             this.btnSalvarAnamnese.Name = "btnSalvarAnamnese";
@@ -3627,7 +3627,7 @@ namespace TCC2
             // btnExcluirConfigUsuario
             // 
             this.btnExcluirConfigUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExcluirConfigUsuario.Image = global::TCC2.Properties.Resources.DeleteRed;
+            this.btnExcluirConfigUsuario.Image = global::NutriEz.Properties.Resources.DeleteRed;
             this.btnExcluirConfigUsuario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExcluirConfigUsuario.Location = new System.Drawing.Point(1081, 178);
             this.btnExcluirConfigUsuario.Name = "btnExcluirConfigUsuario";
@@ -3640,7 +3640,7 @@ namespace TCC2
             // btnSalvarConfigUsuario
             // 
             this.btnSalvarConfigUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSalvarConfigUsuario.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
+            this.btnSalvarConfigUsuario.Image = global::NutriEz.Properties.Resources.mvtSaveGreen_16;
             this.btnSalvarConfigUsuario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSalvarConfigUsuario.Location = new System.Drawing.Point(960, 178);
             this.btnSalvarConfigUsuario.Name = "btnSalvarConfigUsuario";
@@ -3686,7 +3686,7 @@ namespace TCC2
             // btnExcluirPerm
             // 
             this.btnExcluirPerm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExcluirPerm.Image = global::TCC2.Properties.Resources.DeleteRed;
+            this.btnExcluirPerm.Image = global::NutriEz.Properties.Resources.DeleteRed;
             this.btnExcluirPerm.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExcluirPerm.Location = new System.Drawing.Point(1083, 133);
             this.btnExcluirPerm.Name = "btnExcluirPerm";
@@ -3769,7 +3769,7 @@ namespace TCC2
             // btnSalvarPermissao
             // 
             this.btnSalvarPermissao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSalvarPermissao.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
+            this.btnSalvarPermissao.Image = global::NutriEz.Properties.Resources.mvtSaveGreen_16;
             this.btnSalvarPermissao.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSalvarPermissao.Location = new System.Drawing.Point(962, 133);
             this.btnSalvarPermissao.Name = "btnSalvarPermissao";
@@ -3907,7 +3907,7 @@ namespace TCC2
             // btnSalvarHoraAtend
             // 
             this.btnSalvarHoraAtend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSalvarHoraAtend.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
+            this.btnSalvarHoraAtend.Image = global::NutriEz.Properties.Resources.mvtSaveGreen_16;
             this.btnSalvarHoraAtend.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSalvarHoraAtend.Location = new System.Drawing.Point(1082, 187);
             this.btnSalvarHoraAtend.Name = "btnSalvarHoraAtend";

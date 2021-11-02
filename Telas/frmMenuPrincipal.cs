@@ -14,22 +14,22 @@ using System.ComponentModel;
 using LiveCharts;
 using LiveCharts.Wpf;
 using System.Transactions;
-using TCC2.Banco_de_Dados;
+using NutriEz.Banco_de_Dados;
 using AdvancedDataGridView;
 using System.Text.RegularExpressions;
 using DAO;
 using static Classes.HelperFuncoes;
 using System.Windows.Forms.Calendar;
-using TCC2.Telas;
-using TCC2.DAO;
+using NutriEz.Telas;
+using NutriEz.DAO;
 using System.Globalization;
 using Aspose.Cells;
-using TCC2.Properties;
+using NutriEz.Properties;
 using System.Threading;
 using Model;
 using System.Diagnostics;
 
-namespace TCC2
+namespace NutriEz
 {
     public partial class FrmMenuPrincipal : MaterialForm
     {

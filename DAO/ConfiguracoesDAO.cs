@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static Classes.HelperFuncoes;
-using TCC2.Banco_de_Dados;
+using NutriEz.Banco_de_Dados;
 using System.Data.Entity;
 
-namespace TCC2.DAO
+namespace NutriEz.DAO
 {
     public class ConfiguracoesDAO
     {

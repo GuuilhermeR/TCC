@@ -3,7 +3,7 @@ using MaterialSkin;
 using MaterialSkin.Controls;
 using static Classes.HelperFuncoes;
 
-namespace TCC2.Telas
+namespace NutriEz.Telas
 {
     public partial class frmCadastro : MaterialForm
     {

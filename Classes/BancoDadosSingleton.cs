@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TCC2.Banco_de_Dados;
+using NutriEz.Banco_de_Dados;
 
-namespace TCC2
+namespace NutriEz
 {
     class BancoDadosSingleton
     {

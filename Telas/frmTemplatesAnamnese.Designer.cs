@@ -1,5 +1,5 @@
 ﻿
-namespace TCC2.Telas
+namespace NutriEz.Telas
 {
     partial class frmTemplatesAnamnese
     {
@@ -115,7 +115,7 @@ namespace TCC2.Telas
             // 
             this.btnSalvarAnamnese.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSalvarAnamnese.AutoSize = true;
-            this.btnSalvarAnamnese.Image = global::TCC2.Properties.Resources.mvtSaveGreen_16;
+            this.btnSalvarAnamnese.Image = global::NutriEz.Properties.Resources.mvtSaveGreen_16;
             this.btnSalvarAnamnese.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSalvarAnamnese.Location = new System.Drawing.Point(1091, 786);
             this.btnSalvarAnamnese.Name = "btnSalvarAnamnese";

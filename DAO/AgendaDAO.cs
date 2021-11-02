@@ -4,11 +4,11 @@ using System.Data.SQLite;
 using System.Windows.Forms;
 using System.Linq;
 using Microsoft.VisualBasic;
-using TCC2;
+using NutriEz;
 using System.Collections.Generic;
-using TCC2.Banco_de_Dados;
 using static Classes.HelperFuncoes;
 using System.Data.Entity;
+using NutriEz.Banco_de_Dados;
 
 namespace ProjetoTCC
 {
@@ -27,7 +27,7 @@ namespace ProjetoTCC
             DateTime dataMarcadasFim = Convert.ToDateTime(dataFim);
             try
             {
-                var agenda = BancoDadosSingleton.Instance.Agenda.Where(a =>
+                List<Agenda> agenda = BancoDadosSingleton.Instance.Agenda.Where(a =>
                                     (DateTime.ParseExact(a.data.ToString(), "yyyy-MM-dd HH:mm:ss", null) >= dataMarcadasIni)
                                     && (DateTime.ParseExact(a.data.ToString(), "yyyy-MM-dd HH:mm:ss", null) <= dataMarcadasFim)).ToList();
                 if (agenda.Count > 0)

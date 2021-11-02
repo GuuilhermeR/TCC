@@ -4,14 +4,14 @@ using System.Data.SQLite;
 using System.Linq;
 using Microsoft.VisualBasic;
 using System.Collections.Generic;
-using TCC2.Banco_de_Dados;
+using NutriEz.Banco_de_Dados;
 using Classes;
 using System.Web.Security;
 using static Classes.HelperFuncoes;
-using TCC2.Classes;
+using NutriEz.Classes;
 using System.Data.Entity;
 
-namespace TCC2
+namespace NutriEz
 {
     public class UsuarioDAO
     {
@@ -30,7 +30,7 @@ namespace TCC2
             }
             try
             {
-                var usuarioLogado = (from c in TCC2.BancoDadosSingleton.Instance.Login where c.usuario == usuarioLogin select c.nome).FirstOrDefault();
+                var usuarioLogado = (from c in NutriEz.BancoDadosSingleton.Instance.Login where c.usuario == usuarioLogin select c.nome).FirstOrDefault();
                 nome = usuarioLogado.ToString();
                 usuario = usuarioLogin.ToString();
                 return;
@@ -81,7 +81,7 @@ namespace TCC2
             senha = FormsAuthentication.HashPasswordForStoringInConfigFile(senha, "MD5");
             try
             {
-                var usuarioLog = (from c in TCC2.BancoDadosSingleton.Instance.Login where c.usuario == usuarioLogado && c.senha == senha && c.situacao.ToLower() == "ativo" select c).ToList();
+                var usuarioLog = (from c in NutriEz.BancoDadosSingleton.Instance.Login where c.usuario == usuarioLogado && c.senha == senha && c.situacao.ToLower() == "ativo" select c).ToList();
                 if (usuarioLog.Count > 0)
                 {
                     return true;
@@ -207,7 +207,7 @@ namespace TCC2
 
         public bool VerificarExisteUsuario(string usuario)
         {
-            var usuarioLog = (from c in TCC2.BancoDadosSingleton.Instance.Login where c.usuario == usuario select c.usuario).ToList();
+            var usuarioLog = (from c in NutriEz.BancoDadosSingleton.Instance.Login where c.usuario == usuario select c.usuario).ToList();
 
             if (usuarioLog.Count > 0)
                 return true;

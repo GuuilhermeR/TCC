@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TCC2.Telas
+namespace NutriEz.Telas
 {
     public partial class frmWait : Form
     {

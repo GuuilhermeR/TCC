@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TCC2;
-using TCC2.Banco_de_Dados;
+using NutriEz;
+using NutriEz.Banco_de_Dados;
 using static Classes.HelperFuncoes;
 
 namespace DAO
@@ -17,7 +17,7 @@ namespace DAO
         {
             try
             {
-                var temPerm = (from p in TCC2.BancoDadosSingleton.Instance.Permissao where p.usuario == usuario && p.programa == nameAba select p).ToList();
+                var temPerm = (from p in NutriEz.BancoDadosSingleton.Instance.Permissao where p.usuario == usuario && p.programa == nameAba select p).ToList();
                 if (temPerm.Count > 0)
                 {
                     return true;
@@ -54,14 +54,20 @@ namespace DAO
 
         public bool VerificarPermissao(string usuario, string tela)
         {
-            var temPerm = (from p in TCC2.BancoDadosSingleton.Instance.Permissao where p.usuario == usuario && p.programa == tela && p.Login.perfil.ToLower() != "nutricionista" || p.Login.perfil.ToLower() != "estudante" select p).ToList();
+
+            var temPerm = (from p in NutriEz.BancoDadosSingleton.Instance.Permissao 
+                           where p.usuario == usuario 
+                           && p.programa == tela 
+                           && p.Login.perfil != "Nutricionista" || p.Login.perfil != "Estudante"
+                           select p).ToList();
+
             if (temPerm.Count > 0)
             {
-                return true;
+                return false;
             }
             else
             {
-                return false;
+                return true;
             }
         }
 
@@ -69,7 +75,7 @@ namespace DAO
         {
             try
             {
-                var permUsuario = (from perm in TCC2.BancoDadosSingleton.Instance.Permissao select perm).ToList();
+                var permUsuario = (from perm in NutriEz.BancoDadosSingleton.Instance.Permissao select perm).ToList();
                 if (permUsuario.Count > 0)
                 {
                     return permUsuario;

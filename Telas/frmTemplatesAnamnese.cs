@@ -9,10 +9,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TCC2.Telas;
+using NutriEz.Telas;
 using static Classes.HelperFuncoes;
 
-namespace TCC2.Telas
+namespace NutriEz.Telas
 {
     public partial class frmTemplatesAnamnese : MaterialForm
     {

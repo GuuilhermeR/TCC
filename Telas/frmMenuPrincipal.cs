@@ -804,7 +804,7 @@ namespace NutriEz
                     calAgendamentos.ApplyColor(Color.Tomato);
 
                 if (Convert.ToBoolean(x.atendido) && !Convert.ToBoolean(x.retorno))
-                    calAgendamentos.ApplyColor(Color.Green);
+                    calAgendamentos.ApplyColor(Color.LightGreen);
 
                 if (!Convert.ToBoolean(x.atendido) && !Convert.ToBoolean(x.retorno) && !Convert.ToBoolean(x.Cancelado))
                     calAgendamentos.ApplyColor(Color.Yellow);

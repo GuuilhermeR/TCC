@@ -182,4 +182,4 @@ C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\NutriEz.exe
 C:\Users\movtech\Desktop\WorkSpace\TCC\bin\Debug\NutriEz.pdb
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\NutriEz.exe
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\NutriEz.pdb
-C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.csproj.AssemblyReference.cache
+C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.csproj.CopyComplete

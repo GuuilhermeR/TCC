@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{5C0E3BDC-A3D7-4624-9890-2812B37E3CBA}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>TCC2</RootNamespace>
-    <AssemblyName>TCC2</AssemblyName>
+    <RootNamespace>NutriEz</RootNamespace>
+    <AssemblyName>NutriEz</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -48,6 +48,12 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>iconTCC.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>TCC2.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DShowNET, Version=1.0.0.1, Culture=neutral">
@@ -297,6 +303,7 @@
     <Content Include="dlls\MvtWindowsFormsCME.dll" />
     <Content Include="dlls\MvtWindowsFormsCS.dll" />
     <Content Include="dlls\System.Windows.Forms.Calendar.dll" />
+    <Content Include="iconTCC.ico" />
     <Content Include="Resources\2355300-removebg-preview %283%29.png" />
     <None Include="Resources\4105941-lock-login-password-security-sign-in-sign-out_113932.png" />
     <None Include="Resources\4105938-account-card-id-identification-identity-card-profile-user-profile_113929.png" />

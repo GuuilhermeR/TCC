@@ -205,9 +205,13 @@ namespace NutriEz
             }
         }
 
-        public bool VerificarExisteUsuario(string usuario)
+        public bool VerificarExisteUsuario(string usuario, string perfil)
         {
-            var usuarioLog = (from c in NutriEz.BancoDadosSingleton.Instance.Login where c.usuario == usuario select c.usuario).ToList();
+            List<string> usuarioLog = new List<string>();
+            if(!string.IsNullOrEmpty(usuario))
+            usuarioLog = (from c in NutriEz.BancoDadosSingleton.Instance.Login where c.usuario == usuario select c.usuario).ToList();
+            else if (!string.IsNullOrEmpty(perfil))
+            usuarioLog = (from c in NutriEz.BancoDadosSingleton.Instance.Login where c.perfil == perfil select c.usuario).ToList();
 
             if (usuarioLog.Count > 0)
                 return true;

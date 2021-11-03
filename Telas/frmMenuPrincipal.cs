@@ -3307,7 +3307,7 @@ namespace NutriEz
                 return;
             }
 
-            if (usuarioDAO.VerificarExisteUsuario(txtUsuarioConfig.Text))
+            if (usuarioDAO.VerificarExisteUsuario(txtUsuarioConfig.Text,string.Empty))
             {
                 if (Interaction.MsgBox("Você deseja alterar a senha do usuário?", MsgBoxStyle.YesNo, "ALTERAÇÃO DE SENHA") == MsgBoxResult.Yes)
                     alterarSenha = true;
@@ -3445,7 +3445,11 @@ namespace NutriEz
             }
 
             cbxUsuarioPerm.Items.Clear();
-            listaUsuarios.ForEach(x => cbxUsuNutri.Items.Add(x.usuario));
+            listaUsuarios.ForEach(x =>
+            {
+                if (x.perfil.ToLower().Equals("nutricionista"))
+                    cbxUsuNutri.Items.Add(x.usuario);
+            });
 
             var listConfig = configDAO.Consultar();
             if (listConfig == null)

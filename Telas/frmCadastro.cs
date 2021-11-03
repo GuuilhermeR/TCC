@@ -28,7 +28,13 @@ namespace NutriEz.Telas
                 tipoPerfil = "Nutricionista";
             else
             {
-               nMensagemAlerta("É necessário informar se você é Nutricionista/Estudante");
+               nMensagemAlerta("É necessário informar se você é Nutricionista/Estudante!");
+                return;
+            }
+
+            if(usuarioDAO.VerificarExisteUsuario(string.Empty, "Nutricionista"))
+            {
+                nMensagemAlerta("Já existe um perfil Nutricionista cadastrado! Atualmente não é possível cadastrar mais de 1 atualmente!");
                 return;
             }
 

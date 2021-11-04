@@ -1567,8 +1567,6 @@ namespace NutriEz
                 paciente.UF = txtUF.Text;
             if (txtComplemento.Text != "")
                 paciente.complemento = txtComplemento.Text;
-            if (sexo != "")
-                paciente.sexo = sexo;
 
             if (rbMasculino.Checked)
             {
@@ -1578,6 +1576,10 @@ namespace NutriEz
             {
                 sexo = "F";
             }
+
+            if (sexo != "")
+                paciente.sexo = sexo;
+
             listaPacientes.Clear();
 
             pacienteDAO.Salvar(paciente, this.vetorImagens);
@@ -3081,20 +3083,21 @@ namespace NutriEz
 
             double kcalTotal = 0;
             carregarAlimentos.ForEach(x =>
-            {
-                var linha = dtgRefeicoes.Rows.Add(
-                                x.codAlimento
-                              , x.Alimentos.nomeAlimento
-                              , x.medidaCaseiraQtde
-                              , x.Alimentos.kcal
-                              , x.Alimentos.prot
-                              , x.Alimentos.carbo
-                              , x.Alimentos.lipidio
-                              , string.Empty
-                              , x.obs);
+            {               
+                    var linha = dtgRefeicoes.Rows.Add(
+                                    x.codAlimento
+                                  , x.Alimentos.nomeAlimento
+                                  , x.medidaCaseiraQtde
+                                  , x.Alimentos.kcal
+                                  , x.Alimentos.prot
+                                  , x.Alimentos.carbo
+                                  , x.Alimentos.lipidio
+                                  , string.Empty
+                                  , x.Refeicao
+                                  , x.obs);
 
-                kcalTotal += Convert.ToDouble(dtgRefeicoes.Rows[linha].Cells[kcal.Index].Value);
-                CarregarGrafico(Convert.ToDouble(x.Alimentos.prot), Convert.ToDouble(x.Alimentos.carbo), Convert.ToDouble(x.Alimentos.lipidio));
+                    kcalTotal += Convert.ToDouble(dtgRefeicoes.Rows[linha].Cells[kcal.Index].Value);
+                    CarregarGrafico(Convert.ToDouble(x.Alimentos.prot), Convert.ToDouble(x.Alimentos.carbo), Convert.ToDouble(x.Alimentos.lipidio));
             });
             lblValorKcal.Text = kcalTotal.ToString("N2");
             foreach (DataGridViewRow row in dtgRefeicoes.Rows)

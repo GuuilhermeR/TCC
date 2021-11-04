@@ -25,18 +25,21 @@ namespace NutriEz.Telas
             if (mchkEstudante.Checked)
                 tipoPerfil = "Estudante";
             else if (mchkNutricionista.Checked)
+            {
+                if (usuarioDAO.VerificarExisteUsuario(string.Empty, "Nutricionista"))
+                {
+                    nMensagemAlerta("Já existe um perfil Nutricionista cadastrado! Atualmente não é possível cadastrar mais de 1 atualmente!");
+                    return;
+                }
                 tipoPerfil = "Nutricionista";
+            }
             else
             {
                nMensagemAlerta("É necessário informar se você é Nutricionista/Estudante!");
                 return;
             }
 
-            if(usuarioDAO.VerificarExisteUsuario(string.Empty, "Nutricionista"))
-            {
-                nMensagemAlerta("Já existe um perfil Nutricionista cadastrado! Atualmente não é possível cadastrar mais de 1 atualmente!");
-                return;
-            }
+            
 
             if (mLblUsuario.Text == string.Empty)
             {

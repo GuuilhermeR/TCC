@@ -106,7 +106,7 @@ namespace NutriEz.DAO
                 using (var db = new NutreasyEntities())
                 {
                     var delete = db.Database.Connection.CreateCommand();
-                    delete.CommandText = $"DELETE FROM ConfiguracoesUsuarios WHERE usuario={usuario} AND diaSemana={diaSemana}";
+                    delete.CommandText = $"DELETE FROM ConfiguracoesUsuarios WHERE usuario='{usuario}' AND diaSemana='{diaSemana}'";
                     db.Database.Connection.Open();
                     delete.ExecuteNonQuery();
                     db.Database.Connection.Close();

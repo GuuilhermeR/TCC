@@ -17,12 +17,7 @@ namespace NutriEz
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(true);
-            //Application.Run(new FrmMenuPrincipal("guilherme",true));
             Application.Run(new frmTelaLogin());
-            //Application.Run(new frmCadastro());
-            //Application.Run(new frmEsqueciSenha());
-            //Application.Run(new frmWait());
-            //Application.Run(new frmTemplatesAnamnese());
         }
     }
-}
+    }

@@ -104,7 +104,7 @@ namespace NutriEz
             {
                 FecharAplicacao(sender, e);
             }
-            linkLabel1.Links.Add(0, linkLabel1.Text.Length, "https://www.globo.com/");
+            linkLabel1.Links.Add(0, linkLabel1.Text.Length, "https://forms.office.com/r/EzCikDHZee");
             calAgendamento.MaximumViewDays = 70000;
 
             tLoad = new Thread(PreCarregarPacientes);
@@ -3696,25 +3696,23 @@ namespace NutriEz
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //System.Diagnostics.Process.Start(e.Link.LinkData.ToString());
+            System.Diagnostics.Process.Start(e.Link.LinkData.ToString());
         }
 
-        private void dtgConfigHorario_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        private void btnExcluirHoraAtend_Click(object sender, EventArgs e)
         {
-            //if (!string.IsNullOrEmpty(dtgConfigHorario.SelectedRows.Value.ToString()))
-            //{
-            //    configDAO.RemoverConfig(usuarioDAO.getUsuario(), dtgConfigHorario.Rows[e.Row.Index].Cells["diaSemana"].Value.ToString());
-            //}
-        }
-
-        private void cbxRefeicao_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabAgenda_Click(object sender, EventArgs e)
-        {
-
+            if (dtgConfigHorario.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow row in dtgConfigHorario.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        configDAO.RemoverConfig(row.Cells["usuario"].Value.ToString(), row.Cells["diaSemana"].Value.ToString());
+                    }
+                }
+                dtgConfigHorario.Rows.Clear();
+                dtgConfigHorario.Columns.Clear();
+            }
         }
     }
 }

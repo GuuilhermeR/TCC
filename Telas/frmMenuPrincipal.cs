@@ -1376,18 +1376,18 @@ namespace NutriEz
                 loadStart(this);
                 txtCodPaciente.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["codPaciente"].Value);
                 txtNome.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["nome"].Value);
-                txtCPF.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["CPF"].Value);
-                txtDtNasc.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["dtNasc"].Value);
-                txtEmail.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["email"].Value);
-                txtCEP.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["CEP"].Value);
-                txtNumero.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["numero"].Value);
-                txtComplemento.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["complemento"].Value);
-                txtTelefone.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["telefone"].Value);
-                txtCelular.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["celular"].Value);
-                txtBairro.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["bairro"].Value);
-                txtMunicipio.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["municipio"].Value);
-                txtEndereco.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["endereco"].Value);
-                txtUF.Text = Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["UF"].Value);
+                txtCPF.Text = _dtgConsultaPacientes.Rows[e.RowIndex].Cells["CPF"].Value == DBNull.Value ? string.Empty : Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["CPF"].Value);
+                txtDtNasc.Text = _dtgConsultaPacientes.Rows[e.RowIndex].Cells["dtNasc"].Value == DBNull.Value ? string.Empty : Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["dtNasc"].Value);
+                txtEmail.Text = _dtgConsultaPacientes.Rows[e.RowIndex].Cells["email"].Value == DBNull.Value ? string.Empty : Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["email"].Value);
+                txtCEP.Text = _dtgConsultaPacientes.Rows[e.RowIndex].Cells["CEP"].Value == DBNull.Value ? string.Empty : Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["CEP"].Value);
+                txtNumero.Text = _dtgConsultaPacientes.Rows[e.RowIndex].Cells["numero"].Value == DBNull.Value ? string.Empty : Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["numero"].Value);
+                txtComplemento.Text = _dtgConsultaPacientes.Rows[e.RowIndex].Cells["complemento"].Value == DBNull.Value ? string.Empty : Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["complemento"].Value);
+                txtTelefone.Text = _dtgConsultaPacientes.Rows[e.RowIndex].Cells["telefone"].Value == DBNull.Value ? string.Empty : Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["telefone"].Value);
+                txtCelular.Text = _dtgConsultaPacientes.Rows[e.RowIndex].Cells["celular"].Value == DBNull.Value ? string.Empty : Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["celular"].Value);
+                txtBairro.Text = _dtgConsultaPacientes.Rows[e.RowIndex].Cells["bairro"].Value == DBNull.Value ? string.Empty : Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["bairro"].Value);
+                txtMunicipio.Text = _dtgConsultaPacientes.Rows[e.RowIndex].Cells["municipio"].Value == DBNull.Value ? string.Empty : Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["municipio"].Value);
+                txtEndereco.Text = _dtgConsultaPacientes.Rows[e.RowIndex].Cells["endereco"].Value == DBNull.Value ? string.Empty : Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["endereco"].Value);
+                txtUF.Text = _dtgConsultaPacientes.Rows[e.RowIndex].Cells["UF"].Value == DBNull.Value ? string.Empty : Conversions.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["UF"].Value);
                 if (Convert.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["imagem"].Value) != string.Empty)
                 {
                     pbImagem.Image = ByteToImage((byte[])_dtgConsultaPacientes.Rows[e.RowIndex].Cells["imagem"].Value);
@@ -1525,16 +1525,50 @@ namespace NutriEz
 
         private void _btnSalvar_Click(object sender, EventArgs e)
         {
+            Paciente paciente = new Paciente();
+
             if (string.IsNullOrEmpty(txtNome.Text))
             {
                 nMensagemAviso("Necessário informar pelo menos o nome!");
                 return;
             }
             loadStart(this);
+
             string CPF = txtCPF.Text.Replace("-", string.Empty).Replace(".", string.Empty);
             string CEP = txtCEP.Text.Replace("-", string.Empty);
-            int codPaciente = Convert.ToInt32(txtCodPaciente.Text);
             string sexo = string.Empty;
+
+            int codPaciente = 0;
+            if (txtCodPaciente.Text != "CodPaciente")
+                paciente.codPaciente = codPaciente;
+            if (txtNome.Text != "")
+                paciente.nome = txtNome.Text;
+            if (CPF != "")
+                paciente.CPF = Convert.ToInt64(CPF);
+            if (txtDtNasc.Text != "")
+                paciente.dtNasc = txtDtNasc.Text;
+            if (txtEmail.Text != "")
+                paciente.email = txtEmail.Text;
+            if (CEP != "")
+                paciente.CEP = Convert.ToDouble(CEP);
+            if (txtNumero.Text != "")
+                paciente.numero = Convert.ToInt64(txtNumero.Text);
+            if (txtTelefone.Text != "")
+                paciente.telefone = txtTelefone.Text;
+            if (txtCelular.Text != "")
+                paciente.celular = txtCelular.Text;
+            if (txtEndereco.Text != "")
+                paciente.endereco = txtEndereco.Text;
+            if (txtBairro.Text != "")
+                paciente.bairro = txtBairro.Text;
+            if (txtMunicipio.Text != "")
+                paciente.municipio = txtMunicipio.Text;
+            if (txtUF.Text != "")
+                paciente.UF = txtUF.Text;
+            if (txtComplemento.Text != "")
+                paciente.complemento = txtComplemento.Text;
+            if (sexo != "")
+                paciente.sexo = sexo;
 
             if (rbMasculino.Checked)
             {
@@ -1546,10 +1580,7 @@ namespace NutriEz
             }
             listaPacientes.Clear();
 
-            pacienteDAO.Salvar(codPaciente, Convert.ToString(txtNome.Text), Convert.ToDouble((CPF)), Convert.ToString((txtDtNasc.Text)), Convert.ToString((txtEmail.Text))
-                , Convert.ToDouble((CEP)), Convert.ToDouble((txtNumero.Text)), Convert.ToString((txtTelefone.Text)), Convert.ToString((txtCelular.Text))
-                , Convert.ToString((txtEndereco.Text)), Convert.ToString((txtBairro.Text)), Convert.ToString((txtMunicipio.Text)), Convert.ToString((txtUF.Text))
-                , Convert.ToString((txtComplemento.Text)), this.vetorImagens, (sexo));
+            pacienteDAO.Salvar(paciente, this.vetorImagens);
 
             tLoad = new Thread(PreCarregarPacientes);
             tLoad.Start();
@@ -2241,7 +2272,7 @@ namespace NutriEz
             txtPacienteAnamnese.Text = nome;
             txtPacienteAntro.Text = nome;
             txtPacienteConsultaCardapio.Text = nome;
-            txtCodPaciente.Text = nome;
+            txtNome.Text = nome;
         }
 
         private void dtgRefeicoes_UserDeletedRow(object sender, DataGridViewRowEventArgs e)

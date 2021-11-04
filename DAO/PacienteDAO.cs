@@ -21,26 +21,26 @@ namespace ProjetoTCC
 
         public SQLiteConnection objConexao;
 
-        public void Salvar(int codPaciente, string nome, double cpf, string dtNasc, string email, double cep, double num, string telefone, string celular, string endereco, string bairro, string municipio, string uf, string complemento, byte[] vetorIMG, string sexo)
+        public void Salvar( Paciente paciente, byte[] vetorIMG)
         {
-            if (VerificarPacienteExiste(codPaciente))
+            if (VerificarPacienteExiste(Convert.ToInt64(paciente.codPaciente)))
             {
-                var pacienteUpdate = (from c in BancoDadosSingleton.Instance.Paciente where c.codPaciente == codPaciente select c).Single();
+                var pacienteUpdate = (from c in BancoDadosSingleton.Instance.Paciente where c.codPaciente == paciente.codPaciente select c).Single();
 
-                pacienteUpdate.nome = nome;
-                pacienteUpdate.CPF = (long)cpf;
-                pacienteUpdate.dtNasc = dtNasc;
-                pacienteUpdate.email = email;
-                pacienteUpdate.CEP = cep;
-                pacienteUpdate.endereco = endereco;
-                pacienteUpdate.numero = (long?)num;
-                pacienteUpdate.bairro = bairro;
-                pacienteUpdate.municipio = municipio;
-                pacienteUpdate.UF = uf;
-                pacienteUpdate.complemento = complemento;
-                pacienteUpdate.telefone = telefone;
-                pacienteUpdate.celular = celular;
-                pacienteUpdate.sexo = sexo;
+                pacienteUpdate.nome = paciente.nome;
+                pacienteUpdate.CPF = paciente.CPF;
+                pacienteUpdate.dtNasc = paciente.dtNasc;
+                pacienteUpdate.email = paciente.email;
+                pacienteUpdate.CEP = paciente.CEP;
+                pacienteUpdate.endereco = paciente.endereco;
+                pacienteUpdate.numero = paciente.numero;
+                pacienteUpdate.bairro = paciente.bairro;
+                pacienteUpdate.municipio = paciente.municipio;
+                pacienteUpdate.UF = paciente.UF;
+                pacienteUpdate.complemento = paciente.complemento;
+                pacienteUpdate.telefone = paciente.telefone;
+                pacienteUpdate.celular = paciente.celular;
+                pacienteUpdate.sexo = paciente.sexo;
                 if (vetorIMG != null)
                     pacienteUpdate.imagem = vetorIMG;
 
@@ -53,20 +53,20 @@ namespace ProjetoTCC
                 {
                     Paciente pacienteInsert = new Paciente();
 
-                    pacienteInsert.nome = nome;
-                    pacienteInsert.CPF = (long)cpf;
-                    pacienteInsert.dtNasc = dtNasc;
-                    pacienteInsert.email = email;
-                    pacienteInsert.CEP = cep;
-                    pacienteInsert.endereco = endereco;
-                    pacienteInsert.numero = (long?)num;
-                    pacienteInsert.bairro = bairro;
-                    pacienteInsert.municipio = municipio;
-                    pacienteInsert.UF = uf;
-                    pacienteInsert.complemento = complemento;
-                    pacienteInsert.telefone = telefone;
-                    pacienteInsert.celular = celular;
-                    pacienteInsert.sexo = sexo;
+                    pacienteInsert.nome = paciente.nome;
+                    pacienteInsert.CPF = paciente.CPF;
+                    pacienteInsert.dtNasc = paciente.dtNasc;
+                    pacienteInsert.email = paciente.email;
+                    pacienteInsert.CEP = paciente.CEP;
+                    pacienteInsert.endereco = paciente.endereco;
+                    pacienteInsert.numero = paciente.numero;
+                    pacienteInsert.bairro = paciente.bairro;
+                    pacienteInsert.municipio = paciente.municipio;
+                    pacienteInsert.UF = paciente.UF;
+                    pacienteInsert.complemento = paciente.complemento;
+                    pacienteInsert.telefone = paciente.telefone;
+                    pacienteInsert.celular = paciente.celular;
+                    pacienteInsert.sexo = paciente.sexo;
                     if (vetorIMG != null)
                         pacienteInsert.imagem = vetorIMG;
 
@@ -93,7 +93,7 @@ namespace ProjetoTCC
 
         }
 
-        public bool VerificarPacienteExiste(int pacienteBuscar)
+        public bool VerificarPacienteExiste(long pacienteBuscar)
         {
             var paciente = string.Empty;
             try

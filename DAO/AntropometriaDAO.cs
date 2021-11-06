@@ -7,7 +7,6 @@ using Microsoft.VisualBasic;
 using NutriEz;
 using System.Collections.Generic;
 using System.Runtime.Remoting.Contexts;
-using System.Transactions;
 using NutriEz.Banco_de_Dados;
 using static Classes.HelperFuncoes;
 using System.Data.Entity;
@@ -20,46 +19,61 @@ namespace ProjetoTCC
 
         public AntropometriaDAO() { }
 
-        public void Salvar(int codPaciente, double altura, double antebraco,double braco,double cintura,double coxa,double panturrilha,double peso, double punho, double quadril, double torax, double pescoco, double abdome, string data, string grauAtividade, int temGrauAtividade, int temCoefAtividade, string coefAtividade)
+        public void Salvar(Antropometria antro)
         {
-            DateTime date = Convert.ToDateTime(data);
             try
             {
-                if (!VerificarExisteSalvo(codPaciente, Convert.ToDateTime(data)))
+                if (!VerificarExisteSalvo((int)antro.codPaciente, antro.Data))
                 {
                     Antropometria antropometriaInsert = new Antropometria();
 
-                    antropometriaInsert.codPaciente = codPaciente;
-                    antropometriaInsert.altura = altura;
-                    antropometriaInsert.antebraco = antebraco;
-                    antropometriaInsert.braco = braco;
-                    antropometriaInsert.cintura = cintura;
-                    antropometriaInsert.coxa = coxa;
-                    antropometriaInsert.panturrilha = panturrilha;
-                    antropometriaInsert.peso = peso;
-                    antropometriaInsert.punho = punho;
-                    antropometriaInsert.quadril = quadril;
-                    antropometriaInsert.torax = torax;
-                    antropometriaInsert.pescoco = torax;
-                    antropometriaInsert.abdome = torax;
-                    antropometriaInsert.grauAtividade = grauAtividade;
-                    antropometriaInsert.temGrauAtividade = temGrauAtividade;
-                    antropometriaInsert.temCoefAtividade = temCoefAtividade;
-                    antropometriaInsert.coefAtividade = coefAtividade;
-                    antropometriaInsert.Data = Convert.ToDateTime(date.ToString("yyyy-MM-dd HH:mm"));
+                    antropometriaInsert.codPaciente = antro.codPaciente;
+                    if(antro.altura > 0)
+                    antropometriaInsert.altura = antro.altura;
+                    if(antro.antebraco > 0)
+                    antropometriaInsert.antebraco = antro.antebraco;
+                    if(antro.braco > 0)
+                    antropometriaInsert.braco = antro.braco;
+                    if(antro.cintura > 0)
+                    antropometriaInsert.cintura = antro.cintura;
+                    if(antro.coxa > 0)
+                    antropometriaInsert.coxa = antro.coxa;
+                    if(antro.panturrilha > 0)
+                    antropometriaInsert.panturrilha = antro.panturrilha;
+                    if(antro.peso > 0)
+                    antropometriaInsert.peso = antro.peso;
+                    if(antro.punho > 0)
+                    antropometriaInsert.punho = antro.punho;
+                    if(antro.quadril > 0)
+                    antropometriaInsert.quadril = antro.quadril;
+                    if(antro.torax > 0)
+                    antropometriaInsert.torax = antro.torax;
+                    if(antro.pescoco > 0)
+                    antropometriaInsert.pescoco = antro.pescoco;
+                    if(antro.abdome > 0)
+                    antropometriaInsert.abdome = antro.abdome;
+                    if(!string.IsNullOrEmpty(antro.grauAtividade))
+                    antropometriaInsert.grauAtividade = antro.grauAtividade;
+                    if(antro.temGrauAtividade > 0)
+                    antropometriaInsert.temGrauAtividade = antro.temGrauAtividade;
+                    if (antro.temCoefAtividade > 0)
+                    antropometriaInsert.temCoefAtividade = antro.temCoefAtividade;
+                    if(!string.IsNullOrEmpty(antro.coefAtividade))
+                    antropometriaInsert.coefAtividade = antro.coefAtividade;
+                    antropometriaInsert.Data = antro.Data;
 
                     BancoDadosSingleton.Instance.Antropometria.Add(antropometriaInsert);
                     BancoDadosSingleton.Instance.SaveChanges();
-                    BancoDadosSingleton.Instance.Entry(antropometriaInsert).State = System.Data.Entity.EntityState.Modified;
+
                 }
                 else
                 {
                     using (var db = new NutreasyEntities())
                     {
                         var update = db.Database.Connection.CreateCommand();
-                        update.CommandText = $"UPDATE Antropometria SET altura={altura}, braco={braco}, punho={punho}, cintura={cintura}, torax={torax}, quadril={quadril}" +
-                            $", panturrilha={panturrilha}, antebraco={antebraco}, coxa={coxa}, peso={peso}, pescoco={pescoco}, abdome={abdome}, grauAtividade='{grauAtividade}'" +
-                            $"WHERE codPaciente = {codPaciente} AND Data='{date.ToString("yyyy-MM-dd HH:mm")}'";
+                        update.CommandText = $"UPDATE Antropometria SET altura={antro.altura}, braco={antro.braco}, punho={antro.punho}, cintura={antro.cintura}, torax={antro.torax}, quadril={antro.quadril}" +
+                            $", panturrilha={antro.panturrilha}, antebraco={antro.antebraco}, coxa={antro.coxa}, peso={antro.peso}, pescoco={antro.pescoco}, abdome={antro.abdome}, grauAtividade='{antro.grauAtividade}'" +
+                            $"WHERE codPaciente = {antro.codPaciente} AND Data='{antro.Data}'";
                         db.Database.Connection.Open();
                         update.ExecuteNonQuery();                        
                         db.Database.Connection.Close();
@@ -158,19 +172,19 @@ namespace ProjetoTCC
                     if (dr.Read())
                     {
                         Antropometria antropometria = new Antropometria() {
-                            codPaciente = Convert.ToInt64(dr["codPaciente"]),
-                            peso = Convert.ToDouble(dr["peso"]),
-                            grauAtividade = Convert.ToString(dr["grauAtividade"]),
-                            altura = Convert.ToDouble(dr["altura"]),
-                            temGrauAtividade = Convert.ToInt32(dr["temGrauAtividade"]),
-                            temCoefAtividade = Convert.ToInt32(dr["temCoefAtividade"]),
-                            coefAtividade = Convert.ToString(dr["coefAtividade"])
+                            codPaciente = dr["codPaciente"] == DBNull.Value  ? 0 : Convert.ToInt64(dr["codPaciente"]),
+                            peso = dr["peso"] == DBNull.Value ? 0 : Convert.ToDouble(dr["peso"]),
+                            grauAtividade = dr["grauAtividade"] == DBNull.Value ? string.Empty : Convert.ToString(dr["grauAtividade"]),
+                            altura = dr["altura"] == DBNull.Value ? 0 : Convert.ToDouble(dr["altura"]),
+                            temGrauAtividade = dr["temGrauAtividade"] == DBNull.Value ? 0 : Convert.ToInt32(dr["temGrauAtividade"]),
+                            temCoefAtividade = dr["temCoefAtividade"] == DBNull.Value ? 0 : Convert.ToInt32(dr["temCoefAtividade"]),
+                            coefAtividade = dr["coefAtividade"] == DBNull.Value ? string.Empty : Convert.ToString(dr["coefAtividade"])
                         };
                         Paciente paciente = new Paciente
                         {
-                            codPaciente = Convert.ToInt64(dr["codPaciente"]),
-                            dtNasc = Convert.ToString(dr["dtNasc"]),
-                            sexo = Convert.ToString(dr["sexo"])
+                            codPaciente = dr["codPaciente"] == DBNull.Value ? 0 : Convert.ToInt64(dr["codPaciente"]),
+                            dtNasc = dr["dtNasc"] == DBNull.Value ? string.Empty : Convert.ToString(dr["dtNasc"]),
+                            sexo = dr["sexo"] == DBNull.Value ? string.Empty : Convert.ToString(dr["sexo"])
                         };
                         antropometria.Paciente = paciente;
 
@@ -202,22 +216,22 @@ namespace ProjetoTCC
                 {
                     Antropometria antrop = new Antropometria();
 
-                    antrop.altura = (double)(dr["altura"]);
-                    antrop.antebraco = (double)(dr["antebraco"]);
-                    antrop.braco = (double)(dr["braco"]);
-                    antrop.cintura = (double)(dr["cintura"]);
-                    antrop.coxa = (double)(dr["coxa"]);
-                    antrop.panturrilha = (double)(dr["panturrilha"]);
-                    antrop.peso = (double)(dr["peso"]);
-                    antrop.punho = (double)(dr["punho"]);
-                    antrop.quadril = (double)(dr["quadril"]);
-                    antrop.torax = (double)(dr["torax"]);
-                    antrop.pescoco = (double)(dr["torax"]);
-                    antrop.abdome = (double)(dr["torax"]);
-                    antrop.temCoefAtividade = (long)(dr["temCoefAtividade"]);
-                    antrop.temGrauAtividade = (long)(dr["temGrauAtividade"]);
-                    antrop.coefAtividade = (string)(dr["coefAtividade"]);
-                    antrop.grauAtividade = (string)(dr["grauAtividade"]);
+                    antrop.altura = dr["altura"] == DBNull.Value ? 0 : (double)(dr["altura"]);
+                    antrop.antebraco = dr["antebraco"] == DBNull.Value ? 0 : (double)(dr["antebraco"]);
+                    antrop.braco = dr["braco"] == DBNull.Value ? 0 : (double)(dr["braco"]);
+                    antrop.cintura = dr["cintura"] == DBNull.Value ? 0 : (double)(dr["cintura"]);
+                    antrop.coxa = dr["coxa"] == DBNull.Value ? 0 : (double)(dr["coxa"]);
+                    antrop.panturrilha = dr["panturrilha"] == DBNull.Value ? 0 : (double)(dr["panturrilha"]);
+                    antrop.peso = dr["peso"] == DBNull.Value ? 0 : (double)(dr["peso"]);
+                    antrop.punho = dr["punho"] == DBNull.Value ? 0 : (double)(dr["punho"]);
+                    antrop.quadril = dr["quadril"] == DBNull.Value ? 0 : (double)(dr["quadril"]);
+                    antrop.torax = dr["torax"] == DBNull.Value ? 0 : (double)(dr["torax"]);
+                    antrop.pescoco = dr["pescoco"] == DBNull.Value ? 0 : (double)(dr["pescoco"]);
+                    antrop.abdome = dr["abdome"] == DBNull.Value ? 0 : (double)(dr["abdome"]);
+                    antrop.temCoefAtividade = dr["temCoefAtividade"] == DBNull.Value ? 0 : (long)(dr["temCoefAtividade"]);
+                    antrop.temGrauAtividade = dr["temGrauAtividade"] == DBNull.Value ? 0 : (long)(dr["temGrauAtividade"]);
+                    antrop.coefAtividade = dr["coefAtividade"] == DBNull.Value ? string.Empty : (string)(dr["coefAtividade"]);
+                    antrop.grauAtividade = dr["grauAtividade"] == DBNull.Value ? string.Empty : (string)(dr["grauAtividade"]);
 
                     antro.Add(antrop);
                 }

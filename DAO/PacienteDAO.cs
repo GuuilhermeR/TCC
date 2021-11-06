@@ -72,8 +72,6 @@ namespace ProjetoTCC
 
                     BancoDadosSingleton.Instance.Paciente.Add(pacienteInsert);
                     BancoDadosSingleton.Instance.SaveChanges();
-                    MessageBox.Show($"Paciente foi Salvo");
-
                 }
                 catch (DbEntityValidationException e)
                 {
@@ -118,7 +116,7 @@ namespace ProjetoTCC
             using (var db = new NutreasyEntities())
             {
                 var delete = db.Database.Connection.CreateCommand();
-                delete.CommandText = $"DELETE FROM Paciente WHERE cpf IN ({codPaciente})";
+                delete.CommandText = $"DELETE FROM Paciente WHERE codPaciente IN ({codPaciente})";
                 db.Database.Connection.Open();
                 delete.ExecuteNonQuery();
                 db.Database.Connection.Close();

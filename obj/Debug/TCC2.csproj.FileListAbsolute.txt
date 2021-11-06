@@ -180,6 +180,6 @@ C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\NutriEz.Telas.frmWait.resources
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.csproj.GenerateResource.cache
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\NutriEz.exe.licenses
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.csproj.CoreCompileInputs.cache
-C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.csproj.CopyComplete
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\NutriEz.exe
 C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\NutriEz.pdb
+C:\Users\movtech\Desktop\WorkSpace\TCC\obj\Debug\TCC2.csproj.AssemblyReference.cache

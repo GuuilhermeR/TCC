@@ -12,6 +12,7 @@ using NutriEz.Classes;
 using System.Data.SQLite;
 using NutriEz;
 using System.Net;
+using System.Drawing;
 
 namespace Classes
 {
@@ -34,7 +35,7 @@ namespace Classes
             {
                 if (tLoad == null || !tLoad.ThreadState.Equals(ThreadState.Running) || tLoad.ThreadState.Equals(ThreadState.Aborted) || tLoad.ThreadState.Equals(ThreadState.AbortRequested))
                 {
-                    tLoad = new Thread(ShowWait);
+                    tLoad = new Thread(new ThreadStart(ShowWait));
                     tLoad.Start();
                     menu.Enabled = false;
                 }
@@ -49,7 +50,7 @@ namespace Classes
             catch (Exception ex)
             {
                 tLoad.Abort();
-                tLoad = new Thread(ShowWait);
+                tLoad = new Thread(new ThreadStart(ShowWait));
                 tLoad.Start();
                 menu.Enabled = false;
             }
@@ -59,6 +60,7 @@ namespace Classes
         {
             try
             {
+                Thread.Sleep(1000);
                 tLoad.Abort();
                 menu.Enabled = true;
             }
@@ -79,6 +81,7 @@ namespace Classes
                     if (jaDeuErro)
                     {
                         tLoad.Abort();
+                        tLoad = new Thread(new ThreadStart(ShowWait));
                         tLoad.Start();
                         return;
                     }
@@ -86,20 +89,19 @@ namespace Classes
                     {
                         wait.ShowDialog();
                         wait.Activate();
-
                     }
                 }
                 catch (ThreadAbortException ex)
                 {
                     tLoad.Abort();
-                    tLoad = new Thread(ShowWait);
+                    tLoad = new Thread(new ThreadStart(ShowWait));
                     tLoad.Start();
                     jaDeuErro = true;
                 }
                 catch (Exception ex)
                 {
                     tLoad.Abort();
-                    tLoad = new Thread(ShowWait);
+                    tLoad = new Thread(new ThreadStart(ShowWait));
                     tLoad.Start();
                     jaDeuErro = true;
                 }
@@ -250,6 +252,16 @@ namespace Classes
             {
             }
             return string.Empty;
+        }
+
+        public static Bitmap ByteToImage(byte[] blob)
+        {
+            MemoryStream mStream = new MemoryStream();
+            byte[] pData = blob;
+            mStream.Write(pData, 0, Convert.ToInt32(pData.Length));
+            Bitmap bm = new Bitmap(mStream, false);
+            mStream.Dispose();
+            return bm;
         }
 
         public static string AESDecrypt(string input)

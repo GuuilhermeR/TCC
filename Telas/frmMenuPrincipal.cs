@@ -1211,13 +1211,17 @@ namespace NutriEz
         private void btnSalvarMedCas_Click(object sender, EventArgs e)
         {
             string erro = string.Empty;
+
+            if (dtgSalvarMedCaseira.Rows.Count == 0)
+                return;
+
             medidaCaseiraDAO.Deletar();
+            loadStart(this);
             foreach (DataGridViewRow rows in dtgSalvarMedCaseira.Rows)
             {
-                loadStart(this);
                 erro = medidaCaseiraDAO.Salvar(rows.Cells["colDescricao"].Value.ToString(), Convert.ToDouble(rows.Cells["colQtd"].Value), Convert.ToInt32(rows.Cells["colCodAlimento"].Value));
-                loadStop(this);
             }
+                loadStop(this);
             if (!string.IsNullOrEmpty(erro))
             {
                 nMensagemAviso("Seus dados foram Salvos!");
@@ -1341,8 +1345,13 @@ namespace NutriEz
                 return;
             };
         }
-        private void limparCamposCadPaciente()
+        private void limparCamposCadPaciente(string codPaciente)
         {
+            if(!string.IsNullOrEmpty(codPaciente))
+            foreach (DataGridViewRow row in _dtgConsultaPacientes.Rows)
+                if (Convert.ToInt64(row.Cells["codPaciente"].Value) == Convert.ToInt64(codPaciente))
+                    _dtgConsultaPacientes.Rows.Remove(row);
+
             txtNome.Text = string.Empty;
             txtCPF.Text = string.Empty;
             txtDtNasc.Text = string.Empty;
@@ -1359,14 +1368,14 @@ namespace NutriEz
         }
         private void _btnExcluir_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtCodPaciente.Text))
+            if (txtCodPaciente.Text != "CodPaciente" || !string.IsNullOrEmpty(txtCodPaciente.Text))
             {
                 pacienteDAO.Deletar(Convert.ToDouble(txtCodPaciente.Text));
-                limparCamposCadPaciente();
+                limparCamposCadPaciente(txtCodPaciente.Text);
             }
             else
             {
-                Interaction.MsgBox("Não é possível excluir sem antes informar o código.");
+                nMensagemAlerta("Não é possível excluir sem antes selecionar o usuário.");
             }
         }
         private void _dtgConsultaPacientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -1513,15 +1522,6 @@ namespace NutriEz
 
             });
         }
-        public static Bitmap ByteToImage(byte[] blob)
-        {
-            MemoryStream mStream = new MemoryStream();
-            byte[] pData = blob;
-            mStream.Write(pData, 0, Convert.ToInt32(pData.Length));
-            Bitmap bm = new Bitmap(mStream, false);
-            mStream.Dispose();
-            return bm;
-        }
 
         private void _btnSalvar_Click(object sender, EventArgs e)
         {
@@ -1577,8 +1577,14 @@ namespace NutriEz
                 sexo = "F";
             }
 
-            if (sexo != "")
+            if (!string.IsNullOrEmpty(sexo))
                 paciente.sexo = sexo;
+            else
+            {
+                loadStop(this);
+                nMensagemAviso("É necessário informar o sexo do paciente!");
+                return;
+            }
 
             listaPacientes.Clear();
 
@@ -1587,35 +1593,9 @@ namespace NutriEz
             tLoad = new Thread(PreCarregarPacientes);
             tLoad.Start();
 
-            LimparCamposPaciente();
+            limparCamposCadPaciente(txtCodPaciente.Text);
             loadStop(this);
             tbCadastro_Enter(sender, e);
-        }
-
-        private void LimparCamposPaciente()
-        {
-            txtCodPaciente.Text = string.Empty;
-            txtCPF.Text = string.Empty;
-            txtEmail.Text = string.Empty;
-            txtDtNasc.Text = string.Empty;
-            txtCEP.Text = string.Empty;
-            txtEndereco.Text = string.Empty;
-            txtNumero.Text = string.Empty;
-            txtBairro.Text = string.Empty;
-            txtMunicipio.Text = string.Empty;
-            txtUF.Text = string.Empty;
-            txtComplemento.Text = string.Empty;
-            txtTelefone.Text = string.Empty;
-            txtCelular.Text = string.Empty;
-        }
-
-        private void txtNome_Leave(object sender, EventArgs e)
-        {
-            var listaPacientes = pacienteDAO.Buscar(txtNome.Text);
-            if (listaPacientes == null)
-                return;
-            DataTable dt = ConvertToDataTable(listaPacientes);
-            dtgConAlimento.DataSource = dt;
         }
 
         private void tbCadastro_Enter(object sender, EventArgs e)
@@ -2024,6 +2004,9 @@ namespace NutriEz
 
         private void cbxDataAntrop_SelectedValueChanged(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(cbxDataAntrop.Text))
+                return;
+
             var listAntro = antropometriaDAO.CarregarInfos(Convert.ToInt32(PacienteModel.codPacienteModel), Convert.ToDateTime(cbxDataAntrop.Text));
 
             if (listAntro is null || listAntro.Count == 0)
@@ -2140,11 +2123,13 @@ namespace NutriEz
 
         private void btnSalvarAntro_Click(object sender, EventArgs e)
         {
-            //Verificar para fazer o salvamento correto do Fator de Atividade e do Coefeciente do Fator de Atividade.
+            
             bool existeGaDRI = false;
             string grauAtividadeDRI = string.Empty;
             bool existeCAF = false;
             string coeficienteAtividade = string.Empty;
+
+            Antropometria antro = new Antropometria();
 
             if (rbDRISedentario.Checked)
             {
@@ -2206,35 +2191,57 @@ namespace NutriEz
             }
 
             string data = string.Empty;
+            if (Convert.ToInt32(PacienteModel.codPacienteModel) > 0)
+            antro.codPaciente = Convert.ToInt32(PacienteModel.codPacienteModel);
+            if (Convert.ToDouble(txtAltura.Text) > 0)
+            antro.altura = Convert.ToDouble(txtAltura.Text);
+            if (Convert.ToDouble(txtAntebraco.Text) > 0)
+            antro.antebraco = Convert.ToDouble(txtAntebraco.Text);
+            if (Convert.ToDouble(txtBraco.Text) > 0)
+            antro.braco = Convert.ToDouble(txtBraco.Text);
+            if (Convert.ToDouble(txtCintura.Text) > 0)
+            antro.cintura = Convert.ToDouble(txtCintura.Text);
+            if (Convert.ToDouble(txtCoxa.Text) > 0)
+            antro.coxa = Convert.ToDouble(txtCoxa.Text);
+            if (Convert.ToDouble(txtPanturrilha.Text) > 0)
+            antro.panturrilha = Convert.ToDouble(txtPanturrilha.Text);
+            if (Convert.ToDouble(txtPeso.Text) > 0)
+            antro.peso = Convert.ToDouble(txtPeso.Text);
+            if (Convert.ToDouble(txtPunho.Text) > 0)
+            antro.punho = Convert.ToDouble(txtPunho.Text);
+            if (Convert.ToDouble(txtQuadril.Text) > 0)
+            antro.quadril = Convert.ToDouble(txtQuadril.Text);
+            if (Convert.ToDouble(txtPescoco.Text) > 0)
+            antro.pescoco = Convert.ToDouble(txtPescoco.Text);
+            if (Convert.ToDouble(txtAbdome.Text) > 0)
+            antro.abdome = Convert.ToDouble(txtAbdome.Text);
+            if (Convert.ToDouble(txtTorax.Text) > 0)
+            antro.torax = Convert.ToDouble(txtTorax.Text);
+            if (!string.IsNullOrEmpty(grauAtividadeDRI))
+            antro.grauAtividade = grauAtividadeDRI;
+            if (existeGaDRI)
+            antro.temGrauAtividade = Convert.ToInt32(existeGaDRI);
+            if (existeCAF)
+            antro.temCoefAtividade = Convert.ToInt32(existeCAF);
+            if (!string.IsNullOrEmpty(coeficienteAtividade))
+            antro.coefAtividade = coeficienteAtividade;
 
-            if (cbxDataAntrop.Visible)
+            if (cbxDataAntrop.Visible && !string.IsNullOrEmpty(cbxDataAntrop.Text))
             {
-                data = cbxDataAntrop.Text;
+                antro.Data = Convert.ToDateTime(cbxDataAntrop.Text);
+            }
+            else if (!string.IsNullOrEmpty(txtDataAntro.Text))
+            {
+                antro.Data = Convert.ToDateTime(txtDataAntro.Text);
             }
             else
             {
-                data = txtDataAntro.Text;
+                antro.Data = DateTime.Now;
             }
-            antropometriaDAO.Salvar(
-                Convert.ToInt32(PacienteModel.codPacienteModel),
-                Convert.ToDouble(txtAltura.Text),
-                Convert.ToDouble(txtAntebraco.Text),
-                Convert.ToDouble(txtBraco.Text),
-                Convert.ToDouble(txtCintura.Text),
-                Convert.ToDouble(txtCoxa.Text),
-                Convert.ToDouble(txtPanturrilha.Text),
-                Convert.ToDouble(txtPeso.Text),
-                Convert.ToDouble(txtPunho.Text),
-                Convert.ToDouble(txtQuadril.Text),
-                Convert.ToDouble(txtPescoco.Text),
-                Convert.ToDouble(txtAbdome.Text),
-                Convert.ToDouble(txtTorax.Text),
-                data,
-                grauAtividadeDRI,
-                Convert.ToInt32(existeGaDRI),
-                Convert.ToInt32(existeCAF),
-                coeficienteAtividade);
+            loadStart(this);
+            antropometriaDAO.Salvar(antro);
             ClearCamposAntro();
+            loadStop(this);
         }
 
         private void ClearCamposAntro()
@@ -3196,10 +3203,10 @@ namespace NutriEz
             if (e.Item.BackgroundColor == Color.LightGreen || e.Item.BackgroundColor == Color.Tomato)
                 return;
 
-            if (nMensagemAceita("Você deseja marcar esta consulta como atendido?") == DialogResult.Yes)
+            if (nMensagemAceita("Você deseja cancelar esta consulta como atendido?") == DialogResult.Yes)
             {
-                FinalizarAtendimento(Convert.ToString(e.Item.StartDate), e.Item.Text, true, false);
-                e.Item.BackgroundColor = Color.LightGreen;
+                CancelarAtendimento(Convert.ToString(e.Item.StartDate), e.Item.Text, false, (bool)(e.Item.BackgroundColor == Color.Cyan));
+                e.Item.BackgroundColor = Color.Tomato;
             }
         }
 

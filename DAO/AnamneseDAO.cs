@@ -7,7 +7,6 @@ using Microsoft.VisualBasic;
 using NutriEz;
 using System.Collections.Generic;
 using System.Runtime.Remoting.Contexts;
-using System.Transactions;
 using NutriEz.Banco_de_Dados;
 using static Classes.HelperFuncoes;
 

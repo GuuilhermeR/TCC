@@ -17,7 +17,8 @@ namespace NutriEz
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(true);
-            Application.Run(new frmTelaLogin());
+            Application.Run(new FrmMenuPrincipal("gui",true));
+            //Application.Run(new frmTelaLogin());
         }
     }
     }

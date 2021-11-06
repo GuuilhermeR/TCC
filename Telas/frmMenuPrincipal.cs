@@ -3354,13 +3354,28 @@ namespace NutriEz
                     alterarSenha = true;
                 usuarioDAO.AlterarUsuario(txtUsuarioConfig.Text, txtSenha.Text, txtNomeUsuarioConfig.Text, txtEmailConfig.Text, cbxSituacao.Text, cbxTipoUsuario.Text, alterarSenha, txtCRN.Text);
                 tbConfig_Enter(sender, e);
+                LimparCamposConfig();
             }
             else
             {
                 usuarioDAO.CriarUsuario(txtUsuarioConfig.Text, txtSenha.Text, txtNomeUsuarioConfig.Text, txtEmailConfig.Text, cbxSituacao.Text, cbxTipoUsuario.Text, txtCRN.Text);
                 tbConfig_Enter(sender, e);
+                LimparCamposConfig();
             }
         }
+
+        private void LimparCamposConfig()
+        {
+            txtUsuarioConfig.Text = string.Empty;
+            txtNomeUsuarioConfig.Text = string.Empty;
+            cbxSituacao.Text = string.Empty;
+            txtSenha.Text = string.Empty;
+            txtConfirmarSenha.Text = string.Empty;
+            cbxTipoUsuario.Text = string.Empty;
+            txtEmailConfig.Text = string.Empty;
+            txtCRN.Text = string.Empty;
+        }
+
         private void tbConfig_Enter(object sender, EventArgs e)
         {
             if (!VerificarPermissao(tabConfig.Text))

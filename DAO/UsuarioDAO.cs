@@ -229,7 +229,6 @@ namespace NutriEz
                 delete.ExecuteNonQuery();
                 db.Database.Connection.Close();
             }
-            nMensagemErro("Usuário foi excluído");
         }
 
         [Obsolete]

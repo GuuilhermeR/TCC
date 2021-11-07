@@ -31,15 +31,15 @@ namespace NutriEz
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange15 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange16 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange17 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange18 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange19 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange20 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange21 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange1 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange2 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange3 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange4 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange5 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange6 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange7 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMenuPrincipal));
             this.TabControlNutreasy = new MaterialSkin.Controls.MaterialTabControl();
             this.tabMenu = new System.Windows.Forms.TabPage();
@@ -236,6 +236,7 @@ namespace NutriEz
             this.tabConfig = new System.Windows.Forms.TabPage();
             this.tbConfig = new System.Windows.Forms.TabControl();
             this.tbUsuarios = new System.Windows.Forms.TabPage();
+            this.txtCRN = new MaterialSkin.Controls.MaterialTextBox();
             this.txtEmailConfig = new MaterialSkin.Controls.MaterialTextBox();
             this.cbxTipoUsuario = new MaterialSkin.Controls.MaterialComboBox();
             this.cbxSituacao = new MaterialSkin.Controls.MaterialComboBox();
@@ -278,7 +279,6 @@ namespace NutriEz
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.NutriEzIconNotify = new System.Windows.Forms.NotifyIcon(this.components);
-            this.txtCRN = new MaterialSkin.Controls.MaterialTextBox();
             this.TabControlNutreasy.SuspendLayout();
             this.tabMenu.SuspendLayout();
             this.mCardAtendimentoAtual.SuspendLayout();
@@ -830,35 +830,35 @@ namespace NutriEz
             | System.Windows.Forms.AnchorStyles.Right)));
             this.calAgendamento.BackColor = System.Drawing.SystemColors.Control;
             this.calAgendamento.Font = new System.Drawing.Font("Segoe UI", 9F);
-            calendarHighlightRange15.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange15.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange15.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange16.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange16.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange16.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange17.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange17.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange17.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange18.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange18.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange18.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange19.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange19.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange19.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange20.DayOfWeek = System.DayOfWeek.Saturday;
-            calendarHighlightRange20.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange20.StartTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange21.DayOfWeek = System.DayOfWeek.Sunday;
-            calendarHighlightRange21.EndTime = System.TimeSpan.Parse("00:00:00");
-            calendarHighlightRange21.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange1.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange1.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange2.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange2.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange2.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange3.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange3.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange3.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange4.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange4.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange4.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange5.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange5.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange5.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange6.DayOfWeek = System.DayOfWeek.Saturday;
+            calendarHighlightRange6.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange6.StartTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange7.DayOfWeek = System.DayOfWeek.Sunday;
+            calendarHighlightRange7.EndTime = System.TimeSpan.Parse("00:00:00");
+            calendarHighlightRange7.StartTime = System.TimeSpan.Parse("00:00:00");
             this.calAgendamento.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
-        calendarHighlightRange15,
-        calendarHighlightRange16,
-        calendarHighlightRange17,
-        calendarHighlightRange18,
-        calendarHighlightRange19,
-        calendarHighlightRange20,
-        calendarHighlightRange21};
+        calendarHighlightRange1,
+        calendarHighlightRange2,
+        calendarHighlightRange3,
+        calendarHighlightRange4,
+        calendarHighlightRange5,
+        calendarHighlightRange6,
+        calendarHighlightRange7};
             this.calAgendamento.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.calAgendamento.ItemsTimeFormat = "hh:mm";
             this.calAgendamento.Location = new System.Drawing.Point(3, 195);
@@ -1153,16 +1153,16 @@ namespace NutriEz
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dtgDadosImportados.BackgroundColor = System.Drawing.Color.White;
             this.dtgDadosImportados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.Format = "N2";
-            dataGridViewCellStyle5.NullValue = "0";
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgDadosImportados.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.Format = "N2";
+            dataGridViewCellStyle1.NullValue = "0";
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgDadosImportados.DefaultCellStyle = dataGridViewCellStyle1;
             this.dtgDadosImportados.Location = new System.Drawing.Point(9, 2);
             this.dtgDadosImportados.Name = "dtgDadosImportados";
             this.dtgDadosImportados.RowHeadersWidth = 51;
@@ -1889,14 +1889,14 @@ namespace NutriEz
             this.cbxMedCaseira,
             this.colRefeicaoCard,
             this.obs});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgRefeicoes.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgRefeicoes.DefaultCellStyle = dataGridViewCellStyle2;
             this.dtgRefeicoes.Location = new System.Drawing.Point(590, 117);
             this.dtgRefeicoes.Name = "dtgRefeicoes";
             this.dtgRefeicoes.RowHeadersWidth = 51;
@@ -3466,6 +3466,23 @@ namespace NutriEz
             this.tbUsuarios.Text = "Usuários";
             this.tbUsuarios.UseVisualStyleBackColor = true;
             // 
+            // txtCRN
+            // 
+            this.txtCRN.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtCRN.Depth = 0;
+            this.txtCRN.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtCRN.Hint = "CRN";
+            this.txtCRN.LeadingIcon = null;
+            this.txtCRN.Location = new System.Drawing.Point(608, 163);
+            this.txtCRN.MaxLength = 50;
+            this.txtCRN.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtCRN.Multiline = false;
+            this.txtCRN.Name = "txtCRN";
+            this.txtCRN.Size = new System.Drawing.Size(219, 50);
+            this.txtCRN.TabIndex = 7;
+            this.txtCRN.Text = "";
+            this.txtCRN.TrailingIcon = null;
+            // 
             // txtEmailConfig
             // 
             this.txtEmailConfig.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -4132,23 +4149,6 @@ namespace NutriEz
             this.NutriEzIconNotify.Icon = ((System.Drawing.Icon)(resources.GetObject("NutriEzIconNotify.Icon")));
             this.NutriEzIconNotify.Text = "NutriEz";
             this.NutriEzIconNotify.Visible = true;
-            // 
-            // txtCRN
-            // 
-            this.txtCRN.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtCRN.Depth = 0;
-            this.txtCRN.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtCRN.Hint = "CRN";
-            this.txtCRN.LeadingIcon = null;
-            this.txtCRN.Location = new System.Drawing.Point(608, 163);
-            this.txtCRN.MaxLength = 50;
-            this.txtCRN.MouseState = MaterialSkin.MouseState.OUT;
-            this.txtCRN.Multiline = false;
-            this.txtCRN.Name = "txtCRN";
-            this.txtCRN.Size = new System.Drawing.Size(219, 50);
-            this.txtCRN.TabIndex = 7;
-            this.txtCRN.Text = "";
-            this.txtCRN.TrailingIcon = null;
             // 
             // FrmMenuPrincipal
             // 

@@ -40,20 +40,22 @@ namespace NutriEz
             // dtgPacientes
             // 
             this.dtgPacientes.AllowUserToAddRows = false;
+            this.dtgPacientes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dtgPacientes.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dtgPacientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgPacientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colCodPaciente,
             this.colNome,
             this.colIdade});
-            this.dtgPacientes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dtgPacientes.Location = new System.Drawing.Point(2, 52);
+            this.dtgPacientes.Location = new System.Drawing.Point(4, 65);
             this.dtgPacientes.Margin = new System.Windows.Forms.Padding(2);
             this.dtgPacientes.Name = "dtgPacientes";
             this.dtgPacientes.ReadOnly = true;
             this.dtgPacientes.RowHeadersWidth = 51;
             this.dtgPacientes.RowTemplate.Height = 24;
-            this.dtgPacientes.Size = new System.Drawing.Size(471, 372);
+            this.dtgPacientes.Size = new System.Drawing.Size(467, 359);
             this.dtgPacientes.TabIndex = 0;
             this.dtgPacientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgPacientes_CellDoubleClick);
             // 

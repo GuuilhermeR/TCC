@@ -916,17 +916,17 @@ namespace NutriEz
         {
             if (string.IsNullOrEmpty(txtNomeTabela.Text))
             {
-                Interaction.MsgBox("Favor informar o nome da tabela que está sendo salvo.");
+                nMensagemAlerta("Favor informar o nome da tabela que está sendo salvo.");
                 return;
             }
             if (string.IsNullOrEmpty(txtCaminhoArquivoExcel.Text))
             {
-                Interaction.MsgBox("Favor informar o caminho do arquivo.");
+                nMensagemAlerta("Favor informar o caminho do arquivo.");
                 return;
             }
             if (string.IsNullOrEmpty(_cbxNomePlanilha.Text))
             {
-                Interaction.MsgBox("Favor informar a planilha a ser salva.");
+                nMensagemAlerta("Favor informar a planilha a ser salva.");
                 return;
             }
             var alimentoFail = string.Empty;
@@ -991,27 +991,23 @@ namespace NutriEz
                         }
 
                     };
-                    //pbCarregando.Visible = false;
-                    if (salvou)
-                        nMensagemAviso("Os dados foram Salvos");
-
-                }
+                    }
                 catch (Exception ex)
                 {
-                    //pbCarregando.Visible = false;
-                    //loadStop(this);
+                    loadStop(this);
                     nMensagemErro($"Ocorreu um erro, no alimento {alimentoFail}, favor verificar nomenclatura da mesma para não possuir caracteres especiais. Erro:" + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException + Environment.NewLine);
                     alimentoDAO.DeletarTableImportError(txtNomeTabela.Text);
                     return;
                 }
                 tscope.Complete();
             }
-
             dtgDadosImportados.DataSource = null;
             txtCaminhoArquivoExcel.Text = string.Empty;
             _cbxNomePlanilha.Items.Clear();
             txtNomeTabela.Text = string.Empty;
             loadStop(this);
+            if (salvou)
+                nMensagemAviso("Os dados foram Salvos");
         }
 
         private void _btnBuscarPlanilha_Click(object sender, EventArgs e)
@@ -1047,12 +1043,12 @@ namespace NutriEz
             bool salvou = false;
             foreach (DataGridViewRow row in dtgConAlimento.Rows)
             {
-                if (row.DefaultCellStyle.BackColor == Color.Tomato)
+                if (row.DefaultCellStyle.BackColor == Color.LightSalmon)
                 {
                     salvou = alimentoDAO.Salvar(row.Cells["nomeAlimento"].Value.ToString(), Convert.ToDouble(row.Cells["qtd"].Value), Convert.ToDouble(row.Cells["kcal"].Value)
                                    , Convert.ToDouble(row.Cells["prot"].Value), Convert.ToDouble(row.Cells["carbo"].Value), Convert.ToDouble(row.Cells["lipidio"].Value), cbxTabela.Text.ToString());
                 }
-                else if (row.DefaultCellStyle.BackColor == Color.LightSalmon)
+                else if (row.DefaultCellStyle.BackColor == Color.Tomato)
                 {
                     salvou = alimentoDAO.Update(Convert.ToInt64(row.Cells["codAlimento"].Value), row.Cells["nomeAlimento"].Value.ToString(), Convert.ToDouble(row.Cells["qtd"].Value, CultureInfo.InvariantCulture),
                         Convert.ToDouble(row.Cells["kcal"].Value, CultureInfo.InvariantCulture), Convert.ToDouble(row.Cells["prot"].Value, CultureInfo.InvariantCulture), Convert.ToDouble(row.Cells["carbo"].Value, CultureInfo.InvariantCulture)
@@ -1094,14 +1090,16 @@ namespace NutriEz
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
-                if (dtgConAlimento.CurrentRow.Cells["codAlimento"].Value.ToString() != string.Empty || kCalAntiga != 0 || nomeAlimentoAntigo != Convert.ToString(dtgConAlimento.CurrentRow.Cells["nomeAlimento"].Value))
+                if (dtgConAlimento.CurrentRow.Cells["codAlimento"].Value != null)
                 {
                     dtgConAlimento.CurrentRow.DefaultCellStyle.BackColor = Color.LightSalmon;
                 }
-                else
+                else if (dtgConAlimento.CurrentRow.Cells["codAlimento"].Value == null)
                 {
                     dtgConAlimento.CurrentRow.DefaultCellStyle.BackColor = Color.Tomato;
                 }
+                nomeAlimentoAntigo = string.Empty;
+                kCalAntiga = 0;
             }
         }
 

@@ -829,6 +829,7 @@ namespace NutriEz
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.calAgendamento.BackColor = System.Drawing.SystemColors.Control;
+            this.calAgendamento.FirstDayOfWeek = System.DayOfWeek.Monday;
             this.calAgendamento.Font = new System.Drawing.Font("Segoe UI", 9F);
             calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
             calendarHighlightRange1.EndTime = System.TimeSpan.Parse("00:00:00");
@@ -2631,6 +2632,8 @@ namespace NutriEz
             // cbxDataExisteAntro
             // 
             this.cbxDataExisteAntro.AutoSize = true;
+            this.cbxDataExisteAntro.Checked = true;
+            this.cbxDataExisteAntro.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbxDataExisteAntro.Depth = 0;
             this.cbxDataExisteAntro.Location = new System.Drawing.Point(473, 15);
             this.cbxDataExisteAntro.Margin = new System.Windows.Forms.Padding(0);
@@ -2651,7 +2654,7 @@ namespace NutriEz
             this.txtDataAntro.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtDataAntro.Hint = "Data";
             this.txtDataAntro.LeadingIcon = null;
-            this.txtDataAntro.Location = new System.Drawing.Point(272, 6);
+            this.txtDataAntro.Location = new System.Drawing.Point(272, 5);
             this.txtDataAntro.MaxLength = 10;
             this.txtDataAntro.MouseState = MaterialSkin.MouseState.OUT;
             this.txtDataAntro.Multiline = false;
@@ -2660,7 +2663,6 @@ namespace NutriEz
             this.txtDataAntro.TabIndex = 327;
             this.txtDataAntro.Text = "";
             this.txtDataAntro.TrailingIcon = null;
-            this.txtDataAntro.Visible = false;
             this.txtDataAntro.Leave += new System.EventHandler(this.txtDataAntro_Leave);
             // 
             // cbxDataAntrop
@@ -3857,7 +3859,7 @@ namespace NutriEz
             this.cbxDiaSemana.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.cbxDiaSemana.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.cbxDiaSemana.FormattingEnabled = true;
-            this.cbxDiaSemana.Hint = "Usuário";
+            this.cbxDiaSemana.Hint = "Dia da Semana";
             this.cbxDiaSemana.IntegralHeight = false;
             this.cbxDiaSemana.ItemHeight = 43;
             this.cbxDiaSemana.Items.AddRange(new object[] {

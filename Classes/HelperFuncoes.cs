@@ -119,7 +119,7 @@ namespace Classes
         {
             double imc;
 
-            imc = (peso / (Math.Pow(altura, 2))) * 10000;
+            imc = (peso / (Math.Pow(altura, 2)));
 
             if (imc <= 18.5)
             {
@@ -147,14 +147,19 @@ namespace Classes
             }
             return string.Empty;
         }
+
         public static int calcularIdade(string dataNas)
         {
-            DateTime dataNascimento = Convert.ToDateTime(dataNas);
-            int idade = DateTime.Now.Year - dataNascimento.Year;
-            if (DateTime.Now.DayOfYear < dataNascimento.DayOfYear)
+            int idade = 0;
+            if (!string.IsNullOrEmpty(dataNas))
             {
-                idade -= 1;
-            }
+                DateTime dataNascimento = Convert.ToDateTime(dataNas);
+                idade = DateTime.Now.Year - dataNascimento.Year;
+                if (DateTime.Now.DayOfYear < dataNascimento.DayOfYear)
+                {
+                    idade -= 1;
+                }
+            }           
             return idade;
         }
         public static void FormatView(MaterialSkin.Controls.MaterialForm form)

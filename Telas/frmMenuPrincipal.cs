@@ -1421,10 +1421,13 @@ namespace NutriEz
                 else
                 {
                     cbxDataAntrop.Visible = false;
+                    ClearCamposAntro();
                 }
                 txtDataAntro.Visible = false;
             }
+
         }
+
         private void FormatarCampos()
         {
             try
@@ -1527,9 +1530,20 @@ namespace NutriEz
 
             if (string.IsNullOrEmpty(txtNome.Text))
             {
-                nMensagemAviso("Necessário informar pelo menos o nome!");
+                nMensagemAviso("Necessário informar um nome!");
                 return;
             }
+            if (string.IsNullOrEmpty(txtNome.Text))
+            {
+                nMensagemAviso("Necessário informar o sexo!");
+                return;
+            }
+            if (string.IsNullOrEmpty(txtNome.Text))
+            {
+                nMensagemAviso("Necessário informar a data de nascimento!");
+                return;
+            }
+
             loadStart(this);
 
             string CPF = txtCPF.Text.Replace("-", string.Empty).Replace(".", string.Empty);
@@ -1812,7 +1826,7 @@ namespace NutriEz
         private void txtAltura_Leave(object sender, EventArgs e)
         {
             if (txtPeso.Text != string.Empty && txtAltura.Text != string.Empty)
-                lblIMC.Text = CalcularIMC(Convert.ToDouble(txtPeso.Text), Convert.ToDouble(txtAltura.Text));
+                lblIMC.Text = CalcularIMC(Convert.ToDouble(txtPeso.Text.Replace(".",",")), Convert.ToDouble(txtAltura.Text.Replace(".", ",")));
         }
 
 
@@ -1998,6 +2012,7 @@ namespace NutriEz
             });
 
             cbxDataAntrop.Visible = true;
+            cbxDataExisteAntro.Checked = false;
         }
 
         private void cbxDataAntrop_SelectedValueChanged(object sender, EventArgs e)
@@ -2189,33 +2204,33 @@ namespace NutriEz
             }
 
             string data = string.Empty;
-            if (Convert.ToInt32(PacienteModel.codPacienteModel) > 0)
+            if (!string.IsNullOrWhiteSpace(PacienteModel.codPacienteModel))
             antro.codPaciente = Convert.ToInt32(PacienteModel.codPacienteModel);
-            if (Convert.ToDouble(txtAltura.Text) > 0)
-            antro.altura = Convert.ToDouble(txtAltura.Text);
-            if (Convert.ToDouble(txtAntebraco.Text) > 0)
-            antro.antebraco = Convert.ToDouble(txtAntebraco.Text);
-            if (Convert.ToDouble(txtBraco.Text) > 0)
-            antro.braco = Convert.ToDouble(txtBraco.Text);
-            if (Convert.ToDouble(txtCintura.Text) > 0)
-            antro.cintura = Convert.ToDouble(txtCintura.Text);
-            if (Convert.ToDouble(txtCoxa.Text) > 0)
-            antro.coxa = Convert.ToDouble(txtCoxa.Text);
-            if (Convert.ToDouble(txtPanturrilha.Text) > 0)
-            antro.panturrilha = Convert.ToDouble(txtPanturrilha.Text);
-            if (Convert.ToDouble(txtPeso.Text) > 0)
-            antro.peso = Convert.ToDouble(txtPeso.Text);
-            if (Convert.ToDouble(txtPunho.Text) > 0)
-            antro.punho = Convert.ToDouble(txtPunho.Text);
-            if (Convert.ToDouble(txtQuadril.Text) > 0)
-            antro.quadril = Convert.ToDouble(txtQuadril.Text);
-            if (Convert.ToDouble(txtPescoco.Text) > 0)
-            antro.pescoco = Convert.ToDouble(txtPescoco.Text);
-            if (Convert.ToDouble(txtAbdome.Text) > 0)
-            antro.abdome = Convert.ToDouble(txtAbdome.Text);
-            if (Convert.ToDouble(txtTorax.Text) > 0)
-            antro.torax = Convert.ToDouble(txtTorax.Text);
-            if (!string.IsNullOrEmpty(grauAtividadeDRI))
+            if (!string.IsNullOrWhiteSpace(txtAltura.Text))
+            antro.altura = Convert.ToDouble(txtAltura.Text.Replace(".",","));
+            if (!string.IsNullOrWhiteSpace(txtAntebraco.Text))
+            antro.antebraco = Convert.ToDouble(txtAntebraco.Text.Replace(".", ","));
+            if (!string.IsNullOrWhiteSpace(txtBraco.Text))
+            antro.braco = Convert.ToDouble(txtBraco.Text.Replace(".", ","));
+            if (!string.IsNullOrWhiteSpace(txtCintura.Text))
+            antro.cintura = Convert.ToDouble(txtCintura.Text.Replace(".", ","));
+            if (!string.IsNullOrWhiteSpace(txtCoxa.Text))
+            antro.coxa = Convert.ToDouble(txtCoxa.Text.Replace(".", ","));
+            if (!string.IsNullOrWhiteSpace(txtPanturrilha.Text))
+            antro.panturrilha = Convert.ToDouble(txtPanturrilha.Text.Replace(".", ","));
+            if (!string.IsNullOrWhiteSpace(txtPeso.Text))
+            antro.peso = Convert.ToDouble(txtPeso.Text.Replace(".", ","));
+            if (!string.IsNullOrWhiteSpace(txtPunho.Text))
+            antro.punho = Convert.ToDouble(txtPunho.Text.Replace(".", ","));
+            if (!string.IsNullOrWhiteSpace(txtQuadril.Text))
+            antro.quadril = Convert.ToDouble(txtQuadril.Text.Replace(".", ","));
+            if (!string.IsNullOrWhiteSpace(txtPescoco.Text))
+            antro.pescoco = Convert.ToDouble(txtPescoco.Text.Replace(".", ","));
+            if (!string.IsNullOrWhiteSpace(txtAbdome.Text))
+            antro.abdome = Convert.ToDouble(txtAbdome.Text.Replace(".", ","));
+            if (!string.IsNullOrWhiteSpace(txtTorax.Text))
+            antro.torax = Convert.ToDouble(txtTorax.Text.Replace(".", ","));
+            if (!string.IsNullOrWhiteSpace(grauAtividadeDRI))
             antro.grauAtividade = grauAtividadeDRI;
             if (existeGaDRI)
             antro.temGrauAtividade = Convert.ToInt32(existeGaDRI);
@@ -2245,21 +2260,24 @@ namespace NutriEz
         private void ClearCamposAntro()
         {
             txtPacienteAntro.Text = string.Empty;
-            txtAltura.Text = string.Empty;
-            txtAntebraco.Text = string.Empty;
-            txtBraco.Text = string.Empty;
-            txtCintura.Text = string.Empty;
-            txtCoxa.Text = string.Empty;
-            txtPanturrilha.Text = string.Empty;
+            txtDataAntro.Text = string.Empty;
+            cbxDataAntrop.Text = string.Empty;
             txtPeso.Text = string.Empty;
+            txtAltura.Text = string.Empty;
+            lblIMC.Text = string.Empty;
+            txtBraco.Text = string.Empty;
             txtPunho.Text = string.Empty;
-            txtQuadril.Text = string.Empty;
+            txtCintura.Text = string.Empty;
             txtTorax.Text = string.Empty;
+            txtCintura.Text = string.Empty;
+            txtTorax.Text = string.Empty;
+            txtQuadril.Text = string.Empty;
+            txtPanturrilha.Text = string.Empty;
+            txtAntebraco.Text = string.Empty;
+            txtCoxa.Text = string.Empty;
             txtPescoco.Text = string.Empty;
             txtAbdome.Text = string.Empty;
             cbxDataExisteAntro.Checked = false;
-            cbxDataAntrop.Items.Clear();
-            cbxDataAntrop.Visible = false;
             lblIMC.Text = string.Empty;
         }
 
@@ -2277,8 +2295,11 @@ namespace NutriEz
             txtPaciente.Text = nome;
             txtPacienteAgenda.Text = nome;
             txtPacienteAnamnese.Text = nome;
+            txtPacienteAnamnese_TextChanged(null, null);
             txtPacienteAntro.Text = nome;
+            txtPacienteAntro_TextChanged(null, null);
             txtPacienteConsultaCardapio.Text = nome;
+            txtPacienteConsultaCardapio_TextChanged(null, null);
             txtNome.Text = nome;
         }
 
@@ -2483,6 +2504,7 @@ namespace NutriEz
             if (PacienteModel.codPacienteModel == string.Empty)
                 return;
             CarregarDatasCardapio(cbxDataConsulta);
+
         }
 
         private void CarregarDatasCardapio(ComboBox cbx)

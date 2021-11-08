@@ -33,26 +33,23 @@ namespace Classes
         {
             try
             {
-                if (tLoad == null || !tLoad.ThreadState.Equals(ThreadState.Running) || tLoad.ThreadState.Equals(ThreadState.Aborted) || tLoad.ThreadState.Equals(ThreadState.AbortRequested))
+                if (tLoad == null || !tLoad.ThreadState.Equals(ThreadState.Running) || tLoad.ThreadState.Equals(ThreadState.Aborted) || tLoad.ThreadState.Equals(ThreadState.AbortRequested) && !tLoad.IsAlive)
                 {
                     tLoad = new Thread(new ThreadStart(ShowWait));
                     tLoad.Start();
                     menu.Enabled = false;
                 }
-                else if (tLoad.ThreadState.Equals(ThreadState.Running))
+            }
+            catch (Exception)
+            {
+                if (tLoad.IsAlive)
                 {
                     tLoad.Abort();
-                    tLoad = new Thread(ShowWait);
+                    tLoad = null;
+                    tLoad = new Thread(new ThreadStart(ShowWait));
                     tLoad.Start();
                     menu.Enabled = false;
                 }
-            }
-            catch (Exception ex)
-            {
-                tLoad.Abort();
-                tLoad = new Thread(new ThreadStart(ShowWait));
-                tLoad.Start();
-                menu.Enabled = false;
             }
         }
 
@@ -60,11 +57,16 @@ namespace Classes
         {
             try
             {
-                Thread.Sleep(1000);
-                tLoad.Abort();
-                menu.Enabled = true;
+                if (tLoad.IsAlive)
+                {
+                    Thread.Sleep(500);
+                    tLoad.Abort();
+                    tLoad.Join();
+                    tLoad = null;
+                    menu.Enabled = true;
+                }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 menu.Enabled = true;
                 return;
@@ -81,6 +83,7 @@ namespace Classes
                     if (jaDeuErro)
                     {
                         tLoad.Abort();
+                        tLoad = null;
                         tLoad = new Thread(new ThreadStart(ShowWait));
                         tLoad.Start();
                         return;
@@ -91,16 +94,20 @@ namespace Classes
                         wait.Activate();
                     }
                 }
-                catch (ThreadAbortException ex)
+                catch (ThreadAbortException)
                 {
+                    if (tLoad != null)
                     tLoad.Abort();
+                    tLoad = null;
                     tLoad = new Thread(new ThreadStart(ShowWait));
                     tLoad.Start();
                     jaDeuErro = true;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
+                    if (tLoad != null)
                     tLoad.Abort();
+                    tLoad = null;
                     tLoad = new Thread(new ThreadStart(ShowWait));
                     tLoad.Start();
                     jaDeuErro = true;

@@ -15,6 +15,18 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_07DF883CAD197C0AF6C477D0961FEF0D"
+        "OwnerKey" = "8:_D348F5F237A6D7A1315A389052DEABE1"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_07DF883CAD197C0AF6C477D0961FEF0D"
+        "OwnerKey" = "8:_DF3C61B8F822D30FF51040A4E20F59B8"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_098047A942B9ED9FBB0C00490E1A18A1"
         "OwnerKey" = "8:_9C76FABEA44E4765A9847C7ACD3D2959"
         "MsmSig" = "8:_UNDEFINED"
@@ -136,18 +148,6 @@
         "Entry"
         {
         "MsmKey" = "8:_72FE945AEB8976FBF1FC14D9F1A9BD72"
-        "OwnerKey" = "8:_DF3C61B8F822D30FF51040A4E20F59B8"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_72FE945AEB8976FBF1FC14D9F1A9BD72"
-        "OwnerKey" = "8:_D348F5F237A6D7A1315A389052DEABE1"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_72FE945AEB8976FBF1FC14D9F1A9BD72"
         "OwnerKey" = "8:_C21497DB8E2A4B20A0023FEA9BC08AE3"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -249,12 +249,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_BB5552471DD24C208DFB5BE3BC4C0C48"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_C0381230D2F8450A20B2DBFBB70AB4A1"
         "OwnerKey" = "8:_9C76FABEA44E4765A9847C7ACD3D2959"
         "MsmSig" = "8:_UNDEFINED"
@@ -341,6 +335,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_87131E0F8679EDAEDD5DFC816FEAFD7B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_07DF883CAD197C0AF6C477D0961FEF0D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -588,6 +588,37 @@
         }
         "File"
         {
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_07DF883CAD197C0AF6C477D0961FEF0D"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:TRUE"
+            "AssemblyAsmDisplayName" = "8:System.Data.SQLite, Version=1.0.109.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_07DF883CAD197C0AF6C477D0961FEF0D"
+                    {
+                    "Name" = "8:System.Data.SQLite.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:System.Data.SQLite.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_9217853E050748D384F4C5E36C7724B2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_098047A942B9ED9FBB0C00490E1A18A1"
             {
             "AssemblyRegister" = "3:1"
@@ -1153,26 +1184,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BB5552471DD24C208DFB5BE3BC4C0C48"
-            {
-            "SourcePath" = "8:..\\..\\..\\bin\\Debug\\NutreasyDB.DB"
-            "TargetName" = "8:NutreasyDB.DB"
-            "Tag" = "8:"
-            "Folder" = "8:_9217853E050748D384F4C5E36C7724B2"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:TRUE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C0381230D2F8450A20B2DBFBB70AB4A1"

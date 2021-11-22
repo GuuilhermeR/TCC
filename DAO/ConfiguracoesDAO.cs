@@ -59,8 +59,6 @@ namespace NutriEz.DAO
                     var configUpdate = (from card in BancoDadosSingleton.Instance.ConfiguracoesUsuarios
                                                 where card.usuario == usuario
                                                     && card.diaSemana == diaSemana
-                                                    && card.horaInicio == horaInicio
-                                                    && card.horaFim == horaFim
                                                      select card).Single();
 
                     configUpdate.usuario = usuario;
@@ -69,11 +67,14 @@ namespace NutriEz.DAO
                     configUpdate.horaFim = horaFim;
 
                     BancoDadosSingleton.Instance.SaveChanges();
-                    BancoDadosSingleton.Instance.Entry(configUpdate).State = System.Data.Entity.EntityState.Modified;
                 }                
             }
             catch (Exception ex)
             {
+                if (ex.Message.Contains("Entities may have been modified or deleted since entities were loaded"))
+                {
+                    return;
+                }
                 nMensagemAlerta("Ocorreu um erro ao salvar." + '\n' + ex.Message + '\n' + ex.InnerException);
             }
         }

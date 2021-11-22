@@ -23,7 +23,8 @@ namespace ProjetoTCC
 
         public void Salvar( Paciente paciente, byte[] vetorIMG)
         {
-            if (VerificarPacienteExiste(Convert.ToInt64(paciente.codPaciente)))
+            //if (VerificarPacienteExiste(Convert.ToInt64(paciente.codPaciente)))
+            if (paciente.codPaciente != 0)
             {
                 var pacienteUpdate = (from c in BancoDadosSingleton.Instance.Paciente where c.codPaciente == paciente.codPaciente select c).Single();
 

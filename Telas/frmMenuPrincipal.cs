@@ -677,10 +677,11 @@ namespace NutriEz
             {
                 calAgendamento.Items.Clear();
                 GetConfigAtendimento();
-                calAgendamento.ViewEnd = RetornaFimSemana(DateTime.Today);
+                txtDataAgendamento.Text = DateTime.Now.ToString("dd/MM/yyyy");
                 calAgendamento.ViewStart = RetornaInicioSemana(DateTime.Today);
-                BuscarConsultasAgendadas();
+                calAgendamento.ViewEnd = RetornaFimSemana(DateTime.Today);
                 calAgendamento.Refresh();
+                BuscarConsultasAgendadas();
             }
         }
 
@@ -770,20 +771,7 @@ namespace NutriEz
 
         private void mCalendar_DateChanged(object sender, DateRangeEventArgs e)
         {
-            txtDataAgendamento.Text = mCalendar.SelectionStart.ToString("dd/MM/yyyy");
-            try
-            {
-                calAgendamento.ViewEnd = Convert.ToDateTime(txtDataAgendamento.Text).AddDays(5);
-                calAgendamento.ViewStart = mCalendar.SelectionStart;
-            }
-            catch (Exception ex)
-            {
-                calAgendamento.ViewStart = mCalendar.SelectionStart;
-                calAgendamento.ViewEnd = Convert.ToDateTime(txtDataAgendamento.Text).AddDays(5);
-            }
 
-            BuscarConsultasAgendadas();
-            GetConfigAtendimento();
         }
 
         private void BuscarConsultasAgendadas()
@@ -884,7 +872,6 @@ namespace NutriEz
                     decimal somaTotalCaloria = ProteinaKcal + CarboidratoKcal + LipidioKcal;
                     row.Cells["kcal"].Value = Conversions.ToDecimal(somaTotalCaloria);
                     lblValorKcal.Text = somaTotalCaloria.ToString("N2");
-                    row.DefaultCellStyle.BackColor = Color.LightSalmon;
                 }
             }
         }
@@ -991,7 +978,7 @@ namespace NutriEz
                         }
 
                     };
-                    }
+                }
                 catch (Exception ex)
                 {
                     loadStop(this);
@@ -1043,12 +1030,12 @@ namespace NutriEz
             bool salvou = false;
             foreach (DataGridViewRow row in dtgConAlimento.Rows)
             {
-                if (row.DefaultCellStyle.BackColor == Color.LightSalmon)
+                if (row.DefaultCellStyle.BackColor == Color.Tomato)
                 {
                     salvou = alimentoDAO.Salvar(row.Cells["nomeAlimento"].Value.ToString(), Convert.ToDouble(row.Cells["qtd"].Value), Convert.ToDouble(row.Cells["kcal"].Value)
                                    , Convert.ToDouble(row.Cells["prot"].Value), Convert.ToDouble(row.Cells["carbo"].Value), Convert.ToDouble(row.Cells["lipidio"].Value), cbxTabela.Text.ToString());
                 }
-                else if (row.DefaultCellStyle.BackColor == Color.Tomato)
+                else if (row.DefaultCellStyle.BackColor == Color.LightSalmon)
                 {
                     salvou = alimentoDAO.Update(Convert.ToInt64(row.Cells["codAlimento"].Value), row.Cells["nomeAlimento"].Value.ToString(), Convert.ToDouble(row.Cells["qtd"].Value, CultureInfo.InvariantCulture),
                         Convert.ToDouble(row.Cells["kcal"].Value, CultureInfo.InvariantCulture), Convert.ToDouble(row.Cells["prot"].Value, CultureInfo.InvariantCulture), Convert.ToDouble(row.Cells["carbo"].Value, CultureInfo.InvariantCulture)
@@ -1219,7 +1206,7 @@ namespace NutriEz
             {
                 erro = medidaCaseiraDAO.Salvar(rows.Cells["colDescricao"].Value.ToString(), Convert.ToDouble(rows.Cells["colQtd"].Value), Convert.ToInt32(rows.Cells["colCodAlimento"].Value));
             }
-                loadStop(this);
+            loadStop(this);
             if (!string.IsNullOrEmpty(erro))
             {
                 nMensagemAviso("Seus dados foram Salvos!");
@@ -1324,13 +1311,20 @@ namespace NutriEz
         {
             if (mTxtFiltroAlimentoMedCas.Text != string.Empty)
             {
-                CarregarAlimentos(mTxtFiltroAlimentoMedCas.Text, mCbxTabelasMedCas.Text, dtgMedCaseiraAlimentos);
+                dtgMedCaseiraAlimentos.Rows.Clear();
+                FiltrarAlimentoTabela(mTxtFiltroAlimentoMedCas.Text, mCbxTabelasMedCas.Text, listaAlimentos, dtgMedCaseiraAlimentos);
+                dtgMedCaseiraAlimentos.AutoResizeColumns();
                 dtgMedCaseiraAlimentos.Columns["qtd"].Visible = false;
                 dtgMedCaseiraAlimentos.Columns["kcal"].Visible = false;
                 dtgMedCaseiraAlimentos.Columns["prot"].Visible = false;
                 dtgMedCaseiraAlimentos.Columns["carbo"].Visible = false;
                 dtgMedCaseiraAlimentos.Columns["lipidio"].Visible = false;
+                dtgMedCaseiraAlimentos.Columns["tabela"].Visible = false;
                 return;
+            }
+            else
+            {
+                mCbxTabelasMedCas_SelectedValueChanged(null, null);
             }
         }
         #endregion
@@ -1345,11 +1339,12 @@ namespace NutriEz
         }
         private void limparCamposCadPaciente(string codPaciente)
         {
-            if(!string.IsNullOrEmpty(codPaciente))
-            foreach (DataGridViewRow row in _dtgConsultaPacientes.Rows)
-                if (Convert.ToInt64(row.Cells["codPaciente"].Value) == Convert.ToInt64(codPaciente))
-                    _dtgConsultaPacientes.Rows.Remove(row);
+            if (!string.IsNullOrEmpty(codPaciente))
+                foreach (DataGridViewRow row in _dtgConsultaPacientes.Rows)
+                    if (Convert.ToInt64(row.Cells["codPaciente"].Value) == Convert.ToInt64(codPaciente))
+                        _dtgConsultaPacientes.Rows.Remove(row);
 
+            txtCodPaciente.Text = string.Empty;
             txtNome.Text = string.Empty;
             txtCPF.Text = string.Empty;
             txtDtNasc.Text = string.Empty;
@@ -1550,9 +1545,9 @@ namespace NutriEz
             string CEP = txtCEP.Text.Replace("-", string.Empty);
             string sexo = string.Empty;
 
-            int codPaciente = 0;
+
             if (txtCodPaciente.Text != "CodPaciente")
-                paciente.codPaciente = codPaciente;
+                paciente.codPaciente = Convert.ToInt64(txtCodPaciente.Text);
             if (txtNome.Text != "")
                 paciente.nome = txtNome.Text;
             if (CPF != "")
@@ -1825,8 +1820,16 @@ namespace NutriEz
 
         private void txtAltura_Leave(object sender, EventArgs e)
         {
-            if (txtPeso.Text != string.Empty && txtAltura.Text != string.Empty)
-                lblIMC.Text = CalcularIMC(Convert.ToDouble(txtPeso.Text.Replace(".",",")), Convert.ToDouble(txtAltura.Text.Replace(".", ",")));
+            double altura = 0;
+            if (!txtAltura.Text.Contains(",") || !txtAltura.Text.Contains("."))
+            {
+                altura = Convert.ToDouble(txtAltura.Text.Substring(0, 1) + ',' + txtAltura.Text.Substring(1, txtAltura.Text.Length - 1));
+                txtAltura.Text = altura.ToString();
+            }
+            if (txtPeso.Text != string.Empty && altura != 0)
+            {
+                lblIMC.Text = CalcularIMC(Convert.ToDouble(txtPeso.Text.Replace(".", ",")), Convert.ToDouble(txtAltura.Text.Replace(".", ",")));
+            }
         }
 
 
@@ -2136,7 +2139,7 @@ namespace NutriEz
 
         private void btnSalvarAntro_Click(object sender, EventArgs e)
         {
-            
+
             bool existeGaDRI = false;
             string grauAtividadeDRI = string.Empty;
             bool existeCAF = false;
@@ -2205,39 +2208,39 @@ namespace NutriEz
 
             string data = string.Empty;
             if (!string.IsNullOrWhiteSpace(PacienteModel.codPacienteModel))
-            antro.codPaciente = Convert.ToInt32(PacienteModel.codPacienteModel);
+                antro.codPaciente = Convert.ToInt32(PacienteModel.codPacienteModel);
             if (!string.IsNullOrWhiteSpace(txtAltura.Text))
-            antro.altura = Convert.ToDouble(txtAltura.Text.Replace(".",","));
+                antro.altura = Convert.ToDouble(txtAltura.Text.Replace(".", ","));
             if (!string.IsNullOrWhiteSpace(txtAntebraco.Text))
-            antro.antebraco = Convert.ToDouble(txtAntebraco.Text.Replace(".", ","));
+                antro.antebraco = Convert.ToDouble(txtAntebraco.Text.Replace(".", ","));
             if (!string.IsNullOrWhiteSpace(txtBraco.Text))
-            antro.braco = Convert.ToDouble(txtBraco.Text.Replace(".", ","));
+                antro.braco = Convert.ToDouble(txtBraco.Text.Replace(".", ","));
             if (!string.IsNullOrWhiteSpace(txtCintura.Text))
-            antro.cintura = Convert.ToDouble(txtCintura.Text.Replace(".", ","));
+                antro.cintura = Convert.ToDouble(txtCintura.Text.Replace(".", ","));
             if (!string.IsNullOrWhiteSpace(txtCoxa.Text))
-            antro.coxa = Convert.ToDouble(txtCoxa.Text.Replace(".", ","));
+                antro.coxa = Convert.ToDouble(txtCoxa.Text.Replace(".", ","));
             if (!string.IsNullOrWhiteSpace(txtPanturrilha.Text))
-            antro.panturrilha = Convert.ToDouble(txtPanturrilha.Text.Replace(".", ","));
+                antro.panturrilha = Convert.ToDouble(txtPanturrilha.Text.Replace(".", ","));
             if (!string.IsNullOrWhiteSpace(txtPeso.Text))
-            antro.peso = Convert.ToDouble(txtPeso.Text.Replace(".", ","));
+                antro.peso = Convert.ToDouble(txtPeso.Text.Replace(".", ","));
             if (!string.IsNullOrWhiteSpace(txtPunho.Text))
-            antro.punho = Convert.ToDouble(txtPunho.Text.Replace(".", ","));
+                antro.punho = Convert.ToDouble(txtPunho.Text.Replace(".", ","));
             if (!string.IsNullOrWhiteSpace(txtQuadril.Text))
-            antro.quadril = Convert.ToDouble(txtQuadril.Text.Replace(".", ","));
+                antro.quadril = Convert.ToDouble(txtQuadril.Text.Replace(".", ","));
             if (!string.IsNullOrWhiteSpace(txtPescoco.Text))
-            antro.pescoco = Convert.ToDouble(txtPescoco.Text.Replace(".", ","));
+                antro.pescoco = Convert.ToDouble(txtPescoco.Text.Replace(".", ","));
             if (!string.IsNullOrWhiteSpace(txtAbdome.Text))
-            antro.abdome = Convert.ToDouble(txtAbdome.Text.Replace(".", ","));
+                antro.abdome = Convert.ToDouble(txtAbdome.Text.Replace(".", ","));
             if (!string.IsNullOrWhiteSpace(txtTorax.Text))
-            antro.torax = Convert.ToDouble(txtTorax.Text.Replace(".", ","));
+                antro.torax = Convert.ToDouble(txtTorax.Text.Replace(".", ","));
             if (!string.IsNullOrWhiteSpace(grauAtividadeDRI))
-            antro.grauAtividade = grauAtividadeDRI;
+                antro.grauAtividade = grauAtividadeDRI;
             if (existeGaDRI)
-            antro.temGrauAtividade = Convert.ToInt32(existeGaDRI);
+                antro.temGrauAtividade = Convert.ToInt32(existeGaDRI);
             if (existeCAF)
-            antro.temCoefAtividade = Convert.ToInt32(existeCAF);
+                antro.temCoefAtividade = Convert.ToInt32(existeCAF);
             if (!string.IsNullOrEmpty(coeficienteAtividade))
-            antro.coefAtividade = coeficienteAtividade;
+                antro.coefAtividade = coeficienteAtividade;
 
             if (cbxDataAntrop.Visible && !string.IsNullOrEmpty(cbxDataAntrop.Text))
             {
@@ -2287,7 +2290,8 @@ namespace NutriEz
             {
                 buscaPacientes.ShowDialog();
             }
-            SetarNome(PacienteModel.nomePacienteModel);
+            if (!string.IsNullOrEmpty(PacienteModel.codPacienteModel))
+                SetarNome(PacienteModel.nomePacienteModel);
         }
 
         private void SetarNome(string nome)
@@ -2636,7 +2640,7 @@ namespace NutriEz
                 dtgCardapioAlimentos.Columns["lipidio"].Visible = false;
             }
             dtgCardapioAlimentos.Rows.Clear();
-            FiltrarAlimentoTabela(txtFiltroAlimento.Text, cbxTabelaAlimentoCardapio.Text, listaAlimentosCardapio, dtgCardapioAlimentos);
+            FiltrarAlimentoTabela(txtFiltroAlimento.Text, cbxTabelaAlimentoCardapio.Text, listaAlimentosCardapio, dtgMedCaseiraAlimentos);
             dtgCardapioAlimentos.AutoResizeColumns();
             loadStop(this);
         }
@@ -2666,6 +2670,7 @@ namespace NutriEz
 
         private void dtgRefeicoes_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+            double kcalTotal = 0;
             //dtgRefeicoes.CurrentRow.DefaultCellStyle.BackColor = Color.Red;
             if (e.ColumnIndex == cbxMedCaseira.Index)
             {
@@ -2680,13 +2685,17 @@ namespace NutriEz
                         dtgRefeicoes.Rows[e.RowIndex].Cells[qtd.Index].Value = Math.Round(Convert.ToDouble(x.qtd), 2);
                 });
             }
-            if (Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["qtd"].Value) != quantidadeAntigaCardapio)
+            CarregarGrafico(Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["prot"].Value),
+                                 Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["carbo"].Value),
+                                 Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["lipidio"].Value));
+            RecalcularMacroNutrientes(dtgRefeicoes, Convert.ToDecimal(quantidadeAntigaCardapio));
+            foreach (DataGridViewRow row in dtgRefeicoes.Rows)
             {
-                RecalcularMacroNutrientes(dtgRefeicoes, Convert.ToDecimal(quantidadeAntigaCardapio));
-                CarregarGrafico(Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["prot"].Value),
-                                Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["carbo"].Value),
-                                Convert.ToDouble(dtgRefeicoes.CurrentRow.Cells["lipidio"].Value));
+                kcalTotal += Convert.ToDouble(row.Cells[kcal.Index].Value);
             }
+            quantidadeAntigaCardapio = 0;
+            lblValorKcal.Text = string.Empty;
+            lblValorKcal.Text = kcalTotal.ToString("N2");
             quantidadeAntigaCardapio = 0;
         }
 
@@ -3110,21 +3119,21 @@ namespace NutriEz
 
             double kcalTotal = 0;
             carregarAlimentos.ForEach(x =>
-            {               
-                    var linha = dtgRefeicoes.Rows.Add(
-                                    x.codAlimento
-                                  , x.Alimentos.nomeAlimento
-                                  , x.medidaCaseiraQtde
-                                  , x.Alimentos.kcal
-                                  , x.Alimentos.prot
-                                  , x.Alimentos.carbo
-                                  , x.Alimentos.lipidio
-                                  , string.Empty
-                                  , x.Refeicao
-                                  , x.obs);
+            {
+                var linha = dtgRefeicoes.Rows.Add(
+                                x.codAlimento
+                              , x.Alimentos.nomeAlimento
+                              , x.medidaCaseiraQtde
+                              , x.Alimentos.kcal
+                              , x.Alimentos.prot
+                              , x.Alimentos.carbo
+                              , x.Alimentos.lipidio
+                              , string.Empty
+                              , x.Refeicao
+                              , x.obs);
 
-                    kcalTotal += Convert.ToDouble(dtgRefeicoes.Rows[linha].Cells[kcal.Index].Value);
-                    CarregarGrafico(Convert.ToDouble(x.Alimentos.prot), Convert.ToDouble(x.Alimentos.carbo), Convert.ToDouble(x.Alimentos.lipidio));
+                kcalTotal += Convert.ToDouble(dtgRefeicoes.Rows[linha].Cells[kcal.Index].Value);
+                CarregarGrafico(Convert.ToDouble(x.Alimentos.prot), Convert.ToDouble(x.Alimentos.carbo), Convert.ToDouble(x.Alimentos.lipidio));
             });
             lblValorKcal.Text = kcalTotal.ToString("N2");
             foreach (DataGridViewRow row in dtgRefeicoes.Rows)
@@ -3368,7 +3377,7 @@ namespace NutriEz
                 return;
             }
 
-            if (usuarioDAO.VerificarExisteUsuario(txtUsuarioConfig.Text,string.Empty))
+            if (usuarioDAO.VerificarExisteUsuario(txtUsuarioConfig.Text, string.Empty))
             {
                 if (Interaction.MsgBox("Você deseja alterar a senha do usuário?", MsgBoxStyle.YesNo, "ALTERAÇÃO DE SENHA") == MsgBoxResult.Yes)
                     alterarSenha = true;
@@ -3586,7 +3595,7 @@ namespace NutriEz
                 return;
 
             cbxUsuNutri.Text = Convert.ToString(dtgConfigHorario.CurrentRow.Cells["usuario"].Value);
-            cbxDiaSemana.SelectedText = Convert.ToString(dtgConfigHorario.CurrentRow.Cells["diaSemana"].Value);
+            cbxDiaSemana.Text = Convert.ToString(dtgConfigHorario.CurrentRow.Cells["diaSemana"].Value);
             txtHoraInicio.Text = Convert.ToString(dtgConfigHorario.CurrentRow.Cells["horaInicio"].Value);
             txtHoraFim.Text = Convert.ToString(dtgConfigHorario.CurrentRow.Cells["horaFim"].Value);
             cbxUsuNutri.Refresh();
@@ -3785,10 +3794,27 @@ namespace NutriEz
                     {
                         configDAO.RemoverConfig(row.Cells["usuario"].Value.ToString(), row.Cells["diaSemana"].Value.ToString());
                     }
+                    dtgConfigHorario.Rows.Remove(row);
                 }
-                dtgConfigHorario.Rows.Clear();
-                dtgConfigHorario.Columns.Clear();
             }
+        }
+
+        private void mCalendar_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            txtDataAgendamento.Text = mCalendar.SelectionStart.ToString("dd/MM/yyyy");
+            try
+            {
+                calAgendamento.ViewEnd = Convert.ToDateTime(txtDataAgendamento.Text).AddDays(5);
+                calAgendamento.ViewStart = mCalendar.SelectionStart;
+            }
+            catch (Exception ex)
+            {
+                calAgendamento.ViewStart = mCalendar.SelectionStart;
+                calAgendamento.ViewEnd = Convert.ToDateTime(txtDataAgendamento.Text).AddDays(5);
+            }
+
+            BuscarConsultasAgendadas();
+            GetConfigAtendimento();
         }
     }
 }

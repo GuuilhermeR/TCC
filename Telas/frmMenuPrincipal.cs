@@ -572,6 +572,7 @@ namespace NutriEz
                 nMensagemAviso("Não é possível agendar uma consulta em um horário não disponível do nutricionista!");
                 return;
             }
+            FecharAbrirConexao();
             if (!agendaDAO.VerificarPacienteAgendado(txtPacienteAgenda.Text, Convert.ToDateTime(txtDataAgendamento.Text)))
             {
                 agendaDAO.AtualizarPaciente(
@@ -689,6 +690,7 @@ namespace NutriEz
         {
             if (mcbxCancelar.Checked == false)
                 return;
+            FecharAbrirConexao();
 
             bool temRetorno = false;
             if (Convert.ToString(mlblObservação.Text) != string.Empty)
@@ -707,6 +709,8 @@ namespace NutriEz
             if (mcbxAtendido.Checked == false)
                 return;
 
+            FecharAbrirConexao();
+
             bool temRetorno = false;
             if (Convert.ToString(mlblObservação.Text) != string.Empty)
                 temRetorno = true;
@@ -723,6 +727,7 @@ namespace NutriEz
         {
             if (mcbxAtendidoFuturo.Checked == false)
                 return;
+            FecharAbrirConexao();
 
             bool temRetorno = false;
             if (Convert.ToString(mlblObservação.Text) != string.Empty)
@@ -740,6 +745,7 @@ namespace NutriEz
         {
             if (mcbxCancelarFuturo.Checked == false)
                 return;
+            FecharAbrirConexao();
 
             bool temRetorno = false;
             if (Convert.ToString(mlblObservação.Text) != string.Empty)
@@ -920,6 +926,8 @@ namespace NutriEz
             bool salvou = false;
 
             loadStart(this);
+            FecharAbrirConexao();
+
             using (TransactionScope tscope = new TransactionScope(TransactionScopeOption.Suppress))
             {
                 try
@@ -1028,6 +1036,9 @@ namespace NutriEz
         private void btnSalvarAlimento_Click(object sender, EventArgs e)
         {
             bool salvou = false;
+            if (dtgConAlimento.Rows.Count == 0)
+                return;
+            FecharAbrirConexao();
             foreach (DataGridViewRow row in dtgConAlimento.Rows)
             {
                 if (row.DefaultCellStyle.BackColor == Color.Tomato)
@@ -1202,6 +1213,8 @@ namespace NutriEz
 
             medidaCaseiraDAO.Deletar();
             loadStart(this);
+            FecharAbrirConexao();
+
             foreach (DataGridViewRow rows in dtgSalvarMedCaseira.Rows)
             {
                 erro = medidaCaseiraDAO.Salvar(rows.Cells["colDescricao"].Value.ToString(), Convert.ToDouble(rows.Cells["colQtd"].Value), Convert.ToInt32(rows.Cells["colCodAlimento"].Value));
@@ -1363,6 +1376,7 @@ namespace NutriEz
         {
             if (txtCodPaciente.Text != "CodPaciente" || !string.IsNullOrEmpty(txtCodPaciente.Text))
             {
+                FecharAbrirConexao();
                 pacienteDAO.Deletar(Convert.ToDouble(txtCodPaciente.Text));
                 limparCamposCadPaciente(txtCodPaciente.Text);
             }
@@ -1416,11 +1430,9 @@ namespace NutriEz
                 else
                 {
                     cbxDataAntrop.Visible = false;
-                    ClearCamposAntro();
                 }
                 txtDataAntro.Visible = false;
             }
-
         }
 
         private void FormatarCampos()
@@ -1540,6 +1552,7 @@ namespace NutriEz
             }
 
             loadStart(this);
+            FecharAbrirConexao();
 
             string CPF = txtCPF.Text.Replace("-", string.Empty).Replace(".", string.Empty);
             string CEP = txtCEP.Text.Replace("-", string.Empty);
@@ -1821,12 +1834,12 @@ namespace NutriEz
         private void txtAltura_Leave(object sender, EventArgs e)
         {
             double altura = 0;
-            if (!txtAltura.Text.Contains(",") || !txtAltura.Text.Contains("."))
+            if (!txtAltura.Text.Contains(",") && !txtAltura.Text.Contains("."))
             {
                 altura = Convert.ToDouble(txtAltura.Text.Substring(0, 1) + ',' + txtAltura.Text.Substring(1, txtAltura.Text.Length - 1));
                 txtAltura.Text = altura.ToString();
             }
-            if (txtPeso.Text != string.Empty && altura != 0)
+            if (!String.IsNullOrEmpty(txtPeso.Text) && altura != 0 || !String.IsNullOrEmpty(txtPeso.Text) && !String.IsNullOrEmpty(txtAltura.Text))
             {
                 lblIMC.Text = CalcularIMC(Convert.ToDouble(txtPeso.Text.Replace(".", ",")), Convert.ToDouble(txtAltura.Text.Replace(".", ",")));
             }
@@ -2120,6 +2133,7 @@ namespace NutriEz
         private void btnSalvarAnamnese_Click(object sender, EventArgs e)
         {
             loadStart(this);
+            FecharAbrirConexao();
             string erro = anamneseDAO.Salvar(Convert.ToInt32(PacienteModel.codPacienteModel), Convert.ToString(rtxtAnamnese.Text));
             loadStop(this);
             if (string.IsNullOrEmpty(erro))
@@ -2255,6 +2269,7 @@ namespace NutriEz
                 antro.Data = DateTime.Now;
             }
             loadStart(this);
+            FecharAbrirConexao();
             antropometriaDAO.Salvar(antro);
             ClearCamposAntro();
             loadStop(this);
@@ -2428,9 +2443,11 @@ namespace NutriEz
             if (dtgCardapioAlimentos.SelectedRows.Count >= 1 || dtgCardapioAlimentos.SelectedCells.Count >= 1)
             {
                 foreach (DataGridViewRow row in dtgCardapioAlimentos.Rows)
+                {
+                    int linha = 0;
                     if (row.Selected == true || row.Cells["nomeAlimento"].Selected)
                     {
-                        var linha = dtgRefeicoes.Rows.Add(row.Cells["codAlimento"].Value
+                        linha = dtgRefeicoes.Rows.Add(row.Cells["codAlimento"].Value
                              , row.Cells["nomeAlimento"].Value
                              , 100
                              , row.Cells["kcal"].Value
@@ -2439,16 +2456,21 @@ namespace NutriEz
                              , row.Cells["lipidio"].Value
                              , string.Empty
                              , cbxRefeicao.Text);
-                        proteina += Convert.ToDouble(row.Cells["prot"].Value);
-                        carboidrato += Convert.ToDouble(row.Cells["carbo"].Value);
-                        lipidio += Convert.ToDouble(row.Cells["lipidio"].Value);
                         linhaAdicionada.Add(dtgRefeicoes.Rows[linha]);
                         dtgRefeicoes.Rows[linha].Visible = false;
                         dtgRefeicoes.Rows[linha].DefaultCellStyle.BackColor = Color.LightSalmon;
-                        kcalTotal += Convert.ToDouble(dtgRefeicoes.Rows[linha].Cells[kcal.Index].Value);
-                    }
+                    }      
+                }
 
-                if (linhaAdicionada != null || linhaAdicionada.Count > 0)
+                foreach (DataGridViewRow row in dtgRefeicoes.Rows)
+                {
+                    kcalTotal += Math.Round(Convert.ToDouble(row.Cells[kcal.Index].Value), 2);
+                    proteina += Math.Round(Convert.ToDouble(row.Cells["prot"].Value), 2);
+                    carboidrato += Math.Round(Convert.ToDouble(row.Cells["carbo"].Value), 2);
+                    lipidio += Math.Round(Convert.ToDouble(row.Cells["lipidio"].Value), 2);
+                }
+
+                    if (linhaAdicionada != null || linhaAdicionada.Count > 0)
                     foreach (var linhaIndex in linhaAdicionada)
                     {
                         if (!string.IsNullOrEmpty(txtProteina.Text) && Convert.ToDouble(proteina) > Convert.ToDouble(txtProteina.Text))
@@ -2576,6 +2598,7 @@ namespace NutriEz
             }
             string erro = string.Empty;
             loadStart(this);
+            FecharAbrirConexao();
             string data = string.Empty;
 
             if (cbxDataCardSalvo.Visible)
@@ -2640,7 +2663,7 @@ namespace NutriEz
                 dtgCardapioAlimentos.Columns["lipidio"].Visible = false;
             }
             dtgCardapioAlimentos.Rows.Clear();
-            FiltrarAlimentoTabela(txtFiltroAlimento.Text, cbxTabelaAlimentoCardapio.Text, listaAlimentosCardapio, dtgMedCaseiraAlimentos);
+            FiltrarAlimentoTabela(txtFiltroAlimento.Text, cbxTabelaAlimentoCardapio.Text, listaAlimentosCardapio, dtgCardapioAlimentos);
             dtgCardapioAlimentos.AutoResizeColumns();
             loadStop(this);
         }
@@ -3376,6 +3399,7 @@ namespace NutriEz
                 Interaction.MsgBox("As senhas não conferem");
                 return;
             }
+            FecharAbrirConexao();
 
             if (usuarioDAO.VerificarExisteUsuario(txtUsuarioConfig.Text, string.Empty))
             {
@@ -3491,6 +3515,10 @@ namespace NutriEz
 
         private void btnSalvarPermissao_Click(object sender, EventArgs e)
         {
+            if (String.IsNullOrEmpty(cbxUsuarioPerm.Text)) { nMensagemAlerta("Favor informar usuário"); }
+            if (String.IsNullOrEmpty(cbxTelaLiberarPerm.Text)) { nMensagemAlerta("Favor informar tela a liberar"); }
+
+            FecharAbrirConexao();
             permissaoDAO.AdicionarPermissao(Convert.ToString(cbxUsuarioPerm.Text), Convert.ToString(cbxTelaLiberarPerm.Text));
             tbPermissao_Enter(sender, e);
         }
@@ -3503,6 +3531,7 @@ namespace NutriEz
                 return;
             }
             loadStart(this);
+            FecharAbrirConexao();
             usuarioDAO.Deletar(txtUsuarioConfig.Text);
             loadStop(this);
             tbConfig_Enter(sender, e);
@@ -3561,9 +3590,16 @@ namespace NutriEz
             if (string.IsNullOrEmpty(cbxDiaSemana.Text)) { nMensagemAviso("Favor informar o dia da semana!"); return; }
             if (string.IsNullOrEmpty(txtHoraInicio.Text)) { nMensagemAviso("Favor informar a hora início!"); return; }
             if (string.IsNullOrEmpty(txtHoraFim.Text)) { nMensagemAviso("Favor informar a hora fim!"); return; }
+            if (txtHoraFim.Text.Contains("24:") || txtHoraFim.Text.Contains("00:")) { nMensagemAviso("Só é permitido agendar até as 23H!"); return; }
+            if (DateTime.Compare(Convert.ToDateTime(txtHoraFim.Text), Convert.ToDateTime(txtHoraInicio.Text)) < 1) { nMensagemAviso("Não é possível agendar Hora Fim menor que Hora Início."); return; }
+            FecharAbrirConexao();
 
             configDAO.Salvar(Convert.ToString(cbxUsuNutri.Text), Convert.ToString(cbxDiaSemana.Text), Convert.ToString(txtHoraInicio.Text), Convert.ToString(txtHoraFim.Text));
             CarregarConfigs();
+            cbxUsuNutri.Text = string.Empty;
+            cbxDiaSemana.Text = "Segunda";
+            txtHoraInicio.Text = string.Empty;
+            txtHoraFim.Text = string.Empty;
         }
 
         private void CarregarConfigs()
@@ -3614,6 +3650,9 @@ namespace NutriEz
 
         private void btnExcluirPerm_Click(object sender, EventArgs e)
         {
+            if (String.IsNullOrEmpty(cbxUsuarioPerm.Text)) { nMensagemAlerta("Favor informar usuário"); }
+            if (String.IsNullOrEmpty(cbxTelaLiberarPerm.Text)) { nMensagemAlerta("Favor informar tela a ser removida"); }
+            FecharAbrirConexao();
             permissaoDAO.RemoverPermissao(cbxUsuarioPerm.Text, cbxTelaLiberarPerm.Text);
         }
 
@@ -3792,9 +3831,10 @@ namespace NutriEz
                 {
                     if (row.Selected)
                     {
+                        FecharAbrirConexao();
                         configDAO.RemoverConfig(row.Cells["usuario"].Value.ToString(), row.Cells["diaSemana"].Value.ToString());
+                        dtgConfigHorario.Rows.Remove(row);
                     }
-                    dtgConfigHorario.Rows.Remove(row);
                 }
             }
         }

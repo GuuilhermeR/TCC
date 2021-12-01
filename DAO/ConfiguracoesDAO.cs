@@ -52,7 +52,6 @@ namespace NutriEz.DAO
 
                     BancoDadosSingleton.Instance.ConfiguracoesUsuarios.Add(configInsert);
                     BancoDadosSingleton.Instance.SaveChanges();
-                    BancoDadosSingleton.Instance.Entry(configInsert).State = EntityState.Modified;
                 }
                 else
                 {

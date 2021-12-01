@@ -73,6 +73,16 @@ namespace Classes
             }
         }
 
+        public static void FecharAbrirConexao()
+        {
+            try
+            {
+                BancoDadosSingleton.Instance.Database.Connection.Close();
+                BancoDadosSingleton.Instance.Database.Connection.Open();
+            }
+            catch { }
+        }
+
         public static void ShowWait()
         {
             bool jaDeuErro = false;

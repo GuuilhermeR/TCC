@@ -67,7 +67,6 @@ namespace NutriEz
 
                     BancoDadosSingleton.Instance.Cardapio.Add(cardapioInsert);
                     BancoDadosSingleton.Instance.SaveChanges();
-                    BancoDadosSingleton.Instance.Entry(cardapioInsert).State = System.Data.Entity.EntityState.Modified;
                 }
                 catch (Exception ex)
                 {

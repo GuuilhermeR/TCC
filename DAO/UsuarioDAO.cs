@@ -61,7 +61,6 @@ namespace NutriEz
                 usuUpdate.podeLogar = 0;
 
             BancoDadosSingleton.Instance.SaveChanges();
-            BancoDadosSingleton.Instance.Entry(usuUpdate).State = EntityState.Modified;
         }
 
         public void setUsuario(string usuarioLogado)
@@ -148,7 +147,6 @@ namespace NutriEz
                         usuUpdate.CRN = crn;
 
                     BancoDadosSingleton.Instance.SaveChanges();
-                BancoDadosSingleton.Instance.Entry(usuUpdate).State = EntityState.Modified;
                 }
 
                 else
@@ -162,7 +160,6 @@ namespace NutriEz
                     usuUpdate.perfil = tipoUsuario;
                     usuUpdate.CRN = crn;
                     BancoDadosSingleton.Instance.SaveChanges();
-                    BancoDadosSingleton.Instance.Entry(usuUpdate).State = EntityState.Modified;
                 }
 
                 nMensagemAviso("Os dados foram Salvos.");
@@ -197,7 +194,6 @@ namespace NutriEz
                 BancoDadosSingleton.Instance.Login.Add(loginInsert);
                 BancoDadosSingleton.Instance.SaveChanges();
                 nMensagemAviso("O seu usuário foi criado");
-                BancoDadosSingleton.Instance.Entry(loginInsert).State = EntityState.Modified;
             }
             catch (Exception ex)
             {

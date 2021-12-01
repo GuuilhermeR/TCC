@@ -46,7 +46,6 @@ namespace ProjetoTCC
                     pacienteUpdate.imagem = vetorIMG;
 
                 BancoDadosSingleton.Instance.SaveChanges();
-                BancoDadosSingleton.Instance.Entry(pacienteUpdate).State = EntityState.Modified;
             }
             else
             {

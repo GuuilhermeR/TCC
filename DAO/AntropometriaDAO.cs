@@ -79,7 +79,7 @@ namespace ProjetoTCC
                         db.Database.Connection.Close();
                     }
                 }
-               
+
                 nMensagemAviso("Antropometria foi salvo!");
             }
             catch (Exception ex)

@@ -96,7 +96,6 @@ namespace ProjetoTCC
                                                      $"WHERE ID ={ID} ";
                     update.ExecuteNonQuery();
                     BancoDadosSingleton.Instance.SaveChanges();
-                    BancoDadosSingleton.Instance.Entry(update).State = EntityState.Modified;
                     db.Database.Connection.Close();
                 }
 
@@ -144,7 +143,6 @@ namespace ProjetoTCC
                     update.ExecuteNonQuery();
                     db.Database.Connection.Close();
                     BancoDadosSingleton.Instance.SaveChanges();
-                    BancoDadosSingleton.Instance.Entry(update).State = EntityState.Modified;
                 }
 
                 nMensagemAviso("Consulta do paciente atualizado.");

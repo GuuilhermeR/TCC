@@ -94,7 +94,6 @@ namespace NutriEz
                 listaPacientes.Add(x);
             });
             tLoad.Abort();
-
         }
 
         private void frmMenuPrincipal_Load(object sender, EventArgs e)
@@ -318,67 +317,6 @@ namespace NutriEz
                     NutriEzIconNotify.ShowBalloonTip(10, $"Atendimento às {Convert.ToDateTime(mlblHoraFutura.Text).ToString("HH:mm")}", $"Você possui horário marcado com: {Convert.ToString(mlblNomeFuturo.Text)} às {mlblHoraFutura.Text}", ToolTipIcon.Info);
                 }
             }
-
-            //var ConsultasMarcada = this.agendaDAO.CarregarAgenda(DateTime.Now.ToString("dd/MM/yyyy"));
-
-            //if (ConsultasMarcada != null)
-            //    ConsultasMarcada.ForEach(x =>
-            //    {
-            //        if (x.data == DateTime.Now && x.Cancelado == 0)
-            //        {
-            //            if (Convert.ToDateTime(x.data) <= DateTime.Now && x.atendido != true)
-            //            {
-            //                mCardAtendimentoAtual.Visible = true;
-            //                mlblNome.Text = x.paciente;
-            //                mlblHorario.Text = x.data.ToString();
-            //                if ((bool)x.retorno)
-            //                {
-            //                    mlblObservação.Text = "Retorno";
-            //                }
-            //                else
-            //                {
-            //                    mlblObservação.Text = string.Empty;
-            //                }
-            //                if ((bool)x.atendido)
-            //                {
-            //                    mCardAtendimentoAtual.BackColor = Color.LightGreen;
-            //                }
-            //                // NutreasyIconNotify.ShowBalloonTip(10, "Consulta atual", $"Você possui horário agora com: {x.paciente}", ToolTipIcon.Info);
-            //            }
-            //            else if (Convert.ToDateTime(x.data.ToString()) > DateTime.Now && x.Cancelado == 0)
-            //            {
-            //                if (Convert.ToDateTime(x.data.ToString()) > DateTime.Now)
-            //                {
-            //                    mCardAtendimentoFuturo.Visible = true;
-            //                    mlblNomeFuturo.Text = x.paciente;
-            //                    mlblHoraFutura.Text = x.data.ToString();
-            //                    if ((bool)x.retorno)
-            //                    {
-            //                        mlblObservacaoFuturo.Text = "Retorno";
-            //                    }
-            //                    else
-            //                    {
-            //                        mlblObservacaoFuturo.Text = string.Empty;
-            //                    }
-            //                    if ((bool)x.atendido)
-            //                    {
-            //                        mCardAtendimentoFuturo.BackColor = Color.LightGreen;
-            //                    }
-            //                }
-            //                else
-            //                {
-            //                    mCardAtendimentoFuturo.Visible = false;
-            //                }
-            //                //NutreasyIconNotify.ShowBalloonTip(10, "Consulta às {x.hora}", $"Você possui horário marcado com: {x.paciente} às {x.hora}", ToolTipIcon.Info);
-            //            }
-            //            else
-            //            {
-            //                mCardAtendimentoAtual.Visible = false;
-            //            }
-            //        }
-            //    });
-            //timer1.Enabled = true;
-            //mCardConsultas.BackColor = mCardConsultas.BackColor == Color.Red ? Color.White : Color.Red;
         }
 
         #endregion
@@ -414,7 +352,10 @@ namespace NutriEz
             loadStop(this);
 
         }
-
+        private void calAgendamento_ItemSelected(object sender, CalendarItemEventArgs e)
+        {
+            dataAgendadoAnterior = e.Item.StartDate;
+        }
         private DateTime RetornaInicioSemana(DateTime data)
         {
             DateTime monday = DateTime.Today.AddDays(-(int)data.DayOfWeek + (int)DayOfWeek.Monday);
@@ -724,6 +665,7 @@ namespace NutriEz
                 mcbxAtendido.Checked = false;
 
             CarregarCardConsultas();
+            mCardAtendimentoAtual.Visible = false;
         }
 
         private void mcbxAtendidoFuturo_CheckedChanged(object sender, EventArgs e)
@@ -740,7 +682,8 @@ namespace NutriEz
                 FinalizarAtendimento(Convert.ToString(mlblHoraFutura.Text), mlblNomeFuturo.Text, mcbxAtendidoFuturo.Checked, temRetorno);
             else
                 mcbxAtendidoFuturo.Checked = false;
-            mCardAtendimentoAtual.Visible = false;
+
+            mCardAtendimentoFuturo.Visible = false;
             CarregarCardConsultas();
         }
 
@@ -811,6 +754,40 @@ namespace NutriEz
         {
             BuscadorPaciente();
             txtPacienteAgenda.Text = PacienteModel.nomePacienteModel;
+        }
+
+        private void btnExcluirHoraAtend_Click(object sender, EventArgs e)
+        {
+            if (dtgConfigHorario.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow row in dtgConfigHorario.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        FecharAbrirConexao();
+                        configDAO.RemoverConfig(row.Cells["usuario"].Value.ToString(), row.Cells["diaSemana"].Value.ToString());
+                        dtgConfigHorario.Rows.Remove(row);
+                    }
+                }
+            }
+        }
+
+        private void mCalendar_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            txtDataAgendamento.Text = mCalendar.SelectionStart.ToString("dd/MM/yyyy");
+            try
+            {
+                calAgendamento.ViewEnd = Convert.ToDateTime(txtDataAgendamento.Text).AddDays(5);
+                calAgendamento.ViewStart = mCalendar.SelectionStart;
+            }
+            catch (Exception ex)
+            {
+                calAgendamento.ViewStart = mCalendar.SelectionStart;
+                calAgendamento.ViewEnd = Convert.ToDateTime(txtDataAgendamento.Text).AddDays(5);
+            }
+
+            BuscarConsultasAgendadas();
+            GetConfigAtendimento();
         }
         #endregion
 
@@ -2395,6 +2372,11 @@ namespace NutriEz
             }
         }
 
+        private void dtgRefeicoes_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            e.Cancel = true;
+        }
+
         private void cbxDataCardSalvo_SelectedValueChanged(object sender, EventArgs e)
         {
             CarregarAlimentosCardapioConfig();
@@ -2525,6 +2507,101 @@ namespace NutriEz
             dtgRefeicoes.AutoResizeColumns();
         }
 
+        private void btnEnviarCardEmail_Click(object sender, EventArgs e)
+        {
+            loadStart(this);
+            var emailPaciente = pacienteDAO.GetEmail(Convert.ToInt32(PacienteModel.codPacienteModel));
+            string para = string.Empty;
+
+            emailPaciente.ForEach(x =>
+            {
+                para = x.email;
+            });
+
+            if (string.IsNullOrEmpty(para))
+            {
+                nMensagemAviso("Não é possível enviar o e-mail, pois o paciente não possuí e-mail cadastrado.");
+                return;
+            }
+
+            string dataConsultaCardapio = string.Empty;
+            string corpoEmail = string.Empty;
+            string refeAnte = string.Empty;
+
+            corpoEmail = $@"<h1>Cardápio referente à consulta data {dataConsultaCardapio}</h1>" + Environment.NewLine;
+
+            corpoEmail += $@"<table cellpadding='5' cellspacing='0' style='border: 1px solid #ccc;font-size: 9pt'>" + Environment.NewLine;
+            corpoEmail += $@"<th style='background-color: #33FFAC;border: 1px solid #ccc;width: 200px'> Refeição </th>" + Environment.NewLine;
+            corpoEmail += $@"<th style='background-color: #33FFAC;border: 1px solid #ccc;width: 200px'> Alimento </th>" + Environment.NewLine;
+            corpoEmail += $@"<th style='background-color: #33FFAC;border: 1px solid #ccc;width: 200px'> Quantidade </th>" + Environment.NewLine;
+            corpoEmail += $@"<th style='background-color: #33FFAC;border: 1px solid #ccc;width: 200px'> Observação </th>" + Environment.NewLine;
+
+            foreach (DataGridViewRow row in dtgCardGrid.Rows)
+            {
+                corpoEmail += $@"<tr>" + Environment.NewLine;
+                if (Convert.ToString(row.Cells[refeicao.Index].Value) == "Café da manhã")
+                {
+                    corpoEmail = PreencherCorpoEmail(corpoEmail, Convert.ToString(row.Cells[refeicao.Index].Value),
+                        Convert.ToString(row.Cells[alimento.Index].Value),
+                        Convert.ToString(row.Cells[medidacaseiraqtd.Index].Value),
+                        Convert.ToString(row.Cells[observ.Index].Value),
+                        refeAnte);
+                }
+                else if (Convert.ToString(row.Cells[refeicao.Index].Value) == "Lanche")
+                {
+                    corpoEmail = PreencherCorpoEmail(corpoEmail, Convert.ToString(row.Cells[refeicao.Index].Value),
+                       Convert.ToString(row.Cells[alimento.Index].Value),
+                       Convert.ToString(row.Cells[medidacaseiraqtd.Index].Value),
+                       Convert.ToString(row.Cells[observ.Index].Value),
+                       refeAnte);
+                }
+                else if (Convert.ToString(row.Cells[refeicao.Index].Value) == "Almoço")
+                {
+                    corpoEmail = PreencherCorpoEmail(corpoEmail, Convert.ToString(row.Cells[refeicao.Index].Value),
+                        Convert.ToString(row.Cells[alimento.Index].Value),
+                        Convert.ToString(row.Cells[medidacaseiraqtd.Index].Value),
+                        Convert.ToString(row.Cells[observ.Index].Value),
+                        refeAnte);
+                }
+                else if (Convert.ToString(row.Cells[refeicao.Index].Value) == "Lanche da tarde")
+                {
+                    corpoEmail = PreencherCorpoEmail(corpoEmail, Convert.ToString(row.Cells[refeicao.Index].Value),
+                        Convert.ToString(row.Cells[alimento.Index].Value),
+                        Convert.ToString(row.Cells[medidacaseiraqtd.Index].Value),
+                        Convert.ToString(row.Cells[observ.Index].Value),
+                        refeAnte);
+                }
+                else if (Convert.ToString(row.Cells[refeicao.Index].Value) == "Jantar")
+                {
+                    corpoEmail = PreencherCorpoEmail(corpoEmail, Convert.ToString(row.Cells[refeicao.Index].Value),
+                        Convert.ToString(row.Cells[alimento.Index].Value),
+                        Convert.ToString(row.Cells[medidacaseiraqtd.Index].Value),
+                        Convert.ToString(row.Cells[observ.Index].Value),
+                        refeAnte);
+                }
+                else if (Convert.ToString(row.Cells[refeicao.Index].Value) == "Ceia")
+                {
+                    corpoEmail = PreencherCorpoEmail(corpoEmail, Convert.ToString(row.Cells[refeicao.Index].Value),
+                        Convert.ToString(row.Cells[alimento.Index].Value),
+                        Convert.ToString(row.Cells[medidacaseiraqtd.Index].Value),
+                        Convert.ToString(row.Cells[observ.Index].Value),
+                        refeAnte);
+                }
+                refeAnte = Convert.ToString(row.Cells[refeicao.Index].Value);
+                corpoEmail += $@"</tr>" + Environment.NewLine;
+            }
+            corpoEmail += $@"</table>" + Environment.NewLine;
+
+            string erro = SenderMail(para, "nutriez.suporte@gmail.com", "Cardápio", corpoEmail.Replace("'", "\""));
+
+            if (!string.IsNullOrEmpty(erro))
+            {
+                loadStop(this);
+                nMensagemErro(erro);
+            }
+
+            loadStop(this);
+        }
         private void txtPacienteConsultaCardapio_TextChanged(object sender, EventArgs e)
         {
             if (PacienteModel.codPacienteModel == string.Empty)
@@ -3255,7 +3332,7 @@ namespace NutriEz
             if (e.Item.BackgroundColor == Color.LightGreen || e.Item.BackgroundColor == Color.Tomato)
                 return;
 
-            if (nMensagemAceita("Você deseja cancelar esta consulta como atendido?") == DialogResult.Yes)
+            if (nMensagemAceita("Você deseja cancelar esta consulta?") == DialogResult.Yes)
             {
                 CancelarAtendimento(Convert.ToString(e.Item.StartDate), e.Item.Text, false, (bool)(e.Item.BackgroundColor == Color.Cyan));
                 e.Item.BackgroundColor = Color.Tomato;
@@ -3668,6 +3745,8 @@ namespace NutriEz
         }
         #endregion
 
+        #region Tela Sobre
+
         private void tbSobre_Enter(object sender, EventArgs e)
         {
             if (!VerificarPermissao(tbSobre.Text))
@@ -3676,185 +3755,17 @@ namespace NutriEz
             };
         }
 
-        private void frmMenuPrincipal_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
-        }
-
-        private void calAgendamento_ItemSelected(object sender, CalendarItemEventArgs e)
-        {
-            dataAgendadoAnterior = e.Item.StartDate;
-        }
-
         private void lblUsuario_Click(object sender, EventArgs e)
         {
             Deslogar(sender, e);
         }
-
-        private void tabAgenda_Leave(object sender, EventArgs e)
-        {
-            //calAgendamento.Items.Clear();
-        }
-
-        private void dtgRefeicoes_DataError(object sender, DataGridViewDataErrorEventArgs e)
-        {
-            e.Cancel = true;
-        }
-
-        private void cbxDataCardSalvo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnEnviarCardEmail_Click(object sender, EventArgs e)
-        {
-            loadStart(this);
-            var emailPaciente = pacienteDAO.GetEmail(Convert.ToInt32(PacienteModel.codPacienteModel));
-            string para = string.Empty;
-
-            emailPaciente.ForEach(x =>
-            {
-                para = x.email;
-            });
-
-            if (string.IsNullOrEmpty(para))
-            {
-                nMensagemAviso("Não é possível enviar o e-mail, pois o paciente não possuí e-mail cadastrado.");
-                return;
-            }
-
-            string dataConsultaCardapio = string.Empty;
-            string corpoEmail = string.Empty;
-            string refeAnte = string.Empty;
-
-            corpoEmail = $@"<h1>Cardápio referente à consulta data {dataConsultaCardapio}</h1>" + Environment.NewLine;
-
-            corpoEmail += $@"<table cellpadding='5' cellspacing='0' style='border: 1px solid #ccc;font-size: 9pt'>" + Environment.NewLine;
-            corpoEmail += $@"<th style='background-color: #33FFAC;border: 1px solid #ccc;width: 200px'> Refeição </th>" + Environment.NewLine;
-            corpoEmail += $@"<th style='background-color: #33FFAC;border: 1px solid #ccc;width: 200px'> Alimento </th>" + Environment.NewLine;
-            corpoEmail += $@"<th style='background-color: #33FFAC;border: 1px solid #ccc;width: 200px'> Quantidade </th>" + Environment.NewLine;
-            corpoEmail += $@"<th style='background-color: #33FFAC;border: 1px solid #ccc;width: 200px'> Observação </th>" + Environment.NewLine;
-
-            foreach (DataGridViewRow row in dtgCardGrid.Rows)
-            {
-                corpoEmail += $@"<tr>" + Environment.NewLine;
-                if (Convert.ToString(row.Cells[refeicao.Index].Value) == "Café da manhã")
-                {
-                    corpoEmail = PreencherCorpoEmail(corpoEmail, Convert.ToString(row.Cells[refeicao.Index].Value),
-                        Convert.ToString(row.Cells[alimento.Index].Value),
-                        Convert.ToString(row.Cells[medidacaseiraqtd.Index].Value),
-                        Convert.ToString(row.Cells[observ.Index].Value),
-                        refeAnte);
-                }
-                else if (Convert.ToString(row.Cells[refeicao.Index].Value) == "Lanche")
-                {
-                    corpoEmail = PreencherCorpoEmail(corpoEmail, Convert.ToString(row.Cells[refeicao.Index].Value),
-                       Convert.ToString(row.Cells[alimento.Index].Value),
-                       Convert.ToString(row.Cells[medidacaseiraqtd.Index].Value),
-                       Convert.ToString(row.Cells[observ.Index].Value),
-                       refeAnte);
-                }
-                else if (Convert.ToString(row.Cells[refeicao.Index].Value) == "Almoço")
-                {
-                    corpoEmail = PreencherCorpoEmail(corpoEmail, Convert.ToString(row.Cells[refeicao.Index].Value),
-                        Convert.ToString(row.Cells[alimento.Index].Value),
-                        Convert.ToString(row.Cells[medidacaseiraqtd.Index].Value),
-                        Convert.ToString(row.Cells[observ.Index].Value),
-                        refeAnte);
-                }
-                else if (Convert.ToString(row.Cells[refeicao.Index].Value) == "Lanche da tarde")
-                {
-                    corpoEmail = PreencherCorpoEmail(corpoEmail, Convert.ToString(row.Cells[refeicao.Index].Value),
-                        Convert.ToString(row.Cells[alimento.Index].Value),
-                        Convert.ToString(row.Cells[medidacaseiraqtd.Index].Value),
-                        Convert.ToString(row.Cells[observ.Index].Value),
-                        refeAnte);
-                }
-                else if (Convert.ToString(row.Cells[refeicao.Index].Value) == "Jantar")
-                {
-                    corpoEmail = PreencherCorpoEmail(corpoEmail, Convert.ToString(row.Cells[refeicao.Index].Value),
-                        Convert.ToString(row.Cells[alimento.Index].Value),
-                        Convert.ToString(row.Cells[medidacaseiraqtd.Index].Value),
-                        Convert.ToString(row.Cells[observ.Index].Value),
-                        refeAnte);
-                }
-                else if (Convert.ToString(row.Cells[refeicao.Index].Value) == "Ceia")
-                {
-                    corpoEmail = PreencherCorpoEmail(corpoEmail, Convert.ToString(row.Cells[refeicao.Index].Value),
-                        Convert.ToString(row.Cells[alimento.Index].Value),
-                        Convert.ToString(row.Cells[medidacaseiraqtd.Index].Value),
-                        Convert.ToString(row.Cells[observ.Index].Value),
-                        refeAnte);
-                }
-                refeAnte = Convert.ToString(row.Cells[refeicao.Index].Value);
-                corpoEmail += $@"</tr>" + Environment.NewLine;
-            }
-            corpoEmail += $@"</table>" + Environment.NewLine;
-
-            string erro = SenderMail(para, "nutriez.suporte@gmail.com", "Cardápio", corpoEmail.Replace("'", "\""));
-
-            if (!string.IsNullOrEmpty(erro))
-            {
-                loadStop(this);
-                nMensagemErro(erro);
-            }
-
-            loadStop(this);
-        }
-
-        private static string PreencherCorpoEmail(string corpoEmail, string refeicao, string alimento, string quantidade, string observacao, string refeicaoAnterior)
-        {
-            if (string.IsNullOrEmpty(refeicao) || refeicao != refeicaoAnterior)
-            {
-                corpoEmail += $@"<td style='width: 120px; border: 1px solid #ccc'>{refeicao}</td>" + Environment.NewLine;
-            }
-            else
-            {
-                corpoEmail += $@"<td style='width: 120px; border: 1px solid #ccc'> </td>" + Environment.NewLine;
-            }
-            corpoEmail += $@"<td style='width: 120px;border: 1px solid #ccc'>{alimento}</td>" + Environment.NewLine;
-            corpoEmail += $@"<td style='width: 120px;border: 1px solid #ccc'>{quantidade}</td>" + Environment.NewLine;
-            corpoEmail += $@"<td style='width: 120px;border: 1px solid #ccc'>{observacao}</td>" + Environment.NewLine;
-            return corpoEmail;
-        }
-
+                      
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start(e.Link.LinkData.ToString());
         }
 
-        private void btnExcluirHoraAtend_Click(object sender, EventArgs e)
-        {
-            if (dtgConfigHorario.Rows.Count > 0)
-            {
-                foreach (DataGridViewRow row in dtgConfigHorario.Rows)
-                {
-                    if (row.Selected)
-                    {
-                        FecharAbrirConexao();
-                        configDAO.RemoverConfig(row.Cells["usuario"].Value.ToString(), row.Cells["diaSemana"].Value.ToString());
-                        dtgConfigHorario.Rows.Remove(row);
-                    }
-                }
-            }
-        }
+        #endregion
 
-        private void mCalendar_DateSelected(object sender, DateRangeEventArgs e)
-        {
-            txtDataAgendamento.Text = mCalendar.SelectionStart.ToString("dd/MM/yyyy");
-            try
-            {
-                calAgendamento.ViewEnd = Convert.ToDateTime(txtDataAgendamento.Text).AddDays(5);
-                calAgendamento.ViewStart = mCalendar.SelectionStart;
-            }
-            catch (Exception ex)
-            {
-                calAgendamento.ViewStart = mCalendar.SelectionStart;
-                calAgendamento.ViewEnd = Convert.ToDateTime(txtDataAgendamento.Text).AddDays(5);
-            }
-
-            BuscarConsultasAgendadas();
-            GetConfigAtendimento();
-        }
     }
 }

@@ -422,6 +422,21 @@ namespace Classes
             }
 
         }
+        public static string PreencherCorpoEmail(string corpoEmail, string refeicao, string alimento, string quantidade, string observacao, string refeicaoAnterior)
+        {
+            if (string.IsNullOrEmpty(refeicao) || refeicao != refeicaoAnterior)
+            {
+                corpoEmail += $@"<td style='width: 120px; border: 1px solid #ccc'>{refeicao}</td>" + Environment.NewLine;
+            }
+            else
+            {
+                corpoEmail += $@"<td style='width: 120px; border: 1px solid #ccc'> </td>" + Environment.NewLine;
+            }
+            corpoEmail += $@"<td style='width: 120px;border: 1px solid #ccc'>{alimento}</td>" + Environment.NewLine;
+            corpoEmail += $@"<td style='width: 120px;border: 1px solid #ccc'>{quantidade}</td>" + Environment.NewLine;
+            corpoEmail += $@"<td style='width: 120px;border: 1px solid #ccc'>{observacao}</td>" + Environment.NewLine;
+            return corpoEmail;
+        }
 
     }
 }

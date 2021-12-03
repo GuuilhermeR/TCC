@@ -54,12 +54,6 @@ namespace NutriEz
                 usuario.setUsuarioSenha(txtSenha.Text);
                 var usuarioLogado = usuario.getUsuario();
                 usuario.setAcesso(usuarioLogado, DateTime.Now,false);
-                if (usuario.CheckAvailable(usuarioLogado))
-                {
-                    usuario.setAcesso(usuarioLogado, DateTime.Now,true);
-                    nMensagemErro("Seu período de testes terminou, não é mais possível utilizar o programa!");
-                    return;
-                }
                 FrmMenuPrincipal menu = new FrmMenuPrincipal(usuarioLogado.ToString(),true);
                 menu.Show();
                 this.Hide();

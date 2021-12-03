@@ -64,6 +64,7 @@ namespace ProjetoTCC
 
         public void AtualizarSituacaoAtendimento (string dataAgenda, string hora, string paciente, bool atendido, bool retorno, int cancelado, string usuario)
         {
+            Agenda ag = new Agenda();
             DateTime dataHoraConsulta = Convert.ToDateTime(dataAgenda + " " + hora);
             long ID = 0;
             try
@@ -71,39 +72,61 @@ namespace ProjetoTCC
                 using (var db = new NutreasyEntities())
                 {
                     var select = db.Database.Connection.CreateCommand();
-                    select.CommandText = $"SELECT ID, retorno FROM AGENDA WHERE data='{dataHoraConsulta.ToString("yyyy-MM-dd HH:mm:ss")}' AND paciente ='{paciente}'";
+                    select.CommandText = $"SELECT * FROM AGENDA WHERE data='{dataHoraConsulta.ToString("yyyy-MM-dd HH:mm:ss")}' AND paciente ='{paciente}'";
                     db.Database.Connection.Open();
                     select.ExecuteNonQuery();
                     IDataReader dr = select.ExecuteReader();
                     if (dr.Read())
                     {
-                        ID = (long)dr["ID"];
-                        retorno = (bool)dr["retorno"];
+                        ag.ID = (long)dr["ID"];
+                        ag.retorno = (bool)dr["retorno"];
+                        ag.paciente = (string)dr["paciente"];
+                        ag.atendido = (bool)dr["atendido"];
+                        ag.usuarioResp = (string)dr["usuarioResp"];
+                        ag.Cancelado = (int)dr["Cancelado"];
+                        ag.data = (DateTime)dr["data"];
                     }
 
-                    if (ID == 0)
+                    if (ag.ID == 0)
                     {
                         db.Database.Connection.Close();
                         return;
                     }
-                    FecharAbrirConexao();
-                    var update = db.Database.Connection.CreateCommand();
-                    update.CommandText = $"UPDATE Agenda SET data='{dataHoraConsulta.ToString("yyyy-MM-dd HH:mm:ss")}'" +
-                                                     $", retorno='{Convert.ToInt16(retorno)}'" +
-                                                     $", atendido='{Convert.ToInt16(atendido)}'" +
-                                                     $", cancelado='{cancelado}'" +
-                                                     $", usuarioResp='{usuario}' " +
-                                                     $"WHERE ID ={ID} ";
-                    update.ExecuteNonQuery();
-                    BancoDadosSingleton.Instance.SaveChanges();
-                    BancoDadosSingleton.Instance.Entry(update).State = EntityState.Modified;
                     db.Database.Connection.Close();
-                }
 
+                                    
+
+                    //var update = db.Database.Connection.CreateCommand();
+                    //update.CommandText = $"UPDATE Agenda SET data='{dataHoraConsulta.ToString("yyyy-MM-dd HH:mm:ss")}'" +
+                    //                                 $", retorno='{Convert.ToInt16(retorno)}'" +
+                    //                                 $", atendido='{Convert.ToInt16(atendido)}'" +
+                    //                                 $", cancelado='{cancelado}'" +
+                    //                                 $", usuarioResp='{usuario}' " +
+                    //                                 $"WHERE ID ={ID} ";
+                    //update.ExecuteNonQuery();
+                    //BancoDadosSingleton.Instance.SaveChanges();
+                    //BancoDadosSingleton.Instance.Entry(cardUpdt).State = EntityState.Modified;
+                    //db.Database.Connection.Close();
+                }
+                FecharAbrirConexao();
+                var cardUpdt = (from card in BancoDadosSingleton.Instance.Agenda
+                                where card.ID == ag.ID
+                                select card).Single();
+                cardUpdt.retorno = retorno;
+                cardUpdt.atendido = atendido;
+                cardUpdt.usuarioResp = usuario;
+                cardUpdt.Cancelado = cancelado;
+                BancoDadosSingleton.Instance.SaveChanges();
+                BancoDadosSingleton.Instance.Entry(cardUpdt).State = EntityState.Modified;
                 nMensagemAviso("Consulta do paciente atualizado.");
             }
             catch (Exception ex)
             {
+                if (ex.Message.Contains("The entity type SQLiteCommand is not part of the model for the current context"))
+                {
+                    FecharAbrirConexao();
+                    return;
+                }
                 nMensagemErro("Ocorreu um erro ao salvar!" + Environment.NewLine + ex.Message + Environment.NewLine + ex.InnerException);
             }
         }
@@ -113,20 +136,23 @@ namespace ProjetoTCC
             DateTime dataHoraAgenda = Convert.ToDateTime(dataAgenda);
             DateTime dataHoraAgendaOld = Convert.ToDateTime(dataAgendaAntigo);
             long ID = 0;
+            string usuarioResp = "";
             try
             {
                 using (var db = new NutreasyEntities())
                 {
                     var select = db.Database.Connection.CreateCommand();
-                    select.CommandText = $"SELECT ID, retorno FROM AGENDA WHERE data='{dataHoraAgendaOld.ToString("yyyy-MM-dd HH:mm:ss")}' AND paciente ='{paciente}'";
+                    select.CommandText = $"SELECT ID, retorno, usuarioResp FROM AGENDA WHERE data='{dataHoraAgenda.ToString("yyyy-MM-dd HH:mm:ss")}' AND paciente ='{paciente}'";
                     db.Database.Connection.Open();
                     select.ExecuteNonQuery();
                     IDataReader dr = select.ExecuteReader();
                     if (dr.Read())
                     {
-                        ID=(long)dr["ID"];
-                        retorno=(bool)dr["retorno"];
+                        ID = (long)dr["ID"];
+                        retorno = (bool)dr["retorno"];
+                        usuarioResp = (string)dr["usuarioResp"];
                     }
+                   
 
                     if (ID == 0)
                     {
@@ -139,12 +165,12 @@ namespace ProjetoTCC
                                                      $", retorno='{Convert.ToInt16(retorno)}'" +
                                                      $", atendido='{Convert.ToInt16(atendido)}'" +
                                                      $", cancelado='{cancelado}'" +
-                                                     $", usuarioResp='{usuario}' " +
+                                                     $", usuarioResp='{usuarioResp}' " +
                                                      $"WHERE ID ={ID} ";
                     update.ExecuteNonQuery();
-                    db.Database.Connection.Close();
                     BancoDadosSingleton.Instance.SaveChanges();
                     BancoDadosSingleton.Instance.Entry(update).State = EntityState.Modified;
+                    db.Database.Connection.Close();
                 }
 
                 nMensagemAviso("Consulta do paciente atualizado.");

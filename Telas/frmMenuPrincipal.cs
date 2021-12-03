@@ -245,6 +245,8 @@ namespace NutriEz
 
                 while (dr.Read())
                 {
+                    mCardAtendimentoAtual.Visible = false;
+                    mCardAtendimentoFuturo.Visible = false;
                     if (Convert.ToDateTime(dr["data"]) <= DateTime.Now.AddHours(-3) && Convert.ToDateTime(dr["data"]) <= DateTime.Now.AddHours(3))
                     {
                         return;
@@ -599,6 +601,7 @@ namespace NutriEz
             }
             LimparCamposAgenda();
             calAgendamento.Items.Clear();
+            txtDataAgendamento.Text = DateTime.Now.ToString("dd/MM/yyyy");
             BuscarConsultasAgendadas();
         }
 
@@ -730,7 +733,7 @@ namespace NutriEz
             FecharAbrirConexao();
 
             bool temRetorno = false;
-            if (Convert.ToString(mlblObservação.Text) != string.Empty)
+            if (Convert.ToString(mlblObservacaoFuturo.Text) != string.Empty)
                 temRetorno = true;
 
             if (nMensagemAceita("Deseja realmente finalizar esta consulta?") == DialogResult.Yes)
@@ -762,22 +765,19 @@ namespace NutriEz
 
         private void CancelarAtendimento(string data, string paciente, bool atendido, bool retorno)
         {
+            FecharAbrirConexao();
             agendaDAO.AtualizarSituacaoAtendimento(Convert.ToString(data.Substring(0, 10)), data.Substring(11), paciente, atendido, retorno, 1, Convert.ToString(usuarioDAO.getUsuario()));
         }
 
         private void FinalizarAtendimento(string data, string paciente, bool atendido, bool retorno)
         {
+            FecharAbrirConexao();
             agendaDAO.AtualizarSituacaoAtendimento(Convert.ToString(data.Substring(0, 10)), data.Substring(11), paciente, atendido, retorno, 0, Convert.ToString(usuarioDAO.getUsuario()));
         }
 
         private void calAgendamento_ItemCreating(object sender, CalendarItemCancelEventArgs e)
         {
             e.Cancel = true;
-        }
-
-        private void mCalendar_DateChanged(object sender, DateRangeEventArgs e)
-        {
-
         }
 
         private void BuscarConsultasAgendadas()

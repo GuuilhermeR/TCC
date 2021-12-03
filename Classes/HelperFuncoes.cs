@@ -57,6 +57,7 @@ namespace Classes
         {
             try
             {
+                if(tLoad!=null)
                 if (tLoad.IsAlive)
                 {
                     Thread.Sleep(500);

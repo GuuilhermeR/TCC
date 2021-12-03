@@ -86,7 +86,7 @@ namespace ProjetoTCC
                         db.Database.Connection.Close();
                         return;
                     }
-
+                    FecharAbrirConexao();
                     var update = db.Database.Connection.CreateCommand();
                     update.CommandText = $"UPDATE Agenda SET data='{dataHoraConsulta.ToString("yyyy-MM-dd HH:mm:ss")}'" +
                                                      $", retorno='{Convert.ToInt16(retorno)}'" +
@@ -96,6 +96,7 @@ namespace ProjetoTCC
                                                      $"WHERE ID ={ID} ";
                     update.ExecuteNonQuery();
                     BancoDadosSingleton.Instance.SaveChanges();
+                    BancoDadosSingleton.Instance.Entry(update).State = EntityState.Modified;
                     db.Database.Connection.Close();
                 }
 
@@ -143,6 +144,7 @@ namespace ProjetoTCC
                     update.ExecuteNonQuery();
                     db.Database.Connection.Close();
                     BancoDadosSingleton.Instance.SaveChanges();
+                    BancoDadosSingleton.Instance.Entry(update).State = EntityState.Modified;
                 }
 
                 nMensagemAviso("Consulta do paciente atualizado.");
@@ -169,7 +171,6 @@ namespace ProjetoTCC
 
                 BancoDadosSingleton.Instance.Agenda.Add(agendaInsert);
                 BancoDadosSingleton.Instance.SaveChanges();
-                BancoDadosSingleton.Instance.Entry(agendaInsert).State = EntityState.Modified;
                 nMensagemAviso("Consulta do paciente foi agendado.");
             }
             catch (Exception ex)

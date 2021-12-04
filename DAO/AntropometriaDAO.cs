@@ -28,38 +28,38 @@ namespace ProjetoTCC
                     Antropometria antropometriaInsert = new Antropometria();
 
                     antropometriaInsert.codPaciente = antro.codPaciente;
-                    if(antro.altura > 0)
-                    antropometriaInsert.altura = antro.altura;
-                    if(antro.antebraco > 0)
-                    antropometriaInsert.antebraco = antro.antebraco;
-                    if(antro.braco > 0)
-                    antropometriaInsert.braco = antro.braco;
-                    if(antro.cintura > 0)
-                    antropometriaInsert.cintura = antro.cintura;
-                    if(antro.coxa > 0)
-                    antropometriaInsert.coxa = antro.coxa;
-                    if(antro.panturrilha > 0)
-                    antropometriaInsert.panturrilha = antro.panturrilha;
-                    if(antro.peso > 0)
-                    antropometriaInsert.peso = antro.peso;
-                    if(antro.punho > 0)
-                    antropometriaInsert.punho = antro.punho;
-                    if(antro.quadril > 0)
-                    antropometriaInsert.quadril = antro.quadril;
-                    if(antro.torax > 0)
-                    antropometriaInsert.torax = antro.torax;
-                    if(antro.pescoco > 0)
-                    antropometriaInsert.pescoco = antro.pescoco;
-                    if(antro.abdome > 0)
-                    antropometriaInsert.abdome = antro.abdome;
-                    if(!string.IsNullOrEmpty(antro.grauAtividade))
-                    antropometriaInsert.grauAtividade = antro.grauAtividade;
-                    if(antro.temGrauAtividade > 0)
-                    antropometriaInsert.temGrauAtividade = antro.temGrauAtividade;
+                    if (antro.altura > 0)
+                        antropometriaInsert.altura = antro.altura;
+                    if (antro.antebraco > 0)
+                        antropometriaInsert.antebraco = antro.antebraco;
+                    if (antro.braco > 0)
+                        antropometriaInsert.braco = antro.braco;
+                    if (antro.cintura > 0)
+                        antropometriaInsert.cintura = antro.cintura;
+                    if (antro.coxa > 0)
+                        antropometriaInsert.coxa = antro.coxa;
+                    if (antro.panturrilha > 0)
+                        antropometriaInsert.panturrilha = antro.panturrilha;
+                    if (antro.peso > 0)
+                        antropometriaInsert.peso = antro.peso;
+                    if (antro.punho > 0)
+                        antropometriaInsert.punho = antro.punho;
+                    if (antro.quadril > 0)
+                        antropometriaInsert.quadril = antro.quadril;
+                    if (antro.torax > 0)
+                        antropometriaInsert.torax = antro.torax;
+                    if (antro.pescoco > 0)
+                        antropometriaInsert.pescoco = antro.pescoco;
+                    if (antro.abdome > 0)
+                        antropometriaInsert.abdome = antro.abdome;
+                    if (!string.IsNullOrEmpty(antro.grauAtividade))
+                        antropometriaInsert.grauAtividade = antro.grauAtividade;
+                    if (antro.temGrauAtividade > 0)
+                        antropometriaInsert.temGrauAtividade = antro.temGrauAtividade;
                     if (antro.temCoefAtividade > 0)
-                    antropometriaInsert.temCoefAtividade = antro.temCoefAtividade;
-                    if(!string.IsNullOrEmpty(antro.coefAtividade))
-                    antropometriaInsert.coefAtividade = antro.coefAtividade;
+                        antropometriaInsert.temCoefAtividade = antro.temCoefAtividade;
+                    if (!string.IsNullOrEmpty(antro.coefAtividade))
+                        antropometriaInsert.coefAtividade = antro.coefAtividade;
                     antropometriaInsert.Data = antro.Data;
 
                     BancoDadosSingleton.Instance.Antropometria.Add(antropometriaInsert);
@@ -70,14 +70,19 @@ namespace ProjetoTCC
                 {
                     using (var db = new NutreasyEntities())
                     {
-                        var update = db.Database.Connection.CreateCommand();
-                        update.CommandText = $"UPDATE Antropometria SET altura={antro.altura}, braco={antro.braco}, punho={antro.punho}, cintura={antro.cintura}, torax={antro.torax}, quadril={antro.quadril}" +
-                            $", panturrilha={antro.panturrilha}, antebraco={antro.antebraco}, coxa={antro.coxa}, peso={antro.peso}, pescoco={antro.pescoco}, abdome={antro.abdome}, grauAtividade='{antro.grauAtividade}'" +
-                            $"WHERE codPaciente = {antro.codPaciente} AND Data='{antro.Data}'";
                         db.Database.Connection.Open();
-                        update.ExecuteNonQuery();                        
+                        var update = db.Database.Connection.CreateCommand();
+                        using (var transaction = db.Database.BeginTransaction())
+                        {
+                            update.CommandText = $"UPDATE Antropometria SET altura='{antro.altura}', braco={antro.braco}, punho={antro.punho}, cintura={antro.cintura}, torax={antro.torax}, quadril={antro.quadril}" +
+                                $", panturrilha={antro.panturrilha}, antebraco={antro.antebraco}, coxa={antro.coxa}, peso={antro.peso}, pescoco={antro.pescoco}, abdome={antro.abdome}, grauAtividade='{antro.grauAtividade}'" +
+                                $" WHERE codPaciente = {antro.codPaciente} AND Data='{antro.Data}'";
+                            transaction.Commit();
+                        }
+                        update.ExecuteNonQuery();
                         db.Database.Connection.Close();
                     }
+
                 }
 
                 nMensagemAviso("Antropometria foi salvo!");
@@ -99,7 +104,7 @@ namespace ProjetoTCC
                 IDataReader dr = select.ExecuteReader();
                 if (dr.Read())
                 {
-                    return (bool)(Convert.ToInt32(dr["Existe"])>0);
+                    return (bool)(Convert.ToInt32(dr["Existe"]) > 0);
                 }
                 return false;
             }
@@ -137,8 +142,8 @@ namespace ProjetoTCC
         {
             try
             {
-                List<DateTime> antropometria = ((from a in BancoDadosSingleton.Instance.Antropometria 
-                                                 where a.codPaciente == codPaciente 
+                List<DateTime> antropometria = ((from a in BancoDadosSingleton.Instance.Antropometria
+                                                 where a.codPaciente == codPaciente
                                                  select a.Data).Distinct()).ToList();
 
                 return antropometria;
@@ -171,8 +176,9 @@ namespace ProjetoTCC
                     IDataReader dr = select.ExecuteReader();
                     if (dr.Read())
                     {
-                        Antropometria antropometria = new Antropometria() {
-                            codPaciente = dr["codPaciente"] == DBNull.Value  ? 0 : Convert.ToInt64(dr["codPaciente"]),
+                        Antropometria antropometria = new Antropometria()
+                        {
+                            codPaciente = dr["codPaciente"] == DBNull.Value ? 0 : Convert.ToInt64(dr["codPaciente"]),
                             peso = dr["peso"] == DBNull.Value ? 0 : Convert.ToDouble(dr["peso"]),
                             grauAtividade = dr["grauAtividade"] == DBNull.Value ? string.Empty : Convert.ToString(dr["grauAtividade"]),
                             altura = dr["altura"] == DBNull.Value ? 0 : Convert.ToDouble(dr["altura"]),

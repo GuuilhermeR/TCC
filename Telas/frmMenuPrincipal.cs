@@ -99,6 +99,9 @@ namespace NutriEz
         private void frmMenuPrincipal_Load(object sender, EventArgs e)
         {
             FormatView(this);
+            BancoDadosSingleton.Instance.Configuration.AutoDetectChangesEnabled = true;
+            BancoDadosSingleton.Instance.Configuration.ValidateOnSaveEnabled = true;
+            BancoDadosSingleton.Instance.Configuration.EnsureTransactionsForFunctionsAndCommands = false;
             if (!usuarioViaLogin)
             {
                 FecharAplicacao(sender, e);
@@ -227,6 +230,8 @@ namespace NutriEz
             var dataFim = dataAgenda + " 23:59:59";
             DateTime dataMarcadasIni = Convert.ToDateTime(dataInicio);
             DateTime dataMarcadasFim = Convert.ToDateTime(dataFim);
+            FecharAbrirConexao();
+            
 
             using (var db = new NutreasyEntities())
             {
@@ -317,6 +322,7 @@ namespace NutriEz
                     NutriEzIconNotify.ShowBalloonTip(10, $"Atendimento às {Convert.ToDateTime(mlblHoraFutura.Text).ToString("HH:mm")}", $"Você possui horário marcado com: {Convert.ToString(mlblNomeFuturo.Text)} às {mlblHoraFutura.Text}", ToolTipIcon.Info);
                 }
             }
+            FecharAbrirConexao();
         }
 
         #endregion

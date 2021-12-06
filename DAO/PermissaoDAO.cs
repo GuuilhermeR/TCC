@@ -54,21 +54,22 @@ namespace DAO
 
         public bool VerificarPermissao(string usuario, string tela)
         {
+            var usuPerfil = (from p in NutriEz.BancoDadosSingleton.Instance.Login
+                             where p.usuario==usuario
+                             select p.perfil).ToList();
 
-            var temPerm = (from p in NutriEz.BancoDadosSingleton.Instance.Permissao 
-                           where p.usuario == usuario 
-                           && p.programa == tela 
-                           && p.Login.perfil != "Nutricionista" || p.Login.perfil != "Estudante"
-                           select p).ToList();
-
-            if (temPerm.Count > 0)
-            {
-                return false;
-            }
-            else
-            {
+            if (usuPerfil.Count > 0)
                 return true;
-            }
+
+            var temPerm = (from p in NutriEz.BancoDadosSingleton.Instance.Permissao
+                           where p.usuario == usuario
+                           && p.programa == tela
+                           select p).ToList();
+            foreach (var perm in temPerm)
+                if (perm.usuario == usuario && perm.programa == tela)
+                    return true;
+
+            return false;
         }
 
         public List<Permissao> getAllPermissao()

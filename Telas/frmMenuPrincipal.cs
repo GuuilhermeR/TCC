@@ -247,11 +247,11 @@ namespace NutriEz
                 db.Database.Connection.Open();
                 IDataReader dr = selectAgendamento.ExecuteReader();
 
+                mCardAtendimentoAtual.Visible = false;
+                mCardAtendimentoFuturo.Visible = false;
                 while (dr.Read())
                 {
-                    mCardAtendimentoAtual.Visible = false;
-                    mCardAtendimentoFuturo.Visible = false;
-                    if (Convert.ToDateTime(dr["data"]) <= DateTime.Now.AddHours(-3) && Convert.ToDateTime(dr["data"]) <= DateTime.Now.AddHours(3))
+                    if (Convert.ToDateTime(dr["data"]) <= DateTime.Now.AddHours(-2) && Convert.ToDateTime(dr["data"]) <= DateTime.Now.AddHours(2))
                     {
                         return;
                     }
@@ -260,7 +260,7 @@ namespace NutriEz
                     horaAtualArredonda = Strings.Left(horaAtualArredonda, 13) + ":00";
                     DateTime dataHoraArredondada = Convert.ToDateTime(horaAtualArredonda);
 
-                    if ((DateTime)dr["data"] <= dataHoraArredondada && (DateTime)dr["data"] <= dataHoraArredondada.AddHours(1))
+                    if (Convert.ToDateTime(dr["data"]) <= dataHoraArredondada && (DateTime)dr["data"] <= dataHoraArredondada.AddHours(1))
                     {
                         mCardAtendimentoAtual.Visible = true;
                         mlblNome.Text = (string)dr["paciente"];
@@ -3338,10 +3338,17 @@ namespace NutriEz
             if (e.Item.BackgroundColor == Color.LightGreen || e.Item.BackgroundColor == Color.Tomato)
                 return;
 
+            if (nMensagemAceita("Você marcar como atendido esta consulta?") == DialogResult.Yes)
+            {
+                FinalizarAtendimento(Convert.ToString(e.Item.StartDate), e.Item.Text, true, (bool)(e.Item.BackgroundColor == Color.Cyan));
+                e.Item.BackgroundColor = Color.LightGreen;
+                return;
+            }
             if (nMensagemAceita("Você deseja cancelar esta consulta?") == DialogResult.Yes)
             {
                 CancelarAtendimento(Convert.ToString(e.Item.StartDate), e.Item.Text, false, (bool)(e.Item.BackgroundColor == Color.Cyan));
                 e.Item.BackgroundColor = Color.Tomato;
+                return;
             }
         }
 

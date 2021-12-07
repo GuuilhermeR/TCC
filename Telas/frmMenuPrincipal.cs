@@ -1391,6 +1391,14 @@ namespace NutriEz
                 {
                     pbImagem.Image = ByteToImage((byte[])_dtgConsultaPacientes.Rows[e.RowIndex].Cells["imagem"].Value);
                 }
+                if (Convert.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["sexo"].Value).Contains("M"))
+                {
+                    rbMasculino.Checked = true;
+                }
+                else if (Convert.ToString(_dtgConsultaPacientes.Rows[e.RowIndex].Cells["sexo"].Value).Contains("F"))
+                {
+                    rbFeminino.Checked = true;
+                }
                 tbPaciente.SelectedTab = tbCadastro;
                 FormatarCampos();
                 loadStop(this);
@@ -3366,6 +3374,7 @@ namespace NutriEz
             CarregarAlimentosCardapioConfig();
             CarregarDatasCardapio(cbxDataCardSalvo);
             CarregarCalculoSelecionado();
+            lblValorKcal.Text = string.Empty;
         }
 
         private void CarregarCalculoSelecionado()

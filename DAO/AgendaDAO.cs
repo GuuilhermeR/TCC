@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using static Classes.HelperFuncoes;
 using System.Data.Entity;
 using NutriEz.Banco_de_Dados;
+using System.Threading;
 
 namespace ProjetoTCC
 {
@@ -92,6 +93,11 @@ namespace ProjetoTCC
                         db.Database.Connection.Close();
                         return;
                     }
+                    db.Database.Connection.Close();
+                }
+
+                using (var db = new NutreasyEntities())
+                {
                     var update = db.Database.Connection.CreateCommand();
                     using (var transaction = db.Database.BeginTransaction())
                     {
@@ -101,6 +107,8 @@ namespace ProjetoTCC
                                                          $", cancelado='{cancelado}'" +
                                                          $", usuarioResp='{usuario}' " +
                                                          $"WHERE ID ={ag.ID} ";
+                        db.Database.Connection.Open();
+                        Thread.Sleep(5000);
                         transaction.Commit();
                     }
                     update.ExecuteNonQuery();

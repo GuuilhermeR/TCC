@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using static Classes.HelperFuncoes;
 using System.Data.Entity;
 using NutriEz.Banco_de_Dados;
-using System.Threading;
 
 namespace ProjetoTCC
 {
@@ -102,14 +101,15 @@ namespace ProjetoTCC
                                                          $", cancelado='{cancelado}'" +
                                                          $", usuarioResp='{usuario}' " +
                                                          $"WHERE ID ={ag.ID} ";
-                        Thread.Sleep(5000);
                         transaction.Commit();
                     }
                     update.ExecuteNonQuery();
                     BancoDadosSingleton.Instance.SaveChanges();
                     db.Database.Connection.Close();
                 }
-                FecharAbrirConexao();               
+                FecharAbrirConexao();
+               
+                nMensagemAviso("Consulta do paciente atualizado.");
             }
             catch (Exception ex)
             {
@@ -157,9 +157,8 @@ namespace ProjetoTCC
                                                          $", retorno='{Convert.ToInt16(retorno)}'" +
                                                          $", atendido='{Convert.ToInt16(atendido)}'" +
                                                          $", cancelado='{cancelado}'" +
-                                                         $", usuarioResp='{usuario}'" +
-                                                         $" WHERE ID ={ag.ID} ";
-                        Thread.Sleep(5000);
+                                                         $", usuarioResp='{usuario}' " +
+                                                         $"WHERE ID ={ag.ID} ";
                         transaction.Commit();
                     }
                     update.ExecuteNonQuery();
@@ -167,6 +166,7 @@ namespace ProjetoTCC
                     db.Database.Connection.Close();
                 }
 
+                nMensagemAviso("Consulta do paciente atualizado.");
             }
             catch (Exception ex)
             {
@@ -182,6 +182,7 @@ namespace ProjetoTCC
 
                 agendaInsert.paciente = paciente;
                 agendaInsert.data = Convert.ToDateTime(dataAgenda.ToString("dd/MM/yyyy") + " " + horario + ":00");
+                //agendaInsert.hora = horario;
                 agendaInsert.atendido = atendido;
                 agendaInsert.retorno = (bool)retorno;
                 agendaInsert.Cancelado = cancelado;
@@ -189,6 +190,7 @@ namespace ProjetoTCC
 
                 BancoDadosSingleton.Instance.Agenda.Add(agendaInsert);
                 BancoDadosSingleton.Instance.SaveChanges();
+                nMensagemAviso("Consulta do paciente foi agendado.");
             }
             catch (Exception ex)
             {
@@ -225,13 +227,12 @@ namespace ProjetoTCC
                 using (var db = new NutreasyEntities())
                 {
                     var delete = db.Database.Connection.CreateCommand();
-                    delete.CommandText = $"DELETE FROM Agenda" +
-                        $" WHERE paciente = '{paciente}'" +
-                        $" AND data = '{dataHora.ToString("yyyy-MM-dd HH:mm:ss")}' ";
+                    delete.CommandText = $"DELETE FROM Agenda WHERE paciente = '{paciente}' AND data = '{dataHora.ToString("yyyy-MM-dd HH:mm:ss")}' ";
                     db.Database.Connection.Open();
                     delete.ExecuteNonQuery();
                     db.Database.Connection.Close();
                 }
+                nMensagemAviso("A consulta foi removida.");
             }
             catch (Exception ex)
             {

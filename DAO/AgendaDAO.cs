@@ -98,21 +98,20 @@ namespace ProjetoTCC
 
                 using (var db = new NutreasyEntities())
                 {
-                    var update = db.Database.Connection.CreateCommand();
                     using (var transaction = db.Database.BeginTransaction())
                     {
+                    var update = db.Database.Connection.CreateCommand();
                         update.CommandText = $"UPDATE Agenda SET data='{dataHoraConsulta.ToString("yyyy-MM-dd HH:mm:ss")}'" +
                                                          $", retorno='{Convert.ToInt16(retorno)}'" +
                                                          $", atendido='{Convert.ToInt16(atendido)}'" +
                                                          $", cancelado='{cancelado}'" +
                                                          $", usuarioResp='{usuario}' " +
                                                          $"WHERE ID ={ag.ID} ";
-                        db.Database.Connection.Open();
-                        Thread.Sleep(5000);
+                        //db.Database.Connection.Open();
+                        update.ExecuteNonQuery();
                         transaction.Commit();
+                        BancoDadosSingleton.Instance.SaveChanges();
                     }
-                    update.ExecuteNonQuery();
-                    BancoDadosSingleton.Instance.SaveChanges();
                     db.Database.Connection.Close();
                 }
                 FecharAbrirConexao();
@@ -132,12 +131,13 @@ namespace ProjetoTCC
             DateTime dataHoraAgendaOld = Convert.ToDateTime(dataAgendaAntigo);
             long ID = 0;
             string usuarioResp = "";
+            var data = string.IsNullOrEmpty(dataAgendaAntigo) || dataAgenda.Contains("01/01/1001") ? dataHoraAgenda : dataHoraAgendaOld;
             try
             {
                 using (var db = new NutreasyEntities())
                 {
                     var select = db.Database.Connection.CreateCommand();
-                    select.CommandText = $"SELECT * FROM AGENDA WHERE data='{dataHoraAgenda.ToString("yyyy-MM-dd HH:mm:ss")}' AND paciente ='{paciente}'";
+                    select.CommandText = $"SELECT * FROM AGENDA WHERE data='{data.ToString("yyyy-MM-dd HH:mm:ss")}' AND paciente ='{paciente}'";
                     db.Database.Connection.Open();
                     select.ExecuteNonQuery();
                     IDataReader dr = select.ExecuteReader();
@@ -157,23 +157,29 @@ namespace ProjetoTCC
                         db.Database.Connection.Close();
                         return;
                     }
+                    db.Database.Connection.Close();
+                }
+                var data2 = !string.IsNullOrEmpty(dataAgendaAntigo) || !dataAgenda.Contains("01/01/1001") ? dataHoraAgenda : dataHoraAgendaOld;
 
-                    var update = db.Database.Connection.CreateCommand();
+                using (var db = new NutreasyEntities())
+                {
+
                     using (var transaction = db.Database.BeginTransaction())
                     {
-                        update.CommandText = $"UPDATE Agenda SET data='{dataHoraAgenda.ToString("yyyy-MM-dd HH:mm:ss")}'" +
+                        var update = db.Database.Connection.CreateCommand();
+                        update.CommandText = $"UPDATE Agenda SET data='{data2.ToString("yyyy-MM-dd HH:mm:ss")}'" +
                                                          $", retorno='{Convert.ToInt16(retorno)}'" +
                                                          $", atendido='{Convert.ToInt16(atendido)}'" +
                                                          $", cancelado='{cancelado}'" +
                                                          $", usuarioResp='{usuario}' " +
                                                          $"WHERE ID ={ag.ID} ";
+                        //db.Database.Connection.Open();
+                        update.ExecuteNonQuery();
                         transaction.Commit();
+                        BancoDadosSingleton.Instance.SaveChanges();
                     }
-                    update.ExecuteNonQuery();
-                    BancoDadosSingleton.Instance.SaveChanges();
                     db.Database.Connection.Close();
                 }
-
                 nMensagemAviso("Consulta do paciente atualizado.");
             }
             catch (Exception ex)

@@ -178,7 +178,6 @@ C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\Microsoft.Office.Interop.Exce
 C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\MvtWindowsForms.dll
 C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\MvtWindowsFormsCS.dll
 C:\Users\movtech\Documents\WorkSpace\TCC\bin\Debug\System.Windows.Forms.Calendar.dll
-C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\TCC2.csproj.AssemblyReference.cache
 C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\NutriEz.exe.config
 C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\NutriEz.frmBuscarPaciente.resources
 C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\NutriEz.Telas.frmCadastro.resources

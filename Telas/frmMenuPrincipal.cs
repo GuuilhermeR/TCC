@@ -55,7 +55,7 @@ namespace NutriEz
         private double quantidadeAntigaCardapio;
         //Image capturaImagem;
         public string caminhoImagemSalva = null;
-        public DateTime dataAgendadoAnterior;
+        public DateTime dataAgendadoAnterior = Convert.ToDateTime("01/01/1001");
         public bool jaIniciou = false;
         private bool primeiraVez = true;
         private DateTime dataHoraNotif = DateTime.Now;
@@ -67,7 +67,6 @@ namespace NutriEz
         List<Alimentos> listaAlimentosCardapio = new List<Alimentos>();
         List<Alimentos> listaAlimentos = new List<Alimentos>();
         List<Paciente> listaPacientes = new List<Paciente>();
-
         #endregion
 
         #region Menu
@@ -594,6 +593,7 @@ namespace NutriEz
                            0,
                            true,
                            Convert.ToString(usuarioDAO.getUsuario()));
+                    dataAgendadoAnterior = Convert.ToDateTime("01/01/1001");
                 }
                 else
                 {
@@ -2292,6 +2292,12 @@ namespace NutriEz
 
         private void BuscadorPaciente()
         {
+
+            if (listaPacientes.Count == 0)
+            {
+                PreCarregarPacientes();
+            }
+
             using (frmBuscarPaciente buscaPacientes = new frmBuscarPaciente(this, listaPacientes))
             {
                 buscaPacientes.ShowDialog();

@@ -231,7 +231,6 @@ namespace NutriEz
             DateTime dataMarcadasIni = Convert.ToDateTime(dataInicio);
             DateTime dataMarcadasFim = Convert.ToDateTime(dataFim);
             FecharAbrirConexao();
-            
 
             using (var db = new NutreasyEntities())
             {
@@ -666,7 +665,10 @@ namespace NutriEz
                 temRetorno = true;
 
             if (nMensagemAceita("Deseja realmente finalizar esta consulta?") == DialogResult.Yes)
+            {
                 FinalizarAtendimento(Convert.ToString(mlblHorario.Text), mlblNome.Text, mcbxAtendido.Checked, temRetorno);
+                mCardAtendimentoAtual.Visible = false;
+            }
             else
                 mcbxAtendido.Checked = false;
 
@@ -685,7 +687,10 @@ namespace NutriEz
                 temRetorno = true;
 
             if (nMensagemAceita("Deseja realmente finalizar esta consulta?") == DialogResult.Yes)
+            {
                 FinalizarAtendimento(Convert.ToString(mlblHoraFutura.Text), mlblNomeFuturo.Text, mcbxAtendidoFuturo.Checked, temRetorno);
+                mCardAtendimentoFuturo.Visible = false;
+            }
             else
                 mcbxAtendidoFuturo.Checked = false;
 
@@ -697,6 +702,7 @@ namespace NutriEz
         {
             if (mcbxCancelarFuturo.Checked == false)
                 return;
+
             FecharAbrirConexao();
 
             bool temRetorno = false;
@@ -714,14 +720,19 @@ namespace NutriEz
 
         private void CancelarAtendimento(string data, string paciente, bool atendido, bool retorno)
         {
+            loadStart(this);
             FecharAbrirConexao();
             agendaDAO.AtualizarSituacaoAtendimento(Convert.ToString(data.Substring(0, 10)), data.Substring(11), paciente, atendido, retorno, 1, Convert.ToString(usuarioDAO.getUsuario()));
+            loadStop(this);
         }
 
         private void FinalizarAtendimento(string data, string paciente, bool atendido, bool retorno)
         {
+            loadStart(this);
             FecharAbrirConexao();
             agendaDAO.AtualizarSituacaoAtendimento(Convert.ToString(data.Substring(0, 10)), data.Substring(11), paciente, atendido, retorno, 0, Convert.ToString(usuarioDAO.getUsuario()));
+            loadStop(this);
+
         }
 
         private void calAgendamento_ItemCreating(object sender, CalendarItemCancelEventArgs e)
@@ -3569,6 +3580,8 @@ namespace NutriEz
                 cbxSituacao.Text = dtgUsuarios.CurrentRow.Cells["situacao"].Value.ToString();
                 cbxTipoUsuario.Text = dtgUsuarios.CurrentRow.Cells["perfil"].Value.ToString();
                 txtCRN.Text = dtgUsuarios.CurrentRow.Cells["crn"].Value.ToString();
+                if (dtgUsuarios.CurrentRow.Cells["perfil"].Value.ToString().Contains("Nutri"))
+                    txtCRN.Visible = true;
             }
         }
 

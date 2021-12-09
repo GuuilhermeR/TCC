@@ -191,3 +191,4 @@ C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\NutriEz.Telas.frmWait.resourc
 C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\NutriEz.exe.licenses
 C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\NutriEz.exe
 C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\NutriEz.pdb
+C:\Users\movtech\Documents\WorkSpace\TCC\obj\Debug\TCC2.csproj.AssemblyReference.cache

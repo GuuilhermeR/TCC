@@ -808,7 +808,7 @@ namespace NutriEz
                 }
                 else
                 {
-                    MessageBox.Show(this, "Não foram encontrados itens para recalcular.");
+                    nMensagemAlerta("Não foram encontrados itens para recalcular.");
                 }
             quantidadeSalva = 0;
         }
@@ -860,6 +860,7 @@ namespace NutriEz
 
                     decimal somaTotalCaloria = ProteinaKcal + CarboidratoKcal + LipidioKcal;
                     row.Cells["kcal"].Value = Conversions.ToDecimal(somaTotalCaloria);
+                    if (dtg.Name != dtgConAlimento.Name)
                     lblValorKcal.Text = somaTotalCaloria.ToString("N2");
                 }
             }
